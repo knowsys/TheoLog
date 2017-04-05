@@ -1,0 +1,19 @@
+\ProvidesPackage{theolog}
+
+\RequirePackage{kvoptions}
+\DeclareStringOption[??]{sheetnumber}
+\DeclareStringOption[2017]{year}
+
+\ProcessKeyvalOptions*
+
+\author{~}
+\term{Sommersemester~\theolog@year}
+\course{Theoretische Informatik und Logik}
+\title{\theolog@sheetnumber.~Übungsblatt}
+
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\subsets}[1]{\mathfrak{P}(#1)}
+
+\usepackage{mdframed}
+\usepackage{todonotes}
+\usepackage{csquotes}

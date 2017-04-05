@@ -56,7 +56,7 @@
                                {\pgfmathresult\pgfdecorationsegmentamplitude}
                     }
         }
-        {%TO 
+        {%TO
         \pgfpointadd{\pgfpointdecoratedinputsegmentlast}{\pgfpoint{1pt}{1pt}}
         }
     }
@@ -69,10 +69,10 @@
 % Use to make Tikz attributes with Beamer overlays
 % http://tex.stackexchange.com/a/6155
 \tikzset{onslide/.code args={<#1>#2}{%
-  \only<#1| handout:0>{\pgfkeysalso{#2}} 
+  \only<#1| handout:0>{\pgfkeysalso{#2}}
 }}
 \tikzset{onslideprint/.code args={<#1>#2}{%
-  \only<#1>{\pgfkeysalso{#2}} 
+  \only<#1>{\pgfkeysalso{#2}}
 }}
 
 %%% Title -- always set this first
@@ -194,7 +194,7 @@ Siehe \href{\lectureurl}{course homepage [$\Rightarrow$ link]} for more informat
   \end{beamerboxesrounded}
   \end{minipage}
 }
-% 
+%
 \newcommand{\myheaderbox}[2]{%
  \begin{minipage}[t]{#1}
  \begin{beamerboxesrounded}[upper=block title,lower=block title,shadow=true]%
