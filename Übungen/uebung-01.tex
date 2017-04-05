@@ -1,0 +1,63 @@
+\documentclass[german]{latteachCD}[2017/03/28]
+\usepackage[sheetnumber=1]{theolog}
+
+\begin{document}
+
+\maketitle
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\Alph{exercise}}
+
+  \begin{exercise}
+    Wiederholen Sie die Begriffe \emph{Einband Turing-Maschine}, \emph{Mehrband
+      Turing-Maschine}, \emph{Entscheidungsproblem}, \emph{Unentscheidbarkeit},
+    \emph{Aufzählbarkeit}, \emph{Abzählbarkeit} und \emph{Halteproblem}.%
+  \end{exercise}
+
+  \begin{exercise}
+    Zeigen Sie: Wenn es möglich ist, für zwei beliebige Turing-Maschinen zu
+    entscheiden, ob sie dieselbe Sprache akzeptieren, so ist es auch möglich,
+    für beliebige Turing-Maschinen zu entscheiden, ob sie die leere Sprache
+    akzeptieren.
+  \end{exercise}
+
+\end{mdframed}
+
+\vspace*{\baselineskip}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}
+  Zeigen Sie folgende Aussagen:
+  \begin{enumerate}
+  \item $\abs{\mathbb N} = \abs{\mathbb N \times \mathbb N}$;
+  \item $\abs{\mathbb N} = \abs{\mathbb Q}$;
+  \item $\abs{\mathbb N} \neq \abs{\mathbb R}$;
+  \item für jede nicht-leere endliche Menge $\Sigma$ ist $\Sigma^{*}$ abzählbar
+    unendlich.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Sei $M$ eine Menge.  Zeigen Sie, dass es keine surjektive Funktion $f \colon M
+  \to \subsets{M}$ gibt.  Folgern Sie daraus, dass stets $\abs{M} <
+  \abs{\subsets{M}}$ gilt.
+\end{exercise}
+
+\begin{exercise}
+  Konstruieren Sie eine Turing-Maschine $\mathcal{A}_{\text{mul}}$, welche die
+  Multiplikation zweier natürlicher Zahlen implementiert.  Dabei sollen sowohl
+  die Eingaben als auch die Ausgabe unär kodiert sein.
+\end{exercise}
+
+\begin{exercise}
+  Zeigen Sie: Wenn es möglich ist, für zwei beliebige Turing-Maschinen zu
+  entscheiden, ob sie dieselbe Sprache akzeptieren, so ist es auch möglich, für
+  beliebige Turing-Maschinen zu entscheiden, ob sie auf der leeren Eingabe
+  halten.
+\end{exercise}
+
+\end{document}
