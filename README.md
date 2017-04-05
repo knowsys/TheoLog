@@ -45,7 +45,7 @@ Die Foliensätze enthalten keinerlei Texte, die aus Werken entnommen sind, für 
 Die Nutzung der Materialien in eigenen Lehrveranstaltungen ist willkommen, sofern der obige Lizenztext
 in allen abgeleiteten Foliensätzen angegeben wird. Rückmeldungen sind willkommen (z.B. als Issue zu diesem
 Repository); wir verlinken hier gern auf die Homepages der entsprechenden Kurse. Interssierte Lehrende können
-ihre abgewnadelten Quellen auch mit in diesem Respository veröffentlichen -- kontaktieren Sie Prof. Krötzsch.
+ihre abgewandelten Quellen auch mit in diesem Respository veröffentlichen -- kontaktieren Sie Prof. Krötzsch.
 
 Autoren
 -------
