@@ -13,6 +13,9 @@ Informatik, beginnend mit den Grundlagen der Berechenbarkeits- und
 Komplexitätstheorie, Prädikatenlogik und deren Bezug zu Komplexität und 
 Datenbanken, bis hin zu weiterführenden Themen wie Gödels 
 Unvollständigkeitstheoreme und die Beziehung von Logik und formalen Sprachen.
+Wir stoßen vor zu den Grenzen der Informatik und Mathematik, treffen auf fleißige Biber
+und verrückte Logiker, vergleichen SQL mit Tic Tac Toe und stellen die großen Fragen
+unseres Fachgebiets.
 
 Die Vorlesung ist weitgehend selbsterklärend, aber Grundlagen aus der Veranstaltung
 [Formale Systeme](https://iccl.inf.tu-dresden.de/web/Formale_Systeme_(WS2016)) können
