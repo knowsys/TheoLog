@@ -1,9 +1,9 @@
-%% 
+%%
 %% This is file `euler.sty',
 %% generated with the docstrip utility.
-%% 
+%%
 %% The original source files were:
-%% 
+%%
 %% euler.dtx  (with options: `package')
 
 %% File `euler.dtx'.
@@ -51,14 +51,14 @@ bold for TU Dresden(ts)]
 \ProcessOptions\relax
 % Fontmaps laden
 \RequirePackage{ifpdf}
-\ifpdf% pdfTEX is running in pdf mode 
+\ifpdf% pdfTEX is running in pdf mode
   \@ifundefined{pdfmapfile}{}{%
     \pdfmapfile{+univers.map}%
     \if@tudfonts@nodin\else
       \pdfmapfile{+dinbold.map}%
     \fi
   }
-\else% TEX or pdfTEX in dvi mode 
+\else% TEX or pdfTEX in dvi mode
 \fi
 
 % Load packages
@@ -161,7 +161,7 @@ bold for TU Dresden(ts)]
     \DeclareMathSymbol{8}{\mathalpha}{aunUpright}{`8}
     \DeclareMathSymbol{9}{\mathalpha}{aunUpright}{`9}
     \DeclareSymbolFont{aunLetters}{T1}{aun}{l}{sl}
-    \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}  
+    \SetSymbolFont{aunLetters}{bold}{T1}{aun}{b}{sl}
     \DeclareMathSymbol{a}{\mathalpha}{aunLetters}{`a}
     \DeclareMathSymbol{b}{\mathalpha}{aunLetters}{`b}
     \DeclareMathSymbol{c}{\mathalpha}{aunLetters}{`c}
@@ -238,10 +238,10 @@ bold for TU Dresden(ts)]
     \DeclareMathSymbol\Upsilon\mathord{letters}{"07}
     \DeclareMathSymbol\Phi    \mathord{letters}{"08}
     \DeclareMathSymbol\Psi    \mathord{letters}{"09}
-    \DeclareMathSymbol\Omega  \mathord{letters}{"0A}    
+    \DeclareMathSymbol\Omega  \mathord{letters}{"0A}
     \fi
 
-% Ende des Auszugs    
+% Ende des Auszugs
 \fi
 
 \AtBeginDocument{%
@@ -290,5 +290,5 @@ bold for TU Dresden(ts)]
 \fi
 
 \endinput
-%% 
+%%
 %% End of file `tudfonts.sty'.
