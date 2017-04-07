@@ -189,7 +189,7 @@ einen Aufzähler für $\Slang{L}$ gibt.
 	\begin{itemize}
 	\item Für jedes $i\in\{1,\ldots, n\}$:
 		\begin{itemize}
-		\item Simuliere $\Smach{M}$ auf Eingabe $w_i$ für $i$ Schritte
+		\item Simuliere $\Smach{M}$ auf Eingabe $w_i$ für $n$ Schritte
 		\item Falls $\Smach{M}$ bei dieser Simulation terminiert und $w_i$ akzeptiert, dann gib $w_i$ aus
 		\end{itemize}
 	\end{itemize}
@@ -492,8 +492,8 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 \emph{Beweisskizze:} Nehmen wir an, $\bbfunc$ wäre berechenbar.\pause
 \begin{itemize}
 \item Dann kann man eine TM $\Smach{M}_{\bbfunc}$ erzeugen, die mit dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet und die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{f(n)}$ berechnet.\pause
-\item Sei $\Smach{M}_{+1}$ eine TM, welche die Funktion $\Sterm{x}^i\mapsto\Sterm{x}^{i+1}$ berechnet.\pause
-\item Sei $\Smach{M}_{\times2}$ eine TM, welche die Funktion $\Sterm{x}^i\mapsto\Sterm{x}^{2n}$ berechnet.\pause
+\item Sei $\Smach{M}_{+1}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{n+1}$ berechnet.\pause
+\item Sei $\Smach{M}_{\times2}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{2n}$ berechnet.\pause
 \item Sei $k$ die Gesamtzahl der Zustände in $\Smach{M}_{\bbfunc}$, $\Smach{M}_{+1}$ und $\Smach{M}_{\times2}$. Es gibt eine TM $\Smach{I}_k$ mit $k$ Zuständen, die das Wort $\Sterm{x}^k$ auf das leere Band schreibt.\pause
 \item Wenn man nun hintereinander $\Smach{I}_k$, $\Smach{M}_{\times2}$, $\Smach{M}_{\bbfunc}$ und $\Smach{M}_{+1}$ ausführt, dann erhält man eine TM mit $2k$ Zuständen, die insgesamt $\bbfunc(2k)+1$ mal $\Sterm{x}$ schreibt und dann hält.\pause
 \item Also ist $\bbfunc(2k)\geq\bbfunc(2k)+1$ -- Widerspruch.\qed
