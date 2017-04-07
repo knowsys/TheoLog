@@ -60,7 +60,8 @@ Details siehe Vorlesung Formale Systeme (Winter 2016/2017, Vorlesungen 18 und 19
 
 Eine Turingmaschine kann eine Menge von akzeptierten Eingaben definieren:
 
-\defbox{Die von einer TM $\Smach{M}$ \redalert{erkannte Sprache} $\Slang{L}(\Smach{M})$ ist die Menge aller Wörter, die von einer TM akzeptiert werden.}\pause
+\defbox{Die von einer TM $\Smach{M}$ \redalert{erkannte Sprache} $\Slang{L}(\Smach{M})$ ist die Menge aller Wörter, die von einer TM akzeptiert werden, d.h., bei deren Eingabe $\Smach{M}$
+in einem Endzustand hält (DTM) / halten könnte (NTM).}\pause
 
 Zwei Gründe für Nichtakzeptanz von Wörtern:
 \begin{enumerate}[(1)]
@@ -69,7 +70,7 @@ Zwei Gründe für Nichtakzeptanz von Wörtern:
 \end{enumerate}
 Es ist praktisch, wenn eine TM garantiert hält, da man Fall (2) meist nicht sicher erkennen kann (man weiß nicht, ob die TM irgendwann doch noch anhält)
 
-\defbox{Eine TM ist ein \redalert{Entscheider}, wenn sie bei jeder Eingabe hält. Wir sagen in diesem Fall, dass die TM die von ihr erkannte Sprache \redalert{entscheidet}.}
+\defbox{Eine TM ist ein \redalert{Entscheider}, wenn sie bei jeder Eingabe garantiert hält (bei NTMs: in jedem möglichen Lauf). Wir sagen in diesem Fall, dass die TM die von ihr erkannte Sprache \redalert{entscheidet}.}
 
 \end{frame}
 
@@ -77,7 +78,7 @@ Es ist praktisch, wenn eine TM garantiert hält, da man Fall (2) meist nicht sic
 
 Eine Turingmaschine kann eine Funktion von Eingabewörtern auf Ausgabewörter definieren:
 
-\defbox{Eine TM $\Smach{M}$ \redalert{berechnet} eine partielle Funktion $f_{\Smach{M}}:\Sigma^*\to\Sigma^*$ wie folgt.
+\defbox{Eine DTM $\Smach{M}$ \redalert{berechnet} eine partielle Funktion $f_{\Smach{M}}:\Sigma^*\to\Sigma^*$ wie folgt.
 Für ein Wort $w\in\Sigma^*$ ist $f_{\Smach{M}}(w)=v$ wenn $\Smach{M}$ bei Eingabe $w$ mit einem Band anhält, auf dem 
 nur $v$ steht, d.h., wenn der Bandinhalt nach dem Halten die Form $v\blank\blank\blank\cdots$ hat.}\pause
 
@@ -93,9 +94,9 @@ Das heißt: Wenn $f_{\Smach{M}}$ eine totale Funktion ist, dann muss $\Smach{M}$
 
 \begin{frame}\frametitle{Entscheidbarkeit und Berechenbarkeit}
 
-Wir interessieren uns für Funktionen und Sprachen, die man berechnen kann:
+Wir interessieren uns für Funktionen, die man berechnen kann:
 
-\defbox{Eine totale oder partielle Funktion $f$ heißt \redalert{berechenbar}, wenn es eine TM $\Smach{M}$ gibt, die $f$ berechnet, d.h. mit $f=f_{\Smach{M}}$.}
+\defbox{Eine totale oder partielle Funktion $f$ heißt \redalert{berechenbar}, wenn es eine DTM $\Smach{M}$ gibt, die $f$ berechnet, d.h. mit $f=f_{\Smach{M}}$.}
 
 Anmerkung: Berechenbare totale Funktionen nennt man auch \redalert{rekursiv}; berechenbare partielle Funktionen \redalert{partiell rekursiv}.
 \bigskip\pause
@@ -149,9 +150,9 @@ Wir betrachten das Alphabet $\Sigma=\{\Sterm{a},\Sterm{b}\}$
 \end{tikzpicture}
 \end{center}
 
-Frage: Welche Menge zählt diese TM auf?\pause\bigskip
+\emph{Frage:} Welche Menge zählt diese TM auf?\pause\bigskip
 
-Antwort: $\{ \Sterm{a}^{2n+1}\Sterm{b}\mid 0\leq n\}$
+\emph{Antwort:} $\{ \Sterm{a}^{2n+1}\Sterm{b}\mid 0\leq n\}$
 \bigskip
 
 Aufgabe zur Selbstkontrolle: Schreiben Sie einen Aufzähler für diese Sprache, ohne dabei die Bewegungsrichtung $N$ zu verwenden.
@@ -167,9 +168,9 @@ einen Aufzähler für $\Slang{L}$ gibt.
 \emph{Beweis:} "`$\Leftarrow$"' (Vom Aufzähler zur TM) Wenn es für $\Slang{L}$ einen Aufzähler
 gibt, dann können wir $\Slang{L}$ wie folgt semi-entscheiden:
 \begin{itemize}
-\item Simuliere den Aufzähler auf einem leeren Band (wir dürfen eine Mehrband-TM verwenden);
-\item immer wenn $q_{\textsf{Ausgabe}}$ erreicht wird: vergleiche das Eingabeband mit dem Aufzählerband und akzeptiere, wenn beide das gleiche Wort beinhalten;
-\item andernfalls fahre mit der Aufzählung fort.
+\item Simuliere den Aufzähler auf einem leeren Band (wir dürfen eine Mehrband-TM verwenden).
+\item Immer wenn $q_{\textsf{Ausgabe}}$ erreicht wird: vergleiche das Eingabeband mit dem Aufzählerband und akzeptiere, wenn beide das gleiche Wort beinhalten.
+\item Andernfalls fahre mit der Aufzählung fort.
 \item Falls die Aufzählung terminiert (ohne dass die Eingabe gefunden wurde), dann verwerfe.
 \end{itemize}
 
@@ -249,7 +250,7 @@ Zeichen $\blank$ nur am Ende der verwendeten Bandinhaltes vorkommen kann (sonst 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
 \theobox{Eine partielle Funktion $f$ ist genau dann berechenbar, wenn
-$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*\}$ semi-entscheidbar ist.
+$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}$ semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}
 
 \pause
@@ -270,7 +271,7 @@ Falls $f$ total ist, dann hält auch die Erkennung von $\textsf{Graph}_f$.
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
 \theobox{Eine partielle Funktion $f$ ist genau dann berechenbar, wenn
-$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*\}$ semi-entscheidbar ist.
+$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}$ semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}\pause
 
 \emph{Beweis:} "`$\Leftarrow$"' Sei $\textsf{Graph}_f$ semi-entscheidbar. Dann kann
@@ -298,21 +299,24 @@ das kann man leicht tun (oder die Mehrband-TM auf einem Band simulieren).
 
 \theobox{Satz: Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
 
+\pause
 Dies kann man wie folgt zeigen:
 \begin{itemize}
 \item Die Menge der Turingmaschinen ist abzählbar
 \item Die Menge der Sprachen über jedem Alphabet ist überabzählbar
 \item Also muss es Sprachen geben, die durch keine TM entschieden werden.
 \end{itemize}
+\pause
 
 Das Argument funktioniert analog mit (partiellen) Funktionen, deren Menge ebenfalls überabzählbar groß ist.\medskip
 
-Das Argument zeigt zudem auch, dass die meisten Sprachen nicht einmal semi-entscheidbar (Kontrollfrage: Warum?).
+Das Argument zeigt zudem auch, dass die meisten Sprachen nicht einmal semi-entscheidbar sind (Kontrollfrage: Warum?).
 
 \end{frame}
 
 \begin{frame}\frametitle{Die Menge der TMs ist abzählbar}
 
+\pause
 Dies folgt in zwei Schritten:
 \begin{itemize}
 \item Jede TM kann leicht durch ein endliches Wort kodiert werden (z.B. binär)
@@ -335,7 +339,7 @@ Dies folgt in zwei Schritten:
 
 \begin{minipage}{2.5cm}
 \includegraphics[width=2cm]{images/Cantor-1870}
-\end{minipage}%
+\end{minipage}\pause%
 \begin{minipage}{7.5cm}
 
 Dies folgt aus einer Konstruktion von Georg Cantor:
@@ -353,7 +357,7 @@ Dies folgt aus einer Konstruktion von Georg Cantor:
 \begin{frame}\frametitle{Die Menge der Sprachen ist überabzählbar (2)}
 
 \begin{itemize}
-\item Man kann die Relation $\in$ zwischen Wörtern und Sprachen jetzt als unendliche Tabelle darstellen:
+\item Man kann sich die Relation $\in$ zwischen Wörtern und Sprachen jetzt als unendliche Tabelle vorstellen:
 %
 \[ \begin{array}{l|c|c|c|c|c}
  & w_1 & w_2 & w_3 & w_4 & \ldots \\\hline
@@ -371,16 +375,17 @@ Dann kommt $\Slangsub{L}{d}$ in der Tabelle nicht vor. Widerspruch.
 
 \end{frame}
 
-\begin{frame}\frametitle{Nichtwissen $\neq$ Unentscheidbarkeit}
+\begin{frame}[t]\frametitle{Nichtwissen $\neq$ Unentscheidbarkeit}
 
 Wie finden wir konkrete unentscheidbare Probleme?
 \bigskip\pause
 
-Es reicht nicht aus, dass wir nicht wissen, wie ein Problem algorithmisch gelöst werden kann.\bigskip
+Es reicht nicht aus, dass wir nicht wissen, wie ein Problem algorithmisch gelöst werden kann!\bigskip
 
-\examplebox{Beispiel: Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
+\examplebox{Beispiel: Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
 
-Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie könnte dennoch entscheidbar sein (z.B. wenn jede endliche Ziffernfolge irgendwo in $\pi$ vorkommt, was aber bisher nicht bekannt ist).}
+\only<3->{%
+Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie könnte dennoch entscheidbar sein (z.B. wenn jede endliche Ziffernfolge irgendwo in $\pi$ vorkommt, was aber bisher nicht bekannt ist).}}
 
 \end{frame}
 
@@ -389,13 +394,13 @@ Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie 
 Es gibt sogar Fälle, in denen wir sicher sind, dass ein Problem entscheidbar ist,
 aber trotztdem nicht wissen, wie man es löst.\\[1.5ex]\pause
 
-\examplebox{Beispiel: Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $7^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
+\examplebox{Beispiel: Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
 
 \only<3->{
 $\Slang{L}_{\pi7}$ ist entscheidbar:
 \begin{itemize}
-\item Möglichkeit 1: $\pi$ enthält beliebig lange Ketten der Ziffer $7$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $7^n$ akzeptiert.
-\item Möglichkeit 2: $\pi$ enthält Ketten der Ziffer $7$ nur bis zu einer maximalen Länge $\ell$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $7^n$ mit $n\leq\ell$ akzeptiert.
+\item Möglichkeit 1: $\pi$ enthält beliebig lange Ketten der Ziffer $\Sterm{7}$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $\Sterm{7}^n$ akzeptiert.
+\item Möglichkeit 2: $\pi$ enthält Ketten der Ziffer $\Sterm{7}$ nur bis zu einer maximalen Länge $\ell$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $\Sterm{7}^n$ mit $n\leq\ell$ akzeptiert.
 \end{itemize}
 Für jeden denkbaren Fall gibt es einen Algorithmus -- wir wissen nur nicht, welcher davon korrekt ist.}
 }
@@ -404,7 +409,7 @@ Für jeden denkbaren Fall gibt es einen Algorithmus -- wir wissen nur nicht, wel
 
 \newcommand{\bbfunc}{\boldsymbol{\Sigma}}
 
-\begin{frame}\frametitle{Ein erstes unentscheidbares Problem}
+\begin{frame}[t]\frametitle{Ein erstes unentscheidbares Problem (1)}
 
 \emph{Frage:} Falls eine TM anhält, wie lange kann das im schlimmsten Fall dauern?\\
 \bigskip\pause
@@ -417,9 +422,9 @@ Für jeden denkbaren Fall gibt es einen Algorithmus -- wir wissen nur nicht, wel
 
 \end{frame}
 
-\begin{frame}\frametitle{Ein erstes unentscheidbares Problem (2)}
+\begin{frame}[t]\frametitle{Ein erstes unentscheidbares Problem (2)}
 
-\emph{Frage:} Falls eine TM \alert{mit $n$ Zuständen} und \alert{einem zweielementigem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$} auf einem \alert{leeren Band} anhält, wie lange kann das im schlimmsten Fall dauern?\\
+\emph{Frage:} Falls eine TM \alert{mit $n$ Zuständen} und \alert{einem zwei-elementigem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$} auf einem \alert{leeren Band} anhält, wie lange kann das im schlimmsten Fall dauern?\\
 \bigskip\pause
 
 \emph{Antwort:} Das kommt auf $n$ an \ldots\bigskip\pause
@@ -449,7 +454,7 @@ Eine leichte Abwandlung des Schrittzählers ist\\das Busy-Beaver-Problem:
 \defbox{Die \redalert{Busy-Beaver-Funktion} $\bbfunc:\mathbb{N}\to\mathbb{N}$ ist eine totale Funktion, wobei $\bbfunc(n)$ die maximale Zahl an $\Sterm{x}$ ist, die eine DTM mit höchstens
 $n$ Zuständen und dem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$ beginnend mit dem leeren Band schreiben kann, bevor sie schließlich hält.}
 
-Anmerkung: Der genaue Wert von $\bbfunc(n)$ hängt von Details der TM-Definition ab.\\
+Anmerkung: Der genaue Wert von $\bbfunc(n)$ hängt von Details der TM-Definition ab.\\[0.5ex]
 {\footnotesize Üblich ist hier insbesondere die Verwendung eines zweiseitig unendlichen Bands, das man bei Bedarf nach links und rechts erweitern kann.
 
 }
