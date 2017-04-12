@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{latteachCD}[2017/04/05 Dummy Exercise Sheet Style]
 
-\LoadClass[11pt]{article}
+\LoadClass[11pt,a4paper]{article}
 
 \RequirePackage{parskip}
 \RequirePackage{ifthen}
@@ -22,6 +22,19 @@
 \@germanfalse
 \DeclareOption{german}{\@germantrue}
 \ProcessOptions\relax
+
+\setlength{\textheight}{238mm}
+\setlength{\topmargin}{30mm}
+\addtolength{\topmargin}{-1in}
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\topskip}{0mm}
+\setlength{\footskip}{17mm}
+
+\setlength{\textwidth}{160mm}
+\setlength{\oddsidemargin}{30mm}
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{\oddsidemargin}
 
 \newcommand{\@notice}{Notice}
 \newcommand{\@exercise}{Exercise}
