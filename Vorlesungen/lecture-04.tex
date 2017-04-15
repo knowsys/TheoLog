@@ -1,0 +1,568 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+\input{../macros}
+
+\defineTitle{4}{Unentscheidbare Probleme}{19. April 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Ankündigung}
+
+Wegen großer Nachfrage wird eine
+
+\begin{center}
+{\huge Zusätzliche Übungsgruppe}
+\end{center}
+
+eingerichtet:\bigskip
+
+\alert{Zeit:} Donnerstag, 1. Doppelstunde\\
+\alert{Raum:} APB E008\\
+\alert{Tutor:} Daniel Borchmann
+\bigskip
+
+Bisher nicht eingeschriebene Studenten können sich ab sofort dafür eintragen (über jExam)
+
+\end{frame}
+
+% \begin{frame}\frametitle{Was bisher geschah \ldots}
+% 
+% 
+% \end{frame}
+
+\sectionSlide{LOOP und WHILE, Reprise}
+
+\begin{frame}\frametitle{Zusammenfassung LOOP und WHILE}
+
+\emph{LOOP-Programme}
+\begin{itemize}
+\item Terminieren immer
+\item Können fast alle praktisch relevanten Funktionen berechnen
+\item Können nicht jede berechenbare Funktion berechnen, z.B. Ackermann-Funktion, Sudan-Funktion, LOOP-Busy-Beaver
+\end{itemize}
+\bigskip
+
+\emph{WHILE-Programme}
+\begin{itemize}
+\item Verallgemeinern LOOP
+\item Terminieren nicht immer
+\item Können alle berechenbaren totalen und partiellen Funktionen berechnen
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Die Kraft des LOOP}
+
+Auf der vorigen Folie steht: "`LOOP-Programme können fast alle praktisch relevanten Funktionen berechnen."'
+\medskip
+
+\redalert{Stimmt das wirklich?}
+\bigskip\pause
+
+\emph{Idee:} Die Schleife $\SStartWhile{\Svar{x}}P~\SEndWhile$ kann mit dem folgenden LOOP-Programm simuliert werden:\medskip
+
+\codebox{{\tt
+\SStartLoop{\Svar{max}}\\
+~~~\SStartIf{\Svar{x}\Svneq\Scodelit{0}}\\
+~~~~~~P\\
+~~~\SEndIf\\
+\SEndLoop
+}}\pause
+
+wenn man den Wert von $\Svar{max}$ so setzt, dass er \alert{mindestens} so groß ist
+wie die maximale Anzahl von Wiederholungen der simulierten WHILE-Schleife.
+
+\end{frame}
+
+\begin{frame}\frametitle{LOOP kann WHILE simulieren}
+
+\alert{Erkenntnis:} LOOP kann WHILE für beliebig viele Schritte simulieren -- man muss nur wissen, wie viele Schritte benötigt werden.
+\bigskip
+
+\redalert{Kann man das ausrechnen?}\pause{} \alert{Ja!}\bigskip
+
+\theobox{Satz: Für ein beliebiges WHILE-Programm $P$ sei $\textsf{max}_P(n_1,\ldots,n_k)$
+die maximale Anzahl an Schleifendurchläufen, die $P$ bei der Eingabe $n_1,\ldots,n_k$
+abarbeitet, oder undefiniert, wenn $P$ bei dieser Eingabe nicht terminiert.
+Diese partielle Funktion $\textsf{max}_P:\mathbb{N}^k\to\mathbb{N}$ ist berechenbar.
+}
+\emph{Beweisskizze:} Man kann $P$ leicht so modifizieren, dass es die Maximalzahl der Schleifendurchläufe bestimmt und ausgibt.\qed\medskip\pause
+
+\alert{Wo ist der Haken?}\pause\medskip
+
+Die Funktion $\textsf{max}_P$ ist zwar berechenbar, aber im Allgemeinen nicht LOOP-berechenbar.
+
+\end{frame}
+
+\begin{frame}\frametitle{Was kann LOOP?}
+
+Es gibt aber viele Fälle, in denen man (eine obere Schranke von) $\textsf{max}_P$ LOOP-berechnen kann:
+
+\theobox{Satz: Die folgenden Funktionen sind LOOP-berechenbar:
+\begin{itemize}
+\item $n\cdot \Svar{x}$ für beliebige natürliche Zahlen $n$
+\item $\Svar{x}^n$ für beliebige natürliche Zahlen $n$
+\item $n^\Svar{x}$ für beliebige natürliche Zahlen $n$
+\item $n^{.^{.^{.^{n^{\Svar{x}}}}}}$ für beliebig hohe Türme von Exponenten $n$
+\end{itemize}
+}\bigskip\pause
+
+\theobox{Korollar: Jeder Algorithmus, der in Zeit $O(n^{.^{.^{.^{n^{\Svar{x}}}}}})$ -- oder weniger -- läuft, berechnet eine LOOP-berechenbare Funktion. Insbesondere sind alle polynomiellen, exponentiellen oder mehrfach exponentiellen Algorithmen in LOOP implementierbar.\\[-0.6ex]~
+}
+
+\end{frame}
+
+\sectionSlide{Universalität}
+
+\begin{frame}\frametitle{Die Universalmaschine}
+
+Eine erste wichtige Beobachtung Turings war, dass TMs stark genug sind um andere TMs zu simulieren:
+\bigskip
+
+\begin{enumerate}[{Schritt} 1:]
+\item Kodiere Turingmaschinen $\Smach{M}$ als Wörter $\textsf{enc}(\Smach{M})$
+\item Konstruiere eine \redalert{universelle Turingmaschine} $\Smach{U}$, die $\textsf{enc}(\Smach{M})$ als Eingabe erhält und dann die Berechnung von $\Smach{M}$ simuliert
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}\frametitle{Schritt 1: Turingmaschinen kodieren}
+
+Jede vernünftige Kodierung einer TM $\Smach{M}=\tuple{Q,\Sigma,\Gamma,\delta,q_0,F}$ ist nutzbar, zum Beispiel die folgende (für DTMs):\medskip
+
+\anybox{gray}{%
+\footnotesize\vspace{-2ex}%
+\begin{itemize}
+\item Wir verwenden das Alphabet $\{\Sterm{0},\Sterm{1},\Sterm{\#}\}$
+\item Zustände werden in beliebiger Reihenfolge nummeriert (mit Startzustand $q_0$) und binär kodiert:\\
+	$Q=\{q_0,\ldots,q_n\}$ $\leadsto$ $\textsf{enc}(Q)=\textsf{bin}(0)\Sterm{\#}\cdots\Sterm{\#}\textsf{bin}(n)$
+\item Wir kodieren auch $\Gamma$ und die Bewegungsrichtungen $\{R,L,N\}$ binär
+\item Ein Übergang $\delta(q_i,\sigma_n)=\tuple{q_j,\sigma_m,D}$ wird als 5-Tupel kodiert:\\
+	 $\textsf{enc}(q_i,\sigma_n)=\textsf{bin}(i)\Sterm{\#}\textsf{bin}(n)\Sterm{\#}\textsf{bin}(j)\Sterm{\#}\textsf{bin}(m)\Sterm{\#}\textsf{bin}(D)$
+\item Die Übergangsfunktion wird kodiert als Liste aller dieser Tupel, getrennt mit $\Sterm{\#}$:
+	$\textsf{enc}(\delta)=\big(\textsf{enc}(q_i,\sigma_n)\Sterm{\#}\big)_{q_i\in Q, \sigma_i\in\Gamma}$
+\item Insgesamt setzten wir $\textsf{enc}(\Smach{M})=\textsf{enc}(Q)\Sterm{\#}\Sterm{\#}\textsf{enc}(\Sigma)\Sterm{\#}\Sterm{\#}\textsf{enc}(\Gamma)\Sterm{\#}\Sterm{\#}\textsf{enc}(\delta)\Sterm{\#}\Sterm{\#}\textsf{enc}(F)$
+\end{itemize}}
+
+Passend dazu kann man auch beliebige Wörter kodieren:
+
+\anybox{gray}{%
+\footnotesize\vspace{-2ex}%
+\begin{itemize}
+\item Für ein Wort $w=a_1\cdots a_{\ell}$ setzen wir $\textsf{enc}(w)=\textsf{bin}(a_1)\Sterm{\#}\cdots\Sterm{\#}\textsf{bin}(a_{\ell})$
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Schritt 2: Die universelle Turingmaschine}
+
+Wir definieren die universelle TM $\Smach{U}$ als Mehrbandturingmaschine:
+\begin{enumerate}[{Band} 1:]
+\item Eingabeband von $\Smach{U}$: enthält $\textsf{enc}(\Smach{M})\Sterm{\#\#}\textsf{enc}(w)$
+\item Arbeitsband von $\Smach{U}$
+\item Speichert den Zustand der simulierten Turingmaschine
+\item Arbeitsband der simulierten Turingmaschine
+\end{enumerate}
+\bigskip\pause
+
+Die Arbeitsweise von $\Smach{U}$ ist leicht skizziert:
+\anybox{gray}{%
+\footnotesize\vspace{-2ex}%
+\begin{itemize}
+\item $\Smach{U}$ prüft Eingabe, kopiert $\textsf{enc}(w)$ auf Band 4, verschiebt den Kopf auf Band 4 zum Anfang und initialisiert Band 3 mit $\textsf{enc}(0)$.
+\item In jedem Schritt liest $\Smach{U}$ ein (kodiertes) Zeichen von der aktuellen Kopfposition auf Band (4), sucht für den simulierten Zustand (Band~3) einen passenden Übergang in $\textsf{enc}(\Smach{M})$ auf Band 1:
+	\begin{itemize}\footnotesize
+	\item Übergang gefunden: setze Band 3 auf den neuen Zustand; ersetzt das kodierte Zeichen auf Band 4 durch das neue Zeichen; verschiebe den Kopf auf Band 4 entsprechend
+	\item Übergang nicht gefunden: nimm Endzustand ein, falls der Zustand von Band 3 Endzustand in $\textsf{enc}(\Smach{M})$ ist; halte
+	\end{itemize}
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Die Theorie der Software}
+
+\theobox{Satz: Es gibt eine \redalert{universelle Turingmaschine} $\Smach{U}$, die für Eingaben der Form $\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)$ das Verhalten der DTM $\Smach{M}$ auf $w$ simuliert:
+\begin{itemize}
+\item Falls $\Smach{M}$ auf $w$ hält, dann hält $\Smach{U}$ auf $\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)$ mit dem gleichen Ergebnis
+\item Falls $\Smach{M}$ auf $w$ nicht hält, dann hält $\Smach{U}$ auf $\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)$ ebenfalls nicht
+\end{itemize}}\bigskip
+
+Unsere Konstruktion ist für DTMs, die Sprachen erkennen -- DTMs, die Funktionen berechnen, können ähnlich simuliert werden.\bigskip\pause
+
+\alert{Praktische Konsequenzen:}
+\begin{itemize}
+\item Universalrechner sind möglich
+\item Wir müssen nicht für jede neue Anwendung einen neuen Computer anschaffen
+\item Es gibt Software
+\end{itemize}
+
+
+\end{frame}
+
+\sectionSlide{Unentscheidbare Probleme und Reduktionen}
+
+\begin{frame}\frametitle{Das Halteproblem}
+
+Ein klassisches unentscheidbares Problem ist das Halteproblem:
+\bigskip
+
+\defbox{Das \redalert{Halteproblem} besteht in der folgenden Frage:\\
+\hspace{1cm}Gegeben eine TM $\Smach{M}$ und ein Wort $w$,\\\hspace{1cm}wird $\Smach{M}$ für die Eingabe $w$ jemals anhalten?}\bigskip\pause
+
+Wir können das Halteproblem formal als Entscheidungsproblem ausdrücken, wenn wir $\Smach{M}$ und $w$ kodieren:\bigskip
+
+\defbox{Das \redalert{Halteproblem} ist das Wortproblem für die Sprache\\[1ex]
+\narrowcentering{
+$\Slang{P}_{\textsf{Halt}} = \{\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)\mid \text{$\Smach{M}$ hält bei Eingabe $w$}\}$,
+}\\[1ex]
+wobei $\textsf{enc}(\Smach{M})$ und $\textsf{enc}(w)$ geeignete Kodierungen von $\Smach{M}$ und $w$ sind, so dass $\Sterm{\#}\Sterm{\#}$ als Trennwort verwendet werden kann.}\medskip
+
+\alert{Anmerkung:} Falsch kodierte Eingaben werden hier auch abgelehnt.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{"`Beweis"' durch Intuition}
+
+\theobox{Satz: Das Halteproblem $\Slang{P}_{\textsf{Halt}}$ ist unentscheidbar.}\pause
+
+\emph{"`Beweis:"'} Das Gegenteil wäre zu schön um wahr zu sein. Viele ungelöste Probleme
+könnte man damit direkt lösen.\bigskip\pause
+
+\examplebox{Beispiel: Die Goldbachsche Vermutung (Christian Goldbach, 1742) besagt, dass jede gerade Zahl $n\geq 4$ die Summe zweier Primzahlen ist. Zum Beispiel ist $4=2+2$ und $100=47+53$.}\pause
+
+Man kann leicht einen Algorithmus \Smach{A} angeben, der die Goldbachsche Vermuting systematisch verifiziert, d.h., für alle geraden Zahlen ab $4$ testet:
+\begin{itemize}
+\item Erfolg: teste die nächste gerade Zahl
+\item Misserfolg: terminiere mit Meldung "`Goldbach hat sich geirrt!"'
+\end{itemize}
+
+Die Frage "`Wird \Smach{A} halten?"' ist gleichbedeutend mit der Frage\\"`Gilt die Goldbachsche Vermutung nicht?"'
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beweis durch "`Diagonalisierung"'}
+
+\theobox{Satz: Das Halteproblem $\Slang{P}_{\textsf{Halt}}$ ist unentscheidbar.}\pause
+
+\emph{Beweis:} Per Widerspruch: Wir nehmen an, dass es einen Entscheider $\Smach{H}$ für das Halteproblem gibt.\pause
+\bigskip
+
+Dann kann man eine TM $\Smach{D}$ konstruieren, die folgendes tut:
+\begin{enumerate}[(1)]
+\item Prüfe, ob die Eingabe eine TM-Kodierung $\textsf{enc}(\Smach{M})$ ist
+\item Simuliere $\Smach{H}$ auf der Eingabe $\textsf{enc}(\Smach{M})\Sterm{\#\#}\textsf{enc}(\textsf{enc}(\Smach{M}))$, d.h. prüfe, ob $\Smach{M}$ auf $\textsf{enc}(\Smach{M})$ hält
+\item Falls ja, dann gehe in eine Endlosschleife;\\ falls nein, dann halte und akzeptiere
+\end{enumerate}
+\bigskip\pause
+
+% \alert{Wer rasiert den Barbier?}
+\alert{Akzeptiert $\Smach{D}$ die Eingabe $\textsf{enc}(\Smach{D})$?}\pause\\[1ex]
+
+\narrowcentering{$\Smach{D}$ hält und akzeptiert $\quad$ genau dann wenn $\quad$ $\Smach{D}$ nicht hält}\\[1ex]
+
+Widerspruch.\qed
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beweis durch Reduktion\phantom{"`T"'}}
+
+\theobox{Satz: Das Halteproblem $\Slang{P}_{\textsf{Halt}}$ ist unentscheidbar.}\pause
+
+\emph{Beweis:} Nehmen wir an, das Halteproblem wäre entscheidbar.\medskip\pause
+
+Ein Algorithmus:
+\begin{itemize}
+\item Eingabe: (binärkodierte) natürliche Zahl $k$
+\item Iteriere über alle Turingmaschinen $\Smach{M}$ mit $k$ Zuständen über dem Arbeitsalphabet $\{\Sterm{x},\blank\}$:
+\begin{itemize}
+\item Entscheide ob $\Smach{M}$ bei leerer Eingabe $\epsilon$ hält\\
+{\footnotesize\textcolor{devilscss}{(möglich, wenn das Halteproblem entscheidbar ist)}}
+\item Falls ja, dann simuliere $\Smach{M}$ auf der leeren Eingabe und zähle
+		nach der Terminierung von $\Smach{M}$ die $\Sterm{x}$ auf dem Band\\
+{\footnotesize\textcolor{devilscss}{(möglich, da es universelle Turingmaschinen gibt)}}
+\end{itemize}
+\item Ausgabe: die maximale Zahl der geschriebenen $\Sterm{x}$.
+\end{itemize}\pause
+Dieser Algorithmus würde die Busy-Beaver-Funktion $\bbfunc:\mathbb{N}\to\mathbb{N}$
+berechnen.\medskip
+
+Wir wissen, dass das unmöglich ist -- Widerspruch.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Turing-Reduktionen}
+
+Unser Beweis konstruiert den Algorithmus für ein Problem (Busy Beaver)
+durch Aufruf von Subroutinen für ein anderes \ghost{(Halteproblem)}
+\bigskip\pause
+
+Diese Idee lässt sich verallgemeinern:
+
+\defbox{Ein Problem $\Slang{P}$ ist \redalert{Turing-reduzierbar} auf ein Problem
+$\Slang{Q}$ 
+(in Symbolen: $\Slang{P}\leq_T \Slang{Q}$), wenn man $\Slang{P}$ mit einem Programm lösen
+kann, welches ein Programm für $\Slang{Q}$ als Unterprogramm aufrufen darf.}
+
+{\footnotesize
+\emph{Anmerkung:} Das ist etwas informell. Eine ganz formelle Definition verwendet den Begriff des \alert{Orakels} für Turingmaschinen.
+}\medskip\pause
+
+\examplebox{Beispiel: Unser Beweis basiert auf einer Turing-Reduktion der Berechnung der Busy-Beaver-Funktion auf das Halteproblem.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Turing-Reduktionen: Beispiel}
+
+\examplebox{Beispiel: Das Nicht-Halteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$,
+ist definiert als\\[1ex]
+\narrowcentering{$\overline{\Slang{P}}_{\textsf{Halt}} = \{\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)\mid \text{$\Smach{M}$ hält bei nicht Eingabe $w$}\}$}\\[1ex]
+%
+$\overline{\Slang{P}}_{\textsf{Halt}}$ ist Turing-reduzierbar auf $\Slang{P}_{\textsf{Halt}}$: (1) Prüfe Eingabeformat, (2) entscheide Halteproblem, (3) invertiere Ergebnis.\\[1ex]
+
+Analog kann auch $\Slang{P}_{\textsf{Halt}}$ auf $\overline{\Slang{P}}_{\textsf{Halt}}$ Turing-reduziert werden.}\bigskip\pause
+
+Daraus ergibt sich:\medskip
+
+\theobox{Satz: Das Nicht-Halteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$ ist unentscheidbar.}
+
+\end{frame}
+
+\begin{frame}\frametitle{$\epsilon$-Halten}
+
+Sonderfälle des Halteproblems sind in der Regel nicht einfacher:\medskip
+
+\defbox{Das \redalert{$\epsilon$-Halteproblem} besteht in der folgenden Frage:\\
+\hspace{1cm}Gegeben eine TM $\Smach{M}$,\\\hspace{1cm} wird $\Smach{M}$ für die leere Eingabe $\epsilon$ jemals anhalten?}\medskip\pause
+
+\theobox{Satz: Das $\epsilon$-Halteproblem ist unentscheidbar.}\pause
+
+\emph{Beweis:} Angenommen das Problem wäre entscheidbar.\medskip
+
+Ein Algorithmus:
+\begin{itemize}
+\item Eingabe: Eine Turingmaschine $\Smach{M}$ und ein Wort $w$.
+\item Konstruiere eine TM $\Smach{M}_w$, die zwei Schritte ausführt:
+	\begin{enumerate}[(1)]
+	\item Lösche das Eingabeband und fülle es mit dem Wort $w$
+	\item Verarbeite diese Eingabe wie $\Smach{M}$ 
+	\end{enumerate}
+\item Entscheide das $\epsilon$-Halteproblem für $\Smach{M}_w$.
+\item Ausgabe: Ergebnis des $\epsilon$-Halteproblems
+\end{itemize}\pause
+
+Dies würde das Halteproblem entscheiden -- Widerspruch. \qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Beweistechniken im Vergleich}
+
+Wir haben zwei ähnliche Unentscheidbarkeitsbeweise gesehen:\bigskip
+
+\begin{minipage}{5cm}
+\alert{Halteproblem}
+\begin{itemize}
+\item Reduktion der Busy-Beaver-Funktion
+\item Algorithmus ruft Subroutine für Halteproblem exponentiell oft auf
+\item Ausgabe wird durch weitere TM-Simulationen berechnet
+\end{itemize}\bigskip
+~\hspace{5mm}$\leadsto$ Turing-Reduktion!
+\end{minipage}%
+\begin{minipage}{5cm}
+\alert{$\epsilon$-Halteproblem}
+\begin{itemize}
+\item Reduktion des Halteproblems
+\item Algorithmus ruft Subroutine für $\epsilon$-Halteproblem immer genau einmal auf
+\item Ausgabe ist das Ergebnis der $\epsilon$-Halteproblem-Routine
+\end{itemize}\bigskip
+~\hspace{5mm}$\leadsto$ Turing-Reduktion?
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}\frametitle{Many-One-Reduktionen}
+
+\emph{Idee:} Beim $\epsilon$-Halteproblem verwenden wir das Halteproblem nicht als Subroutine eines komplexen Programms, sondern wir Formen unser Problem in ein Halteproblem um\bigskip
+
+\defbox{Eine berechenbare totale Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{Many-One-Reduktion} von einer Sprache \Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_m \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
+\narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
+
+\examplebox{Beispiel: Die folgende Funktion definiert eine Many-One-Reduktion vom
+Halteproblem auf das $\epsilon$-Halteproblem:\\[-4ex]
+\[f(v)=\left\{\begin{array}{ll}
+\textsf{enc}(\Smach{M}_w) & \text{falls $v=\textsf{enc}(\Smach{M})\Sterm{\#\#}\textsf{enc}(w)$ für eine TM $\Smach{M}$}\\
+\Sterm{\#} & \text{falls die Eingabe nicht korrekt kodiert ist}
+\end{array}\right.\]
+Dabei ist $\Smach{M}_w$ die TM aus dem Beweis.}
+
+% \examplebox{Beispiel: Die Funktion $f$ mit $f(w)=w\Sterm{\#\#}\textsf{enc}(\epsilon)$ definiert eine Many-One-Reduktion vom
+% $\epsilon$-Halteproblem auf das Halteproblem.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Entscheidbarkeit durch Reduktion}
+
+Das folgende Resultat drückt die wesentliche Idee hinter Reduktionen aus:\bigskip
+
+\theobox{Satz: Wenn $\Slang{P}\leq_m \Slang{Q}$ und $\Slang{Q}$ entscheidbar ist, dann ist
+auch $\Slang{P}$ entscheidbar.}
+
+\emph{Beweis:} Die Reduktion liefert einen Entscheidungsalgorithmus.\qed\bigskip\pause
+
+Eigentlich benutzen wir bisher vor allem die Umkehrung:\bigskip
+
+\theobox{Satz: Wenn $\Slang{P}\leq_m \Slang{Q}$ und $\Slang{P}$ unentscheidbar ist, dann ist auch $\Slang{Q}$ unentscheidbar.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Many-One vs. Turing}
+\pause
+
+Many-One-Reduktionen sind schwächer als Turing-Reduktionen:\bigskip
+
+\theobox{Satz: Jede Many-One-Reduktion kann als Turing-Reduktion ausgedrückt werden.}
+
+\emph{Beweis:} Die Turing-Reduktion ergibt sich, wenn man die (berechenbare) Many-One-Reduktionsfunktion als Teil einer TM implementiert.\qed
+\bigskip\pause
+
+\theobox{Satz: Es gibt Probleme $\Slang{P}$ und $\Slang{Q}$, für die $\Slang{P}\leq_T \Slang{Q}$ gilt, aber nicht $\Slang{P}\leq_m \Slang{Q}$.}
+
+\emph{Beweis:} Wir haben bereits gesehen, dass $\Slang{P}_{\textsf{Halt}}\leq_T\overline{\Slang{P}}_{\textsf{Halt}}$. Aber es gilt nicht $\Slang{P}_{\textsf{Halt}}\leq_m\overline{\Slang{P}}_{\textsf{Halt}}$ -- wir werden in der nächsten Vorlesung sehen, warum nicht.\qed
+
+\end{frame}
+
+% \begin{frame}\frametitle{Äquivalenz von Turingmaschinen}
+% 
+% Hier noch ein Beispiel für eine Many-One-Reduktion:
+% 
+% \defbox{Zwei Turingmaschinen $\Smach{M}_1$ und $\Smach{M}_2$ sind \redalert{äquivlent}, wenn sie die gleiche Sprache akzeptieren.}\medskip
+% 
+% \theobox{Satz: Äquivalenz von Turingmaschinen ist nicht entscheidbar.}
+% 
+% \emph{Beweis:} 
+% 
+% \end{frame}
+
+\begin{frame}\frametitle{Der Satz von Rice}
+
+Ein interessantes Resultat von Henry Gordon Rice bewahrt uns davor, noch hunderte andere Probleme im Detail zu betrachten:\medskip
+
+\theobox{Satz von Rice (informelle Version): Jede nicht-triviale Frage über die von einer TM ausgeführte Berechnung ist unentscheidbar.}\bigskip\pause
+
+\theobox{Satz von Rice (formell): Sei $E$ eine Eigenschaft von Sprachen, die für manche Turing-erkennbare Sprachen gilt und für manche Turing-erkennbare Sprachen nicht gilt (="`nicht-triviale Eigenschaft"'). Dann ist das folgende Problem unentscheidbar:
+\begin{itemize}
+\item Eingabe: Turingmaschine $\Smach{M}$
+\item Ausgabe: Hat $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
+\end{itemize}}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Alles unentscheidbar}
+
+\examplebox{Beispiele für Fragen, die laut Rice unentscheidbar sind:
+\begin{itemize}
+\item "`Ist $\Sterm{aba}\in\Slang{L}(\Smach{M})$?"' 
+\item "`Ist $\Slang{L}(\Smach{M})$ leer?"'
+\item "`Ist $\Slang{L}(\Smach{M})$ endlich?"'
+\item "`Ist $\Slang{L}(\Smach{M})$ regulär?"'
+\item \ldots
+\end{itemize}
+Rice ist dagegen nicht anwendbar auf:
+\begin{itemize}
+\item "`Hat $\Smach{M}$ mindestens zwei Zustände?"'\\ (keine Eigenschaft von $\Slang{L}(\Smach{M})$) 
+\item "`Ist $\Slang{L}(\Smach{M})$ semi-entscheibar?"' (trivial)
+\item \ldots
+\end{itemize}
+}
+
+Der Satz von Rice lässt sich sinngemäß auf alle Turing-mächtigen Formalismen übertragen.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Der Satz von Rice: Beweis (1)}
+
+\theobox{Satz von Rice: Sei $E$ eine nicht-triviale Eigenschaft von Turing-erkennbaren Sprachen. Dann ist das folgende unentscheidbar:%
+\begin{itemize}
+\item Eingabe: Turingmaschine $\Smach{M}$
+\item Ausgabe: Hat die Sprache $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
+\end{itemize}}
+
+\emph{Beweis:} Sei $E$ eine Eigenschaft wie im Satz. Wir konstruieren eine
+Many-One-Reduktion vom $\epsilon$-Halteproblem auf "`$E$-Haftigkeit"'.\bigskip
+
+\begin{itemize}
+\item Sei $\emptyset\notin E$ 
+	(o.b.d.A.: wir könnten sonst auch Unentscheidbarkeit von $\overline{E}$ beweisen)
+\item Sei $\Smach{M}_{\Slang{L}}$ eine TM, die eine Sprache $\Slang{L}\in E$ akzeptiert\\
+	(muss existieren, da $E$ nicht-trivial ist)
+% \item Sei $\Smach{M}_\emptyset$ eine TM mit $\Slang{L}(\Smach{M}_\emptyset)=\emptyset$
+%%% <- Könnte man als Wert für falsch kodierte Eingaben nutzen, aber das ist nicht nötig
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Der Satz von Rice: Beweis (2)}
+
+\theobox{Satz von Rice: Sei $E$ eine nicht-triviale Eigenschaft von Turing-erkennbaren Sprachen. Dann ist das folgende unentscheidbar:%
+\begin{itemize}
+\item Eingabe: Turingmaschine $\Smach{M}$
+\item Ausgabe: Hat die Sprache $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
+\end{itemize}}
+
+\emph{Beweis (Fortsetzung):}\pause{} 
+Für eine beliebige TM $\Smach{M}$ sei $\Smach{M}^*$ eine TM, die für eine Eingabe
+$w$ das folgende tut:
+\begin{enumerate}[(1)]
+\item Simuliere $\Smach{M}$ auf dem leeren Wort $\epsilon$
+\item Falls $\Smach{M}$ hält, simuliere $\Smach{M}_{\Slang{L}}$ auf $w$
+\end{enumerate}\medskip\pause
+Damit gilt: falls $\Smach{M}$ auf $\epsilon$ hält, dann $\Slang{L}(\Smach{M}^*)=\Slang{L}\in E$ und\\
+\mbox{}\phantom{Damit gilt:} falls $\Smach{M}$ auf $\epsilon$ nicht hält, dann $\Slang{L}(\Smach{M}^*)=\emptyset\notin E$
+\medskip\pause
+
+Eine geeignete Many-One-Reduktion $f$ ist demnach:
+\[f(v)=\left\{\begin{array}{ll}
+\textsf{enc}(\Smach{M}^*) & \text{falls $v=\textsf{enc}(\Smach{M})$ für eine TM $\Smach{M}$}\\
+\Sterm{\#} & \text{falls die Eingabe nicht korrekt kodiert ist $\quad$\qed}
+\end{array}\right.\]
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+LOOP-Programme können wirklich fast alle praktisch relevanten Probleme lösen
+\bigskip
+
+Durch Turing-Reduktionen und Many-One-Reduktionen können wir aus der (Un)Lösbarkeit eines Problems die (Un)Lösbarkeit eines anderen ableiten
+\bigskip
+
+Alle interessanten Fragen über Turingmaschinen sind unentscheidbar\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Mehr zu Semi-Entscheidbarkeit 
+\item Noch ein paar klassische Probleme
+\item Rechnen wie die alten Griechen
+\end{itemize}
+}
+
+\end{frame}
+
+% \begin{frame}[t]\frametitle{Bildrechte}
+% 
+% Folie \ref{frame_hilbert}: gemeinfrei\\
+% Folie \ref{frame_cantor}: Fotografie von 1870, gemeinfrei\\
+% Folie \ref{frame_rado}: Ausschnitt aus einer Fotografie von 1928, \url{http://www.bibl.u-szeged.hu/sztegy/photo/778.jpg}, CC-By-SA 3.0\\
+% 
+% \end{frame}
+
+
+\end{document}
