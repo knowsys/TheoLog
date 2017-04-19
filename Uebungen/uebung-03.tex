@@ -1,0 +1,86 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+\usepackage[sheetnumber=3]{theolog}
+
+% Entscheidbarkeit, Unentscheidbarkeit, Reduktionen
+
+\begin{document}
+
+\maketitle
+
+\enlargethispage{2\baselineskip}
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\Alph{exercise}}
+  \setcounter{exercise}{4}
+
+  \begin{exercise}
+    Geben Sie eine Turing-Maschine $\mathcal{A}_{\mathsf{mod2}}$ an, die die
+    Funktion $f\colon \mathbb N \to \mathbb N$ mit $f(x) = (x \bmod 2)$
+    berechnet.  Stellen Sie dabei die Zahlen in unärer Kodierung dar.
+  \end{exercise}
+
+  \begin{exercise}
+    Es sei $f \colon \mathbb N \to \mathbb N$ mit $f(x) = \lfloor
+    \log_{10}(x)\rfloor$.  Geben Sie ein WHILE-Programm an, welches $f$
+    berechnet.
+  \end{exercise}
+  \vspace*{-0.5\baselineskip}
+\end{mdframed}
+
+\vspace*{0.5\baselineskip}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}
+  % Quelle: Sipser, Aufgab 5.5
+  Zeigen Sie, dass es keine Many-One-Reduktion vom Halteproblem
+  $\Slang{P}_{\mathsf{halt}}$ von Turing-Maschinen auf des Leerheitsproblem
+  \begin{equation*}
+    \Slang{P}_{\mathsf{leer}} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid
+    \mathcal{L}(\Smach{M}) = \emptyset \}
+  \end{equation*}
+  von Turing-Maschinen gibt.
+\end{exercise}
+
+\begin{exercise}
+  % Quelle unbekannt
+  Es sei
+  \begin{equation*}
+    T \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid \Smach{M} \text{ ist eine Turing-Maschine,
+      welche $w^{\mathcal{R}}$ akzeptiert, falls sie $w$ akzeptiert}\},
+  \end{equation*}
+  wobei $w^{\mathcal{R}}$ das zu $w$ umgekehrte Wort ist.  Zeigen Sie, dass $T$
+  nicht entscheidbar ist.
+\end{exercise}
+
+\begin{exercise}
+  % Quelle: Sipser, Aufgabe 4.14
+  Es sei
+  \begin{equation*}
+    L \coloneqq \{\mathsf{enc}(G)\#\#\mathsf{enc}(x) \mid G \text{ kontextfreie
+      Grammatik und $x$ Teilwort eines Wortes aus } L(G)\},
+  \end{equation*}
+  wobei $\mathsf{enc}(G)$ eine Kodierung von $G$ ist.  Zeigen Sie, dass $L$ auf
+  das Komplement des Leerheitsproblems kontextfreier Grammatiken
+  many-one-reduziert werden kann.
+
+  \Hinweis{Nutzen Sie die Tatsache, dass der Schnitt einer regulären und einer
+    kontextfreien Sprache wieder kontextfrei ist.}
+\end{exercise}
+
+\begin{exercise}
+  % Quelle: Sipser, Aufgabe 5.10
+  Zeigen Sie, dass jede semi-entscheidbare Sprache $L$ auf das Halteproblem
+  $\Slang{P}_{\mathsf{halt}}$ many-one-reduziert werden kann.
+\end{exercise}
+
+\end{document}

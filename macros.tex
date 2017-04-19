@@ -71,3 +71,49 @@
 \newcommand{\ThreeExpTime}{\complclass{3ExpTime}}
 \newcommand{\kExpTime}[1]{\complclass{#1ExpTime}}
 \newcommand{\kExpSpace}[1]{\complclass{#1ExpSpace}}
+
+
+%%% Style commands
+
+\newcommand{\quoted}[1]{\texttt{"}{#1}\texttt{"}}
+\newcommand{\squote}{\texttt{"}} % straight quote
+\newcommand{\Sterm}[1]{\ensuremath{\mathtt{\textcolor{purple}{#1}}}}    % letters in alphabets
+\newcommand{\Snterm}[1]{\textsf{\textcolor{darkblue}{#1}}} % nonterminal symbols
+\newcommand{\Sntermsub}[2]{\ensuremath{\Snterm{#1}_{\Snterm{#2}}}} % nonterminal symbols
+\newcommand{\Slang}[1]{\textbf{\textcolor{black}{#1}}}    % languages
+\newcommand{\Slangsub}[2]{\ensuremath{\Slang{#1}_{\Slang{#2}}}}    % languages
+% Code
+\newcommand{\Scode}[1]{\textbf{#1}}    % reserved words in program listings, e.g., "if"
+\newcommand{\Scodelit}[1]{\textcolor{purple}{#1}}    % literals in program listings, e.g., strings
+\newcommand{\Scomment}[1]{\textcolor{gray}{#1}}    % comment in program listings
+% LOOP and WHILE programs
+\newcommand{\Svar}[1]{\texttt{#1}} % variable names
+\newcommand{\Svsub}[2]{\ensuremath{\Svar{#1}_{\Svar{#2}}}} % variable names
+\newcommand{\Sxsub}[1]{\Svsub{x}{#1}} % variable names
+\newcommand{\Sseq}{\texttt{;}}
+\newcommand{\SStartLoop}[1]{\Scode{LOOP}~#1~\Scode{DO}~}
+\newcommand{\SEndLoop}{\Scode{END}}
+\newcommand{\SStartIf}[1]{\Scode{IF}~#1~\Scode{THEN}~}
+\newcommand{\SElse}{\Scode{ELSE}}
+\newcommand{\SEndIf}{\Scode{END}}
+\newcommand{\Svassign}{\texttt{ := }} % variable assignments
+\newcommand{\Svneq}{\texttt{!=}\ensuremath{\,}} % inequality operator
+\newcommand{\Splus}{\texttt{ + }} % addition operator
+\newcommand{\Sminus}{\texttt{ - }} % subtraction operator
+\newcommand{\SStartWhile}[1]{\Scode{WHILE}~#1\Svneq\texttt{\Scodelit{0}}~\Scode{DO}~}
+\newcommand{\SEndWhile}{\Scode{END}}
+
+\newcommand{\bbfunc}{\boldsymbol{\Sigma}}
+
+\newcommand{\epstrastar}{\mathrel{\mathord{\stackrel{\epsilon}{\to}}{}^*}} % transitive reflexive closure of epsilon transitions in an epslion-NFA
+
+\newcommand{\narrowcentering}[1]{\mbox{}\hfill#1\hfill\mbox{}}
+
+\newcommand{\Smach}[1]{\ensuremath{\mathcal{#1}}}    % machines
+
+\newcommand{\mytrue}{\Scodelit{1}}
+\newcommand{\myfalse}{\Scodelit{0}}
+% \newcommand{\emptyClause}{\bot}
+
+\newcommand{\Scomplclass}[1]{{\textsc{#1}}} % font for complexity classes, used on slides where the "too many alphabets" LaTeX error appears when using the correct sc font :-(
+% \newcommand{\complclass}[1]{\ensuremath{\mathsc{#1}}} % font for complexity classes

@@ -15,5 +15,11 @@
 \newcommand{\subsets}[1]{\mathfrak{P}(#1)}
 
 \usepackage{mdframed}
-\usepackage{todonotes}
 \usepackage{csquotes}
+\usepackage{graphicx}
+
+\input{macros}
+
+\newcommand{\Hinweis}[1]{%
+  {\medskip \noindent\small \textbf{Hinweis:}\\[1.5ex]
+    \hbox{\scalebox{1}[-1]{\parbox{\linewidth}{#1}}}}\ignorespaces}
