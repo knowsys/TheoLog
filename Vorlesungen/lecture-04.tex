@@ -243,6 +243,14 @@ Die Frage "`Wird \Smach{A} halten?"' ist gleichbedeutend mit der Frage\\"`Gilt d
 
 \end{frame}
 
+\begin{frame}\frametitle{Abschweifung}
+
+\begin{center}
+\large Ist die Goldbachsche Vermutung entscheidbar?
+\end{center}
+
+\end{frame}
+
 \begin{frame}[t]\frametitle{Beweis durch "`Diagonalisierung"'}
 
 \theobox{Satz: Das Halteproblem $\Slang{P}_{\textsf{Halt}}$ ist unentscheidbar.}\pause
@@ -384,7 +392,7 @@ Wir haben zwei ähnliche Unentscheidbarkeitsbeweise gesehen:\bigskip
 
 \begin{frame}\frametitle{Many-One-Reduktionen}
 
-\emph{Idee:} Beim $\epsilon$-Halteproblem verwenden wir das Halteproblem nicht als Subroutine eines komplexen Programms, sondern wir Formen unser Problem in ein Halteproblem um\bigskip
+\emph{Idee:} Beim $\epsilon$-Halteproblem verwenden wir das Halteproblem nicht als Subroutine eines komplexen Programms, sondern wir formen unser Problem in ein Halteproblem um\bigskip
 
 \defbox{Eine berechenbare totale Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{Many-One-Reduktion} von einer Sprache \Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_m \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
 \narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
@@ -445,91 +453,6 @@ Many-One-Reduktionen sind schwächer als Turing-Reduktionen:\bigskip
 % 
 % \end{frame}
 
-\begin{frame}\frametitle{Der Satz von Rice}
-
-Ein interessantes Resultat von Henry Gordon Rice bewahrt uns davor, noch hunderte andere Probleme im Detail zu betrachten:\medskip
-
-\theobox{Satz von Rice (informelle Version): Jede nicht-triviale Frage über die von einer TM ausgeführte Berechnung ist unentscheidbar.}\bigskip\pause
-
-\theobox{Satz von Rice (formell): Sei $E$ eine Eigenschaft von Sprachen, die für manche Turing-erkennbare Sprachen gilt und für manche Turing-erkennbare Sprachen nicht gilt (="`nicht-triviale Eigenschaft"'). Dann ist das folgende Problem unentscheidbar:
-\begin{itemize}
-\item Eingabe: Turingmaschine $\Smach{M}$
-\item Ausgabe: Hat $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
-\end{itemize}}
-
-
-\end{frame}
-
-\begin{frame}\frametitle{Alles unentscheidbar}
-
-\examplebox{Beispiele für Fragen, die laut Rice unentscheidbar sind:
-\begin{itemize}
-\item "`Ist $\Sterm{aba}\in\Slang{L}(\Smach{M})$?"' 
-\item "`Ist $\Slang{L}(\Smach{M})$ leer?"'
-\item "`Ist $\Slang{L}(\Smach{M})$ endlich?"'
-\item "`Ist $\Slang{L}(\Smach{M})$ regulär?"'
-\item \ldots
-\end{itemize}
-Rice ist dagegen nicht anwendbar auf:
-\begin{itemize}
-\item "`Hat $\Smach{M}$ mindestens zwei Zustände?"'\\ (keine Eigenschaft von $\Slang{L}(\Smach{M})$) 
-\item "`Ist $\Slang{L}(\Smach{M})$ semi-entscheibar?"' (trivial)
-\item \ldots
-\end{itemize}
-}
-
-Der Satz von Rice lässt sich sinngemäß auf alle Turing-mächtigen Formalismen übertragen.
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Der Satz von Rice: Beweis (1)}
-
-\theobox{Satz von Rice: Sei $E$ eine nicht-triviale Eigenschaft von Turing-erkennbaren Sprachen. Dann ist das folgende unentscheidbar:%
-\begin{itemize}
-\item Eingabe: Turingmaschine $\Smach{M}$
-\item Ausgabe: Hat die Sprache $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
-\end{itemize}}
-
-\emph{Beweis:} Sei $E$ eine Eigenschaft wie im Satz. Wir konstruieren eine
-Many-One-Reduktion vom $\epsilon$-Halteproblem auf "`$E$-Haftigkeit"'.\bigskip
-
-\begin{itemize}
-\item Sei $\emptyset\notin E$ 
-	(o.b.d.A.: wir könnten sonst auch Unentscheidbarkeit von $\overline{E}$ beweisen)
-\item Sei $\Smach{M}_{\Slang{L}}$ eine TM, die eine Sprache $\Slang{L}\in E$ akzeptiert\\
-	(muss existieren, da $E$ nicht-trivial ist)
-% \item Sei $\Smach{M}_\emptyset$ eine TM mit $\Slang{L}(\Smach{M}_\emptyset)=\emptyset$
-%%% <- Könnte man als Wert für falsch kodierte Eingaben nutzen, aber das ist nicht nötig
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Der Satz von Rice: Beweis (2)}
-
-\theobox{Satz von Rice: Sei $E$ eine nicht-triviale Eigenschaft von Turing-erkennbaren Sprachen. Dann ist das folgende unentscheidbar:%
-\begin{itemize}
-\item Eingabe: Turingmaschine $\Smach{M}$
-\item Ausgabe: Hat die Sprache $\Slang{L}(\Smach{M})$ die Eigenschaft $E$?
-\end{itemize}}
-
-\emph{Beweis (Fortsetzung):}\pause{} 
-Für eine beliebige TM $\Smach{M}$ sei $\Smach{M}^*$ eine TM, die für eine Eingabe
-$w$ das folgende tut:
-\begin{enumerate}[(1)]
-\item Simuliere $\Smach{M}$ auf dem leeren Wort $\epsilon$
-\item Falls $\Smach{M}$ hält, simuliere $\Smach{M}_{\Slang{L}}$ auf $w$
-\end{enumerate}\medskip\pause
-Damit gilt: falls $\Smach{M}$ auf $\epsilon$ hält, dann $\Slang{L}(\Smach{M}^*)=\Slang{L}\in E$ und\\
-\mbox{}\phantom{Damit gilt:} falls $\Smach{M}$ auf $\epsilon$ nicht hält, dann $\Slang{L}(\Smach{M}^*)=\emptyset\notin E$
-\medskip\pause
-
-Eine geeignete Many-One-Reduktion $f$ ist demnach:
-\[f(v)=\left\{\begin{array}{ll}
-\textsf{enc}(\Smach{M}^*) & \text{falls $v=\textsf{enc}(\Smach{M})$ für eine TM $\Smach{M}$}\\
-\Sterm{\#} & \text{falls die Eingabe nicht korrekt kodiert ist $\quad$\qed}
-\end{array}\right.\]
-
-\end{frame}
 
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
@@ -537,17 +460,20 @@ Eine geeignete Many-One-Reduktion $f$ ist demnach:
 LOOP-Programme können wirklich fast alle praktisch relevanten Probleme lösen
 \bigskip
 
-Durch Turing-Reduktionen und Many-One-Reduktionen können wir aus der (Un)Lösbarkeit eines Problems die (Un)Lösbarkeit eines anderen ableiten
+Durch Reduktionen können wir aus der (Un)Lösbarkeit eines Problems die (Un)Lösbarkeit eines anderen ableiten\bigskip
+
+Turing-Reduktionen $\Slang{P}\leq_T\Slang{Q}$ verwenden die Lösung von $\Slang{Q}$ als Subroutine in einem Algorithmus für $\Slang{P}$
 \bigskip
 
-Alle interessanten Fragen über Turingmaschinen sind unentscheidbar\bigskip
+Many-One-Reduktionen $\Slang{P}\leq_m\Slang{Q}$ Formen eine Problemstellung für $\Slang{P}$ ind eine Problemstellung für $\Slang{Q}$ um
+\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
 \item Mehr zu Semi-Entscheidbarkeit 
-\item Ein Problem von Emil Post \ldots
-\item \ldots und eines zu kontextfreien Sprachen
+\item Ein unentscheidbares Problem von Emil Post \ldots
+\item \ldots{} und unendlich viele von Gordon Rice 
 \end{itemize}
 }
 
