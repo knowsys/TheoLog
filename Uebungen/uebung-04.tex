@@ -54,7 +54,7 @@
   \item $P_{2} = (ab, aba), (baa, aa), (aba, baa)$
   \item $P_{3} = (bba, b), (ba, baa), (ba, aba), (ab, bba)$
   \end{enumerate}
-  (Für die dritte Teilaufgabe ist die Verwendung eines Computers sinnvoll.)
+  (Für einige Teilaufgaben ist die Verwendung eines Computers sinnvoll.)
 \end{exercise}
 
 \begin{exercise}
@@ -65,9 +65,10 @@
 
 \begin{exercise}
   % Selbst
-  Zeigen Sie, dass für eine gegebene semi-entscheidbare Sprache $L$ nicht
-  berechenbar ist, was die minimale Anzahl an Zuständen einer Turing-Maschine
-  ist, die $L$ erkennt.  Zeigen Sie dazu, dass für jedes $k$ die Menge
+  Zeigen Sie, dass folgendes Problem unentscheidbar ist: gegeben eine
+  Turing-Maschine $M$ und ein $k \in \mathbb N$, kann die Sprache $L(M)$ durch
+  eine Turing-Maschine mit höchstens $k$ Zuständen erkannt werden?
+  Zeigen Sie dazu, dass für $k = 1$ die Menge
   \begin{equation*}
     T_{k} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid \mathcal{L}(\Smach{M})
     \text{ wird von einer TM mit höchstens $k$ Zuständen erkannt} \}
@@ -92,5 +93,3 @@
 \end{exercise}
 
 \end{document}
-
-Aufgabe 3
