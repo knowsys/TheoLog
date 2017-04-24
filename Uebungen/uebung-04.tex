@@ -67,11 +67,12 @@
 \begin{exercise}
   % Selbst
   Zeigen Sie, dass folgendes Problem unentscheidbar ist: gegeben eine
-  Turing-Maschine $M$ und ein $k \in \mathbb N$, kann die Sprache $L(M)$ durch
+  Turing-Maschine $M$ und ein $k \in \mathbb N$, kann die Sprache $L(\Smach{M})$ durch
   eine Turing-Maschine mit höchstens $k$ Zuständen erkannt werden?
+
   Zeigen Sie dazu, dass für $k = 1$ die Menge
   \begin{equation*}
-    T_{k} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid \mathcal{L}(\Smach{M})
+    T_{k} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid L(\Smach{M})
     \text{ wird von einer TM mit höchstens $k$ Zuständen erkannt} \}
   \end{equation*}
   nicht entscheidbar ist.  Warum zeigt dies die ursprüngliche Behauptung?
@@ -84,9 +85,9 @@
   $\overline{\Slang{P}}_{\mathsf{äquiv}}$ semi-entscheidbar ist, wobei
   \begin{align*}
     \Slang{P}_{\mathsf{äquiv}} \coloneqq \{ \enc(\Smach{M}_{1})\#\#\enc(\Smach{M}_{2})
-    \mid \mathcal{L}(\Smach{M}_{1}) = \mathcal{L}(\Smach{M}_{2}) \}, \\
+    \mid L(\Smach{M}_{1}) = L(\Smach{M}_{2}) \}, \\
     \overline{\Slang{P}}_{\mathsf{äquiv}} \coloneqq \{ \enc(\Smach{M}_{1})\#\#\enc(\Smach{M}_{2})
-    \mid \mathcal{L}(\Smach{M}_{1}) \neq \mathcal{L}(\Smach{M}_{2}) \}.
+    \mid L(\Smach{M}_{1}) \neq L(\Smach{M}_{2}) \}.
   \end{align*}
   Zeigen Sie dazu, dass $\Slang{P}_{\mathsf{halt}} \leq_{m}
   \Slang{P}_{\mathsf{äquiv}}$ und $\Slang{P}_{\mathsf{halt}} \leq_{m}
