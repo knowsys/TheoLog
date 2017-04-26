@@ -1,0 +1,639 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+\input{../macros}
+
+\defineTitle{6}{Unentscheidbare Probleme formaler Sprachen}{26. April 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Rückblick}
+
+Zwei wesentliche Erkenntnisse der letzten Vorlesung:
+
+\begin{itemize}
+\item Praktisch alle interessanten Fragen zu Turingmaschinen sind unentscheibar (Rice)
+\item Es gibt unentscheidbare Probleme, die nicht direkt mit Berechnung zu tun haben (Post)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Nachtrag: Von PCP zu MPCP (1)}
+
+Es fehlt noch eine Reduktion von MPCP auf PCP.\bigskip
+
+\theobox{Satz: Es gibt eine Many-One-Reduktion vom 
+modifizierten PCP auf PCP.}
+
+\pause\emph{Beweis:} Wir verwenden zwei zusätzliche Symbole $\Sterm{\#}$ und 
+$\Sterm{\blacksquare}$. Für ein Wort $w=a_1\cdots a_\ell$
+definieren wir:
+\begin{align*}
+{}_{\Sterm{\#}}w_{\Sterm{\#}} &= \Sterm{\#}{a_1}\Sterm{\#}\cdots\Sterm{\#}{a_\ell}\Sterm{\#} &
+w_{\Sterm{\#}} &= {a_1}\Sterm{\#}\cdots\Sterm{\#}{a_\ell}\Sterm{\#} &
+{}_{\Sterm{\#}}w &= \Sterm{\#}{a_1}\Sterm{\#}\cdots\Sterm{\#}{a_\ell}
+\end{align*}
+\pause Die gesuchte Reduktion bildet jetzt ein MPCP\\[1ex]
+\narrowcentering{$\left[\begin{matrix}x_1\\y_1\end{matrix}\right]\quad\ldots\quad\left[\begin{matrix}x_k\\y_k\end{matrix}\right]$}\\[1ex]
+ab auf das PCP\\[1ex]
+\narrowcentering{$%
+\left[\begin{matrix}{}_{\Sterm{\#}}x_1{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_1\end{matrix}\right]
+\quad\left[\begin{matrix}x_1{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_1\end{matrix}\right]
+\quad\ldots
+\quad\left[\begin{matrix}x_k{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_k\end{matrix}\right]
+\quad\left[\begin{matrix}\Sterm{\blacksquare}\\\Sterm{\#\blacksquare}\end{matrix}\right]
+$}\\[1ex]
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Nachtrag: Von PCP zu MPCP (2)}
+
+% Es fehlt noch eine Reduktion von MPCP auf PCP.\bigskip
+% 
+% \theobox{Satz: Es gibt eine Many-One-Reduktion vom 
+% modifizierten PCP auf PCP.}
+
+\emph{Beweis (Fortsetzung):} Wir erhalten also das folgende PCP\\[1ex]
+\narrowcentering{$%
+\left[\begin{matrix}{}_{\Sterm{\#}}x_1{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_1\end{matrix}\right]
+\quad\left[\begin{matrix}x_1{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_1\end{matrix}\right]
+\quad\ldots
+\quad\left[\begin{matrix}x_k{}_{\Sterm{\#}}\\{}_{\Sterm{\#}}y_k\end{matrix}\right]
+\quad\left[\begin{matrix}\Sterm{\blacksquare}\\\Sterm{\#\blacksquare}\end{matrix}\right]
+$}\\[1ex]
+%
+Es ist nicht schwer zu zeigen, dass dies genau dann eine Lösung hat, wenn das ursprüngliche MPCP eine hat:\pause
+\begin{itemize}
+\item "`$\Leftarrow$"' Wenn das MPCP eine Lösung hat, dann erhalten wir leicht eine entsprechende Lösung für das PCP, wobei jedes Symbol zusätzlich von $\Sterm{\#}$ umgeben ist und das Wort auf $\Sterm{\blacksquare}$ endet\pause
+\item "`$\Rightarrow$"' Wenn das PCP eine Lösung hat, dann muss es mit dem ersten Wortpaar beginnen, da nur dieses Wortpaar gleiche Anfangssymbole hat. Durch Weglassen aller $\Sterm{\#}$ und 
+$\Sterm{\blacksquare}$ entsteht wieder eine Lösung des MPCP.\qed
+\end{itemize}
+
+\end{frame}
+
+
+\sectionSlide{Unentscheidbare Probleme formaler Sprachen}
+
+
+\begin{frame}\frametitle{Wiederholung (Vorlesung Formale Systeme)}
+
+Wir schreiben $\Slang{L}(G)$ für die Sprache, welche durch die Grammatik $G$ erzeugt wird.\bigskip
+
+\theobox{Satz (aus Formale Systeme): Das \alert{Schnittproblem regulärer Grammatiken} ist entscheidbar.\\
+\emph{Gegeben:} Reguläre Grammatiken $G_1$ und $G_2$\\
+\emph{Frage:} Ist $\Slang{L}(G_1)\cap\Slang{L}(G_2)\neq\emptyset$?
+}
+\pause\emph{Beweisskizze:} Für reguläre Grammatiken $G_1$ und $G_2$ kann man $\Slang{L}(G_1)\cap\Slang{L}(G_2)$ durch einen Automaten darstellen (Produkt-\\konstruktion). Automaten kann man leicht auf Leerheit testen.\qed\bigskip\pause
+
+\theobox{Satz (aus Formale Systeme): Das \alert{Schnittproblem kontextfreier Grammatiken} ist unentscheidbar.\\
+\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
+\emph{Frage:} Ist $\Slang{L}(G_1)\cap\Slang{L}(G_2)\neq\emptyset$?
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{CFG-Schnittproblem unentscheidbar (1)}
+
+\theobox{Satz: Das \alert{Schnittproblem kontextfreier Grammatiken} ist unentscheidbar.\\
+\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
+\emph{Frage:} Ist $\Slang{L}(G_1)\cap\Slang{L}(G_2)\neq\emptyset$?
+}
+
+\pause\emph{Beweis:} Durch Many-One-Reduktion vom PCP:\pause\medskip
+
+\begin{itemize}
+\item Für eine gegebene PCP-Instanz $P$
+\item konstruieren wir kontextfreie Grammatiken $G_x$ und $G_y$,\\[1ex]
+	so dass gilt:
+\item $P$ hat eine Lösung genau dann wenn $\Slang{L}(G_x)\cap\Slang{L}(G_y)\neq\emptyset$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{CFG-Schnittproblem unentscheidbar (2)}
+
+\emph{Beweis:} Sei $\left[\begin{matrix}x_1\\y_1\end{matrix}\right]\quad\ldots\quad\left[\begin{matrix}x_k\\y_k\end{matrix}\right]$ eine PCP-Instanz mit Alphabet $\Sigma$.
+\medskip\pause
+
+Die Grammatik $G_x$ wird definiert als $\tuple{V,\Sigma_k,P_x,\Snterm{S}}$ mit
+\begin{itemize}
+\item $V=\{\Snterm{S}\}$
+\item $\Sigma_k = \Sigma \cup\{1,\ldots,k\}$ (o.b.d.A. sei dies eine dijunkte Vereinigung)
+\item $P_x$ ist die Menge aller Regeln 
+\begin{align*}
+\Snterm{S}\to i\Snterm{S}x_i\quad\text{ und }\quad\Snterm{S}\to i x_i && \text{für alle $1\leq i\leq k$}
+\end{align*}
+
+\end{itemize}
+Damit ist $G_x$ leicht berechenbar.\\
+$G_y=\tuple{V,\Sigma_k,P_y,\Snterm{S}}$ wird analog definiert.\bigskip\pause
+
+Damit ergibt sich:
+\begin{itemize}
+\item $\Slang{L}(G_x)=\{ i_\ell\cdots i_1 x_{i_1}\cdots x_{i_\ell}\mid \ell\geq 1\text{ und } i_1,\ldots,i_\ell\in\{1,\ldots,k\}\}$ und
+\item $\Slang{L}(G_y)=\{ i_\ell\cdots i_1 y_{i_1}\cdots y_{i_\ell}\mid \ell\geq 1\text{ und } i_1,\ldots,i_\ell\in\{1,\ldots,k\}\}$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{CFG-Schnittproblem unentscheidbar (3)}
+
+\emph{Beweis:} Wie soeben erkannt:
+\begin{itemize}
+\item $\Slang{L}(G_x)=\{ i_\ell\cdots i_1 x_{i_1}\cdots x_{i_\ell}\mid \ell\geq 1\text{ und } i_1,\ldots,i_\ell\in\{1,\ldots,k\}\}$ und
+\item $\Slang{L}(G_y)=\{ i_\ell\cdots i_1 y_{i_1}\cdots y_{i_\ell}\mid \ell\geq 1\text{ und } i_1,\ldots,i_\ell\in\{1,\ldots,k\}\}$
+\end{itemize}\bigskip\pause
+
+Damit folgt:\medskip
+
+\begin{tabular}{rl}
+& $\Slang{L}(G_x)\cap\Slang{L}(G_y)\neq\emptyset$\\\pause
+gdw. & es gibt eine Sequenz $i_1,\ldots,i_\ell\in\{1,\ldots,k\}$ mit $\ell\geq 1$, so dass:\\
+	& $ i_\ell\cdots i_1 x_{i_1}\cdots x_{i_\ell} = i_\ell\cdots i_1 y_{i_1}\cdots y_{i_\ell}$\\\pause
+gdw. & es gibt eine Sequenz $i_1,\ldots,i_\ell\in\{1,\ldots,k\}$ mit $\ell\geq 1$, so dass:\\
+	& $ x_{i_1}\cdots x_{i_\ell} = y_{i_1}\cdots y_{i_\ell}$\\\pause
+gdw. &  Die PCP-Instanz $P$ hat eine Lösung\qed\\
+\end{tabular}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Wiederholung (Vorlesung Formale Systeme)}
+
+\emph{Wir wissen:}
+\begin{itemize}
+\item Kontextfreien Grammatiken kann man als Kellerautomaten darstellen und umgekehrt\\
+ (diese Umformung ist berechenbar)
+\item Deterministische kontextfreie Sprachen kann man als deterministische Kellerautomaten darstellen
+\end{itemize}
+\bigskip
+
+\theobox{Satz (Formale Systeme):
+\begin{itemize}
+\item Das Leerheitsproblem für kontextfreie Grammatiken ist entscheidbar
+\item Kontextfreie Sprachen sind unter Vereinigung abgeschlossen
+\item Deterministische kontextfreie Sprachen sind unter Komplement abgeschlossen
+\end{itemize}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Eine einfache Beobachtung}
+
+Die Grammatiken $G_x$ und $G_y$ aus dem vorigen Beweis kann man leicht
+als deterministische Kellerautomaten darstellen\pause:
+\begin{itemize}
+\item Die Indices $i_\ell\cdots i_1$ lassen sich deterministisch einlesen und auf dem Stack ablegen
+\item Sobald der Wortteil $x_{i_1}\cdots x_{i_\ell}$ beginnt, wird der Stack abgearbeitet und jeweils nur das Wort für den aktuellen Index akzeptiert
+\end{itemize}
+\bigskip\pause
+
+Wir haben also auch schon gezeigt:
+
+\theobox{Korollar: Das \alert{Schnittproblem deterministischer Kellerautomaten} ist unentscheidbar.\\
+\emph{Gegeben:} Deterministische Kellerautomaten $\Smach{M}_1$ und $\Smach{M}_2$\\
+\emph{Frage:} Ist $\Slang{L}(\Smach{M}_1)\cap\Slang{L}(\Smach{M}_2)\neq\emptyset$?
+}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{CFG-Äquivalenz (1)}
+
+\theobox{Satz: Das \alert{Äquivalenzproblem kontextfreier Grammatiken} ist unentscheidbar.\\
+\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
+\emph{Frage:} Ist $\Slang{L}(G_1)=\Slang{L}(G_2)$?
+}
+
+\emph{Beweis:} Durch Many-One-Reduktion vom Komplement des Schnittproblems.\pause
+
+\begin{itemize}
+\item Wir verwenden $G_x$ und $G_y$ aus dem vorigen Beweis\pause
+\item Wir wissen, wie man einen det.\ Kellerautomaten $\Smach{M}_x$ für $G_x$ konstruiert\pause
+\item $\Smach{M}_x$ kann man komplementieren: sei $\overline{\Smach{M}}_x$ der Automat für
+die Sprache $\overline{\Slang{L}(\Smach{M}_x)}$\pause
+\item Für $\overline{\Smach{M}}_x$ kann man eine Grammatik berechnen: sei $\overline{G}_x$ die Grammatik für die Sprache $\Slang{L}(\overline{\Smach{M}}_x)$\pause
+\item Kontextfreie Grammatiken kann man vereinigen: sei $G_{\overline{x}y}$ die Grammatik mit $\Slang{L}(G_{\overline{x}y})= \Slang{L}(\overline{G}_x)\cup\Slang{L}(G_y)$ 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{CFG-Äquivalenz (2)}
+
+\theobox{Satz: Das \alert{Äquivalenzproblem kontextfreier Grammatiken} ist unentscheidbar.\\
+\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
+\emph{Frage:} Ist $\Slang{L}(G_1)=\Slang{L}(G_2)$?
+}
+
+\emph{Beweis:} Wir behaupten: \["`\Slang{L}(G_x)\cap\Slang{L}(G_y)\stackrel{?}{=}\emptyset"' \mapsto "`\Slang{L}(G_{\overline{x}y})\stackrel{?}{=}\Slang{L}(\overline{G}_x)"'\] ist die gesuchte Reduktion.\bigskip\pause
+
+\begin{tabular}{rrl}
+$\Slang{L}(G_x)\cap\Slang{L}(G_y)=\emptyset$ \pause
+	& gdw. & $\Slang{L}(G_y)\subseteq\Slang{L}(\overline{G}_x)$\\\pause
+	& gdw. & $\Slang{L}(G_y)\cup\Slang{L}(\overline{G}_x)=\Slang{L}(\overline{G}_x)$\\\pause
+	& gdw. & $\Slang{L}(G_{\overline{x}y})=\Slang{L}(\overline{G}_x)$\\[1ex]
+\end{tabular}
+
+Die Behauptung folgt, da das Komplement des Schnittproblems unentscheidbar ist.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Diskussion}
+
+\emph{Anmerkung 1:} $G_{\overline{x}y}$ ist nicht unbedingt deterministisch. Der Beweis
+gilt also nicht für deterministische CFGs. In der Tat ist Äquivalenz dort (mit viel Aufwand) entscheidbar.\\[1ex]
+{\tiny (S\'{e}nizergues: L(A)=L(B)? decidability results from complete formal systems, 2001; der komplexe Beweis zeigt Semi-Entscheidbarkeit des Problems und seines Komplements, also keine Zeitgrenzen!)
+
+}
+\bigskip\pause
+
+\emph{Anmerkung 2:} Aus der Unentscheidbarkeit der CFG-Äquivalenz folgt -- durch einfache Many-One-Reduktion -- die Unentscheidbarkeit der Äquivalenz aller Formalismen, in die man CFGs leicht übersetzen kann:
+\begin{itemize}
+\item Kellerautomaten
+\item kontextsensitive Grammatiken/LBAs
+\item LOOP-Programme
+\item Typ-0-Grammatiken/Turingmaschinen/WHILE-Programme
+\item \ldots
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Unentscheidbare Probleme für Typ 1}
+
+Wir halten noch einmal fest:
+
+\theobox{Satz: Für kontextsensitive Grammatiken $G_1$ und $G_2$ sind
+die folgenden Fragen unentscheidbar:
+\begin{enumerate}[(1)]
+\item Äquivalenz: $\Slang{L}(G_1)=\Slang{L}(G_2)$?
+\item Schnitt: $\Slang{L}(G_1)\cap\Slang{L}(G_2)=\emptyset$?
+\item Leerheit: $\Slang{L}(G_1)=\emptyset$?
+\end{enumerate}}
+
+\emph{Beweis:} (1) und (2) gelten, weil alle kontextfreien Grammatiken auch
+kontextsensitive Grammatiken sind (offensichtliche Many-One-Reduktion).
+\bigskip
+
+(3) gilt, da kontextsensitive Grammatiken unter Schnitten abgeschlossen sind (siehe
+Vorlesung Formale Systeme), so dass man Schnitt auf Leerheit reduzieren kann.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Semi-Entscheidbarkeit}
+
+\emph{Beobachtung 1:} Das Schnittproblem ist semi-entscheidbar: zähle alle
+Wörter von $\Slang{L}(G_1)$ auf und teste jeweils, ob sie in $\Slang{L}(G_2)$
+liegen.
+\bigskip\pause
+
+\emph{Beobachtung 2:} Das Komplement des Schnittproblems ist demnach nicht semi-entscheidbar.
+Ebenso ist also das Äquivalenzproblem nicht semi-entscheidbar (wegen Many-One-Reduktion).
+\bigskip\pause
+
+\emph{Beobachtung 3:} Das Komplement des Äquivalenzproblems ist semi-entscheidbar: zähle abwechselnd Wörter von $\Slang{L}(G_1)$ und $\Slang{L}(G_2)$ auf und teste jeweils, ob sie nicht in $\Slang{L}(G_2)$ bzw. $\Slang{L}(G_1)$ liegen.
+
+\end{frame}
+
+\sectionSlide{Unentscheidbarkeiten}
+
+\begin{frame}\frametitle{Das schwerste unentscheidbare Problem?}
+
+Wir haben gesehen (Übung):\smallskip
+
+\theobox{Satz: Jedes semi-entscheidbare Problem kann auf das Halteproblem
+many-one-reduziert werden.}\medskip\pause
+
+Demnach kann man außerdem Komplemente semi-entscheidbarer Probleme ("`co-semi-entscheidbare"' Probleme) auf das Halteproblem Turing-reduzieren.\bigskip
+
+Mit anderen Worten: Wenn man das Halteproblem lösen könnte, dann könnte man
+jedes (co-)semi-entscheidbare Problem lösen.\pause
+
+\begin{center}
+\alert{Ist das Halteproblem das schwerste unentscheidbare Problem?}\\
+{\tiny (Sind alle unentscheidbaren Probleme auf das Halteproblem Turing-reduzierbar?)}
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Das schwerste unentscheidbare Problem?}
+
+\begin{center}
+\alert{Ist das Halteproblem das schwerste unentscheidbare Problem?}\\
+{\tiny (Sind alle unentscheidbaren Probleme auf das Halteproblem Turing-reduzierbar?)}
+\end{center}
+
+\bigskip
+\pause \narrowcentering{{\Large\redalert{Nein, sicher nicht.}}}
+\bigskip\pause
+
+\emph{Beweisskizze:} Wir können uns Turing-Reduktionen als TMs vorstellen, die Subroutinen
+aufrufen dürfen.
+
+\begin{itemize}
+\item Selbst ohne die Details der formalen Definition ist klar: Solche TMs müssen weiterhin
+endlich beschreibbar sein.
+\item Daher gibt es nur abzählbar viele solcher TMs.
+\item Es gibt aber überabzählbar viele Probleme.
+\end{itemize}
+
+Also sind die meisten Probleme nicht durch Turing-Reduktionen auf das Halteproblem
+lösbar.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Noch unentscheidbarere Probleme}
+
+Gibt es auch konkrete unentscheidbare Probleme, die nicht
+mithilfe von $\Slang{P}_{\text{halt}}$ lösbar sind?
+\bigskip\pause
+
+Ja, zum Beispiel folgendes:
+
+\defbox{Wir betrachten folgendes Problem $\Slang{P}^2_{\text{halt}}$:\\
+\emph{Gegeben:} ein Wort $w$ und eine DTM $\Smach{M}$, welche $\Slang{P}_{\text{halt}}$ als Subroutine verwenden darf\\
+\emph{Frage:} Hält $\Smach{M}$ auf $w$?
+}
+
+Dies ist sozusagen ein Haltproblem höherer Ordnung.\bigskip\pause
+
+Ein noch schwereres Problem $\Slang{P}^3_{\text{halt}}$ ist
+das Halteproblem für TMs, die $\Slang{P}^2_{\text{halt}}$ als Subroutine
+verwenden dürfen\\
+$\leadsto$ \alert{eine unendliche Hierarchie unentscheidbarer Probleme}
+\bigskip\pause
+
+Und selbst all diese Probleme sind nur abzählbar viele \ldots
+
+\end{frame}
+
+\begin{frame}\frametitle{Das leichteste unentscheidbare Problem?}
+
+\begin{center}
+\alert{Ist das Halteproblem das leichteste unentscheidbare Problem?}\\
+{\tiny (Ist das Halteproblem auf alle unentscheidbaren Probleme Turing-reduzierbar?)}
+\end{center}
+
+\bigskip
+\pause \narrowcentering{{\Large\redalert{Nein, auch das gilt nicht.}}}
+\bigskip
+
+Die Situation ist ziemlich kompliziert:
+\begin{itemize}
+\item Es gibt unentscheibare Probleme $\Slang{A}$ und $\Slang{B}$, so dass
+\item $\Slang{A}\leq_T \Slang{P}_{\text{halt}}$ und $\Slang{B}\leq_T \Slang{P}_{\text{halt}}$, aber
+\item $\Slang{A}\not\leq_T \Slang{B}$ und $\Slang{B}\not\leq_T \Slang{A}$
+\end{itemize}
+
+Man kann also mit $\not\leq_T$ nicht einmal alle Klassen unentscheidbarer Probleme
+in eine totale Ordnung bringen.
+
+{\tiny Bewiesen in 1956 (unabhängig!) von Friedberg (USA) und Muchnik (USSR)}
+\bigskip
+
+Allerdings sind diese Probleme sehr künstlich.
+
+\end{frame}
+
+\begin{frame}\frametitle{Wozu das alles?}
+
+Die Untersuchung der Struktur des Unentscheidbaren hat
+sehr viele Fragen betrachtet und beantwortet.\\
+$\leadsto$ Forschungsgegenstand der \alert{Berechenbarkeitstheorie}
+\bigskip\pause
+
+Offensichtliche Frage: \redalert{Bringt uns das praktische Einsichten?}
+\bigskip\pause
+
+"`Jain"':
+\begin{itemize}
+\item Einerseits sind alle unentscheidbaren Probleme praktisch unlösbar
+\item Andererseits kann der Grad der Unentscheidbarkeit ein Hinweis auf die Schwere
+entscheidbarer Teilprobleme sein
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel: Noch ein Problem}
+
+\defbox{Das \redalert{Universalitätsproblem von TMs} fragt, ob eine TM alle Eingaben
+akzeptiert:\\
+\emph{Gegeben:} Turingmaschine $\Smach{M}$ über Eingabealphabet $\Sigma$\\
+\emph{Frage:} Ist $\Slang{L}(\Smach{M})=\Sigma^*$?}
+
+\pause Das Universalitätsproblem vom TMs ist schwerer als das Halteproblem (aber Turing-reduzierbar auf $\Slang{P}^2_{\text{halt}}$). Das zeigt sich auch bei Sonderfällen:
+\begin{itemize}
+\item \alert{Kontextfreie Grammatiken:} Wortproblem und Leerheitsproblem entscheidbar; Universalität unentscheidbar
+\item \alert{Endliche Automaten:} Wortproblem und Leerheitsproblem effizient lösbar (polynomiell); Universalität PSpace-hart (nur exponentielle Algorithmen bekannt)
+\end{itemize}
+
+\end{frame}
+
+\sectionSlide{Euklid als Informatiker}
+
+\begin{frame}\frametitle{Geometrie nach Euklid}
+
+Etwa im 3. Jhd. v. Chr. veröffentlicht Euklid sein Lehrbuch 
+\redalert{Die~Elemente} und begründet darin die euklidische Geometrie.
+\bigskip
+
+Zentrales Thema der euklidischen Geometrie ist die
+Konstruktion mit den \redalert{euklidischen Werkzeugen:}
+
+\begin{itemize}
+\item \alert{Lineal:} beliebig lang, aber ohne Markierungen
+\item \alert{Zirkel:} zeichnet Kreise, aber trägt bei Euklid keine Längen ab (kollabierend)
+\end{itemize}
+
+Die Konstruktion mit diesen idealen Werkzeugen gilt bei den Griechen und noch
+Jahrhunderte später Königsdisziplin der Mathematik
+
+\end{frame}
+
+\begin{frame}\frametitle{Konstruktion mit Zirkel und Lineal}
+
+
+\alert{Erlaubte Konstruktionsschritte:}
+\begin{enumerate}[(1)]
+\item Ziehen einer beliebig langen Geraden durch zwei verschiedene Punkte
+\item Zeichnen eines Kreises mit einen gegebenen Mittelpunkt, der durch einen gegebenen Punkt verläuft
+\item Abtragen einer Strecke mit dem Zirkel\\
+{\tiny Bei Euklid nicht direkt erlaubt, aber Euklid selbst hat bewiesen, dass diese Operation als Makro mithilfe der Operationen (1) und (2) darstellbar ist
+}
+\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+Man kann ein Quadrat wie folgt konstruieren:\bigskip
+
+\narrowcentering{%
+\begin{tikzpicture}[scale=0.4]
+% \path[use as bounding box] (-3.2,0) rectangle (3.5,-4); % add "draw" to see it
+% \pgfmathsetseed{6571}
+% \draw[help lines] (0,0) grid (5,5);
+
+\draw[line width=0.3mm] (-4,0) -- (10,0);
+\draw[line width=0.3mm] (1,-0.1) -- (1,0.1);
+\draw[line width=0.3mm] (5,-0.1) -- (5,0.1);
+
+\visible<2-7>{\draw[line width=1mm,darkred] (1,0) -- (5,0);}
+
+\visible<3-10>{\draw (5,0) circle (4cm);}
+
+\visible<4-7>{\draw (1,-8) arc (270:430:8cm);}
+\visible<5-7>{\draw (9,8) arc (90:250:8cm);}
+
+\visible<6-10>{\draw[line width=0.3mm] (5,7.5) -- (5,-8);}
+
+\visible<7->{\draw[line width=1mm,darkred] (1,0) -- (5,0) -- (5,4);}
+
+\visible<9-10>{\draw (1,0) circle (4cm);
+\draw (-3,-8) arc (270:430:8cm);
+\draw (5,8) arc (90:250:8cm);
+\draw[line width=0.3mm] (1,8) -- (1,-7.5);}
+
+\visible<10-11>{\draw[line width=1mm,darkred] (1,0) -- (5,0) -- (5,4) -- (1,4) -- cycle;}
+\end{tikzpicture}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Weitere Konstruktionsbeispiele}
+
+Es lassen sich zahlreiche weitere Konstruktionen durchführen, z.B.:
+\begin{itemize}
+\item Halbierung eines Winkels
+\item Konstruktion des regelmäßigen Sechsecks
+\item Konstruktion eines flächengleichen Quadrates aus einem gegebenen Rechteck\pause
+\item Konstruktion des regelmäßigen 17-Ecks (entdeckt von Gauss -- "`Durch angestrengtes Nachdenken \ldots am Morgen \ldots (ehe ich aus dem Bette aufgestanden war)"')\pause
+\item Konstruktion des regelmäßigen 65537-Ecks (Hermes)
+\item \ldots
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Rechnen mit Euklid}
+
+1637: Ren\'{e} Descartes publiziert die Idee des Koordinatensystems\smallskip
+
+$\leadsto$ Geometrie wird numerisch!
+\bigskip\pause
+
+\emph{Beispiel:} Beginnend mit Punkten an den Koordinaten $(0,0)$ und $(1,0)$
+können wir einen neuen Punkt konstruieren:\bigskip
+
+\narrowcentering{%
+\begin{tikzpicture}[scale=0.4]
+% \path[use as bounding box] (-3.2,0) rectangle (3.5,-4); % add "draw" to see it
+% \pgfmathsetseed{6571}
+% \draw[help lines] (0,0) grid (5,5);
+
+\draw[line width=0.3mm] (-4,0) -- (10,0);
+\draw[line width=0.3mm] (1,-0.1) -- (1,0.1);
+\draw[line width=0.3mm] (5,-0.1) -- (5,0.1);
+
+\node [circle,draw=none,inner sep=1pt] at (0.95,-0.7) {0};
+\node [circle,draw=none,inner sep=1pt] at (4.95,-0.7) {1};
+
+\draw[line width=0.5mm] (1,0) -- (5,0) -- (5,4) -- (1,4) -- cycle;
+
+\draw[darkred,line width=0.5mm] (6.65685424949238019521,0) arc (0:45:5.65685424949238019521cm);
+
+\visible<2>{\node [circle,draw=none,inner sep=1pt, darkred] at (6.6,-0.7) {?};}
+\visible<3>{\node [circle,draw=none,inner sep=1pt, darkred] at (6.6,-0.7) {$\sqrt{2}$};}
+
+\end{tikzpicture}}\bigskip
+
+\visible<3>{Wir haben also $\sqrt{2}$ "`berechnet"'!}
+
+\end{frame}
+
+\begin{frame}\frametitle{Was kann dieser "`Rechner"'?}
+\pause
+
+Man kann Geometrie durch Gleichungen darstellen:
+\begin{itemize}
+\item Gerade durch Punkte $(a,b)$ und $(c,d)$:\\ $y=\frac{d-b}{c-a}x + \frac{bc-da}{c-a}$
+\item Kreis um Mittelpunkt $(a,b)$ durch Punkt $(c,d)$: $(x-a)^2 + (y-b)^2 = (a-c)^2 + (b-d)^2$
+\end{itemize}
+
+Zeichnen: Systeme solcher Gleichungen grafisch Lösen
+\bigskip\pause
+
+\alert{Es stellt sich heraus:} Alle so konstruierbaren Zahlen ergeben sich mit folgenden Rechnungen:
+\begin{itemize}
+\item Addition und Subtraktion
+\item Multiplikation und Division
+\item Ziehen der Quadratwurzel
+\end{itemize}\pause
+
+$\leadsto$ Unmöglich ("`euklidisch unberechenbar"') sind zum Beispiel die Konstruktion von $\pi$ (\alert{"`Quadratur des Kreises"'})
+und die Berechnung von Kubikwurzeln (\alert{"`Verdoppelung des Würfels"'})
+
+\end{frame}
+
+\begin{frame}\frametitle{Euklid statt Turing?}
+
+Liefert uns das eine alternatives Berechenbarkeitsmodell?\pause
+\bigskip
+
+\alert{Vermutlich nicht:}
+\begin{itemize}
+\item Exaktes Zeichnen ist nicht physisch implementierbar (es gibt z.B. keinen perfekten Kreis)
+\item Die Ergebnisse sind nicht exakt ablesbar (Messfehler)
+\end{itemize}\pause
+
+Dennoch illustriert das wichtige Ideen der Informatik:\bigskip
+
+\anybox{strongyellow}{\vspace{-5mm}\begin{center}
+Informatik erforscht, was Computer sind und welche Probleme man mit ihnen lösen kann.\end{center}}\bigskip
+
+Man sollte trotz Church-Turing immer neu fragen, was Rechnen noch sein kann \ldots
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Die Unentscheidbarkeit vieler Probleme der Sprachtheorie lässt sich gut durch Reduktion vom Postschen Korrespondenzproblem zeigen\bigskip
+
+Es gibt mehr als eine Art von Unentscheidbarkeit\bigskip
+
+Euklid hätte villeicht auch Informatiker sein können\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Methoden, zur Unterteilung entscheidbarer Probleme: Komplexität
+\item Effizienz von Turingmaschinen
+\item Praktisch lösbare Probleme
+\end{itemize}
+}
+
+\end{frame}
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
