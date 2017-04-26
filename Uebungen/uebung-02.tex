@@ -63,6 +63,8 @@
   berechnet und erklären Sie seine Arbeitsweise.
 \end{exercise}
 
+\newpage
+
 \begin{exercise}
   % Siehe https://jeremykun.com/2012/04/21/kolmogorov-complexity-a-primer/
   Es sei $\Sigma$ ein fest gewähltes Alphabet mit mindestens zwei Elementen.
@@ -78,10 +80,10 @@
   \item Es gibt eine Konstante $c \in \mathbb N$, so dass gilt: Ist $w$ das
     Ergebnis der Berechnung einer Turing-Maschine $M$ mit Eingabe $x$, dann
     \begin{equation*}
-      K_{L}(w) \leq \lvert\langle M,x\rangle\rvert + c,
+      K_{L}(w) \leq \lvert\enc(M)\#\#\enc(x)\rvert + c,
     \end{equation*}
-    wobei $\langle M,x\rangle$ eine (effektive) Kodierung der Maschine $M$ und
-    der Eingabe $x$ als ein Wort über $\Sigma$ ist.
+    wobei $\enc(M)\#\#\enc(x)$ eine (effektive) Kodierung der Maschine
+    $M$ und der Eingabe $x$ als ein Wort über $\Sigma$ ist.
   \item Die Abbildung $w \mapsto K_{L}(w)$ ist nicht berechenbar.
   \end{enumerate}
 

@@ -32,7 +32,17 @@
   \end{exercise}
 
   \begin{exercise}
-    \dots
+    % TheoLog 2014
+    Gegeben ist eine Funktion $f \colon \mathbb N^{2} \to \mathbb N$ mit
+    \begin{equation*}
+      f(x,y) \coloneqq
+      \begin{cases}
+        1 & \text{falls $x \geq 1$ und $x$ teilt $y$,}\\
+        0 & \text{falls $x \geq 1$ und $x$ teilt $y$ nicht,}\\
+        \text{undefiniert} & sonst.
+      \end{cases}
+    \end{equation*}
+    Geben Sie für $f$ ein WHILE-Programm an.
   \end{exercise}
 
 \end{mdframed}
@@ -41,6 +51,50 @@
 
 \setcounter{exercise}{0}
 
-\dots
+\begin{exercise}
+  % Aufgabe 5.11 von Sipser
+  Zeigen Sie, dass eine Sprache $\Slang{L}$ genau dann entscheidbar ist, wenn
+  $\Slang{L} \leq_{m} 0^{*}1^{*}$ gilt.
+\end{exercise}
+
+\begin{exercise}
+  % Aufgabe 5.9 von Sipser
+  Eine kontextfreie Grammatik $G$ heißt \emph{mehrdeutig}, wenn es ein Wort $w
+  \in L(G)$ gibt, so dass es mehr als eine Ableitung von $w$ in $G$ gibt.
+  Zeigen Sie, dass die Menge
+  \begin{equation*}
+    \Slang{P}_{\mathsf{ambigCFG}} \coloneqq \{\, \enc(G) \mid G \text{ ist eine
+      mehrdeutige kontextfreie Grammatik}\,\}
+  \end{equation*}
+  unentscheidbar ist.  Nutzen Sie dazu eine Reduktion vom Postschen
+  Korrespondenzproblem: ist $P$ eine Instanz vom PKP mit
+  \def\BB#1{\begin{bmatrix}#1\end{bmatrix}}
+  \begin{equation*}
+    P = \BB{t_{1}\\b_{1}}, \dots, \BB{t_{k}\\b_{k}},
+  \end{equation*}
+  dann betrachte die kontextfreie Grammatik $G_{P}$ mit den Regeln
+  \begin{align*}
+    S &\to T \mid B\\
+    T &\to t_{1}T\mathsf{a}_{1} \mid \dots \mid t_{k}T\mathsf{a}_{k} \mid
+        t_{1}\mathsf{a}_{1} \mid \dots \mid t_{k}\mathsf{a}_{k}\\
+    B &\to b_{1}B\mathsf{a}_{1} \mid \dots \mid b_{k}B\mathsf{a}_{k} \mid
+        b_{1}\mathsf{a}_{1} \mid \dots \mid b_{k}\mathsf{a}_{k}
+  \end{align*}
+  wobei $\mathsf{a}_{1}, \dots, \mathsf{a}_{k}$ neue Terminalsymbole sind.
+  Zeigen Sie dann, dass gilt
+  \begin{equation*}
+    P \text{ hat eine Lösung} \iff G_{P} \text{ ist mehrdeutig}.
+  \end{equation*}
+\end{exercise}
+
+\begin{exercise}
+  % evtl: Sipser 5.19
+  \dots
+\end{exercise}
+
+\begin{exercise}
+  % evtl: Sipser 5.35
+  \dots
+\end{exercise}
 
 \end{document}

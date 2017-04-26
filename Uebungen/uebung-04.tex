@@ -49,10 +49,11 @@
   % TheoLog 2014
   Besitzen folgende Instanzen $P_{i}$ des Postschen Korrespondenzproblems Lösungen oder
   nicht?  Begründen Sie Ihre Antwort.
+  \def\BB#1{\begin{bmatrix}#1\end{bmatrix}}
   \begin{enumerate}
-  \item $P_{1} = (a, aaa), (abaaa, ab), (ab, b)$
-  \item $P_{2} = (ab, aba), (baa, aa), (aba, baa)$
-  \item $P_{3} = (bba, b), (ba, baa), (ba, aba), (ab, bba)$
+  \item $P_{1} = \BB{a\\ aaa}, \BB{abaaa\\ab}, \BB{ab\\b}$
+  \item $P_{2} = \BB{ab\\aba}, \BB{baa\\aa}, \BB{aba\\baa}$
+  \item $P_{3} = \BB{bba\\ b}, \BB{ba\\baa}, \BB{ba\\aba}, \BB{ab\\bba}$
   \end{enumerate}
   (Für einige Teilaufgaben ist die Verwendung eines Computers sinnvoll.)
 \end{exercise}
@@ -66,11 +67,12 @@
 \begin{exercise}
   % Selbst
   Zeigen Sie, dass folgendes Problem unentscheidbar ist: gegeben eine
-  Turing-Maschine $M$ und ein $k \in \mathbb N$, kann die Sprache $L(M)$ durch
-  eine Turing-Maschine mit höchstens $k$ Zuständen erkannt werden?
+  Turing-Maschine $M$ und ein $k \in \mathbb N$, kann die Sprache $L(\Smach{M})$
+  durch eine Turing-Maschine mit höchstens $k$ Zuständen erkannt werden?
+
   Zeigen Sie dazu, dass für $k = 1$ die Menge
   \begin{equation*}
-    T_{k} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid \mathcal{L}(\Smach{M})
+    T_{k} \coloneqq \{ \mathsf{enc}(\Smach{M}) \mid L(\Smach{M})
     \text{ wird von einer TM mit höchstens $k$ Zuständen erkannt} \}
   \end{equation*}
   nicht entscheidbar ist.  Warum zeigt dies die ursprüngliche Behauptung?
@@ -83,9 +85,9 @@
   $\overline{\Slang{P}}_{\mathsf{äquiv}}$ semi-entscheidbar ist, wobei
   \begin{align*}
     \Slang{P}_{\mathsf{äquiv}} \coloneqq \{ \enc(\Smach{M}_{1})\#\#\enc(\Smach{M}_{2})
-    \mid \mathcal{L}(\Smach{M}_{1}) = \mathcal{L}(\Smach{M}_{2}) \}, \\
+    \mid L(\Smach{M}_{1}) = L(\Smach{M}_{2}) \}, \\
     \overline{\Slang{P}}_{\mathsf{äquiv}} \coloneqq \{ \enc(\Smach{M}_{1})\#\#\enc(\Smach{M}_{2})
-    \mid \mathcal{L}(\Smach{M}_{1}) \neq \mathcal{L}(\Smach{M}_{2}) \}.
+    \mid L(\Smach{M}_{1}) \neq L(\Smach{M}_{2}) \}.
   \end{align*}
   Zeigen Sie dazu, dass $\Slang{P}_{\mathsf{halt}} \leq_{m}
   \Slang{P}_{\mathsf{äquiv}}$ und $\Slang{P}_{\mathsf{halt}} \leq_{m}
