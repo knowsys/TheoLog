@@ -23,3 +23,16 @@
 \newcommand{\Hinweis}[1]{%
   {\medskip \noindent\small \textbf{Hinweis:}\\[1.5ex]
     \hbox{\scalebox{1}[-1]{\parbox{\linewidth}{#1}}}}\ignorespaces}
+
+% Greek counters
+% https://tex.stackexchange.com/questions/4058/greek-numbering
+\newcommand*{\BoldGreek}[1]{%
+  \expandafter\@boldgreek\csname c@#1\endcsname
+}
+\newcommand*{\@boldgreek}[1]{%
+  \ensuremath{\expandafter\boldsymbol\ifcase#1\or\alpha\or\beta\or\gamma\or\delta\or\varepsilon
+    \or\zeta\or\eta\or\theta\or\iota\or\kappa\or\lambda
+    \or\mu\or\nu\or\xi\or o\or\pi\or\varrho\or\sigma
+    \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
+    \else\@ctrerr\fi}
+}
