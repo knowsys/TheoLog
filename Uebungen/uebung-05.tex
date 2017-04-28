@@ -5,6 +5,8 @@
 
 \documentclass[german]{latteachCD}[2017/03/28]
 
+% Einführung in die Komplexitätstheorie
+
 \usepackage[sheetnumber=4]{theolog}
 
 \begin{document}
@@ -31,18 +33,24 @@
     \end{enumerate}
   \end{exercise}
 
+  \renewcommand{\theexercise}{\BoldGreek{exercise}}
+  \setcounter{exercise}{0}
+
   \begin{exercise}
     % TheoLog 2014
-    Gegeben ist eine Funktion $f \colon \mathbb N^{2} \to \mathbb N$ mit
-    \begin{equation*}
-      f(x,y) \coloneqq
-      \begin{cases}
-        1 & \text{falls $x \geq 1$ und $x$ teilt $y$,}\\
-        0 & \text{falls $x \geq 1$ und $x$ teilt $y$ nicht,}\\
-        \text{undefiniert} & sonst.
-      \end{cases}
-    \end{equation*}
-    Geben Sie für $f$ ein WHILE-Programm an.
+    \vspace*{-\baselineskip}
+    \begin{enumerate}
+    \item Beschreiben Sie mit eigenen Worten die Probleme, die in
+      $\PTime$ liegen.
+    \item Beschreiben Sie mit eigenen Worten die Probleme, die in
+      $\NP$ liegen.
+    \item Beschreiben Sie mit eigenen Worten die Probleme, die in $\PSpace$
+      liegen.
+    \item Erläutern Sie, warum $\PTime \subseteq \NP \subseteq \PSpace$ gilt.
+    \item Beschreiben Sie für $\mathcal{C} = \NP$ und $\mathcal{C} = \PSpace$,
+      wann ein Problem \enquote{$\mathcal{C}$-hart} bzw.\@
+      \enquote{$\mathcal{C}$-vollständig} ist.
+    \end{enumerate}
   \end{exercise}
 
 \end{mdframed}
@@ -52,51 +60,45 @@
 \setcounter{exercise}{0}
 
 \begin{exercise}
-  % Aufgabe 5.11 von Sipser
-  Zeigen Sie, dass eine Sprache $\Slang{L}$ genau dann entscheidbar ist, wenn
-  $\Slang{L} \leq_{m} 0^{*}1^{*}$ gilt.
+  % TheoLog 2014
+  Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
+  \begin{enumerate}
+  \item Fall $\PTime \neq \NP$ gilt, dann auch $\PTime \cap \NP \neq \emptyset$.
+  \item Es gibt Probleme, die $\NP$-hart, aber nicht $\NP$-vollständig sind.
+  \item Polynomielle Reduzierbarkeit ist nicht transitiv.
+  \item Ist $\Slang L_{2} \in \PTime$ und $\Slang L_{1} \leq_{p} \Slang L_{2}$,
+    dann ist auch $\Slang L \in \PTime$.
+  \item Ist $\Slang L_{1}$ eine $\NP$-vollständige Sprache und gilt $\Slang
+    L_{1} \leq_{p} \Slang L_{2}$, dann ist auch $\Slang L_{2}$ eine
+    \NP-vollständige Sprache.
+  \item Ist $\Slang L_{2}$ eine $\NP$-vollständige Sprache und gilt $\Slang
+    L_{1} \leq_{p} \Slang L_{2}$, dann ist auch $\Slang L_{1}$ eine
+    \NP-vollständige Sprache.
+  \end{enumerate}
 \end{exercise}
 
 \begin{exercise}
-  % Aufgabe 5.9 von Sipser
-  Eine kontextfreie Grammatik $G$ heißt \emph{mehrdeutig}, wenn es ein Wort $w
-  \in L(G)$ gibt, so dass es mehr als eine Ableitung von $w$ in $G$ gibt.
-  Zeigen Sie, dass die Menge
+  % Sipser
+  Zeigen Sie, dass das Wortproblem deterministischer endlicher Automaten in
+  \LogSpace liegt: ist
   \begin{equation*}
-    \Slang{P}_{\mathsf{ambigCFG}} \coloneqq \{\, \enc(G) \mid G \text{ ist eine
-      mehrdeutige kontextfreie Grammatik}\,\}
+    \Slang P_{\mathsf{DFA}} \coloneqq \{\,\enc(\Smach A)\#\#\enc(w) \mid
+    \Smach A \text{ ein DFA, der $w$ akzeptiert}\,\},
   \end{equation*}
-  unentscheidbar ist.  Nutzen Sie dazu eine Reduktion vom Postschen
-  Korrespondenzproblem: ist $P$ eine Instanz vom PKP mit
-  \def\BB#1{\begin{bmatrix}#1\end{bmatrix}}
-  \begin{equation*}
-    P = \BB{t_{1}\\b_{1}}, \dots, \BB{t_{k}\\b_{k}},
-  \end{equation*}
-  dann betrachte die kontextfreie Grammatik $G_{P}$ mit den Regeln
-  \begin{align*}
-    S &\to T \mid B\\
-    T &\to t_{1}T\mathsf{a}_{1} \mid \dots \mid t_{k}T\mathsf{a}_{k} \mid
-        t_{1}\mathsf{a}_{1} \mid \dots \mid t_{k}\mathsf{a}_{k}\\
-    B &\to b_{1}B\mathsf{a}_{1} \mid \dots \mid b_{k}B\mathsf{a}_{k} \mid
-        b_{1}\mathsf{a}_{1} \mid \dots \mid b_{k}\mathsf{a}_{k}
-  \end{align*}
-  wobei $\mathsf{a}_{1}, \dots, \mathsf{a}_{k}$ neue Terminalsymbole sind.
-  Zeigen Sie dann, dass gilt
-  \begin{equation*}
-    P \text{ hat eine Lösung} \iff G_{P} \text{ ist mehrdeutig}.
-  \end{equation*}
+  dann gilt $\Slang P_{\mathsf{DFA}} \in \LogSpace$.
 \end{exercise}
 
 \begin{exercise}
-  % Sipser 5.12, 5.13
-  Zeigen Sie, dass
-  \begin{equation*}
-    \Slang A \coloneqq \{\,0x \mid x \in \Slang P_{\mathsf{halt}} \,\} \cup \{\,
-    1x \mid x \in \overline{\Slang P}_{\mathsf{halt}}\,\}
-  \end{equation*}
-  weder semi-entscheidbar noch co-semi-entscheidbar ist.  Nutzen Sie diese
-  Sprache, um ein Beispiel einer unentscheidbaren Sprache $\Slang B$ anzugeben,
-  so dass $\Slang B \leq_{m} \overline{\Slang B}$ gilt.
+  % TheoLog 2014
+  Es sei $\Slang{L} \coloneqq \{\,a^{z} \mid z \in \mathbb N \text{ keine
+    Primzahl}\,\}$.  Zeigen Sie, dass $\Slang L \in \NP$ gilt.
+\end{exercise}
+
+\begin{exercise}
+  % Complexity Theory Lecture by Markus Krötzsch and Daniel Borchmann
+  Zeigen Sie: ist $\PTime = \NP$, dann gibt es einen Algorithmus, der in
+  polynomieller Zeit für jede erfüllbare aussagenlogische Formel eine erfüllende
+  Belegung findet.
 \end{exercise}
 
 \end{document}
