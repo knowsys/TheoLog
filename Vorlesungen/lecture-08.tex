@@ -1,0 +1,627 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+\input{../macros}
+
+
+
+\defineTitle{8}{Beziehungen zwischen Komplexitätsklassen / Effizient lösbare Probleme}{3. Mai 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Rückblick}
+
+Die wichtigsten Ressourcen zur Messung von Komplexität
+sind \alert{Rechenzeit} und \alert{Speicher}.
+\bigskip
+
+Die wichtigsten deterministischen Komplexitätsklassen sind:
+{\footnotesize
+\begin{align*}
+\Scomplclass{P} = \Scomplclass{PTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(n^d)
+	& \text{\redalert{polynomielle Zeit}}
+%   & \Scomplclass{NP} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(n^k)
+  \\[1ex]
+\hspace{-1.5cm}\Scomplclass{Exp} = \Scomplclass{ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{n^d})
+    & \text{\redalert{exponentielle Zeit}${}^*$}
+% %   & \Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{n^k})
+%   \\[1ex]
+% \hspace{-1.5cm}\Scomplclass{2Exp} = \Scomplclass{2ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{2^{n^d}})
+% %   & \Scomplclass{N2Exp} = \Scomplclass{N2ExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{2^{n^k}})
+% 	& \text{doppelt-exponentielle Zeit}
+%   \\[1ex]
+% \Scomplclass{E} = \Scomplclass{ETime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{dn})
+%    & \text{exp.\ Zeit mit linearem Exponent}
+   \\[4ex]
+\hspace{-1.5cm}\Scomplclass{L} = \Scomplclass{LogSpace} &= \Scomplclass{DSpace}(\log n)
+%   & \Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
+	& \text{\redalert{logarithmischer Speicher}}
+  \\[1ex]
+\Scomplclass{PSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(n^d)
+	& \text{\redalert{polynomieller Speicher}}
+%   \\[1ex]
+% \Scomplclass{ExpSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(2^{n^d})
+% 	& \text{exponentieller Speicher}
+\end{align*}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Robustheit von Zeitklassen}
+
+Zwei wichtige Erkenntnisse zur Robustheit von Zeitklassen:
+\bigskip
+
+\anybox{strongyellow}{Konstante Faktoren haben keinen Einfluss auf die Probleme, die eine zeitbeschränkte Mehrband-TM lösen kann, sofern mindestens lineare Zeit erlaubt ist (Linear Speedup Theorem).}\bigskip
+
+\emph{Anmerkung:} Wenn nicht wenigstens lineare Zeit zur Verfügung steht, dann kann die TM nicht einmal die Eingabe lesen. Das ergibt also bei einer herkömmlichen TM wenig Sinn.
+\bigskip\pause
+
+\anybox{strongyellow}{Die Anzahl der Bänder hat lediglich einen polynomiellen (quadratischen) Einfluss auf die Probleme, die eine zeitbeschränkte TM lösen kann.}\bigskip
+
+Das hatten wir in Formale Systeme durch Simulation mehrerer Bänder auf einem gezeigt.
+
+\end{frame}
+
+\begin{frame}\frametitle{Robustheit von Speicherklassen}
+
+Bei speicherbeschränkten TMs ist die Situation sogar etwas einfacher:
+\bigskip
+
+\anybox{strongyellow}{Konstante Faktoren haben keinen Einfluss auf die Probleme, die eine speicherbeschränkte TM lösen kann.}\bigskip\pause
+
+\emph{Beweis:} Ähnlich zu Linear Speedup, aber viel einfacher.\bigskip\pause
+
+\anybox{strongyellow}{Die Anzahl der Bänder hat keinen Einfluss auf die Probleme, die eine speicherbeschränkte TM lösen kann.}\bigskip\pause
+
+\emph{Beweis:} Reduktion von $k$ Bändern auf $1$ Band wie gehabt, kombiniert mit einer $1/k$ Speicherreduktion.
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Beziehung von Zeit und Raum (1)}
+
+Ist die Berechnungszeit beschränkt, so kann auch nur beschränkt viel 
+Speicher genutzt werden:\bigskip
+
+\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
+\[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
+}
+
+\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
+
+\pause Daraus folgt zum Beispiel $\Scomplclass{PTime}\subseteq\Scomplclass{PSpace}$.
+
+\end{frame}
+
+\begin{frame}\frametitle{Beziehung von Zeit und Raum (2)}
+
+Andererseits ist Speicher mächtiger als Zeit, da man Speicher mehrfach verwenden kann (Zeit leider nicht):\bigskip
+
+\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
+\[\Scomplclass{DSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)}).\]}
+
+\pause\emph{Beweis:} Gegeben sei eine Eingabe $w$ der Länge $|w|=n$.\pause
+{\footnotesize
+\begin{itemize}
+\item Es gibt $|\Gamma|^{f(n)}=2^{\log_2(|\Gamma|)\cdot f(n)}$ Speicherbelegungen der Länge $f(n)$\pause
+\item Hinzu kommen $f(n)$ mögliche Kopfpositionen und $|Q|$ \ghost{Zustände}\pause
+\item Es gibt also $|Q|\cdot f(n)\cdot 2^{\log_2(|\Gamma|)\cdot f(n)}\in O(2^{O(f)})$
+\ghost{TM-Konfigurationen.}\pause
+\item Aus diesen kann man für eine gegebene Eingabe in polynomieller Zeit einen \alert{Konfigurationsgraph} berechnen, in dem (gerichtete) Kanten die möglichen Übergänge darstellen.\pause
+\item Daraus kann man die Akzeptanz der Eingabe in polynomieller Zeit ermitteln ("`Ist von der Startkonfiguration aus eine akzeptierende Endkonfiguration erreichbar?"').
+\end{itemize}}
+Damit hat man das Wortproblem in Zeit $O(2^{O(f)})$ entschieden.\qed
+\end{frame}
+
+\sectionSlide{Nichtdeterministische Komplexitätsklassen}
+
+\begin{frame}\frametitle{Ressourcen nichtdeterministischer TMs}
+
+Bei NTMs gibt es viele mögliche Berechnungspfade.\\
+$\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
+~\hfill{\alert{-- Alle!}}
+\medskip
+
+\defbox{%
+Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
+\begin{itemize}
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
+%
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
+\end{itemize}
+}
+
+Eine zeit- oder speicherbeschränkte NTM muss also auch auf erfolglosen Pfaden ("`falsch geratene Übergänge"') garantiert
+innerhalb der Ressourcengrenzen halten.
+
+\end{frame}
+
+\begin{frame}\frametitle{Zeit und Raum, nichtdeterministisch}
+
+Die entsprechenden Sprachklassen werden genau wie bei deterministischen TMs definiert:\medskip
+
+\defbox{Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion.
+\begin{itemize}
+\item \redalert{\Scomplclass{NTIME}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-zeitbeschränkte NTM entschieden werden können.
+\item \redalert{\Scomplclass{NSPACE}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-speicherbeschränkte NTM entschieden werden können.
+\end{itemize}
+}%\pause
+% 
+% \examplebox{Beispiel: $\Slang{SAT}\in\Scomplclass{DTIME}(2^n)$ und $\Slang{SAT}\in\Scomplclass{DSPACE}(n)$.}\pause
+% 
+% \examplebox{Beispiel: Das Halteproblem ist in keiner der Klassen $\Scomplclass{DTIME}(f(n))$ oder $\Scomplclass{DSPACE}(f(n))$. Unentscheidbare Probleme benötigen uneingeschränkten Zugang zu beliebig vielen Ressourcen einer TM.}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Nichtdeterministische Komplextitätsklassen}
+
+Auch hier beschränken wir uns auf einige wichtige Fälle:
+
+{\footnotesize
+\begin{align*}
+\Scomplclass{NP} = \Scomplclass{NPTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(n^d)
+	& \text{\redalert{nichtdet. polynomielle Zeit}}
+%   & \Scomplclass{NP} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(n^k)
+  \\[1ex]
+\hspace{-1.5cm}\Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(2^{n^d})
+    & \text{\redalert{nichtdet. exponentielle Zeit}}
+% %   & \Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{n^k})
+%   \\[1ex]
+% \hspace{-1.5cm}\Scomplclass{2Exp} = \Scomplclass{2ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{2^{n^d}})
+% %   & \Scomplclass{N2Exp} = \Scomplclass{N2ExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{2^{n^k}})
+% 	& \text{doppelt-exponentielle Zeit}
+%   \\[1ex]
+% \Scomplclass{E} = \Scomplclass{ETime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{dn})
+%    & \text{exp.\ Zeit mit linearem Exponent}
+   \\[4ex]
+\hspace{-1.5cm}\Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
+%   & \Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
+	& \text{\redalert{nichtdet. logarithmischer Speicher}}
+  \\[1ex]
+\Scomplclass{NPSpace} &= \bigcup_{d\geq 1} \Scomplclass{NSpace}(n^d)
+	& \text{\redalert{nichtdet. polynomieller Speicher}}
+%   \\[1ex]
+% \Scomplclass{ExpSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(2^{n^d})
+% 	& \text{exponentieller Speicher}
+\end{align*}
+}\pause
+
+\examplebox{Beispiel: Die Existenz eines Hamiltonpfads ist in $\Scomplclass{NP}$ entscheidbar. Wenn ein Hamiltonpfad existiert, dann kann er in polynomieller Zeit
+erraten und überprüft werden.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Einfache Beobachtungen}
+
+% Die nichtdeterministischen Klassen sind genauso robust wie die deterministischen.\bigskip
+
+Die folgenden Konstruktionen funktionieren wie im deterministischen Fall:
+\begin{itemize}
+\item Zeitreduktion durch linear Speedup
+\item Lineare Speicherreduktion
+\item Bandreduktion von Mehrband-TMs
+\end{itemize}\pause
+
+Die Beziehungen von Zeit und Speicher bleiben ebenfalls erhalten, mit einer Besonderheit:
+\medskip
+
+\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
+\begin{align*}
+\Scomplclass{NTIME}(f) & \subseteq \Scomplclass{NSPACE}(f) \\
+\Scomplclass{NSPACE}(f) &\subseteq \Scomplclass{\redalert{D}TIME}(2^{O(f)})
+\end{align*}}
+
+\pause\emph{Beweis:} Beide Fälle wie im deterministischen Fall.
+Der Konfigurationsgraph ist auch hier
+exponentiell groß, aber kann wie zuvor deterministisch durchsucht werden.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Deterministisch vs. nichtdeterministisch}
+
+Wir haben also nebenbei auch gezeigt: $\Scomplclass{NTIME}(f) \subseteq \Scomplclass{NSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)})$.\bigskip
+
+\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
+\[\Scomplclass{NTIME}(f) \subseteq \Scomplclass{DTIME}(2^{O(f)})\]}
+
+\emph{Anmerkung:} In Formale Systeme, Vorlesung 19, haben wir dieses Ergebnis durch eine alternative Konstruktion gezeigt (ausgehend von der Simulation einer beliebigen, unbeschränkten NTM durch deterministische Suche im Baum der möglichen Berechnungspfade).
+\bigskip
+
+\emph{Anmerkung 2:} Es ist bis heute nicht bekannt, ob $\Scomplclass{NTIME}(f) \subseteq \Scomplclass{DTIME}(g)$ auch für eine Funktion $g\in o(2^{O(f)})$ gilt
+(Achtung: Klein-o-Notation!).
+%
+
+\end{frame}
+
+\begin{frame}\frametitle{Was wir wissen}
+
+Aus unseren Beobachtungen folgen verschiedene einfache Beziehungen:
+\begin{itemize}
+\item \alert{"`DTM $\subseteq$ NTM"':}
+	$\Scomplclass{L}\subseteq \Scomplclass{NL}$,
+	$\Scomplclass{P}\subseteq \Scomplclass{NP}$,
+	$\Scomplclass{PSpace}\subseteq \Scomplclass{NPSpace}$,
+	\ghost{$\Scomplclass{Exp}\subseteq \Scomplclass{NExp}$}
+\item \alert{"`Zeit $\subseteq$ Speicher"':}
+	$\Scomplclass{P}\subseteq \Scomplclass{PSpace}$,
+% 	$\Scomplclass{ExpTime}\subseteq \Scomplclass{ExpSpace}$,
+	$\Scomplclass{NP}\subseteq \Scomplclass{NPSpace}$
+% 	$\Scomplclass{NExpTime}\subseteq \Scomplclass{NExpSpace}$,
+\item \alert{"`(N)Speicher $\subseteq$ $2^{\text{(D)Zeit}}$"':}
+	$\Scomplclass{NL}\subseteq \Scomplclass{P}$,
+	$\Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}$
+\end{itemize}\bigskip\pause
+
+Zudem besagt der berühmte \alert{Satz von Savitch}, dass speicherbeschränkte NTMs durch DTMs mit nur quadratischen Mehrkosten simuliert werden können. Daraus folgt:
+
+\theobox{Satz (Savitch): $\Scomplclass{PSpace}= \Scomplclass{NPSpace}$.}
+
+(ohne Beweis)\bigskip\pause
+
+Zusammenfassung der wichtigsten bekannten Beziehungen:
+\theobox{
+\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
+\vspace{-2.5ex}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Was wir nicht wissen}
+
+Wir wissen:
+
+\theobox{
+\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
+\vspace{-2.5ex}
+}
+
+\begin{itemize}
+\item Wir wissen nicht, ob irgendeines dieser $\subseteq$ sogar $\subsetneq$ ist.
+\item Insbesondere wissen wir nicht, ob $\Scomplclass{P}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{P}=\Scomplclass{NP}$.
+\item Wir wissen nicht einmal, ob $\Scomplclass{L}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{L}=\Scomplclass{NP}$.
+\end{itemize}\pause
+Es wird aber vermutet, dass alle  $\subseteq$ eigentlich $\subsetneq$ sind.
+% 
+Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
+
+\theobox{Satz: Die folgenden Inklusionen sind echt:
+\begin{itemize}
+\item $\Scomplclass{NL}\subsetneq\Scomplclass{PSpace}$
+\item $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$
+\item $\Scomplclass{NP}\subsetneq\Scomplclass{NExp}$
+\end{itemize}}
+
+(ohne Beweis; folgt aus dem sogenanntem \alert{Time (bzw. Space) Hierarchy Theorem})
+
+\end{frame}
+
+
+\sectionSlide{Effizient lösbare Probleme}
+
+\begin{frame}\frametitle{Was bedeutet "`effizient"'?}
+
+\emph{Intuitiv klar:} Lineare Algorithmen sind "`effizient"'
+\bigskip\pause
+
+Aber der Begriff "`linear"' ist nicht robust:
+\begin{itemize}
+\item Abhänging von Details des Maschinenmodells
+\item Abhänging von Details der Kodierung
+\end{itemize}
+\bigskip
+$\leadsto$ Polynomielle Zeit als robuste Verallgemeinerung von Linearzeit:\bigskip
+
+\defbox{
+\[\Scomplclass{P} = \Scomplclass{PTime} = \bigcup_{d\geq 1} \Scomplclass{DTime}(n^d)\]
+}
+%
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Wachstum einiger Funktionen}
+
+\begin{tikzpicture}[xscale=0.09,yscale=0.07]
+	\draw[->] (0,0) -- (100,0) node[right] {$n$};
+	\draw[->] (0,0) -- (0,85) node[above] {Zeit in $\mu s$};
+	\node [circle,draw=none,inner sep=1pt] at (1,-4) {$1$};
+	\foreach \x in {1,...,9} {
+		\draw (10*\x,0.9) -- (10*\x,-0.9);
+		\node [circle,draw=none,inner sep=1pt] at (10*\x,-4) {$\x0$};
+	}
+	\foreach \y in {0,...,8} {
+		\draw (-0.9,10*\y) -- (0.9,10*\y);
+		\pgfmathtruncatemacro\yexp{\y*3}
+		\node [circle,draw=none,inner sep=1pt] at (-5,10*\y) {$10^{\yexp}$};
+	}
+	
+	\draw[dashed,-,darkblue] (0,25.9) -- (100,25.9);
+	\node [draw=none,align=right,darkblue] at (95,28) {\footnotesize 1 Min.};
+	\draw[dashed,-,darkblue] (0,36.4) -- (100,36.4);
+	\node [draw=none,align=right,darkblue] at (95,38.4) {\footnotesize 1 Tag};
+	\draw[dashed,-,darkblue] (0,44.95) -- (100,44.95);
+	\node [draw=none,align=right,darkblue] at (95,47) {\footnotesize 1 Jahr};
+	\draw[dashed,-,darkblue] (0,54.96) -- (100,54.96);
+	\node [draw=none,align=left,darkblue] at (91,57) {\footnotesize 1000 Jahre};
+	\draw[dashed,-,darkblue] (0,78.76) -- (100,78.76);
+	\node [draw=none,align=right,darkblue] at (50,81) {\footnotesize Alter des Universums};
+
+	\visible<2->{\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*10*log2(\x)}) node [right] {$n^{10}$};}
+	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*3*log2(\x)}) node [right] {$n^3$};
+	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*2*log2(\x)}) node [right] {$n^2$};
+	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*log2(\x)}) node [right] {$n$};
+	\draw[domain=1:86,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*\x-1}) node [right] {$2^n$};
+	
+	\draw[-,darkred,line width=0.3mm] (1,0) -- (2,1) -- (3,2.59) -- (4,4.6) -- (5,6.93) -- (6,9.52) --
+		(7,12.34) -- (8,15.35) -- (9,18.53) -- (10,21.87) -- (11,25.34) -- (12,28.93) --
+		(13,32.65) -- (14,36.47) -- (15,40.39) -- (16,44.40) -- (17,48.50) --
+		(18,52.69) -- (19,56.95) -- (20,61.29) -- (21,65.69) -- (22,70.17) --
+		(23,74.71) -- (24,79.31) -- (25,83.97) node [above] {$n!$};
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}\frametitle{Polynomiell = effizient?}
+
+Wir verwenden \Scomplclass{P} als mathematisches Modell für die Klasse
+der praktisch lösbaren Probleme.
+\bigskip
+
+\emph{Aber:} diese Übereinstimmung ist nicht perfekt
+\begin{itemize}
+\item Polynome hohen Grades können sehr schnell wachsen
+\item Die konstanten Faktoren können auch sehr groß sein (und Linear Speedup hilft in der Praxis wenig)
+\end{itemize}\bigskip\pause
+
+\emph{Dennoch:} \Scomplclass{P} ist von praktischem wie theoretischem Interesse
+\begin{itemize}
+\item \alert{Praxis:} Die meisten polynomiellen Probleme erlauben Algorithmen in $O(x^2)$ oder $O(x^3)$, während man zum Beispiel $O(x^{10})$ selten antrifft
+\item \alert{Theorie:} Unabhängig von der tatsächlichen Laufzeit liefert uns \Scomplclass{P} tiefe Einsichten in die Struktur eines Problems
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Probleme in \Scomplclass{P}}
+
+Aus der Vorlesung Formale Systeme kennen wir bereits ein
+typisches \Scomplclass{P}-Problem.\bigskip
+
+\emph{Rückblick:}
+\begin{itemize}
+\item Eine \alert{Hornklausel} ist eine aussagenlogische Formel der Form $p_1\wedge\ldots\wedge p_n\to q$ mit $n\geq 0$
+{\tiny (bei $n=0$ ergibt sich einfach $q$ -- ein \alert{Fakt})}
+\item Eine Formel ist \alert{erfüllbar} wenn sie für eine Wertezuweisung auf wahr abgebildet wird
+\item Eine Menge von Formeln ist erfüllbar, wenn es eine Wert-\\zuweisung gibt, die alle
+ihre Elemente gleichzeitig wahr macht
+\end{itemize}\bigskip
+
+\defbox{\redalert{Erfüllbarkeit propositionaler Horn-Formeln}
+(\Slang{HornSAT}) ist das folgende Entscheidungsproblem:\\[1ex]
+\emph{Gegeben:} Eine Menge aussagenlogischer Formeln Hornklauseln\\
+\emph{Frage:} Ist diese Menge erfüllbar?
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{\Slang{2SAT}}
+
+Ein weiteres Beispiel für ein polynomiell lösbares Problem aus der Aussagenlogik:
+\bigskip
+
+\emph{Rückblick:}
+\begin{itemize}
+\item Ein \alert{Literal} ist ein aussagenlogisches Atom oder ein negiertes aussagenlogisches Atom
+\item Eine \alert{Klausel} ist eine Disjunktion von Literalen, die man oft einfach als Menge darstellt
+\item Eine Formel ist in \alert{Klauselform} ist eine Konjunktion von Klauseln,
+ebenfalls dargestellt als Menge
+\end{itemize}\pause
+
+\defbox{\Slang{2SAT} ist das folgende Entscheidungsproblem:\\[1ex]
+\emph{Gegeben:} Eine aussagenlogische Formel $F$ in Klauselform, bei der jede Klausel höchstens zwei Literale enthält\\
+\emph{Frage:} Ist $F$ erfüllbar?
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{\Slang{2SAT} ist in \Scomplclass{P}}
+
+\theobox{Satz: $\Slang{2SAT}\in\Scomplclass{P}$}
+
+\pause\emph{Beweis:} Dazu wollen wir einen polynomiellen Algorithmus angeben.
+\pause\bigskip
+
+Der Resolutionsalgorithmus aus der Vorlesung Formale Systeme erfüllt den Zweck ohne jegliche Abwandlungen:
+\begin{itemize}
+\item Ein Resolutionsschritt kombiniert zwei Klauseln $\{p,L_1\}$ und $\{\neg p,L_2\}$
+zu einer neuen Klausel $\{L_1,L_2\}$
+\item Aus Zweier-Klauseln entstehen also immer wieder Klauseln mit höchstens zwei Literalen
+\item Es gibt nur quadratisch viele Klauseln mit höchstens zwei Literalen
+\item Der Algorithmus terminiert also nach polynomieller Zeit\qed
+\end{itemize}
+
+\end{frame}
+
+% \sectionSlide{Noch effizienter}
+
+\begin{frame}\frametitle{Effizienter als \Scomplclass{P}?}
+
+Wenn wir eine robuste Klasse wollen, die Linearzeit-Algorithmen enthält, dann enthält sie auch beliebige polynomiellen Algorithmen.\bigskip
+
+\alert{Gibt es Probleme, die noch einfacher sind?}
+\smallskip\pause
+
+\begin{itemize}
+\item \emph{Sub-lineare Zeit} funktioniert mit dem normalen TM-Modell nicht, da man
+in dieser Zeit nicht einmal die Eingabe lesen kann {\tiny (erfordert Rechenmodelle mit einer Form von Parallelverarbeitung \ldots)}
+\item \emph{Sub-linearer Speicher} ist machbar, wenn man ein getrenntes schreibgeschütztes Eingabeband erlaubt (siehe letzte Vorlesung)
+\end{itemize}
+$\leadsto$ Komplexitätsklassen \Scomplclass{L} und \Scomplclass{NL}
+
+\end{frame}
+
+\begin{frame}\frametitle{Was kann \Scomplclass{L}?}
+
+\emph{Intuition:} ein Algorithmus mit logarithmischem Speicher kann:
+\begin{itemize}
+\item Eine feste Anzahl an binärkodierten Zählern speichern, die nicht größer als $O(n)$ werden
+\item Eine feste Anzahl an "`Pointern"' auf eine Position der Eingabe speichern
+\item Den Inhalt von Zählern und Speicherstellen miteinander vergleichen
+\end{itemize}
+
+Damit kann man bereits viele einfache Algorithmen umsetzen\pause
+
+\examplebox{Beispiel: Die Sprache aller Wörter über $\{\Sterm{0},\Sterm{1}\}$, welche
+die gleiche Anzahl der Symbole $\Sterm{0}$ und $\Sterm{1}$ enthalten, ist in \Scomplclass{L}:
+\begin{itemize}
+\item Wir verwenden zwei Zähler für die beiden Zahlen
+\item Die TM liest das Wort von links nach rechts und erhöht jeweils den entsprechenden Zähler
+\item Am Ende wird der Wert beider Zähler verglichen
+\end{itemize}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Noch ein Beispiel in \Scomplclass{L}}
+
+\examplebox{Beispiel: Die Sprache \Slang{Palindrom}, welche Wörter enthält, die von hinten gelesen genauso lauten wie von vorn, ist in \Scomplclass{L}:
+\begin{itemize}
+\item Wir verwenden zwei Pointer in die Eingabe, einer auf die erste und einer auf die letzte Eingabezelle
+\item Die TM vergleicht die Speicherinhalte bei den Pointern und verschiebt sie anschließend um eine Zelle in Richtung Wortmitte
+\item Das Wort wird akzeptiert, wenn die Pointer sich treffen und alle Vergleiche erfolgreich waren
+\end{itemize}
+
+}
+
+\end{frame}
+
+\sectionSlide{Reduktionen}
+
+\begin{frame}\frametitle{Effizient berechenbare Funktionen}
+
+Bisher haben wir Entscheidungsprobleme betrachtet.
+Man kann unsere Definitionen leicht auf andere Berechnungsprobleme übertragen.\medskip
+
+\defbox{Eine totale Funktion $f$ ist in \redalert{polynomieller Zeit berechenbar}, wenn es eine polynomiell zeitbeschränkte DTM $\Smach{M}$ gibt, die $f$ berechnet, d.h. mit $f=f_{\Smach{M}}$.
+}
+
+\pause Bei logarithmischen Speicherschranken müssen wir vorsichtig sein: Das Ergebnis könnte größer sein als der Arbeitsspeicher!
+
+\defbox{Eine totale Funktion $f$ ist in \redalert{logarithmischen Speicher berechenbar}, wenn es eine 3-Band DTM $\Smach{M}$ gibt, die $f$ wie folgt berechnet:
+(1) die Eingabe befindet sich auf dem schreibgeschützten \alert{Eingabeband}, (2) die DTM verwendet maximal $O(\log n)$ Speicherzellen auf dem \alert{Arbeitsband},
+(3) die Ausgabe wird auf das \alert{Ausgabeband} geschrieben (pro Zelle einmaliges Schreiben, kein Lesen).%
+% \begin{itemize}
+% \item Die Eingabe befindet sich auf dem schreibgeschützten Eingabeband
+% \item Die DTM verwendet maximal $O(\log n)$ Speicherzellen auf dem Arbeitsband
+% \item Die Ausgabe wird auf das Ausgabeband geschrieben (pro Zelle einmaliges Schreiben, kein Lesen)
+% \end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Polynomielle Many-One-Reduktionen}
+
+Mithilfe effizient berechenbarer Funktionen können wir ein Problem
+effizient auf ein anderes reduzieren.\bigskip
+
+\defbox{Eine polynomiell berechenbare Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{polynomielle Many-One-Reduktion} von einer Sprache
+\Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_p \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
+\narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
+
+Wir sprechen oft einfach von \redalert{polynomiellen Reduktionen}.
+\bigskip
+
+Logarithmische Many-One-Reduktionen könnten analog definiert werden (wir werden uns damit nicht näher beschäftigen.
+
+\end{frame}
+
+\begin{frame}\frametitle{Komplexität durch Reduktion zeigen}
+
+\emph{Idee:} Wenn man ein Problem $\Slang{A}$ leicht auf ein leichtes Problem $\Slang{B}$ reduzieren kann,
+dann ist $\Slang{A}$ ebenfalls leicht.\bigskip
+
+\theobox{Satz: Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{B}\in\Scomplclass{PTime}$, dann ist $\Slang{A}\in\Scomplclass{PTime}$.}
+
+\emph{Beweis:} Folgt durch Hintereinanderausführung der polynomiellen Prozeduren, da die Summe und Komposition von Polynomen ein Polynom ist.\qed
+\bigskip\pause
+
+Die Umkehrung wird uns später noch interessieren:
+
+\theobox{Satz: Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{A}\notin\Scomplclass{PTime}$, dann ist $\Slang{B}\notin\Scomplclass{PTime}$.}\bigskip
+
+Dazu mehr in den kommenden Vorlesungen \ldots
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+% Als Beispiel betrachten wir folgendes Problem:
+
+\defbox{\redalert{2-Färbbarkeit} (\Slang{2Col}) ist das folgende Problem:\\
+\emph{Gegeben:} Ein ungerichteter Graph $G$\\
+\emph{Frage:} Kann man die Knoten von $G$ mit zwei Farben (rot und blau) so einfärben, dass keine gleichfarbigen Knoten durch Kanten verbunden sind?}
+
+Man kann $\Slang{2Col}\in\Scomplclass{P}$ leicht durch Reduktion auf \Slang{2SAT} zeigen:
+\begin{itemize}
+\item Für jeden Knoten $v$ führen wir ein Atom $p_v$ ein
+\item Für jede Kante $v\to w$ führen wir zwei Klauseln ein: $\{p_v,p_w\}$ und $\{\neg p_v,\neg p_w\}$\pause
+\end{itemize}
+Dies kann man offenbar in polynomieller Zeit berechnen.\bigskip\pause% (sogar in logarithmischer!).\bigskip
+
+Die Reduktionseigenschaft gilt:
+\begin{itemize}
+\item Wenn der Graph 2-färbbar ist, dann verwenden wir die Farben als Wahrheitswerte und erhalten eine
+	erfüllende Zuweisung
+\item Wenn die Formel erfüllbar ist, dann erhalten wir umgekehrt aus der Wertzuweisung eine korrekte 2-Färbung.\qed
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Die grundlegenden Beziehungen der Komplexitätsklassen sind
+\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
+
+Die Klassen \Scomplclass{P}, \Scomplclass{L} und \Scomplclass{NL} sind mathematische Modelle für effiziente Algorithmen\bigskip
+
+Mit polynomiellen Reduktionen kann man aus der Komplexität eines Problems auf die eines anderen schließen\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Das erste Repetitorium (nächster Termin)
+\item $\Scomplclass{NP}$
+\item $\Scomplclass{NL}$
+\end{itemize}
+}
+
+\end{frame}
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}

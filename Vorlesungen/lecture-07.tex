@@ -33,15 +33,6 @@ Der Raum der formalen Sprachen (Wortprobleme) lässt sich wie foglt aufteilen:\b
 
 \end{frame}
 
-%%% Plan:
-% Motivation: schwere Probleme, einfache Probleme (Euler vs. Hamilton, Shortest Path vs. Longest Path)
-% algorithmische Beispiele
-% Laufzeiten im Vergleich
-% Wiederholung: O-Notation, Ressourcenschranken
-% Linear Speedup
-% Wiederholung: Definition P, Exp, L, PSpace
-
-
 \begin{frame}\frametitle{Königsberg im 18. Jahrhundert}
 
 Königsberg, Preussen (heute Kaliningrad, Russland):\bigskip
@@ -646,7 +637,7 @@ in einer dieser Klassen liegt.}\pause
 
 \examplebox{Beispiel: Eulers Methode um die Existenz von Eulerpfaden zu entscheiden,
 kann in $\Scomplclass{LogSpace}$ implementiert werden: wir zählen die Kanten jedes Knotens 
-und speichern die Zahl der Knoten ungerden Grades, jeweils binär.}\pause
+und speichern die Zahl der Knoten ungeraden Grades, jeweils binär.}\pause
 
 \examplebox{Beispiel: Die Suche nach Hamilton-Pfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
 
@@ -656,140 +647,6 @@ liefert allerdings keinen Hinweis auf Machbarkeit in $\Scomplclass{LogSpace}$.}\
 
 \end{frame}
 
-\begin{frame}\frametitle{Ressourcen nichtdeterministischer TMs}
-
-Bei NTMs gibt es viele mögliche Berechnungspfade.\\
-$\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
-~\hfill{\alert{-- Alle!}}
-\medskip
-
-\defbox{%
-Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
-\begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
-dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
-%
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
-dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
-\end{itemize}
-}
-
-Eine zeit- oder speicherbeschränkte NTM muss also auch auf erfolglosen Pfaden ("`falsch geratene Übergänge"') garantiert
-innerhalb der Ressourcengrenzen halten.
-
-\end{frame}
-
-\begin{frame}\frametitle{Zeit und Raum, nichtdeterministisch}
-
-Die entsprechenden Sprachklassen werden genau wie bei deterministischen TMs definiert:\medskip
-
-\defbox{Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion.
-\begin{itemize}
-\item \redalert{\Scomplclass{NTIME}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-zeitbeschränkte NTM entschieden werden können.
-\item \redalert{\Scomplclass{NSPACE}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-speicherbeschränkte NTM entschieden werden können.
-\end{itemize}
-}%\pause
-% 
-% \examplebox{Beispiel: $\Slang{SAT}\in\Scomplclass{DTIME}(2^n)$ und $\Slang{SAT}\in\Scomplclass{DSPACE}(n)$.}\pause
-% 
-% \examplebox{Beispiel: Das Halteproblem ist in keiner der Klassen $\Scomplclass{DTIME}(f(n))$ oder $\Scomplclass{DSPACE}(f(n))$. Unentscheidbare Probleme benötigen uneingeschränkten Zugang zu beliebig vielen Ressourcen einer TM.}
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Nichtdeterministische Komplextitätsklassen}
-
-Auch hier beschränken wir uns auf einige wichtige Fälle:
-
-{\footnotesize
-\begin{align*}
-\Scomplclass{NP} = \Scomplclass{NPTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(n^d)
-	& \text{\redalert{nichtdet. polynomielle Zeit}}
-%   & \Scomplclass{NP} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(n^k)
-  \\[1ex]
-\hspace{-1.5cm}\Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(2^{n^d})
-    & \text{\redalert{nichtdet. exponentielle Zeit}}
-% %   & \Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{n^k})
-%   \\[1ex]
-% \hspace{-1.5cm}\Scomplclass{2Exp} = \Scomplclass{2ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{2^{n^d}})
-% %   & \Scomplclass{N2Exp} = \Scomplclass{N2ExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{2^{n^k}})
-% 	& \text{doppelt-exponentielle Zeit}
-%   \\[1ex]
-% \Scomplclass{E} = \Scomplclass{ETime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{dn})
-%    & \text{exp.\ Zeit mit linearem Exponent}
-   \\[4ex]
-\hspace{-1.5cm}\Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
-%   & \Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
-	& \text{\redalert{nichtdet. logarithmischer Speicher}}
-  \\[1ex]
-\Scomplclass{NPSpace} &= \bigcup_{d\geq 1} \Scomplclass{NSpace}(n^d)
-	& \text{\redalert{nichtdet. polynomieller Speicher}}
-%   \\[1ex]
-% \Scomplclass{ExpSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(2^{n^d})
-% 	& \text{exponentieller Speicher}
-\end{align*}
-}\pause
-
-\examplebox{Beispiel: Die Existenz eines Hamiltonpfads ist in $\Scomplclass{NP}$ entscheidbar. Wenn ein Hamiltonpfad existiert, dann kann er in polynomieller Zeit
-erraten und überprüft werden.
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Deterministisch vs. nichtdeterministisch}
-
-%
-Welche Beziehungen haben diese Klassen zu anderen?\pause
-{\footnotesize
-\begin{itemize}
-\item Die Beziehungen zwischen nichtdeterministischen Klassen sind analog zu denen im deterministischen Fall:\\[1ex]
-\narrowcentering{$\Scomplclass{NL}\subseteq \Scomplclass{NP}\subseteq \Scomplclass{NPSpace}\subseteq \Scomplclass{NExp}$}
-\pause
-\item Eine DTM kann als NTM aufgefasst werden, d.h. die nichtdeterministischen Klassen sind immer stärker:\\[1ex]
-\narrowcentering{$\Scomplclass{L}\subseteq \Scomplclass{NL}\qquad \Scomplclass{P}\subseteq \Scomplclass{NP}\qquad \Scomplclass{PSpace}\subseteq \Scomplclass{NPSpace}\qquad \Scomplclass{Exp}\subseteq \Scomplclass{NExp}$}
-\pause
-\item Man kann NTMs mit DTMs simulieren, aber das ist oft mit exponentiellen Mehrkosten verbunden (Vorlesung 19).
-\pause
-\item Der berühmte \alert{Satz von Savitch} besagt, dass speicherbeschränkte NTMs durch DTMs mit nur quadratischen Mehrkosten simuliert werden können. Insbesondere gilt damit $\Scomplclass{PSpace}= \Scomplclass{NPSpace}$.
-\end{itemize}}
-% Insgesamt ergeben sich folgende Beziehungen:
-Zusammenfassung der wichtigsten bekannten Beziehungen:
-\theobox{
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
-\vspace{-2.5ex}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Die Grenzen unseres Wissens}
-
-Wir wissen:
-
-\theobox{
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
-\vspace{-2.5ex}
-}
-
-\begin{itemize}
-\item Wir wissen nicht, ob irgendeines dieser $\subseteq$ sogar $\subsetneq$ ist.
-\item Insbesondere wissen wir nicht, ob $\Scomplclass{P}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{P}=\Scomplclass{NP}$.
-\item Wir wissen nicht einmal, ob $\Scomplclass{L}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{L}=\Scomplclass{NP}$.
-\end{itemize}\pause
-Es wird aber vermutet, dass alle  $\subseteq$ eigentlich $\subsetneq$ sind.
-% 
-Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
-
-\theobox{Es gilt:
-\begin{itemize}
-\item $\Scomplclass{NL}\subsetneq\Scomplclass{PSpace}$
-\item $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$
-\item $\Scomplclass{NP}\subsetneq\Scomplclass{NExp}$
-\end{itemize}}
-
-\end{frame}
-
-
-
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
 Die Komplexitätstheorie beschäfftigt sich mit der Klassifikation 
@@ -798,15 +655,15 @@ entscheidbarer Probleme nach ihrer Schwierigkeit\bigskip
 Um robuste Ergebnisse zu erhalten, die nicht von Implementierungsdetails
 abhängen, werden oft polynomielle Unterschiede in Kauf genommen\bigskip
 
-Die wichtigsten Komplexitätsklassen sind
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
+Die wichtigsten deterministischen Komplexitätsklassen sind
+\[\Scomplclass{L}\subseteq \Scomplclass{P}\subseteq\Scomplclass{PSpace}\subseteq \Scomplclass{Exp}\]
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item $\Scomplclass{P}$
-\item $\Scomplclass{L}$
-\item $\Scomplclass{NL}$
+\item Effizient lösbare Probleme: $\Scomplclass{P}$
+\item Die kleinste traditionelle Komplexitätsklasse: $\Scomplclass{L}$
+\item Weitere Beziehungen zwischen Komplexitäten
 \end{itemize}
 }
 
