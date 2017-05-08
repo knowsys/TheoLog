@@ -52,7 +52,7 @@
 \begin{exercise}
   % TheoLog 2014
   Wir betrachten das folgende Problem $K$: Gegeben eine aussagenlogische
-  Formel $\phi$ mit $n$-Variablen, gibt es eine erfüllbare Belegung von $\phi$,
+  Formel $\phi$ mit $n$~Variablen, gibt es eine erfüllbare Belegung von $\phi$,
   bei der mindestens die Hälfte aller in $\phi$ vorkommenden Variablen mit
   \enquote{true} belegt sind?
   \begin{enumerate}
@@ -65,15 +65,15 @@
 \begin{exercise}
   % Sipser 7.28
   Im folgenden \emph{Solitaire}-Spiel haben wir ein Spielbrett der Größe $m
-  \times m$ gegeben.  Auf jeder der $m^{2}$ Positionen liegt entweder ein blauer
-  Stein, ein roter Stein, oder gar nichts.  Das Spiel wird nun so gespielt, dass
-  Steine vom Brett genommen werden bis in jeder Spalte nur noch Steine einer
-  Farbe liegen, und in jeder Zeile mindestens ein Stein liegen bleibt.  In
-  diesem Fall ist das Spiel gewonnen.  Es ist möglich, dass man ausgehend von
-  einer gegebenen Anfangsbelegung das Spiel nicht gewinnen kann.
+  \times m$ gegeben.  Als Ausgangsposition liegt auf jeder der $m^{2}$
+  Positionen entweder ein blauer Stein, ein roter Stein, oder gar nichts.  Das
+  Spiel wird nun so gespielt, dass Steine vom Brett genommen werden bis in jeder
+  Spalte nur noch Steine einer Farbe liegen, und in jeder Zeile mindestens ein
+  Stein liegen bleibt.  In diesem Fall ist das Spiel gewonnen.  Es ist möglich,
+  dass man ausgehend von einer Ausgangsposition das Spiel nicht gewinnen kann.
 
   \begin{enumerate}
-  \item Formalisieren Sie das Problem, für eine gegebene Anfangsbelegung im
+  \item Formalisieren Sie das Problem, für eine gegebene Ausgangsposition im
     Solitaire-Spiel zu entscheiden, ob es möglich ist, das Spiel zu gewinnen,
     als ein Entscheidungsproblem SOLITAIRE.
   \item Zeigen Sie, dass $\text{SOLITAIRE} \in \NP$ gilt.
@@ -84,11 +84,11 @@
 
 \begin{exercise}
   % Folklore
-  Sei $\Sigma$ ein Alphabet und seien $A, B \subseteq \Sigma^{*}$.  Wir sagen,
-  dass $A$ auf $B$ in \emph{logarithmischen Platz reduzierbar ist}, und
-  schreiben $A \leq_{\ell} B$, falls es eine Many-One-Reduktion von $A$ nach $B$
-  gibt, die in logarithmischen Platz berechenbar ist.  Zeigen Sie: gilt $A
-  \leq_{\ell} B$ und $B \leq_{\ell} C$, dann gilt auch $A \leq_{\ell} C$.
+  Sei $\Sigma$ ein Alphabet und $A, B \subseteq \Sigma^{*}$.  Wir sagen, dass
+  $A$ auf $B$ in \emph{logarithmischen Platz reduzierbar ist}, und schreiben $A
+  \leq_{\ell} B$, falls es eine Many-One-Reduktion von $A$ nach $B$ gibt, die in
+  logarithmischen Platz berechenbar ist.  Zeigen Sie: gilt $A \leq_{\ell} B$ und
+  $B \leq_{\ell} C$, dann gilt auch $A \leq_{\ell} C$.
 \end{exercise}
 
 \begin{exercise}
