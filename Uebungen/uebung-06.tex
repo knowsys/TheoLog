@@ -1,0 +1,106 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% NP-Vollständigkeit
+
+\usepackage[sheetnumber=6]{theolog}
+
+\begin{document}
+
+\maketitle
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\BoldGreek{exercise}}
+  \setcounter{exercise}{1}
+
+  \begin{exercise}
+    % Sipser 7.43
+    Zeigen Sie, dass \NP{} unter Kleene-Stern abgeschlossen ist.
+  \end{exercise}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Wir betrachten das folgende Problem $K$: Gegeben sind zwei gerichtete
+    Graphen $G_{1} = (V_{1}, E_{1})$ und $G_{2} = (V_{2}, E_{2})$ sowie eine
+    Zahl $k \in \mathbb N$.  Gefragt ist, ob es Teilmengen $V_{1}' \subseteq
+    V_{1}$ und $V_{2}' \subseteq V_{2}$ gibt, so dass $\lvert V_{1}'\rvert =
+    \lvert V_{2}'\rvert = k$ ist und es eine Bijektion $f \colon V_{1}' \to
+    V_{2}'$ gibt, so dass gilt
+    \begin{equation*}
+      (u,v) \in E_{1} \iff (f(u), f(v)) \in E_{2}.
+    \end{equation*}
+    \begin{enumerate}
+    \item Zeigen Sie $K \in \NP$.
+    \item Zeigen Sie, dass $K$ ein \NP-hartes Problem ist.  Zeigen Sie dafür,
+      dass das Problem CLIQUE auf $K$ in polynomieller Zeit reduzierbar ist.
+    \end{enumerate}
+  \end{exercise}
+
+\end{mdframed}
+
+\vspace*{0.5\baselineskip}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}
+  % TheoLog 2014
+  Wir betrachten das folgende Problem $K$: Gegeben eine aussagenlogische
+  Formel $\phi$ mit $n$~Variablen, gibt es eine erfüllbare Belegung von $\phi$,
+  bei der mindestens die Hälfte aller in $\phi$ vorkommenden Variablen mit
+  \enquote{true} belegt sind?
+  \begin{enumerate}
+  \item Formalisieren Sie dieses Problem als Sprache und zeigen Sie, dass $K \in
+    \NP$ gilt.
+  \item Zeigen Sie, dass $K$ ein \NP-hartes Problem ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  % Sipser 7.28
+  Im folgenden \emph{Solitaire}-Spiel haben wir ein Spielbrett der Größe $m
+  \times m$ gegeben.  Als Ausgangsposition liegt auf jeder der $m^{2}$
+  Positionen entweder ein blauer Stein, ein roter Stein, oder gar nichts.  Das
+  Spiel wird nun so gespielt, dass Steine vom Brett genommen werden bis in jeder
+  Spalte nur noch Steine einer Farbe liegen, und in jeder Zeile mindestens ein
+  Stein liegen bleibt.  In diesem Fall ist das Spiel gewonnen.  Es ist möglich,
+  dass man ausgehend von einer Ausgangsposition das Spiel nicht gewinnen kann.
+
+  \begin{enumerate}
+  \item Formalisieren Sie das Problem, für eine gegebene Ausgangsposition im
+    Solitaire-Spiel zu entscheiden, ob es möglich ist, das Spiel zu gewinnen,
+    als ein Entscheidungsproblem SOLITAIRE.
+  \item Zeigen Sie, dass $\text{SOLITAIRE} \in \NP$ gilt.
+  \item Zeigen Sie, dass SOLITAIRE ein \NP-hartes Problem ist, indem Sie zeigen,
+    dass 3SAT in polynomieller Zeit auf SOLITAIRE reduzierbar ist.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  % Folklore
+  Sei $\Sigma$ ein Alphabet und $A, B \subseteq \Sigma^{*}$.  Wir sagen, dass
+  $A$ auf $B$ in \emph{logarithmischen Platz reduzierbar ist}, und schreiben $A
+  \leq_{\ell} B$, falls es eine Many-One-Reduktion von $A$ nach $B$ gibt, die in
+  logarithmischen Platz berechenbar ist.  Zeigen Sie: gilt $A \leq_{\ell} B$ und
+  $B \leq_{\ell} C$, dann gilt auch $A \leq_{\ell} C$.
+\end{exercise}
+
+\begin{exercise}
+  % TheoLog 2014
+  Wir betrachten das Problem SET-SPLITTING, welches für eine gegebene endliche
+  Menge $S$ und eine Menge $C = \{C_{1}, \dots, C_{k}\}$ von Teilmengen von $S$
+  fragt, ob die Elemente von $S$ derart mit den Farben blau oder rot gefärbt
+  werden können, so dass niemals alle Elemente einer Menge $C_{i}$ die gleiche
+  Farbe bekommen.  Zeigen Sie, dass SET-SPLITTING ein \NP-vollständiges Problem
+  ist.
+\end{exercise}
+
+\end{document}
+
+%  LocalWords:  Anfangsbelegung
