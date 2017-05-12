@@ -1,0 +1,623 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+\input{../macros}
+
+\defineTitle{10}{NP, Teil 2}{12. Mai 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{\Scomplclass{NP}-vollständige Probleme}
+
+\Scomplclass{NP}-vollständige Probleme = Probleme, die mindestens so schwer
+sind, wie alle anderen Probleme in \Scomplclass{NP}\bigskip
+
+
+Bisher haben wir erfahren (und teilweise auch gezeigt):
+
+\begin{center}
+{\large Wortproblem Polyzeit-NTM}\\
+$\leq_p$\\
+{\large\Slang{SAT}}\\
+$\leq_p$\\
+{\large\Slang{CLIQUE}}\\
+$\leq_p$\\
+{\large\Slang{Unabhängige Menge}}
+\end{center}
+
+\end{frame}
+
+\sectionSlide{Probleme mit Gewichten und Zahlen}
+
+\newcommand{\val}[1]{v(#1)}
+
+\begin{frame}\frametitle{Teilmengen-Summe}
+
+\defbox{\Slang{Teilmengen-Summe} (subset sum)\\[1ex]
+\emph{Gegeben:} Eine Menge von Gegenständen $S=\{a_1,\ldots,a_n\}$, wobei jedem Gegenstand $a_i$ ein Wert $\val{a_i}$ zugeordnet ist; eine gewünschte Zahl $z$\\[1ex]
+\emph{Frage:} Gibt es eine Teilmenge $T\subseteq S$ mit $\sum_{a\in T} \val{a} = z$?\\
+}\smallskip
+
+\emph{Anmerkung:} Mehrere Gegenstände können gleiche Werte haben.\bigskip\pause
+
+\theobox{Satz: \Slang{Teilmengen-Summe} ist \Scomplclass{NP}-vollständig.}\pause
+
+\emph{Beweis:}
+\begin{enumerate}[(1)]
+\item $\Slang{Teilmengen-Summe}\in\Scomplclass{NP}$ haben wir bereits festgestellt
+\item \Scomplclass{NP}-Härte zeigen wir durch Reduktion $\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}$
+\end{enumerate}
+
+\end{frame}
+
+\newcommand{\red}{\color{darkred}}
+
+\begin{frame}[label=subsetsum]\frametitle{Beispiel}
+  \begin{center}
+    {\color{black} \large
+      $(p_1\vee p_2\vee p_3)\wedge (\neg p_1 \vee \neg p_4) \wedge (p_4 \vee p_5 \vee \neg p_2 \vee \neg p_3)$
+    }
+
+    \vspace{0.05\textheight}
+    {
+      \color{black}
+      \renewcommand{\arraystretch}{0.5}
+      \begin{tabular}{ll *{5}{@{\,}l}*{3}{@{\,}c}}
+        && $\red{}p_1$   & $\red{}p_2$    &  $\red{}p_3$   & $\red{}p_4$  & $\red{}p_5$     &  \color{blue} $C_1$ & \color{blue} $C_2$ & \color{blue}$C_3$ \\
+        \\
+        $\val{t_{1}}$ & =~~  & 1 & 0 & 0 & 0 & 0 & \color{blue} 1 & \color{blue} 0 & \color{blue} 0\\
+        $\val{f_{1}}$ & =   & 1 & 0 & 0 & 0 & 0 &  \color{blue} 0 & \color{blue} 1& \color{blue} 0\\
+        $\val{t_{2}}$ & =  & ~ & 1 & 0 & 0 & 0 &  \color{blue} 1 & \color{blue} 0 & \color{blue} 0\\
+        $\val{f_{2}}$ & = & ~ & 1 & 0 & 0 & 0 &  \color{blue} 0 & \color{blue} 0 & \color{blue} 1\\
+        $\val{t_{3}}$ & =  & ~ & ~ & 1 & 0 & 0 &  \color{blue} 1 & \color{blue} 0 & \color{blue} 0\\
+        $\val{f_{3}}$ & = & ~ & ~ & 1 & 0 & 0 &  \color{blue} 0 & \color{blue} 0 & \color{blue}1\\
+        $\val{t_{4}}$ & =  & ~ & ~ & ~ & 1 & 0 &  \color{blue} 0 & \color{blue} 0 & \color{blue}1\\
+        $\val{f_{4}}$ & = & ~ & ~ & ~ & 1 & 0 &  \color{blue} 0 & \color{blue}1 & \color{blue}0\\
+        $\val{t_{5}}$ & =  & ~ & ~ & ~ & ~ & 1 &  \color{blue}0 &\color{blue} 0 & \color{blue}1\\
+        $\val{f_{5}}$ & = & ~ & ~ & ~ & ~ & 1 &  \color{blue}0 & \color{blue}0 & \color{blue} 0\\
+        \\
+        $\val{m_{1,1}}$ & = & ~ & ~ & ~ & ~ & ~ &  1 & 0 & 0\\
+        $\val{m_{1,2}}$ & = & ~ & ~ & ~ & ~ & ~ &  1 & 0 & 0\\
+        $\val{m_{2,1}}$ & = & ~ & ~ & ~ & ~ & ~ &  ~ & 1 & 0\\
+        $\val{m_{3,1}}$ & = & ~ & ~ & ~ & ~ & ~ &  ~ & ~ & 1\\
+        $\val{m_{3,2}}$ & = & ~ & ~ & ~ & ~ & ~ &  ~ & ~ & 1\\
+        $\val{m_{3,3}}$ & = & ~ & ~ & ~ & ~ & ~ & ~ & ~ & 1\\
+        \hline\\
+        $z$       & = & 1 & 1 & 1 & 1 & 1 & 3 & 2 & 4
+      \end{tabular}
+    }
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\Slang{SAT} $\leq_p$ \Slang{Teilmengen-Summe}}
+    \emph{Gegeben: } Formel $F = (C_1 \wedge \dots \wedge C_k)$ in
+  CNF.\\
+  (o.B.d.A. mit maximal 9 Literalen pro Klausel)\pause\\[1ex]
+  Seien $p_1, \dots, p_n$ die Variablen in $F$.\\
+  Für jedes $p_i$ definieren wir Gegenstände $t_i$ und $f_i$:\\[10pt]
+
+  $\begin{array}{ll}
+    \val{t_i} := a_1 \cdots a_n c_1 \cdots c_k & {\text{wobei}}
+    \begin{array}{l}
+      a_j :=
+      \begin{cases}
+        1 & i=j\\
+        0 & i\not=j
+      \end{cases}\\[15pt]
+      c_j :=
+      \begin{cases}
+        1 & p_i \text{ kommt in } C_j\text{ vor}\\
+        0 & \text{sonst}
+      \end{cases}
+    \end{array}
+  \end{array}$
+
+  \bigskip\pause
+
+  $\begin{array}{ll}
+    \val{f_i} := a_1 \cdots a_n c_1 \cdots c_k & \text{wobei} 
+    \begin{array}{l}
+      a_j :=
+      \begin{cases}
+        1 & i=j\\
+        0 & i\not=j
+      \end{cases}\\[15pt]
+      c_j :=
+      \begin{cases}
+        1 & {\neg p_i} \text{ kommt in } C_j\text{ vor}\\
+        0 & \text{sonst}
+      \end{cases}
+    \end{array}
+  \end{array}$
+\end{frame}
+
+\againframe{subsetsum}
+
+\begin{frame}
+  \frametitle{\Slang{SAT} $\leq_p$ \Slang{Teilmengen-Summe}}
+
+  Außerdem definieren wir für jede Klausel $C_i$ genau $r := |C_i|-1$ Gegenstände
+  $m_{i,1}, \ldots, m_{i,r}$\\[5pt]
+  mit $\quad\val{m_{i, j}} := c_i \cdots c_k\quad$ wobei
+  $\quad
+  c_\ell :=
+  \begin{cases}
+    1 & \ell=i\\
+    0 & \ell\not= i
+  \end{cases}
+  $\bigskip\pause
+
+  \emph{Definition of $S$: } Damit ergibt sich die Menge
+  \[
+     S := \{ t_i, f_i \mid 1\leq i \leq
+       n\} \cup \{ m_{i,j} \mid 1\leq i\leq k,~~ 1\leq j \leq |C_i|-1\}
+  \]
+
+  \pause\emph{Gesuchte Zahl: } Wir bestimmten die gesuchte Zahl $z$ wie folgt:\\
+  \[
+     \text{$z := a_1 \cdots a_n c_1 \cdots c_k$ wobei $a_i := 1$ und $c_i := |C_i|$ }
+  \]
+
+  \bigskip
+
+  \pause\emph{Behauptung: } Es gibt $T\subseteq S$ mit $\sum_{a_i\in T}
+    \val{a_i} = z$ gdw. $F$ erfüllbar ist.
+\end{frame}
+
+\againframe{subsetsum}
+
+\begin{frame}\frametitle{NP-Vollständigkeit von \textsc{Teilmengen-Summe}}
+
+\anybox{lightblue}{
+  \emph{Behauptung: }\\
+  Wenn $F$ erfüllbar ist, dann gibt es $T\subseteq S$ mit $\sum_{a_i\in T}
+    \val{a_i} = z$.}\bigskip
+
+%
+\pause
+\begin{itemize}
+\item Sei $w$ eine erfüllende Belegung für $F$\pause\\[2ex]
+%
+\item Wir definieren: 
+    \[T_1 :=
+		\{ t_i \mid w(p_i) = \mytrue,~ 1\leq i \leq m\}\
+			\cup \{ f_i \mid w(p_i) = \myfalse,~ 1\leq i \leq m\}
+    \]\pause%
+\item Sei $r_i$ jeweils die Zahl der von $w$ erfüllten Literale in \ghost{$C_i$.}\\
+Wir definieren:
+\[T_2 := \{ m_{i,j}\mid 1\leq i \leq k,~ 1\leq j \leq |C_i|-r_i \}\]\pause%
+% 
+\item Die gesuchte Menge von Gegenständen ist $T := T_1 \cup T_2$.\\[5pt]
+Damit folgt: $\sum_{s\in T} \val{s} = z$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{NP-Vollständigkeit von \textsc{Teilmengen-Summe}}
+
+  \anybox{lightblue}{
+    \emph{Behauptung:}\\ Gibt es $T\subseteq S$ mit $\sum_{a_i\in T}
+    \val{a_i} = z$ dann ist $F$ erfüllbar.}\bigskip\pause
+
+  Sei $T \subseteq S$ die gesuchte Menge mit $\sum_{s\in T} \val{s} = z$\pause\\[10pt]
+%
+  Wir definieren $w(p_i) =
+    \begin{cases}
+      \mytrue & \text{ falls } t_i \in T\\
+      \myfalse & \text{ falls } f_i \in T
+    \end{cases}$\\[10pt]
+%
+  $w$ ist wohldefiniert, da für alle $i$ gilt:\\ $t_i \in T$ oder
+  $f_i \in T$, aber nicht beides\pause\\[10pt]
+%
+  Außerdem muss für jede Klausel ein Literal auf $\mytrue$ abgebildet werden,
+  da die entsprechenden Hilfszahlen $m_{i,j} \in S$ zusammen nicht die
+  geforderte Zahl an Literalen pro Klausel erreichen.
+\qed
+
+\end{frame}
+
+\newcommand{\weight}[1]{g(#1)}
+
+\begin{frame}\frametitle{Das Rucksack-Problem}
+
+\defbox{\Slang{Rucksack} (Knapsack)\\[1ex]
+\emph{Gegeben:} Eine Menge von Gegenständen $G=\{a_1,\ldots,a_n\}$, wobei jedem Gegenstand $a_i$ ein Wert $\val{a_i}$ und ein Gewicht $\weight{a_i}$ zugeordnet ist; ein Mindestwert $w$ und ein Gewichtslimit $\ell$\\[1ex]
+\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, so dass
+\begin{itemize}
+\item $\sum_{a\in T} \weight{a} \leq \ell$ und
+\item $\sum_{a\in T} \val{a} \geq w$~?
+\end{itemize}
+}\smallskip\pause
+
+\theobox{Satz: \Slang{Rucksack} ist \Scomplclass{NP}-vollständig.}\pause
+
+\emph{Beweis:}
+\begin{enumerate}[(1)]
+\item $\Slang{Rucksack} \in \Scomplclass{NP}$: Das Zertifikat ist $T$
+\item \Slang{Rucksack} ist \Scomplclass{NP}-hart:\\
+durch Reduktion $\Slang{Teilmengen-Summe}\leq_p\Slang{Rucksack}$
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{$\Slang{Teilmengen-Summe}\leq_p\Slang{Rucksack}$}
+
+\emph{Gegeben:} Eine Instanz von \Slang{Teilmengen-Summe} (Menge von Gegenständen $S=\{a_1,\ldots,a_n\}$ mit Wert $\val{a_i}$; gewünschte Zahl $z$)\pause
+
+  \bigskip
+
+  \emph{Daraus konstruieren wir:}
+
+  \begin{itemize}
+  \item $G := \{ 1, \dots, n\}$: Menge der Gegenstände
+  \item Für alle $i\in G$ setzen wir: $\val{i} = \weight{i} = \val{a_i}$
+  \item Zielwert $w := z$ und Gewichtslimit $\ell := z$
+  \end{itemize}
+  Offensichtlich ist diese Übersetzung \alert{polynomiell.}\medskip\pause
+
+  Damit gilt für jede Teilmenge $T\subseteq G$
+  \[
+  \sum_{i\in T}\val{a_i}   = z\qquad {gdw.}\qquad
+  \begin{array}{l}
+    \sum_{i\in T} \val{i}    \geq w    \quad{\red = z}\\[5pt]
+    \sum_{i\in T} \weight{i} \leq \ell \quad{\red = z}
+  \end{array}
+  \]
+  $\leadsto$ Die Reduktion ist \alert{korrekt.}\qed
+
+\end{frame}
+
+\sectionSlide{Pseudopolynomielle Probleme}
+
+\begin{frame}<1>[label=knapsack]
+  \frametitle{Eine polynomielle Lösung für \Slang{Rucksack}}
+  
+  Mittels \alert{dynamischer Programmierung} kann man \Slang{Rucksack}
+  in der Zeit $O(n\ell)$ lösen\\[10pt]
+%
+  \emph{Initialisierung:} \\
+   Erzeuge eine $(\ell+1) \times (n+1)$-Matrix $M$\\[5pt]
+%
+   Setze $M(g, 0) = M(0,i) =  0$ \qquad für alle
+   $1\leq g \leq \ell$ \quad  $1\leq i\leq n$\\[10pt]\pause
+%
+  \emph{Berechnung: }
+   Für $i = 0,1, \dots, n-1$ berechne $M(g, i+1)$ als\\[1ex]
+% 
+	\narrowcentering{$M(g, i+1) := \max\big( M(g, i),~~ M(g-\weight{i+1}, i) + \val{i+1}\big)$}\\[1ex]
+% 
+    (Falls $g-\weight{i+1} < 0$, dann verwenden wir immer $M(g, i)$.)\\[5pt]
+%
+    $M(g, i)$ = Größter Gesamtwert unter den ersten $i$ Gegenständen\\
+    \mbox{}\phantom{$M(g, i)$ =} bei Einhaltung des Gewichtslimits $g$\\[5pt]
+%
+	\emph{Akzeptanz: } Akzeptiere falls $M$ einen Eintrag $\geq w$ hat.
+
+\end{frame}
+
+\newcommand{\blue}{\color{darkblue}}
+\newcommand{\black}{\color{black}}
+
+\begin{frame}<1-2>[label=knapsack-ex]
+  \frametitle{Beispiel}
+
+  \emph{Eingabe: }
+  $G := \{ 1, 2, 3, 4\}$ mit \\[5pt]
+  $\begin{array}{lcccc}
+    \text{Werten:}\blue &\blue  \val{1} := 1 &\blue  \val{2} := 3 &\blue  \val{3}
+    := 4 &\blue  \val{4} := 2\\[-0.5ex]
+    \text{Gewichten: }\blue &\blue \weight{1} := 1 &\blue \weight{2} := 1 &\blue \weight{3} := 3 &\blue \weight{4}:= 2
+  \end{array}$    \\[5pt]
+
+  \emph{Gewichtslimit: } $\ell := 5$\hspace{2cm}
+  \emph{Mindestwert: } $w := 7$
+
+  {\footnotesize
+  \[
+  \begin{array}{|c|c|c|c|c|c|}\hline
+    \text{Gewichts-} & \multicolumn{5}{c|}{\text{max. Wert für $\leq i$ Gegenstände} }\\\cline{2-6}
+    \text{limit } {\blue g} & {\blue{}i=0}& {\blue{}i=1}& {\blue{}i=2}&
+    {\blue{}i=3}& {\blue{}i=4} \\\hline
+    {\blue{}0} & \uncover<2->0& \uncover<2->0& \uncover<2->0& \uncover<2->0& \uncover<2->0\\\hline
+    {\blue{}1} & \uncover<2->0& \uncover<4->1& \uncover<5->3& \uncover<10->3& \uncover<10->3\\\hline
+    {\blue{}2} & \uncover<2->0& \uncover<4->1& \uncover<6->4& \uncover<10->4& \uncover<10->4\\\hline
+    {\blue{}3} & \uncover<2->0& \uncover<4->1& \uncover<7->4& \uncover<10->4& \uncover<10->5\\\hline
+    {\blue{}4} & \uncover<2->0& \uncover<4->1& \uncover<8->4& \uncover<10->7& \uncover<10->7\\\hline
+    {\blue{}5} & \uncover<2->0& \uncover<4->1& \uncover<9->4& \uncover<10->8& \uncover<10->8\\\hline
+  \end{array}
+  \]}
+\only<1-2>{Initialisiere $M(g, 0) = M(0,i) =  0$ für alle
+	$1\leq g \leq \ell$ und $1\leq i\leq n$}
+\only<3->{\narrowcentering{$M(g, i+1) := \max\big( M(g, i),~~ M(g-\weight{i+1}, i) + \val{i+1}\big)$}}
+\end{frame}
+
+
+\againframe{knapsack}
+
+\againframe<3->{knapsack-ex}
+
+\begin{frame}\frametitle{$\Scomplclass{P}=\Scomplclass{NP}$?}
+
+Zusammenfassung:
+\begin{itemize}
+\item \Slang{Rucksack} ist \Scomplclass{NP}-vollständig
+\item \Slang{Rucksack} ist mittels Dynamischer Programmierung in Zeit $O(n\ell)$ lösbar
+\end{itemize}
+
+\defbox{\Slang{Rucksack} (Knapsack)\\[1ex]
+\emph{Gegeben:} Eine Menge von Gegenständen $G=\{a_1,\ldots,a_n\}$, wobei jedem Gegenstand $a_i$ ein Wert $\val{a_i}$ und ein Gewicht $\weight{a_i}$ zugeordnet ist; ein Mindestwert $w$ und ein Gewichtslimit $\ell$\\[1ex]
+\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, so dass
+\begin{itemize}
+\item $\sum_{a\in T} \weight{a} \leq \ell$ und
+\item $\sum_{a\in T} \val{a} \geq w$~?
+\end{itemize}
+}\pause
+
+\begin{center}\large
+\redalert{Haben wir also gezeigt, dass $\Scomplclass{P}=\Scomplclass{NP}$?}
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Pseudopolynomielle Probleme}
+
+Unser Algorithmus zeigt nicht $\Slang{Rucksack}\in\Scomplclass{NP}$!
+
+\begin{itemize}
+\item Die Eingabe von $\Slang{Rucksack}$ hat die Länge $O(n+\log w+\log \ell)$
+\item Die Zeit $O(n\ell)$ ist daher \alert{nicht} polynomiell bzgl. der Eingabelänge
+\end{itemize}\pause
+
+\defbox{Ein Problem ist in \redalert{pseudopolynomieller Zeit}, wenn es durch
+eine DTM gelöst wird, die polynomiell zeitbeschränkt ist bzgl. der Eingabelänge
+\alert{und} des Betrages aller Zahlen in der Enigabe.}
+
+\emph{Äquivalent:} ein Problem ist pseudopolynomiell, wenn es in $\Scomplclass{PTime}$
+liegt, wenn man alle Zahlen \alert{unär} kodiert.\medskip\pause
+
+\examplebox{Beispiel: \Slang{Rucksack} ist pseudopolynomiell: beschränkt man das Problem auf Instanzen mit $\ell\leq p(n)$ für ein Polynom $p$, so erhält man ein Problem in \Scomplclass{P} (wobei $n$ die Zahl der Gegenstände ist).
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Starke \Scomplclass{NP}-Vollständigkeit}
+
+\defbox{Probleme, welche selbst dann noch \Scomplclass{NP}-vollständig sind, wenn 
+man alle Zahlen unär kodiert, heißen \redalert{stark \Scomplclass{NP}-vollständig}.}\medskip\pause
+
+\examplebox{Beispiele:
+\begin{itemize}
+\item \Slang{SAT} ist stark \Scomplclass{NP}-vollständig (keine Zahlen in der Eingabe)
+\item \Slang{CLIQUE} ist stark \Scomplclass{NP}-vollständig
+\item \ldots
+\end{itemize}}\pause
+
+\examplebox{Beispiele:
+\begin{itemize}
+\item \Slang{Rucksack} ist pseudopolynomiell
+\item \Slang{Teilmengen-Summe} ist pseudopolynomiell
+\end{itemize}}\pause
+
+\emph{Anmerkung:} Die Reduktion $\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}$ erzeugt eine polynomielle Instanz, bei der die Beträge der Zahlen exponentiell groß sind.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Fake-News erkennen (1)}
+
+Immer wieder gibt es Berichte darüber, dass irgendein neuartiges Berechnungsmodell
+oder ausgefallene physikalische Anordnung $\Scomplclass{NP}$-vollständige Probleme
+in polynomieller Zeit lösen könne \ldots
+\smallskip\pause
+
+$\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
+
+\emph{Typische Kontrollfragen:}\bigskip
+
+\anybox{strongyellow}{Ist das Problem pseudopolynomiell?\\ Wie sind Zahlenbeträge kodiert?}\bigskip
+
+\examplebox{Beispiel: Molekulare Anordnungen zum Lösen von \Slang{Teilmengen-Summe}, wobei
+Zahlen durch eine entsprechende Zahl an Molekülen kodiert werden.}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Fake-News erkennen (2)}
+
+Immer wieder gibt es Berichte darüber, dass irgendein neuartiges Berechnungsmodell
+oder ausgefallene physikalische Anordnung $\Scomplclass{NP}$-vollständige Probleme
+in polynomieller Zeit lösen könne \ldots
+\smallskip
+
+$\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
+
+\emph{Typische Kontrollfragen:}\bigskip
+
+\anybox{strongyellow}{Wächst der neuartige Computer mit dem Problem?\\ Ist dieses Wachstum exponentiell?}\bigskip
+
+\examplebox{Beispiel: DNS-Rechner lösen Optimierunsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Fake-News erkennen (3)}
+
+Immer wieder gibt es Berichte darüber, dass irgendein neuartiges Berechnungsmodell
+oder ausgefallene physikalische Anordnung $\Scomplclass{NP}$-vollständige Probleme
+in polynomieller Zeit lösen könne \ldots
+\smallskip
+
+$\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
+
+\emph{Typische Kontrollfragen:}\bigskip
+
+\anybox{strongyellow}{Wird das Problem wirklich gelöst oder handelt es sich eher um ein Approximationsverfahren? Ist klar, was ein "`Berechnungsschritt"' ist und ist deren Zahl wirklich polynomiell?}\bigskip
+
+\examplebox{Beispiel: Ein Schaltkreis mit Rückkopplungen, welcher "`in der Regel"' zu einer "`guten"' Lösung eines $\Scomplclass{NP}$-vollständigen Problems konvergiert, und das "`nach kurzer Zeit."'}
+
+\end{frame}
+
+\sectionSlide{NP und andere Klassen}
+
+\begin{frame}\frametitle{\Scomplclass{P} vs. \Scomplclass{NP}}
+
+  \alert{Bis heute ist nicht bekannt, ob $\Scomplclass{P}\neq\Scomplclass{NP}$ gilt oder nicht.}
+  \begin{itemize}
+  \item Intuitiv gefragt: "`Wenn es einfach ist, eine mögliche Lösung für ein Problem zu prüfen, ist es dann auch einfach, eine zu finden?"'
+  \item Übertrieben: "`Can creativity be automated?"' (Wigderson, \ghost{2006)}
+  \item Seit über 40 Jahren ungelöst
+  \item Eines der größten offenen Probleme der Informatik und Mathematik unserer Zeit
+  \item 1.000.000 USD Preisgeld für die Lösung\\("`Millenium Problem"')
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mögliche Konsequenzen}
+
+\alert{Falls $\Scomplclass{P}=\Scomplclass{NP}$, dann gilt}
+\begin{itemize}
+\item $\Scomplclass{NP}=\Scomplclass{coNP}$ (warum?)
+\item und jedes nichttriviale Problem in $\Scomplclass{P}$ ist $\Scomplclass{NP}$-vollständig (warum?)
+\end{itemize}
+\bigskip\pause
+
+\alert{Falls $\Scomplclass{P}\neq\Scomplclass{NP}$, dann gilt}
+\begin{itemize}
+\item $\Scomplclass{P}\neq\Scomplclass{coNP}$ (warum?)
+\item $\Scomplclass{L}\neq\Scomplclass{NP}$ (warum?)
+\item $\Scomplclass{P}\neq\Scomplclass{PSpace}$ (warum?)
+\item kein $\Scomplclass{NP}$-vollständiges Problem ist in $\Scomplclass{P}$ (warum?)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Noch schwerere Fragen}
+
+Selbst wenn $\Scomplclass{P}\neq\Scomplclass{NP}$ bewiesen werden sollte, gäbe es noch viele
+offene Fragen \ldots\bigskip\pause
+
+\anybox{strongyellow}{
+\alert{$\Scomplclass{NP}\neq\Scomplclass{coNP}$?}
+Falls es für die lösbaren Instanzen eines Problems kurze Zertifikate gibt,
+gibt es dann immer auch kurze Zertifikate für die Unlösbarkeit von Instanzen?}%
+\begin{itemize}
+\item Die meisten Experten glauben das nicht
+\item Falls die Antwort "`nein"' lautet, dann folgt $\Scomplclass{P}\neq\Scomplclass{NP}$
+\end{itemize}\bigskip\pause
+
+\anybox{strongyellow}{
+\alert{$\Scomplclass{P}\neq\Scomplclass{NP}\cap\Scomplclass{coNP}$?}
+Falls es für die Lösbarkeit und die Unlösbarkeit eines Problems kurze Zertifikate gibt,
+ist das Problem dann effizient lösbar?}%
+\begin{itemize}
+\item Die meisten Experten glauben das nicht
+\item Falls die Antwort "`nein"' lautet, dann folgt $\Scomplclass{P}\neq\Scomplclass{NP}$
+\item Ist die Antwort "`ja"' und zudem $\Scomplclass{P}\neq\Scomplclass{NP}$, so folgt $\Scomplclass{NP}\neq\Scomplclass{coNP}$
+\end{itemize}\bigskip
+
+\end{frame}
+
+\begin{frame}\frametitle{Verwandte ungelöste Probleme}
+
+"`$\Scomplclass{P}\neq\Scomplclass{NP}$?"' ist nur eine von vielen offenen Fragen.
+\bigskip\pause
+
+Falls sie zu schwer ist, dann gäbe es zuvor noch ein paar schwächere Resultate zu zeigen:
+\begin{itemize}
+\item Ist $\Scomplclass{L}\neq\Scomplclass{NP}$?
+\item Ist $\Scomplclass{P}\neq\Scomplclass{PSpace}$?
+\end{itemize}
+\bigskip\pause
+
+Selbst wenn $\Scomplclass{P}\neq\Scomplclass{NP}$ einmal bewiesen wird, dann bleiben immer
+noch andere Fragen:
+\begin{itemize}
+\item Ist $\Scomplclass{NP}\cap\Scomplclass{coNP}\neq\Scomplclass{P}$?
+\item Ist $\Scomplclass{NP}\cap\Scomplclass{coNP}\neq\Scomplclass{P}$?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Der Satz von Ladner}
+
+\emph{Drei mögliche Welten:}
+\begin{enumerate}[(1)]
+\item $\Scomplclass{P}=\Scomplclass{NP}$: jedes \Scomplclass{NP}-vollständige Problem ist in $\Scomplclass{P}$
+\item $\Scomplclass{P}\neq\Scomplclass{NP}$: kein \Scomplclass{NP}-vollständiges Problem ist in $\Scomplclass{P}$
+\begin{enumerate}[(2.a)]
+\item Jedes \Scomplclass{NP}-Problem, welches nicht \Scomplclass{NP}-vollständig ist, liegt in \Scomplclass{P}
+\item Es gibt Probleme, die nicht \Scomplclass{NP}-vollständig sind und dennoch nicht in \Scomplclass{P} liegen
+\end{enumerate}
+\end{enumerate}\pause\bigskip
+
+Ladner hat gezeigt, dass Fall (2.a) unmöglich ist:
+
+\theobox{Satz (Ladner): Falls $\Scomplclass{P}\neq\Scomplclass{NP}$, dann gibt es
+Probleme in \Scomplclass{NP}, die weder \Scomplclass{NP}-vollständig sind noch in \Scomplclass{P} liegen.}
+
+Diese Probleme heißen \redalert{\Scomplclass{NP}-intermediate} \pause{} -- wenn $\Scomplclass{P}\neq\Scomplclass{NP}$, dann sollte es viele davon geben \ldots aber wir kennen kaum Kandidaten:
+\begin{itemize}
+\item Faktorisierung (\Slang{Faktor-7} und ähnliche)
+\item Ermitteln, ob zwei Graphen isomorph (gleich bis auf Umbenennung) sind
+% \item ?
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+$\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}\leq_p \Slang{Rucksack}$
+\bigskip
+
+Pseudopolynomielle Probleme werden einfacher, wenn man den Betrag der Zahlen in der Eingabe polynomiell beschränkt\bigskip
+
+Offene Fragen (geordnet von "`leicht"' nach schwer):
+"`$\Scomplclass{L}\neq\Scomplclass{NP}$?"',
+"`$\Scomplclass{P}\neq\Scomplclass{PSpace}$?"',
+"`$\Scomplclass{P}\neq\Scomplclass{NP}$?"',
+"`$\Scomplclass{NP}\neq\Scomplclass{coNP}$?"'
+"`$\Scomplclass{P}\neq \Scomplclass{NP}\cap\Scomplclass{coNP}$?"'
+\bigskip
+
+Es sollte eigentlich eine Menge Probleme geben, die weder in \Scomplclass{P} liegen, noch \Scomplclass{NP}-vollständig sind\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item $\Scomplclass{NL}$
+\item Komplexität jenseits von $\Scomplclass{NP}$
+\item Spiele
+\end{itemize}
+}
+
+\end{frame}
+
+
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
