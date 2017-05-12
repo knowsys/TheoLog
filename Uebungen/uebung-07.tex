@@ -1,0 +1,114 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% PSpace
+
+\usepackage[sheetnumber=7]{theolog}
+
+\begin{document}
+
+\maketitle
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\BoldGreek{exercise}}
+  \setcounter{exercise}{3}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Zeigen Sie folgende Aussagen:
+    \begin{enumerate}
+    \item Ist $\Slang{L}_{2} \in \PSpace$ und gilt $\Slang{L}_{1} \leq_{p}
+      \Slang{L}_{2}$, so ist auch $\Slang{L}_{1} \in \PSpace$.
+    \item Ist $\Slang{L}_{1}$ ein \PSpace-hartes Problem, und gilt
+      $\Slang{L}_{1} \leq_{p} \Slang{L}_{2}$, dann ist auch $\Slang{L}_{2}$ ein
+      \PSpace-hartes Problem.
+    \end{enumerate}
+  \end{exercise}
+
+  \begin{exercise}
+    Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
+    \begin{enumerate}
+    \item Jedes \PSpace-harte Problem ist \NP-hart.
+    \item Es gibt kein \NP-hartes Problem, welches in \PSpace{} liegt.
+    \item Jedes \NP-vollständige Problem liegt in \PSpace.
+    \item Es gilt $\NP = \PSpace$, wenn es ein \PSpace-hartes Problem in \NP{}
+      gibt.
+    \item Wenn $\PTime \neq \NP$ gilt, dann gibt es kein \NP-hartes Problem in
+      \PTime.
+    \item Sei $L$ ein \PSpace-vollständiges Problem.  Dann gilt $L \in \PTime
+      \iff \PTime = \PSpace$.
+    \end{enumerate}
+  \end{exercise}
+\end{mdframed}
+
+\vspace*{0.5\baselineskip}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}
+  % TheoLog 2014
+  Zeigen Sie, dass \PSpace{} unter Komplement, Durchschnitt, Vereinigung,
+  Konkatenation und Kleene-Stern abgeschlossen ist.
+\end{exercise}
+
+\begin{exercise}
+  % Complexity Theory 2015/16, originally Sipser 8.26
+  Wir betrachten das japanische Spiel \emph{Gomoku}, welches von zwei Spielern
+  \textsf{X} und \textsf{O} auf einem $19{\times}\mskip-2mu19$-Brett % spacing
+  % is weird; Max dazu: „Space-Complexity und kaputtes Spacing, das passt doch!“
+  gespielt wird.  Die Spieler setzen abwechselnd ihre Steine auf das Brett, und
+  derjenige Spieler, der zuerst fünf Steine in einer Reihe (horizontal,
+  vertikal, oder diagonal) gelegt hat, gewinnt.  Spieler \textsf{X} beginnt.
+
+  \emph{Verallgemeinertes Gomoku} wird statt auf einem Brett fester Größe auf
+  einem beliebigen $n\mathord{\times}n$-Brett gespielt.  Eine \emph{Position} in
+  diesem Spiel ist eine Belegung der Felder des Spielbretts mit Steinen der
+  Spieler \textsf{X} und \textsf{O}, wie sie in einem wirklichen Spiel auftreten
+  könnte.  Sei
+  \begin{align*}
+    \Slang{GM} \coloneqq \{\,\enc(B) \mid \, % again weird spacing …
+    & B \text{ ist eine Position im verallgemeinerten Gomoku,} \\
+    & \text{in der \textsf{X} eine Gewinnstrategie hat}\,\},
+  \end{align*}
+  wobei $\enc(B)$ die zeilenweise Kodierung der Position $B$ über einem festen
+  Alphabet ist.
+
+  Zeigen Sie $\Slang{GM} \in \PSpace$.
+\end{exercise}
+
+\begin{exercise}
+  % TheoLog 2014
+  Welche der folgenden QBF-Formeln sind erfüllbar?  Begründen Sie Ihre Antwort.
+  \begin{enumerate}
+  \item $\exists p_{1}. p_{1}$
+  \item $\forall p_{1}. p_{1}$
+  \item $\exists p_{1}. \bot$
+  \item $\forall p_{1}. \exists p_{2}. p_{2} \to p_{1}$
+  \item $\forall p_{1}. \exists p_{2}. \forall p_{3}. (p_{1} \lor p_{2}) \land
+    p_{3}$
+  \item $\forall p_{1}. \forall p_{2}. \exists p_{3}. \forall p_{4}. (p_{1}
+    \land p_{2} \to p_{4}) \lor \lnot p_{3}$
+  \end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+  % Complexity Theory 2015/16, originally Sipser 8.29
+  Zeigen Sie, dass das Wortproblem für LBA
+  \begin{equation*}
+    \Slang{P}_{\mathsf{LBA}} \coloneqq \{\,\enc(\Smach{M})\#\#\enc(w) \mid
+    \text{\Smach{M} ein LBA, der $w$ akzeptiert} \,\}.
+  \end{equation*}
+  ein \PSpace-vollständiges Problem ist.
+  % TODO: eventuell nochmal erklären, was ein LBA ist (eine TM, die niemals das
+  % Bandleerzeichen überschreibt und bei Lesen des Bandleerzeichens nur nach links geht)
+\end{exercise}
+
+\end{document}
