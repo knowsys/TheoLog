@@ -42,8 +42,8 @@
       gibt.
     \item Wenn $\PTime \neq \NP$ gilt, dann gibt es kein \NP-hartes Problem in
       \PTime.
-    \item Sei $L$ ein \PSpace-vollständiges Problem.  Dann gilt $L \in \PTime
-      \iff \PTime = \PSpace$.
+    \item Sei $\Slang{L}$ ein \PSpace-vollständiges Problem.  Dann gilt
+      $\Slang{L} \in \PTime \iff \PTime = \PSpace$.
     \end{enumerate}
   \end{exercise}
 \end{mdframed}
@@ -101,14 +101,15 @@
 
 \begin{exercise}
   % Complexity Theory 2015/16, originally Sipser 8.29
-  Zeigen Sie, dass das Wortproblem für LBA
+  Ein \emph{linear bounded automaton} (LBA) ist eine nicht-deterministische
+  Turing Maschine, die bei jeder Berechnung niemals mehr Platz benutzt als
+  bereits durch die Eingabe belegt ist.  Zeigen Sie, dass das Wortproblem für
+  LBA
   \begin{equation*}
     \Slang{P}_{\mathsf{LBA}} \coloneqq \{\,\enc(\Smach{M})\#\#\enc(w) \mid
     \text{\Smach{M} ein LBA, der $w$ akzeptiert} \,\}.
   \end{equation*}
   ein \PSpace-vollständiges Problem ist.
-  % TODO: eventuell nochmal erklären, was ein LBA ist (eine TM, die niemals das
-  % Bandleerzeichen überschreibt und bei Lesen des Bandleerzeichens nur nach links geht)
 \end{exercise}
 
 \end{document}
