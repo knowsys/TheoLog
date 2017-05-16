@@ -101,10 +101,13 @@
 
 \begin{exercise}
   % Complexity Theory 2015/16, originally Sipser 8.29
-  Ein \emph{linear bounded automaton} (LBA) ist eine nicht-deterministische
-  Turing Maschine, die bei jeder Berechnung niemals mehr Platz benutzt als
-  bereits durch die Eingabe belegt ist.  Zeigen Sie, dass das Wortproblem für
-  LBA
+  Ein \emph{linear bounded automaton} (LBA) ist eine deterministische Turing
+  Maschine $\Smach{M}$ , die bei jeder Berechnung niemals mehr Platz benutzt als
+  bereits durch die Eingabe belegt ist.  Dies erreicht \Smach{M} dadurch, dass
+  sie niemals ein \textvisiblespace{} überschreibt und den Lesekopf nach links
+  bewegt, sobald sie ein \textvisiblespace{} liest.
+
+  Zeigen Sie, dass das Wortproblem für LBA
   \begin{equation*}
     \Slang{P}_{\mathsf{LBA}} \coloneqq \{\,\enc(\Smach{M})\#\#\enc(w) \mid
     \text{\Smach{M} ein LBA, der $w$ akzeptiert} \,\}.
