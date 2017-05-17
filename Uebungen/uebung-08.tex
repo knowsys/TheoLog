@@ -50,14 +50,15 @@
 
 \setcounter{exercise}{0}
 
+\enlargethispage{2\baselineskip}
+
 \begin{exercise}
   % Fragen aus Vorlesung, Folie 10/27
   Begründen Sie folgende Aussagen:
   \begin{enumerate}
   \item Ist $\PTime = \NP$, dann ist $\NP = \coNP$.
-  \item Ist $\PTime \neq \NP$, dann ist $\PTime \neq \coNP$.
-  \item Ist $\PTime \neq \NP$, dann ist $\LogSpace \neq \NP$.
-  \item Ist $\PTime \neq \NP$, dann ist $\PTime \neq \PSpace$.
+  \item Ist $\PTime \neq \NP$, dann gilt $\PTime \neq \coNP$, $\LogSpace \neq
+    \NP$ und $\PTime \neq \PSpace$.
   \end{enumerate}
 \end{exercise}
 
@@ -75,7 +76,11 @@
 \end{exercise}
 
 \begin{exercise}
-  % Sipser 7.27
+  % Complexity Theory lecture, originally somewhere from stachexchange
+  Zeigen Sie, dass folgendes Problem unentscheidbar ist: gegeben eine
+  Turing-Maschine \Smach{M} und eine Zahl $k \in \mathbb N$, ist \Smach{M} eine
+  $\mathcal{O}(n^{k})$-zeitbeschränkte Turing-Maschine?
 \end{exercise}
 
+% Maybe Sipser 7.27
 \end{document}
