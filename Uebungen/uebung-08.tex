@@ -1,0 +1,86 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% Fun with Complexity Theory
+
+\usepackage[sheetnumber=8]{theolog}
+
+\begin{document}
+
+\maketitle
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\BoldGreek{exercise}}
+  \setcounter{exercise}{5}
+
+  \begin{exercise}
+    % Sipser 8.2
+    Wir betrachten folgende Position im Tic-Tac-Toe:
+    \begin{equation*}
+      \begin{array}{c|c|c}
+        \mathsf{X}&& \\\midrule
+                  &\mathsf{O}& \\\midrule
+        \mathsf{O}&&\mathsf{X}
+      \end{array}
+    \end{equation*}
+    Angenommen, Spieler \textsf{X} ist am Zug.  Beschreiben Sie eine
+    Gewinnstrategie für \textsf{X}.
+  \end{exercise}
+
+  \begin{exercise}
+    Zeigen Sie, dass für jedes \PSpace-vollständige Problem $\Slang{L}$ auch das
+    Komplement $\overline{\Slang{L}}$ ein \PSpace-vollständiges Problem ist.
+  \end{exercise}
+
+  \begin{exercise}
+    Zeigen Sie: ist $\PTime = \NP$, dann sind alle Sprachen $\Slang L \in \PTime
+    \setminus \{\emptyset, \Sigma^{*}\}$ \NP-vollständig.
+  \end{exercise}
+
+\end{mdframed}
+
+\vspace*{0.5\baselineskip}
+
+\setcounter{exercise}{0}
+
+\enlargethispage{3\baselineskip}
+
+\begin{exercise}
+  % Fragen aus Vorlesung, Folie 10/27
+  Begründen Sie folgende Aussagen:
+  \begin{enumerate}
+  \item Ist $\PTime = \NP$, dann ist $\NP = \coNP$.
+  \item Ist $\PTime \neq \NP$, dann gilt $\PTime \neq \coNP$, $\LogSpace \neq
+    \NP$ und $\PTime \neq \PSpace$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  % Sipser 7.30
+  Wir betrachten folgendes Scheduling-Problem.  Gegeben sind Prüfungen $P_{1},
+  \ldots, P_{k}$ sowie Studierende $S_{1}, \ldots, S_{\ell}$, so dass jede
+  Prüfung von einer bestimmten Menge von Studierenden abgelegt wird.  Die
+  Aufgabe ist, die Prüfungen so zu legen, dass kein Studierende zur gleichen
+  Zeit zwei Prüfungen ablegen muss.
+
+  Formalisieren Sie die Frage, ob solch ein Prüfungsplan mit höchstens $h$
+  Zeitslots möglich ist, als eine formale Sprache und zeigen Sie, dass diese
+  \NP-vollständig ist.
+\end{exercise}
+
+\begin{exercise}
+  % Complexity Theory lecture, originally somewhere from stachexchange
+  Zeigen Sie, dass folgendes Problem unentscheidbar ist: gegeben eine
+  Turing-Maschine \Smach{M} und eine Zahl $k \in \mathbb N$, ist \Smach{M} eine
+  $\mathcal{O}(n^{k})$-zeitbeschränkte Turing-Maschine?
+\end{exercise}
+
+% Maybe Sipser 7.27
+\end{document}
