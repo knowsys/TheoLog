@@ -1,0 +1,610 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{12}{\PSpace-Vollständigkeit}{24. Mai 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{\complclass{NLogSpace}}
+
+\NLogSpace: Probleme, die eine nichtdeterministische TM mit logarithmischem Speicher lösen kann
+
+
+\begin{itemize}
+\item Deterministisch lösbar in polynomieller Zeit
+\item In der Regel deutlich besser parallelisierbar als typische Probleme in \PTime
+\item Aber: seriell nicht unbedingt schneller lösbar als andere Probleme in \PTime
+\end{itemize}
+\bigskip
+
+\emph{Typisches Beispiel:}
+\Slang{Erreichbarkeit} in gerichteten Graphen
+
+
+\end{frame}
+
+\begin{frame}\frametitle{\PSpace}
+
+\PSpace-vollständige Probleme\\ = Probleme, die mindestens so schwer
+sind, wie alle anderen Probleme in \PSpace\\
+= die schwersten Probleme in \PSpace.
+\bigskip
+
+\emph{Vermutung:}\\
+Kein \PSpace-vollständiges Problem ist in NP, d.h. \PSpace
+ist echt schwerer als NP und \Scomplclass{coNP}
+\bigskip
+
+\emph{\PSpace-vollständige Probleme}
+\begin{itemize}
+\item \Slang{TrueQBF:} Wahrheit von quantifizierten Booleschen Formeln (und das Formelspiel)
+\item \Slang{Geography:} Spiel auf einem Graphen
+\end{itemize}
+
+
+\end{frame}
+
+\sectionSlide{\PSpace-Vollständigkeit}
+
+\begin{frame}\frametitle{Rückblick: \Slang{TrueQBF} in \PSpace}
+
+\theobox{Satz: \Slang{TrueQBF} ist in \PSpace.}\pause
+
+\emph{Beweis:} Durch Angabe eines (Pseudo-)Algorithmus
+
+\codebox{
+{\tt%
+\alert{01}~\textsc{TrueQBF}($F$) : \\
+\alert{02}~~~\Scode{if} $F$ "`hat keine Quantoren"' :\\
+\alert{03}~~~~~~\Scode{return} "`Aussagenlogische Auswertung von $F$"'\\
+\alert{04}~~~\Scode{else if} $F = \exists p.G$ :\\
+\alert{05}~~~~~~\Scode{return} (\textsc{TrueQBF}($G[p/\top]$) \Scode{OR} \textsc{TrueQBF}($G[p/\bot]$))\\
+\alert{06}~~~\Scode{else if} $F = \forall p.G$ :\\
+\alert{07}~~~~~~\Scode{return} (\textsc{TrueQBF}($G[p/\top]$) \Scode{AND} \textsc{TrueQBF}($G[p/\bot]$))
+}
+}\smallskip
+
+\begin{itemize}
+\item Evaluation in Zeile \texttt{03} möglich in \PSpace
+\item Rekursion in Zeilen \texttt{05} und \texttt{07} können der Reihe nach abgearbeitet werden, wobei Speicher wiederverwendet wird
+\item Jeder Rekursionsschritt benötigt polynomiellen Speicher
+\item Maximale Rekursionstiefe = Zahl der Atome (linear)\qed
+\end{itemize}
+% $\leadsto$ \PSpace-Algorithmus
+
+
+\end{frame}
+
+\begin{frame}\frametitle{\PSpace-Härte}
+
+\defbox{Ein Problem \Slang{Q} ist \redalert{\PSpace-hart} wenn
+für jedes Problem \Slang{P} in \PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{\PSpace-vollständig} wenn es \PSpace-hart ist und in \PSpace liegt.}\bigskip\pause
+
+\theobox{Satz: \Slang{TrueQBF} ist \PSpace-hart.}\pause
+
+\emph{Beweisidee:}
+\begin{itemize}
+\item Wie beim Satz von Cook/Levin stellen wir den Lauf einer Turingmaschine
+mit aussagenlogischen Atomen dar
+\item Speicher ist wie bei NP polynomiell (einfach kodierbar)
+\item Zeit ist problematisch: in \PSpace kann ein TM exponentiell lang laufen
+$\leadsto$ wir können nicht einfach für jeden Zeitschritt eine neue Version
+der Konfigurationsvariablen anlegen und jeden Übergang mit Formeln axiomatisieren
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beweisidee (Fortsetzung)}
+
+\emph{Einsichten:}
+\begin{itemize}
+\item Man kann eine komplette TM-Konfiguration in polynomiell vielen Atomen
+  kodieren (wie bei Cook-Levin)
+\item Ebenso kann man zwei oder drei Konfigurationen kodieren -- aber nicht exponentiell viele für jeden Schritt
+\item Direkte Übergänge, Start- und Endkonfiguration kann man mit Formeln axiomatisieren
+\end{itemize}\bigskip\pause
+
+\emph{Akzeptanz ausdrücken}
+\begin{itemize}
+\item Gewünschte Aussage: "`Ausgehend von der Startkonfiguration kann eine Endkonfiguration in endlich vielen Übergängen erreicht werden"'
+\item = Erreichbarkeisproblem in einem exponentiell großen Graphen
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Beweisidee (Fortsetzung)}
+
+\alert{Erreichbarkeisproblem in einem exponentiell großen Graphen}
+\bigskip\pause
+
+\emph{Lösung:} "`Middle-First-Suche"'
+\begin{itemize}
+\item Um zu prüfen, ob man von $s$ nach $t$ gelangen kann
+\item Prüfe zunächst, ob $s=t$ oder $s$ direkter Vorgänger von $t$
+\item Rate einen Punkt $m$ in der "`Mitte"' eines Pfades von $s$ nach $t$
+\item Prüfe (rekursiv) ob man von $s$ nach $m$ gelangen kann
+\item Prüfe (rekursiv) ob man von $m$ nach $t$ gelangen kann
+\end{itemize}\pause
+$\leadsto$ Anzahl der zu ratenden Mittelpunkte ist logarithmisch in Länge des Pfades\\
+$\leadsto$ Speicher kann in jedem Schritt wiederverwendet werden
+\bigskip
+
+Diesen Algorithmus kann man polynomiell in QBF kodieren
+
+\end{frame}
+
+\begin{frame}\frametitle{Alternierende Quantoren}
+
+% Wir sehen leicht, dass \PSpace-Vollständigkeit auch bei einem Sonderfall von
+% \Slang{TrueQBF} gilt:
+
+\defbox{\Slang{TrueQBF}${}_{\Slang{alt}}$ ist das Problem \Slang{TrueQBF},
+beschränkt auf QBF der Form $\exists p_1.\forall p_2.\exists p_3.\ldots\forall p_{\ell-1}.\exists p_\ell. F$, wobei $F$ in Klauselform ist.}
+
+Diese Version entspricht eher der Idee eines Spiels, bei dem Emilia und Anton abwechselnd
+Belegungen festlegen. Emilia erhält den ersten und den letzten Zug.\bigskip\pause
+
+\theobox{Satz: \Slang{TrueQBF}${}_{\Slang{alt}}$ ist \PSpace-vollständig.}
+
+\pause\emph{Beweis:} $\Slang{TrueQBF}_{\Slang{alt}}\in\PSpace$ folgt aus $\Slang{TrueQBF}\in\PSpace$.\bigskip
+
+Für die Härte zeigen wir $\Slang{TrueQBF}\leq_p\Slang{TrueQBF}_{\Slang{alt}}$:
+\begin{itemize}
+\item man fügt einfach nach Bedarf zusätzliche Quantoren ein
+\item es müssen nicht alle quantifizierten Atome in $F$ vorkommen\qed
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rückblick: Geography}
+
+\alert{Ein Kinderspiel:}
+\begin{itemize}
+\item Zwei Spieler benennen abwechselnd Städte
+\item Jede Stadt muss mit dem letzten Buchstaben der zuvor genannten beginnen
+\item Wiederholungen sind verboten
+\item Der erste Spieler, der keine Stadt mehr nennen kann, verliert
+\end{itemize}
+\smallskip
+
+\alert{Ein Mathematikerspiel:}
+\begin{itemize}
+\item Zwei Spieler markieren Knoten in einem gerichteten Graph
+\item Jeder Graph muss ein Nachfolger des vorigen sein
+\item Wiederholungen sind verboten
+\item Der erste Spieler, der keinen Knoten markieren kann, verliert
+\end{itemize}
+\smallskip
+
+% \pause
+\defbox{Entscheidungsproblem \Slang{Geography}:\\[1ex]
+\emph{Gegeben:} Ein gerichteter Graph und ein Startknoten\\
+\emph{Frage:} Hat Emilia eine Gewinnstrategie für dieses Spiel?
+}
+
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(1)}}
+
+\vspace{-1ex}
+\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}\pause
+
+\emph{Beweis:} (1) \Slang{Geography} ist in \PSpace\pause
+\smallskip
+
+Bei Startknoten $s$ und Graph $G$ erhalten wir die Antwort durch Aufruf von
+{\tt \textsc{eCanWin}($G$, $s$, $\emptyset$)}, definiert wie folgt:
+
+\codebox{
+{\tt%
+\alert{01}~\textsc{eCanWin}($G$, $n$, Visited) : \\
+\alert{02}~~~result = \Scodelit{false}\\
+\alert{03}~~~\Scode{for all} Nachfolger $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
+\alert{04}~~~~~~result = result \Scode{OR} aCannotWin($G$,$m$,Visited${}\cup\{m\}$)\\
+\alert{05}~~~\Scode{return} result\\
+~\\
+\alert{06}~\textsc{aCannotWin}($G$, $n$, Visited) : \\
+\alert{07}~~~result = \Scodelit{true}\\
+\alert{08}~~~\Scode{for all} Nachfolger $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
+\alert{09}~~~~~~result = result \Scode{AND} eCanWin($G$,$m$,Visited${}\cup\{m\}$)\\
+\alert{10}~~~\Scode{return} result
+}
+}
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(2)}}
+
+\vspace{-1ex}
+\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}\pause
+
+\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-hart\pause
+\smallskip
+
+Durch Reduktion $\Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$:
+
+Wir betrachten eine QBF $\exists p_1.\forall p_2\ldots \exists p_\ell. F$
+und konstruieren daraus einen Graphen für \Slang{Geography} \bigskip
+
+\alert{Siehe Tafel:} {\tiny (oder M. Sipser: Introduction to the Theory of Computation; 2013; Thm. 8.14)}
+\begin{itemize}
+\item Der Graph beginnt mit einer Abfolge von Rauten-Strukturen, welche die 
+Entscheidungen der Spieler darstellen: für jedes Atom $p$ gibt es dort zwei Knoten, $p_{\mytrue}$ und $p_{\myfalse}$, von denen genau einer besucht wird
+\item Es folgt eine Baumstruktur: ein Knoten für $F$, darunter ein Knoten für jede Klausel und darunter jeweils ein Knoten für jedes Literal
+\item Von jedem Literal $p$ bzw. $\neg p$ gibt es eine Kante zurück zum Knoten $p_{\mytrue}$ bzw. $p_{\myfalse}$
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(3)}}
+
+\vspace{-1ex}
+\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}
+
+\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-hart
+\smallskip
+
+Beweisidee:
+\begin{itemize}
+\item Zuerst bestimmen Anton und Emilia abwechselnd Wahrheitswerte, indem sie die Rauten
+jeweils links oder rechts durchlaufen
+\item Danach darf Anton zur Auswertung eine Klausel auswählen (die er für nicht erfüllt hält)
+\item Anschließend wählt Emilia ein Literal dieser Klausel (welches ihrer Meinung nach erfüllt ist)
+\item Emilia gewinnt, wenn das Literal wirklich erfüllt war (denn dann gibt es keinen Weg zu einem noch nicht besuchten Knoten)
+\item Anton gewinnt, wenn das Literal nicht erfüllt war (denn dann kann er den Weg noch genau einen Schritt fortsetzen)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig: Beispiel}
+
+Wir betrachten die Formel $\exists r.\forall p.\exists q.(r\vee q\vee p)\wedge(\neg p\vee q)\wedge(\neg q\vee p)$
+
+
+\begin{center}
+\scalebox{0.7}{%
+\begin{tikzpicture}[scale=1.1]
+% \draw[help lines] (0,0) grid (7,2);
+\node (rs) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<2->{fill=lightgray}}] at (0,0) {$r_s$};
+\node (r0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em,draw=black,thick] at (-1,-1) {$r_{\myfalse}$};
+\node (r1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<3->{fill=strongyellow}}] at (1,-1) {$r_{\mytrue}$};
+\node (re) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<4->{fill=lightpurple}}] at (0,-2) {$r_e$};
+
+\visible<2->{
+\node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=lightgray] at (9,-0.5) {Start};
+\node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=strongyellow] at (9,-1.1) {Emilia};
+\node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=lightpurple] at (9,-1.7) {Anton};
+}
+
+\path[->,line width=0.5mm](-1,0) edge (rs);
+
+\path[->,line width=0.5mm](rs) edge (r0);
+\path[->,line width=0.5mm](rs) edge (r1);
+\path[->,line width=0.5mm](r0) edge (re);
+\path[->,line width=0.5mm](r1) edge (re);
+
+\node (ps) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<5->{fill=strongyellow}}] at (0,-3) {$p_s$};
+\node (p0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<6->{fill=lightpurple}}] at (-1,-4) {$p_{\myfalse}$};
+\node (p1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,-4) {$p_{\mytrue}$};
+\node (pe) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<7->{fill=strongyellow}}] at (0,-5) {$p_e$};
+
+\path[->,line width=0.5mm](re) edge (ps);
+
+\path[->,line width=0.5mm](ps) edge (p0);
+\path[->,line width=0.5mm](ps) edge (p1);
+\path[->,line width=0.5mm](p0) edge (pe);
+\path[->,line width=0.5mm](p1) edge (pe);
+
+\node (qs) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<8->{fill=lightpurple}}] at (0,-6) {$q_s$};
+\node (q0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<9->{fill=strongyellow}}] at (-1,-7) {$q_{\myfalse}$};
+\node (q1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,-7) {$q_{\mytrue}$};
+\node (qe) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<10->{fill=lightpurple}}] at (0,-8) {$q_e$};
+
+\path[->,line width=0.5mm](pe) edge (qs);
+
+\path[->,line width=0.5mm](qs) edge (q0);
+\path[->,line width=0.5mm](qs) edge (q1);
+\path[->,line width=0.5mm](q0) edge (qe);
+\path[->,line width=0.5mm](q1) edge (qe);
+
+\node (Q) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<11->{fill=strongyellow}}] at (9,-7.5) {$Q$};
+
+\node (rpq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,-1) {$r\vee q \vee p$};
+
+\node (npq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<12->{fill=lightpurple}}] at (6,-4) {$\neg p\vee q$};
+
+\node (nqp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,-7) {$\neg q\vee p$};
+
+\path[->,line width=0.5mm,bend right=10](Q) edge (rpq);
+\path[->,line width=0.5mm,bend right=15](Q) edge (npq);
+\path[->,line width=0.5mm,bend right=5](Q) edge (nqp);
+
+\node (litr) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,0) {$r$};
+\node (litp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-2) {$p$};
+\node (litnp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<13->{fill=strongyellow}}] at (3,-4) {$\neg p$};
+\node (litq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-6) {$q$};
+\node (litnq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-8) {$\neg q$};
+
+\path[->,line width=0.5mm](rpq) edge (litr);
+\path[->,line width=0.5mm](rpq) edge (litp);
+\path[->,line width=0.5mm,bend right=10](rpq) edge (litq);
+
+	\path[->,line width=1.1mm,white](npq) edge (litnp);
+\path[->,line width=0.5mm](npq) edge (litnp);
+\path[->,line width=0.5mm](npq) edge (litq);
+
+\path[->,line width=0.5mm](nqp) edge (litnq);
+	\path[->,line width=1.1mm,bend right=10,white](nqp) edge (litp);
+\path[->,line width=0.5mm,bend right=10](nqp) edge (litp);
+
+\path[->,line width=0.5mm,bend right=5](litr) edge (r1);
+\path[->,line width=0.5mm,bend right=10](litp) edge (p1);
+\path[->,line width=0.5mm,bend right=10](litq) edge (q1);
+	\path[->,line width=1.1mm,bend left=20,white](litnp) edge (p0);
+\path[->,line width=0.5mm,bend left=20](litnp) edge (p0);
+	\path[->,line width=1.1mm,bend left=5,white](litnq) edge (q0);
+\path[->,line width=0.5mm,bend left=5](litnq) edge (q0);
+
+\path[->,line width=0.5mm,bend right=15](qe) edge (Q);
+\end{tikzpicture}}
+\end{center}
+
+\end{frame}
+
+\sectionSlide{Weitere Komplexitätsklassen}
+
+\begin{frame}\frametitle{Komplexität jenseits von \PSpace?}
+
+Wir haben uns auf drei Klassen konzentriert:
+\[ \PTime \subseteq \NP \subseteq \PSpace\]
+
+Ersetzt man "`polynomiell"' durch "`exponentiell"', so erhält man jenseits von $\PSpace$ ein ganz ähnliches Bild:
+\[ \ExpTime \subseteq \NExpTime \subseteq \ExpSpace\]\pause
+
+Man kann beliebig hohe Türme von Exponenten konstruieren:
+\[ \TwoExpTime \subseteq \NTwoExpTime \subseteq \complclass{2ExpSpace}\]
+\[ \complclass{3ExpTime} \subseteq \complclass{N3ExpTime} \subseteq \complclass{3ExpSpace}\]
+\[\vdots\]
+
+Vieles, was wir gelernt haben, gilt hier wie zuvor -- aber diese Klassen sind von immer
+geringerer praktischer Relevanz
+
+\end{frame}
+
+\begin{frame}\frametitle{Gibt es so schwere Probleme?}\pause
+
+Jede Klasse hat ein für sie typisches Problem: das Wortproblem
+der entsprechenden Turingmaschine
+\bigskip
+
+Jenseits von \ExpSpace gibt es nur wenige relevante Probleme.\medskip
+
+\examplebox{Beispiel: Der W3C-Standard \alert{Web Ontology Language} (OWL, Version 2)
+definiert die logische Beschreibungsspache OWL~2~DL. Logisches Schließen in dieser Sprache ist \NTwoExpTime-vollständig.
+}\pause
+
+Es gibt aber auch entscheidbare Probleme, die durch keine vielfach exponentiell 
+beschränkte TM entschieden werden: dies sind Probleme \redalert{nicht-elementarer}
+Komplexität\medskip
+
+\examplebox{Beispiel: Die Äquivalenz von regulären Ausdrücken mit einem zusätzlichen
+Komplementierungsoperator ist entscheidbar, aber nicht elementar.
+}\pause
+
+Viele schwere praktische Probleme sind einfach unentscheidbar\\[-1ex]
+{\tiny (z.B. Syntax von C++)}
+
+\end{frame}
+
+\begin{frame}\frametitle{Komplexitäten unterhalb von \PTime?}
+
+Wir haben die folgenden Komplexitäten betrachtet
+\[\LogSpace \subseteq \NLogSpace \subseteq \PTime\]
+
+Hier gibt es bereits \emph{technische Probleme:}
+\begin{itemize}
+\item TMs mit logarithmischem Speicher benötigen getrennte Ein- und Ausgabebänder
+\item Logarithmen sind nicht abgeschlossen unter polynomiellen Operationen;
+z.B. sagt uns Savitch \alert{nicht} ob $\LogSpace \stackrel{?}{=} \NLogSpace$
+\end{itemize}\pause\smallskip
+
+Will man \emph{noch kleinere Komplexitätsklassen} betrachten, dann muss man zu anderen
+Berechnungsmodellen greifen:
+\begin{itemize}
+\item Schaltkreise statt TMs ($\leadsto$ \redalert{circuit complexity})
+\item Logarithmisch zeitbeschränkte TMs mit beschränkter Parallelverarbeitung ($\leadsto$ \redalert{alternating, random access TM})
+\item Automatenmodelle ($\leadsto$ DFA, PDA, \ldots)
+\end{itemize}
+Manche der Klassen sind dann sehr stark von Details der Problemdefinition
+abhängig (wenig robust)
+
+\end{frame}
+
+\begin{frame}\frametitle{Gibt es so leichte Probleme?}
+
+Auch bei den subpolynomiellen Klassen ergeben sich in der Regel typische Probleme
+aus der Definition.
+\bigskip\pause
+
+Es gibt eine Reihe \alert{interessanter, praktisch relevanter \LogSpace-Probleme}, z.B.
+\begin{itemize}
+\item Erreichbarkeit in ungerichteten Graphen (Omar Reingold, 2005)
+\item Zwei-Färbbarkeit von Graphen
+\end{itemize}
+\bigskip\pause
+
+Es gibt auch \alert{noch einfachere praktisch relevante Probleme}, z.B.
+\begin{itemize}
+\item logische und arithmetische Operationen
+\item Beantwortung von fest vorgegebenen SQL-Anfragen auf beliebigen Datenbanken
+\item Wortprobleme bei endlichen Automaten
+\end{itemize}
+
+In diesen Fällen wird es immer schwerer, von "`Härte"' und "`Vollständigkeit"' zu sprechen
+
+\end{frame}
+
+\begin{frame}\frametitle{Komplexität und Spiele}
+
+\alert{\NP} ist eine typische Klasse für Solitaire-Spiele:
+\begin{itemize}
+\item Sudoku, Minesweeper, Tetris, \ldots
+\end{itemize}
+\bigskip\pause
+
+\alert{\PSpace} ist eine typische Klasse für Spiele, bei denen zwei Spieler
+abwechselnd eine polynomielle Zahl an Zügen durchführen:
+\begin{itemize}
+\item Geography, Reversi, Tic-Tac-Toe, aber auch: Sokoban, \ldots
+\end{itemize}
+\bigskip\pause
+
+\alert{\ExpTime} findet sich bei Spielen, bei denen man Züge rückgängig machen kann (polynomielles Spielbrett -- exponentiell viele Züge):
+\begin{itemize}
+\item Schach, Dame, Go, Stern-Halma, \ldots
+\end{itemize}
+\smallskip
+
+In jedem Fall muss man (nicht-endliche) Verallgemeinerungen der Spiele betrachten,
+um die "`wahre"' Komplexität zu sehen\\ {\tiny(Menschen spielen nicht, indem sie
+innerlich eine endliche Datenbank aller möglichen Stellungen konsultieren)}
+\smallskip\pause
+
+\narrowcentering{\large\redalert{Spiele sollten komplex sein, um lange zu motivieren}}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Und sonst so?}
+
+Es gibt viele weitere Themen in der Komplexitätstheorie
+\bigskip
+
+$\leadsto$ siehe Vorlesung "`Complexity Theory"' (Wintersemester)
+
+\end{frame}
+
+
+\sectionSlide{Halbzeit:\\Zusammenfassung und Ausblick}
+
+\begin{frame}\frametitle{Überblick Berechenbarkeit}
+
+\begin{center}
+\alert{Vorlesung 1}\\
+Hilbert in Paris $\bullet$ Die Turingmaschine $\bullet$ Church-Turing-These\\[1ex]
+\alert{Vorlesung 2}\\
+Berechenbarkeit $\bullet$ Entscheidbarkeit $\bullet$ Busy Beaver \\[1ex]
+\alert{Vorlesung 3}\\LOOP $\bullet$ WHILE $\bullet$ Turing-Mächtigkeit von WHILE \\[1ex]
+\alert{Vorlesung 4}\\Die Kraft des LOOP $\bullet$ Halteproblem $\bullet$ Reduktionen \\[1ex]
+\alert{Vorlesung 5}\\Satz von Rice $\bullet$ Semi-Entscheidbarkeit\\ Postsches Korrespondenzproblem \\[1ex]
+\alert{Vorlesung 6}\\Probleme formaler Sprachen $\bullet$ Noch unentscheidbarere Probleme\\ Euklid als Informatiker
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Überblick Komplexität}
+
+\begin{center}
+\alert{Vorlesung 7}\\
+Königsberger Brücken $\bullet$ Beschränkte TMs $\bullet$ Robuste Komplexität\ghost{en}\\[1ex]
+\alert{Vorlesung 8}\\
+Zeit vs. Raum $\bullet$ \complclass{P} und \complclass{L}  $\bullet$ Polynomielle Reduktionen \\[1ex]
+\alert{Vorlesung 9}\\
+Coles Beweis ohne Worte $\bullet$ \complclass{NP}\\$\Slang{SAT}\leq_p \Slang{Clique}\leq_p \Slang{Unabhänige Menge}$ \\[1ex]
+\alert{Vorlesung 10}\\
+$\Slang{SAT}\leq_p \Slang{Teilmengen Summe}\leq_p \Slang{Rucksack}$ \\Pseudopolynomialität $\bullet$ Fake News zu \complclass{NP} \\[1ex]
+\alert{Vorlesung 11}\\
+\complclass{NL} und Erreichbarkeit $\bullet$ Schach ist schwer $\bullet$ \PSpace und QBF \\[1ex]
+\alert{Vorlesung 12}\\
+$\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\bullet$ Spiele $\bullet$ Evaluation
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ausblick: Prädikatenlogik}
+
+\begin{center}
+\alert{Vorlesung 13}\\
+Logik ertser Stufe: Syntax und Semantik\\[1ex]
+\alert{Vorlesung 14}\\
+Unentscheidbarkeit Folgerung $\bullet$ Komplexität Model Checking \\[1ex]
+\alert{Vorlesung 15}\\
+Umformungen und Normalformen \\[1ex]
+\alert{Vorlesung 16}\\
+Schlussfolgern mit Resolution
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ausblick: Logik und mehr}
+
+\begin{center}
+\alert{Vorlesung 17}\\
+Entscheidbare Fragmente der Prädikatenlogik\\[1ex]
+\alert{Vorlesung 18}\\
+Logik höherer Ordnung \\[1ex]
+\alert{Vorlesung 19}\\
+Logik auf Wörtern und formale Sprachen \\[1ex]
+\alert{Vorlesung 20}\\
+Logik auf natürlichen Zahlen $\bullet$ Gödel\\[1ex]
+\alert{Vorlesung 21}\\
+Zusammenfassung $\bullet$ Ausblick
+\end{center}
+
+\end{frame}
+
+\sectionSlide{Evaluation}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+\Slang{TrueQBF} und \Slang{Geography} sind \PSpace-vollständig
+\bigskip
+
+Wir kennen die praktisch wichtigsten Komplexitätsklassen und jeweils typische Probleme
+\bigskip
+
+Spiele liefern interessante Beispiele komplexer Probleme
+\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Einführung in die Prädikatenlogik
+\item Entscheidbare logische Probleme
+\item Unentscheidbare logische Probleme
+\end{itemize}
+}
+
+\end{frame}
+
+
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
