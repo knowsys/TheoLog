@@ -1,0 +1,69 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% NP-Vollständigkeit
+
+\usepackage[sheetnumber=6]{theolog}
+\title{Musterlösung zu Übungsblatt~6}
+
+\usepackage{ragged2e}
+
+\begin{document}
+
+\maketitle
+
+\vspace*{0.5\baselineskip}
+\setcounter{exercise}{2}
+\justifying
+
+\begin{exercise}
+  % Folklore
+  Sei $\Sigma$ ein Alphabet und $A, B \subseteq \Sigma^{*}$.  Wir sagen, dass
+  $A$ auf $B$ in \emph{logarithmischen Platz reduzierbar ist}, und schreiben $A
+  \leq_{\ell} B$, falls es eine Many-One-Reduktion von $A$ nach $B$ gibt, die in
+  logarithmischen Platz berechenbar ist.  Zeigen Sie: gilt $A \leq_{\ell} B$ und
+  $B \leq_{\ell} C$, dann gilt auch $A \leq_{\ell} C$.
+\end{exercise}
+
+\emph{Lösung}\/: Wir zeigen, dass für zwei logspace-berechenbare Funktion $f,
+g\colon \Sigma^{*} \to \Sigma^{*}$ auch $f \circ g$ logspace-berechenbar ist.
+Seien dazu $\Smach M_{f}$ und $\Smach M_{g}$ Turing-Maschinen, die mit
+logarithmischer Platzbeschränkung die Funktionen $f$ und $g$ berechnen.
+
+Eine erste Idee, eine Turing-Maschine $\Smach M$ zu erhalten, die $f \circ g$
+berechnet, ist, zuerst $\Smach M_{g}$ auf der Eingabe aufzurufen, das
+Zwischenergebnis zu speichern, und dann $\Smach M_{f}$ auf diesem
+Zwischenergebnis laufen zu lassen.  Dieser Idee funktioniert jedoch nicht: zwar
+benutzt $\Smach M_{g}$ bei Eingabe $w \in \Sigma^{*}$ nur zusätzlich
+logarithmischen Platz zur Berechnung von $g(w)$.  Dieses Ergebnis kann jedoch
+polynomiell groß sein in der Länge von $w$ -- und damit exponentiell in der
+Größe des zur Verfügung stehenden Platzes, der ja logarithmisch in der Größe von
+$w$ beschränkt ist.  Damit kann das Zwischenergebnis $g(w)$ nicht vollständig
+gespeichert werden und dieser Ansatz funktioniert nicht.
+
+Wir können aber diese Idee so modifizieren, dass sie funktioniert!  Dazu
+berechnen wir die Zeichen von $g(w)$ \enquote{on demand}: wir verändern $\Smach
+M_{g}$ so, dass sie nur das $k$-te Symbol von $g(w)$ berechnet.  Dies kann
+erreicht werden, indem $\Smach M_{g}$ mit einem weiteren Zähler $p$ versehen
+wird, der um eins hochgezählt wird, wann immer $\Smach M_{g}$ ein Symbol
+ausgeben möchte.  Ist der Wert von $p$ gleich $k$, gibt $\Smach M_{g}$ das
+entsprechende Zeichen aus und hält an.
+
+Um $f(g(w))$ in logspace zu berechnen, gehen wir nun wie folgt vor: wir
+simulieren die Berechnung von $\Smach M_{f}$.  Wann immer diese Berechnung ein
+Symbol von $g(w)$ lesen möchte, simulieren wir $\Smach M_{g}$ wie oben
+beschrieben.  Beide Simulationen können in logspace durchgeführt werden, und
+damit kann auch $f(g(w))$ in logspace berechnet werden.
+
+Diese Berechnung von $f(g(w))$ ist recht ineffizient, da Symbole von $g(w)$
+möglicherweise mehrfach berechnet werden.  Wir haben aber potentiell nicht genug
+Platz, um das gesamte Wort $g(w)$ zu speichern.  Wir tauschen also
+\enquote{Platz gegen Zeit}.
+
+\end{document}
+
+%  LocalWords:  logspace
