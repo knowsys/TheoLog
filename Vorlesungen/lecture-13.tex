@@ -1,0 +1,689 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{13}{Prädikatenlogik: Syntax und Semantik}{26. Mai 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Komplexität und Spiele}
+
+\alert{\NP} ist eine typische Klasse für Solitaire-Spiele:
+\begin{itemize}
+\item Sudoku, Minesweeper, Tetris, \ldots
+\end{itemize}
+\bigskip\pause
+
+\alert{\PSpace} ist eine typische Klasse für Spiele, bei denen zwei Spieler
+abwechselnd eine polynomielle Zahl an Zügen durchführen:
+\begin{itemize}
+\item Geography, Reversi, Tic-Tac-Toe, aber auch: Sokoban, \ldots
+\end{itemize}
+\bigskip\pause
+
+\alert{\ExpTime} findet sich bei Spielen, bei denen man Züge rückgängig machen kann (polynomielles Spielbrett -- exponentiell viele Züge):
+\begin{itemize}
+\item Schach, Dame, Go, Stern-Halma, \ldots
+\end{itemize}
+\smallskip
+
+In jedem Fall muss man (nicht-endliche) Verallgemeinerungen der Spiele betrachten,
+um die "`wahre"' Komplexität zu sehen\\ {\tiny(Menschen spielen nicht, indem sie
+innerlich eine endliche Datenbank aller möglichen Stellungen konsultieren)}
+\smallskip\pause
+
+\narrowcentering{\large\redalert{Spiele sollten komplex sein, um lange zu motivieren}}
+
+
+\end{frame}
+
+\sectionSlide{Halbzeit:\\Zusammenfassung und Ausblick}
+
+\begin{frame}\frametitle{Überblick Berechenbarkeit}
+
+\begin{center}
+\alert{Vorlesung 1}\\
+Hilbert in Paris $\bullet$ Die Turingmaschine $\bullet$ Church-Turing-These\\[1ex]
+\alert{Vorlesung 2}\\
+Berechenbarkeit $\bullet$ Entscheidbarkeit $\bullet$ Busy Beaver \\[1ex]
+\alert{Vorlesung 3}\\LOOP $\bullet$ WHILE $\bullet$ Turing-Mächtigkeit von WHILE \\[1ex]
+\alert{Vorlesung 4}\\Die Kraft des LOOP $\bullet$ Halteproblem $\bullet$ Reduktionen \\[1ex]
+\alert{Vorlesung 5}\\Satz von Rice $\bullet$ Semi-Entscheidbarkeit\\ Postsches Korrespondenzproblem \\[1ex]
+\alert{Vorlesung 6}\\Probleme formaler Sprachen $\bullet$ Noch unentscheidbarere Probleme\\ Euklid als Informatiker
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Überblick Komplexität}
+
+\begin{center}
+\alert{Vorlesung 7}\\
+Königsberger Brücken $\bullet$ Beschränkte TMs $\bullet$ Robuste Komplexität\ghost{en}\\[1ex]
+\alert{Vorlesung 8}\\
+Zeit vs. Raum $\bullet$ \complclass{P} und \complclass{L}  $\bullet$ Polynomielle Reduktionen \\[1ex]
+\alert{Vorlesung 9}\\
+Coles Beweis ohne Worte $\bullet$ \complclass{NP}\\$\Slang{SAT}\leq_p \Slang{Clique}\leq_p \Slang{Unabhänige Menge}$ \\[1ex]
+\alert{Vorlesung 10}\\
+$\Slang{SAT}\leq_p \Slang{Teilmengen Summe}\leq_p \Slang{Rucksack}$ \\Pseudopolynomialität $\bullet$ Fake News zu \complclass{NP} \\[1ex]
+\alert{Vorlesung 11}\\
+\complclass{NL} und Erreichbarkeit $\bullet$ Schach ist schwer $\bullet$ \PSpace und QBF \\[1ex]
+\alert{Vorlesung 12}\\
+$\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\bullet$ Spiele $\bullet$ Evaluation
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ausblick: Prädikatenlogik}
+
+\begin{center}
+\alert{Vorlesung 13}\\
+Logik ertser Stufe: Syntax und Semantik\\[1ex]
+\alert{Vorlesung 14}\\
+Unentscheidbarkeit Folgerung $\bullet$ Komplexität Model Checking \\[1ex]
+\alert{Vorlesung 15}\\
+Umformungen und Normalformen \\[1ex]
+\alert{Vorlesung 16}\\
+Schlussfolgern mit Resolution
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ausblick: Logik und mehr}
+
+\begin{center}
+\alert{Vorlesung 17}\\
+Entscheidbare Fragmente der Prädikatenlogik\\[1ex]
+\alert{Vorlesung 18}\\
+Logik höherer Ordnung \\[1ex]
+\alert{Vorlesung 19}\\
+Logik auf Wörtern und formale Sprachen \\[1ex]
+\alert{Vorlesung 20}\\
+Logik auf natürlichen Zahlen $\bullet$ Gödel\\[1ex]
+\alert{Vorlesung 21}\\
+Zusammenfassung $\bullet$ Ausblick
+\end{center}
+
+\end{frame}
+
+\sectionSlide{Prädikatenlogik}
+
+\begin{frame}\frametitle{Logik}
+
+\begin{center}
+Aristoteles (384--324 v.Chr.):\\[1cm]
+
+"`Alle Menschen sind sterblich."'\\
+"`Sokrates ist ein Mensch."'\\
+\rule{7cm}{1pt}
+
+"`Also ist Sokrates sterblich."'
+
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Gut, aber in der Informatik?}
+
+Wozu lehrt man Informatiker\_innen Logik?
+\begin{itemize}
+\item \alert{Verifikation von Software:} Logik als Spezifikationssprache gewünschter Eigenschaften
+\item \alert{Künstliche Intelligenz:} Logik als Lehre vom folgerichtigen Denken
+\item \alert{Optimierung:} Logisches Schließen als Suche nach Lösungen komplexer Probleme
+\item \alert{Datenverwaltung:} Logik als eindeutig definiertes Format für Daten und Anfragen
+\item \alert{Wissensrepräsentation:} Logik zur Darstellung und Anwendung von menschlichem Wissen in Form von Regeln, Taxonomien und Ontologien
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rückblick: Syntax der Aussagenlogik}
+
+In der Aussagenlogik gibt es eine abzählbar unendliche Menge $\Slang{P}$ von
+\redalert{atomaren Aussagen} (auch bekannt als: \redalert{aussagenlogische Variablen}, \redalert{Propositionen} oder schlicht \redalert{Atome})
+\medskip
+
+\defbox{Die Menge der \redalert{aussagenlogischen Formeln} ist induktiv\footnote{Das bedeutet: Die Definition ist selbstbezüglich und soll die kleinste\\ Menge an Formeln beschreiben, die alle Bedingungen erfüllen.} definiert:
+\begin{itemize}
+\item Jedes Atom $p\in\Slang{P}$ ist eine aussagenlogische Formel
+\item Wenn $F$ und $G$ aussagenlogische Formeln sind, so auch:
+	\begin{itemize}
+	\item $\neg F$: \redalert{Negation}, "`nicht $F$"'
+	\item $(F\wedge G)$: \redalert{Konjunktion}, "`$F$ und $G$"'
+	\item $(F\vee G)$: \redalert{Disjunktion}, "`$F$ oder $G$"'
+	\item $(F\to G)$: \redalert{Implikation}, "`$F$ impliziert $G$"'
+	\item $(F\leftrightarrow G)$: \redalert{Äquivalenz}, "`$F$ ist äquivalent zu $G$"'
+	\end{itemize}
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rückblick: Semantik der Aussagenlogik}
+
+Eine aussagenlogische Formel kann wahr oder falsch sein, je nachdem,
+wie man die atomaren Aussagen interpretiert. Dazu verwenden wir eine
+\redalert{Wertzuweisung} $w:\Slang{P}\to\{\mytrue,\myfalse\}$.
+\smallskip
+
+\defbox{Eine Wertzuweisung $w$ \redalert{erfüllt} eine Formel $F$, in Symbolen \redalert{$w\models F$}, wenn
+eine der folgenden rekursiven Bedingungen gilt:\smallskip
+
+{\footnotesize
+\narrowcentering{\begin{tabular}{rll}
+\rowcolor{darkred!70!gray}
+\textcolor{white}{Form von $F$} & \textcolor{white}{$w\models F$ wenn:} & \textcolor{white}{$w\not\models F$ wenn:}\\
+$F\in \Slang{P}$: & $w(F)=\mytrue$ & $w(F)=\myfalse$\\
+\rowcolor{lightred!20}
+$F=\neg G$ & $w\not\models G$ & $w\models G$\\
+$F=(G_1\wedge G_2)$ & $w\models G_1$ und $w\models G_2$ & $w\not\models G_1$ oder $w\not\models G_2$\\
+\rowcolor{lightred!20}
+$F=(G_1\vee G_2)$ & $w\models G_1$ oder $w\models G_2$ & $w\not\models G_1$ und $w\not\models G_2$\\
+$F=(G_1\to G_2)$ & $w\not\models G_1$ oder $w\models G_2$ & $w\models G_1$ und $w\not\models G_2$\\
+\rowcolor{lightred!20}
+$F=(G_1\leftrightarrow G_2)$ & $w\models G_1$ und $w\models G_2$ & $w\models G_1$ und $w\not\models G_2$\\%[-1ex]
+\rowcolor{lightred!20}
+	& \multicolumn{1}{c}{\raisebox{1ex}{oder}} & \multicolumn{1}{c}{\raisebox{1ex}{oder}} \\[-2ex]
+\rowcolor{lightred!20}
+	& $w\not\models G_1$ und $w\not\models G_2$ & $w\not\models G_1$ und $w\models G_2$\\[-1ex]
+\\[-1.5ex]
+\end{tabular}}}
+
+Dabei bedeutet "`A oder B"' immer "`A oder B oder beides"'.
+}
+
+\end{frame}
+
+% \begin{frame}\frametitle{Wo ist er Sinn?}
+% 
+% \begin{itemize}
+% \item Atomare Aussagen haben keine logische Bedeutung
+% \item Wertzuweisungen sind beliebig
+% \end{itemize}
+% Was kann uns Logik dann überhaupt sagen?
+% \pause\bigskip
+% 
+% Es geht um die Beziehung von \alert{Annahmen} und \alert{Schlussfolgerungen}, d.h. um \alert{logisches Schließen}:
+% \begin{itemize}
+% \item Allgemein betrachten wir alle möglichen Wertzuweisungen
+% \item Wenn wir eine Formel als wahr annehmen, dann beschränken wir damit die möglichen Wertzuweisungen {\tiny da wir nur noch Wertezuweisungen zulassen, welche die Annahem wahr machen}
+% \item Je weniger Wertzuweisungen man betrachtet, desto mehr Formeln sind 
+% \end{itemize}
+% 
+% 
+% \end{frame}
+
+
+
+\begin{frame}\frametitle{Von Aussagen- zu Prädikatenlogik}
+
+Die Prädikatenlogik gibt atomaren Aussagen eine innere Struktur:
+\begin{itemize}
+\item aus "`$\,p_{\textsf{Soktrates-ist-ein-Mensch}}\!$"' wird
+\item "`$\textsf{istMensch}(\textsf{sokrates})$"'
+\end{itemize}\bigskip\pause
+
+Dadurch können mehrere Dinge die selbe Eigenschaft haben:
+\[ \text{istMensch}(\text{sokrates})\quad \text{istMensch}(\text{emilia})\quad \text{istMensch}(\text{anton})\quad\cdots\]
+
+\pause Für allgemeine Aussagen über die Dinge, die eine Eigenschaft haben, gibt es zwei
+\alert{Quantoren:}
+\begin{itemize}
+\item \redalert{Existenzquantor $\exists$}: Mindestens ein Ding hat die Eigenschaft
+\item \redalert{Allquantor $\forall$}: Alle Dinge haben die Eigenschaft
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele}
+
+\alert{"`Jeder Mensch ist sterblich."'}
+\[ \forall x.\big(\textsf{istMensch}(x)\to\textsf{istSterblich}(x)\big)\]
+
+\pause\alert{"`Es ist nicht alles Gold was glänzt."'}\pause
+\begin{center}\begin{minipage}{6.5cm}
+\begin{enumerate}[(a)]
+\item $\forall x.\big(\textsf{glänzt}(x)\wedge\neg\textsf{istGold}(x)\big)$ \onslide<4->{\textcolor{darkred}{~~~falsch}}
+\item $\forall x.\big(\textsf{glänzt}(x)\to\neg\textsf{istGold}(x)\big)$ \onslide<4->{\textcolor{darkred}{~~~falsch}}
+\item $\neg\forall x.\big(\textsf{glänzt}(x)\to\textsf{istGold}(x)\big)$ \onslide<4->{\textcolor{darkgreen}{~~~richtig}}
+\item $\exists x.\big(\textsf{glänzt}(x)\wedge\neg\textsf{istGold}(x)\big)$ \onslide<4->{\textcolor{darkgreen}{~~~richtig}}
+\end{enumerate}\end{minipage}\end{center}
+% \[ \neg\forall x.\big(\textsf{glänzt}(x)\to\textsf{istGold}(x)\big)\]
+% bzw. äquivalent
+% \[ \exists x.\big(\textsf{glänzt}(x)\wedge\neg\textsf{istGold}(x)\big)\]
+
+\pause\pause\bigskip
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ \textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Intuitive Semantik: Logelei}
+
+In einem entlegenen Inselreich gibt es zwei Arten von Menschen:
+\begin{itemize}
+\item die einen (Typ W) sagen stets die Wahrheit
+\item die anderen (Typ L) lügen immer
+\end{itemize}
+\bigskip\pause
+
+Wir besuchen einige der Inseln und fragen die Einheimischen
+nach dem Typ der Bewohner dort.\pause
+
+\begin{itemize}
+\item Auf \redalert{Insel A} antwortet jeder der Bewohner:\\ \alert{"`Wir sind hier alle vom gleichen Typ."'}\\
+\begin{itemize}
+\item Stimmt das? Und wenn ja, von welchem Typ sind sie?
+\end{itemize}\pause
+\item Auf \redalert{Insel B} antwortet jeder der Bewohner:\\ \alert{"`Hier gibt es einige vom Typ W und einige vom Typ L."'}
+\begin{itemize}
+\item Was sagt uns das über die Typen der Bewohner von B?
+\end{itemize}
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Prädikatenlogik: Syntax (1)}
+
+In der Aussagenlogik gab es eine unendliche Menge von Atomen.\pause 
+\medskip
+
+In der Prädikatenlogik betrachten wir stattdessen mehrere Mengen:%
+
+\anybox{strongyellow}{\vspace{-1ex}
+\begin{itemize}
+\item Eine Menge $\Slang{V}$ von \redalert{Variablen} $x$, $y$, $z$, \ldots
+\item Eine Menge $\Slang{C}$ von \redalert{Konstanten} $a$, $b$, $c$, \ldots
+\item Eine Menge $\Slang{P}$ von \redalert{Prädikatensymbolen} $p$, $q$, $r$, \ldots \\
+jedes Prädikat hat eine \redalert{Stelligkeit} $\geq 0$ (auch \redalert{Arität} genannt)
+\end{itemize}
+Variablen und Konstanten werden auch \redalert{Terme} genannt.}
+
+Diese Mengen sind:
+\begin{enumerate}[(1)]
+\item \alert{abzählbar unendlich} (d.h. wir haben immer ausreichend Symbole jeden Typs
+zur Verfügung)
+\item \alert{disjunkt} (d.h. es ist stets klar, welcher Art ein Symbol ist)
+\end{enumerate}\pause 
+
+\defbox{Ein prädikatenlogisches \redalert{Atom} ist ein Ausdruck $p(t_1,\ldots,t_n)$
+für ein $n$-stelliges Prädikatensymbol $p\in\Slang{P}$ und Terme $t_1,\ldots,t_n\in\Slang{V}\cup\Slang{C}$.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Prädikatenlogik: Syntax (2)}
+
+Formeln werden jetzt wie in der Aussagenlogik aus Atomen aufgebaut:
+
+\defbox{Die Menge der \redalert{prädikatenlogische Formeln} ist induktiv definiert:
+\begin{itemize}
+\item Jedes Atom $p(t_1,\ldots,t_n)$ ist eine prädikatenlogische Formel
+\item Wenn $x\in\Slang{V}$ eine Variable und $F$ und $G$ prädikatenlogische Formeln sind, dann sind auch die folgenden prädikatenlogische Formeln:
+	\begin{itemize}
+	\item $\neg F$: \redalert{Negation}, "`nicht $F$"'
+	\item $(F\wedge G)$: \redalert{Konjunktion}, "`$F$ und $G$"'
+	\item $(F\vee G)$: \redalert{Disjunktion}, "`$F$ oder $G$"'
+	\item $(F\to G)$: \redalert{Implikation}, "`$F$ impliziert $G$"'
+	\item $(F\leftrightarrow G)$: \redalert{Äquivalenz}, "`$F$ ist äquivalent zu $G$"'
+	\item $\exists x. F$: \redalert{Existenzquantor}, "`für ein $x$ gilt $F$"'
+	\item $\forall x. F$: \redalert{Allquantor}, "`für alle $x$ gilt $F$"'
+	\end{itemize}
+\end{itemize}
+}
+
+\end{frame}
+\begin{frame}\frametitle{Funktionssymbole}
+
+\emph{Anmerkung:} Oft werden in der Prädikatenlogik Funktionssymbole
+betrachtet, die in Termen (zusätzlich zu Variablen und Konstanten)
+vorkommen dürfen.
+\bigskip
+
+Wir verzichten hier vorerst darauf, da
+\begin{itemize}
+\item dies die Definition komplexer (und eventuel verwirrender) macht,
+\item man damit keine zusätzliche Ausdruckstärke erhält und
+\item wir diese Erweiterung für spezielle Anwendungen leicht auch später noch einführen können.
+\end{itemize}
+
+\end{frame}
+\begin{frame}\frametitle{Konventionen und Vereinfachungen}
+
+Wir erlauben folgende \alert{Vereinfachungen der Syntax:}\pause
+\begin{enumerate}[(1)]
+\item Bei nullstelligen Prädikatensymbolen lassen wir die (leeren) Klammern weg.\\
+Beispiel: wir schreiben $(p\to q)$ anstelle von $(p()\to q())$\pause
+%
+\item Die äußersten Klammern einer Formel dürfen weggelassen werden.\\
+Beispiel: wir schreiben $p\to q$ statt $(p\to q)$\pause
+%
+\item Klammern innerhalb geschachtelter Konjunktionen und Disjunktionen dürfen
+weggelassen werden.\\
+Beispiel: wir schreiben $p\wedge q\wedge r$ statt $p\wedge (q\wedge r)$\pause
+%
+\item Hintereinander vorkommende Quantoren gleicher Art werden zusammengefasst, wobei man die Variablen als Liste angibt.\\
+Beispiel: wir schreiben $\forall x,x'.\exists y,y'.(p(x,x')\to p(y,y'))$ statt $\forall x.\forall x'.\exists y.\exists y'.(p(x,x')\to p(y,y'))$\pause
+\end{enumerate}
+
+\redalert{Ansonsten schreiben wir Formel immer gemäß der formalen Syntax, einschließlich aller Klammern.}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Teilformeln}
+
+\defbox{Die \redalert{Teilformeln} einer Formel sind alle Teilausdrücke
+der Formel, welche selbst Formeln sind.}
+
+Die Menge der Teilformeln ist eindeutig bestimmt, wenn man der formalen 
+Definition der Formel folgt.
+
+\examplebox{Beispiel: Die Teilformeln von $\forall x.(p(x)\vee (q(x)\vee r(x)))$ sind
+$(p(x)\vee (q(x)\vee r(x)))$, $(q(x)\vee r(x))$, $p(x)$, $q(x)$, $r(x)$ sowie die Formel selbst, aber nicht $p(x)\vee (q(x)$ oder $\forall x.(p(x)$.}
+
+\pause\emph{Anmerkung:} Lässt man manche Klammern zur Vereinfachung der Syntax weg, dann 
+sind die Teilfomeln nicht mehr eineutig bestimmt.
+
+\examplebox{Beispiel: $\forall x.(p(x)\vee q(x)\vee r(x))$  könnte sowohl
+$\forall x.(p(x)\vee (q(x)\vee r(x)))$ als auch $\forall x.((p(x)\vee q(x))\vee r(x))$
+bezeichnen, was zu unterschiedlichen Teilformenl führt.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Freie und gebundene Variablenvorkommen}
+
+Eine Variable kann in einer Formel entweder \alert{frei} oder \alert{gebunden}
+vorkommen:
+
+\defbox{Die \redalert{freien Vorkommen} von Variablen in einer Formel sind rekursiv wie folgt definiert:
+\begin{itemize}
+\item In einem Atom sind alle Vorkommen von Variablen frei.
+\item Die freien Vorkommen in $\neg F$ sind die selben wie in $F$
+\item Die freien Vorkommen in $(F\wedge G)$, $(F\vee G)$, $(F\to G)$ und
+$(F\leftrightarrow G)$ sind alle freien Vorkommen aus $F$ und $G$
+\item Die freien Vorkommen in $\forall x.F$ und $\exists x.F$ sind die 
+selben wie in $F$, ohne die Vorkommen von $x$ in $F$
+\end{itemize}
+Damit sind Vorkommen von Variablen $x$ genau dann \redalert{gebunden}
+wenn sie im Bereich eines Quantors auftauchen.
+}\pause
+
+\examplebox{Beispiel: Eine Variable kann gleichzietig frei und gebunden in einer Formel 
+auftauchen, wie z.B. $x$ in $p(x)\wedge \exists x.q(x)$.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Offene und geschlossene Formeln}
+
+\defbox{Formeln ohne freie Vorkommen von Variablen heißen\\\redalert{geschlossene Formeln} oder \redalert{Sätze}.}
+
+\bigskip\emph{Anmerkung:} Eigentlich würde man sich oft gern auf Sätze beschränken (da sie 
+geschlossene Aussagen darstellen).
+
+\smallskip
+Leider muss man sich dennoch mit
+offenen Formeln beschäftigen, weil diese auftauchen, sobald man die Teilformeln
+einer geschlossenen Formeln anschaut (dies tun wir in  vielen Defintionen und
+Beweisen).\bigskip
+
+\defbox{Formeln mit freien Vorkommen von Variablen heißen\\ \redalert{offene Formeln}.}
+
+
+\end{frame}
+
+\sectionSlide{Semantik der Prädikatenlogik}
+
+\begin{frame}\frametitle{Atome interpretieren}
+
+\emph{Grundgedanke:} Der Wahrheitswert von Formeln sollte sich 
+wie in der Aussagenlogik aus dem Wahrheitswert von Atomen ergeben.
+\bigskip
+
+\examplebox{Beispiel: Ein mögliches Atom ist $p(a,x)$ mit $a\in\Slang{C}$ und $x\in\Slang{V}$. Wie soll diesem Ausdruck ein Wahrheitswert zugeordnet werden?}
+
+\alert{Dazu müssen drei Fragen beantwortet werden:}
+\begin{itemize}
+\item Was bedeutet $p$?\\
+	\visible<2->{Prädikatssymbole stehen für Relationen gleicher Stelligkeit}
+\item Was bedeutet $a$?\\
+	\visible<3->{Konstanten stehen für Elemente, die in Relationen stehen \ghost{können}}
+\item Was bedeutet $x$?\\
+	\visible<4->{Variablen stehen auch für Elemente, aber ihre verschiedenen Vorkommen können für verschiedene Elemente stehen}
+\end{itemize}
+
+\visible<5->{\alert{
+Ein Atom $p(a,x)$ ist also wahr, wenn zwischen dem Element, für das $a$ steht, und dem Element, für das $x$ steht, die Relation besteht, für die $p$ steht.}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Interpretationen}
+
+Die Wertzuweisung der Aussagenlogik wird also durch \alert{Interpretationen}
+und \alert{Zuweisungen} für Variablen ersetzt.
+\smallskip
+
+\defbox{Eine \redalert{Interpretation} $\Inter$ ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elemente $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
+\begin{itemize}
+\item jede Konstante $a\in\Slang{C}$ auf ein Element $a^\Inter\in\Delta^\Inter$ und
+\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\in(\Delta^\Inter)^n$
+\end{itemize}
+abbildet.
+}
+
+\defbox{Eine \redalert{Zuweisung} $\Zuweisung$ für eine Interpretation $\Inter$ ist eine Funktion $\Zuweisung:\Slang{V}\to\Delta^\Inter$, die Variablen auf Elemente der Domäne abbildet. Für $x\in\Slang{V}$ und $\delta\in\Delta^\Inter$ schreiben wir \redalert{$\Zuweisung [x\mapsto \delta]$} für die Zuweisung, die $x$ auf $\delta$ und alle anderen Variablen $y\neq x$ auf $\Zuweisung(y)$ abbildet.}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beispiel (1)}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ \textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten eine Interpretation $\Inter$ mit
+\begin{itemize}
+\item $\Delta^\Inter=\mathbb{R}$ die Menge der reellen Zahlen
+\item $\textsf{null}^\Inter=0$
+\item $\textsf{NatNum}^\Inter=\mathbb{N}\subseteq\mathbb{R}$ die Menge der natürlichen Zahlen
+\item $\textsf{succ}^\Inter=\{\tuple{d,e}\mid d,e\in\mathbb{R},d<e\}$
+\end{itemize}
+
+Unter dieser Interpretation ist das Atom $\textsf{NatNum}(\textsf{null})$ wahr, da
+$\textsf{null}^\Inter\in\textsf{NatNum}^\Inter$ gilt.
+\smallskip
+
+Wir schreiben: $\textsf{NatNum}(\textsf{null})^\Inter=\mytrue$.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beispiel (2)}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ \textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten für die vorherige Interpretation $\Inter$ 
+eine Zuweisung $\Zuweisung$ mit
+\begin{itemize}
+\item $\Zuweisung(x)=42$
+\item $\Zuweisung(y)=5$
+\end{itemize}
+
+Unter dieser Interpretation und Zuweisung ist das Atom $\textsf{succ}(x,y)$ falsch, da
+$\tuple{\Zuweisung(x),\Zuweisung(y)}\notin\textsf{succ}^\Inter$ gilt.
+\smallskip
+
+Wir schreiben: $\textsf{succ}(x,y)^{\Inter,\Zuweisung}=\myfalse$.
+\bigskip
+
+\anybox{strongyellow}{Anmerkung: Allgemein geben wir bei Interpretationen und Zuweisungen
+nur die Belegungen an, die für die Auswertung einer gegebenen Formel relevant sind.
+Zum Beispiel müssen wir $\Zuweisung$ nicht für alle $z\in\Slang{V}$ definieren.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Atome interpretieren}
+
+Wir bestimmen dementsprechend die Wahrheit von Atomen unter einer Interpretation und
+Zuweisung:
+
+\defbox{Sei $\Inter$ eine Interpretation und $\Zuweisung$ eine Zuweisung für $\Inter$.
+\begin{itemize}
+\item Für eine Konstante $c$ definieren wir $c^{\Inter,\Zuweisung}=c^\Inter$
+\item Für eine Variable $x$ definieren wir $x^{\Inter,\Zuweisung}=\Zuweisung(x)$
+\end{itemize}
+Für ein Atom $p(t_1,\ldots,t_n)$ setzen wir sodann:
+\begin{itemize}
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\mytrue$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\in p^\Inter$ und
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\myfalse$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\notin p^\Inter$.
+\end{itemize}
+}\bigskip\pause
+
+\anybox{strongyellow}{
+\emph{Achtung!} Wir verwenden Interpretationen und Zuweisungen auf zwei Ebenen, 
+die man nicht verwecheln sollte:
+\begin{enumerate}[(1)]
+\item um Terme $t$ auf Elemente $t^{\Inter,\Zuweisung}\in\Delta^\Inter$ abzubilden
+\item um Atome $\alpha$ auf Wahrheitswerte $\alpha^{\Inter,\Zuweisung}\in\{\myfalse,\mytrue\}$ abzubilden
+\end{enumerate}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Formeln interpretieren}
+
+% Die Wahrheit ganzer Formeln ergibt sich nun aus der Wahrheit ihrer Atome:
+
+\defbox{Eine Interpretation $\Inter$ und eine Zuweisung $\Zuweisung$ für
+$\Inter$ \redalert{erfüllen} eine Formel $F$, in Symbolen \redalert{$\Inter,\Zuweisung\models F$}, wenn
+eine der folgenden rekursiven Bedingungen gilt:%\smallskip
+
+\narrowcentering{\footnotesize\begin{tabular}{rll}
+\rowcolor{darkred!70!gray}
+\textcolor{white}{Formel $F$} & \textcolor{white}{$\Inter,\Zuweisung\models F$ wenn:} & \textcolor{white}{$\Inter,\Zuweisung\not\models F$ wenn:}\\
+$F$ Atom & $F^{\Inter,\Zuweisung}=\mytrue$ & $F^{\Inter,\Zuweisung}=\myfalse$\\
+\rowcolor{lightred!20}
+$\neg G$ & $\Inter,\Zuweisung\not\models G$ & $\Inter,\Zuweisung\models G$\\
+$(G_1\wedge G_2)$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ oder $\Inter,\Zuweisung\not\models G_2$\\
+\rowcolor{lightred!20}
+$(G_1\vee G_2)$ & $\Inter,\Zuweisung\models G_1$ oder $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\
+$(G_1\,{\to}\, G_2)$ & $\Inter,\Zuweisung\not\models G_1$ oder $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\
+\rowcolor{lightred!20}
+$(G_1\,{\leftrightarrow}\,G_2)$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\%[-1ex]
+\rowcolor{lightred!20}
+	& \multicolumn{1}{c}{\raisebox{1ex}{oder}} & \multicolumn{1}{c}{\raisebox{1ex}{oder}} \\[-2ex]
+\rowcolor{lightred!20}
+	& $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\not\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\models G_2$\\
+%
+$\forall x.G$ & $\Inter,\Zuweisung[x\mapsto\delta]\models G$ & $\Inter,\Zuweisung[x\mapsto\delta]\not\models G$\\[-0.5ex]
+ & für alle $\delta\in\Delta^\Inter$ & für mindestens ein $\delta\in\Delta^\Inter$
+\\
+%
+\rowcolor{lightred!20}
+$\exists x.G$ & $\Inter,\Zuweisung[x\mapsto\delta]\models G$ & $\Inter,\Zuweisung[x\mapsto\delta]\not\models G$\\[-0.5ex]
+\rowcolor{lightred!20}
+ & für mindestens ein $\delta\in\Delta^\Inter$ & für alle $\delta\in\Delta^\Inter$
+	\\[-1ex]
+\\[-3.25ex]
+\end{tabular}}
+
+~
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ F=\textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten eine Interpretation $\Inter$ mit
+\begin{itemize}
+\item $\Delta^\Inter=\mathbb{R}$ die Menge der reellen Zahlen
+\item $\textsf{null}^\Inter=0$
+\item $\textsf{NatNum}^\Inter=\mathbb{N}\subseteq\mathbb{R}$ die Menge der natürlichen Zahlen
+\item $\textsf{succ}^\Inter=\{\tuple{d,e}\mid d,e\in\mathbb{R},d<e\}$
+\end{itemize}\bigskip
+
+Dann gilt $\Inter\models F$ (unter jeder beliebigen Zuweisung).
+
+\anybox{strongyellow}{Notation: Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Intuitive Semantik: Logelei}
+
+Wir kehren zurück auf das Inselreich mit Menschen von
+Typ W und Typ L.
+\bigskip
+
+Smullyan\footnote{Raymond Smullyan: A Beginner's Guide to Mathematical Logic, Dover 2014} fragte die Bewohner nach ihren Rauchgewohnheiten.\pause
+
+\begin{itemize}
+\item Auf \redalert{Insel A} antwortete jeder der Bewohner:\\ \alert{"`Jeder, der hier von Typ W ist, raucht."'}\\
+%
+\item Auf \redalert{Insel B} antwortete jeder der Bewohner:\\ \alert{"`Einige von uns hier sind von Typ L und rauchen."'}
+%
+\item Auf \redalert{Insel C} antwortete jeder der Bewohner:\\ \alert{"`Falls ich rauche, dann raucht jeder hier."'}
+%
+\item Auf \redalert{Insel D} antwortete jeder der Bewohner:\\ \alert{"`Einige hier rauchen, aber ich nicht."'}
+\end{itemize}
+
+Was können wir jeweils über die Bewohner und ihre Gewohnheiten schließen?
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Prädikatenlogik verallgemeinert Aussagenlogik mit $n$-stelligen Prädikaten, Termen und Quantoren
+\bigskip
+
+Zur Auswertung von Formeln benötigen wir eine Interpretation und eine Variablenzuweisung
+\bigskip
+
+% Spiele liefern interessante Beispiele komplexer Probleme
+% \bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Logisches Schließen
+\item Entscheidbare logische Probleme
+\item Unentscheidbare logische Probleme
+\end{itemize}
+}
+
+\end{frame}
+
+
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
