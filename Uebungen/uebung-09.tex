@@ -1,0 +1,139 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% Fun with Complexity Theory
+
+\usepackage[sheetnumber=9]{theolog}
+
+\begin{document}
+
+\maketitle
+
+\begin{mdframed}
+  Die folgenden Aufgaben werden nicht in den Übungen besprochen und dienen der
+  Selbstkontrolle.
+
+  \renewcommand{\theexercise}{\Roman{exercise}}
+  \setcounter{exercise}{0}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Zeigen Sie die folgenden Aussagen:
+    \begin{enumerate}
+    \item Es gilt $\{\phi\} \models \psi$ genau dann, wenn $\phi \to \psi$
+      allgemeingültig ist.
+    \item Es gilt $\{\phi_{1}, \dots, \phi_{k}\} \models \psi$ genau dann, wenn
+      $\bigwedge_{i=1}^{k} \phi_{i} \to \psi$ allgemeingültig ist.
+    \end{enumerate}
+  \end{exercise}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Geben Sie eine erfüllbare Formel in Prädikatenlogik mit Gleichheit an, die
+    kein endliches Modell besitzt.
+  \end{exercise}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Seien $\phi$, $\psi$ Formeln und $x$ eine Variable.  Zeigen Sie, dass dann gilt
+    \begin{equation*}
+      \exists x.(\phi \to \psi) \equiv (\forall x. \phi) \to (\exists x. \psi).
+    \end{equation*}
+  \end{exercise}
+\end{mdframed}
+
+\vspace*{0.5\baselineskip}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}
+  % TheoLog 2014
+  Geben Sie für die Formel
+  \begin{equation*}
+    \forall x. \exists y. (P(f(x,y),z) \land (Q(x,g(x),z) \lor P(g(y),y)))
+  \end{equation*}
+  folgendes an:
+  \begin{enumerate}
+  \item die Menge aller Unterformeln;
+  \item die Menge aller Terme;
+  \item die Menge aller Variablen, mit Unterscheidung freier und gebundener
+    Variablen;
+  \item ein Modell.
+  \end{enumerate}
+\end{exercise}
+
+\clearpage
+
+\begin{exercise}
+  % TheoLog 2014
+  Welche der angegebenen Strukturen sind Modelle der folgenden Formel in
+  Prädikatenlogik mit Gleichheit?
+  \begin{align*}
+    \phi \coloneqq{}& \Bigl(\forall x. R(x,x)\Bigr) \land \Bigl(\forall x. \forall y. R(x,y) \land
+           R(y,x) \to x = y\Bigr)\\
+    &\land \Bigl(\forall x. \forall y. \forall z. R(x,y) \land R(y,z)
+      \to R(x,z)\Bigr)
+  \end{align*}
+  \begin{enumerate}
+  \item $\mathcal{A}_{1}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{1}} =
+    \{\,(m,n) \mid m < n \,\}$;
+  \item $\mathcal{A}_{2}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{2}} =
+    \{\,(n,n+1) \mid n \in \mathbb N \,\}$;
+  \item $\mathcal{A}_{3}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{3}} =
+    \{\,(m,n) \mid m \text{ teilt } n\,\}$;
+  \item $\mathcal{A}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
+    und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid \exists z \in \Sigma^{+}. xz =
+    y\,\}$;
+  \item $\mathcal{A}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
+    $R^{\mathcal{A}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
+  \item $\mathcal{A}_{6}$ mit Grundmenge $\mathbb N \times \mathbb N$ und
+    \begin{equation*}
+      R^{\mathcal{A}_{6}} = \{\,((m_{1},m_{2}),(n_{1},n_{2})) \mid m_{1} < n_{1}
+      \lor (m_{1} = n_{1} \land m_{2} \leq n_{2})\,\}.
+    \end{equation*}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  \begin{enumerate}
+  \item Geben Sie je eine erfüllbare Formel in Prädikatenlogik mit Gleichheit
+    an, so dass alle Modelle
+    \begin{enumerate}
+    \item höchstens drei,
+    \item mindestens drei,
+    \item genau drei
+    \end{enumerate}
+    Elemente in der Grundmenge besitzen.
+  \item Geben Sie je eine erfüllbare Formel in Prädikatenlogik mit Gleichheit
+    an, so dass das einstellige Funktionssymbol $f$ in jedem Modell als eine
+    \begin{enumerate}
+    \item injektive Funktion,
+    \item surjektive Funktion,
+    \item bijektive Funktion
+    \end{enumerate}
+    interpretiert wird.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+  Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
+  \begin{enumerate}
+  \item Aus $\Gamma \subseteq \Gamma'$ und $\Gamma \models \phi$ folgt $\Gamma'
+    \models \phi$.
+  \item Jede aussagenlogische Formel ist eine prädikatenlogische Formel.
+  \item Eine prädikatenlogische Formel $\phi$ ist genau dann allgemeingültig,
+    wenn $\lnot \phi$ unerfüllbar ist.
+  \item Es gilt
+    \begin{equation*}
+      \{\,\forall x. \forall y. R(x,y) \to R(y,x), \forall x. \forall y. \forall
+      z. R(x,y) \land R(y,z) \to R(x,z)\,\} \models \forall x. R(x,x).
+    \end{equation*}
+  \end{enumerate}
+
+\end{exercise}
+
+\end{document}
