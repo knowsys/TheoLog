@@ -1,0 +1,989 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{14}{Modelltheorie ud logisches Schließen}{31. Mai 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Rückblick: Logelei}
+
+Wir kehren zurück auf das Inselreich mit Menschen von
+Typ W (Wahrheitssager) und Typ L (Lügner).
+\bigskip
+
+Smullyan\footnote{R. Smullyan: A Beginner's Guide to Mathematical Logic, Dover 2014} fragte die Bewohner nach ihren Rauchgewohnheiten.
+
+\begin{itemize}
+\item Auf \redalert{Insel A} antwortete jeder der Bewohner:\\ \alert{"`Jeder, der hier von Typ W ist, raucht."'}\\
+%
+\item Auf \redalert{Insel B} antwortete jeder der Bewohner:\\ \alert{"`Einige von uns hier sind von Typ L und rauchen."'}
+%
+\item Auf \redalert{Insel C} hatten alle den gleichen Typ und jeder sagte:\\ \alert{"`Falls ich rauche, dann raucht jeder hier."'}
+%
+\item Auf \redalert{Insel D} hatten alle den gleichen Typ und jeder sagte:\\ \alert{"`Einige hier rauchen, aber ich nicht."'}
+\end{itemize}
+
+Was können wir jeweils über die Bewohner und ihre Gewohnheiten schließen?
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Prädikatenlogik: Syntax}
+
+Wir betrachten unendliche, disjunkte Mengen von Variablen $\Slang{V}$, Konstanten $\Slang{C}$ und Prädikatensymbolen $\Slang{P}$.\medskip
+
+\defbox{Ein prädikatenlogisches \redalert{Atom} ist ein Ausdruck $p(t_1,\ldots,t_n)$
+für ein $n$-stelliges Prädikatensymbol $p\in\Slang{P}$ und Terme $t_1,\ldots,t_n\in\Slang{V}\cup\Slang{C}$.
+
+Die Menge der \redalert{prädikatenlogische Formeln} ist induktiv definiert:
+\begin{itemize}
+\item Jedes Atom $p(t_1,\ldots,t_n)$ ist eine prädikatenlogische Formel
+\item Wenn $x\in\Slang{V}$ eine Variable und $F$ und $G$ prädikatenlogische Formeln sind, dann sind auch die folgenden prädikatenlogische Formeln:
+	\begin{itemize}
+	\item $\neg F$: \redalert{Negation}, "`nicht $F$"'
+	\item $(F\wedge G)$: \redalert{Konjunktion}, "`$F$ und $G$"'
+	\item $(F\vee G)$: \redalert{Disjunktion}, "`$F$ oder $G$"'
+	\item $(F\to G)$: \redalert{Implikation}, "`$F$ impliziert $G$"'
+	\item $(F\leftrightarrow G)$: \redalert{Äquivalenz}, "`$F$ ist äquivalent zu $G$"'
+	\item $\exists x. F$: \redalert{Existenzquantor}, "`für ein $x$ gilt $F$"'
+	\item $\forall x. F$: \redalert{Allquantor}, "`für alle $x$ gilt $F$"'
+	\end{itemize}
+\end{itemize}
+}
+
+\end{frame}
+
+\sectionSlide{Semantik der Prädikatenlogik}
+
+\begin{frame}\frametitle{Interpretationen und Zuweisungen}
+
+Die Wertzuweisung der Aussagenlogik wird also durch \alert{Interpretationen}
+und \alert{Zuweisungen} für Variablen ersetzt.
+\smallskip
+
+\defbox{Eine \redalert{Interpretation} $\Inter$ ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elemente $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
+\begin{itemize}
+\item jede Konstante $a\in\Slang{C}$ auf ein Element $a^\Inter\in\Delta^\Inter$ und
+\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\in(\Delta^\Inter)^n$
+\end{itemize}
+abbildet.
+}
+
+\defbox{Eine \redalert{Zuweisung} $\Zuweisung$ für eine Interpretation $\Inter$ ist eine Funktion $\Zuweisung:\Slang{V}\to\Delta^\Inter$, die Variablen auf Elemente der Domäne abbildet. Für $x\in\Slang{V}$ und $\delta\in\Delta^\Inter$ schreiben wir \redalert{$\Zuweisung [x\mapsto \delta]$} für die Zuweisung, die $x$ auf $\delta$ und alle anderen Variablen $y\neq x$ auf $\Zuweisung(y)$ abbildet.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Atome interpretieren}
+
+Wir bestimmen dementsprechend die Wahrheit von Atomen unter einer Interpretation und
+Zuweisung:
+
+\defbox{Sei $\Inter$ eine Interpretation und $\Zuweisung$ eine Zuweisung für $\Inter$.
+\begin{itemize}
+\item Für eine Konstante $c$ definieren wir $c^{\Inter,\Zuweisung}=c^\Inter$
+\item Für eine Variable $x$ definieren wir $x^{\Inter,\Zuweisung}=\Zuweisung(x)$
+\end{itemize}
+Für ein Atom $p(t_1,\ldots,t_n)$ setzen wir sodann:
+\begin{itemize}
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\mytrue$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\in p^\Inter$ und
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\myfalse$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\notin p^\Inter$.
+\end{itemize}
+}\bigskip\pause
+
+\anybox{strongyellow}{
+\emph{Achtung!} Wir verwenden Interpretationen und Zuweisungen auf zwei Ebenen, 
+die man nicht verwecheln sollte:
+\begin{enumerate}[(1)]
+\item um Terme $t$ auf Elemente $t^{\Inter,\Zuweisung}\in\Delta^\Inter$ abzubilden
+\item um Atome $A$ auf Wahrheitswerte $A^{\Inter,\Zuweisung}\in\{\myfalse,\mytrue\}$ abzubilden
+\end{enumerate}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Formeln interpretieren}
+
+\defbox{Eine Interpretation $\Inter$ und eine Zuweisung $\Zuweisung$ für
+$\Inter$ \redalert{erfüllen} eine Formel $F$, in Symbolen \redalert{$\Inter,\Zuweisung\models F$}, wenn
+eine der folgenden rekursiven Bedingungen gilt:%\smallskip
+
+\narrowcentering{\footnotesize\begin{tabular}{rll}
+\rowcolor{darkred!70!gray}
+\textcolor{white}{Formel $F$} & \textcolor{white}{$\Inter,\Zuweisung\models F$ wenn:} & \textcolor{white}{$\Inter,\Zuweisung\not\models F$ wenn:}\\
+$F$ Atom & $F^{\Inter,\Zuweisung}=\mytrue$ & $F^{\Inter,\Zuweisung}=\myfalse$\\
+\rowcolor{lightred!20}
+$\neg G$ & $\Inter,\Zuweisung\not\models G$ & $\Inter,\Zuweisung\models G$\\
+$(G_1\wedge G_2)$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ oder $\Inter,\Zuweisung\not\models G_2$\\
+\rowcolor{lightred!20}
+$(G_1\vee G_2)$ & $\Inter,\Zuweisung\models G_1$ oder $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\
+$(G_1\,{\to}\, G_2)$ & $\Inter,\Zuweisung\not\models G_1$ oder $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\
+\rowcolor{lightred!20}
+$(G_1\,{\leftrightarrow}\,G_2)$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\models G_2$ & $\Inter,\Zuweisung\models G_1$ und $\Inter,\Zuweisung\not\models G_2$\\%[-1ex]
+\rowcolor{lightred!20}
+	& \multicolumn{1}{c}{\raisebox{1ex}{oder}} & \multicolumn{1}{c}{\raisebox{1ex}{oder}} \\[-2ex]
+\rowcolor{lightred!20}
+	& $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\not\models G_2$ & $\Inter,\Zuweisung\not\models G_1$ und $\Inter,\Zuweisung\models G_2$\\
+%
+$\forall x.G$ & $\Inter,\Zuweisung[x\mapsto\delta]\models G$ & $\Inter,\Zuweisung[x\mapsto\delta]\not\models G$\\[-0.5ex]
+ & für alle $\delta\in\Delta^\Inter$ & für mindestens ein $\delta\in\Delta^\Inter$
+\\
+%
+\rowcolor{lightred!20}
+$\exists x.G$ & $\Inter,\Zuweisung[x\mapsto\delta]\models G$ & $\Inter,\Zuweisung[x\mapsto\delta]\not\models G$\\[-0.5ex]
+\rowcolor{lightred!20}
+ & für mindestens ein $\delta\in\Delta^\Inter$ & für alle $\delta\in\Delta^\Inter$
+	\\[-1ex]
+\\[-3.25ex]
+\end{tabular}}
+
+~
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ F=\textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten eine Interpretation $\Inter$ mit
+\begin{itemize}
+\item $\Delta^\Inter=\mathbb{R}$ die Menge der reellen Zahlen
+\item $\textsf{null}^\Inter=0$
+\item $\textsf{NatNum}^\Inter=\mathbb{N}\subseteq\mathbb{R}$ die Menge der natürlichen Zahlen
+\item $\textsf{succ}^\Inter=\{\tuple{d,e}\mid d,e\in\mathbb{R},d<e\}$
+\end{itemize}\bigskip
+
+Dann gilt $\Inter\models F$ (unter jeder beliebigen Zuweisung).
+
+\anybox{strongyellow}{Notation: Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Logik auf Sätzen}
+
+% Wie im vorigen Beispiel interessieren uns meist nur Sätze (geschlossene Formeln)
+% \bigskip
+
+\alert{Wie im vorigen Beispiel interessieren uns oft nur Sätze:}
+\begin{itemize}
+\item In den meisten Anwendungen arbeitet man nur mit Sätzen
+\item Dann genügt es, Interpretationen zu betrachten
+\item Zuweisungen sind in diesem Fall ein technisches Hilfsmittel zur Definition der Bedeutung von Sätzen
+\end{itemize}
+
+Eine Menge von Sätzen wird oft \redalert{Theorie} genannt.\pause
+
+\examplebox{Beispiel: Der Begriff stammt aus der Mathematik. Die Theorie der partiellen Ordnungen kann man z.B. wie folgt definieren:\vspace{-0.5ex}
+\begin{align*}
+\forall x. & (x\preceq x) & \text{Reflexivität}\\
+\forall x,y,z. & \big( (x\preceq y \wedge y\preceq z) \to x\preceq z \big)& \text{Transitivität}\\
+\forall x,y. & \big(( x\preceq y \wedge y\preceq x )\to x\approx y\big) & \text{Antisymmetrie}
+\end{align*}\vspace{-3ex}
+
+Dies definiert die Eigenschaften eines binären Prädikates $\preceq$ (hier infix geschrieben). Dabei verwenden wir zudem ein Gleichheitsprädikat $\approx$ (dazu später mehr).
+}
+
+\end{frame}
+
+
+\sectionSlide{Semantische Grundbegriffe}
+
+
+\begin{frame}\frametitle{Modelltheorie}
+
+\emph{Wie definiert man logische Semantik "`modelltheoretisch"'?}\bigskip
+
+\begin{tabular}{@{}p{0.7cm}p{3.5cm}p{2.0cm}p{2.3cm}@{}}
+	& & \only<2->{\emph{Aussagenl.}} & \only<3->{\emph{Prädikatenl.}} \\
+\rowcolor{lightred!30}
+\cellcolor{darkred!70!gray}
+\raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Formeln}}}
+	& abzählbare Menge syntaktischer Ausdrücke\newline ~
+	& \only<2->{Aussagen\-logische \mbox{Formeln}}
+	& \only<3->{Prädikaten\-logische\newline Sätze}\\
+\rowcolor{lightblue!30}
+\cellcolor{darkblue!70!gray}
+\raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Modelle}}}
+	& Menge sematischer\newline \mbox{Interpretationen}\newline ~
+	& \only<2->{Wert\-zuweisungen}
+	& \only<3->{Prädikaten\-logische\newline Interpretationen}\\%[-3ex]
+\rowcolor{lightgreen!30}
+\cellcolor{darkgreen!70!gray}
+\raisebox{-1.5cm}{\rotatebox{90}{\begin{minipage}{1.5cm}\textcolor{white}{Erfüllungs\-relation~$\models$}\end{minipage}}}
+	& Beziehung zwischen\newline Modellen \& Formeln: In welchen Modellen sind welche Formeln wahr?
+	& \only<2->{Aussagen\-logische Erfüllungs\-relation}
+	& \only<3->{Prädikaten\-logische Erfüllungs\-relation}\\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}\frametitle{Modelltheorie}
+
+\emph{Wie definiert man logische Semantik "`modelltheoretisch"'?}\bigskip
+
+\begin{tabular}{@{}p{0.7cm}p{2.0cm}p{2.3cm}p{3.5cm}@{}}
+	& {\emph{Aussagenl.}} & {\emph{Prädikatenl.}} & {\emph{Prädikatenl. (offen)}}\\
+\rowcolor{lightred!30}
+\cellcolor{darkred!70!gray}
+\raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Formeln}}}
+% 	& abzählbare Menge syntaktischer Ausdrücke\newline ~
+	& {Aussagen\-logische \mbox{Formeln}}
+	& {Prädikaten\-logische\newline Sätze}
+	& {Prädikaten\-logische\newline Formeln (offen oder\newline geschlossen)}\\
+\rowcolor{lightblue!30}
+\cellcolor{darkblue!70!gray}
+\raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Modelle}}}
+% 	& Menge sematischer\newline \mbox{Interpretationen}\newline ~
+	& {Wert\-zuweisungen}
+	& {Prädikaten\-logische\newline Interpretationen}
+	& {Prädikatenlogische\newline Interpretationen\newline und Zuweisungen}\\%[-3ex]
+\rowcolor{lightgreen!30}
+\cellcolor{darkgreen!70!gray}
+\raisebox{-1.5cm}{\rotatebox{90}{\begin{minipage}{1.5cm}\textcolor{white}{Erfüllungs\-relation~$\models$}\end{minipage}}}
+% 	& Beziehung zwischen\newline Modellen \& Formeln: In welchen Modellen sind welche Formeln wahr?
+	& {Aussagen\-logische Erfüllungs\-relation}
+	& {Prädikaten\-logische Erfüllungs\-relation}
+	& {Prädikaten\-logische Erfüllungs\-relation}\\
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}\frametitle{Modelltheorie: Intuition}
+
+Die Modelltheorie einer Logik legt (ziemlich abstrakt) fest, worüber die Logik etwas aussagt:
+\begin{itemize}
+\item \alert{Formeln:} Behauptungen, die wahr oder falsch sein können
+\item \alert{Modelle:} Mögliche Welten, in denen manche Behauptungen gelten und andere nicht
+\end{itemize}\pause
+
+\begin{center}
+\begin{tikzpicture}[decoration=penciline, decorate]
+% \draw[help lines] (0,0) grid (7,2);
+
+\node (models) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=4cm,fill=lightblue!30,thick] at (2,-2) {};
+
+\node (formulae) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=4cm,fill=lightred!30,thick] at (6,-2) {};
+
+\node[rectangle,rounded corners=5ex] at (4,0.5) {\Large\textcolor{darkgreen}{$\models$}};
+\node[rectangle,rounded corners=5ex] at (2,0.5) {\Large\textcolor{darkblue}{Modelle}};
+\node[rectangle,rounded corners=5ex] at (6,0.5) {\Large\textcolor{darkred}{Formeln}};
+
+\node (i1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.5,-1) {};
+\node[above left=-1pt of {i1}, outer sep=0pt] {\footnotesize$\Inter_1$};
+\node (i2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.8,-1.7) {};
+\node[above left=-1pt of {i2}, outer sep=0pt] {\footnotesize$\Inter_2$};
+\node (i3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-2.6) {};
+\node[above left=-1pt of {i3}, outer sep=0pt] {\footnotesize$\Inter_3$};
+\node (i4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.1,-3.4) {};
+\node[above left=-1pt of {i4}, outer sep=0pt] {\footnotesize$\Inter_4$};
+
+\node (f1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-0.9) {};
+\node[above right=-1pt of {f1}, outer sep=0pt] {\footnotesize$F_1$};
+\node (f2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.9,-1.6) {};
+\node[above right=-1pt of {f2}, outer sep=0pt] {\footnotesize$F_2$};
+\node (f3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (6.3,-2.5) {};
+\node[above right=-1pt of {f3}, outer sep=0pt] {\footnotesize$F_3$};
+\node (f4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-3.3) {};
+\node[above right=-1pt of {f4}, outer sep=0pt] {\footnotesize$F_4$};
+
+\path[-,line width=0.5mm,darkgreen!70](i1) edge[decorate] (f1);
+\path[-,line width=0.5mm,darkgreen!70](i2) edge[decorate] (f1);
+
+\path[-,line width=0.5mm,darkgreen](i1) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i2) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i4) edge[decorate] (f2);
+
+\path[-,line width=0.5mm,darkgreen!50](i2) edge[decorate] (f3);
+\path[-,line width=0.5mm,darkgreen!50](i3) edge[decorate] (f3);
+
+% \path[->,line width=0.5mm](-1,0) edge (q0);
+% \path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
+% \path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
+% \path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Tautologien und Widersprüche}
+
+Man unterscheidet Typen von Formeln nach ihren Modellen:
+
+\begin{itemize}
+\item \redalert{allgemeingültig (tautologisch):} Eine Formel, die in allen Modellen wahr ist
+\item \redalert{widersprüchlich (inkonsistent):} Eine Formel, die in keinem Modell wahr ist
+\item \redalert{erfüllbar:} Eine Formel, die in einem Modell wahr ist
+\item \redalert{widerlegbar:} Eine Formel, die in einem Modell falsch ist
+\end{itemize}\pause
+
+\begin{center}
+\begin{tikzpicture}[decoration=penciline, decorate]
+\pgfmathsetseed{7729}
+% \draw[help lines] (0,0) grid (7,2);
+
+\node (models) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=4cm,fill=lightblue!30,thick] at (2,-2) {};
+
+\node (formulae) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=4cm,fill=lightred!30,thick] at (6,-2) {};
+% 
+% \node[rectangle,rounded corners=5ex] at (4,0.5) {\Large\textcolor{darkgreen}{$\models$}};
+% \node[rectangle,rounded corners=5ex] at (2,0.5) {\Large\textcolor{darkblue}{Modelle}};
+% \node[rectangle,rounded corners=5ex] at (6,0.5) {\Large\textcolor{darkred}{Formeln}};
+
+\node (i1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.5,-1) {};
+\node[above left=-1pt of {i1}, outer sep=0pt] {\footnotesize$\Inter_1$};
+\node (i2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.8,-1.7) {};
+\node[above left=-1pt of {i2}, outer sep=0pt] {\footnotesize$\Inter_2$};
+\node (i3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-2.6) {};
+\node[above left=-1pt of {i3}, outer sep=0pt] {\footnotesize$\Inter_3$};
+\node (i4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.1,-3.4) {};
+\node[above left=-1pt of {i4}, outer sep=0pt] {\footnotesize$\Inter_4$};
+
+\node (f1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-0.9) {};
+\visible<-2>{\node[above right=-1pt of {f1}, outer sep=0pt] {\footnotesize$F_1$\phantom{g}};}
+\visible<3->{\node[above right=-1pt of {f1}, outer sep=0pt] {\footnotesize$F_1$: erfüllbar, widerlegbar};}
+
+\node (f2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.9,-1.6) {};
+\visible<-3>{\node[above right=-1pt of {f2}, outer sep=0pt] {\footnotesize$F_2$\phantom{g}};}
+\visible<4->{\node[above right=-1pt of {f2}, outer sep=0pt] {\footnotesize$F_2$: erfüllbar, allgemeingültig};}
+
+\node (f3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (6.3,-2.5) {};
+\visible<-4>{\node[above right=-1pt of {f3}, outer sep=0pt] {\footnotesize$F_3$ \phantom{g}};}
+\visible<5->{\node[above right=-1pt of {f3}, outer sep=0pt] {\footnotesize$F_3$: erfüllbar, widerlegbar};}
+
+\node (f4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-3.3) {};
+\visible<-5>{\node[above right=-1pt of {f4}, outer sep=0pt] {\footnotesize$F_4$\phantom{g}};}
+\visible<6->{\node[above right=-1pt of {f4}, outer sep=0pt] {\footnotesize$F_4$: unerfüllbar, widerlegbar};}
+
+\path[-,line width=0.5mm,darkgreen!70](i1) edge[decorate] (f1);
+\path[-,line width=0.5mm,darkgreen!70](i2) edge[decorate] (f1);
+
+\path[-,line width=0.5mm,darkgreen](i1) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i2) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i4) edge[decorate] (f2);
+
+\path[-,line width=0.5mm,darkgreen!50](i2) edge[decorate] (f3);
+\path[-,line width=0.5mm,darkgreen!50](i3) edge[decorate] (f3);
+
+% \path[->,line width=0.5mm](-1,0) edge (q0);
+% \path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
+% \path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
+% \path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Logisches Schließen}
+
+Aus der Modelltheorie ergibt sich, was \alert{logisches Schließen} genau bedeutet und
+welche Schlüsse man ziehen darf:\bigskip
+
+\defbox{\vspace{-1ex}
+\begin{itemize}
+\item Wenn $\Inter\models F$, dann nennt man $\Inter$ ein \redalert{Modell für} die Formel $F$ und man sagt $\Inter$ \redalert{erfüllt} $F$.
+\item $\Inter$ ist ein \redalert{Modell für eine Formelmenge} $\mathcal{T}$, in Symbolen \redalert{$\Inter\models\mathcal{T}$}, wenn $\Inter\models F$ für jede Formel $F\in\mathcal{T}$.
+\item Eine Formel $F$ ist eine \redalert{logische Konsequenz} aus einer Formel(menge) $G$, in Symbolen \redalert{$G\models F$}, wenn jedes Modell $\Inter$ von $G$ auch ein Modell von $F$ ist, d.h. $\Inter\models G$ impliziert $\Inter\models F$.\\
+\emph{Sonderfall:} Ist $F$ Tautologie dann schreiben wir $\models F$
+\item Zwei Formel(mengen) $F$ und $G$ sind \redalert{semantisch äquivalent}, in Symbolen
+$F\equiv G$, wenn sie die gleichen Modelle haben, d.h. wenn $\Inter\models F$ gdw. $\Inter\models G$ für alle Modelle $\Inter$.
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel: Logisches Schließen}
+
+\begin{center}
+\begin{tikzpicture}[decoration=penciline, decorate]
+\pgfmathsetseed{7729}
+% \draw[help lines] (0,0) grid (7,2);
+
+\node (models) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=3.5cm,fill=lightblue!30,thick] at (2,-2) {};
+
+\node (formulae) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=3.5cm,fill=lightred!30,thick] at (6,-2) {};
+
+\visible<4->{\node [rectangle,rounded corners=2ex, minimum width=1.8cm, minimum height=1.8cm,fill=lightred!50,thick] at (6,-1.9) {};}
+\visible<2->{\node [rectangle,rounded corners=1.5ex, minimum width=0.8cm, minimum height=0.7cm,fill=lightred!80,thick] at (6.4,-2.3) {};}
+\visible<3->{\node [rectangle,rounded corners=2ex, minimum width=1.8cm, minimum height=1.7cm,fill=lightblue!60,thick] at (2,-2) {};}
+% 
+% \node[rectangle,rounded corners=5ex] at (4,0.5) {\Large\textcolor{darkgreen}{$\models$}};
+% \node[rectangle,rounded corners=5ex] at (2,0.5) {\Large\textcolor{darkblue}{Modelle}};
+% \node[rectangle,rounded corners=5ex] at (6,0.5) {\Large\textcolor{darkred}{Formeln}};
+
+\node (i1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.5,-1) {};
+\node[above left=-1pt of {i1}, outer sep=0pt] {\footnotesize$\Inter_1$};
+\node (i2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.8,-1.7) {};
+\node[above left=-1pt of {i2}, outer sep=0pt] {\footnotesize$\Inter_2$};
+\node (i3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-2.6) {};
+\node[above left=-1pt of {i3}, outer sep=0pt] {\footnotesize$\Inter_3$};
+\node (i4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.1,-3.4) {};
+\node[above left=-1pt of {i4}, outer sep=0pt] {\footnotesize$\Inter_4$};
+
+\node (f1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-0.9) {};
+\node[above right=-1pt of {f1}, outer sep=0pt] {\footnotesize$F_1$};
+\node (f2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.9,-1.6) {};
+\node[above right=-1pt of {f2}, outer sep=0pt] {\footnotesize$F_2$};
+\node (f3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (6.3,-2.5) {};
+\node[above right=-1pt of {f3}, outer sep=0pt] {\footnotesize$F_3$};
+\node (f4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-3.3) {};
+\node[above right=-1pt of {f4}, outer sep=0pt] {\footnotesize$F_4$};
+
+\path[-,line width=0.5mm,darkgreen!70](i1) edge[decorate] (f1);
+\path[-,line width=0.5mm,darkgreen!70](i2) edge[decorate] (f1);
+
+\path[-,line width=0.5mm,darkgreen](i1) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i2) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen](i4) edge[decorate] (f2);
+
+\path[-,line width=0.5mm,darkgreen!50](i2) edge[decorate] (f3);
+\path[-,line width=0.5mm,darkgreen!50](i3) edge[decorate] (f3);
+
+% \path[->,line width=0.5mm](-1,0) edge (q0);
+% \path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
+% \path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
+% \path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
+\end{tikzpicture}
+\end{center}
+
+Was folgt aus $F_3$?\pause\pause
+\begin{itemize}
+\item Modelle von $F_3$ sind $\Inter_2$ und $\Inter_3$\pause
+\item $\Inter_2$ und $\Inter_3$ sind Modelle von zwei Formeln: $F_3$ und $F_2$\pause
+\end{itemize}
+Anders gesagt: "`Immer wenn $F_3$ wahr ist, dann ist auch $F_2$ wahr.\bigskip\pause
+
+Es folgt also: $F_3\models F_2$
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Eigenschaften der semantischen Äquivalenz}
+
+Die aus der Ausagenlogik bekannten Eigenschaften von $\equiv$ gelten auch allgemein:\bigskip
+
+\theobox{Satz: $\equiv$ ist eine Äquivalenzrelation, d.h. reflexiv, symmetrisch und transitiv.}%
+%
+% \emph{Beweis:} $\equiv$ ist definiert als die Gleichheit der Modellmengen. Die gesuchten Eigenschaften ergeben sich, da auch die Relation $=$ auf Mengen eine Äquivalenzrelation ist.\qed
+\medskip
+
+% Weitere Eigenschaften folgen direkt aus den Definitionen:\medskip
+
+\theobox{Satz:
+\begin{itemize}
+\item Alle Tautologien sind semantisch äquivalent
+\item Alle unerfüllbaren Formeln sind semantisch äquivalent
+\end{itemize}
+}\medskip
+
+% \emph{Beweis:} Offensichtlich sind die Modellmengen jeweils gleich.\qed
+
+\theobox{Satz: Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
+% 
+\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann wenn\hspace{5mm} $F\models G$ und $G\models F$}
+}
+
+Die Behauptungen folgen jeweils direkt aus den Definitionen.
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Inseln mit Lügnern und Wahrheitssagern}
+
+Rückblick Logelei: "`Wir sind hier alle vom gleichen Typ."'
+\begin{itemize}
+\item "`Jeder Einwohner ist entweder Wahrheitssager oder Lügner."'\\
+	$F_1=\alert{\forall x.\big((W(x)\wedge\neg L(x))\vee (L(x)\wedge\neg W(x))\big)}$
+\item "`Auf dieser Insel haben alle den gleichen Typ."'\\
+	$F_2=\alert{\forall x.W(x) \vee \forall x.L(x)}$
+\end{itemize}\pause
+
+Wir betrachten die einige "`representative"' Modelle von $F_1$, eine Formalisierung
+der gegebenen Information und weitere Formeln:
+
+\begin{center}
+\begin{tikzpicture}[decoration=penciline, decorate]
+% \draw[help lines] (0,0) grid (7,2);
+\pgfmathsetseed{7729}
+
+\node (models) [rectangle,rounded corners=5ex, minimum width=2cm, minimum height=3.6cm,fill=lightblue!30,thick] at (2,-1.8) {};
+
+\node (formulae) [rectangle,rounded corners=5ex, minimum width=4cm, minimum height=3.6cm,fill=lightred!30,thick] at (7,-1.8) {};
+
+\node (i1) [rectangle,rounded corners=2ex, minimum width=1.2cm, minimum height=0.7cm,fill=strongyellow,thick] at (2,-0.9) {};
+\node (p11) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.85,-1) {};
+\node[above left=-2pt of {p11}, outer sep=0pt] {\footnotesize$L$};
+\node (p12) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-1.05) {};
+\node[above left=-2pt of {p12}, outer sep=0pt] {\footnotesize$L$};
+
+\node (i2) [rectangle,rounded corners=2ex, minimum width=1.2cm, minimum height=0.7cm,fill=strongyellow,thick] at (2,-1.9) {};
+\node (p21) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.85,-2) {};
+\node[above left=-4pt of {p21}, outer sep=0pt] {\footnotesize$W$};
+\node (p22) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-2.05) {};
+\node[above left=-2pt of {p22}, outer sep=0pt] {\footnotesize$L$};
+
+\node (i3) [rectangle,rounded corners=2ex, minimum width=1.2cm, minimum height=0.7cm,fill=strongyellow,thick] at (2,-2.9) {};
+\node (p31) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (1.85,-3) {};
+\node[above left=-4pt of {p31}, outer sep=0pt] {\footnotesize$W$};
+\node (p32) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (2.3,-3.05) {};
+\node[above left=-4pt of {p32}, outer sep=0pt] {\footnotesize$W$};
+
+\node (t) [rectangle,rounded corners=2ex, minimum width=3.2cm, minimum height=1.9cm,fill=lightred!60,thick] at (7,-1.2) {};
+\node[right=-1pt of {t}, outer sep=0pt, align=left] {Gegebene\\Theorie};
+\node (f1) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-0.7) {};
+\node[above right=-3pt of {f1}, outer sep=0pt] {\footnotesize$F_1$};
+\node (f2) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.9,-1.2) {};
+\node[above right=-1pt of {f2}, outer sep=0pt] {\footnotesize$\exists x.W(x)\to F_2$};
+\node (f3) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.8,-1.9) {};
+\node[above right=-1pt of {f3}, outer sep=0pt] {\footnotesize$\exists x.L(x)\to \neg F_2$};
+
+\node (f4) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.7,-2.8) {};
+\node[above right=-1pt of {f4}, outer sep=0pt] {\footnotesize$\forall x.L(x)$};
+\node (f5) [fill, draw, circle, minimum width=3pt, inner sep=0pt] at (5.9,-3.4) {};
+\node[above right=-1pt of {f5}, outer sep=0pt] {\footnotesize$\forall x.W(x)$};
+
+\visible<3->{
+\path[-,line width=0.5mm,darkgreen!60](i1) edge[decorate] (f1);
+\path[-,line width=0.5mm,darkgreen!60](i2) edge[decorate] (f1);
+\path[-,line width=0.5mm,darkgreen!60](i3) edge[decorate] (f1);
+}
+
+\visible<4->{
+\path[-,line width=0.5mm,darkgreen!80](i1) edge[decorate] (f2);
+\path[-,line width=0.5mm,darkgreen!80](i3) edge[decorate] (f2);
+}
+
+\visible<5->{
+\path[-,line width=0.5mm,darkgreen](i2) edge[decorate] (f3);
+\path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f3);
+}
+
+\visible<6->{
+\path[-,line width=0.5mm,darkgreen](i1) edge[decorate] (f4);
+}
+\visible<7->{
+\path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f5);
+}
+% \path[-,line width=0.5mm,darkgreen!70](i2) edge[decorate] (f1);
+% 
+% \path[-,line width=0.5mm,darkgreen](i1) edge[decorate] (f2);
+% \path[-,line width=0.5mm,darkgreen](i2) edge[decorate] (f2);
+% \path[-,line width=0.5mm,darkgreen](i3) edge[decorate] (f2);
+% \path[-,line width=0.5mm,darkgreen](i4) edge[decorate] (f2);
+% 
+% \path[-,line width=0.5mm,darkgreen!50](i2) edge[decorate] (f3);
+% \path[-,line width=0.5mm,darkgreen!50](i3) edge[decorate] (f3);
+
+% \path[->,line width=0.5mm](-1,0) edge (q0);
+% \path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
+% \path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
+% \path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
+\end{tikzpicture}
+\end{center}
+\vspace{-1.7ex}
+
+\visible<8->{Aus der Theorie folgt $\forall x.W(x)$: "`Alle Inselbewohner sind von \ghost{Typ W."'}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Das Problem des logischen Schließens}
+
+Zwei praktisch wichtige Fragen:
+\begin{enumerate}[(1)]
+\item \redalert{Model Checking:}\\ Für ein gegebenes Modell $\Inter$ und eine Formel $F$, gilt $\Inter\models F$?
+\item \redalert{Logische Folgerung (Entailment):}\\ Für gegebene Formel(menge)n $F$ und $G$, gilt $F\models G$?
+\end{enumerate}\pause\bigskip
+
+\alert{In der Aussagenlogik} ist beides relativ einfach lösbar:
+\begin{enumerate}[(1)]
+\item Berechne den Wahrheitswert unter einer Belegung (zeitlinear)
+\item Betrachte alle möglichen Belegungen (exponentiell; \complclass{NP}-vollständig)
+\end{enumerate}\pause\bigskip
+
+\alert{In der Prädikatenlogik} ist das nicht so einfach:\\ siehe kommende Vorlesungen
+
+\end{frame}
+
+\begin{frame}\frametitle{Monotonie und Tautologie}
+
+Aus der Definition von $\models$ folgt \redalert{Monotonie}:
+\begin{itemize}
+\item Mehr Sätze $\Leftrightarrow$ weniger Modelle
+\item Je \alert{mehr Sätze} in einer logischen Theorie gegeben sind,\\
+	desto \alert{weniger Modelle} erfüllen die gesamte Theorie,\\
+	desto \alert{mehr Schlussfolgerungen} kann man aus ihr ziehen
+\end{itemize}
+Das heißt: \redalert{"`Mehr Annahmen führen zu mehr Schlussfolgerungen"'}
+\bigskip\pause
+
+Die Extremfälle dieses Prinzips sind:
+\begin{itemize}
+\item \alert{Tautologien:} sind in jedem Modell wahr und daher logische Konsequenz jeder Theorie
+\item \alert{Unerfüllbare Formeln:} sind in keinem Modell wahr und haben daher alle anderen Sätze als Konsequenz
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Modelltheorie ist allgemein gültig}
+
+Was wir bisher über Modelltheorie gesagt haben, gilt für jede
+Logik, deren Semantik auf einer Beziehung $\models$ von Modellen
+zu einzelnen Formeln basiert:
+\begin{itemize}
+\item Aussagenlogik
+\item Prädikatenlogik (nur Sätze und Interpretationen)
+\item Prädikatenlogik (beliebige Formeln und Interpretationen+Zuweisungen)
+\item Logik zweiter Stufe
+\item Modal-, Temporal- und Beschreibungslogiken
+\item Mehrwertige Logiken
+\item Nichtklassische Logiken
+\item \ldots
+\end{itemize}
+
+Andere Eigenschaften der Prädikatenlogik sind nicht ganz so allgemein.
+
+\end{frame}
+
+\sectionSlide{Prädikatenlogik und Aussagenlogik}
+
+
+\begin{frame}\frametitle{Verhältnis zur Aussagenlogik}
+
+Die Semantik der Operatoren $\neg$, $\wedge$, $\vee$, $\to$ und $\leftrightarrow$ ist
+in Prädikatenlogik und Aussagenlogik gleich definiert:
+\begin{itemize}
+\item Wir ersetzen Wertzuweisungen $w$ durch\\
+	Interpretationen $\Inter$ mit Zuweisungen $\Zuweisung$
+\item Ansonsten ist die Definition der Semantik genau gleich
+\end{itemize}
+$\leadsto$ alle aussagenlogischen Gesetze gelten analog
+\bigskip
+
+\examplebox{Beispiel: Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
+$\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann wenn
+$\Inter,\Zuweisung\models (\neg F\vee \neg G)$, das heißt
+$\neg(F\wedge G)\equiv (\neg F\vee \neg G)$.
+}
+
+Allgemein gelten alle bekannten aussagenlogischen Äquivalenzen
+
+\end{frame}
+
+\begin{frame}\frametitle{"`${\models} = {\to}$"' und "`${\equiv}={\leftrightarrow}$"'}
+
+Auch die folgenden Sätze gelten analog zur Aussagenlogik\\ (siehe Formale Systeme, Vorlesung 22):\bigskip
+
+\theobox{Satz (Deduktionstheorem): Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt $\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
+
+\theobox{Korollar: $F\wedge G\models H$ gdw. $F\models G\to H$.}\bigskip
+
+\theobox{Korollar: $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
+
+\redalert{Dennoch sind $\models$ und $\equiv$ nicht das selbe wie $\to$ und $\leftrightarrow$:}
+\begin{itemize}
+\item $\models$ und $\equiv$ können sich auch auf (möglicherweise unendliche) Mengen von Formeln beziehen
+\item $\to$ und $\leftrightarrow$ sind syntaktische Operatoren und können (eventuell geschachtelt) in Formeln auftreten
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Das Ersetzungstheorem}
+
+Auch das folgende intuitiv einleuchtende Ergebnis kann von der Aussagenlogik auf
+die Prädikatenlogik übertragen werden:\bigskip
+
+\theobox{Satz (Ersetzungstheorem): Sei $F$ eine Formel mit einer Teilformel $G$. 
+Wenn $G\equiv G'$ und wenn $F'$ aus $F$ gebildet werden kann, indem man ein beliebiges Vorkommen von $G$ in $F$ durch $G'$ ersetzt, dann gilt auch $F\equiv F'$.}\bigskip
+
+Der detaillierte Beweis muss allerdings alle möglichen Formen von
+Formeln betrachten (Induktion über Formelstruktur). Im Vergleich zur
+Aussagenlogik müsste man also noch zeigen, dass die Ersetzung von
+äquivalenten Formeln in $\exists x.G$ und $\forall x.G$ zulässig ist.
+
+\end{frame}
+
+\begin{frame}\frametitle{Rückblick: Aussagenlogische Äquivalenzen (1)}
+
+\begin{align*}
+\begin{split}
+F\wedge G & \equiv G\wedge F\\
+F\vee G & \equiv G\vee F
+\end{split}
+		& \text{\textcolor{devilscss}{Kommutativität}} \\[1ex]
+%
+\begin{split}
+(F\wedge G)\wedge H & \equiv F\wedge (G\wedge H)\\
+(F\vee G)\vee H & \equiv F\vee (G\vee H)
+\end{split}
+		& \text{\textcolor{devilscss}{Assoziativität}} \\[1ex]
+%
+\begin{split}
+F\wedge (G\vee H) & \equiv (F\wedge G) \vee (F\wedge H)\\
+F\vee (G\wedge H) & \equiv (F\vee G)\wedge (F\vee H)
+\end{split}
+		& \text{\textcolor{devilscss}{Distributivität}} \\[1ex]
+%
+\begin{split}
+F\wedge F & \equiv F\\
+F\vee F & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Idempotenz}} \\[1ex]
+%
+\begin{split}
+F\wedge (F\vee G) & \equiv F\\
+F\vee (F\wedge G) & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Absorbtion}}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rückblick: Aussagenlogische Äquivalenzen (2)}
+
+\begin{align*}
+\neg\neg F &\equiv F
+		& \text{\textcolor{devilscss}{doppelte Negation}}\\[1ex]
+%
+\begin{split}
+\neg(F\wedge G) & \equiv (\neg F\vee \neg G)\\
+\neg(F\vee G) & \equiv (\neg F\wedge \neg G)
+\end{split}
+		& \text{\textcolor{devilscss}{De Morgansche Gesetze}} \\[1ex]
+%
+\begin{split}
+F\wedge \top & \equiv F\\
+F\vee \top & \equiv \top
+\end{split}
+		& \text{\textcolor{devilscss}{Gesetze mit $\top$}}\\[1ex]
+%
+\begin{split}
+F\wedge \bot & \equiv \bot\\
+F\vee \bot & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Gesetze mit $\bot$}}\\[1ex]
+%
+\begin{split}
+\neg\top & \equiv \bot\\
+\neg\bot & \equiv \top
+\end{split}
+		& 
+\end{align*}
+
+Dabei stellen wir wie zuvor $\top$ durch eine beliebige Tautologie (z.B. $p\vee\neg p$) und $\bot$ durch einen beliebigen Widerspruch (z.B. $p\wedge\neg p$) dar.
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Aussagenlogik in Prädikatenlogik darstellen}
+
+Aussagenlogische Atome $p$ kann man durch prädikatenlogische Atome $p()$
+auffassen, wobei $p$ ein nullstelliges Prädikatensymbol ist.%
+\bigskip
+
+Sei $p\in\Slang{P}$ ein nullstelliges Prädikat\\[1ex]
+\redalert{Welche Interpretationen $p^\Inter$ sind möglich?}\pause
+\begin{itemize}
+\item Laut Definition gilt $p^\Inter\subseteq(\Delta^\Inter)^0$\pause
+\item $(\Delta^\Inter)^0$ enthält alle "`nullstelligen Tupel"'\\
+$\leadsto$ es gibt aber nur ein einziges nullstelliges Tupel $\tuple{}$\pause
+\item Also ist $p^\Inter\subseteq\{\tuple{}\}$:
+	\begin{itemize}
+	\item $p^\Inter=\{\tuple{}\}$ bedeutet $\Inter\models p()$ (\alert{"`Aussage wahr"'})
+	\item $p^\Inter=\{\}$ bedeutet $\Inter\not\models p()$ (\alert{"`Aussage falsch"'})
+	\end{itemize}
+\end{itemize}
+
+Deshalb kann man nullstellige Prädikate wie aussagenlogsiche Atome verwenden
+\bigskip
+
+In diesem Sinne ist die Aussagenlogik ein Teil der Prädikatenlogik
+
+\end{frame}
+
+\sectionSlide{Gleichheit}
+
+\begin{frame}\frametitle{Gleichheit in Prädikatenlogik}
+
+Manchmal wird Prädikatenlogik so definiert, dass es ein
+spezielles \redalert{Gleichheitsprädikat} $\approx$ gibt, welches man in der Regel infix schreibt
+\bigskip
+
+\emph{Semantik:} In allen Interpretationen $\Inter$ ist $\approx^\Inter=\{\tuple{\delta,\delta}\mid \delta\in\Delta^\Inter\}$.
+\bigskip
+
+Wir haben bereits ein Beispiel dafür gesehen:
+
+\examplebox{Beispiel: Partielle Ordnungen $\preceq$ sind antisymmetrisch:\vspace{-0.5ex}
+\begin{align*}
+\forall x,y. & \big(( x\preceq y \wedge y\preceq x )\to x\approx y\big)
+\end{align*}\vspace{-3ex}
+}\pause
+
+Auch erlaubt uns Gleichheit, in Logik zu zählen:
+
+\examplebox{Beispiel: "`Es gibt nur einen Rudi Völler"' (erster Suchvorschlag von Google bei Eingabe "`Es gibt nur einen "', Stand Mai 2017)
+\begin{align*}
+\forall x,y.\big(\textsf{rudiVöller}(x)\wedge \textsf{rudiVöller}(y)\to x\approx y\big)
+\end{align*}
+}
+
+% \emph{Zusatzaufgabe:} Formalisieren Sie "`Es gibt "'
+
+\end{frame}
+
+\begin{frame}\frametitle{Gleichheit der Interpretation von Konstanten}
+
+Die übliche Semantik von Prädikatenlogik erlaubt, dass verschiedene 
+Konstanten gleich interpretiert werden.\bigskip
+
+Mit Gleichheit kann man das erzwingen oder verbieten:
+\examplebox{Beispiel: Seien nun $\textsf{rudiVöller},\textsf{tanteKäthe},\textsf{rudi}\in\Slang{C}$ Konstanten. Wir können ausdrücken:
+\begin{align*}
+\textsf{rudiVöller}&\approx\textsf{tanteKäthe}\\
+\neg \textsf{rudiVöller}&\approx\textsf{rudi}\\
+\end{align*}\vspace{-8ex}
+
+~
+}
+
+Manchmal wird auch $\not\approx$ als Prädikat eingeführt. Wir können das 
+aber auch leicht definieren:
+\[ \forall x,y.(x\not\approx y\leftrightarrow \neg x\approx y)\]
+
+\end{frame}
+
+\newcommand{\eqpred}{\textsf{eq}}
+
+\begin{frame}\frametitle{Ist Ungleichheit wirklich nötig?}
+
+Ungleichheit von Konstanten kann man auch leicht ohne $\approx$ ausdrücken:\medskip
+
+\examplebox{Beispiel: Wir betrachten zwei neue, einstellige Prädikate $O_{\textsf{rudiVöller}}$ und $O_{\textsf{rudi}}$. Die folgende Theorie
+impliziert $\neg \textsf{rudiVöller}\approx\textsf{rudi}$:
+\begin{align*}
+O_{\textsf{rudiVöller}}(\textsf{rudiVöller})  & & O_{\textsf{rudi}}(\textsf{rudi}) &&
+\forall x. \neg (O_{\textsf{rudiVöller}}(x)\wedge O_{\textsf{rudi}}(x))
+\end{align*}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ist Gleichheit wirklich nötig?}
+
+Es stellt sich heraus, dass man ganz allgemein jede Verwendung von $\approx$ einsparen
+kann:
+
+\defbox{Für eine gegebene endliche Menge $\Slang{R}$ von relevanten Prädikatensymbolen
+und ein neues zweistelliges Prädikatensymbol $\eqpred$ definieren wir
+die folgende \redalert{Gleichheitstheorie} $\mathcal{EQ}_{\Slang{R}}$:
+\begin{align*}
+\forall x.&\eqpred(x,x) & \text{Reflexivität} \\
+\forall x,y.&\eqpred(x,y)\to\eqpred(y,x) & \text{Symmetrie}\\
+\forall x,y,z.&\eqpred(x,y)\wedge\eqpred(y,z)\to\eqpred(x,z) & \text{Transitivität}\\
+\forall x_1,\ldots,x_n,y. & \big(p(x_1,\ldots, x_{i-1},x_i,x_{i+1},\ldots,x_n)\wedge{}\\
+&\eqpred(x_i,y) )\to p(x_1,\ldots, x_{i-1},y,x_{i+1},\ldots,x_n)\big) & \text{Kongruenz}
+\end{align*}
+wobei der letzte Satz für alle $n$-stelligen $p\in\Slang{R}$ und alle $i\in\{1,\ldots,n\}$
+instanziiert wird.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Gleichheit ist nicht nötig}
+
+Für eine beliebige Theorie $\mathcal{T}$ der Prädikatenlogik mit Gleichheit
+definieren wir \redalert{$\mathcal{T}_{\eqpred}$} als die Theorie, die man erhält,
+indem man $\approx$ in allen Sätzen von $\mathcal{T}$ durch $\eqpred$ ersetzt.
+\bigskip
+
+Wir können zeigen:
+
+\theobox{Satz: Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
+und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\bigskip
+
+Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
+}
+
+\emph{Beweis:} Siehe nächste Vorlesung.
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Auflösung: Logelei}
+
+Im Inselreich der Menschen von Typ W und Typ L fragte 
+Smullyan\footnote{R. Smullyan: A Beginner's Guide to Mathematical Logic, Dover 2014} die Bewohner nach ihren Rauchgewohnheiten:
+
+\begin{itemize}
+\item Auf \redalert{Insel A} antwortete jeder der Bewohner:\\ \alert{"`Jeder, der hier von Typ W ist, raucht."'}\\
+\visible<2->{\redalert{Die Aussage stimmt und alle sind vom Typ W.}}
+%
+\item Auf \redalert{Insel B} antwortete jeder der Bewohner:\\ \alert{"`Einige von uns hier sind von Typ L und rauchen."'}\\
+\visible<3->{\redalert{Alle sind vom Typ L und keiner raucht.}}
+%
+\item Auf \redalert{Insel C} hatten alle den gleichen Typ und jeder sagte:\\ \alert{"`Falls ich rauche, dann raucht jeder hier."'}\\
+\visible<4->{\redalert{Alle sagen die Wahrheit; es rauchen alle oder keiner.}}
+%
+\item Auf \redalert{Insel D} hatten alle den gleichen Typ und jeder sagte:\\ \alert{"`Einige hier rauchen, aber ich nicht."'}\\
+\visible<5->{\redalert{Alle lügen; es rauchen alle oder keiner.}}
+%
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Modelltheorie definiert logische Semantik aus der Beziehung von Formeln (Behauptungen) und Modellen (möglichen Welten)
+\bigskip
+
+% Die Modelltheorie der Prädikatenlogik basiert auf Interpretationen und Zuweisungen, aber bei Sätzen reichen Interpretationen
+% \bigskip
+
+Logisches Schließen ist die Berechnung (Überprüfung) einzelner Beziehungen der Form $\Inter\models F$ (Model checking) bzw. $F\models G$ (Schlussfolgerung)\bigskip
+
+Prädikatenlogik verallgemeinert Aussagenlogik und viele der dort gültigen Gesetze
+\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Zweites Repetitorium
+\item Pfingsferien
+\item Logisches Schließen: (Un)Entscheidbarkeit, Komplexität, Algorithmen
+\end{itemize}
+}
+
+\end{frame}
+
+
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Richard J. Lorentz:
+% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
+% Computers and Games 2000: 214--228
+% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
+% \end{itemize}
+% 
+% \bigskip\bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_post}: gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
