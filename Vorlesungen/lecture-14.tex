@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{14}{Modelltheorie ud logisches Schließen}{31. Mai 2017}
+\defineTitle{14}{Modelltheorie und logisches Schließen}{31. Mai 2017}
 
 \begin{document}
 
@@ -665,7 +665,7 @@ in Prädikatenlogik und Aussagenlogik gleich definiert:
 \item Ansonsten ist die Definition der Semantik genau gleich
 \end{itemize}
 $\leadsto$ alle aussagenlogischen Gesetze gelten analog
-\bigskip
+\bigskip\pause
 
 \examplebox{Beispiel: Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
 $\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann wenn
@@ -807,115 +807,6 @@ Deshalb kann man nullstellige Prädikate wie aussagenlogsiche Atome verwenden
 In diesem Sinne ist die Aussagenlogik ein Teil der Prädikatenlogik
 
 \end{frame}
-
-\sectionSlide{Gleichheit}
-
-\begin{frame}\frametitle{Gleichheit in Prädikatenlogik}
-
-Manchmal wird Prädikatenlogik so definiert, dass es ein
-spezielles \redalert{Gleichheitsprädikat} $\approx$ gibt, welches man in der Regel infix schreibt
-\bigskip
-
-\emph{Semantik:} In allen Interpretationen $\Inter$ ist $\approx^\Inter=\{\tuple{\delta,\delta}\mid \delta\in\Delta^\Inter\}$.
-\bigskip
-
-Wir haben bereits ein Beispiel dafür gesehen:
-
-\examplebox{Beispiel: Partielle Ordnungen $\preceq$ sind antisymmetrisch:\vspace{-0.5ex}
-\begin{align*}
-\forall x,y. & \big(( x\preceq y \wedge y\preceq x )\to x\approx y\big)
-\end{align*}\vspace{-3ex}
-}\pause
-
-Auch erlaubt uns Gleichheit, in Logik zu zählen:
-
-\examplebox{Beispiel: "`Es gibt nur einen Rudi Völler"' (erster Suchvorschlag von Google bei Eingabe "`Es gibt nur einen "', Stand Mai 2017)
-\begin{align*}
-\forall x,y.\big(\textsf{rudiVöller}(x)\wedge \textsf{rudiVöller}(y)\to x\approx y\big)
-\end{align*}
-}
-
-% \emph{Zusatzaufgabe:} Formalisieren Sie "`Es gibt "'
-
-\end{frame}
-
-\begin{frame}\frametitle{Gleichheit der Interpretation von Konstanten}
-
-Die übliche Semantik von Prädikatenlogik erlaubt, dass verschiedene 
-Konstanten gleich interpretiert werden.\bigskip
-
-Mit Gleichheit kann man das erzwingen oder verbieten:
-\examplebox{Beispiel: Seien nun $\textsf{rudiVöller},\textsf{tanteKäthe},\textsf{rudi}\in\Slang{C}$ Konstanten. Wir können ausdrücken:
-\begin{align*}
-\textsf{rudiVöller}&\approx\textsf{tanteKäthe}\\
-\neg \textsf{rudiVöller}&\approx\textsf{rudi}\\
-\end{align*}\vspace{-8ex}
-
-~
-}
-
-Manchmal wird auch $\not\approx$ als Prädikat eingeführt. Wir können das 
-aber auch leicht definieren:
-\[ \forall x,y.(x\not\approx y\leftrightarrow \neg x\approx y)\]
-
-\end{frame}
-
-\newcommand{\eqpred}{\textsf{eq}}
-
-\begin{frame}\frametitle{Ist Ungleichheit wirklich nötig?}
-
-Ungleichheit von Konstanten kann man auch leicht ohne $\approx$ ausdrücken:\medskip
-
-\examplebox{Beispiel: Wir betrachten zwei neue, einstellige Prädikate $O_{\textsf{rudiVöller}}$ und $O_{\textsf{rudi}}$. Die folgende Theorie
-impliziert $\neg \textsf{rudiVöller}\approx\textsf{rudi}$:
-\begin{align*}
-O_{\textsf{rudiVöller}}(\textsf{rudiVöller})  & & O_{\textsf{rudi}}(\textsf{rudi}) &&
-\forall x. \neg (O_{\textsf{rudiVöller}}(x)\wedge O_{\textsf{rudi}}(x))
-\end{align*}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Ist Gleichheit wirklich nötig?}
-
-Es stellt sich heraus, dass man ganz allgemein jede Verwendung von $\approx$ einsparen
-kann:
-
-\defbox{Für eine gegebene endliche Menge $\Slang{R}$ von relevanten Prädikatensymbolen
-und ein neues zweistelliges Prädikatensymbol $\eqpred$ definieren wir
-die folgende \redalert{Gleichheitstheorie} $\mathcal{EQ}_{\Slang{R}}$:
-\begin{align*}
-\forall x.&\eqpred(x,x) & \text{Reflexivität} \\
-\forall x,y.&\eqpred(x,y)\to\eqpred(y,x) & \text{Symmetrie}\\
-\forall x,y,z.&\eqpred(x,y)\wedge\eqpred(y,z)\to\eqpred(x,z) & \text{Transitivität}\\
-\forall x_1,\ldots,x_n,y. & \big(p(x_1,\ldots, x_{i-1},x_i,x_{i+1},\ldots,x_n)\wedge{}\\
-&\eqpred(x_i,y) )\to p(x_1,\ldots, x_{i-1},y,x_{i+1},\ldots,x_n)\big) & \text{Kongruenz}
-\end{align*}
-wobei der letzte Satz für alle $n$-stelligen $p\in\Slang{R}$ und alle $i\in\{1,\ldots,n\}$
-instanziiert wird.
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Gleichheit ist nicht nötig}
-
-Für eine beliebige Theorie $\mathcal{T}$ der Prädikatenlogik mit Gleichheit
-definieren wir \redalert{$\mathcal{T}_{\eqpred}$} als die Theorie, die man erhält,
-indem man $\approx$ in allen Sätzen von $\mathcal{T}$ durch $\eqpred$ ersetzt.
-\bigskip
-
-Wir können zeigen:
-
-\theobox{Satz: Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
-und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\bigskip
-
-Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
-}
-
-\emph{Beweis:} Siehe nächste Vorlesung.
-
-\end{frame}
-
 
 
 \begin{frame}\frametitle{Auflösung: Logelei}
