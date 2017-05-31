@@ -199,23 +199,25 @@ Für die Härte zeigen wir $\Slang{TrueQBF}\leq_p\Slang{TrueQBF}_{\Slang{alt}}$:
 \smallskip
 
 Bei Startknoten $s$ und Graph $G$ erhalten wir die Antwort durch Aufruf von
-{\tt \textsc{eCanWin}($G$, $s$, $\emptyset$)}, definiert wie folgt:
+{\tt \textsc{eCanWin}($G$, $s$, $\{s\}$)}, definiert wie folgt:
 
 \codebox{
 {\tt%
 \alert{01}~\textsc{eCanWin}($G$, $n$, Visited) : \\
 \alert{02}~~~result = \Scodelit{false}\\
-\alert{03}~~~\Scode{for all} Nachfolger $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
+\alert{03}~~~\Scode{for all} Nachfolger${}^*$ $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
 \alert{04}~~~~~~result = result \Scode{OR} aCannotWin($G$,$m$,Visited${}\cup\{m\}$)\\
 \alert{05}~~~\Scode{return} result\\
 ~\\
 \alert{06}~\textsc{aCannotWin}($G$, $n$, Visited) : \\
 \alert{07}~~~result = \Scodelit{true}\\
-\alert{08}~~~\Scode{for all} Nachfolger $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
+\alert{08}~~~\Scode{for all} Nachfolger${}^*$ $m$ von $n$ in $G$ mit $m\notin{}$Visited :\\
 \alert{09}~~~~~~result = result \Scode{AND} eCanWin($G$,$m$,Visited${}\cup\{m\}$)\\
 \alert{10}~~~\Scode{return} result
 }
 }
+
+\ghost{\hspace{10.5cm}\rotatebox{90}{~\hspace{5mm}\footnotesize${}^*$ gemeint sind jeweils direkte Nachfolger}}
 \end{frame}
 
 
