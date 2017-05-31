@@ -39,3 +39,39 @@
     \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
     \else\@ctrerr\fi}
 }
+
+% Hebrew counters
+% https://tex.stackexchange.com/questions/226793/what-are-tex-codes-for-hebrew-letters-to-be-used-as-math-mode-symbols
+% this requires the rcjhbltx font
+
+\usepackage{amsmath,amssymb}
+
+% FIXME: does not scale
+% FIXME: wrong order
+
+% \DeclareFontFamily{U}{rcjhbltx}{}
+% \DeclareFontShape{U}{rcjhbltx}{m}{n}{<->rcjhbltx}{}
+% \DeclareSymbolFont{hebrewletters}{U}{rcjhbltx}{m}{n}
+
+% % remove the definitions from amssymb
+% \let\aleph\relax\let\beth\relax
+% \let\gimel\relax\let\daleth\relax
+
+% \DeclareMathSymbol{\aleph}{\mathord}{hebrewletters}{39}
+% \DeclareMathSymbol{\beth}{\mathord}{hebrewletters}{98}\let\bet\beth
+% \DeclareMathSymbol{\gimel}{\mathord}{hebrewletters}{103}
+% \DeclareMathSymbol{\daleth}{\mathord}{hebrewletters}{100}\let\dalet\daleth
+
+% \DeclareMathSymbol{\lamed}{\mathord}{hebrewletters}{108}
+% \DeclareMathSymbol{\mem}{\mathord}{hebrewletters}{109}\let\mim\mem
+% \DeclareMathSymbol{\ayin}{\mathord}{hebrewletters}{96}
+% \DeclareMathSymbol{\tsadi}{\mathord}{hebrewletters}{118}
+% \DeclareMathSymbol{\qof}{\mathord}{hebrewletters}{114}
+% \DeclareMathSymbol{\shin}{\mathord}{hebrewletters}{152}
+
+% \newcommand*{\Hebrew}[1]{%
+%   \expandafter\@hebrew\csname c@#1\endcsname
+% }
+% \newcommand*{\@hebrew}[1]{%
+%   \ensuremath{\ifcase#1\or\aleph\or\beth\or\gimel\or\daleth\or\lamed%
+%     \or\mem\or\ayin\or\tsadi\or\qof\or\shin\else\@ctrerr\fi}}
