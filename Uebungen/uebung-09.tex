@@ -5,7 +5,7 @@
 
 \documentclass[german]{latteachCD}[2017/03/28]
 
-% Fun with Complexity Theory
+% Einführung Logik
 
 \usepackage[sheetnumber=9]{theolog}
 
@@ -19,6 +19,22 @@
 
   \renewcommand{\theexercise}{\Roman{exercise}}
   \setcounter{exercise}{0}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Geben Sie für die Formel
+    \begin{equation*}
+      \forall x. \exists y. (P(f(x,y),z) \land (Q(x,g(x),z) \lor P(g(y),y)))
+    \end{equation*}
+    folgendes an:
+    \begin{enumerate}
+    \item die Menge aller Unterformeln;
+    \item die Menge aller Terme;
+    \item die Menge aller Variablen, mit Unterscheidung freier und gebundener
+      Variablen;
+    \item ein Modell.
+    \end{enumerate}
+  \end{exercise}
 
   \begin{exercise}
     % TheoLog 2014
@@ -46,57 +62,39 @@
   \end{exercise}
 \end{mdframed}
 
-\vspace*{0.5\baselineskip}
+\clearpage
 
 \setcounter{exercise}{0}
 
-\begin{exercise}
-  % TheoLog 2014
-  Geben Sie für die Formel
-  \begin{equation*}
-    \forall x. \exists y. (P(f(x,y),z) \land (Q(x,g(x),z) \lor P(g(y),y)))
-  \end{equation*}
-  folgendes an:
-  \begin{enumerate}
-  \item die Menge aller Unterformeln;
-  \item die Menge aller Terme;
-  \item die Menge aller Variablen, mit Unterscheidung freier und gebundener
-    Variablen;
-  \item ein Modell.
-  \end{enumerate}
-\end{exercise}
-
-\clearpage
-
-\begin{exercise}
-  % TheoLog 2014
-  Welche der angegebenen Strukturen sind Modelle der folgenden Formel in
-  Prädikatenlogik mit Gleichheit?
-  \begin{align*}
-    \phi \coloneqq{}& \Bigl(\forall x. R(x,x)\Bigr) \land \Bigl(\forall x. \forall y. R(x,y) \land
-           R(y,x) \to x = y\Bigr)\\
-    &\land \Bigl(\forall x. \forall y. \forall z. R(x,y) \land R(y,z)
-      \to R(x,z)\Bigr)
-  \end{align*}
-  \begin{enumerate}
-  \item $\mathcal{A}_{1}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{1}} =
-    \{\,(m,n) \mid m < n \,\}$;
-  \item $\mathcal{A}_{2}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{2}} =
-    \{\,(n,n+1) \mid n \in \mathbb N \,\}$;
-  \item $\mathcal{A}_{3}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{3}} =
-    \{\,(m,n) \mid m \text{ teilt } n\,\}$;
-  \item $\mathcal{A}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
-    und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid \exists z \in \Sigma^{+}. xz =
-    y\,\}$;
-  \item $\mathcal{A}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
-    $R^{\mathcal{A}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
-  \item $\mathcal{A}_{6}$ mit Grundmenge $\mathbb N \times \mathbb N$ und
-    \begin{equation*}
-      R^{\mathcal{A}_{6}} = \{\,((m_{1},m_{2}),(n_{1},n_{2})) \mid m_{1} < n_{1}
-      \lor (m_{1} = n_{1} \land m_{2} \leq n_{2})\,\}.
-    \end{equation*}
-  \end{enumerate}
-\end{exercise}
+% \begin{exercise}
+%   % TheoLog 2014
+%   Welche der angegebenen Strukturen sind Modelle der folgenden Formel in
+%   Prädikatenlogik mit Gleichheit?
+%   \begin{align*}
+%     \phi \coloneqq{}& \Bigl(\forall x. R(x,x)\Bigr) \land \Bigl(\forall x. \forall y. R(x,y) \land
+%            R(y,x) \to x = y\Bigr)\\
+%     &\land \Bigl(\forall x. \forall y. \forall z. R(x,y) \land R(y,z)
+%       \to R(x,z)\Bigr)
+%   \end{align*}
+%   \begin{enumerate}
+%   \item $\mathcal{A}_{1}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{1}} =
+%     \{\,(m,n) \mid m < n \,\}$;
+%   \item $\mathcal{A}_{2}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{2}} =
+%     \{\,(n,n+1) \mid n \in \mathbb N \,\}$;
+%   \item $\mathcal{A}_{3}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{3}} =
+%     \{\,(m,n) \mid m \text{ teilt } n\,\}$;
+%   \item $\mathcal{A}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
+%     und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid \exists z \in \Sigma^{+}. xz =
+%     y\,\}$;
+%   \item $\mathcal{A}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
+%     $R^{\mathcal{A}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
+%   \item $\mathcal{A}_{6}$ mit Grundmenge $\mathbb N \times \mathbb N$ und
+%     \begin{equation*}
+%       R^{\mathcal{A}_{6}} = \{\,((m_{1},m_{2}),(n_{1},n_{2})) \mid m_{1} < n_{1}
+%       \lor (m_{1} = n_{1} \land m_{2} \leq n_{2})\,\}.
+%     \end{equation*}
+%   \end{enumerate}
+% \end{exercise}
 
 \begin{exercise}
   \begin{enumerate}
@@ -109,13 +107,17 @@
     \end{enumerate}
     Elemente in der Grundmenge besitzen.
   \item Geben Sie je eine erfüllbare Formel in Prädikatenlogik mit Gleichheit
-    an, so dass das einstellige Funktionssymbol $f$ in jedem Modell als eine
+    an, so dass das zweistellige Relationensymbol $F$ in jedem Modell als der
+    Graph einer
     \begin{enumerate}
-    \item injektive Funktion,
-    \item surjektive Funktion,
-    \item bijektive Funktion
+    \item injektiven Funktion,
+    \item surjektiven Funktion,
+    \item bijektiven Funktion
     \end{enumerate}
     interpretiert wird.
+
+    (Der Graph einer Funktion $f \colon A \to B$ ist die Relation $\{\,(x,y) \in
+    A \times B \mid f(x) = y\,\}$.)
   \end{enumerate}
 \end{exercise}
 
@@ -129,11 +131,18 @@
     wenn $\lnot \phi$ unerfüllbar ist.
   \item Es gilt
     \begin{equation*}
-      \{\,\forall x. \forall y. R(x,y) \to R(y,x), \forall x. \forall y. \forall
-      z. R(x,y) \land R(y,z) \to R(x,z)\,\} \models \forall x. R(x,x).
+      \{\,\forall x, y. R(x,y) \to R(y,x), \forall x, y, z. R(x,y) \land R(y,z)
+      \to R(x,z)\,\} \models \forall x. R(x,x).
     \end{equation*}
   \end{enumerate}
+\end{exercise}
 
+\begin{exercise}
+  Formalisieren Sie Bertrand Russells Barbier-Paradoxon
+  \begin{quote}
+    \emph{Der Barbier rasiert genau diejenigen Personen, die sich nicht selbst rasieren.}
+  \end{quote}
+  als eine prädikatenlogische Formel und zeigen Sie, dass diese unerfüllbar ist.
 \end{exercise}
 
 \end{document}
