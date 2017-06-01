@@ -1,0 +1,93 @@
+% ⓒ 2017 Monika Sturm, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+% NP-Vollständigkeit
+
+\usepackage[sheetnumber=6]{theolog}
+\title{Musterlösung zu Übungsblatt~7}
+
+\usepackage{ragged2e}
+
+\begin{document}
+
+\maketitle
+
+\vspace*{0.5\baselineskip}
+\setcounter{exercise}{3}
+\justifying
+
+\begin{exercise}
+  % Complexity Theory 2015/16, originally Sipser 8.29
+  Ein \emph{linear bounded automaton} (LBA) ist eine deterministische Turing
+  Maschine $\Smach{M}$ , die bei jeder Berechnung niemals mehr Platz benutzt als
+  bereits durch die Eingabe belegt ist.  Dies erreicht \Smach{M} dadurch, dass
+  sie niemals ein \textvisiblespace{} überschreibt und den Lesekopf nach links
+  bewegt, sobald sie ein \textvisiblespace{} liest.
+
+  Zeigen Sie, dass das Wortproblem für LBA
+  \begin{equation*}
+    \Slang{P}_{\mathsf{LBA}} \coloneqq \{\,\enc(\Smach{M})\#\#\enc(w) \mid
+    \text{\Smach{M} ein LBA, der $w$ akzeptiert} \,\}.
+  \end{equation*}
+  ein \PSpace-vollständiges Problem ist.
+\end{exercise}
+
+\emph{Lösung}\/: Wir zeigen zuerst $\Slang{P}_{\mathsf{LBA}} \in \PSpace$.
+Dafür muss zuerst geprüft werden, ob eine gegeben Eingabe von der Form
+$\enc(\Smach M)\#\#\enc(w)$ ist, wobei $\Smach M$ ein LBA ist.  Dabei ist leicht
+zu sehen, dass in polynomieller Zeit geprüft werden kann, ob $\enc(\Smach M)$
+die Kodierung einer Turing-Maschine ist.  Um zu sehen, dass $\Smach M$ ein LBA
+ist, genügt es dann zu prüfen, ob $\Smach M$ niemals ein~\blank{} überschreibt,
+und bei Lesen des~\blank{} dieses nicht überschreibt und den Lesekopf nach links
+bewegt.  Auch dies kann in polynomieller Zeit geprüft werden.
+
+Als nächstes muss ein Entscheider für $\Slang P_{\mathsf{LBA}}$ prüfen, ob
+$\Smach M = (Q,\Sigma,\Gamma,\delta,q_{0},F)$ die Eingabe $w$ akzeptiert.  Dazu
+beobachten wir, dass die Maschine $\Smach M$ höchstens $\lvert Q\rvert \cdot n
+\cdot \lvert \Gamma\rvert^{n}$ Konfigurationen durchläuft, bevor sie in eine
+Schleife gerät.  Es genügt also, die Maschine $\Smach M$ für höchstens $\lvert
+Q\rvert \cdot n \cdot \lvert \Gamma\rvert^{n}$ Schritte zu simulieren um zu
+entscheiden, ob $\Smach M$ das Wort $w$ erkennt.  Die Simulation von $\Smach M$
+selbst benötigt nur linear Platz (da $\Smach M$ ein LBA ist), und hinzu kommt
+noch Platz für einen Zähler, dessen Wert höchstens $\lvert Q\rvert \cdot n \cdot
+\lvert \Gamma\rvert^{n}$ ist und der deswegen höchstens Platz $\log \lvert
+Q\vert + \log n + n \cdot \log\lvert \Gamma\rvert$ benötigt.  Dies gesamte
+Simulation kann also in polynomiellen Platz ausgeführt werden.
+
+\def\pad{\operatorname{pad}}
+
+Wir zeigen nun, dass $\Slang P_{\mathsf{LBA}}$ \PSpace-hart ist.  Sei dazu
+$\Slang L \in \PSpace$ und sei $\Smach M$ eine polynomiell platzbeschränkte
+Turing-Maschine, die $\Slang L$ entscheidet.  Sei $p$ ein Polynom, welches den
+Platzverbrauch von $\Smach M$ beschränkt.  Ohne Einschränkung sei dabei $p(n)
+\geq n$ für alle $n \in \mathbb N$.  Definiere dann $\pad(w)$ durch
+\begin{equation*}
+  \pad(w) = w\bot^{k},
+\end{equation*}
+wobei $\bot$ ein neues Symbol ist, so dass $\lvert \pad(w)\rvert = p(\lvert
+w\rvert)$ gilt.
+
+Sei nun $\Smach M'$ die Turing-Maschine, welche $\Smach M$ auf der Eingabe
+simuliert und dabei das $\bot$-Zeichen wie \blank{} behandelt.  Dies kann
+erreicht werden, indem in der Übergangsfunktion von $\Smach M$ jedes Vorkommen
+von \blank{} durch $\bot$ ersetzt wird, und zusätzlich noch die Transition
+hinzugefügt wird, dass $\Smach M'$ bei Lesen von \blank{} den Lesekopf nach
+links bewegt und \blank{} wieder schreibt.  Dann ist $\Smach M'$ ein LBA und es gilt
+\begin{equation*}
+  \Smach M' \text{ akzeptiert } w \iff \Smach M \text{ akzeptiert } w.
+\end{equation*}
+Also ist
+\begin{equation*}
+  f(\enc(w)) = \enc(\Smach M')\#\#\enc(\pad(w))
+\end{equation*}
+eine polynomiell zeitbeschränkte Reduktion von $\Slang L$ auf $\Slang
+P_{\mathsf{LBA}}$.  Da $\Slang L$ beliebig gewählt war folgt, dass $\Slang
+P_{\mathsf{LBA}}$ \PSpace-hart ist.
+
+\end{document}
+
+%  LocalWords:  logspace
