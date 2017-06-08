@@ -24,9 +24,9 @@
     % TheoLog 2014
     Geben Sie für die Formel
     \begin{equation*}
-      F = \forall x. \exists y. (P(f,z) \land (Q(x,g,z) \lor P(g,y))),
+      F = \forall x. \exists y. (p(c_{1},z) \land (q(x,c_{2},z) \lor p(c_{2},y))),
     \end{equation*}
-    wobei $f,g$ Konstanten sind, folgendes an:
+    wobei $c_{1}, c_{2}$ Konstanten sind, folgendes an:
     \begin{enumerate}
     \item die Menge aller Teilformeln;
     \item die Menge aller Terme;
@@ -50,15 +50,9 @@
 
   \begin{exercise}
     % TheoLog 2014
-    Geben Sie eine erfüllbare Formel in Prädikatenlogik mit Gleichheit an, die
-    kein endliches Modell besitzt.
-  \end{exercise}
-
-  \begin{exercise}
-    % TheoLog 2014
     Seien $\phi$, $\psi$ Formeln und $x$ eine Variable.  Zeigen Sie, dass dann gilt
     \begin{equation*}
-      \exists x.(\phi \to \psi) \equiv (\forall x. \phi) \to (\exists x. \psi).
+      \exists x.(\phi \to \psi) \equiv \forall x. \phi \to \exists x. \psi.
     \end{equation*}
   \end{exercise}
   \vspace*{-1.5\baselineskip}
@@ -86,8 +80,7 @@
   \item $\mathcal{A}_{3}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{3}} =
     \{\,(m,n) \mid m \text{ teilt } n\,\}$;
   \item $\mathcal{A}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
-    und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid \exists z \in \Sigma^{+}\!.\, xz =
-    y\,\}$;
+    und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid x \text{ is Präfix von } y\,\}$;
   \item $\mathcal{A}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
     $R^{\mathcal{A}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
   \end{enumerate}
