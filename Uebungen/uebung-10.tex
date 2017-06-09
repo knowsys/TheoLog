@@ -7,7 +7,7 @@
 
 % Vorbereitung Resolution: Skolem-Normalform, Herbrand-Universum, Unifikation
 
-\usepackage[sheetnumber=9]{theolog}
+\usepackage[sheetnumber=10]{theolog}
 
 \begin{document}
 
@@ -20,16 +20,88 @@
   \renewcommand{\theexercise}{\Roman{exercise}}
   \setcounter{exercise}{0}
 
+  \begin{exercise}
+    % TheoLog 2014
+    Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
+    \begin{enumerate}
+    \item Jede Formel in Pränexform ist in Skolemform.
+    \item Jede Formel in Skolemform ist in Pränexform.
+    \item Jede Formel ist äquivalent zu einer bereinigten Formel.
+    \item Jede Formel ist äquivalent zu einer bereinigten Formel in Pränexform.
+    \item Jede Formel ist äquivalent zu einer bereinigten Formel in Skolemform.
+    \end{enumerate}
+  \end{exercise}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Formalisieren Sie die folgenden Aussagen in Prädikatenlogik:
+    \begin{enumerate}
+    \item Jeder Drache ist glücklich, wenn alle seine Kinder fliegen können.
+    \item Grüne Drachen können fliegen.
+    \item Ein Drache ist grün, wenn er Kind mindestens eines grünen Drachen ist.
+    \item Alle grünen Drachen sind glücklich.
+    \end{enumerate}
+    Zeigen Sie, dass die letzte Aussage aus den ersten drei folgt.
+  \end{exercise}
 \end{mdframed}
 
 \setcounter{exercise}{0}
 
+\vspace*{\baselineskip}
+
 % Skolem-Normalform
+
+\begin{exercise}
+  % TheoLog 2014
+  % TODO: Formulierung an Vorlesung anpassen, eventuell Funktionssymbole ersetzen
+  Bestimmen Sie zu jeder der folgenden Formeln eine äquivalente bereinigte
+  Formel in Pränexform.
+  \begin{enumerate}
+  \item $\forall x.(p(x,x) \leftrightarrow \lnot \exists.q(x,y))$
+  \item $(\forall x.p(f(x,x))) \lor (q(x,z) \to \exists x.p(g(x,y,z)))$
+  \item $(\forall x.p(x)) \land ((\forall y.\exists x.q(x,g(y))) \to \exists
+    y.(r(f(y)) \lor \lnot q(y,x)))$
+  \end{enumerate}
+\end{exercise}
+
+\newpage
+
+\begin{exercise}
+  % TheoLog 2014
+  Bestimmen Sie zu jeder der folgenden Formeln eine erfüllbarkeitsäquivalente
+  bereinigte Formel in Skolemform.
+  \begin{enumerate}
+  \item $p(x) \lor (\exists x.q(x,x)) \lor \forall x.p(f(x))$
+  \item $\forall x.\exists y.q(f(x),g(y)) \land \forall x.(p(x,y,y) \lor
+    q(h(y),x))$
+  \item $\forall x.\forall x.(p(x) \leftrightarrow q(x,x)) \lor \exists
+    x.\forall y.(q(x,g(y,z)) \land \exists z.q(z,z))$
+  \end{enumerate}
+\end{exercise}
 
 % Herbrand-Universum
 
-% Unifikation
+\begin{exercise}
+  % TheoLog 2014
+  Gegeben sind die folgenden Formeln in Skolemform.
+  \begin{align*}
+    F &= \forall x, y, z. p(x,f(y),g(z,x)),\\
+    G &= \forall x,y. (p(a,f(a,x,y)) \lor q(b)).
+  \end{align*}
+  \begin{enumerate}
+  \item Geben Sie die zugehörigen Herbrand-Universen $\Delta_{F}$ und
+    $\Delta_{G}$ an.
+  \item Geben Sie je ein Herbrand-Modell an oder begründen Sie, warum kein
+    solches existiert.
+  \item Geben Sie die Herbrand-Expansion $\operatorname{HE}(F)$ und
+    $\operatorname{HE}(G)$ an.
+  \end{enumerate}
+\end{exercise}
 
-\clearpage
+\begin{exercise}
+  % TheoLog 2014
+  Zeigen Sie, dass Allgemeingültigkeit von Formeln der Prädikatenlogik erster
+  Stufe in Skolemform entscheidbar ist.
+\end{exercise}
 
 \end{document}
