@@ -70,21 +70,21 @@
   Prädikatenlogik mit Gleichheit?
   \begin{align*}
     \phi \coloneqq{}
-    & \Bigl(\forall x.\, R(x,x)\Bigr) \land \Bigl(\forall x, y.\, R(x,y) \land
-      R(y,x) \to x \approx y\Bigr)\\
-    &\land \Bigl(\forall x, y, z.\, R(x,y) \land R(y,z) \to R(x,z)\Bigr)
+    & \Bigl(\forall x.\, p(x,x)\Bigr) \land \Bigl(\forall x, y.\, p(x,y) \land
+      p(y,x) \to x \approx y\Bigr)\\
+    &\land \Bigl(\forall x, y, z.\, p(x,y) \land p(y,z) \to p(x,z)\Bigr)
   \end{align*}
   \begin{enumerate}
-  \item $\mathcal{A}_{1}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{1}} =
+  \item $\mathcal{I}_{1}$ mit Grundmenge $\mathbb N$ und $p^{\mathcal{I}_{1}} =
     \{\,(m,n) \mid m < n \,\}$;
-  \item $\mathcal{A}_{2}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{2}} =
+  \item $\mathcal{I}_{2}$ mit Grundmenge $\mathbb N$ und $p^{\mathcal{I}_{2}} =
     \{\,(n,n+1) \mid n \in \mathbb N \,\}$;
-  \item $\mathcal{A}_{3}$ mit Grundmenge $\mathbb N$ und $R^{\mathcal{A}_{3}} =
+  \item $\mathcal{I}_{3}$ mit Grundmenge $\mathbb N$ und $p^{\mathcal{I}_{3}} =
     \{\,(m,n) \mid m \text{ teilt } n\,\}$;
-  \item $\mathcal{A}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
-    und $R^{\mathcal{A}_{4}} = \{\,(x,y) \mid x \text{ is Präfix von } y\,\}$;
-  \item $\mathcal{A}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
-    $R^{\mathcal{A}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
+  \item $\mathcal{I}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
+    und $p^{\mathcal{I}_{4}} = \{\,(x,y) \mid x \text{ is Präfix von } y\,\}$;
+  \item $\mathcal{I}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
+    $p^{\mathcal{I}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$;
   \end{enumerate}
 \end{exercise}
 
@@ -99,7 +99,7 @@
     \end{enumerate}
     Elemente in der Grundmenge besitzen.
   \item Geben Sie je eine erfüllbare Formel in Prädikatenlogik mit Gleichheit
-    an, so dass das zweistellige Relationensymbol $F$ in jedem Modell als der
+    an, so dass das zweistellige Relationensymbol $p$ in jedem Modell als der
     Graph einer
     \begin{enumerate}
     \item injektiven Funktion,
@@ -116,15 +116,15 @@
 \begin{exercise}
   Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
   \begin{enumerate}
-  \item Aus $\Gamma \subseteq \Gamma'$ und $\Gamma \models \phi$ folgt $\Gamma'
-    \models \phi$.
+  \item Aus $\Gamma \subseteq \Gamma'$ und $\Gamma \models F$ folgt $\Gamma'
+    \models F$.
   \item Jede aussagenlogische Formel ist eine prädikatenlogische Formel.
-  \item Eine prädikatenlogische Formel $\phi$ ist genau dann allgemeingültig,
-    wenn $\lnot \phi$ unerfüllbar ist.
+  \item Eine prädikatenlogische Formel $F$ ist genau dann allgemeingültig,
+    wenn $\lnot F$ unerfüllbar ist.
   \item Es gilt
     \begin{equation*}
-      \{\,\forall x, y.\, R(x,y) \to R(y,x), \forall x, y, z.\, R(x,y) \land R(y,z)
-      \to R(x,z)\,\} \models \forall x.\, R(x,x).
+      \{\,\forall x, y.\, p(x,y) \to p(y,x), \forall x, y, z.\, p(x,y) \land p(y,z)
+      \to p(x,z)\,\} \models \forall x.\, p(x,x).
     \end{equation*}
   \end{enumerate}
 \end{exercise}
