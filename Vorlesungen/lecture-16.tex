@@ -264,8 +264,7 @@ effektiv beweisen kann."'
 "`Es gibt kein konsistentes Verfahren, das alle Konsequenzen der elementaren Arithmetik
 effektiv beweisen kann."'
 \begin{itemize}
-\item Für jedes Verfahren gibt es Sätze über elementare arithmetische Zusammenhänge, die weder bewiesen noch
-widerlegt werden können
+\item Für jedes Verfahren gibt es allgemeingültige Sätze über elementare arithmetische Zusammenhänge, die nicht bewiesen werden können
 \item Die Wahrheit elementarer arithmetischer Zusammenhänge ist nicht semi-entscheidbar
 \end{itemize}\pause
 \item \alert{2. Gödelscher Unvollständigkeitssatz (1931):} später
@@ -365,7 +364,7 @@ Wir müssen aber mehr beachten als zuvor:
 
 Wir haben bereits gelernt (Vorlesung 14):
 \begin{itemize}
-\item In prädikatenlogischen Formeln dart man Teilformeln durch semantisch äquivalente
+\item In prädikatenlogischen Formeln darf man Teilformeln durch semantisch äquivalente
 Formeln ersetzten (Ersetzungstheorem)
 \item Für die aussagenlogischen Junktoren gelten die gleichen Äquivalenzen wie in der Aussagenlogik
 \end{itemize}
@@ -480,8 +479,8 @@ unter Verwendung der bekannten Äquivalenzen:
 \item $\textsf{NNF}(\neg\neg F)=\textsf{NNF}(F)$
 \item $\textsf{NNF}(\neg(F\wedge G))=\textsf{NNF}(\neg F)\vee\textsf{NNF}(\neg G)$
 \item $\textsf{NNF}(\neg(F\vee G))=\textsf{NNF}(\neg F)\wedge\textsf{NNF}(\neg G)$
-\item $\textsf{NNF}(\neg\exists x.F)=\forall x.\neg\textsf{NNF}(F)$
-\item $\textsf{NNF}(\neg\forall x.F)=\exists x.\neg\textsf{NNF}(F)$
+\item $\textsf{NNF}(\neg\exists x.F)=\forall x.\textsf{NNF}(\neg F)$
+\item $\textsf{NNF}(\neg\forall x.F)=\exists x.\textsf{NNF}(\neg F)$
 \end{itemize}
 
 }
@@ -549,129 +548,129 @@ kann wie folgt bereinigt werden:
 }
 
 \end{frame}
-
-\begin{frame}\frametitle{Pränexform}
-
-\defbox{Eine Formel ist in \redalert{Pränexform}, wenn alle ihre Quantoren am Anfang stehen, d.h. wenn sie die folgende Form hat
-\[ \quantor_1 x_1.\cdots\quantor_n x_n.F \]
-mit $\quantor_1,\ldots,\quantor_n\in\{\exists,\forall\}$ und $F$ eine Formel ohne Quantoren.}
-
-Man kann beliebige Formeln leicht in äquivalente Formeln in Pränexform umwandeln.
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Umwandlung in Pränexform (1)}
-
-\theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
-$F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
-\begin{align*}
-(\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G)  &\qquad
-(G\circ \quantor x.F) & \mapsto \quantor x.(G\circ F)
-\end{align*}\vspace{-4ex}
-
-für beliebige $\quantor\in\{\exists,\forall\}$ und $\circ\in\{\vee,\wedge\}$.
-}\pause
-
-\emph{Beweis:} (Korrektheit) Wenn der Algorithmus terminiert, dann ist die Formel in Pränexform.
-Denn eine Formel in NNF, die nicht in Pränexform ist, muss eine ersetzbare Teilformel enthalten.\bigskip\pause
-
-Es entsteht in jedem Schritt eine semantisch äquivalente Formeln, weil
-wir eine Formel durch eine Äquivalente ersetzen (Äquivalenz gilt, da $x$ in $G$ nicht vorkommt). Also ist die Formel auch nach beliebig vielen Schritten noch äquivlent (= Induktion über die Zahl der Schritte).
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Umwandlung in Pränexform (2)}
-
-\theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
-$F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
-\begin{align*}
-(\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G) &\qquad
-(G\circ \quantor x.F) & \mapsto \quantor x.(G\circ F)
-\end{align*}\vspace{-4ex}
-
-für beliebige $\quantor\in\{\exists,\forall\}$ und $\circ\in\{\vee,\wedge\}$.
-}
-
-\emph{Beweis:} (Terminierung) Man kann die Ersetzungen nicht unendlich oft anwenden:\pause
-\begin{itemize}
-\item Für einer Formel $F$ sei $J(F)$ die Zahl der Junktoren in $F$
-\item Sei $Q(F)\defeq \sum\{J(\quantor x.G)\mid \quantor x.G\text{ Teilformel in }F\}$
-die Summe der Zahl von Junktoren unterhalb jedes Quantors\pause
-\item $Q(F)$ wird in jedem Ersetzungsschritt größer, aber die Gesamtzahl der Quantoren und Junktoren bleibt gleich, d.h. es gibt
-einen Maximalwert, den $Q(F)$ nicht übersteigen kann
-\end{itemize}
-$\leadsto$ Das Verfahren muss irgendwann anhalten\qed
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel: Logelei (1)}
-
-In Vorlesung 14 betrachteten wir den Fall, dass alle Einwohner einer Insel sagen,
-"`Auf dieser Insel haben alle den gleichen Typ."'\bigskip
-
-Dies entspricht der Theorie aus folgenden Sätzen:
-\begin{itemize}
-\item "`Jeder Einwohner ist entweder Wahrheitssager oder Lügner."'\\
-	$\alert{\forall x.\big((W(x)\wedge\neg L(x))\vee (L(x)\wedge\neg W(x))\big)}$
-\item Lebt auf der Insel ein Wahrheitssager, dann stimmt die Behauptung:\\
-	$\alert{\exists x.W(x)\to(\forall x.W(x) \vee \forall x.L(x))}$
-\item Lebt auf der Insel ein Lügner, dann ist die Behauptung falsch:\\
-	$\alert{\exists x.W(x)\to\neg(\forall x.W(x) \vee \forall x.L(x))}$
-\end{itemize}
-
-Diese Theorie entspricht einer Konjunktion:
-\begin{align*}
-& \forall x.\big((W(x)\wedge\neg L(x))\vee (L(x)\wedge\neg W(x))\big)\\
-{}\wedge{} & \big(\exists x.W(x)\to(\forall x.W(x) \vee \forall x.L(x))\big) \\
-{}\wedge{} & \big(\exists x.W(x)\to\neg(\forall x.W(x) \vee \forall x.L(x))\big)
-\end{align*}
-
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel: Logelei (2)}
-
-Wir bereinigen die Formel zuerst:
-\begin{align*}
-& \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-{}\wedge{} & \big(\exists x_2.W(x_2)\to(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big) \\
-{}\wedge{} & \big(\exists x_5.W(x_5)\to\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)
-\end{align*}\pause
-Jetzt bilden wir die NNF:
-{\footnotesize
-\begin{align*}
-& \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-& {}\wedge{}  \big(\exists x_2.W(x_2)\to(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
-& {}\wedge{}  \big(\exists x_5.W(x_5)\to\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)\\
-%
-{}\equiv{} & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-& {}\wedge{}  \big(\neg\exists x_2.W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
-& {}\wedge{}  \big(\neg\exists x_5.W(x_5)\vee\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)\\
-%
-{}\equiv{} & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-& {}\wedge{}  \big(\forall x_2.\neg W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
-& {}\wedge{}  \big(\forall x_5.\neg W(x_5)\vee(\exists x_6.\neg W(x_6) \wedge \exists x_7.\neg L(x_7))\big)
-\end{align*}
-}
-
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel: Logelei (3)}
-
-Zuletzt werden für die Pränexform alle Quantoren nach vorn gezogen:
-\begin{align*}
-& \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-& {}\wedge{}  \big(\forall x_2.\neg W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
-& {}\wedge{}  \big(\forall x_5.\neg W(x_5)\vee(\exists x_6.\neg W(x_6) \wedge \exists x_7.\neg L(x_7))\big)\\
-{}\equiv{} & \forall x_1,x_2,x_3,x_4,x_5.\exists x_6,x_7.\\
-& \big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
-& {}\wedge{}  \big(\neg W(x_2)\vee(W(x_3) \vee L(x_4))\big)\\
-& {}\wedge{}  \big(\neg W(x_5)\vee(\neg W(x_6) \wedge \neg L(x_7))\big)
-\end{align*}
-
-
-\end{frame}
+% 
+% \begin{frame}\frametitle{Pränexform}
+% 
+% \defbox{Eine Formel ist in \redalert{Pränexform}, wenn alle ihre Quantoren am Anfang stehen, d.h. wenn sie die folgende Form hat
+% \[ \quantor_1 x_1.\cdots\quantor_n x_n.F \]
+% mit $\quantor_1,\ldots,\quantor_n\in\{\exists,\forall\}$ und $F$ eine Formel ohne Quantoren.}
+% 
+% Man kann beliebige Formeln leicht in äquivalente Formeln in Pränexform umwandeln.
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Umwandlung in Pränexform (1)}
+% 
+% \theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
+% $F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
+% \begin{align*}
+% (\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G)  &\qquad
+% (G\circ \quantor x.F) & \mapsto \quantor x.(G\circ F)
+% \end{align*}\vspace{-4ex}
+% 
+% für beliebige $\quantor\in\{\exists,\forall\}$ und $\circ\in\{\vee,\wedge\}$.
+% }\pause
+% 
+% \emph{Beweis:} (Korrektheit) Wenn der Algorithmus terminiert, dann ist die Formel in Pränexform.
+% Denn eine Formel in NNF, die nicht in Pränexform ist, muss eine ersetzbare Teilformel enthalten.\bigskip\pause
+% 
+% Es entsteht in jedem Schritt eine semantisch äquivalente Formeln, weil
+% wir eine Formel durch eine Äquivalente ersetzen (Äquivalenz gilt, da $x$ in $G$ nicht vorkommt). Also ist die Formel auch nach beliebig vielen Schritten noch äquivlent (= Induktion über die Zahl der Schritte).
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Umwandlung in Pränexform (2)}
+% 
+% \theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
+% $F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
+% \begin{align*}
+% (\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G) &\qquad
+% (G\circ \quantor x.F) & \mapsto \quantor x.(G\circ F)
+% \end{align*}\vspace{-4ex}
+% 
+% für beliebige $\quantor\in\{\exists,\forall\}$ und $\circ\in\{\vee,\wedge\}$.
+% }
+% 
+% \emph{Beweis:} (Terminierung) Man kann die Ersetzungen nicht unendlich oft anwenden:\pause
+% \begin{itemize}
+% \item Für einer Formel $F$ sei $J(F)$ die Zahl der Junktoren in $F$
+% \item Sei $Q(F)\defeq \sum\{J(\quantor x.G)\mid \quantor x.G\text{ Teilformel in }F\}$
+% die Summe der Zahl von Junktoren unterhalb jedes Quantors\pause
+% \item $Q(F)$ wird in jedem Ersetzungsschritt größer, aber die Gesamtzahl der Quantoren und Junktoren bleibt gleich, d.h. es gibt
+% einen Maximalwert, den $Q(F)$ nicht übersteigen kann
+% \end{itemize}
+% $\leadsto$ Das Verfahren muss irgendwann anhalten\qed
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beispiel: Logelei (1)}
+% 
+% In Vorlesung 14 betrachteten wir den Fall, dass alle Einwohner einer Insel sagen,
+% "`Auf dieser Insel haben alle den gleichen Typ."'\bigskip
+% 
+% Dies entspricht der Theorie aus folgenden Sätzen:
+% \begin{itemize}
+% \item "`Jeder Einwohner ist entweder Wahrheitssager oder Lügner."'\\
+% 	$\alert{\forall x.\big((W(x)\wedge\neg L(x))\vee (L(x)\wedge\neg W(x))\big)}$
+% \item Lebt auf der Insel ein Wahrheitssager, dann stimmt die Behauptung:\\
+% 	$\alert{\exists x.W(x)\to(\forall x.W(x) \vee \forall x.L(x))}$
+% \item Lebt auf der Insel ein Lügner, dann ist die Behauptung falsch:\\
+% 	$\alert{\exists x.W(x)\to\neg(\forall x.W(x) \vee \forall x.L(x))}$
+% \end{itemize}
+% 
+% Diese Theorie entspricht einer Konjunktion:
+% \begin{align*}
+% & \forall x.\big((W(x)\wedge\neg L(x))\vee (L(x)\wedge\neg W(x))\big)\\
+% {}\wedge{} & \big(\exists x.W(x)\to(\forall x.W(x) \vee \forall x.L(x))\big) \\
+% {}\wedge{} & \big(\exists x.W(x)\to\neg(\forall x.W(x) \vee \forall x.L(x))\big)
+% \end{align*}
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beispiel: Logelei (2)}
+% 
+% Wir bereinigen die Formel zuerst:
+% \begin{align*}
+% & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% {}\wedge{} & \big(\exists x_2.W(x_2)\to(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big) \\
+% {}\wedge{} & \big(\exists x_5.W(x_5)\to\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)
+% \end{align*}\pause
+% Jetzt bilden wir die NNF:
+% {\footnotesize
+% \begin{align*}
+% & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% & {}\wedge{}  \big(\exists x_2.W(x_2)\to(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
+% & {}\wedge{}  \big(\exists x_5.W(x_5)\to\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)\\
+% %
+% {}\equiv{} & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% & {}\wedge{}  \big(\neg\exists x_2.W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
+% & {}\wedge{}  \big(\neg\exists x_5.W(x_5)\vee\neg(\forall x_6.W(x_6) \vee \forall x_7.L(x_7))\big)\\
+% %
+% {}\equiv{} & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% & {}\wedge{}  \big(\forall x_2.\neg W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
+% & {}\wedge{}  \big(\forall x_5.\neg W(x_5)\vee(\exists x_6.\neg W(x_6) \wedge \exists x_7.\neg L(x_7))\big)
+% \end{align*}
+% }
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beispiel: Logelei (3)}
+% 
+% Zuletzt werden für die Pränexform alle Quantoren nach vorn gezogen:
+% \begin{align*}
+% & \forall x_1.\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% & {}\wedge{}  \big(\forall x_2.\neg W(x_2)\vee(\forall x_3.W(x_3) \vee \forall x_4.L(x_4))\big)\\
+% & {}\wedge{}  \big(\forall x_5.\neg W(x_5)\vee(\exists x_6.\neg W(x_6) \wedge \exists x_7.\neg L(x_7))\big)\\
+% {}\equiv{} & \forall x_1,x_2,x_3,x_4,x_5.\exists x_6,x_7.\\
+% & \Big(\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)\\
+% & {}\wedge{}  \big(\neg W(x_2)\vee(W(x_3) \vee L(x_4))\big)\\
+% & {}\wedge{}  \big(\neg W(x_5)\vee(\neg W(x_6) \wedge \neg L(x_7))\big)\Big)
+% \end{align*}
+% 
+% 
+% \end{frame}
 
 % 
 % \begin{frame}\frametitle{Disjunktive Normalform}
