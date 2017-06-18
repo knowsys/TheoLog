@@ -153,12 +153,12 @@ Dazu fügen wir noch folgende Sätze hinzu:
 \node (d10) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (0.5,-2) {$\delta_{10}$};
 \node (d11) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1.5,-2) {$\delta_{11}$};
 
-\path[->,line width=0.5mm](d) edge node[above left] {$p_{\Sterm{0}}$} (d0);
-\path[->,line width=0.5mm](d) edge node[above right] {$p_{\Sterm{1}}$} (d1);
-\path[->,line width=0.5mm](d0) edge node[above left] {$p_{\Sterm{0}}$} (d00);
-\path[->,line width=0.5mm](d0) edge node[above right] {$p_{\Sterm{1}}$} (d01);
-\path[->,line width=0.5mm](d1) edge node[above left] {$p_{\Sterm{0}}$} (d10);
-\path[->,line width=0.5mm](d1) edge node[above right] {$p_{\Sterm{1}}$} (d11);
+\path[->,line width=0.5mm](d) edge node[above left] {$p_{\Sterm{a}}$} (d0);
+\path[->,line width=0.5mm](d) edge node[above right] {$p_{\Sterm{b}}$} (d1);
+\path[->,line width=0.5mm](d0) edge node[above left] {$p_{\Sterm{a}}$} (d00);
+\path[->,line width=0.5mm](d0) edge node[above right] {$p_{\Sterm{b}}$} (d01);
+\path[->,line width=0.5mm](d1) edge node[above left] {$p_{\Sterm{a}}$} (d10);
+\path[->,line width=0.5mm](d1) edge node[above right] {$p_{\Sterm{b}}$} (d11);
 
 \node (e1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=none,thick] at (-1.5,-3) {$\ldots$};
 \node (e2) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=none,thick] at (0,-3) {$\ldots$};
