@@ -27,3 +27,13 @@
 /Vorlesungen/auto
 /Vorlesungen/tmplecturefile-*
 /Vorlesungen/TheoLog2017-Vorlesung-*.pdf
+/Vorlesungen/lecture-*.pdf
+/Vorlesungen/*.aux
+/Vorlesungen/*.fdb_latexmk
+/Vorlesungen/*.fls
+/Vorlesungen/*.log
+/Vorlesungen/*.nav
+/Vorlesungen/*.out
+/Vorlesungen/*.snm
+/Vorlesungen/*.synctex.gz
+/Vorlesungen/*.toc
