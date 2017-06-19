@@ -5,25 +5,14 @@
 # Usage sh build.sh <lectureNumberAsString>
 
 fileprefix="TheoLog2017-Vorlesung-" # the start of generated PDFs
-tmpfilename="`mktemp tmplecturefile-XXX`" # generate a name that doesn't collide with anything present
 
+inputfilename=lecture-${1}.tex
 printfilename=${fileprefix}${1}-print.pdf
 overlayfilename=${fileprefix}${1}-overlay.pdf
 
-echo '\documentclass[onlymath,handout]{beamer}' > ${tmpfilename}.tex
-tail -n +3 lecture-${1}.tex >> ${tmpfilename}.tex
-latexmk -lualatex ${tmpfilename}.tex
-latexmk -c ${tmpfilename}.tex
-pdfnup --nup 2x2 --outfile ${printfilename} ${tmpfilename}.pdf
-
-echo '\documentclass[onlymath]{beamer}' > ${tmpfilename}.tex
-tail -n +3 lecture-${1}.tex >> ${tmpfilename}.tex
-
-latexmk -lualatex ${tmpfilename}.tex
-latexmk -c ${tmpfilename}.tex
-mv ${tmpfilename}.pdf ${overlayfilename}
-
-rm ${tmpfilename} ${tmpfilename}.*
+latexmk -lualatex -pdflatex="lualatex --shell-escape %O %S" ${inputfilename}
+cp lecture-${1}-print.pdf ${printfilename}
+cp lecture-${1}.pdf ${overlayfilename}
 
 echo
 echo
