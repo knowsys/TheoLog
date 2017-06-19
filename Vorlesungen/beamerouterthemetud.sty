@@ -31,7 +31,7 @@
 \ProcessOptionsBeamer\relax
 
 \RequirePackage{calc}
-\RequirePackage{ifluatex}
+\RequirePackage{ifpdf}
 
 % Templates
 
@@ -131,20 +131,11 @@
 \newcommand*{\inserttotalpagenumber}{\textbf{??}}
 
 
-\def\logo@front{TU_Logo_SW}
-\def\logo@default{TU_Logo_SW}
-\ifluatex
+\ifpdf
   \def\logo@front{TU_Logo_SW}%
   \def\logo@default{TU_Logo_SW}%
 \else
-  \ifx\pdfoutput\relax
-  \else
-    \ifcase\pdfoutput
-    \else
-      \def\logo@front{TU_Logo_SW}%
-      \def\logo@default{TU_Logo_SW}%
-    \fi
-  \fi
+  \errmessage{non-PDF output is not supported by this style}%
 \fi
 
 
