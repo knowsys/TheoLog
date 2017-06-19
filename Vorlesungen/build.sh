@@ -22,6 +22,6 @@ latexmk -lualatex ${tmpfilename}.tex
 latexmk -c ${tmpfilename}.tex
 mv $tmpfilename.pdf $overlayfilename
 
-rm $tmpfilename $tmpfilename}.*
+rm ${tmpfilename} ${tmpfilename}.*
 
 printf "\n\n*** Finished creating files '$overlayfilename' and '$printfilename' ***\n"
