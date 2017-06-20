@@ -5,7 +5,7 @@
 
 \documentclass[german]{latteachCD}[2017/03/28]
 
-% Vorbereitung Resolution: Skolem-Normalform, Herbrand-Universum, Unifikation
+% Vorbereitung Resolution: Skolem-Normalform, Herbrand-Universum
 
 \usepackage[sheetnumber=10]{theolog}
 
@@ -57,9 +57,9 @@
   Bestimmen Sie zu jeder der folgenden Formeln eine äquivalente bereinigte
   Formel in Pränexform.
   \begin{enumerate}
-  \item $\forall x.(p(x,x) \leftrightarrow \lnot \exists.q(x,y))$
-  \item $(\forall x.p(f(x,x))) \lor (q(x,z) \to \exists x.p(g(x,y,z)))$
-  \item $(\forall x.p(x)) \land ((\forall y.\exists x.q(x,g(y))) \to \exists
+  \item $\forall x.(p(x,x) \leftrightarrow \lnot \exists y.q(x,y))$
+  \item $\forall x.p(f(x,x)) \lor (q(x,z) \to \exists x.p(g(x,y,z)))$
+  \item $\forall x.p(x) \land ((\forall y.\exists x.q(x,g(y))) \to \exists
     y.(r(f(y)) \lor \lnot q(y,x)))$
   \end{enumerate}
 \end{exercise}
@@ -71,7 +71,7 @@
   Bestimmen Sie zu jeder der folgenden Formeln eine erfüllbarkeitsäquivalente
   bereinigte Formel in Skolemform.
   \begin{enumerate}
-  \item $p(x) \lor (\exists x.q(x,x)) \lor \forall x.p(f(x))$
+  \item $p(x) \lor \exists x.q(x,x) \lor \forall x.p(f(x))$
   \item $\forall x.\exists y.q(f(x),g(y)) \land \forall x.(p(x,y,y) \lor
     q(h(y),x))$
   \item $\forall x.\forall x.(p(x) \leftrightarrow q(x,x)) \lor \exists
@@ -86,8 +86,9 @@
   Gegeben sind die folgenden Formeln in Skolemform.
   \begin{align*}
     F &= \forall x, y, z. p(x,f(y),g(z,x)),\\
-    G &= \forall x,y. (p(a,f(a,x,y)) \lor q(b)).
+    G &= \forall x,y. (p(a,f(a,x,y)) \lor q(b)),
   \end{align*}
+  wobei $a$ und $b$ Konstanten sind.
   \begin{enumerate}
   \item Geben Sie die zugehörigen Herbrand-Universen $\Delta_{F}$ und
     $\Delta_{G}$ an.
