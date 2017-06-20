@@ -66,9 +66,9 @@
   % TheoLog 2014
   Welche der angegebenen Strukturen sind Modelle der folgenden Formel?
   \begin{equation*}
-    \Bigl(\forall x.\, p(x,x)\Bigr) \land \Bigl(\forall x, y.\, p(x,y) \land
-      p(y,x) \to x \approx y\Bigr)
-    \land \Bigl(\forall x, y, z.\, p(x,y) \land p(y,z) \to p(x,z)\Bigr)
+    (\forall x.\, p(x,x)) \land \forall x, y.\, (p(x,y) \land
+      p(y,x) \to x \approx y)
+    \land \forall x, y, z.\, (p(x,y) \land p(y,z) \to p(x,z))
   \end{equation*}
   \begin{enumerate}
   \item $\mathcal{I}_{1}$ mit Grundmenge $\mathbb N$ und $p^{\mathcal{I}_{1}} =
@@ -121,8 +121,8 @@
     wenn $\lnot F$ unerfüllbar ist.
   \item Es gilt
     \begin{equation*}
-      \{\,\forall x, y.\, p(x,y) \to p(y,x), \forall x, y, z.\, p(x,y) \land p(y,z)
-      \to p(x,z)\,\} \models \forall x.\, p(x,x).
+      \{\,\forall x, y.\, (p(x,y) \to p(y,x)), \forall x, y, z.\, (p(x,y) \land p(y,z)
+      \to p(x,z))\,\} \models \forall x.\, p(x,x).
     \end{equation*}
   \end{enumerate}
 \end{exercise}
