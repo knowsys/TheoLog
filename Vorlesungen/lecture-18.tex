@@ -1,0 +1,691 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{18}{Unifikation}{23. Juni 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Resolution für Prädikatenlogik}
+
+Ein konkreter Algorithmus zum logischen Schließen:
+\begin{enumerate}[(1)]
+\item \alert{Logische Konsequenz auf Unerfüllbarkeit reduzieren}
+\item \alert{Formeln in Klauselform umwandeln}
+	\begin{itemize}
+	\item Formel bereinigen
+	\item Negationsnormalform bilden
+	\item Pränexform bilden
+	\item Skolemform bilden
+	\item Konjunktive Normalform bilden
+	\end{itemize}
+\item \alert{Resolutionsverfahren anwenden}
+	\begin{itemize}
+	\item \textcolor{devilscss}{Unifikation zum Finden passender Klauseln}
+	\item \textcolor{devilscss}{Bilden von Resolventen bis zur Terminierung}
+	\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}\frametitle{Konjunktive Normalform in Prädikatenlogik}
+
+\defbox{Eine Formel ist in \redalert{konjunktiver Normalform} (\alert{KNF}) wenn sie 
+in Pränexform $\quantor x_1.\cdots\quantor x_n.F$ ist, wobei $F$
+eine Konjunktion von Disjunktionen von Literalen ist, welche keine Quantoren enthält.
+Das heißt $F$ hat die Form:\\[1ex]
+%
+\narrowcentering{$(L_{1,1}\vee \ldots\vee L_{1,m_1})\wedge(L_{2,1}\vee \ldots\vee L_{2,m_2})\wedge\ldots
+\wedge(L_{n,1}\vee \ldots\vee L_{n,m_n}) $}\\[1ex]
+% \narrowcentering{$\bigwedge_{i=1}^n \bigvee_{j=1}^{m_i} L_{i,j}$}\\[1ex]
+%
+wobei $L_{i,j}$ Literale sind. \redalert{Klauseln} sind Disjunktionen von Literalen.
+}\medskip
+
+Wir stellen die KNF in der Prädikatenlogik wie folgt her:
+\begin{enumerate}[(1)]
+\item Formel bereinigen
+\item Bilden der Negationsnormalform
+\item Bilden der Pränexform
+\item Skolemisieren
+\item Erschöpfende Anwendung der folgenden Ersetzung auf Teilformeln im quantorenfreien Teil der Formel:
+\begin{align*}
+F\vee(G\wedge H) &\mapsto (F\vee G)\wedge (F\vee H)
+\end{align*}
+\end{enumerate}
+\end{frame}
+
+\newcommand{\hi}[2]{\textcolor{white}{\textcolor<#1>{purple}{\underline{\textcolor{HKS41K100}{#2}}}}}
+\begin{frame}\frametitle{Beispiel: Konjunktive Normalform}
+
+\footnotesize
+\[\begin{array}{rl}
+& \forall x_1,x_2,x_3,x_4,x_5.\\
+& \Big(\hi{1-}{\big((W(x_1)\wedge\neg L(x_1))\vee (L(x_1)\wedge\neg W(x_1))\big)}\\
+& {}\wedge{}  \big(\neg W(x_2)\vee(W(x_3) \vee L(x_4))\big)\\
+& {}\wedge{}  \big(\neg L(x_5)\vee(\neg W(f_6(x_1,x_2,x_3,x_4,x_5)) \wedge \neg L(f_7(x_1,x_2,x_3,x_4,x_5)))\big)\Big)\\
+{}\equiv{} & \forall x_1,x_2,x_3,x_4,x_5.\\
+& \Big((W(x_1)\vee L(x_1))\wedge(\neg L(x_1)\vee L(x_1))\\
+& {}\wedge (W(x_1)\vee \neg W(x_1))\wedge(\neg L(x_1)\vee \neg W(x_1))\big)\\
+& {}\wedge{}  \big(\neg W(x_2)\vee(W(x_3) \vee L(x_4))\big)\\
+& {}\wedge{}  \hi{1-}{\big(\neg L(x_5)\vee(\neg W(f_6(x_1,x_2,x_3,x_4,x_5)) \wedge \neg L(f_7(x_1,x_2,x_3,x_4,x_5)))\big)}\Big)\\
+{}\equiv{} & \forall x_1,x_2,x_3,x_4,x_5.\\
+& \Big((W(x_1)\vee L(x_1))\wedge(\neg L(x_1)\vee L(x_1))\\
+& {}\wedge (W(x_1)\vee \neg W(x_1))\wedge(\neg L(x_1)\vee \neg W(x_1))\big)\\
+& {}\wedge{}  \big(\neg W(x_2)\vee(W(x_3) \vee L(x_4))\big)\\
+& {}\wedge{}  (\neg L(x_5)\vee\neg W(f_6(x_1,x_2,x_3,x_4,x_5))) \wedge (\neg L(x_5)\vee\neg L(f_7(x_1,x_2,x_3,x_4,x_5)))\Big)
+\end{array}
+\]
+
+\end{frame}
+
+\begin{frame}\frametitle{Klauselform}
+
+Die \redalert{Klauselform} ist eine vereinfachte Schreibweise der KNF:
+\begin{itemize}
+\item Allquantoren werden weggelassen
+\item Klauseln werden als Mengen von Literalen geschrieben
+\item Konjunktionen von Klauseln werden als Mengen von Mengen von Literalen geschrieben
+\end{itemize}
+
+\examplebox{Beispiel: Unser Beispiel kann damit wie folgt geschrieben werden:\\[-2.5ex]
+%
+\[\begin{array}{rl}
+\{& \{W(x_1), L(x_1)\},\\
+& \{\neg L(x_1), L(x_1)\},\\
+& \{W(x_1), \neg W(x_1)\},\\
+& \{\neg L(x_1), \neg W(x_1)\},\\
+& \{\neg W(x_2), W(x_3), L(x_4)\},\\
+& \{\neg L(x_5),\neg W(f_6(x_1,x_2,x_3,x_4,x_5))\},\\
+& \{\neg L(x_5),\neg L(f_7(x_1,x_2,x_3,x_4,x_5))\}\quad\}
+\end{array}
+\]
+}
+
+\end{frame}
+
+\sectionSlide{Unifikation}
+
+\begin{frame}\frametitle{Idee der Resolution}
+
+Aussagenlogische Resolution verallgemeinert die Verkettung von Implikationen. Beispiel:\bigskip
+
+\[
+\frac{
+\begin{array}{r}
+A \to B\\
+{\color{devilscss}\{\neg A, B\}}
+\end{array}
+\qquad
+\begin{array}{r}
+B \to C\\
+{\color{devilscss}\{\neg B, C\}}
+\end{array}
+}{
+\begin{array}{r}
+{\color{devilscss}\{\neg A, C\}}\\
+A \to C
+\end{array}
+}
+\]
+
+\pause Dies ist auch in der Prädikatenlogik ein gültiger Schluss:
+
+\[
+\frac{
+\begin{array}{c}
+\forall x.(A(x) \to B(x))\\
+{\color{devilscss}\{\neg A(x), B(x)\}}
+\end{array}
+\qquad
+\begin{array}{c}
+\forall x.(B(x) \to C(x))\\
+{\color{devilscss}\{\neg B(x), C(x)\}}
+\end{array}
+}{
+\begin{array}{c}
+{\color{devilscss}\{\neg A(x), C(x)\}}\\
+\forall x.(A(x) \to C(x))
+\end{array}
+}
+\]
+
+\end{frame}
+
+\begin{frame}\frametitle{Terme in Klauselform}
+
+Allerdings ist es nicht immer so einfach.\medskip
+
+Schon die alten Griechen wussten:
+% 
+\[ \frac{
+\forall x.(\textsf{Mensch}(x)\to\textsf{Sterblich}(x))\qquad \textsf{Mensch}(\textsf{sokrates})}
+{\textsf{Sterblich}(\textsf{sokrates})}
+\]
+
+\pause Aber die entsprechenden Klauseln sind:
+% 
+\[  \{\neg\textsf{Mensch}(x),\textsf{Sterblich}(x)\}\qquad \{\textsf{Mensch}(\textsf{sokrates})\} \]
+% 
+\emph{Problem:} Wie kann man Resolution über unterschiedliche Atome $\textsf{Mensch}(x)\neq \textsf{Mensch}(\textsf{sokrates})$ durchführen?
+\bigskip\pause
+
+\emph{Lösung:} $x$ ist universell quantifiziert und kann für beliebige Elemente stehen, also auch für Sokrates -- logisch gilt:
+%
+\footnotesize
+\[\begin{array}{c}
+\forall x.(\textsf{Mensch}(x)\to\textsf{Sterblich}(x))\\
+{\color{devilscss}\{\neg\textsf{Mensch}(x),\textsf{Sterblich}(x)\}}
+\end{array}
+\models
+\begin{array}{c}
+\textsf{Mensch}(\textsf{sokrates})\to\textsf{Sterblich}(\textsf{sokrates})\\
+{\color{devilscss}\{\neg\textsf{Mensch}(\textsf{sokrates}),\textsf{Sterblich}(\textsf{sokrates})\}}
+\end{array}
+\]
+
+\end{frame}
+
+\begin{frame}\frametitle{Funktionsterme in Klauseln}
+
+Was passiert mit Funktionen?
+%
+\[ \frac{
+\begin{array}{c}
+\forall x.(\textsf{Mensch}(x)\to\exists y.\textsf{hatVater}(x,y))\\
+\forall z,v.(\textsf{hatVater}(z,v)\to\textsf{hatKind}(v,z))
+\end{array}
+}
+{
+\forall x.(\textsf{Mensch}(x)\to\exists y.\textsf{hatKind}(y,x))
+}
+\]
+%
+Entsprechende Klauseln:
+\[ \frac{
+\begin{array}{c}
+\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}\\
+\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}
+\end{array}
+}
+{
+\{\neg\textsf{Mensch}(x),\textsf{hatKind}(f(x),x)\}
+}
+\]
+Passen $\textsf{hatVater}(x,f(x))$ und $\neg\textsf{hatVater}(z,v)$ zusammen?\\\pause
+\redalert{Ja}, wenn wir $z$ durch $x$ ersetzten und $v$ durch $f(x)$, denn es gilt:
+
+~\hspace{-1cm}%
+\begin{minipage}{8cm}
+\footnotesize
+\[\begin{array}{c}
+\forall z,v.(\textsf{hatVater}(z,v)\to\textsf{hatKind}(v,z))\\
+{\color{devilscss}\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)}
+\end{array}
+\models
+\begin{array}{c}
+\forall x.(\textsf{hatVater}(x,f(x))\to\textsf{hatKind}(f(x),x))\\
+{\color{devilscss}\{\neg\textsf{hatVater}(x,f(x)),\textsf{hatKind}(f(x),x)\}}
+\end{array}
+\]
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}\frametitle{Zusammenfassung und Verallgemeinerung}
+
+Für die Anwendung von Resolution benötigt man jeweils zwei gleiche Atome\\ (einmal negiert und einmal nicht-negiert)\medskip
+
+Wir erreichen das in Prädikatenlogik durch folgende Methoden:
+\begin{itemize}
+\item Wir ersetzten (universell quantifizierte) Variablen durch andere Terme $\leadsto$~\redalert{Substitution}
+\item Damit wollen wir erreichen, dass Terme (und letztlich Atome) gleich werden $\leadsto$~\redalert{Unifikation}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Substitutionen}
+
+\defbox{Eine \redalert{Substitution} ist eine endliche Menge der Form\\[0.5ex]
+\narrowcentering{$\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\},$}\\[1ex]
+wobei $x_1,\ldots,x_n\in\Slang{V}$ \alert{paarweise verschiedene} Variablen und $t_1,\ldots,t_n\in\Slang{T}$ beliebige Terme sind.\medskip
+
+Die \redalert{Anwendung einer Substitution} auf einen Ausdruck $A$ (Formel oder Term) führt zu einem Ausdruck $A\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$, der aus $A$ entsteht, wenn man jedes \alert{freie} Vorkommen einer Variablen $x_i$ in $A$ \alert{simultan} durch $t_i$ ersetzt.}
+
+Eine Formel bzw. ein Term $A\sigma$, der durch Anwendung einer Substitution $\sigma$
+auf $A$ entsteht, nennt man \redalert{Instanz von $A$ (unter $\sigma$)}\pause
+
+\examplebox{Beispiele:\vspace{-7.7ex}
+
+\begin{align*}
+p(x,y,z)\{x\mapsto f(y),y\mapsto a\} &= p(f(y),a,z) \\[-0.5ex]&~~~~{\footnotesize\text{(und nicht $p(f(a),a,z)$!) }}\\[-0.5ex]
+\big(q(x,y)\to\forall x.r(x,y)\big)\{x\mapsto z,y\mapsto f(x)\} &= \big(q(z,f(x))\to\forall x.r(x,f(x))\big)\\[-0.5ex]
+& \hspace{-1cm}{\footnotesize\text{(und nicht $\big(q(z,f(x))\to\forall x.r(z,f(x))\big)$!) }}
+\end{align*}
+}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Komposition von Substitutionen}
+
+Wir können Substitutionen hintereinander ausführen:
+
+\defbox{Für Substitutionen $\sigma=\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$
+und $\theta=\{y_1\mapsto s_1,\ldots,y_m\mapsto s_m\}$ 
+ist die \redalert{Komposition $\sigma\circ\theta$} die folgende Substitution:
+\[ \{x_1\mapsto t_1\theta,\ldots,x_n\mapsto t_n\theta\}\cup
+\{y_i\mapsto s_i\mid y_i\in\{y_1,\ldots,y_m\}\setminus\{x_1,\ldots,x_n\}\}\]
+}\medskip\pause
+
+\theobox{Satz: Für alle Terme oder Formeln $A$ und Substitutionen $\sigma$ und $\theta$ gilt: $A(\sigma\circ\theta)=(A\sigma)\theta$.}\pause
+
+\emph{Beweis:} Per struktureller Induktion über den Aufbau von Termen. I-Anfang: Satz gilt für Konstanten $A\in\Slang{C}$ und Variablen $A\in\Slang{V}$ per Definition. I-Hypothese: Satz gilt für Terme $t_1,\ldots,t_\ell$.\\
+I-Schritt: Damit gilt für größere Funktionsterme $f(t_1,\ldots,t_\ell)(\sigma\circ\theta)=
+f(t_1(\sigma\circ\theta),\ldots,t_\ell(\sigma\circ\theta))\stackrel{\text{IH}}{=}f((t_1\sigma)\theta,\ldots,(t_\ell\sigma)\theta)=(f(t_1,\ldots,t_\ell)\sigma)\theta$.
+Beweis für Formeln analog (aber mit mehr Fällen im I-Schritt).
+\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Unifikationsprobleme}
+
+\defbox{Ein \redalert{Unifikationsproblem} ist eine endliche Menge von Gleichungen
+der Form $G=\{s_1\unieq t_1,\ldots,s_n\unieq t_n\}$.\medskip
+
+Eine Substitution $\sigma$ ist ein \redalert{Unifikator} für $G$ falls
+$s_i\sigma=t_i\sigma$ für alle $i\in\{1,\ldots,n\}$ gilt.
+}\pause 
+
+\examplebox{Beispiele:
+
+\begin{tabular}{rl}
+$\{ f(x)\unieq f(\text{sokrates}) \}$ & \pause hat den Unifikator $\{x\mapsto\text{sokrates}\}$\\\pause 
+$\{ x\unieq f(y), y\unieq g(z) \}$ & hat den Unifikator $\{x\mapsto f(g(z)), y\mapsto g(z)\}$\pause ,\\
+ & aber auch z.B. $\{x\mapsto f(g(a)), y\mapsto g(a), z\mapsto a\}$\\
+ & und $\{x\mapsto f(g(f(b))), y\mapsto g(f(b)), z\mapsto f(b)\}$\\\pause 
+$\{f(x)\unieq g(x)\}$ &\pause  hat keinen Unifikator\\\pause 
+$\{x\unieq f(x)\}$ &\pause  hat keinen Unifikator\\
+\end{tabular}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Unifikatoren vergleichen}
+
+Das Problem $\{ x\unieq f(y), y\unieq g(z) \}$ hat viele Unifikatoren -- gibt es einen "`besten"'?\medskip
+
+\defbox{Eine Substitution $\sigma$ ist \redalert{allgemeiner} als eine Substitution
+$\theta$, in Symbolen \redalert{$\sigma\preceq\theta$}, wenn es eine Substitution
+$\lambda$ gibt, so dass $\sigma\circ\lambda =\theta$.\medskip
+
+Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein Unifikator $\sigma$ für $G$, so dass $\sigma\preceq\theta$ für alle Unifikatoren $\theta$ für $G$.}
+
+(Die englische Bezeichnung des allgemeinsten Unifikators ist most general unifier (mgu).)\medskip\pause
+
+\examplebox{Beispiel: Für $G=\{ x\unieq f(y), y\unieq g(z) \}$ ist
+$\sigma=\{x\mapsto f(g(z)), y\mapsto g(z)\}$ ein allgemeinster Unifikator.
+Dagegen ist $\theta=\{x\mapsto f(g(f(b))), y\mapsto g(f(b)),z\mapsto f(b)\}$ ein Unifikator, der nicht allgemeinst ist, denn es gilt $\sigma\{z\mapsto f(b)\}=\theta$.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Eindeutigkeit des mgu}
+
+\theobox{Satz: Die allgemeinsten Unifikatoren von $G$ sind bis auf Umbenennung von Variablen identisch.}
+
+(ohne Beweis)\medskip\pause
+
+\examplebox{Beispiel: Das Problem $\{f(x)\unieq f(z)\}$ hat die allgemeinsten Unifikatoren
+$\{x\mapsto z\}$ und $\{z\mapsto x\}$, aber auch z.B. $\{x\mapsto v,z\mapsto v\}$ ($v\in\Slang{V}$). Dagegen ist $\{x\mapsto a,z\mapsto a\}$ mit $a\in\Slang{C}$ ein nicht-allgemeinster Unifikator.}\bigskip\pause
+
+\theobox{Satz: Wenn ein Unifikationsproblem lösbar ist (d.h., einen Unifikator hat), dann hat es auch einen allgemeinsten Unifikator.}
+
+Wir zeigen das durch Angabe eines Algorithmus für die mgu-Berechnung.
+
+\end{frame}
+
+\begin{frame}\label{slide_solvedunivsubst}\frametitle{Gelöste Unifikationsprobleme}
+
+\defbox{Ein Unifikationsproblem $G=\{x_1\unieq t_1,\ldots,x_n\unieq t_n\}$ ist in \redalert{gelöster Form}, wenn $x_1,\ldots, x_n$ paarweise verschiedene Variablen sind, die nicht in den Termen $t_1,\ldots,t_n$ vorkommen.\medskip
+
+In diesem Fall definieren wir eine Substitution $\sigma_G\defeq\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$.}\smallskip\pause
+
+\theobox{Satz: Wenn $G$ ein Unifikationsproblem in gelöster Form ist, dann ist $\sigma_G$ ein allgemeinster Unifikator für $G$.}
+
+\pause\emph{Beweis:} Sei $G=\{x_1\unieq t_1,\ldots,x_n\unieq t_n\}$. Dann ist
+$x_i\sigma_G=t_i=t_i\sigma_G$, wobei die zweite Gleichheit gilt, da $t_i$ keine Variable aus $x_1, \ldots,x_n $ enthält. Also ist $\sigma_G$ Unifikator für $G$.
+\smallskip\pause
+
+Für einen beliebigen Unifikator $\theta$ von $G$ gilt: $\theta=\sigma_G\circ\theta$:
+\begin{itemize}
+\item Für $x_i\in\{x_1,\ldots,x_n\}$ ist $x_i\theta=t_i\theta = (x_i\sigma_G)\theta$
+\item Für $y\notin\{x_1,\ldots,x_n\}$ ist $y\theta=y\sigma_G\theta$
+\end{itemize}
+Also ist $\sigma_G$ ein allgemeinster Unifikator.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Lösen von Unifikationsproblemen}
+
+Wir bringen Unifikationsprobleme schrittweise in gelöste Form:
+
+\anybox{strongyellow}{
+\redalert{Unifikationsalgorithmus}\\[1ex]
+\emph{Eingabe:} Unifikationsproblem $G$\\
+\emph{Ausgabe:} allgemeinster Unifikator für $G$, oder "`nicht unifizierbar"'\\[1ex]
+%
+Wende die folgenden Umformungsregeln auf $G$ an, bis keine Regel mehr zu einer Änderung führt:
+\begin{itemize}
+\item \alert{Löschen:} $\{t\unieq t\}\cup G' \leadsto G'$
+\item \alert{Zerlegung:} $\{f(s_1,\ldots,s_n)\unieq f(u_1,\ldots,u_n)\}\cup G' \leadsto \{s_1\unieq u_1,\ldots,s_n\unieq u_n\}\cup G'$
+\item \alert{Orientierung:} $\{t\unieq x\}\cup G' \leadsto \{x\unieq t\}\cup G'$ falls $x\in\Slang{V}$ und $t\notin\Slang{V}$
+\item \alert{Eliminierung:} $\{x\unieq t\}\cup G' \leadsto \{x\unieq t\}\cup G'\{x\mapsto t\}$ falls $x\in\Slang{V}$ nicht in $t$ vorkommt 
+\end{itemize}
+Wenn $G$ dann in gelöster Form ist, dann gib $\sigma_G$ aus.\\
+Andernfalls gib aus "`nicht unifizierbar"'.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+\[
+\begin{array}{rl}
+\{\hi{2-}{x\unieq f(a)}, g(x,x)\unieq g(x,y)\} & \pause\text{Eliminierung}\\\pause
+\{x\unieq f(a), \hi{4-}{g(f(a),f(a))\unieq g(f(a),y)}\} & \pause\text{Zerlegung}\\\pause
+\{x\unieq f(a), \hi{6-}{f(a)\unieq f(a)}, f(a)\unieq y\} & \pause\text{Löschen}\\\pause
+\{x\unieq f(a), \hi{8-}{f(a)\unieq y}\} & \pause\text{Orientierung}\\\pause
+\{x\unieq f(a), y\unieq f(a)\} & \pause\text{gelöste Form}
+\end{array}
+\]
+\bigskip
+
+Die zugehörige Substitution $\{x\mapsto f(a), y\mapsto f(a)\}$ ist Unifikator des
+ursprünglichen Unifikationsproblems
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (1)}
+
+\theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis:} Wir zeigen nacheinander drei Aussagen, aus denen die Behauptung folgt.\medskip
+
+Bei der Eingabe beliebiger Unifikationsprobleme $G$ gilt:
+\begin{enumerate}[(1)]
+\item Wenn der Algorithmus eine Substitution $\sigma$ ausgibt, dann ist $\sigma$ ein allgemeinster Unifikator für $G$
+\item Wenn der Algorithmus "`nicht unifizierbar"' ausgibt, dann hat $G$ keinen Unifikator
+\item Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (2)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} Als erstes zeigen wir eine Hilfsaussage ($\ddagger$):\\[1ex]
+Wenn ein Unifikationsproblem $G_1$ in einem Ersetzungsschritt in ein Problem $G_2$
+umgewandelt werden kann, dann haben $G_1$ und $G_2$ die gleichen Unifikatoren.
+\bigskip\pause
+
+Für \alert{Löschen}, \alert{Orientierung} und \alert{Zerlegung} ist das leicht zu sehen.\medskip\pause
+
+Für \alert{Eliminierung} betrachten wir $G_1=\{x\unieq t\}\cup G'$ und die Substitution
+$\sigma=\{x\mapsto t\}$. Es ist also $G_2=\{x\unieq t\}\cup G'\sigma$.\medskip\pause
+
+\begin{tabular}{rl}
+	 & $\theta$ Unifikator für $G_1$ \pause\\[-0.5ex]
+gdw. & $x\theta=t\theta$ und $\theta$ Unifikator für $G'$ \pause\\[-0.5ex]
+gdw. & $x\theta=t\theta$ und $\sigma\circ\theta$ Unifikator für $G'$ \\[-1ex]
+	& \emph{Begründung:} $\sigma=\sigma_{\{x\unieq t\}}$ und daher $\theta=\sigma\circ\theta$\\[-1ex]
+	& für alle Unifikatoren $\theta$ von $\{x\unieq t\}$ (gezeigt auf Folie~\ref{slide_solvedunivsubst})\pause\\[-0.5ex]
+gdw. & $x\theta=t\theta$ und $\theta$ Unifikator für $G'\sigma$ \pause\\[-0.5ex]
+gdw. & $\theta$ Unifikator für $\{x\unieq t\}\cup G'\sigma=G_2$
+\end{tabular}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (3)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} (1) Wenn der Algorithmus eine Substitution $\sigma$ ausgibt, dann ist $\sigma$ ein allgemeinster Unifikator für $G$.
+\smallskip\pause
+
+\begin{itemize}
+\item Gemäß Hilfsaussage ($\ddagger$) erhält jeder Umformungsschritt die Unifikatoren und damit auch die allgemeinsten Unifikatoren\pause
+\item Per Induktion gilt also: jedes Unifikationsproblem, welches der Algorithmus erzeugt, hat den gleichen allgemeinsten Unifikator wie $G$\pause
+\item Wenn der Algorithmus einen Unifikator ausgibt, dann ist dies ein allgemeinster Unifikator für eine gelöste Form (Satz auf Folie~\ref{slide_solvedunivsubst})
+\end{itemize}
+Damit folgt die Behauptung.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (4)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} (2) Wenn der Algorithmus "`nicht unifizierbar"' ausgibt, dann hat $G$ keinen Unifikator.
+\smallskip\pause
+
+\emph{Beobachtung:} In diesem Fall erzeugt der Algorithmus ein Problem $G'$, das eine der folgenden Gleichungen enthält:
+\begin{enumerate}[(a)]
+\item $x\unieq t$, wobei die Variable $x\in\Slang{V}$ in $t$ vorkommt
+\item $f(\cdots)\unieq g(\cdots)$ mit $f\neq g$
+\end{enumerate}
+\pause\emph{Begründung:} $G'$ muss eine Gleichung $s\unieq u$ enthalten, die nicht in gelöster Form ist.
+\begin{itemize}
+\item Fall 1: $s\unieq u$ hat auf einer Seite ein Variable. Dann hat sie die Form (a), da sonst Orientierung oder Löschen möglich wäre.
+\item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre
+\end{itemize}
+\pause Aus der Beobachtung folgt (2), da Gleichungen (a) und (b) keinen Unifikator haben.
+Laut ($\ddagger$) hat damit auch $G$ keinen Unifikator.
+
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (5)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
+\smallskip
+
+\emph{Ansatz:} Wir ordnen Unifikationsprobleme so an, dass das aktuelle Problem in jedem Schritt kleiner wird, und argumentieren, dass dies nicht ewig so weitergehen kann.\medskip\pause
+
+\anybox{strongyellow}{
+Dazu definieren wir für jedes Problem $G'$ ein Tripel natürlicher Zahlen $\kappa(G')=\tuple{v,g,r}$:
+\begin{itemize}
+\item $v$ ist die Zahl der nicht gelösten \redalert{V}ariablen in $G'$\\[1ex]
+Eine Variable $x$ ist gelöst, wenn sie in $G'$ nur in einer Gleichung $x\unieq t$
+vorkommt und dabei nicht in $t$ enthalten ist
+\item $g$ ist die \redalert{G}esamtzahl der Vorkommen von Funktionssymbolen, Konstanten und Variablen in $G'$
+\item $r$ ist die Zahl der Gleichungen $s\unieq x\in G'$ mit Variable $x\in\Slang{V}$ auf der \redalert{r}echten Seite
+\end{itemize}}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (6)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
+\smallskip
+
+Wir ordnen Unifikationsprobleme $G'$ \alert{lexikographisch} bezüglich der Tripel $\kappa(G')$.\smallskip
+
+Für $G_1$ und $G_2$ mit $\kappa(G_i)=\tuple{v_i,g_i,r_i}$ gilt $G_1\succ G_2$, falls:
+\begin{itemize}
+\item $v_1>v_2$ oder
+\item $v_1=v_2$ und $g_1>g_2$ oder
+\item $v_1=v_2$ und $g_1=g_2$ und $r_1>r_2$.
+\end{itemize}\pause
+
+\examplebox{Beispiel: $\tuple{4,2,1}\succ\tuple{3,42,23}\succ\tuple{3,42,22}\succ\tuple{3,41,1000}$.}\pause
+
+In dieser Ordnung gibt es keine unendlichen absteigenden Ketten immer kleiner werdender Unifikationsprobleme: Die Ordnung ist \redalert{wohlfundiert}. (ohne Beweis)
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (7)}
+
+% \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+
+\emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
+\smallskip
+
+Die Behauptung folgt nun, da jede Regelanwendung zu einem $\succ$-kleineren Unifikationsproblem führt:\pause
+
+\anybox{strongyellow}{\vspace{-2ex}
+\begin{itemize}
+\item $v$: Zahl der nicht gelösten Variablen
+\item $g$: Gesamtzahl von Funktionssymbolen, Variablen und Konstanten
+\item $r$ ist die Zahl der Gleichungen $s\unieq x\in G'$ mit Variable $x\in\Slang{V}$
+\end{itemize}}
+
+Der Effekt der Regeln ist dabei wie folgt:
+
+\begin{tabular}{@{}rccc}
+	& $v$ & $g$ & $r$ \\[-0.5ex]
+\alert{Löschen} & $\geq$ & $>$ & \\[-0.5ex]
+\alert{Zerlegen} & $\geq$ & $>$ & \\[-0.5ex]
+\alert{Orientieren} & $\geq$ & $=$ & $>$ \\[-0.5ex]
+\alert{Eliminierung} & $>$ & &
+\end{tabular}\hspace{5mm}
+\begin{minipage}{5.0cm}
+~\\~\\~\\
+Da es keine unendlichen Ketten immer kleinerer Probleme geben kann, muss der Algorithmus irgendwann terminieren.\qed
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel: Terminierungsordnung}
+
+\[
+\begin{array}{rlccc}
+&& v & g & r\\
+\{\hi{1-}{x\unieq f(a)}, g(x,x)\unieq g(x,y)\} & \text{Eliminierung} & 2 & 9 & 0 \\
+\{x\unieq f(a), \hi{1-}{g(f(a),f(a))\unieq g(f(a),y)}\} & \text{Zerlegung} & 1 & 12 & 0\\
+\{x\unieq f(a), \hi{1-}{f(a)\unieq f(a)}, f(a)\unieq y\} & \text{Löschen} & 1 & 10 & 1\\
+\{x\unieq f(a), \hi{1-}{f(a)\unieq y}\} & \text{Orientierung} & 1 & 6 & 1\\
+\{x\unieq f(a), y\unieq f(a)\} & \text{gelöste Form} & 0 & 6 & 0
+\end{array}
+\]\bigskip
+
+Es gilt: $\tuple{2,9,0}\succ\tuple{1,12,0}\succ\tuple{1,10,1}\succ\tuple{1,6,1}\succ\tuple{0,6,0}$
+
+\end{frame}
+
+% \begin{frame}\frametitle{Unifikation von Atomen}
+% 
+% \defbox{Ein \redalert{Unifikator} für eine Menge $\mathcal{A}=\{A_1,\ldots,A_n\}$ von prädikatenlogischen Atomen ist eine Substitution $\theta$ mit $A_1\theta=A_2\theta=\ldots=A_n\theta$.
+% }\pause
+% 
+% \emph{Beobachtungen:}
+% \begin{itemize}
+% \item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, so dass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
+% \item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$ wenn
+% $\sigma$ Unifikator für das folgende Unifikationsproblem $G_{\mathcal{A}}$ ist: 
+% \[ \{ t_{1,1}\unieq t_{2,1},\ldots,t_{n-1,1}\unieq t_{n,1},\ldots,t_{1,\ell}\unieq t_{2,\ell},\ldots,t_{n-1,\ell}\unieq t_{n,\ell} \} \]
+% \item Insbesondere ist der allgemeinste Unifikator für $G_{\mathcal{A}}$ auch der allgeeinste Unifikator für $\mathcal{A}$
+% \end{itemize}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Die Resolutionsregel}
+% 
+% \defbox{Die \redalert{Resolvente} von zwei Klauseln der Form\\[1ex]
+% \narrowcentering{$K_1=\{A_1,\ldots,A_n,L_1,\ldots,L_k\}$ und $K_2=\{\neg A'_1,\ldots,\neg A'_m,L'_1,\ldots,L'_\ell\}$,}\\[1ex]
+% für die $\sigma$ der allgemeinste Unifikator der Menge $\{A_1,\ldots,A_n,A'_1,\ldots,A'_m\}$
+% ist und $L_i,L'_j$ beliebige Literale sind, ist die Klausel
+% $\{L_1\sigma,\ldots,L_k\sigma,L'_1\sigma,\ldots,L'_\ell\sigma\}$.
+% }\medskip\pause
+% 
+% \examplebox{Beispiel: Die Klauseln $K_1=\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}$ und $K_2=\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}$ können resolviert werden. Ein allgemeinster Unifikator von $\{\textsf{hatVater}(x,f(x)),\textsf{hatVater}(z,v)\}$
+% ist $\sigma=\{z\mapsto x,v\mapsto f(x)\}$.
+% Die entsprechende Resolvente von $K_1$ und $K_2$ ist $\{\neg\textsf{Mensch}(x),\textsf{hatKind}(f(x),x)\}$.
+% }
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Varianten von Klauseln}
+% 
+% Es kann störend sein, wenn unterschiedliche Klauseln die selbe Variable verwenden.
+% \medskip
+% 
+% \emph{Beispiel:} Für $\forall x.(\textsf{Mensch}(x)\to\exists y.(\textsf{hatVater}(x,y)\wedge\textsf{Mensch}(y)))$ erhalten wir die Klauselform
+% %
+% \[ \{\{\neg \textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\},\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(x))\}\} \]
+% %
+% Die Klauseln sind nicht resolvierbar, weil $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(x))\}$ keinen Unifikator hat.
+% \bigskip\pause
+% 
+% Da jede Klausel für sich eine allquantifizierte Formel kodiert ($\forall$ distribuiert über $\wedge$) darf man Variablen aber umbenennen. Wir können z.B. die folgende \redalert{Variante} der zweiten Klausel bilden:
+% \[ \{\neg \textsf{Mensch}(y),\textsf{Mensch}(f(y))\} \]
+% $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(y))\}$ hat den einen Unifikator, so dass wir z.B. die folgende Resolvente erhalten:
+% \[\{\neg \textsf{Mensch}(y),\textsf{hatVater}(f(y),f(f(y)))\}\]
+% 
+% \end{frame}
+
+% \begin{frame}\frametitle{Resolutionsalgorithmus}
+% 
+% 
+% 
+% \end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Bei der prädikatenlogischen Resolution müssen Atome unifiziert werden\bigskip
+
+Unifikation von Termen findet mit Hilfe von Substitutionen statt
+\bigskip
+
+Der Unifikationsalgorithmus erlaubt uns, allgemeinste Unifikatoren zu berechnen, falls
+diese existieren
+\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Der Resolutionsalgorithmus und seine Korrektheit
+\item Herbrand, genialer Mathematiker aber unglücklicher Bergsteiger
+\item Logik über endlichen Modellen und ihre praktische Anwendung
+\end{itemize}
+}
+
+\end{frame}
+
+
+
+
+% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
+% 
+% \alert{Literatur}\bigskip
+% 
+% \begin{itemize}
+% \item Thoralf A. Skolem: \emph{Logisch-kombinatorische Untersuchungen über die Erfüllbarkeit und Beweisbarkeit mathematischen Sätze nebst einem Theoreme über dichte Mengen.} Videnskapsselskapets Skrifter. I. Mat.-naturv Klasse, 1920, No. 4. Kristiania 1920.
+% \item Hao Wang: \emph{Skolem and Gödel.} Nordic Journal of Philosophical Logic, Vol. 1, No. 2, pp. 119–132. \url{http://www.hf.uio.no/ifikk/forskning/publikasjoner/tidsskrifter/njpl/vol1no2/skogod.pdf}
+% \end{itemize}
+% 
+% \bigskip
+% 
+% \alert{Bildrechte}\bigskip
+% 
+% Folie \ref{frame_skolem}: Fotografie, 1930er (heute Oslo Museum, Inventarnummer OB.F06426c), gemeinfrei
+% 
+% \end{frame}
+
+
+\end{document}
