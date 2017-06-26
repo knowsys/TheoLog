@@ -18,14 +18,74 @@
   Selbstkontrolle.
 
   \renewcommand{\theexercise}{\Roman{exercise}}
-  \setcounter{exercise}{0}
+  \setcounter{exercise}{5}
 
+  \begin{exercise}
+    % TheoLog 2014
+    Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
+    \begin{enumerate}
+    \item Zwei prädikatenlogische Formeln $F$ und $G$ sind äquivalent, wenn die
+      Formel $F \leftrightarrow G$ allgemeingültig ist.
+    \item Jede erfüllbare Formel der Prädikatenlogik erster Stufe hat ein
+      endliches Modell.
+    \item Jede erfüllbare Formel der Prädikatenlogik erster Stufe hat ein
+      abzählbares Modell.
+    \item Jede Skolemformel hat höchstens eine Herbrand-Interpretation.
+    \item Jede Skolemformel hat mindestens ein Herbrand-Modell.
+    \end{enumerate}
+  \end{exercise}
+
+  \begin{exercise}
+    % TheoLog 2014
+    Zeigen Sie, dass man das Resolutionsverfahren der Prädikatenlogik erster Stufe
+    auch zum Nachweis von semantischen Konsequenzen nutzen kann, indem Sie die
+    Äquivalenz der folgenden Aussagen nachweisen:
+    \begin{enumerate}
+    \item $\Gamma \models F$.
+    \item $\Gamma \cup \{\neg F\}$ ist unerfüllbar.
+    \item $\bigwedge \Gamma \to F$ ist allgemeingültig.
+    \item $\bigwedge \Gamma \to \neg F$ ist unerfüllbar.
+    \end{enumerate}
+    Hierbei sei $\bigwedge \Gamma = \gamma_{1} \land \dots \land \gamma_{n}$ für
+    $\Gamma = \{\gamma_{1},\ldots,\gamma_{n}\}$.
+  \end{exercise}
 \end{mdframed}
+
+\newpage
 
 \setcounter{exercise}{0}
 
 % Unifikation
 
+\def\deq{\stackrel{\cdot}{=}}
+
+\begin{exercise}
+  % TheoLog 2014
+  Bestimmen Sie jeweils einen allgemeinsten Unifikator der folgenden
+  Gleichungsmengen, oder begründen Sie, warum kein allgemeinster Unifikator
+  existiert.  Verwenden Sie hierfür den Algorithmus aus der Vorlesung.  Dabei
+  sind $x$, $y$ Variablen und $a$, $b$ Konstanten.
+  \begin{enumerate}
+  \item $\{\,f(x) \deq g(x,y), y \deq f(a)\,\}$
+  \item $\{\,f(g(x,y)) \deq f(g(a,h(b)))\,\}$
+  \item $\{\,f(x,y) \deq x, y \deq g(x)\,\}$
+  \item $\{\,f(g(x),y) \deq f(g(x),a), g(x) \deq g(h(a))\,\}$
+  \end{enumerate}
+\end{exercise}
+
 % Resolution
+
+\begin{exercise}
+  % TheoLog 2014, teilweise aus Schöning
+  Zeigen Sie mittels prädikatenlogischer Resolution folgende Aussagen:
+  \begin{enumerate}
+  \item Die Aussage \enquote{Der Professor ist glücklich, wenn alle seine
+      Studenten Logik mögen} hat als Folgern \enquote{Der Professor ist
+      glücklich, wenn er keine Studenten hat}.
+  \item Die Formulierung des Barbier-Paradoxons aus Aufgabe~4 von Blatt~9 ist
+    unerfüllbar.
+  \item In Aufgabe~V folgt die letzte Aussage aus den ersten drei. % Zuerst testen
+  \end{enumerate}
+\end{exercise}
 
 \end{document}
