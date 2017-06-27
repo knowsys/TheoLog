@@ -66,8 +66,8 @@
   % TheoLog 2014
   Welche der angegebenen Strukturen sind Modelle der folgenden Formel?
   \begin{equation*}
-    \forall x.\, p(x,x) \land \forall x, y.\, (p(x,y) \land
-      p(y,x) \to x \approx y)
+    \forall x.\, p(x,x) \land \forall x, y.\, ((p(x,y) \land
+      p(y,x)) \to x \approx y)
     \land \forall x, y, z.\, (p(x,y) \land p(y,z) \to p(x,z))
   \end{equation*}
   \begin{enumerate}
@@ -78,7 +78,7 @@
   \item $\mathcal{I}_{3}$ mit Grundmenge $\mathbb N$ und $p^{\mathcal{I}_{3}} =
     \{\,(m,n) \mid m \text{ teilt } n\,\}$;
   \item $\mathcal{I}_{4}$ mit Grundmenge $\Sigma^{*}$ für ein Alphabet $\Sigma$
-    und $p^{\mathcal{I}_{4}} = \{\,(x,y) \mid x \text{ is Präfix von } y\,\}$;
+    und $p^{\mathcal{I}_{4}} = \{\,(x,y) \mid x \text{ ist Präfix von } y\,\}$;
   \item $\mathcal{I}_{5}$ mit Grundmenge $\subsets{M}$ für eine Menge $M$ und
     $p^{\mathcal{I}_{5}} = \{\,(X,Y) \mid X \subseteq Y\,\}$.
   \end{enumerate}
@@ -114,14 +114,15 @@
   % TheoLog 2014
   Welche der folgenden Aussagen sind wahr?  Begründen Sie Ihre Antwort.
   \begin{enumerate}
-  \item Aus $\Gamma \subseteq \Gamma'$ und $\Gamma \models F$ folgt $\Gamma'
+  \item Sind $\Gamma$ und $\Gamma'$ Menge von prädikatenlogischen Formeln, dann
+    folgt aus $\Gamma \subseteq \Gamma'$ und $\Gamma \models F$ auch $\Gamma'
     \models F$.
   \item Jede aussagenlogische Formel ist eine prädikatenlogische Formel.
   \item Eine prädikatenlogische Formel $F$ ist genau dann allgemeingültig,
     wenn $\lnot F$ unerfüllbar ist.
   \item Es gilt
     \begin{equation*}
-      \{\,\forall x, y.\, (p(x,y) \to p(y,x)), \forall x, y, z.\, (p(x,y) \land p(y,z)
+      \{\,\forall x, y.\, (p(x,y) \to p(y,x)), \forall x, y, z.\, ((p(x,y) \land p(y,z))
       \to p(x,z))\,\} \models \forall x.\, p(x,x).
     \end{equation*}
   \end{enumerate}
