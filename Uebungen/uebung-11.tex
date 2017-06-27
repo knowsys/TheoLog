@@ -44,7 +44,7 @@
     \item $\Gamma \models F$.
     \item $\Gamma \cup \{\neg F\}$ ist unerfüllbar.
     \item $\bigwedge \Gamma \to F$ ist allgemeingültig.
-    \item $\bigwedge \Gamma \to \neg F$ ist unerfüllbar.
+    \item $\bigwedge \Gamma \land \neg F$ ist unerfüllbar.
     \end{enumerate}
     Hierbei sei $\bigwedge \Gamma = \gamma_{1} \land \dots \land \gamma_{n}$ für
     $\Gamma = \{\gamma_{1},\ldots,\gamma_{n}\}$.
@@ -80,11 +80,13 @@
   Zeigen Sie mittels prädikatenlogischer Resolution folgende Aussagen:
   \begin{enumerate}
   \item Die Aussage \enquote{Der Professor ist glücklich, wenn alle seine
-      Studenten Logik mögen} hat als Folgern \enquote{Der Professor ist
+      Studenten Logik mögen} hat als Folgerung \enquote{Der Professor ist
       glücklich, wenn er keine Studenten hat}.
   \item Die Formulierung des Barbier-Paradoxons aus Aufgabe~4 von Blatt~9 ist
     unerfüllbar.
-  \item In Aufgabe~V folgt die letzte Aussage aus den ersten drei. % Zuerst testen
+  \item In Aufgabe~V folgt die letzte Aussage aus den ersten drei.  (Zur
+    Vereinfachung darf hier angenommen werden, dass alle Individuen Drachen
+    sind.)
   \end{enumerate}
 \end{exercise}
 
