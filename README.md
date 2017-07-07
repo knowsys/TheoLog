@@ -45,8 +45,8 @@ Bildrechte können davon abweichen und sind gesondert in den LaTeX-Dateien angeg
 Die Foliensätze enthalten keinerlei Texte, die aus Werken entnommen sind, für welche die VG Wort Verwertungsrechte vertritt.
 
 Die Nutzung der Materialien in eigenen Lehrveranstaltungen ist willkommen, sofern der obige Lizenztext
-in allen abgeleiteten Foliensätzen angegeben wird. Rückmeldungen sind willkommen (z.B. als Issue zu diesem
-Repository); wir verlinken hier gern auf die Homepages der entsprechenden Kurse. Interssierte Lehrende können
+in allen abgeleiteten Foliensätzen angegeben wird. Rückmeldungen sind ebenfalls willkommen (z.B. als Issue zu diesem
+Repository); wir verlinken hier gern auf die Homepages der entsprechenden Kurse. Interessierte Lehrende können
 ihre abgewandelten Quellen auch mit in diesem Respository veröffentlichen -- kontaktieren Sie Prof. Krötzsch.
 
 Autoren
