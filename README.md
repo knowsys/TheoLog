@@ -1,6 +1,8 @@
 Vorlesungsfolien Theoretische Informatik und Logik
 ==================================================
 
+[![Project Stats](https://www.openhub.net/p/TheoLog/widgets/project_thin_badge.gif)](https://www.openhub.net/p/TheoLog)
+
 *(This repository contains LaTeX sources of a
 [German language university course in theoretical computer science](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2017)/en).)*
 
