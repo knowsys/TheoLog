@@ -1,0 +1,599 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{20}{Endliche Modelle/Gödels Sätze}{5. Juli 2017}
+
+\begin{document}
+
+\maketitle
+
+% \frame{\label{frame_herbrand}\begin{center}
+% \includegraphics[height=5cm]{images/Herbrand.jpg}
+% 
+% \LARGE
+% Jacques Herbrand\medskip
+% 
+% \normalsize
+% 12.2.1908 -- 27.7.1931
+% \end{center}}
+
+\begin{frame}\frametitle{Logik und Datenbanken}
+
+\alert{Relationale Datenbankinstanzen = Endliche Interpretationen}
+\begin{itemize}
+\item Tabellen(namen) entsprechen Prädikatssymbolen
+\item Kleinere syntaktische Unterschiede (benannte vs. geordnete Parameter)
+\end{itemize}
+
+\alert{Relationale Datenbankanfragen = Prädikatenlogische Formeln}
+\begin{itemize}
+\item Zuweisungen $\Zuweisung$ zu freien Variablen als mögliche Anfrageergebnisse
+\item $\Inter,\Zuweisung\models Q$ bedeutet: $\Zuweisung$ ist Ergebnis der Anfrage $Q$ auf Datenbankinstanz $\Inter$
+\item Prädikatenlogik kann die selben Anfragefunktionen ausdrücken wie normales SQL
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Relationale Algebren}
+
+Datenbankanfragen werden oft in \redalert{relationaler Algebra} dargestellt,
+bei der man Relationen mit Operationen zu einem Anfrageergebnis kombiniert
+\bigskip
+
+\examplebox{Beispiel: Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
+\[ \pi_{\text{Von},\text{Zu},\text{Linie}}(\textsf{verbindung}\bowtie\textsf{linien})  \]
+}
+
+\footnotesize
+\emph{Anmerkung:} SQL hat noch einen leicht anderen Stil. Variablen stehen dort für ganze Tabellenzeilen und man verwendet Notation der Form "`$\textsf{linien}.\text{Typ}$"', um auf deren Einträge zuzugreifen ("`Tuple-Relational Calculus"'). Das ändert an der Ausdrucksstärke nichts.
+
+\end{frame}
+
+\begin{frame}\frametitle{Anfragebeantwortung als Modell Checking}
+
+\emph{Erkenntnis:} Die wesentliche Berechnungsaufgabe bei der Beantwortung von Datenbankabfragen ist das folgende Entscheidungsproblem:\bigskip
+
+\defbox{Das \redalert{Auswertungsproblem} (\alert{Model Checking}) der Prädikatenlogik lautet wie folgt:\\[1ex]
+\emph{Gegeben:} Eine Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$; eine endliche Interpretation $\Inter$; Elemente $\delta_1,\ldots,\delta_n\in\Delta^\Inter$\\
+\emph{Frage:} Gilt $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q$?
+}\bigskip\pause
+
+Naive Methode der Anfragebeantwortung:
+\begin{itemize}
+\item Betrachte alle $(\Delta^\Inter)^n$ möglichen Ergebnisse
+\item Entscheide jeweils das Auswertungsproblem
+\end{itemize}
+
+Praktisch relevante Frage:\medskip
+
+\redalert{Wie schwer ist das Auswertungsproblem?}
+
+\end{frame}
+
+\newcommand{\mytab}{\texttt{~~}}
+\begin{frame}\frametitle{Ein Algorithmus für das Auswertungsproblem}
+
+Wir nehmen an, dass die Formel $F$ nur $\neg$, $\wedge$ und $\exists$ enthält\\
+(durch Normalisierung möglich)\bigskip
+
+\codebox{
+$\texttt{function}~\text{Eval}(F,\Inter,\Zuweisung) :$
+\smallskip
+
+\begin{tabular}{rl}
+01 & $\Scode{switch}~(F):$ \\[-1ex]
+02 & $\mytab\Scode{case}~p(c_1,\ldots,c_n):~\texttt{return}~\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$\\[-1ex]
+03 & $\mytab\Scode{case}~\neg G:~\texttt{return}~\Scode{not~}\text{Eval}(G,\Inter,\Zuweisung)$\\[-1ex]
+04 & $\mytab\Scode{case}~G_1\wedge G_2:~\texttt{return}~\text{Eval}(G_1,\Inter,\Zuweisung)\Scode{~and~}\text{Eval}(G_2,\Inter,\Zuweisung)$\\[-1ex]
+05 & $\mytab\Scode{case}~\exists x.G:$\\[-1ex]
+06 & $\mytab\mytab\Scode{for}~c\in\Delta^\Inter~:$\\[-1ex]
+07 & $\mytab\mytab\mytab\Scode{if}~\text{Eval}(G\{x\mapsto c\},\Inter,\Zuweisung)~\Scode{then}~\texttt{return}~\Scode{true}$\\[-1ex]
+08 & $\mytab\mytab\texttt{return}~\Scode{false}$\\[-1ex]
+\end{tabular}
+}
+
+\emph{Anmerkung:} Wenn Konstanten $c$ in der Anfrage vorkommen, dann nimmt man
+in der Regel an, dass $c^\Inter=c$ ist.
+
+\end{frame}
+
+\begin{frame}\frametitle{Zeitkomplexität}
+
+Sei $m$ die Größe von $F$ und $n=|\Inter|$ (Gesamtgröße der Datenbank)
+\bigskip
+
+\begin{itemize}
+\item Wie viele rekursive Aufrufe von Eval gibt es?\\\pause
+$\leadsto$ einen pro Teilformel: $\leq m$
+%
+\item Maximale Rekursionstiefe?\\\pause
+$\leadsto$ beschränkt durch Gesamtzahl der Aufrufe: $\leq m$
+%
+\item Maximale Zahl der Iterationen in $\Scode{for}$-Schleife?\\\pause
+$\leadsto$ $|\Delta^\Inter|\leq n$ pro rekursivem Aufruf\\
+$\leadsto$ insgesamt $\leq n^m$ Iterationen
+%
+\item $\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$ ist entscheidbar in linearer Zeit bzgl.\ $n$
+\end{itemize}
+\bigskip\pause
+
+Gesamtlaufzeit in $m\cdot n^m\cdot n=m\cdot n^{m+1}$:
+\begin{itemize}
+\item Komplexität des Algorithmus: in \ExpTime
+\item Komplexität bzgl. Größe der Datenbank ($m$ konstant): in \PTime
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Speicherkomplexität}
+
+Wir erhalten eine bessere Komplexitätsabschätzung, wenn wir den Speicherbedarf
+betrachten
+\bigskip
+
+Sei $m$ die Größe von $F$ und $n=|\Inter|$ (Gesamtgröße der Datenbank)
+\bigskip
+
+\begin{itemize}
+\item Speichere pro (rekursivem) Aufruf einen Pointer auf eine Teilformel von $F$: $\log m$
+\item Speichere für jede Variable in $F$ (maximal $m$) die aktuelle Zuweisung (als Pointer): $m\cdot\log n$
+\item $\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$ ist entscheidbar in logarithmischem Speicher bzgl.\ $n$
+\end{itemize}
+\bigskip\pause
+
+Speicher in \ghost{$m\log m + m\log n + \log n = m\log m + (m+1)\log n$}
+\begin{itemize}
+\item Komplexität des Algorithmus: in \PSpace
+\item Komplexität bzgl. Größe der Datenbank ($m$ konstant): in \LogSpace
+\end{itemize}
+
+{\tiny\emph{Zur Erinnerung:} $\PSpace\subseteq\ExpTime$ und $\LogSpace\subseteq\PTime$, d.h. die obigen Schranken sind besser}
+
+\end{frame}
+
+\begin{frame}\frametitle{Komplexität des Auswertungsproblems}
+
+\theobox{Satz: Das Auswertungsproblem der Prädikatenlogik ist $\PSpace$-vollständig.}\pause
+
+\emph{Beweis:} Durch Reduktion vom Auswertungsproblem quantifizierter Boolscher Formeln (\Slang{TrueQBF}).\medskip
+
+Sei $\quantor_1 p_1. \quantor_2 p_2. \cdots \quantor_n p_n.F[p_1,\ldots,p_n]$ eine QBF (mit $\quantor_i\in\{\forall,\exists\}$)\pause
+\begin{itemize}
+\item Datenbankinstanz $\Inter$ mit $\Delta^\Inter=\{0,1\}$
+\item Eine Tabelle mit einer Spalte: $\textsf{true}(1)$
+\item Aus der gegebenen QBF erstellen wir die folgende prädikatenlogische Formel ohne freie Variablen:
+\[\quantor_1 x_1. \quantor_2 x_2. \cdots \quantor_n x_n.F[p_1/\textsf{true}(x_1),\ldots,p_n/\textsf{true}(x_n)]\]
+wobei $F[p_1/\textsf{true}(x_1),\ldots,p_n/\textsf{true}(x_n)]$ die Formel ist, die aus $F$ entsteht, wenn man jedes aussagenlogische Atom $p_i$ durch das prädikatenlogische Atom
+$\textsf{true}(x_n)$ ersetzt.
+\end{itemize}
+Die Korrektheit dieser Reduktion ist leicht zu zeigen. \qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Wie schwer sind Datenbankabfragen?}
+
+\theobox{Korollar: Die Beantwortung von SQL-Anfragen ist \PSpace-hart, sogar wenn die Datenbank nur eine einzige Tabelle mit einer einzigen Zeile enthält.}\bigskip
+
+Die Komplexität steckt vor allem in der Struktur der Anfrage.\bigskip
+
+Ist die Anfrage fest vorgegeben oder in ihrer Größe beschränkt, dann wird die Komplexität von der Datenbankgröße dominiert: bezüglich dieser Größe ist das Problem aber in $\LogSpace$.\bigskip
+
+Man kann sogar noch niedrigere Komplexitätsschranken bzgl. der Datenbankgröße angeben.
+\bigskip
+
+\alert{$\leadsto$ SQL-Anfragebeantwortung ist praktisch implementierbar, aber nur solange die Anfragen nicht zu komplex werden.}
+
+\end{frame}
+
+
+
+\frame{\label{frame_goedel}\begin{center}
+\includegraphics[height=5cm]{images/Goedel.jpg}
+
+\LARGE
+Kurt Gödel
+\end{center}}
+
+
+\begin{frame}\frametitle{Der 1. Gödelsche Unvollständigkeitssatz}
+
+Was Gödel in 1931 zeigte war grob gesagt folgendes:\medskip
+
+\theobox{Satz: Jedes formale System, in dem eine gewisse Menge elementarer Arithmetik
+dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
+elementaren Arithmetik: Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
+}\bigskip
+
+\emph{Um das zu verstehen müssen wir einiges klären:}
+\begin{itemize}
+\item Was ist ein \alert{formales System}?
+\item Was ist \alert{"`eine gewisse Menge elementarer Arithmetik"'}?
+\item Was genau bedeutet \alert{unvollständig} hier?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Formale Systeme}
+
+Ein \redalert{formales System} ist ganz allgemein ein Beweissystem, bestehend aus:
+\begin{itemize}
+\item Einer Sprache, in der Aussagen formuliert werden können
+\item Einer Menge von Axiomen, d.h. als wahr vorgegebener Aussagen
+\item Einem effektiven Verfahren mit dem man aus gegebenen Aussagen neue Schlüsse ableiten kann
+\end{itemize}
+Beweisbare Sätze heißen \redalert{Theoreme} des formalen Systems\\
+{\tiny {\emph{Anmerkung:} Auch die Axiome sind Theoreme, wenn auch mit sehr kurzen Beweisen}}
+\medskip\pause
+
+\examplebox{Beispiel: Prädikatenlogik liefert formales Systeme:
+\begin{itemize}
+\item Sprache: Die Sprache der prädikatenlogischen Sätze
+\item Axiome: Eine gegebene Theorie, z.B. die Theorie der kommutativen Monoide
+\item Ableitungsverfahren: Resolutionskalkül
+\end{itemize}
+}
+
+
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Formale Systeme: Wichtige Eigenschaften}
+
+Formale Systeme können viele Formen haben -- zum Beispiel beinhalten sie auch jedes System, in dem mathematische Beweise formal geführt werden können (z.B. ZFC: Mengenlehre nach Zermelo-Fraenkel mit Auswahlaxiom).\bigskip\pause
+
+Die Details sind relativ egal, aber
+wir wollen doch ein paar Anforderungen stellen:
+
+\anybox{purple}{Grundeigenschaft Formaler Systeme: Die Menge der Theoreme eines formalen Systems ist rekursiv aufzählbar (semi-entscheidbar).}
+
+\anybox{purple}{Negation: Für jeden Satz $S$ gibt es in der Sprache eines formalen Systems auch einen negierten Satz $\neg S$, so dass gilt:
+\begin{itemize}
+\item $S$ ist genau dann ein Theorem, wenn $\neg\neg S$ ein Theorem ist.
+\item Wenn $S$ und $\neg S$ Theoreme sind, dann sind alle Sätze Theoreme.
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Eigenschaften formaler Systeme}
+
+
+\emph{Syntaktische Eigenschaften:}
+\begin{itemize}
+\item \redalert{Konsistenz:} Ein formales System ist konsistent, wenn es keinen Satz $S$ gibt,
+so dass $S$ und $\neg S$ beweisbar sind.
+\item \redalert{Vollständigkeit:} Ein formales System ist (negations-)vollständig, wenn für jeden Satz $S$ entweder $S$ oder $\neg S$ beweisbar sind.
+\end{itemize}
+% Bisher haben wir keinerlei Semantik definiert oder verwendet. Diese Eigenschaften beziehen sich nur auf die Syntax der mechanisch ableitbaren Formeln.
+\medskip\pause
+
+Wenn man z.B. in Prädikatenlogik arbeitet, dann kann man Mengen von Sätzen eine Semantik (Modelltheorie) geben und weitere Eigenschaften fordern:\medskip
+
+\emph{Semantische Eigenschaften:}
+\begin{itemize}
+\item \redalert{Korrektheit:} Ein formales System ist korrekt, wenn jeder beweisbare Satz auch semantisch wahr (tautologisch) ist.
+\item \redalert{Vollständigkeit:} Ein formales System ist (semantisch) vollständig, wenn jeder semantisch wahre Satz beweisbar ist.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Verwechslungsgefahr}
+
+\anybox{purple}{
+\emph{Achtung!} Es gibt zwei Arten von Vollständigkeit:
+\begin{itemize}
+\item Negationsvollständigkeit: die syntaktische Eigenschaft, dass jeder Satz bewiesen oder widerlegt werden kann
+\item Semantische Vollständigkeit: die semantische Eigenschaft, dass jede Tautologie bewiesen werden kann
+\end{itemize}
+
+Gödels Vollständigkeitssatz bezieht sich auf die zweite Art von Vollständigkeit,
+Gödels Unvollständigkeitssätze auf die erste!}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Beispiele}
+
+\examplebox{Beispiel: Angenommen ein Satz $F$ kann in einem formalen System
+$\mathcal{S}$ bewiesen und wir wissen, dass $\mathcal{S}$ konsistent ist.
+Folgt daraus, dass $F$ semantisch wahr ist?
+}\medskip\pause
+
+\examplebox{Beispiel: Aus der Logik bekannte Zusammenhänge gelten auch hier:
+\begin{itemize}
+\item Ein Satz $F$ ist genau dann in $\mathcal{S}$ beweisbar wenn $\mathcal{S}$ bei Hinzunahme des Axioms $\neg F$ inkonsistent wird.
+\item Weder $F$ not $\neg F$ sind in $\mathcal{S}$ beweisbar gdw. $\mathcal{S}$ sowohl bei Hinzunahme von $F$ als auch bei Hinzunahme von $\neg F$ konsistent ist
+\end{itemize}
+}
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Eine gewisse Menge Arithmetik}
+
+\theobox{Satz: Jedes formale System, in dem eine gewisse Menge elementarer Arithmetik
+dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
+elementaren Arithmetik: Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
+}
+
+Was ist mit "`eine gewisse Menge elementarer Arithmetik"' gemeint?\pause
+\begin{itemize}
+\item Das System sollte Sätze über Beziehungen von konkreten natürlichen Zahlen ausdrücken können
+\item Dabei sollten die elementaren Operationen $+$, $-$ und $\times$ sowie die Relation $=$ unterstützt werden
+\item Das System sollte bezüglich der gängigen Semantik dieser arithmetischen Ausdrucksmittel korrekt sein
+\end{itemize}
+Oft kommt man mit noch weniger aus, aber diese Eigenschaften reichen in der Regel
+
+\end{frame}
+
+\begin{frame}\frametitle{Arithmetik in Prädikatenlogik}
+
+Man kann die benötigte Menge von Arithmetik durch eine prädikatenlogische Theorie axiomatisieren:
+\begin{itemize}
+\item Konstante $\Sterm{0}$
+\item Funktionssymbole $s$ (unär, "`Nachfolger"'), $+$ und $\times$ (binär, infix)
+\item Prädikatssymbol $\approx$ (binär, infix)
+\end{itemize}
+
+Darstellung natürlicher Zahlen als Nachfolger von 0:\\[0.5ex]
+\narrowcentering{$\Sterm{0}\hat{=}0$, $s(\Sterm{0})\hat{=}1$, $s(s(\Sterm{0}))\hat{=}2$, \ldots}\bigskip
+
+Sätze zur Axiomaitiserung der Grundrechenarten:
+\begin{itemize}
+\item $\forall x.\neg(s(x)\approx \Sterm{0})$
+\item $\forall x.(x+\Sterm{0}\approx x)$ 
+\item $\forall x,y.(x+s(y)\approx s(x+y))$
+\item $\forall x.(x\times \Sterm{0}\approx \Sterm{0})$ 
+\item $\forall x,y.(x\times s(y)\approx (x\times y)+x$
+\item \ldots {\tiny (mit obigem kann man schon einiges ausrechnen, aber es gibt noch mehr zu sagen, z.B. eine komplette Gleichheitstheorie)
+
+}
+\end{itemize}
+
+\end{frame}
+
+\sectionSlide{Gödels Beweis des 1. Satzes}
+
+\begin{frame}\frametitle{Idee}
+
+Wie kann man zeigen, dass irgendein Satz weder beweisbar noch widerlegbar ist?
+\bigskip\pause
+
+\emph{Ein einfaches Szenario:}
+\begin{itemize}
+\item \alert{Annahme:} Sie glauben nur Dinge, die wirklich wahr sind, und was Sie glauben ist konsistent.\pause
+\item \alert{Behauptung:} Es gibt wahre Sätze, die sie nicht glauben.\pause
+\item \alert{Beweis:}\pause "`Ich mache jetzt eine wahre Behauptung, die Sie mir nicht glauben"'\pause{} ist eine Behauptung, die sie nicht glauben können:
+\begin{itemize}
+\item Wenn Sie sie glauben, dann muss sie wahr sein, d.h. Sie glauben sie nicht -- das wäre inkonsistent
+\item Also glauben Sie sie nicht. Dann ist die Behauptung wahr.\qed
+\end{itemize}
+\end{itemize}
+
+Behauptungen dieser Form nennt man \redalert{Gödelsätze}
+
+\end{frame}
+
+\begin{frame}\frametitle{Gödelsätze formal machen}
+
+Natürliche Sprache eignet sich nicht für stichhaltige Argumente, da sie keine klar definierte mathematische Interpretation hat (z.B. kann ich sagen "`Dieser Satz ist eine Lüge"')
+\bigskip\pause
+
+Gödels Beweis (vereinfacht) für formale Systeme:
+\begin{itemize}
+\item \alert{Annahme:} Das gegebene System ist korrekt und konsistent.
+\item \alert{Behauptung:} Es gibt wahre Sätze, die nicht beweisbar sind.
+\item \alert{Beweis:} Gödel definiert eine mathematische Formel $F$, welche ausdrückt:\\[1ex]
+\narrowcentering{\alert{"`$F$ ist wahr genau dann wenn $F$ nicht beweisbar ist."'}}\smallskip
+
+\begin{itemize}
+\item Wenn $F$ beweisbar wäre, dann ist es wahr und also nicht beweisbar -- Widerspruch
+\item Also ist $F$ nicht beweisbar, und damit wahr\qed
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Gödels Zahlen}
+
+\narrowcentering{\alert{"`$F$ ist wahr genau dann wenn $F$ nicht beweisbar ist."'}}\smallskip
+
+Die Herausforderung ist, solche Gödensätze zu definieren:
+Offenbar kann man $F$ nicht als Teilausdruck in $F$ verwenden!
+\bigskip\pause
+
+Gödel definiert daher nummerische Bezeichner für Formeln -- sogenannte Gödelzahlen -- und kodiert seine Sätze anders:
+\begin{center}\alert{"`$F$ ist wahr genau dann wenn $m$ in der Menge der Gödelzahlen nicht beweisbarer Sätze vorkommt."'} \end{center}
+wobei $m$ die Gödelzahl für $F$ ist.\medskip
+
+Man muss dafür eine Menge technischer Ergebnisse zeigen, z.B.
+\begin{itemize}
+\item Ein solcher Satz $F$, welcher seine eigene Gödelzahl verwendet, existiert überhaupt
+\item Die Menge der Gödelzahlen nicht beweisbarer Sätze ist arithmetisch darstellbar
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Quotes und Quines}
+
+Eine verwandte Form von Selbstbezüglichkeit ist auch in der Informatik bekannt:\medskip
+
+\defbox{
+Ein \redalert{Quine} ist ein Programm, das bei einer leeren Eingabe seinen eigenen Quellcode ausgibt.
+}
+
+Auch hier denkt man vielleicht zuerst, dass dies nicht möglich wäre, weil da Programm dazu seinen eigenen Code enthalten müsste -- eine unendliche Rekursion \ldots\medskip
+\pause
+
+Es ist aber gar nicht so schwer:
+\bigskip
+\examplebox{Beispiel: Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen: $\squote$Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen: $\squote$ }
+
+\end{frame}
+
+\sectionSlide{Gödels 1. Satz berechnungstheoretisch zeigen}
+
+\begin{frame}\frametitle{Unentscheidbarkeit und Unvollständigkeit}
+
+\emph{Wir wissen:}\medskip
+
+Die Theoreme formaler Systeme sind rekursiv aufzählbar, d.h. semi-entscheidbar
+\begin{itemize}
+\item Speziell gilt das auch für die Theoreme, die sich auf arithmetische Aussagen beziehen
+\end{itemize}\medskip
+
+Es gibt Mengen (Sprachen), die nicht semi-entscheidbar sind
+\begin{itemize}
+\item Zum Beispiel das Nicht-Halteproblem von Turingmaschinen
+\end{itemize}
+\bigskip\pause
+
+\alert{
+$\leadsto$ Falls man Instanzen des Wortproblems einer nicht-semientscheidbaren Sprache auf die Wahrheit arithmetischer Sätze reduzieren könnte, dann würde daraus schon Unvollständigkeit folgen}
+
+\end{frame}
+
+\begin{frame}\frametitle{Zahlen vs. Sprachen}
+
+Berechnungstheorie handelt von Sprachen, d.h. Mengen von Wörtern
+\bigskip
+
+Es ist leicht möglich, jedem Wort eine natürliche Zahl zuzuordnen -- man spricht von einer \redalert{Gödelzahl} für das Wort\\[0.5ex]
+{\tiny(dies ist möglich, da die Menge aller Wörter abzählbar ist, siehe Formale Systeme WS 2016/2017; natürlich gibt es viele mögliche Zuordnungen).
+
+}
+\bigskip\pause
+
+Wir folgern:
+\begin{itemize}
+\item Es gibt eine Eins-zu-eins-Beziehung zwischen formalen Sprachen (über einem gegebenen Alphabet) und Mengen natürlicher Zahlen
+\item Wir können also von der Entscheidbarkeit/Unentscheidbarkeit einer Menge natürlicher Zahlen sprechen
+\item Es gibt unentscheidbare Mengen natürlicher Zahlen, z.B. die Menge der Zahlen, welche ein Wort enummieren, das eine Turingmaschine kodiert, welche auf der leeren Eingabe hält
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Eine erste Beweisidee}
+
+Mögliche Strategie zum Beweis von Gödels 1. Satz:
+\begin{itemize}
+\item Definiere eine Gödel-Nummerierung für alle Wörter die eine Turingmaschine kodieren
+\item Finde arithmetische Ausdrücke auf diesen Zahlen, mit denen man konkrete syntaktische Eigenschaften der kodierten TM testen kann
+\item Finde arithmetische Formeln, die ausdrücken, dass die kodierte TM auf dem leeren Wort hält
+\end{itemize}\pause
+\alert{$\leadsto$ Programmiere eine universelle TM in Arithmetik}\bigskip
+
+(Machbar, aber aufwändig!)
+
+\end{frame}
+
+\begin{frame}\frametitle{Ein schweres arithmetisches Problem}
+
+Die Aufgabe wird viel einfacher, wenn man mit ein unentscheidbares Problem verwendet, welches sich schon auf arithmetische Aussagen bezieht.
+
+\defbox{Eine \redalert{Diophantische Gleichung} ist ein arithmetischer Ausdruck der Form $D[x_1,\ldots,x_n]= 0$, wobei $D[x_1,\ldots,x_n]$ ein Funktionsterm über den Symbolen
+$x_1,\ldots,x_n,\Sterm{0},s,+,-,\times$ ist. Eine \redalert{Lösung} der Gleichung ist eine Liste von natürlichen Zahlen $z_1,\ldots,z_n$, für welche die Gleichung stimmt.}\pause
+
+\examplebox{Beispiele für diophantische Gleichungen:
+\begin{itemize}
+\item $y=3x+5$, d.h. $3\times x-y+5= 0$ (unendlich viele Lösungen)
+\item $x^2+y^2= 1$, d.h. $x\times x+y\times y-1 = 0$ (keine Lösung)
+\item $x^2+y^2=z^2$ (unendlich viele Lösungen)
+\item $x^4+y^4=z^4$ (genau eine Lösung, Fermatsche Vermutung)
+\item $x^2=2y^4-1$ (genau zwei Lösungen: 1 \& 1 und 13 \& 239)
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Hilberts Zehntes und MRDP}
+
+\anybox{purple}{Hilberts 10. Problem: Man finde ein Verfahren um zu ermitteln, ob eine gegebene diophantische Gleichung lösbar ist.}\pause
+
+Wir wissen heute, dass dies unentscheidbar ist:
+\begin{itemize}
+\item Jede diophantische Gleichung $D[x_1,\ldots,x_n,y]= 0$ definiert eine Menge natürlicher Zahlen $\{k\mid D[x_1,\ldots,x_n,k]= 0 \text{ ist lösbar}\}$
+\item Eine so definierte Menge heißt \redalert{diophantische Menge}
+\item Alle diophantischen Mengen sind rekursiv aufzählbar: teste systematisch alle möglichen Belegungen von $D[x_1,\ldots,x_n,y]= 0$ und gib bei jeder gefundenen Lösung den Wert von $y$ aus
+\end{itemize}\pause
+
+\theobox{Satz (Matiyasevich/Robinson/Davis/Putnam): Jede rekursiv aufzählbare Menge natürlicher Zahlen ist diophantisch.}
+{\tiny Intuitiv: diophantische Gleichungen sind Turing-mächtig!}
+
+\end{frame}
+
+\begin{frame}\frametitle{Konsequenzen}
+
+\emph{Wir folgern:}
+\begin{itemize}
+\item \alert{Hilberts 10. Problem ist wirklich unentscheidbar:}
+\begin{itemize}
+\item Wäre es entscheidbar, dann könnte man jede diophantische Menge entscheiden (Kontrollfrage: Wie?)
+\item Wir wissen aber bereits, dass es rekursiv aufzählbare Mengen natürlicher Zahlen gibt, die nicht entscheidbar sind
+\end{itemize}\pause
+\item \alert{Nicht-Lösbarkeit diophantischer Gleichungen ist nicht semi-entscheidbar:}
+\begin{itemize}
+\item Lösbarkeit ist bereits semi-entscheidbar
+\item Wenn Nicht-Lösbarkeit auch semi-entscheidbar wäre, dann wäre beides entscheidbar
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beweis von Gödels 1. Unvollständigkeitssatz}
+
+Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
+\begin{enumerate}[(1)]
+\item $\mathcal{S}$ ist konsistent
+\item Jede wahre Aussage der Form $D[z_1,\ldots,z_n]= 0$ für eine beliebige diophantische Gleichungen und \alert{konkrete} Zahlenwerte $z_1,\ldots, z_n$ ist beweisbar {\tiny(einfach durch Ausrechnen des Wertes)}
+\item Sätze der Form $\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$ sind darstellbar und alle beweisbaren Sätze dieser Form sind korrekt
+\end{enumerate}\pause
+\emph{Wegen (1) und (2) gilt:} $\mathcal{S}$ beweist nur wahre Sätze der Form $\neg\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$\medskip\pause
+
+\emph{Aber:} $\mathcal{S}$ kann nicht alle wahren Sätze dieser Form beweisen:
+\begin{itemize}
+\item Die Menge aller beweisbaren Sätze dieser Form ist semi-entscheidbar
+\item Die Menge aller wahren Sätze dieser Form ist nicht semi-entscheidbar
+\end{itemize}\pause
+\emph{Mit (3) gilt:} Es gibt Sätze $F$ der Form \ghost{$\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$,}\\ so dass weder $F$ noch $\neg F$ bewiesen wird.\qed
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Das Auswertungsproblem der Prädikatenlogik ist \PSpace-vollständig\bigskip
+
+Formale Systeme, die elementare Rechnungen auf natürlichen Zahlen ausführen können
+sind entweder inkonsistent oder (negations-)unvollständig
+\bigskip
+
+Diese Unvollständigkeit hat damit zu tun, dass nicht alle Mengen natürlicher Zahlen Turing-erkennbar sind\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item 3. Repetitorium
+\item Probeklausur
+\item Gödels zweiter Unvollständigkeitssatz, Zusammenfassung und Ausblick
+\end{itemize}
+}
+
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{Bildrechte}
+
+Folie \ref{frame_goedel}: Fotografie um 1926, gemeinfrei
+
+\end{frame}
+
+
+\end{document}
