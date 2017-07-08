@@ -488,7 +488,7 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 \pause
 \emph{Beweisskizze:} Nehmen wir an, $\bbfunc$ wäre berechenbar.\pause
 \begin{itemize}
-\item Dann kann man eine TM $\Smach{M}_{\bbfunc}$ erzeugen, die mit dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet und die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{f(n)}$ berechnet.\pause
+\item Dann kann man eine TM $\Smach{M}_{\bbfunc}$ erzeugen, die mit dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet und die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{\bbfunc(n)}$ berechnet.\pause
 \item Sei $\Smach{M}_{+1}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{n+1}$ berechnet.\pause
 \item Sei $\Smach{M}_{\times2}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{2n}$ berechnet.\pause
 \item Sei $k$ die Gesamtzahl der Zustände in $\Smach{M}_{\bbfunc}$, $\Smach{M}_{+1}$ und $\Smach{M}_{\times2}$. Es gibt eine TM $\Smach{I}_k$ mit $k$ Zuständen, die das Wort $\Sterm{x}^k$ auf das leere Band schreibt.\pause
