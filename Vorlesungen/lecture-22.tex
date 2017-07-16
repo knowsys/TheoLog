@@ -1,0 +1,414 @@
+\documentclass[onlymath]{beamer}
+% \documentclass[onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{22}{Gödel, Turing und der ganze Rest}{14. Juli 2017}
+
+\begin{document}
+
+\maketitle
+
+\frame{\label{frame_goedel}\begin{center}
+\includegraphics[height=5cm]{images/Goedel.jpg}
+
+\LARGE
+Kurt Gödel
+\end{center}}
+
+% Goedels Unvollstaendigkeitssaetze (mit vagen Formulierungen), ev. erstmal nur UV1
+\begin{frame}\frametitle{Der 1. Gödelsche Unvollständigkeitssatz}
+
+\theobox{Satz (Gödel, 1931): Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
+elementaren Arithmetik.
+}\bigskip
+
+\emph{Relevante Begriffe:}
+\begin{itemize}
+\item \alert{Formales System:} Ein implementierbares Verfahren, mit dem man Theoreme endlich beweisen kann
+\item \alert{Konsistent:} Man kann niemals eine Aussage und ihr Gegenteil beweisen.
+\item \alert{Gewisse Menge Arithmetik:} Kodierung konkreter natürlicher Zahlen und deren korrekte Addition, Subtraktion, Multiplikation und Vergleich
+\item \alert{Unvollständig:} Es gibt Sätze, die weder bewiesen noch widerlegt werden können
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele}
+
+\examplebox{Beispiel: Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
+
+\redalert{Keine prädikatenlogische Theorie kann die elementare Arithmetik vollständig beschreiben.}\pause\bigskip
+
+\examplebox{Beispiel: Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Gödels 2. Unvollständigkeitssatz}
+
+Gödel kam direkt zu einer weiteren Schlussfolgerung:\medskip
+
+\theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+dargestellt werden kann, kann nicht seine eigene Konsistenz beweisen.
+}\bigskip
+
+\emph{Auch hier gibt es einige vage Punkte:}
+\begin{itemize}
+\item Was ist \alert{"`eine gewisse Menge elementarer Arithmetik"'}?
+\item Was genau bedeutet \alert{"`seine eigene Konsistenz beweisen"'}?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Konsistenz beweisen}
+
+\emph{Konsistenz bedeutet formal:}\medskip
+
+"`Für alle Sätze $F$ gilt: es gibt keinen Beweis für $F$ oder es gibt keinen Beweis für $\neg F$."'
+\bigskip
+
+\begin{itemize}
+\item Um das ausdrücken zu können, muss das System über die im eigenen System möglichen Beweise reflektieren können
+\item Diese Idee ist verwandt mit der Intuition, dass man in Arithmetik universelle Turingmaschinen kodieren kann: die Beweise eines Systems sind letztlich die akzeptierenden Läufe einer TM
+\item Man benötigt dazu etwas mehr Arithmetik als für den Beweis des 1. Unvollständigkeitssatzes (Details sparen wir uns)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beweis des 2. Unvollständigkeitssatzes}
+
+\alert{Gödels Argument für seinen 1. Unvollständigkeitssatz (vereinfacht):}
+\anybox{strongyellow}{
+Gödel definiert eine mathematische Formel $F$, welche ausdrückt:\\[1ex]
+\narrowcentering{\alert{"`$F$ ist wahr genau dann wenn $F$ nicht beweisbar ist."'}}\smallskip
+
+\begin{itemize}
+\item Wenn $F$ beweisbar wäre, dann ist sie wahr und also nicht beweisbar -- Widerspruch
+\item Also ist $F$ nicht beweisbar, und damit wahr\qed
+\end{itemize}}
+
+Es stellt sich heraus: mit einer "`gewissen Menge Arithmetik"' kann man diese Argumentation komplett im System darstellen!\medskip\pause
+
+\redalert{Warum ist diese Argumentation dann nicht schon ein Beweis für $F$?}\pause\bigskip
+
+\alert{Weil wir die Annahme verwenden, dass das System konsistent ist.}
+\begin{itemize}
+\item Wenn wir dies beweisen könnten, so wäre auch $F$ beweisbar.
+\item Aber laut 1. Unvollständigkeitssatz ist $F$ nicht beweisbar.
+\end{itemize}
+Also kann die Konsistenz des Systems nicht beweisbar sein. \qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele}
+
+\examplebox{Beispiel: Es gibt keinen elementaren arithmetischen Beweis für die Widerspruchsfreiheit der Peano-Arithmetik. Man kann deren Konsistenz aber leicht im 
+stärkeren System ZFC beweisen.}\bigskip\pause
+
+\examplebox{Beispiel: Es ist nicht möglich, die Widerspruchsfreiheit der modernen Mathematik
+(ZFC) aus sich selbst heraus zu beweisen. Auch das kann man allerdings in mächtigeren Systemen erreichen.}\bigskip\pause
+
+\emph{Anmerkung:} Dadurch wird die Mathematik nicht in eine Sinnkrise gestürzt. Selbst wenn
+man die Konsistenz von ZFC in ZFC beweisen könnte wäre dies sicherlich kein starkes Argument für ZFC. Mathematische Systeme erhalten ihre Bedeutung niemals aus sich selbst heraus.
+
+\end{frame}
+
+\begin{frame}\frametitle{Der universelle elektronische Mathematiker}
+
+Oder: "`Hilberts Programm als Turingmaschine"'
+% Noch eine Konsequenz von Gödels 2. Satz:
+% \redalert{Konkrete Fragen der Informatik sind für die moderne Mathematik unlösbar!}
+\bigskip
+
+\emph{Skizze einer Turingmaschine:}
+\begin{itemize}
+\item Bilde systematisch der Reihe nach alle möglichen Beweise der modernen Mathematik (System ZFC)
+\item Halte sobald ein Beweis für die Aussage "`0=1"' auftaucht
+\end{itemize}
+\alert{Hält diese Turingmaschine?}\pause
+\begin{itemize}
+\item Ja, wenn ZFC inkonsistent ist
+\item Nein, wenn ZFC konsistent ist
+\end{itemize}\pause
+\bigskip
+
+\redalert{$\leadsto$ Vermutlich hält die TM nicht, aber die moderne Mathematik kann das nicht beweisen.}\pause\medskip
+
+\emph{Anmerkung:} Es gibt eine bekannte TM mit 7910 Zuständen, die sich so verhält [Yedidia \& Aaronson 2016] und sogar eine mit nur 1919 Zuständen [O’Rear, 2016]
+
+\end{frame}
+
+\begin{frame}\frametitle{Konsequenzen}
+
+Wir haben Turing-Mächtigkeit und Unentscheidbarkeit in vielen Formalismen gezeigt -- jedes davon erlaubt die Konstruktion universeller Mathematiker!
+\bigskip
+
+\emph{Es gibt konkrete Beispiele für}
+\begin{itemize}
+\item WHILE-Programme,
+\item Python-Programme,
+\item Typ-0-Grammatiken,
+\item PCP-Instanzen,
+\item diophantische Gleichungen,
+\item prädikatenlogische Theorien,
+\item \ldots
+\end{itemize}
+deren Halten/Leerheit/Lösbarkeit/Erfüllbarkeit nicht durch die übliche Mathematik (=ZFC) bewiesen oder widerlegt werden kann\\[-0.5ex]
+{\tiny zumindest falls die übliche Mathematik konsistent ist}
+
+\end{frame}
+
+\begin{frame}\frametitle{Hilberts 10. Problem, revisited}
+
+\alert{Hilbert:} "`\ldots man soll ein Verfahren angeben, nach welchem sich mittels einer endlichen Anzahl von Operationen entscheiden lässt, ob die Gleichung in ganzen rationalen Zahlen lösbar ist."'
+\bigskip\pause
+
+\alert{Turing:} Es gibt Probleme, die durch kein automatisches Verfahren lösbar sind.
+\medskip\pause
+
+\alert{Gödel:} Es gibt konstruierbare Beispiele konkreter arithmetischer Sätze, deren Gültigkeit nicht in der modernen Mathematik bewiesen oder widerlegt werden kann.
+\medskip\pause
+
+\alert{Matiyasevich/Robinson/Davis/Putnam:} Die Lösbarkeit diophantischer Gleichungen ist
+unentscheidbar.
+\medskip\pause
+
+\alert{Alle zusammen:} Es gibt also sogar konkrete diophantische Gleichungen, deren Lösbarkeit nicht in der modernen Mathematik bewiesen oder widerlegt werden kann.\medskip\pause
+
+{\tiny
+\emph{Aber:} Die Lösbarkeit jeder konkreten diophantischen Gleichung wird durch irgendein Programm entschieden (wir wissen nur oft nicht, welches, bzw. können seine Korrektheit nicht in ZFC mathematisch beweisen).
+
+}
+
+\end{frame}
+
+\sectionSlide{Besprechung Lehrevaluation}
+
+
+\sectionSlide{Ausblick}
+
+% Second-Order Logic (siehe Advanced Logics)
+\begin{frame}\frametitle{Logik höherer Ordnung}
+
+Prädikatenlogik ist genau genommen \alert{Prädikatenlogik erster Stufe}.
+\bigskip
+
+\emph{Hintergrund:}
+\begin{itemize}
+\item Erste Stufe: Quantoren beziehen sich auf Domänenelemente\smallskip
+
+\examplebox{Beispiel: "`Jede natürliche Zahl $n$ hat einen Nachfolger $s(n)$"'}
+% \[ \forall x.(\textsf{natnum}(x)\to\textsf{natnum}(s(x))) \]
+\item Zweite Stufe: Quantoren beziehen sich auf Prädikate\smallskip
+
+\examplebox{Beispiel: "`Für jede Menge $M$ gilt: Enthält $M$ die Zahl $0$ und mit jeder natürlichen Zahl $n$ auch stets deren Nachfolger $s(n)$, so enthält $M$ alle natürlichen Zahlen."'}
+\end{itemize}\bigskip
+
+\emph{Logik zweiter Ordnung:}
+\begin{itemize}
+\item Ausdrucksstärker; kann z.B. die natürlichen Zahlen exakt charakterisieren
+\item Schwieriger: kein vollständiges und korrektes \ghost{Beweisverfahren}
+\end{itemize}
+
+$\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
+
+\end{frame}
+
+% Complexity Theory
+\begin{frame}\frametitle{Komplexitätstheorie}
+
+Wesentliche Grundlagen der klassischen Komplexitätslehre wurden hier schon behandelt
+\bigskip
+
+\emph{Weiterführende Themen (Beispiele):}
+\begin{itemize}
+\item Hierarchietheoreme: Kann man mit mehr Zeit/Speicher wirklich mehr berechnen?
+\item Relative Komplexität: Orakel
+\item Komplexitäten unterhalb von P: Schaltkreise als Rechenmodell
+\item Rechnen mit Zufall: Randomisierte Komplexität
+\item \ldots
+\end{itemize}
+
+$\leadsto$ siehe Vorlesung \redalert{Complexity Theory}
+
+\end{frame}
+
+% Database Theory
+\begin{frame}\frametitle{Datenbanktheorie}
+
+Die Theorie der Datenbanken ist ein wichtiges Anwendungsgebiet für
+viele Themen aus theoretischer Informatik und Logik\bigskip
+
+\emph{Weiterführende Themen (Beispiele):}
+\begin{itemize}
+\item Anfragesprachen vergleichen bzgl. Komplexität und Ausdrucksstärke
+\item Relationales Kalkül (=Prädikatenlogik)
+\item Datalog: rekursive Anfragesprache, Fragment der Logik zweiter Stufe
+\item Graph-Anfragen: Erreichbarkeit und Co. berechnen
+\item Anfragen unter Berücksichtigung von Constraints
+\item \ldots
+\end{itemize}
+
+$\leadsto$ siehe Vorlesung \redalert{Database Theory}
+
+\end{frame}
+
+% Verifikation
+\begin{frame}\frametitle{Verifikation}
+
+Programm- und Hardwareverifikation ist eine wichtige Anwendung logischer Methoden
+\bigskip
+
+\emph{Weiterführende Themen (Beispiele):}
+\begin{itemize}
+\item Modellierung reaktiver Systeme: Transaktionssysteme
+\item Automatenmodelle zur Darstellung verifizierbarer Eigenschaften
+\item Lineare Temporallogik (LTL) und Computation Tree Logic (CTL)
+\item Probabilistische und zeitgesteuerte Automaten
+\item \ldots
+\end{itemize}
+
+$\leadsto$ siehe Vorlesung \redalert{Model Checking}
+
+\end{frame}
+
+% Quantum Computation -- advertise Aaronson's talk
+\begin{frame}\frametitle{Quantencomputer}
+
+Aktives Gebiet der theoretischen Informatik, speziell der Komplexitätstheorie\bigskip\pause
+
+% Zurzeit keine Vorlesung an TUD, aber:\medskip
+
+% \emph{Eingeladener Vortrag:}\\
+{\large Quantum Computing and the Limits of the Efficiently Computable}\\
+\alert{Scott Aaronson}, The University of Texas at Austin\\
+Montag, 28. August 2017, 14:00 -- APB E023
+\bigskip
+
+{\footnotesize
+I'll offer a crash course on quantum computing, which seeks to exploit the strange rules of
+quantum physics to solve certain problems dramatically faster than we know how to solve
+them with any existing computer. I promise no hype: just a sober summary of how a quantum
+computer would actually work (hint: it's not just by "trying every possible answer in parallel"), for
+which problems quantum computers are and aren't expected to provide an advantage, and the
+current status of the effort to make quantum computing practical. I'll also say something about
+the ultimate physical limits of computation, and about speculative proposals for going beyond
+even quantum computers.
+
+}
+\smallskip
+
+\tiny
+\url{https://cfaed.tu-dresden.de/cfaed-seminar-series/scott-aaronsons-talk}
+
+\end{frame}
+
+% Knowledge representation: tractability and decidability, siehe z.B. Beschreibungslogik
+\begin{frame}\frametitle{Symbolische Wissensrepräsentation}
+
+Anwendungsgebiet der formalen Logik, bei dem menschliches Wissen logisch kodiert und automatisch ausgewertet wird
+\bigskip
+
+\emph{Weiterführende Themen (Beispiele):}
+\begin{itemize}
+\item Entwicklung logischer Sprachen, für die Schlussfolgerung (effizient) entscheidbar ist
+\item Meist durch Einschränkung auf Teilmengen der Prädikatenlogik, z.B. bei Beschreibungslogiken
+\item Ontologien: logische Wissensmodelle
+\item Entwicklung effizienter Ableitungsalgorithmen und Implementierungen
+\item \ldots
+\end{itemize}
+
+$\leadsto$ verschiedene Vorlesungen, z.B. \redalert{Description Logics}
+
+\end{frame}
+
+% The Semantic Web
+\begin{frame}\frametitle{Semantic Web \& Datenaustausch}
+
+Anwendungsgebiet zwischen Datenbanken, Wissensrepräsentation und Webtechnologie
+\bigskip
+
+\emph{Weiterführende Themen (Beispiele):}
+\begin{itemize}
+\item Standards zur Kodierung von Fakten und Schemainformationen: RDF, OWL, \ldots
+\item Informationsintegration in (Web)Graphdatenbanken
+\item Anfragesprachen: SPARQL und ontologiebasierte Anfragen
+\item Anwendungen (z.B. Wikidata)
+\item \ldots
+\end{itemize}
+
+$\leadsto$ siehe Vorlesung \redalert{Semantic Web Technologies}
+
+\end{frame}
+
+\sectionSlide{Zusammenfassung}
+
+\begin{frame}\frametitle{Übersicht}
+
+
+\emph{Berechenbarkeit:} Turingmaschinen, LOOP/WHILE, Entscheidbarkeit, Beispielprobleme (Halten, PCP)
+\bigskip
+
+\emph{Komplexität:} NP, PSpace, Many-One-Reduktionen, Übersicht weiterer wichtiger Klassen
+\bigskip
+
+\emph{Logik:} Aussagenlogik (SAT), QBF, Prädikatenlogik, Resolution (mit vielen Teilschritten), Herbrandmodelle
+\bigskip
+
+\emph{Bonusmaterial:} Gödel, Metamathematik, SQL, Geschichte und Geschichten
+
+\end{frame}
+
+\begin{frame}\frametitle{Querschnittsthemen}
+
+\begin{center}
+\large
+
+Informatik ist überall dort, wo gerechnet wird\pause\\[4ex]
+
+Rechnen = Schlussfolgern\pause\\[4ex]
+
+Beweisen -- Nachvollziehen -- Verstehen\pause\\[4ex]
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{The End}
+
+\bigskip
+\begin{center}
+{\Huge Fragen?}
+\end{center}
+\bigskip\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Angestrengte Klausurvorbereitung
+\item Betreute Lernräume
+\item Klausur
+\end{itemize}
+}
+
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{Literatur und Bildrechte}
+
+\alert{Literatur}\bigskip
+
+\begin{itemize}
+\item A. Yedidia, S. Aaronson: \emph{A Relatively Small Turing Machine Whose Behavior Is Independent of Set Theory.} Complex Systems 25(4), 2016.
+\item S. O'Rear: \emph{Metamath Turing Machines.} \url{https://github.com/sorear/metamath-turing-machines}
+\end{itemize}
+
+\alert{Bildrechte}\bigskip
+
+Folie \ref{frame_goedel}: Fotografie um 1926, gemeinfrei
+
+\end{frame}
+
+
+\end{document}
