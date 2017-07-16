@@ -1,0 +1,41 @@
+% ⓒ 2017 Monika Sturm, Francesco Kriegel, Daniel Borchmann
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/4.0/.
+
+\documentclass[german]{latteachCD}[2017/03/28]
+
+\usepackage[sheetnumber=6]{theolog}
+\title{Musterlösung zu Übungsblatt~10}
+
+\usepackage{ragged2e}
+
+\begin{document}
+
+\maketitle
+
+\vspace*{0.5\baselineskip}
+\setcounter{exercise}{3}
+\justifying
+
+\begin{exercise}
+  % TheoLog 2014
+  Zeigen Sie, dass Allgemeingültigkeit von Formeln der Prädikatenlogik erster
+  Stufe in Skolemform entscheidbar ist.
+\end{exercise}
+
+\emph{Lösung}\/: Es sei $F$ eine quantorenfreie Formel mit Variablen
+$x_{1},\dots, x_{n}$.  Dann gilt
+\begin{align*}
+  \forall x_{1},\dots, x_{n}.\,F \text{ ist allgemeingültig}
+  &\iff \exists x_{1},\dots,x_{n}.\,\neg F \text{ ist unerfüllbar}\\
+  &\iff \neg F[x_{1}/a_{1},\dots,x_{n}/a_{n}] \text{ ist unerfüllbar}\\
+  &\phantom{\iff}\:\: \text{(Skolemisierung mit Konstanten $a_{1},\dots,a_{n}$).}
+\end{align*}
+
+Es ist also $\forall x_{1},\ldots,x_{n}.\,F$ allgemiengültig genau dann, wenn
+$\neg F[x_{1}/a_{1},\dots,x_{n}/a_{n}]$ unerfüllbar ist.  Letzteres ist aber
+essentiell eine aussagenlogische Formel, und deren Erfüllbarkeit ist
+entscheidbar.
+
+\end{document}

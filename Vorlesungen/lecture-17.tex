@@ -373,7 +373,7 @@ Skolemisierung von $v$: & $\forall x.\forall z.p(x,f(x),z,g(x,z))$
 Skolemisierung führt nicht zu semantisch äquivalenten Formeln:\medskip
 
 \examplebox{Beispiel: Die Formel $\forall x.\exists y.(p(x)\to p(y))$ ist eine Tautologie,
-aber ihre Skolemisierung $\forall x.(p(x)\to p(f(y)))$ ist widerlegbar:\\ Sei $\Delta^\Inter\defeq\{\alpha,\beta\}$, $p^\Inter\defeq\{\alpha\}$ sowie $f^\Inter(\delta)\defeq\beta$ für alle $\delta\in\Delta^\Inter$.\\ Dann ist $\Inter\not\models\forall x.(p(x)\to p(f(y)))$, da $\Inter,\{x\mapsto\alpha\}\not\models p(x)\to p(f(y))$.}\medskip\pause
+aber ihre Skolemisierung $\forall x.(p(x)\to p(f(x)))$ ist widerlegbar:\\ Sei $\Delta^\Inter\defeq\{\alpha,\beta\}$, $p^\Inter\defeq\{\alpha\}$ sowie $f^\Inter(\delta)\defeq\beta$ für alle $\delta\in\Delta^\Inter$.\\ Dann ist $\Inter\not\models\forall x.(p(x)\to p(f(x)))$, da $\Inter,\{x\mapsto\alpha\}\not\models p(x)\to p(f(x))$.}\medskip\pause
 
 Skolemisierung erhält aber Erfüllbarkeit:\medskip
 
