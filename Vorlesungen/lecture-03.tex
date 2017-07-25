@@ -26,7 +26,7 @@ DTM, NTM, Entscheider, Aufzähler, berechenbar/entscheidbar, semi-entscheidbar, 
 \begin{itemize}
 \item DTM und NTM haben die gleiche Ausdrucksstärke
 \item Zusammenhang Aufzähler $\leftrightarrow$ Semi-Entscheidbarkeit
-\item Busy Beaver ist unentscheidbar: "`Was eine TM schaffen kann, das kann keine TM vorher berechnen."'
+\item Busy Beaver ist unentscheidbar: "`Was eine TM schaffen kann, das kann keine TM vorherberechnen."'
 \end{itemize}
 
 
@@ -146,9 +146,9 @@ $P$ berechnet also eine totale Funktion $\mathbb{N}^k\to \mathbb{N}$, für belie
 Nach der Initialisierung wird das LOOP-Programm abgearbeitet:
 \begin{itemize}
 \item $\Svar{x} \Svassign \Svar{y} \Splus n$:\\
-der Variable $\Svar{x}$ wird als neuer Wert die Summe des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugeweisen
+der Variable $\Svar{x}$ wird als neuer Wert die Summe des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugewiesen
 \item $\Svar{x} \Svassign \Svar{y} \Sminus n$:\\
-der Variable $\Svar{x}$ wird als neuer Wert die Differenz des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugeweisen, falls diese größer $0$ ist; ansonsten wird $\Svar{x}$ der Wert $0$ zugewiesen
+der Variable $\Svar{x}$ wird als neuer Wert die Differenz des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugewiesen, falls diese größer $0$ ist; ansonsten wird $\Svar{x}$ der Wert $0$ zugewiesen
 \item $P_1\Sseq{}~P_2$:\\
 erst wird $P_1$ abgearbeitet, dann $P_2$
 \item $\SStartLoop{\Svar{x}}P~\SEndLoop{}$:\\
@@ -189,7 +189,7 @@ Der vorangegangene einfache Beweis verwendet \redalert{Induktion}, um eine
 Aussage für unendlich viele Programme zu zeigen:
 \begin{itemize}
 \item \alert{Induktionsanfang:} Die Behauptung gilt für Wertzuweisungen (die einfachsten LOOP-Programme)
-\item \alert{Induktionannahme:} Die Behauptung gilt bereits für Programme $P$, $P_1$, $P_2$
+\item \alert{Induktionsannahme:} Die Behauptung gilt bereits für Programme $P$, $P_1$, $P_2$
 \item \alert{Induktionsschritte:}
 \begin{enumerate}[(1)]
 \item Die Behauptung gilt dann auch für $P_1\Sseq{}~P_2$.
