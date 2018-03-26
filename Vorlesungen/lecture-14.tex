@@ -1,5 +1,11 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\newcommand*{\BeamerSuffix}{-overlay}
+\newcommand*{\HandoutSuffix}{-print}
+\PassOptionsToClass{onlymath}{beamer}
+\documentclass[also={handout}]{beamerswitch}
+\handoutlayout{nup=4}
+\makeatletter
+\beamer@ignorenonframefalse
+\makeatother
 
 \input{macros-lecture}
 
