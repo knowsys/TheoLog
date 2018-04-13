@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{2}{Berechenbarkeit und Unentscheidbarkeit}{7. April 2017}
+\defineTitle{2}{Berechenbarkeit und Unentscheidbarkeit}{13. April 2018}
 
 \begin{document}
 
@@ -49,7 +49,7 @@ Church und Turing (im Chor mit Kleene und Rosser):\\~\hfill"`Alle Computer sind 
 
 \theobox{Satz: Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
 
-Details siehe Vorlesung Formale Systeme (Winter 2016/2017, Vorlesungen 18 und 19)
+Details siehe Vorlesung Formale Systeme (Winter 2017/2018, Vorlesungen 18 und 19)
 
 \end{frame}
 
@@ -75,7 +75,7 @@ Es ist praktisch, wenn eine TM garantiert hält, da man Fall (2) meist nicht sic
 
 \begin{frame}\frametitle{TMs, die Funktionen definieren}
 
-Eine Turingmaschine kann eine Funktion von Eingabewörtern auf Ausgabewörter definieren:
+Eine Turingmaschine kann eine Funktion von Eingabewörtern auf Ausgabewörter definieren:\medskip
 
 \defbox{Eine DTM $\Smach{M}$ \redalert{berechnet} eine partielle Funktion $f_{\Smach{M}}:\Sigma^*\to\Sigma^*$ wie folgt.
 Für ein Wort $w\in\Sigma^*$ ist $f_{\Smach{M}}(w)=v$ wenn $\Smach{M}$ bei Eingabe $w$ mit einem Band anhält, auf dem 
@@ -121,7 +121,8 @@ Zustand $q_{\textsf{Ausgabe}}$. Immer wenn $\Smach{M}$ in den Zustand $q_{\texts
 gelangt, wird der aktuelle Bandinhalt -- vom Anfang bis zum ersten Zeichen, nach dem nur noch $\blank$ folgen -- ausgegeben.\\[1ex]
 %
 Die \redalert{durch $\Smach{M}$ aufgezählte Sprache} ist die Menge aller Wörter
-aus $\Sigma^*$, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.
+aus $\Sigma^*$, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.\\
+{\tiny(Anmerkung: Die Definition erlaubt die Ausgabe von Wörtern aus $\Gamma^*\setminus\Sigma^*$. Diese gehören für uns nicht zur aufgezählten Sprache.}
 }\bigskip
 
 Die durch $\Smach{M}$ aufgezählte Sprache kann unendlich sein, wenn $\Smach{M}$ auf der leeren Eingabe nicht hält.
@@ -207,7 +208,7 @@ Wörter kodiert werden können.
 Wichtige Fälle:
 \begin{itemize}
 \item \alert{Natürliche Zahlen $\mathbb{N}$} können z.B. binär als Wörter über $\{\Sterm{0},\Sterm{1}\}$ kodiert werden
-\item \alert{Tupel} (Listen) von Wörtern (oder natürlichen Zahlen, \ldots), können kodiert werden, indem man zum Eingabealphabet ein zusätzliches Trennzeichen $\#$ hinzufügt
+\item \alert{Tupel} (Listen) von Wörtern (oder natürlichen Zahlen, \ldots), können kodiert werden, indem man zum Eingabealphabet ein zusätzliches Trennzeichen $\Sterm{\#}$ hinzufügt
 \end{itemize}\bigskip\pause
 
 \examplebox{Beispiel: Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
@@ -248,8 +249,8 @@ Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst 
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn
-$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}$ semi-entscheidbar ist.
+\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}
 
 \pause
@@ -269,8 +270,8 @@ Falls $f$ total ist, dann hält auch die Erkennung von $\textsf{Graph}_f$.
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn
-$\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}$ semi-entscheidbar ist.
+\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}\pause
 
 \emph{Beweis:} "`$\Leftarrow$"' Sei $\textsf{Graph}_f$ semi-entscheidbar. Dann kann
@@ -328,7 +329,7 @@ Dies folgt in zwei Schritten:
 \item \ldots
 \end{itemize}
 \footnotesize
-(Vgl. dazu auch Formale Systeme, Winter 2016/2017, Vorlesung 2)
+(Vgl. dazu auch Formale Systeme, Winter 2017/2018, Vorlesung 2)
 
 \end{itemize}
 
@@ -439,7 +440,7 @@ $n$ Zuständen und dem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$ auf dem le
 
 \begin{frame}\frametitle{Fleißige Biber}\label{frame_rado}
 
-\begin{minipage}[b]{7.5cm}
+\begin{minipage}[b]{10.5cm}
 Eine leichte Abwandlung des Schrittzählers ist\\das Busy-Beaver-Problem:
 \end{minipage}%
 \begin{minipage}[t]{2.5cm}
@@ -491,8 +492,9 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 \item Dann kann man eine TM $\Smach{M}_{\bbfunc}$ erzeugen, die mit dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet und die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{\bbfunc(n)}$ berechnet.\pause
 \item Sei $\Smach{M}_{+1}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{n+1}$ berechnet.\pause
 \item Sei $\Smach{M}_{\times2}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{2n}$ berechnet.\pause
-\item Sei $k$ die Gesamtzahl der Zustände in $\Smach{M}_{\bbfunc}$, $\Smach{M}_{+1}$ und $\Smach{M}_{\times2}$. Es gibt eine TM $\Smach{I}_k$ mit $k$ Zuständen, die das Wort $\Sterm{x}^k$ auf das leere Band schreibt.\pause
-\item Wenn man nun hintereinander $\Smach{I}_k$, $\Smach{M}_{\times2}$, $\Smach{M}_{\bbfunc}$ und $\Smach{M}_{+1}$ ausführt, dann erhält man eine TM mit $2k$ Zuständen, die insgesamt $\bbfunc(2k)+1$ mal $\Sterm{x}$ schreibt und dann hält.\pause
+\item Sei $k$ die Gesamtzahl der Zustände in $\Smach{M}_{\bbfunc}$, $\Smach{M}_{+1}$ und $\Smach{M}_{\times2}$. Es gibt eine TM $\Smach{I}_k$ mit $k+1$ Zuständen, die das Wort $\Sterm{x}^k$ auf das leere Band schreibt.\pause
+\item Wenn man nun hintereinander $\Smach{I}_k$, $\Smach{M}_{\times2}$, $\Smach{M}_{\bbfunc}$ und $\Smach{M}_{+1}$ ausführt, dann erhält man eine TM mit $\leq 2k$ Zuständen,$^\ast$ die insgesamt $\bbfunc(2k)+1$ mal $\Sterm{x}$ schreibt und dann hält.\\
+{\tiny $^\ast$ Bei der Hintereinanderausführung kann man End- und Anfangszustand jeweils verschmelzen.}\pause
 \item Also ist $\bbfunc(2k)\geq\bbfunc(2k)+1$ -- Widerspruch.\qed
 \end{itemize}
 
@@ -501,7 +503,7 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 
 \begin{frame}\frametitle{Bemerkungen zum Beweis}
 
-\emph{Anmerkung 1:} Der Beweis verwendet die interessante Idee, dass man TMs als "`Subroutinen"' von anderen TMs verwenden kann. Wir werden das noch mehr verwenden.
+\emph{Anmerkung 1:} Der Beweis verwendet die interessante Idee, dass man TMs als "`Subroutinen"' von anderen TMs verwenden kann. Wir werden das noch an anderer Stelle verwenden.
 \bigskip
 
 \emph{Anmerkung 2:} Der Schritt von einer beliebigen Berechnung einer Funktion $f:\mathbb{N}\to\mathbb{N}$ zu einer TM, die eine Funktion $\Sterm{x}^n\mapsto \Sterm{x}^{f(n)}$ berechnet, ist nicht schwer; man ändert nur die Kodierung der Ein- und Ausgabe von binär auf unär.
