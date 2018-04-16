@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{3}{WHILE und LOOP}{12. April 2017}
+\defineTitle{3}{WHILE und LOOP}{16. April 2018}
 
 \begin{document}
 
@@ -17,7 +17,7 @@ DTM, NTM, Entscheider, Aufzähler, berechenbar/entscheidbar, semi-entscheidbar, 
 
 \emph{Das Unentscheidbare:}
 \begin{itemize}
-\item "`An algorithm is a finite answer to an infinite number of questions."' (Stephen Kleene)
+\item "`An algorithm is a finite answer to an infinite number of questions."'\\ (Stephen Kleene)
 \item Aber: Es gibt mehr Möglichkeiten, unendlich viele Fragen zu beantworten, als es Algorithmen geben kann (Cantor)
 \end{itemize}
 
@@ -26,16 +26,11 @@ DTM, NTM, Entscheider, Aufzähler, berechenbar/entscheidbar, semi-entscheidbar, 
 \begin{itemize}
 \item DTM und NTM haben die gleiche Ausdrucksstärke
 \item Zusammenhang Aufzähler $\leftrightarrow$ Semi-Entscheidbarkeit
-\item Busy Beaver ist unentscheidbar: "`Was eine TM schaffen kann, das kann keine TM vorherberechnen."'
+\item Busy Beaver ist unentscheidbar:\\ "`Was eine TM schaffen kann, das kann keine TM vorherberechnen."'
 \end{itemize}
 
-
-
-
-
-
-
 \end{frame}
+
 
 \sectionSlide{LOOP}
 
@@ -82,7 +77,7 @@ für beliebige natürliche Zahlen und Variablennamen
 
 \begin{frame}\frametitle{LOOP-Programme: Syntax}
 
-\defbox{Die Programmiersprache \redalert{LOOP} basiert auf einer unendlichen Menge $\Slang{V}$ von Variablen
+\defbox{Definition: Die Programmiersprache \redalert{LOOP} basiert auf einer unendlichen Menge $\Slang{V}$ von Variablen
 und der Menge $\mathbb{N}$ der natürlichen Zahlen.
 \redalert{LOOP-Programme} sind induktiv definiert:
 \begin{itemize}
@@ -101,6 +96,9 @@ ein LOOP-Programm, für jede Variable $\Svar{x}\in\Slang{V}$.
 \end{itemize}
 
 }
+
+\emph{Vereinfachung:} Wir erlauben \Sseq{} in Programmen durch Zeilenumbrüche zu ersetzen
+
 \end{frame}
 
 \begin{frame}\frametitle{Beispiel}
@@ -152,7 +150,7 @@ der Variable $\Svar{x}$ wird als neuer Wert die Differenz des (alten) Wertes fü
 \item $P_1\Sseq{}~P_2$:\\
 erst wird $P_1$ abgearbeitet, dann $P_2$
 \item $\SStartLoop{\Svar{x}}P~\SEndLoop{}$:\\
-$P$ genau $n$-mal ausgeführt, für die Zahl $n$, die $\Svar{x}$ anfangs als Wert zugewiesen ist\\
+$P$ wird genau $n$-mal ausgeführt, für den Zahlenwert $n$, der $\Svar{x}$ anfangs zugewiesen ist\\
 \textcolor{devilscss}{($n$ ändert sich also nicht, wenn $P$ den Wert von $\Svar{x}$ ändert)}
 \end{itemize}
 
@@ -225,7 +223,7 @@ LOOP hat nur wenige Ausdrucksmittel, aber man kann sich leicht weitere als Makro
 \emph{Wertzuweisung einer beliebigen konstanter Zahl:} ``$\Svar{x}\Svassign n$'':\pause
 
 \codebox{{\tt
-\Svar{x}\Svassign \Scodelit{0}\Sseq\\
+\Svar{x}\Svassign \Scodelit{0}\\
 \Svar{x}\Svassign \Svar{x}\Splus n
 }}%\bigskip
 
@@ -238,7 +236,7 @@ LOOP hat nur wenige Ausdrucksmittel, aber man kann sich leicht weitere als Makro
 \emph{Wertzuweisung:} ``$\Svar{x}\Svassign \Svar{y}~\texttt{+}~\Svar{z}$'':\pause
 
 \codebox{{\tt
-\Svar{x}\Svassign\Svar{y}\Sseq\\
+\Svar{x}\Svassign\Svar{y}\\
 \SStartLoop{\Svar{z}}\\
 ~~~\Svar{x}\Svassign \Svar{x}\Splus\Scodelit{1}\\
 \SEndLoop{}
@@ -248,7 +246,7 @@ LOOP hat nur wenige Ausdrucksmittel, aber man kann sich leicht weitere als Makro
 \emph{Fallunterscheidung:} ``$\SStartIf{\Svar{x}\Svneq\Scodelit{0}}~P~\SEndIf$'':\pause
 
 \codebox{{\tt
-\SStartLoop{\Svar{x}}~\Svar{y}\Svassign \Scodelit{1}~~\SEndLoop{}\Sseq\\
+\SStartLoop{\Svar{x}}~\Svar{y}\Svassign \Scodelit{1}~~\SEndLoop{}\\
 \SStartLoop{\Svar{y}}~P~~\SEndLoop{}
 }}\medskip
 
@@ -260,7 +258,7 @@ Dabei ist $\Svar{y}$ eine frische Variable, die bisher nirgends sonst verwendet 
 
 \begin{frame}\frametitle{LOOP-Berechenbare Funktionen}
 
-\defbox{Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
+\defbox{Definition: Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
 \pause
 
 \examplebox{Beispiel: Die folgenden Funktionen sind LOOP-berechenbar:
@@ -344,9 +342,10 @@ Zeichen, aus denen es besteht. Dazu nehmen wir an:
 \begin{itemize}
 \item Zahlen werden in ihrer Dezimalkodierung geschrieben
 \item Variablen sind mit lateinischen Buchstaben und Ziffern benannt (wir sehen $\Sxsub{123}$ als Schreibweise für $\Svar{x123}$ an)
+\item Wir betrachten $\Sseq$ als ein Zeichen (Zeilenumbrüche werden dagegen nicht gezählt)
 \end{itemize}\bigskip\pause
 
-\defbox{Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ bei einer leeren Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
+\defbox{Definition: Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
 $\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ gibt.
 }\pause
 
@@ -441,7 +440,7 @@ $\leadsto$ Wir brauchen ein weniger vorhersehbares Programmkonstrukt
 
 \begin{frame}\frametitle{WHILE-Programme: Syntax und Semantik}
 
-\defbox{Die Programmiersprache \redalert{WHILE} basiert wie LOOP auf
+\defbox{Definition: Die Programmiersprache \redalert{WHILE} basiert wie LOOP auf
 Variablen $\Slang{V}$ und natürlichen Zahlen $\mathbb{N}$.\\
 \redalert{WHILE-Programme} sind induktiv definiert:
 \begin{itemize}
@@ -467,7 +466,7 @@ Ansonsten werden WHILE-Programme wie LOOP-Programme ausgewertet.
 Es ist möglich, dass ein WHILE-Programm nicht terminiert, z.B.\medskip
 
 \codebox{{\tt
-\Svar{x}\Svassign \Scodelit{1}\Sseq\\
+\Svar{x}\Svassign \Scodelit{1}\\
 \SStartWhile{\Svar{x}}\\
 ~~~\Svar{y}\Svassign \Svar{y}\Splus\Scodelit{2}\\
 \SEndLoop{}
@@ -478,9 +477,9 @@ Wir können $\SStartLoop{\Svar{x}}P~\SEndLoop{}$
 ersetzen durch:\medskip
 
 \codebox{{\tt
-\Svar{z}\Svassign \Svar{x}\Sseq\\
+\Svar{z}\Svassign \Svar{x}\\
 \SStartWhile{\Svar{z}}\\
-~~~P\Sseq\\
+~~~P\\
 ~~~\Svar{z}\Svassign \Svar{z}\Sminus\Scodelit{1}\\
 \SEndWhile{}
 }}
@@ -493,7 +492,7 @@ Also sind LOOP-Schleifen eigentlich nicht mehr nötig.
 
 \begin{frame}\frametitle{WHILE-Berechenbare Funktionen}
 
-\defbox{Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
+\defbox{Definition: Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
 \begin{itemize}
 \item Falls $f(n_1,\ldots,n_k)$ definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ mit der Ausgabe $f(n_1,\ldots,n_k)$
 \item Falls $f(n_1,\ldots,n_k)$ nicht definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ nicht
@@ -556,7 +555,7 @@ $\Gamma=\{0,1\}$ ist, und dass die Zustände natürliche Zahlen \ghost{sind}
 \begin{itemize}
 \item \alert{Pop:} der folgende Pseudocode ist in WHILE (und LOOP) implementierbar 
 \codebox{{\tt
-\Svar{top}\Svassign \Svar{left}\texttt{ mod }\Scodelit{2}\Sseq\\
+\Svar{top}\Svassign \Svar{left}\texttt{ mod }\Scodelit{2}\\
 \Svar{left}\Svassign \Svar{left}\texttt{ div }\Scodelit{2}\\
 }}\pause
 \item \alert{Push:} der folgende Pseudocode ist in WHILE (und LOOP) implementierbar 
@@ -582,7 +581,7 @@ $\Gamma=\{0,1\}$ ist, und dass die Zustände natürliche Zahlen \ghost{sind}
 \item Das Programm $P_{\text{Einzelschritt}}$ führt einen Schritt aus:
 \begin{itemize}
 \item \Svar{thgir.pop()} liefert Zeichen an Leseposition
-\item Durch eine Folge von IF-Bedingungen kann man für jede Kombination aus
+\item Durch eine Folge von If-Bedingungen kann man für jede Kombination aus
 Zustand $q$ (in \Svar{state}) und gelesenem Zeichen eine Behandlung festlegen
 \item Schreiben von Symbol $a$ durch \Svar{thgir.push(\textit{a})}
 \item Bewegung nach rechts: \Svar{left.push(thgir.pop())}
