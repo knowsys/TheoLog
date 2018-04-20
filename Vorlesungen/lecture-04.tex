@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{4}{Das Halteproblem und Reduktionen}{19. April 2017}
+\defineTitle{4}{Das Halteproblem und Reduktionen}{20. April 2018}
 
 \begin{document}
 
@@ -11,20 +11,16 @@
 
 \begin{frame}\frametitle{Ankündigung}
 
-Wegen großer Nachfrage wird eine
+Die Übungsgruppen am 1. Mai werden verschoben:
 
-\begin{center}
-{\huge Zusätzliche Übungsgruppe}
-\end{center}
+\begin{itemize}
+\item Mittwoch 2.5. in der 5.DS in APB/3027
+\item Donnerstag 3.5. in der 6.DS in APB/3027
+\end{itemize}
 
-eingerichtet:\bigskip
-
-\alert{Zeit:} Donnerstag, 1. Doppelstunde\\
-\alert{Raum:} APB E008\\
-\alert{Tutor:} Daniel Borchmann
-\bigskip
-
-Bisher nicht eingeschriebene Studenten können sich ab sofort dafür eintragen (über jExam)
+Studierende aus den den betroffenen Übungsgruppen sollten nach
+Möglichkeit die o.g. Ausweichtermine nutzen, können aber auch in eine
+der anderen Übungsgruppen die in der Woche stattfinden ausweichen.
 
 \end{frame}
 
@@ -238,7 +234,7 @@ Man kann leicht einen Algorithmus \Smach{A} angeben, der die Goldbachsche Vermut
 \end{itemize}
 
 Die Frage "`Wird \Smach{A} halten?"' ist gleichbedeutend mit der Frage\\"`Gilt die Goldbachsche Vermutung nicht?"'
-\ghost{\hspace{4.4cm}\rotatebox{90}{\textcolor{devilscss}{{\tiny Vgl. 3. Übung, Aufg. 4: Mit $\Slang{P}_{\textsf{Halt}}$ kann man alle semi-entscheidbaren Probleme lösen}}}}
+\ghost{\hspace{7.4cm}\rotatebox{90}{\textcolor{devilscss}{{\tiny Vgl. 3. Übung, Aufg. 4: Mit $\Slang{P}_{\textsf{Halt}}$ kann man alle semi-entscheidbaren Probleme lösen}}}}
 
 \end{frame}
 
@@ -397,7 +393,7 @@ Wir haben zwei ähnliche Unentscheidbarkeitsbeweise gesehen:\bigskip
 \narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
 
 \examplebox{Beispiel: Die folgende Funktion definiert eine Many-One-Reduktion vom
-Halteproblem auf das $\epsilon$-Halteproblem:\\[-4ex]
+Halteproblem auf das $\epsilon$-Halteproblem:%\\%[-4ex]
 \[f(v)=\left\{\begin{array}{ll}
 \textsf{enc}(\Smach{M}_w) & \text{falls $v=\textsf{enc}(\Smach{M})\Sterm{\#\#}\textsf{enc}(w)$ für eine TM $\Smach{M}$}\\
 \Sterm{\#} & \text{falls die Eingabe nicht korrekt kodiert ist}
