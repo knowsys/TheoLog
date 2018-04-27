@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{5}{Der Satz von Rice und das Postsche Korrespondenzproblem}{21. April 2017}
+\defineTitle{5}{Der Satz von Rice und das Postsche Korrespondenzproblem}{27. April 2018}
 
 \begin{document}
 
@@ -80,7 +80,7 @@ Many-One-Reduktion vom $\epsilon$-Halteproblem auf "`$E$-Haftigkeit"'.\bigskip
 
 \begin{itemize}
 \item Sei $\emptyset\notin E$ 
-	(o.b.d.A.: wir könnten sonst auch Unentscheidbarkeit von $\overline{E}$ beweisen)
+	(o.B.d.A.: wir könnten sonst auch Unentscheidbarkeit von $\overline{E}$ beweisen)
 \item Sei $\Smach{M}_{\Slang{L}}$ eine TM, die eine Sprache $\Slang{L}\in E$ akzeptiert\\
 	(muss existieren, da $E$ nicht-trivial ist)
 % \item Sei $\Smach{M}_\emptyset$ eine TM mit $\Slang{L}(\Smach{M}_\emptyset)=\emptyset$
@@ -264,7 +264,7 @@ Ja, z.B. das \alert{Postsche Korrespondenzproblem}. Das PCP gleicht einem Domino
 \left[\begin{matrix}\Sterm{B}\\\Sterm{BBAB}\end{matrix}\right]
  \]
 
-Ziel ist es, beliebige viele Dominos jeden Typs in Reihe zu legen, so dass oberes und unteres Wort gleich werden\pause, z.B.
+Ziel ist es, beliebig viele Dominos jeden Typs so in Reihe zu legen, dass oberes und unteres Wort gleich werden\pause, z.B.
 \[
 \left[\begin{matrix}\Sterm{AB}\\\Sterm{A}\end{matrix}\right]
 \left[\begin{matrix}\Sterm{B}\\\Sterm{BBAB}\end{matrix}\right]
@@ -452,7 +452,7 @@ Die \alert{Startregel} schließlich setzt die Berechnung in Gang:
 
 \begin{frame}\frametitle{Turingmaschinen simulieren in MPCP (6)}
 
-\emph{Zwischenstand:} angefangen von der Startregel zwingen uns die Regeln, Konfigurationen
+\emph{Zwischenstand:} Angefangen von der Startregel zwingen uns die Regeln, Konfigurationen
 zu kopieren und dabei entweder einen Berechnungsschritt auszuführen, oder mehr Speicher am
 rechten Rand zu allozieren.
 \bigskip\pause
@@ -544,7 +544,7 @@ Es ist nicht schwer zu zeigen, dass dies genau dann eine Lösung hat, wenn das u
 \begin{itemize}
 \item "`$\Leftarrow$"' Wenn das MPCP eine Lösung hat, dann erhalten wir leicht eine entsprechende Lösung für das PCP, wobei jedes Symbol zusätzlich von $\Sterm{\#}$ umgeben ist und das Wort auf $\Sterm{\blacksquare}$ endet\pause
 \item "`$\Rightarrow$"' Wenn das PCP eine Lösung hat, dann muss es mit dem ersten Wortpaar beginnen, da nur dieses Wortpaar gleiche Anfangssymbole hat. Durch Weglassen aller $\Sterm{\#}$ und 
-$\Sterm{\blacksquare}$ entsteht wieder eine Lösung des MPC.\qed
+$\Sterm{\blacksquare}$ entsteht wieder eine Lösung des MPCP.\qed
 \end{itemize}
 
 \end{frame}
