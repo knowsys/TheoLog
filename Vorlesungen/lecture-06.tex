@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{6}{Unentscheidbare Probleme formaler Sprachen}{26. April 2017}
+\defineTitle{6}{Unentscheidbare Probleme formaler Sprachen}{30. April 2018}
 
 \begin{document}
 
@@ -22,7 +22,7 @@ Zwei wesentliche Erkenntnisse der letzten Vorlesung:
 
 \begin{frame}[t]\frametitle{Nachtrag: Von PCP zu MPCP (1)}
 
-Es fehlt noch eine Reduktion von MPCP auf PCP.\bigskip
+Rückblick: Reduktion von MPCP auf PCP.\bigskip
 
 \theobox{Satz: Es gibt eine Many-One-Reduktion vom 
 modifizierten PCP auf PCP.}
@@ -86,7 +86,7 @@ Wir schreiben $\Slang{L}(G)$ für die Sprache, welche durch die Grammatik $G$ er
 \emph{Gegeben:} Reguläre Grammatiken $G_1$ und $G_2$\\
 \emph{Frage:} Ist $\Slang{L}(G_1)\cap\Slang{L}(G_2)\neq\emptyset$?
 }
-\pause\emph{Beweisskizze:} Für reguläre Grammatiken $G_1$ und $G_2$ kann man $\Slang{L}(G_1)\cap\Slang{L}(G_2)$ durch einen Automaten darstellen (Produkt-\\konstruktion). Automaten kann man leicht auf Leerheit testen.\qed\bigskip\pause
+\pause\emph{Beweisskizze:} Für reguläre Grammatiken $G_1$ und $G_2$ kann man $\Slang{L}(G_1)\cap\Slang{L}(G_2)$ durch einen Automaten darstellen (Produktkonstruktion). Automaten kann man leicht auf Leerheit testen.\qed\bigskip\pause
 
 \theobox{Satz (aus Formale Systeme): Das \alert{Schnittproblem kontextfreier Grammatiken} ist unentscheidbar.\\
 \emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
@@ -121,7 +121,7 @@ Wir schreiben $\Slang{L}(G)$ für die Sprache, welche durch die Grammatik $G$ er
 Die Grammatik $G_x$ wird definiert als $\tuple{V,\Sigma_k,P_x,\Snterm{S}}$ mit
 \begin{itemize}
 \item $V=\{\Snterm{S}\}$
-\item $\Sigma_k = \Sigma \cup\{1,\ldots,k\}$ (o.b.d.A. sei dies eine disjunkte Vereinigung)
+\item $\Sigma_k = \Sigma \cup\{1,\ldots,k\}$~~~~~ (o.B.d.A. sei dies eine disjunkte Vereinigung)
 \item $P_x$ ist die Menge aller Regeln 
 \begin{align*}
 \Snterm{S}\to i\Snterm{S}x_i\quad\text{ und }\quad\Snterm{S}\to i x_i && \text{für alle $1\leq i\leq k$}
@@ -165,7 +165,7 @@ gdw. &  Die PCP-Instanz $P$ hat eine Lösung\qed\\
 
 \emph{Wir wissen:}
 \begin{itemize}
-\item Kontextfreien Grammatiken kann man als Kellerautomaten darstellen und umgekehrt\\
+\item Kontextfreien Grammatiken kann man als Kellerautomaten darstellen und umgekehrt
  (diese Umformung ist berechenbar)
 \item Deterministische kontextfreie Sprachen kann man als deterministische Kellerautomaten darstellen
 \end{itemize}
@@ -512,6 +512,10 @@ Es lassen sich zahlreiche weitere Konstruktionen durchführen, z.B.:
 \item \ldots
 \end{itemize}
 
+%% Anmerkung: 65537=2^{2^4}+1 kann wie jede Primzahl dieser Form ("Fermatische Primzahl) konstruiert werden;
+%% Allerdings sind jenseits von F0 = 3, F1 = 5, F2 = 17, F3 = 257 und F4 keine weiteren solchen Primzahlen bekannt.
+%% Veranschaulichung siehe Wikipedia: https://de.wikipedia.org/wiki/65537-Eck
+%% Konkret: https://de.wikipedia.org/w/index.php?title=65537-Eck&oldid=174880711#Veranschaulichung
 
 \end{frame}
 
@@ -582,14 +586,14 @@ Liefert uns das eine alternatives Berechenbarkeitsmodell?\pause
 
 \alert{Vermutlich nicht:}
 \begin{itemize}
-\item Exaktes Zeichnen ist nicht physisch implementierbar (es gibt z.B. keinen perfekten Kreis)
+\item Exaktes Zeichnen ist nicht physisch implementierbar\\ (es gibt z.B. keinen perfekten Kreis)
 \item Die Ergebnisse sind nicht exakt ablesbar (Messfehler)
 \end{itemize}\pause
 
 Dennoch illustriert das wichtige Ideen der Informatik:\bigskip
 
 \anybox{strongyellow}{\vspace{-5mm}\begin{center}
-Informatik erforscht, was Computer sind und welche Probleme man mit ihnen lösen kann.\end{center}}\bigskip
+Informatik erforscht, was Computer sind\\ und welche Probleme man mit ihnen lösen kann.\end{center}}\bigskip
 
 Man sollte trotz Church-Turing immer neu fragen, was Rechnen noch sein kann \ldots
 
