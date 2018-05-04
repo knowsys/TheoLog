@@ -1,13 +1,28 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{7}{Einführung in die Komplexitätstheorie}{28. April 2017}
+\defineTitle{7}{Einführung in die Komplexitätstheorie}{4. Mai 2018}
 
 \begin{document}
 
 \maketitle
+
+\begin{frame}\frametitle{Ankündigung}
+
+Die Übungsgruppen am 10. Mai werden verschoben:
+
+\begin{itemize}
+\item Mittwoch 9.5. in der 4. DS in APB/3027 
+\item Mittwoch 9.5. in der 5. DS in APB/3027
+\end{itemize}
+
+Studierende aus den den betroffenen Übungsgruppen sollten nach
+Möglichkeit die o.g. Ausweichtermine nutzen, können aber auch in eine
+der anderen Übungsgruppen die in der Woche stattfinden ausweichen.
+
+\end{frame}
 
 \begin{frame}\frametitle{Übersicht}
 
@@ -381,7 +396,7 @@ sowie jeweils links und rechts davon.
 \item Das Ergebnis und die genaue Bandposition von $\Smach{M}$ wird als Zustand gespeichert: wir verwenden dazu
 $|Q\times\{1,\ldots,k\}\times \Gamma^{18c k}|$ zusätzliche Zustände
 \item Simuliere (in zwei Schritten) die nächsten $6c$ Schritte von $\Smach{M}$
-($\Smach{M}'$ verändert maximal das aktuelle Baldfeld und einen Nachbarn)
+($\Smach{M}'$ verändert maximal das aktuelle Bandfeld und einen Nachbarn)
 \end{itemize}
 Ergebnis: Simulation von $6c$ $\Smach{M}$-Schritten und $6$ $\Smach{M}'$-Schritten.\qed
 % \bigskip
@@ -392,7 +407,7 @@ Ergebnis: Simulation von $6c$ $\Smach{M}$-Schritten und $6$ $\Smach{M}'$-Schritt
 
 \alert{Kann jedes Programm beliebig schnell gemacht werden?}\bigskip\pause
 
-In der Praxis: Nein
+In der Praxis: \redalert{Nein}
 \begin{itemize}
 \item Wirkprinzip Linear Speedup: kodiere mehr Information pro Bandfeld und verarbeite
 diese auf einen Schlag mithilfe einer größeren Zustandsübergangstabelle
@@ -402,7 +417,7 @@ Zeit realisieren
 \end{itemize}
 \bigskip\pause
 
-In der Theorie: Nein
+In der Theorie: \redalert{Nein}
 \begin{itemize}
 \item Wir interessieren uns für asymptotisches Verhalten bei beliebig wachsenden
 	Eingaben
@@ -485,7 +500,7 @@ z.B. unter Verwendung spezifische Datenstrukturen.\\\smallskip
 
 \end{frame}
 
-\begin{frame}\frametitle{Ist Komplexitätstheorie praktisch unmöglich?}
+\begin{frame}[t]\frametitle{Ist Komplexitätstheorie praktisch unmöglich?}
 
 Die Klassen $\Scomplclass{DTIME}(f)$ und $\Scomplclass{DSPACE}(f)$
 unterscheiden sich je nach
@@ -499,20 +514,20 @@ Eine exakte Bestimmung solcher Schranken ist oft sehr schwer.\medskip\pause
 
 \examplebox{Beispiel: Ein naiver Algorithmus zur Matrixmultiplikation liegt in
 $\Scomplclass{DTIME}(n^{\redalert{3}})$.
-\only<-2>{~\\~\\~\\~\\}%
-\only<3->{Seit Jahrzehnten sucher Forscher nach besseren
+\only<-2>{~\\~\\~\\}%
+\only<3->{\\Seit Jahrzehnten suchen Forscher nach besseren
 Lösungen:
-$\Scomplclass{DTIME}(n^{\redalert{2.808}})$ [Strassen, 1969], 
+$\Scomplclass{DTIME}(n^{\redalert{2.808}})$ [\mbox{Strassen}, 1969], 
 $\Scomplclass{DTIME}(n^{\redalert{2.796}})$ [Pan, 1978],
 $\Scomplclass{DTIME}(n^{\redalert{2.780}})$ [Bini et al., 1979],
 $\Scomplclass{DTIME}(n^{\redalert{2.522}})$ [Schönhage, 1981],
 $\Scomplclass{DTIME}(n^{\redalert{2.517}})$ [Romani, 1982],
-$\Scomplclass{DTIME}(n^{\redalert{2.496}})$ [Coppersmith \& Winograd, 1981],
+$\Scomplclass{DTIME}(n^{\redalert{2.496}})$ [Coppersmith \& \mbox{Winograd}, 1981],
 $\Scomplclass{DTIME}(n^{\redalert{2.479}})$ [Strassen, 1986],
-$\Scomplclass{DTIME}(n^{\redalert{2.376}})$ [Coppersmith \& Winograd, 1990],
+$\Scomplclass{DTIME}(n^{\redalert{2.376}})$ [Coppersmith \& \mbox{Winograd}, 1990],
 $\Scomplclass{DTIME}(n^{\redalert{2.374}})$ [Stothers, 2010] und
 $\Scomplclass{DTIME}(n^{\redalert{2.373}})$ [Williams, 2011].}
-\only<-3>{ \phantom{Vermutete} \phantom{optimale} \phantom{Lösung:} \phantom{$\Scomplclass{DTIME}(n^{\redalert{2}})$.}}%
+\only<-3>{\phantom{Vermutete} \phantom{optimale} \phantom{Lösung:} \phantom{$\Scomplclass{DTIME}(n^{\redalert{2}})$.}}%
 \only<4->{\\ Vermutete optimale Lösung: $\Scomplclass{DTIME}(n^{\redalert{2}})$.}
 }
 
@@ -524,7 +539,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2.373}})$ [Williams, 2011].}
 \emph{Problem:}
 \begin{itemize}
 \item Die exakte Bestimmung der Komplexität ist selbst bei einfachsten Algorithmen bisher nicht gelungen.
-\item Selbst wenn sie gelänge ist sie von vielen detaillierten Annahmen abhängig, die praktische Computer eventuell nicht erfüllen.
+\item Selbst wenn sie gelänge wäre sie von vielen detaillierten Annahmen abhängig, die praktische Computer eventuell nicht erfüllen.
 \end{itemize}
 \bigskip\pause
 
