@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{9}{NP und NP-Vollständigkeit}{10. Mai 2017}
+\defineTitle{9}{NP und NP-Vollständigkeit}{11. Mai 2018}
 
 \begin{document}
 
@@ -72,6 +72,24 @@ $\leadsto$ \alert{nichtkonstruktiver Beweis}
 ~\hfill
 Frank Nelson Cole
 \hfill~
+
+% Quote from https://en.wikipedia.org/wiki/Frank_Nelson_Cole:
+% """
+% On October 31, 1903, Cole famously made a presentation to a meeting of the 
+% American Mathematical Society where he identified the factors of the Mersenne 
+% number 2^67 − 1, or M67.[5] Édouard Lucas had demonstrated in 1876 that M67 must 
+% have factors (i.e., is not prime), but he was unable to determine what those 
+% factors were. During Cole's so-called "lecture", he approached the chalkboard 
+% and in complete silence proceeded to calculate the value of M67, with the result 
+% being 147,573,952,589,676,412,927. Cole then moved to the other side of the 
+% board and wrote 193,707,721 × 761,838,257,287, and worked through the tedious 
+% calculations by hand. Upon completing the multiplication and demonstrating that 
+% the result equaled M67, Cole returned to his seat, not having uttered a word 
+% during the hour-long presentation. His audience greeted the presentation with a 
+% standing ovation. Cole later admitted that finding the factors had taken "three 
+% years of Sundays."
+% """
+
 
 \end{frame}
 
@@ -307,11 +325,7 @@ Der Beweis der \Scomplclass{NP}-Vollständigkeit von \Slang{SAT} war ein wichtig
 \item Wir verwenden so viele aussagenlogische Variablen, dass sie jeden polynomiellen
 Lauf kodieren könnten (d.h. alle Speicherstellen, Zustände und Positionen in jedem Schritt!)
 \item Wir verwenden Formeln, so dass jede erfüllende Belegung einen korrekten, akzeptierenden Lauf kodiert
-\end{itemize}\medskip\pause
-
-\anybox{pink}{
-"`a whole buttload of variables [and] a shitload of logical relations between them"'\\
-\hfill-- Scott Aaronson, Quantum Computing since Democritus}
+\end{itemize}
 
 \end{frame}
 
@@ -347,7 +361,7 @@ direkt durch eine Kante verbunden ist\medskip
 \theobox{Satz: \Slang{Clique} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:}\\
-(1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ldots)\pause
+(1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ghost{\ldots)}\pause
 
 }\medskip
 
