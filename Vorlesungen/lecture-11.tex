@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{11}{NL und PSpace}{19. Mai 2017}
+\defineTitle{11}{NL und PSpace}{18. Mai 2018}
 
 \begin{document}
 
@@ -150,7 +150,7 @@ Intuition: NL-vollständige Probleme sind die schwersten in NL
 
 \examplebox{Beispiel: \Slang{Erreichbarkeit} in gerichteten Graphen ist NL-vollständig.}\bigskip\pause
 
-\examplebox{Beispiel: \Slang{Erreichbarkeit} in \redalert{un}gerichteten Graphen ist in NL aber nicht NL-hart: Das Problem liegt in L (Omer Reingold, 2005).}
+\examplebox{Beispiel: \Slang{Erreichbarkeit} in \redalert{un}gerichteten Graphen ist in NL aber (vermutlich) nicht NL-hart: Das Problem liegt in L (Omer Reingold, 2005).}
 
 \end{frame}
 
@@ -159,7 +159,7 @@ Intuition: NL-vollständige Probleme sind die schwersten in NL
 \emph{Rückblick:} Savitch sagte uns, dass $\Scomplclass{NPSpace}=\Scomplclass{PSpace}$, also auch $\Scomplclass{NPSpace}=\Scomplclass{coNPSpace}$
 \bigskip\pause
 
-Für logarithmischen Speicher ergibt Savitchs Ergebnis aber lediglich: $\Scomplclass{NL}\subseteq\Scomplclass{NSpace}(\log^2 n)$
+Für logarithmischen Speicher ergibt Savitchs Ergebnis aber lediglich: $\Scomplclass{NL}\subseteq\Scomplclass{DSpace}(\log^2 n)$
 $\leadsto$ daraus folgt nicht $\Scomplclass{NL}\subseteq\Scomplclass{L}$!
 \bigskip\pause
 
@@ -378,7 +378,7 @@ Man kann \Slang{TrueQBF} als Spiel auffassen:
 \alert{Ein Mathematikerspiel:}
 \begin{itemize}
 \item Zwei Spieler markieren Knoten in einem gerichteten Graph
-\item Jeder Graph muss ein Nachfolger des vorigen sein
+\item Jeder Knoten muss ein Nachfolger des vorigen sein
 \item Wiederholungen sind verboten
 \item Der erste Spieler, der keinen Knoten markieren kann, verliert
 \end{itemize}
