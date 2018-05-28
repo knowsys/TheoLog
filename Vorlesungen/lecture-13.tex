@@ -1,44 +1,13 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{13}{Prädikatenlogik: Syntax und Semantik}{26. Mai 2017}
+\defineTitle{13}{Prädikatenlogik: Syntax und Semantik}{1. Juni 2018}
 
 \begin{document}
 
 \maketitle
-
-\begin{frame}\frametitle{Komplexität und Spiele}
-
-\alert{\NP} ist eine typische Klasse für Solitaire-Spiele:
-\begin{itemize}
-\item Sudoku, Minesweeper, Tetris, \ldots
-\end{itemize}
-\bigskip\pause
-
-\alert{\PSpace} ist eine typische Klasse für Spiele, bei denen zwei Spieler
-abwechselnd eine polynomielle Zahl an Zügen durchführen:
-\begin{itemize}
-\item Geography, Reversi, Tic-Tac-Toe, aber auch: Sokoban, \ldots
-\end{itemize}
-\bigskip\pause
-
-\alert{\ExpTime} findet sich bei Spielen, bei denen man Züge rückgängig machen kann (polynomielles Spielbrett -- exponentiell viele Züge):
-\begin{itemize}
-\item Schach, Dame, Go, Stern-Halma, \ldots
-\end{itemize}
-\smallskip
-
-In jedem Fall muss man (nicht-endliche) Verallgemeinerungen der Spiele betrachten,
-um die "`wahre"' Komplexität zu sehen\\ {\tiny(Menschen spielen nicht, indem sie
-innerlich eine endliche Datenbank aller möglichen Stellungen konsultieren)}
-\smallskip\pause
-
-\narrowcentering{\large\redalert{Spiele sollten komplex sein, um lange zu motivieren}}
-
-
-\end{frame}
 
 \sectionSlide{Halbzeit:\\Zusammenfassung und Ausblick}
 
@@ -71,7 +40,8 @@ $\Slang{SAT}\leq_p \Slang{Teilmengen Summe}\leq_p \Slang{Rucksack}$ \\Pseudopoly
 \alert{Vorlesung 11}\\
 \complclass{NL} und Erreichbarkeit $\bullet$ Schach ist schwer $\bullet$ \PSpace und QBF \\[1ex]
 \alert{Vorlesung 12}\\
-$\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\bullet$ Spiele $\bullet$ Evaluation
+$\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\bullet$ Spiele 
+%$\bullet$ Evaluation
 \end{center}
 
 \end{frame}
@@ -82,11 +52,18 @@ $\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\
 \alert{Vorlesung 13}\\
 Logik erster Stufe: Syntax und Semantik\\[1ex]
 \alert{Vorlesung 14}\\
-Unentscheidbarkeit Folgerung $\bullet$ Komplexität Model Checking \\[1ex]
+Modelltheorie $\bullet$ Logisches Schließen\\[1ex]
 \alert{Vorlesung 15}\\
-Umformungen und Normalformen \\[1ex]
+Gleichheit $\bullet$ Unentscheidbarkeit der Schließens \\[1ex]
 \alert{Vorlesung 16}\\
-Schlussfolgern mit Resolution
+Ableitungskalküle $\bullet$ syntaktische Umformungen \\[1ex]
+\alert{Vorlesung 17}\\
+Normalformen $\bullet$ Funktionssymbole $\bullet$ Skolemisierung\\[1ex]
+\alert{Vorlesung 18}\\
+Unifikation $\bullet$ Substitutionen \\[1ex]
+\alert{Vorlesung 19}\\
+Resolution $\bullet$ Herbrand $\bullet$ Löwenheim-Skolem
+
 \end{center}
 
 \end{frame}
@@ -94,16 +71,16 @@ Schlussfolgern mit Resolution
 \begin{frame}\frametitle{Ausblick: Logik und mehr}
 
 \begin{center}
-\alert{Vorlesung 17}\\
-Entscheidbare Fragmente der Prädikatenlogik\\[1ex]
-\alert{Vorlesung 18}\\
-Logik höherer Ordnung \\[1ex]
-\alert{Vorlesung 19}\\
-Logik auf Wörtern und formale Sprachen \\[1ex]
 \alert{Vorlesung 20}\\
-Logik auf natürlichen Zahlen $\bullet$ Gödel\\[1ex]
+Korrektheit der Resolution $\bullet$ endliche Modelle\\[1ex]
 \alert{Vorlesung 21}\\
-Zusammenfassung $\bullet$ Ausblick
+Datalog $\bullet$ Logikprogrammierung \\[1ex]
+\alert{Vorlesung 22}\\
+Logik höherer Ordnung $\bullet$ entscheidbare Fragmente\\[1ex]
+\alert{Vorlesung 23}\\
+Logik auf natürlichen Zahlen $\bullet$ Gödel\\[1ex]
+\alert{Vorlesung 24}\\
+Gödel \& Turing $\bullet$ Zusammenfassung $\bullet$ Ausblick
 \end{center}
 
 \end{frame}
