@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{14}{Modelltheorie und logisches Schließen}{31. Mai 2017}
+\defineTitle{14}{Modelltheorie und logisches Schließen}{4. Juni 2018}
 
 \begin{document}
 
@@ -69,7 +69,7 @@ und \alert{Zuweisungen} für Variablen ersetzt.
 \defbox{Eine \redalert{Interpretation} $\Inter$ ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elemente $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
 \begin{itemize}
 \item jede Konstante $a\in\Slang{C}$ auf ein Element $a^\Inter\in\Delta^\Inter$ und
-\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\in(\Delta^\Inter)^n$
+\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\subseteq(\Delta^\Inter)^n$
 \end{itemize}
 abbildet.
 }
@@ -227,26 +227,26 @@ Dies definiert die Eigenschaften eines binären Prädikates $\preceq$ (hier infi
 
 \emph{Wie definiert man logische Semantik "`modelltheoretisch"'?}\bigskip
 
-\begin{tabular}{@{}p{0.7cm}p{2.0cm}p{2.3cm}p{3.5cm}@{}}
-	& {\emph{Aussagenl.}} & {\emph{Prädikatenl.}} & {\emph{Prädikatenl. (offen)}}\\
+\begin{tabular}{@{}p{0.7cm}p{3.5cm}p{2.0cm}p{2.3cm}p{3.5cm}@{}}
+	& & {\emph{Aussagenl.}} & {\emph{Prädikatenl.}} & {\emph{Prädikatenl. (offen)}}\\
 \rowcolor{lightred!30}
 \cellcolor{darkred!70!gray}
 \raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Formeln}}}
-% 	& abzählbare Menge syntaktischer Ausdrücke\newline ~
+& abzählbare Menge syntaktischer Ausdrücke\newline ~
 	& {Aussagen\-logische \mbox{Formeln}}
 	& {Prädikaten\-logische\newline Sätze}
 	& {Prädikaten\-logische\newline Formeln (offen oder\newline geschlossen)}\\
 \rowcolor{lightblue!30}
 \cellcolor{darkblue!70!gray}
 \raisebox{-1cm}{\rotatebox{90}{\textcolor{white}{Modelle}}}
-% 	& Menge sematischer\newline \mbox{Interpretationen}\newline ~
+	& Menge sematischer\newline \mbox{Interpretationen}\newline ~
 	& {Wert\-zuweisungen}
 	& {Prädikaten\-logische\newline Interpretationen}
-	& {Prädikatenlogische\newline Interpretationen\newline und Zuweisungen}\\%[-3ex]
+	& {Prädikatenlogische\newline Interpretationen\newline + Zuweisungen}\\%[-3ex]
 \rowcolor{lightgreen!30}
 \cellcolor{darkgreen!70!gray}
 \raisebox{-1.5cm}{\rotatebox{90}{\begin{minipage}{1.5cm}\textcolor{white}{Erfüllungs\-relation~$\models$}\end{minipage}}}
-% 	& Beziehung zwischen\newline Modellen \& Formeln: In welchen Modellen sind welche Formeln wahr?
+	& Beziehung zwischen\newline Modellen \& Formeln: In welchen Modellen sind welche Formeln wahr?
 	& {Aussagen\-logische Erfüllungs\-relation}
 	& {Prädikaten\-logische Erfüllungs\-relation}
 	& {Prädikaten\-logische Erfüllungs\-relation}\\
@@ -390,7 +390,7 @@ welche Schlüsse man ziehen darf:\bigskip
 \begin{itemize}
 \item Wenn $\Inter\models F$, dann nennt man $\Inter$ ein \redalert{Modell für} die Formel $F$ und man sagt $\Inter$ \redalert{erfüllt} $F$.
 \item $\Inter$ ist ein \redalert{Modell für eine Formelmenge} $\mathcal{T}$, in Symbolen \redalert{$\Inter\models\mathcal{T}$}, wenn $\Inter\models F$ für jede Formel $F\in\mathcal{T}$.
-\item Eine Formel $F$ ist eine \redalert{logische Konsequenz} aus einer Formel(menge) $G$, in Symbolen \redalert{$G\models F$}, wenn jedes Modell $\Inter$ von $G$ auch ein Modell von $F$ ist, d.h. $\Inter\models G$ impliziert $\Inter\models F$.\\
+\item Eine Formel $F$ ist eine \redalert{logische Konsequenz} aus einer Formel(menge) $G$, in Symbolen \redalert{$G\models F$}, wenn jedes Modell von $G$ auch ein Modell von $F$ ist, d.h. $\Inter\models G$ impliziert $\Inter\models F$.\\
 \emph{Sonderfall:} Ist $F$ Tautologie dann schreiben wir $\models F$
 \item Zwei Formel(mengen) $F$ und $G$ sind \redalert{semantisch äquivalent}, in Symbolen
 $F\equiv G$, wenn sie die gleichen Modelle haben, d.h. wenn $\Inter\models F$ gdw. $\Inter\models G$ für alle Modelle $\Inter$.
@@ -681,9 +681,10 @@ Allgemein gelten alle bekannten aussagenlogischen Äquivalenzen
 
 Auch die folgenden Sätze gelten analog zur Aussagenlogik\\ (siehe Formale Systeme, Vorlesung 22):\bigskip
 
-\theobox{Satz (Deduktionstheorem): Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt $\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
+\theobox{Satz (Deduktionstheorem): Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt\\
+$\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
 
-\theobox{Korollar: $F\wedge G\models H$ gdw. $F\models G\to H$.}\bigskip
+\theobox{Korollar: $F\wedge G\models H$ genau dann wenn $F\models G\to H$.}\bigskip
 
 \theobox{Korollar: $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
 
