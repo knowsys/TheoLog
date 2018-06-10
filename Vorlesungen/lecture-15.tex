@@ -1,25 +1,25 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{15}{Logisches Schließen}{14. Juni 2017}
+\defineTitle{15}{Logisches Schließen}{8. Juni 2018}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}\frametitle{Ankündigung}
-
-\begin{center}
-Prüfungstermin im Sommersemester 2017:\\[3ex]
-
-{\huge 24. Juli 2017}\\[3ex]
-
-Lernräume werden organisiert und auf der Webseite angekündigt.
-\end{center}
-
-\end{frame}
+% \begin{frame}\frametitle{Ankündigung}
+% 
+% \begin{center}
+% Prüfungstermin im Sommersemester 2017:\\[3ex]
+% 
+% {\huge 24. Juli 2017}\\[3ex]
+% 
+% Lernräume werden organisiert und auf der Webseite angekündigt.
+% \end{center}
+% 
+% \end{frame}
 
 \begin{frame}\label{frame_logiker}\frametitle{Prädikatenlogik als Universalsprache}
 
@@ -261,7 +261,7 @@ Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüll
 % }
 
 \emph{Beweis:} {\footnotesize(Forts.)}
-Wir haben $\Inter$ konstruiert, indem wir alle Domänen- elemente von $\Jnter$
+Wir haben $\Inter$ konstruiert, indem wir alle Domänenelemente von $\Jnter$
 gleichsetzen, welche in der Relation $\eqpred^\Jnter$ stehen
 \medskip
 
@@ -331,10 +331,10 @@ $\Jnter,\Zuweisung\models (G\wedge H)_{\eqpred}$
 $\Inter,\Zuweisung'\models G$ und $\Inter,\Zuweisung'\models H$ \pause\alert{gdw.} $\Inter,\Zuweisung'\models (G\wedge H)$\pause
 \item Die Fälle $F=\neg G$, $F=(G\vee H)$, $F=(G\to H)$ und $F=(G\leftrightarrow H)$ sind analog\pause
 \item Falls $F=\exists x.G$, dann: $\Jnter,\Zuweisung\models (\exists x.G)_{\eqpred}$ \alert{gdw.}
-$\Jnter,\Zuweisung[x\mapsto \delta]\models G_{\eqpred}$ für ein $\delta\in\Delta^\Jnter$
-\pause\alert{gdw.${}^{\text{IA}}$}\\
+$\Jnter,\Zuweisung[x\mapsto \delta]\models G_{\eqpred}$ für ein $\delta\in\Delta^\Jnter$\\
+\pause\alert{gdw.${}^{\text{IA}}$}
 $\Inter,\Zuweisung'[x\mapsto [\delta]]\models G$ für ein $\delta\in\Delta^\Jnter$
- \pause\alert{gdw.}\\
+ \pause\\\alert{gdw.}
  $\Inter,\Zuweisung'[x\mapsto [\delta]]\models G$ für ein $[\delta]\in\Delta^\Inter$
 \alert{gdw.} $\Inter,\Zuweisung'\models \exists x.G$\pause
 \item Der Fall $F=\forall x.G$ ist analog\qed
@@ -358,100 +358,97 @@ Allgemein kann man Induktion über jede induktiv definierte syntaktische Struktu
 
 \end{frame}
 
-\sectionSlide{Unentscheidbarkeit des logischen Schließens}
-
-\begin{frame}\frametitle{Schließen ist schwer}
-
-\emph{Erinnerung:} $F$ ist logische Konsequenz von $G$, wenn alle Modelle von $F$ auch Modelle von $G$ sind.
-\begin{itemize}
-\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendliche viele Modelle
-\item Ebenso schwer erscheinen die gleichwertigen Probleme der Erfüllbarkeit und Allgemeingültigkeit
-\end{itemize}\pause
-\emph{Intuition:} prädikatenlogisches Schließen ist unentscheidbar
-\bigskip
-
-\alert{Wie kann man das beweisen?}\pause\bigskip
-
-Durch Reduktion eines bekannten unentscheidbaren Problems, \ghost{z.B.}
-\begin{itemize}
-\item Halteproblem
-\item Postsches Korrespondenzproblem
-\item Äquivalenz kontextfreier Sprachen
-\item \ldots
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Unentscheidbarkeit (1)}
-
-\theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
-
-\emph{Beweis:} Durch Reduktion vom CFG-Schnittproblem:\smallskip
-
-~~~~~\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
-~~~~~\emph{Frage:} Gibt es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$?
-\bigskip\pause
-
-\emph{Idee:} Wir kodieren Wörter in der Prädikatenlogik als
-Ketten von binären Relationen.\medskip\pause
-
-Zum Beispiel würde das Wort $\Sterm{russell}$ in einer Modellstruktur $\Inter$
-wie folgt aussehen:
-
-\begin{center}
-\scalebox{1.0}{%
-\begin{tikzpicture}[scale=1.2]
-% \draw[help lines] (0,0) grid (7,2);
-
-\node (d0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (0,0) {$\delta_0$};
-\node (d1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,0) {$\delta_1$};
-\node (d2) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (2,0) {$\delta_2$};
-\node (d3) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,0) {$\delta_3$};
-\node (d4) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (4,0) {$\delta_4$};
-\node (d5) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (5,0) {$\delta_5$};
-\node (d6) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,0) {$\delta_6$};
-\node (d7) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (7,0) {$\delta_7$};
-
-\path[->,line width=0.5mm](d0) edge node[above] {$p_{\Sterm{r}}$} (d1);
-\path[->,line width=0.5mm](d1) edge node[above] {$p_{\Sterm{u}}$} (d2);
-\path[->,line width=0.5mm](d2) edge node[above] {$p_{\Sterm{s}}$} (d3);
-\path[->,line width=0.5mm](d3) edge node[above] {$p_{\Sterm{s}}$} (d4);
-\path[->,line width=0.5mm](d4) edge node[above] {$p_{\Sterm{e}}$} (d5);
-\path[->,line width=0.5mm](d5) edge node[above] {$p_{\Sterm{l}}$} (d6);
-\path[->,line width=0.5mm](d6) edge node[above] {$p_{\Sterm{l}}$} (d7);
-
-\end{tikzpicture}}
-\end{center}
-
-Diese Skizze soll bedeuten, dass z.B. $\tuple{\delta_2,\delta_3},\tuple{\delta_3,\delta_4}\in p_{\Sterm{s}}^\Inter$.
-Wir verwenden ein Prädikatensymbol $p_{\Sterm{a}}$ für jedes Alphabetssymbol ${\Sterm{a}}$.
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Unentscheidbarkeit (2)}
-
-\theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
-
-\emph{Beweis (Fortsetzung):} Zusätzlich verwenden wir binäre Prädikatensymbole
-$p_{\Snterm{A}}$ für jedes Nichtterminalsymbol $\Snterm{A}$.
-\bigskip\pause
-
-Die Kodierung von Grammatiken ist nun direkt möglich:
-\begin{itemize}
-\item Wir nehmen o.B.d.A. an, dass $G_1$ und $G_2$ keine Nichtterminale gemeinsam haben.
-\item Eine Produktionsregel $\Snterm{A}\to \sigma_1\cdots\sigma_n$ kodieren wir als Formel:
-\[ \forall x_0,\ldots,x_n. \big((p_{\sigma_1}(x_0,x_1)\wedge \ldots\wedge p_{\sigma_n}(x_{n-1},x_n)) \to p_{\Snterm{A}}(x_0,x_n)\big)\]
-\item Idee: die Formel \alert{erkennt}, ob eine gegebene Kette aus Terminalen und Nichtterminalen aus einem anderen Nichtterminal entstehen kann
-\end{itemize}
-
-\end{frame}
-
-\sectionSlide{Fortsetzung folgt \ldots}
-
+% \sectionSlide{Unentscheidbarkeit des logischen Schließens}
 % 
-% \begin{frame}\frametitle{Unentscheidbarkeit (3)}
+% \begin{frame}\frametitle{Schließen ist schwer}
+% 
+% \emph{Erinnerung:} $F$ ist logische Konsequenz von $G$, wenn alle Modelle von $F$ auch Modelle von $G$ sind.
+% \begin{itemize}
+% \item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendliche viele Modelle
+% \item Ebenso schwer erscheinen die gleichwertigen Probleme der Erfüllbarkeit und Allgemeingültigkeit
+% \end{itemize}\pause
+% \emph{Intuition:} prädikatenlogisches Schließen ist unentscheidbar
+% \bigskip
+% 
+% \alert{Wie kann man das beweisen?}\pause\bigskip
+% 
+% Durch Reduktion eines bekannten unentscheidbaren Problems, \ghost{z.B.}
+% \begin{itemize}
+% \item Halteproblem
+% \item Postsches Korrespondenzproblem
+% \item Äquivalenz kontextfreier Sprachen
+% \item \ldots
+% \end{itemize}
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}[t]\frametitle{Unentscheidbarkeit (1)}
+% 
+% \theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
+% 
+% \emph{Beweis:} Durch Reduktion vom CFG-Schnittproblem:\smallskip
+% 
+% ~~~~~\emph{Gegeben:} Kontextfreie Grammatiken $G_1$ und $G_2$\\
+% ~~~~~\emph{Frage:} Gibt es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$?
+% \bigskip\pause
+% 
+% \emph{Idee:} Wir kodieren Wörter in der Prädikatenlogik als
+% Ketten von binären Relationen.\medskip\pause
+% 
+% Zum Beispiel würde das Wort $\Sterm{russell}$ in einer Modellstruktur $\Inter$
+% wie folgt aussehen:
+% 
+% \begin{center}
+% \scalebox{1.0}{%
+% \begin{tikzpicture}[scale=1.2]
+% % \draw[help lines] (0,0) grid (7,2);
+% 
+% \node (d0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (0,0) {$\delta_0$};
+% \node (d1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,0) {$\delta_1$};
+% \node (d2) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (2,0) {$\delta_2$};
+% \node (d3) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,0) {$\delta_3$};
+% \node (d4) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (4,0) {$\delta_4$};
+% \node (d5) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (5,0) {$\delta_5$};
+% \node (d6) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,0) {$\delta_6$};
+% \node (d7) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (7,0) {$\delta_7$};
+% 
+% \path[->,line width=0.5mm](d0) edge node[above] {$p_{\Sterm{r}}$} (d1);
+% \path[->,line width=0.5mm](d1) edge node[above] {$p_{\Sterm{u}}$} (d2);
+% \path[->,line width=0.5mm](d2) edge node[above] {$p_{\Sterm{s}}$} (d3);
+% \path[->,line width=0.5mm](d3) edge node[above] {$p_{\Sterm{s}}$} (d4);
+% \path[->,line width=0.5mm](d4) edge node[above] {$p_{\Sterm{e}}$} (d5);
+% \path[->,line width=0.5mm](d5) edge node[above] {$p_{\Sterm{l}}$} (d6);
+% \path[->,line width=0.5mm](d6) edge node[above] {$p_{\Sterm{l}}$} (d7);
+% 
+% \end{tikzpicture}}
+% \end{center}
+% 
+% Diese Skizze soll bedeuten, dass z.B. $\tuple{\delta_2,\delta_3},\tuple{\delta_3,\delta_4}\in p_{\Sterm{s}}^\Inter$.
+% Wir verwenden ein Prädikatensymbol $p_{\Sterm{a}}$ für jedes Alphabetssymbol ${\Sterm{a}}$.
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}[t]\frametitle{Unentscheidbarkeit (2)}
+% 
+% \theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
+% 
+% \emph{Beweis (Fortsetzung):} Zusätzlich verwenden wir binäre Prädikatensymbole
+% $p_{\Snterm{A}}$ für jedes Nichtterminalsymbol $\Snterm{A}$.
+% \bigskip\pause
+% 
+% Die Kodierung von Grammatiken ist nun direkt möglich:
+% \begin{itemize}
+% \item Wir nehmen o.B.d.A. an, dass $G_1$ und $G_2$ keine Nichtterminale gemeinsam haben.
+% \item Eine Produktionsregel $\Snterm{A}\to \sigma_1\cdots\sigma_n$ kodieren wir als Formel:
+% \[ \forall x_0,\ldots,x_n. \big((p_{\sigma_1}(x_0,x_1)\wedge \ldots\wedge p_{\sigma_n}(x_{n-1},x_n)) \to p_{\Snterm{A}}(x_0,x_n)\big)\]
+% \item Idee: die Formel \alert{erkennt}, ob eine gegebene Kette aus Terminalen und Nichtterminalen aus einem anderen Nichtterminal entstehen kann
+% \end{itemize}
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Unentscheidbarkeit (3)}
 % 
 % \theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
 % 
@@ -468,7 +465,7 @@ Die Kodierung von Grammatiken ist nun direkt möglich:
 % $\leadsto$ Alle möglichen Wörter müssten kodiert vorkommen \ldots
 % \end{frame}
 % 
-% \begin{frame}\frametitle{Unentscheidbarkeit (4)}
+% \begin{frame}[t]\frametitle{Unentscheidbarkeit (4)}
 % 
 % \theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
 % 
@@ -486,7 +483,7 @@ Die Kodierung von Grammatiken ist nun direkt möglich:
 % 
 % \end{frame}
 % 
-% \begin{frame}\frametitle{Unentscheidbarkeit (5)}
+% \begin{frame}[t]\frametitle{Unentscheidbarkeit (5)}
 % 
 % \theobox{Satz: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar.}
 % 
@@ -506,12 +503,12 @@ Die Kodierung von Grammatiken ist nun direkt möglich:
 % \node (d10) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (0.5,-2) {$\delta_{10}$};
 % \node (d11) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1.5,-2) {$\delta_{11}$};
 % 
-% \path[->,line width=0.5mm](d) edge node[above left] {$p_{\Sterm{0}}$} (d0);
-% \path[->,line width=0.5mm](d) edge node[above right] {$p_{\Sterm{1}}$} (d1);
-% \path[->,line width=0.5mm](d0) edge node[above left] {$p_{\Sterm{0}}$} (d00);
-% \path[->,line width=0.5mm](d0) edge node[above right] {$p_{\Sterm{1}}$} (d01);
-% \path[->,line width=0.5mm](d1) edge node[above left] {$p_{\Sterm{0}}$} (d10);
-% \path[->,line width=0.5mm](d1) edge node[above right] {$p_{\Sterm{1}}$} (d11);
+% \path[->,line width=0.5mm](d) edge node[above left] {$p_{\Sterm{a}}$} (d0);
+% \path[->,line width=0.5mm](d) edge node[above right] {$p_{\Sterm{b}}$} (d1);
+% \path[->,line width=0.5mm](d0) edge node[above left] {$p_{\Sterm{a}}$} (d00);
+% \path[->,line width=0.5mm](d0) edge node[above right] {$p_{\Sterm{b}}$} (d01);
+% \path[->,line width=0.5mm](d1) edge node[above left] {$p_{\Sterm{a}}$} (d10);
+% \path[->,line width=0.5mm](d1) edge node[above right] {$p_{\Sterm{b}}$} (d11);
 % 
 % \node (e1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=none,thick] at (-1.5,-3) {$\ldots$};
 % \node (e2) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=none,thick] at (0,-3) {$\ldots$};
@@ -556,6 +553,7 @@ Die Kodierung von Grammatiken ist nun direkt möglich:
 % \theobox{Korollar: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar, selbst dann, wenn nur binäre Prädikatssymbole verwendet werden.}\bigskip
 % 
 % \end{frame}
+
 % 
 % \begin{frame}\frametitle{Unentscheidbarkeit hat viele Beweise}
 % 
@@ -649,15 +647,17 @@ es entspricht verschiedenen konkreten Fragen (Folgerung, Erfüllbarkeit, Allgeme
 Logisches Schließen über logischen Aussagem mit Gleichheit kann
 auf logisches Schließen ohne Gleichheit reduziert werden\bigskip
 
-Logisches Schließen in Prädikatenlogik ist unentscheidbar
+Strukturelle Induktion ist eine wichtige Beweismethode, um mit wenigen (endlich vielen) Schritten zu zeigen, dass eine Eigenschaft für alle (unendlich vielen) Formeln gilt\bigskip
+
+% Logisches Schließen in Prädikatenlogik ist unentscheidbar
 % (gezeigt)
 % aber semi-entscheidbar 
-(noch zu zeigen)
+% (noch zu zeigen)
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item Abschluss des Unentscheidbarkeitsbeweises
+\item Unentscheidbarkeit des logischen Schließens
 \item Ein konkretes Verfahren zum logischen Schließen
 % \item Logik über endlichen Modellen und ihre praktische Anwendung
 \item Gödels Unvollständigkeitssätze
