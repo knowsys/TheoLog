@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{17}{Funktionen und Normalformen}{21. Juni 2017}
+\defineTitle{17}{Funktionen und Normalformen}{18. Juni 2018}
 
 \begin{document}
 
@@ -280,14 +280,14 @@ für ein $n$-stelliges Prädikatensymbol $p\in\Slang{P}$ und Terme $t_1,\ldots,t
 
 \begin{frame}\frametitle{Semantik der Prädikatenlogik mit Funktionen} 
 
-Wir müssen nun auf Funktionssymbole interpretieren:
+Wir müssen nun auch Funktionssymbole interpretieren:
 
 \defbox{Eine \redalert{Interpretation} $\Inter$ der Prädikatenlogik mit Funktionen
 ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elemente $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
 \begin{itemize}
 \item jede Konstante $a\in\Slang{C}$ auf ein Element $a^\Inter\in\Delta^\Inter$,
 \item jedes $n$-stellige Funktionssymbol $f\in\Slang{F}$ auf eine $n$-stellige Funktion $f^\Inter:(\Delta^\Inter)^n\to\Delta^\Inter$ und
-\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\in(\Delta^\Inter)^n$
+\item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\subseteq(\Delta^\Inter)^n$
 \end{itemize}
 abbildet.
 }\medskip
@@ -394,7 +394,7 @@ Dann folgt der Satz durch Induktion über die Zahl der $\exists$.\bigskip\pause
 	& $\Inter\models \forall x_1.\cdots\forall x_n.\exists y.F$\\\pause
 gdw. & für alle $\delta_1,\ldots, \delta_n\in\Delta^\Inter$ existiert ein $\epsilon\in\Delta^\Inter$, so dass $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto \delta_n,y\mapsto\epsilon\}\models F$\\[-2ex]\pause
 	& \alert{Wir definieren:} $f^\Inter(\delta_1,\ldots, \delta_n)\defeq\epsilon$ für ein solches $\epsilon$\\\pause
-gdw. & für alle $\delta_1,\ldots, \delta_n\in\Delta^\Inter$, so dass\newline $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto \delta_n\}\models F\{y\mapsto f(x_1,\ldots,x_n)\}$\\\pause
+gdw. & für alle $\delta_1,\ldots, \delta_n\in\Delta^\Inter$\newline $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto \delta_n\}\models F\{y\mapsto f(x_1,\ldots,x_n)\}$\\\pause
 gdw. & $\Inter\models \forall x_1.\cdots\forall x_n.F\{y\mapsto f(x_1,\ldots,x_n)\}$ \hspace{5cm}\qed
 \end{tabular}
 % 
@@ -419,8 +419,8 @@ darstellen, z.B. mit folgender Theorie:
 Damit können wir Funktionsterme durch existentiell quantifizierte Variablen mit
 entsprechenden Nebenbedingungen ersetzen, z.B.:
 \begin{align*}
-q(f(x),g(y,z)) &\mapsto \exists v,w.(p_f(x,v)\wedge p_g(y,z,w)\wedge q(v,w))\\
-r(g(f(x),y)) &\mapsto \exists v,w.(p_f(x,v)\wedge p_g(v,y,w)\wedge r(w))
+q(f(x),g(y,z)) &\ \text{wird zu}\ \exists v,w.(p_f(x,v)\wedge p_g(y,z,w)\wedge q(v,w))\\
+r(g(f(x),y)) &\ \text{wird zu}\ \exists v,w.(p_f(x,v)\wedge p_g(v,y,w)\wedge r(w))
 \end{align*}\pause
 Eine entsprechende Ersetzung kann man bei jedem Atom in einer Formel durchführen. Wir erhalten (ohne Beweis):
 
