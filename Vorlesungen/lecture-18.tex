@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{18}{Unifikation}{23. Juni 2017}
+\defineTitle{18}{Unifikation}{22. Juni 2018}
 
 \begin{document}
 
@@ -277,15 +277,17 @@ Wir können Substitutionen hintereinander ausführen:
 \defbox{Für Substitutionen $\sigma=\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$
 und $\theta=\{y_1\mapsto s_1,\ldots,y_m\mapsto s_m\}$ 
 ist die \redalert{Komposition $\sigma\circ\theta$} die folgende Substitution:
-\[ \{x_1\mapsto t_1\theta,\ldots,x_n\mapsto t_n\theta\}\cup
-\{y_i\mapsto s_i\mid y_i\in\{y_1,\ldots,y_m\}\setminus\{x_1,\ldots,x_n\}\}\]
+\[ \Big\{x_1\mapsto t_1\theta,\ldots,x_n\mapsto t_n\theta\Big\}\;\;\cup\;\;
+\Big\{y_i\mapsto s_i\bigm| y_i\in\{y_1,\ldots,y_m\}\setminus\{x_1,\ldots,x_n\}\Big\}\]
 }\medskip\pause
 
 \theobox{Satz: Für alle Terme oder Formeln $A$ und Substitutionen $\sigma$ und $\theta$ gilt: $A(\sigma\circ\theta)=(A\sigma)\theta$.}\pause
 
-\emph{Beweis:} Per struktureller Induktion über den Aufbau von Termen. I-Anfang: Satz gilt für Konstanten $A\in\Slang{C}$ und Variablen $A\in\Slang{V}$ per Definition. I-Hypothese: Satz gilt für Terme $t_1,\ldots,t_\ell$.\\
-I-Schritt: Damit gilt für größere Funktionsterme $f(t_1,\ldots,t_\ell)(\sigma\circ\theta)=
-f(t_1(\sigma\circ\theta),\ldots,t_\ell(\sigma\circ\theta))\stackrel{\text{IH}}{=}f((t_1\sigma)\theta,\ldots,(t_\ell\sigma)\theta)=(f(t_1,\ldots,t_\ell)\sigma)\theta$.
+\emph{Beweis:} Per struktureller Induktion über den Aufbau von Termen.\\[1ex]
+\alert{I-Anfang:} Satz gilt für Konstanten $A\in\Slang{C}$ und Variablen $A\in\Slang{V}$ per Definition.\\[1ex] \alert{I-Hypothese:} Satz gilt für Terme $t_1,\ldots,t_\ell$.\\[1ex]
+\alert{I-Schritt:} Damit gilt für größere Funktionsterme $f(t_1,\ldots,t_\ell)(\sigma\circ\theta)=
+f(t_1(\sigma\circ\theta),\ldots,t_\ell(\sigma\circ\theta))\stackrel{\text{IH}}{=}f((t_1\sigma)\theta,\ldots,(t_\ell\sigma)\theta)=(f(t_1,\ldots,t_\ell)\sigma)\theta$.\bigskip
+
 Beweis für Formeln analog (aber mit mehr Fällen im I-Schritt).
 \qed
 
@@ -294,7 +296,7 @@ Beweis für Formeln analog (aber mit mehr Fällen im I-Schritt).
 \begin{frame}\frametitle{Unifikationsprobleme}
 
 \defbox{Ein \redalert{Unifikationsproblem} ist eine endliche Menge von Gleichungen
-der Form $G=\{s_1\unieq t_1,\ldots,s_n\unieq t_n\}$.\medskip
+der Form \mbox{$G=\{s_1\unieq t_1,\ldots,s_n\unieq t_n\}$}.\medskip
 
 Eine Substitution $\sigma$ ist ein \redalert{Unifikator} für $G$ falls
 $s_i\sigma=t_i\sigma$ für alle $i\in\{1,\ldots,n\}$ gilt.
@@ -324,7 +326,8 @@ $\lambda$ gibt, so dass $\sigma\circ\lambda =\theta$.\medskip
 
 Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein Unifikator $\sigma$ für $G$, so dass $\sigma\preceq\theta$ für alle Unifikatoren $\theta$ für $G$.}
 
-(Die englische Bezeichnung des allgemeinsten Unifikators ist most general unifier (mgu).)\medskip\pause
+{\footnotesize
+(Die englische Bezeichnung des allgemeinsten Unifikators ist \alert{most general unifier (mgu)}.)}\medskip\pause
 
 \examplebox{Beispiel: Für $G=\{ x\unieq f(y), y\unieq g(z) \}$ ist
 $\sigma=\{x\mapsto f(g(z)), y\mapsto g(z)\}$ ein allgemeinster Unifikator.
