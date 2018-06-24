@@ -1,20 +1,46 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{19}{Resolution}{28. Juni 2017}
+\usepackage{setspace}
+
+\defineTitle{19}{Resolution}{25. Juni 2018}
 
 \begin{document}
 
 \maketitle
 
-\frame{\begin{center}
-\large 
-We have just learned from Le Bérarde that a new accident has occurred on the Pelvoux plateau: a young man, part of a three-man company from Lyons, has fallen to his death.\bigskip
+\begin{frame}
 
--- Le Temps, 29 July 1931
-\end{center}}
+\begin{center}
+\scalebox{14}{$\theta\quad\tau$}
+\end{center}
+
+\end{frame}
+
+\bgroup
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain]\label{frame_temps_a}
+\color{white}
+\begin{center}
+\includegraphics[height=1.7cm]{images/Le_Temps_1931-07-29_Herbrand-BnF.jpg}\vspace{1cm}
+
+\tt
+\begin{minipage}{13.5cm}\setstretch{0.8}\normalsize
+Wir haben soeben aus La Bérarde erfahren, dass sich ein neuer Unfall auf dem Pelvoux ereignet hat:
+ein junger Mann, der Mitglied einer dreiköpfigen Gruppe aus Lyon gewesen ist, stürzte zu Tode.
+\end{minipage}
+
+% 
+% We have just learned from Le Bérarde that a new accident has occurred on the Pelvoux plateau: a young man, part of a three-man company from Lyons, has fallen to his death.
+\bigskip\normalsize
+
+~\hspace{\stretch{1}}-- Le Temps, Montag, 29. Juli 1931
+\end{center}
+
+\end{frame}
+\egroup
 
 \begin{frame}\frametitle{Resolution für Prädikatenlogik}
 
@@ -84,7 +110,7 @@ ist und $L_i,L'_j$ beliebige Literale sind, ist die Klausel
 $\{L_1\sigma,\ldots,L_k\sigma,L'_1\sigma,\ldots,L'_\ell\sigma\}$.
 }\medskip\pause
 
-\examplebox{Beispiel: Die Klauseln $K_1=\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}$ und $K_2=\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}$ können resolviert werden. Ein allgemeinster Unifikator von $\{\textsf{hatVater}(x,f(x)),\textsf{hatVater}(z,v)\}$
+\examplebox{Beispiel: Die Klausel $K_1=\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}$ und die Klausel $K_2=\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}$ können resolviert werden. Ein allgemeinster Unifikator von $\{\textsf{hatVater}(x,f(x)),\textsf{hatVater}(z,v)\}$
 ist $\sigma=\{z\mapsto x,v\mapsto f(x)\}$.
 Die entsprechende Resolvente von $K_1$ und $K_2$ ist $\{\neg\textsf{Mensch}(x),\textsf{hatKind}(f(x),x)\}$.
 }
@@ -269,7 +295,7 @@ Wir wollen den folgenden Satz schrittweise beweisen:
 \item Es gibt ein $\ell\geq 0$ mit $\bot\in\mathcal{K}_\ell$
 \end{itemize}}\pause
 
-\emph{Beweis (Korrektheit):} Wir zeigen Korrektheit eines Resolutionsschrittes, dann folgt die Behauptung durch Induktion über die Schrittzahl. Wir unterscheiden Klauseln $K$ vom Satz
+\emph{Beweis (Korrektheit):} Wir zeigen Korrektheit eines Resolutionsschrittes; dann folgt die Behauptung durch Induktion über die Schrittzahl. Wir unterscheiden Klauseln $K$ vom Satz
 $\forall K$, für den sie stehen (=Disjunktion mit allquantifizierten Variablen).
 \bigskip
 
@@ -290,14 +316,14 @@ Wir zeigen noch die Korrektheit des reinen Resolutionsschrittes.
 
 Sei $\Inter$ eine beliebige Interpretation.
 \begin{itemize}
-\item Falls $\Inter\models\forall K_1\wedge\forall K_2$, dann gilt auch $\Inter\models\forall (K_1\sigma)\wedge\forall (K_2\sigma)$ (die Substitution konkretisiert eine Allaussage)\pause
-\item Also gilt für alle Zuweisungen $\Zuweisung$: $\Inter,\Zuweisung\models(K_1\sigma)\wedge (K_2\sigma)$\pause
-\item Fall 1: $\Inter,\Zuweisung\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$. Dann gilt $\Inter,\Zuweisung\models L'_1\sigma\vee\ldots\vee L'_\ell\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
-\item Fall 2: $\Inter,\Zuweisung\not\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$. Dann gilt $\Inter,\Zuweisung\models L_1\sigma\vee\ldots\vee L_k\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
+\item Falls $\Inter\models\forall K_1\wedge\forall K_2$, dann gilt auch $\Inter\models\forall (K_1\sigma)\wedge\forall (K_2\sigma)$\\ (die Substitution konkretisiert eine Allaussage)\pause
+\item Also gilt für alle Zuweisungen $\Zuweisung$:~~~ $\Inter,\Zuweisung\models(K_1\sigma)\wedge (K_2\sigma)$\pause
+\item \emph{Fall 1:} $\Inter,\Zuweisung\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$.\\ Dann gilt $\Inter,\Zuweisung\models L'_1\sigma\vee\ldots\vee L'_\ell\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
+\item \emph{Fall 2:} $\Inter,\Zuweisung\not\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$.\\ Dann gilt $\Inter,\Zuweisung\models L_1\sigma\vee\ldots\vee L_k\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
 \item Also gilt $\Inter\models\forall K$.
 \end{itemize}
-Da $\Inter$ beliebig ist gilt also $\forall K_1\wedge\forall K_2\models \forall K$
--- d.h., jede Resolvente ist logische Konsequenz der resolvierten Klauseln
+Da $\Inter$ beliebig ist gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
+Das heißt, jede Resolvente ist logische Konsequenz der resolvierten Klauseln.
 
 \end{frame}
 
@@ -319,24 +345,44 @@ Bisher gezeigt: Die zweite Aussage impliziert die erste (\alert{Korrektheit})\bi
 
 \end{frame}
 
-\frame{\begin{center}
-\large 
-We mentioned yesterday that a young man, part of a company of Alpinists climbing in the area of Le Bérarde, fell to his death. he was M Jacques Herbrand, residing at 10 rue Viollet-le-duc, Paris. M Herbrand departed Sunday with three comrades, MM Jean Brille, Pierre Delair, and Henri Guigner, to ascend the Baus.\\[1ex]
-During the descent, the piton to which the line was attached gave way, carrying with it a small platform on which M Herbrand was situated, and fell into a chasm.\\[1ex]
-A rescue party has left to seek the body, which it hopes to reach today. \bigskip
+\bgroup
+\setbeamercolor{background canvas}{bg=black}
 
--- Le Temps, 30 July 1931
-\end{center}}
+\begin{frame}[plain]\label{frame_temps_b}
+\color{white}
+\begin{center}
+\includegraphics[height=4.5cm]{images/Le_Temps_1931-07-30_Herbrand-BnF.jpg}\bigskip
 
-\frame{\label{frame_herbrand}\begin{center}
-\includegraphics[height=5cm]{images/Herbrand.jpg}
+ \tt
+\begin{minipage}{13.5cm}\setstretch{0.8}\normalsize
+Wir hatten gestern erwähnt, dass ein junger Mann, der mit einer Gruppe von Bergsteigern in der Umgebung von La Bérarde unterwegs war, bei einem Sturz ums Leben kam.
+Es handelte sich um M.~Jacques Herbrand, wohnhaft in der Rue Viollet-le-duc 10 in Paris. 
+M.~Herbrand war am Sonntag mit drei Gefährten -- den Herren Jean Brille, Pierre Delair und Henri Guigner -- aufgebrochen, um Les Bans zu besteigen.
+Beim Abstieg löste sich ein Kletterhaken, an dem das Seil befestigt war, und nahm eine kleine
+Plattform mit sich, auf der sich M. Herbrand befand, welcher in den Abgrund stürzte.
+Ein Bergungstrupp ist aufgebrochen um den Leichnam zu suchen und hofft ihn heute zu erreichen.
+\end{minipage}
+
+% 
+% We mentioned yesterday that a young man, part of a company of Alpinists climbing in the area of Le Bérarde, fell to his death. he was M Jacques Herbrand, residing at 10 rue Viollet-le-duc, Paris. M Herbrand departed Sunday with three comrades, MM Jean Brille, Pierre Delair, and Henri Guigner, to ascend the Baus.\\[1ex]
+% During the descent, the piton to which the line was attached gave way, carrying with it a small platform on which M Herbrand was situated, and fell into a chasm.\\[1ex]
+% A rescue party has left to seek the body, which it hopes to reach today.
+\bigskip
+
+~\hspace{\stretch{1}}-- Le Temps, Dienstag, 30. Juli 1931
+\end{center}
+\end{frame}
+
+\frame[plain]{\label{frame_herbrand}\begin{center}\color{white}
+\includegraphics[height=6cm]{images/Herbrand.jpg}
 
 \LARGE
 Jacques Herbrand\medskip
 
 \normalsize
-12.2.1908 -- 27.7.1931
+\tt 12.2.1908 -- 27.7.1931
 \end{center}}
+\egroup
 
 \begin{frame}\frametitle{Prädikatenlogische Modelle}
 
@@ -372,7 +418,7 @@ Menge aller variablenfreien Terme, die man mit Konstanten und Funktionssymbolen 
 
 \emph{Anmerkung:} Das Herbrand-Universum ist immer abzählbar, manchmal endlich und niemals leer.\pause
 
-\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich
+\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich das Herbranduniversum
 $\Delta_F=\{a,f(a),g(a),f(f(a)),f(g(a)),g(f(a)),g(g(a)),\ldots\}$.
 }
 
@@ -415,7 +461,7 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 \theobox{Lemma: Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
-(ohne Beweis, einfach)
+(ohne Beweis; einfach)
 \bigskip
 
 {\color{devilscss}\footnotesize \emph{Anmerkung:} Man kann ein entsprechendes Resultat auch für Nicht-Herbrand-Interpretationen zeigen. Dann muss man einfach den Term auf der linken Seite durch $t^{\Inter,\Zuweisung}$ ersetzen.}
@@ -448,7 +494,7 @@ $F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
 \item Speziell gilt also für alle $t_1,\ldots,t_n\in\Delta_F$: $\Inter,\{x_1\mapsto t_1^{\Inter},\ldots,x_n\mapsto t_n^{\Inter}\}\models G$\pause
 \item Daraus folgt: $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$  (analog zu Lemma)\pause
 \item Daraus folgt: $\Jnter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$\\
-{\footnotesize(Direkt aus Definition für Atome $G$; die Aussage kann leicht auf größere Boolsche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
+{\footnotesize(Für Atome $G$ direkt aus Definition; die Aussage kann leicht auf größere Boolsche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
 \item Es folgt: $\Jnter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ (Lemma)
 \end{itemize}
 Der Schluss gilt für alle $t_1,\ldots,t_n\in\Delta_F$, d.h. $\Jnter\models F$.\qed
@@ -507,7 +553,7 @@ Man kann aus den Beweisen der Erfüllbarkeitsäquivalenz erkennen: jedes Modell 
 
 \begin{itemize}
 \item Der eben gezeigte "`Löwenheim-Skolem-Satz"' ist eigentlich der \alert{nach unten gerichtete Satz von Löwenheim und Skolem} (Downward Löwenheim-Skolem Theorem)
-\item Der \alert{nach oben gerichtete Satz von Löwenheim und Skolem}  (Upward Löwenheim-Skolem Theorem) besagt, dass jede erfüllbare Formel auch in Modellen beliebig großer Kardinalität erfüllbar ist
+\item Der \alert{nach oben gerichtete Satz von Löwenheim und Skolem}  (Upward Löwenheim-Skolem Theorem) besagt, dass jede erfüllbare Formel auch in Modellen beliebig großer Kardinalität erfüllbar ist\pause
 \item Der Legende nach war Skolem die Verwendung seines Namens in diesem Kontext unangenehm:\bigskip
 
 \begin{quote}\color{purple}
@@ -702,10 +748,10 @@ Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die 
 Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrandmodellen reduzieren
 \bigskip
 
-Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat  beliebig große unendliche Modelle genau dann wenn sie abzählbare Modelle hat
+Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat beliebig große unendliche Modelle genau dann wenn sie abzählbare Modelle hat
 
 % In diesem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
-% \bigskip
+\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
@@ -720,6 +766,12 @@ Was erwartet uns als nächstes?
 
 
 \begin{frame}[t]\frametitle{Bildrechte}
+
+Folie \ref{frame_temps_a}: Ausschnitt ``Le Temps'', 29. Juli 1931, gemeinfrei; Digitalisierung durch gallica.bnf.fr / Bibliothèque nationale de France; hier veröffentlicht unter CC-By-NC-SA~3.0
+\medskip
+
+Folie \ref{frame_temps_b}: Ausschnitt ``Le Temps'', 30. Juli 1931, gemeinfrei; Digitalisierung durch gallica.bnf.fr / Bibliothèque nationale de France; hier veröffentlicht unter CC-By-NC-SA~3.0
+\medskip
 
 Folie \ref{frame_herbrand}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
 
