@@ -11,14 +11,6 @@
 
 \maketitle
 
-\begin{frame}
-
-\begin{center}
-\scalebox{14}{$\theta\quad\tau$}
-\end{center}
-
-\end{frame}
-
 \bgroup
 \setbeamercolor{background canvas}{bg=black}
 \begin{frame}[plain]\label{frame_temps_a}
@@ -521,48 +513,42 @@ $\leadsto$ Es gibt ein Herbrand-Modell mit dieser Domäne
 
 \end{frame}
 
-% \begin{frame}\frametitle{Löwenheim}
+% \begin{frame}\frametitle{Löwenheim-Skolem}
 % 
+% \theobox{Satz von Löwenheim${}^1$ und Skolem:
+% Jede erfüllbare prädikatenlogische Formel hat ein abzählbares Modell (d.h. eines mit abzählbarer Domäne).}
 % 
+% \visible<3->{
+% \emph{Beweis:} 
+% \begin{itemize}
+% \item Jede Formel $F$ kann in erfüllbarkeitsäquivalente Skolemform $F'$ überführt werden
+% \item 
+% Ist $F$ erfüllbar, so hat $F'$ ein (abzählbares) Herbrandmodell
+% \item
+% Man kann aus den Beweisen der Erfüllbarkeitsäquivalenz erkennen: jedes Modell von $F'$ ist auch ein Modell für $F$\qed
+% \end{itemize}}\bigskip
+% 
+% {\footnotesize ${}^1$ Leopold Löwenheim${}^2$ (1878--1957): deutscher Logiker; 1915 erster Beweis des obigen Satzes; 1916 Soldat im 1. Weltkrieg; 1934 von den Nazis zwangspensioniert und als Privatlehrer tätig\\
+% \visible<2->{\footnotesize ${}^2$ "`Note: One of the best predictors of success in mathematical logic is having an umlaut in your name"' -- S. Aaronson, Quantum Computing since Democritus. Cambridge, 2013.}
+% 
+% }
 % 
 % \end{frame}
-
-\begin{frame}\frametitle{Löwenheim-Skolem}
-
-\theobox{Satz von Löwenheim${}^1$ und Skolem:
-Jede erfüllbare prädikatenlogische Formel hat ein abzählbares Modell (d.h. eines mit abzählbarer Domäne).}
-
-\visible<3->{
-\emph{Beweis:} 
-\begin{itemize}
-\item Jede Formel $F$ kann in erfüllbarkeitsäquivalente Skolemform $F'$ überführt werden
-\item 
-Ist $F$ erfüllbar, so hat $F'$ ein (abzählbares) Herbrandmodell
-\item
-Man kann aus den Beweisen der Erfüllbarkeitsäquivalenz erkennen: jedes Modell von $F'$ ist auch ein Modell für $F$\qed
-\end{itemize}}\bigskip
-
-{\footnotesize ${}^1$ Leopold Löwenheim${}^2$ (1878--1957): deutscher Logiker; 1915 erster Beweis des obigen Satzes; 1916 Soldat im 1. Weltkrieg; 1934 von den Nazis zwangspensioniert und als Privatlehrer tätig\\
-\visible<2->{\footnotesize ${}^2$ "`Note: One of the best predictors of success in mathematical logic is having an umlaut in your name"' -- S. Aaronson, Quantum Computing since Democritus. Cambridge, 2013.}
-
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Historische Anmerkungen}
-
-\begin{itemize}
-\item Der eben gezeigte "`Löwenheim-Skolem-Satz"' ist eigentlich der \alert{nach unten gerichtete Satz von Löwenheim und Skolem} (Downward Löwenheim-Skolem Theorem)
-\item Der \alert{nach oben gerichtete Satz von Löwenheim und Skolem}  (Upward Löwenheim-Skolem Theorem) besagt, dass jede erfüllbare Formel auch in Modellen beliebig großer Kardinalität erfüllbar ist\pause
-\item Der Legende nach war Skolem die Verwendung seines Namens in diesem Kontext unangenehm:\bigskip
-
-\begin{quote}\color{purple}
-"`I follow custom in calling Corollary 6.1.4 the upward Löwenheim-Skolem theorem. But in fact Skolem didn't even believe it, because he didn't believe in the existence of uncountable sets."'\\
--- W. Hodges, Model theory, Cambridge 1993
-\end{quote}
-\end{itemize}
-
-\end{frame}
+% 
+% \begin{frame}\frametitle{Historische Anmerkungen}
+% 
+% \begin{itemize}
+% \item Der eben gezeigte "`Löwenheim-Skolem-Satz"' ist eigentlich der \alert{nach unten gerichtete Satz von Löwenheim und Skolem} (Downward Löwenheim-Skolem Theorem)
+% \item Der \alert{nach oben gerichtete Satz von Löwenheim und Skolem}  (Upward Löwenheim-Skolem Theorem) besagt, dass jede erfüllbare Formel auch in Modellen beliebig großer Kardinalität erfüllbar ist\pause
+% \item Der Legende nach war Skolem die Verwendung seines Namens in diesem Kontext unangenehm:\bigskip
+% 
+% \begin{quote}\color{purple}
+% "`I follow custom in calling Corollary 6.1.4 the upward Löwenheim-Skolem theorem. But in fact Skolem didn't even believe it, because he didn't believe in the existence of uncountable sets."'\\
+% -- W. Hodges, Model theory, Cambridge 1993
+% \end{quote}
+% \end{itemize}
+% 
+% \end{frame}
 
 
 % \begin{frame}\frametitle{Herbrand-Expansionen}
@@ -746,9 +732,10 @@ Man kann aus den Beweisen der Erfüllbarkeitsäquivalenz erkennen: jedes Modell 
 Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die Unerfüllbarkeit logischer Formeln\bigskip
 
 Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrandmodellen reduzieren
-\bigskip
-
-Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat beliebig große unendliche Modelle genau dann wenn sie abzählbare Modelle hat
+(Fortsetzung folgt)
+% \bigskip
+% 
+% Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat beliebig große unendliche Modelle genau dann wenn sie abzählbare Modelle hat
 
 % In diesem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
 \bigskip
