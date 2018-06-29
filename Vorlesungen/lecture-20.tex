@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{20}{Resolution/Endliche Modelle}{29. Juni 2018}
+\defineTitle{20}{Resolution (2)}{29. Juni 2018}
 
 \begin{document}
 
@@ -24,7 +24,7 @@ Jacques Herbrand\medskip
 
 \sectionSlide{Evaluation}
 
-\begin{frame}\frametitle{Resolution}
+\begin{frame}\frametitle{Vollständigkeit der Resolution}
 
 Resolutionsregel:
 \[  \frac{
@@ -60,7 +60,7 @@ falls $\sigma$ allgemeinster Unifikator von $\{A_1,\ldots,A_n, A'_1,\ldots, A'_m
 
 \bgroup
 \setbeamercolor{background canvas}{bg=black}
-\frame[plain]{\label{frame_herbrand}\begin{center}\color{white}
+\frame[plain]{\label{frame_herbrand_b}\begin{center}\color{white}
 \includegraphics[height=6cm]{images/Herbrand.jpg}
 
 \LARGE
@@ -318,266 +318,30 @@ Laut Resolutionssatz (Vollständigkeit) kann die Unerfüllbarkeit von $\mathcal{
 Dabei können nur endlich viele Klauseln aus der Klauselform von $\mathcal{T}\cup\{\neg F\}$ verwendet worden sein. Laut Resolutionssatz (Korrektheit) folgt die Konsequenz also bereits aus einer endlichen Teilmenge von $\mathcal{T}$.\qed
 
 \end{frame}
-
-\begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
-
-Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
-\smallskip
-
-\defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
-\narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
-}\pause
-
-\theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
-
-\emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
-
-Dann ist die folgende unendliche Theorie unerfüllbar:
-\[\begin{array}{rll}
-\big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
-& \neg\exists x_1,x_2.(r(a,x_1)\wedge
-r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
-\end{array}\]
-Aber jede endliche Teilmenge der Theorie ist erfüllbar.
-Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
-
-\end{frame}
-
-
-\sectionSlide{Endliche Modelle}
-
-\begin{frame}\frametitle{Endlichkeit von Modellen}
-
-\alert{Löwenheim-Skolem}: Jede erfüllbare Formel hat ein abzählbar großes Modell
-\bigskip
-
-\redalert{Kann man dies noch verstärken? Hat jede erfüllbare Formel vielleicht sogar ein endliches Modell?}\pause\bigskip
-
-\alert{Nein! Prädikatenlogik kann unendliche Modelle erzwingen:}\medskip
-
-\examplebox{Beispiel:\vspace{-2ex}
-\begin{align*}
-\forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatMutter}(x,y)\wedge\textsf{Mensch}(y))) \\
-\forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
-\forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))\\
-\forall x.&\neg \textsf{hatVorfahre}(x,x)
-\end{align*}
-Diese Theorie ist erfüllbar, aber hat nur unendliche Modelle.\\ (Kontrollfrage: Warum?)
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Logik über endlichen Modellen}
-
-Sind unendliche Modelle in der Praxis überhaupt wünschenswert?\\
-Geht es auch endlich?
-\bigskip\pause
-
-\defbox{\redalert{Prädikatenlogik mit endlichen Modellen} verwendet die gleiche Syntax und Semantik wie Prädikatenlogik allgemein, aber mit der zusätzlichen Bedingung, dass die Domäne von Interpretationen endlich sein muss.}\pause
-
-\emph{Monotonie (Rückblick):} weniger Modelle $=$ mehr Konsequenzen
-
-\examplebox{Beispiel:\vspace{-2ex}
-\begin{align*}
-\forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatVorfahre}(x,y)\wedge\textsf{Mensch}(y))) \\
-% \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
-\forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))
-\end{align*}\vspace{-4ex}
-
-Diese Theorie ist in der Prädikatenlogik mit endlichen Modellen erfüllbar, aber jedes endliche Modell muss einen $\textsf{hatVorfahre}$-Zyklus enthalten. Daher folgt
-$\exists x.\textsf{hatVorfahre}(x,x)$, obwohl dies in der allgemeinen Prädikatenlogik keine Konsequenz wäre.
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Erfüllbarkeit wird semi-entscheidbar}
-
-Die Bezeichnung der Elemente einer Interpretationsdomäne ist irrelevant -- für die Wahrheit von Sätzen kommt es nur darauf an, wie Konstanten und Prädikatsymbole interpretiert werden.\bigskip\pause
-
-\anybox{strongyellow}{\redalert{Erfüllbarkeitstest}\\[1ex]
-\emph{Gegeben:} Ein Satz $F$
-\begin{itemize}
-\item Betrachte systematisch alle endlichen Interpretationen der Symbole in $F$ (z.B. geordnet nach aufsteigender Größe der Domäne)
-\item Prüfe für jedes Modell $\Inter$, ob $\Inter\models F$ gilt:
-\begin{itemize}
-\item Falls ja, dann gib aus "`erfüllbar"'
-\item Falls nein, dann fahre mit nächster Interpretation fort
-\end{itemize}
-\end{itemize}
-}
-
-Es ist leicht zu sehen, dass dieser Algorithmus die Erfüllbarkeit in endlichen Modellen semi-entscheidet.
-
-\end{frame}
-
-\begin{frame}\frametitle{Endlich = einfach?}\pause
-
-Trotzdem bleibt logisches Schließen schwer:
-
-\theobox{Satz von Trakhtenbrot: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik mit endlichen Modellen ist unentscheidbar.}
-
-(ohne Beweis)\pause\bigskip
-
-\theobox{Korollar: Es gibt kein vollständiges und korrektes Beweissystem für Prädikatenlogik mit endlichen Modellen.}
-
-\emph{Beweis:} Angenommen es gäbe ein solches System.\pause{} Dann wäre logische Konsequenz und speziell auch Unerfüllbarkeit semi-entscheidbar.\bigskip\pause
-
-Wir wissen, dass Erfüllbarkeit ebenfalls semi-entscheidbar ist.\bigskip\pause
-
-Zusammen ergäbe sich also ein Entscheidungsverfahren für logisches Schließen -- Widerspruch zu Trakhtenbrot.
-\qed
-
-\end{frame}
-
-\sectionSlide{Endliche Modelle in der Praxis}
-
-\begin{frame}\frametitle{Wozu endliche Modelle}
-
-In gewisser Weise ist Schließen mit endlichen Modellen also schwerer als mit unendlichen, weil man statt logischer Konsequenz nunmehr nur Nicht-Konsequenz semi-entscheiden kann
-\bigskip
-
-Trotzdem sind endliche Interpretationen in der Informatik praktisch relevant:\medskip
-
-\anybox{purple}{Eine endliche Interpretation $\Inter$ ist (im Wesentlichen) das gleiche wie eine \redalert{relationale Datenbankinstanz}.
-}
-\emph{Intuition:}
-\begin{itemize}
-\item Prädikatsymbole $p$ bezeichnen Tabellen
-\item Relationen $p^\Inter$ entsprechen den in der Datenbank gespeicherten Tabelleninhalten
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{Benannte Parameter}
-
-Relationale Datenbanken verwenden \redalert{Namen für die Parameter} (Spalten) in Relationen,
-anstatt sie mittels Reihenfolge zu adressieren:\bigskip
-
-\scriptsize
-
-\begin{tabular}[t]{|l|l|}
-\multicolumn{2}{@{}l}{linien:}\\
-\hline
-\textbf{Linie} & \textbf{Typ} \\
-\hline
-85 & Bus \\\hline
-3 & Tram \\\hline
-F1 & Fähre \\\hline
-\ldots & \ldots\\\hline
-\end{tabular}
-\hspace{15mm}
-\begin{tabular}[t]{|l|l|l|}
-\multicolumn{2}{@{}l}{haltestellen:}\\
-\hline
-\textbf{SID} & \textbf{Name} & \textbf{Rollstuhl}\\
-\hline
-17 & Hauptbahnhof & true\\\hline
-42 & Helmholtzstr. & true\\\hline
-57 & Stadtgutstr. & true\\\hline
-123 & Gustav-Freytag-Str. & false\\\hline
-\ldots & \ldots & \ldots\\\hline
-\end{tabular}
-
-\begin{tabular}[t]{|l|l|l|}
-\multicolumn{2}{@{}l}{verbindung:}\\
-\hline
-\textbf{Von} & \textbf{Zu} & \textbf{Linie}\\
-\hline
-57  & 42 & 85 \\\hline
-17  & 789 & 3 \\\hline
-\ldots & \ldots & \ldots\\\hline
-\end{tabular}
-\hspace{0.5cm}
 % 
-% \medskip
-\ghost{
-\begin{minipage}[t]{7cm}
-\vspace{0.0cm}
-Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit Namen (und oft auch Datentypen) ersetzt:
-\begin{itemize}
-\item linien[Linie:string, Typ:string]
-\item haltestellen[SID:int, Halt:string, Rollstuhl:bool]
-\item verbindung[Von:int, Zu:int, Linie:string]
-\end{itemize}
-\end{minipage}}
-
-\end{frame}
-
-\begin{frame}\frametitle{Formeln = Anfragen}
-
-Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
-kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
-
-\examplebox{Beispiel: Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
-hat drei freie Variablen. Für eine gegebene Datenbankinstanz (eindliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
-}\pause
-
-Das Beispiel illustriert:
-\begin{center}
-\large
-\redalert{Formeln (ev. mit freien Variablen) = Datenbankanfragen}\\[1ex]
-\redalert{Erfüllende Zuweisungen = Anfrage-Ergebnisse}\\
-\end{center}
-\end{frame}
-
-
-\begin{frame}\frametitle{Prädikatenlogik $\approx$ SQL}
-
-\redalert{Was ist eine Datenbank-Anfrage?}
-\begin{itemize}
-\item Syntax: Eine Anfrage $Q$ ist ein Wort aus einer Anfragesprache
-\item Semantik: Jede Anfrage $Q$ definiert eine Anfragefunktion $f_Q$, \ghost{die}\\ für jede Datenbankinstanz $\Inter$ eine Ergebnisrelation $f_Q(\Inter)$ liefert
-\end{itemize}\pause
-
-\examplebox{Beispiel: für eine prädikatenlogische Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$ ist $f_Q$ die Funktion, die $\Inter$ auf die Relation $f_Q(\Inter)=\{\tuple{\delta_1,\ldots,\delta_n}\mid \Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q\}$ abbildet.
-}\pause
-
-Mit so einer allgemeinen Definition kann man sehr unterschiedliche Anfragesprachen über ihre Anfragefunktion vergleichen
-\smallskip
-
-\theobox{Satz: Die Menge der durch prädikatenlogische Formeln $Q$ darstellbaren Anfragefunktionen $f_Q$ ist genau die Menge der Anfragefunktionen, die durch einfache SQL-Anfragen darstellbar sind.}
-
-\tiny "`einfaches SQL"': Relationale Algebra, der Kern von SQL; SELECT, JOIN, UNION, MINUS, aber keine komplexeren Features wie WITH RECURSIVE etc. Außerdem keine Datentypen, da wir diese in Logik nicht eingeführt haben.
-
-\end{frame}
-
-\begin{frame}\frametitle{Relationale Algebren}
-
-Datenbankanfragen werden oft in \redalert{relationaler Algebra} dargestellt,
-bei der man Relationen mit Operationen zu einem Anfrageergebnis kombiniert
-\bigskip
-
-\examplebox{Beispiel: Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
-entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
-\[ \pi_{\text{Von},\text{Zu},\text{Linie}}(\textsf{verbindung}\bowtie\textsf{linien})  \]
-}
-
-\footnotesize
-\emph{Anmerkung:} SQL hat noch einen leicht anderen Stil. Variablen stehen dort für ganze Tabellenzeilen und man verwendet Notation der Form "`$\textsf{linien}.\text{Typ}$"', um auf deren Einträge zuzugreifen ("`Tuple-Relational Calculus"'). Das ändert an der Ausdrucksstärke nichts.
-
-\end{frame}
-
-\begin{frame}\frametitle{Anfragebeantwortung als Modell Checking}
-
-\emph{Erkenntnis:} Die wesentliche Berechnungsaufgabe bei der Beantwortung von Datenbankabfragen ist das folgende Entscheidungsproblem:\bigskip
-
-\defbox{Das \redalert{Auswertungsproblem} (\alert{Model Checking}) der Prädikatenlogik lautet wie folgt:\\[1ex]
-\emph{Gegeben:} Eine Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$; eine endliche Interpretation $\Inter$; Elemente $\delta_1,\ldots,\delta_n\in\Delta^\Inter$\\
-\emph{Frage:} Gilt $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q$?
-}\bigskip\pause
-
-Naive Methode der Anfragebeantwortung:
-\begin{itemize}
-\item Betrachte alle $(\Delta^\Inter)^n$ möglichen Ergebnisse
-\item Entscheide jeweils das Auswertungsproblem
-\end{itemize}
-
-Praktisch relevante Frage:\medskip
-
-\redalert{Wie schwer ist das Auswertungsproblem?}
-
-\end{frame}
-
+% \begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
+% 
+% Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
+% \smallskip
+% 
+% \defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
+% \narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
+% }\pause
+% 
+% \theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
+% 
+% \emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
+% 
+% Dann ist die folgende unendliche Theorie unerfüllbar:
+% \[\begin{array}{rll}
+% \big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
+% & \neg\exists x_1,x_2.(r(a,x_1)\wedge
+% r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
+% \end{array}\]
+% Aber jede endliche Teilmenge der Theorie ist erfüllbar.
+% Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
+% 
+% \end{frame}
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
@@ -586,25 +350,283 @@ Die prädikatenlogische Resolution ist ein vollständiges und korrektes Verfahre
 In gewissem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
 \bigskip
 
-Bei Beschränkung auf endliche Modelle gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
+% Bei Beschränkung auf endliche Modelle gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
 
-Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken
+% Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item Komplexität des Auswertungsproblems
+\item Endliche Modelle und Datenbanken
+\item Datalog
 \item Gödel
-\item Probeklausur und 3. Repetitorium
 \end{itemize}
 }
 
 \end{frame}
 
+% 
+% \sectionSlide{Endliche Modelle}
+% 
+% \begin{frame}\frametitle{Endlichkeit von Modellen}
+% 
+% \alert{Löwenheim-Skolem}: Jede erfüllbare Formel hat ein abzählbar großes Modell
+% \bigskip
+% 
+% \redalert{Kann man dies noch verstärken? Hat jede erfüllbare Formel vielleicht sogar ein endliches Modell?}\pause\bigskip
+% 
+% \alert{Nein! Prädikatenlogik kann unendliche Modelle erzwingen:}\medskip
+% 
+% \examplebox{Beispiel:\vspace{-2ex}
+% \begin{align*}
+% \forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatMutter}(x,y)\wedge\textsf{Mensch}(y))) \\
+% \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
+% \forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))\\
+% \forall x.&\neg \textsf{hatVorfahre}(x,x)
+% \end{align*}
+% Diese Theorie ist erfüllbar, aber hat nur unendliche Modelle.\\ (Kontrollfrage: Warum?)
+% }
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Logik über endlichen Modellen}
+% 
+% Sind unendliche Modelle in der Praxis überhaupt wünschenswert?\\
+% Geht es auch endlich?
+% \bigskip\pause
+% 
+% \defbox{\redalert{Prädikatenlogik mit endlichen Modellen} verwendet die gleiche Syntax und Semantik wie Prädikatenlogik allgemein, aber mit der zusätzlichen Bedingung, dass die Domäne von Interpretationen endlich sein muss.}\pause
+% 
+% \emph{Monotonie (Rückblick):} weniger Modelle $=$ mehr Konsequenzen
+% 
+% \examplebox{Beispiel:\vspace{-2ex}
+% \begin{align*}
+% \forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatVorfahre}(x,y)\wedge\textsf{Mensch}(y))) \\
+% % \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
+% \forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))
+% \end{align*}\vspace{-4ex}
+% 
+% Diese Theorie ist in der Prädikatenlogik mit endlichen Modellen erfüllbar, aber jedes endliche Modell muss einen $\textsf{hatVorfahre}$-Zyklus enthalten. Daher folgt
+% $\exists x.\textsf{hatVorfahre}(x,x)$, obwohl dies in der allgemeinen Prädikatenlogik keine Konsequenz wäre.
+% }
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Erfüllbarkeit wird semi-entscheidbar}
+% 
+% Die Bezeichnung der Elemente einer Interpretationsdomäne ist irrelevant -- für die Wahrheit von Sätzen kommt es nur darauf an, wie Konstanten und Prädikatsymbole interpretiert werden.\bigskip\pause
+% 
+% \anybox{strongyellow}{\redalert{Erfüllbarkeitstest}\\[1ex]
+% \emph{Gegeben:} Ein Satz $F$
+% \begin{itemize}
+% \item Betrachte systematisch alle endlichen Interpretationen der Symbole in $F$ (z.B. geordnet nach aufsteigender Größe der Domäne)
+% \item Prüfe für jedes Modell $\Inter$, ob $\Inter\models F$ gilt:
+% \begin{itemize}
+% \item Falls ja, dann gib aus "`erfüllbar"'
+% \item Falls nein, dann fahre mit nächster Interpretation fort
+% \end{itemize}
+% \end{itemize}
+% }
+% 
+% Es ist leicht zu sehen, dass dieser Algorithmus die Erfüllbarkeit in endlichen Modellen semi-entscheidet.
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Endlich = einfach?}\pause
+% 
+% Trotzdem bleibt logisches Schließen schwer:
+% 
+% \theobox{Satz von Trakhtenbrot: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik mit endlichen Modellen ist unentscheidbar.}
+% 
+% (ohne Beweis)\pause\bigskip
+% 
+% \theobox{Korollar: Es gibt kein vollständiges und korrektes Beweissystem für Prädikatenlogik mit endlichen Modellen.}
+% 
+% \emph{Beweis:} Angenommen es gäbe ein solches System.\pause{} Dann wäre logische Konsequenz und speziell auch Unerfüllbarkeit semi-entscheidbar.\bigskip\pause
+% 
+% Wir wissen, dass Erfüllbarkeit ebenfalls semi-entscheidbar ist.\bigskip\pause
+% 
+% Zusammen ergäbe sich also ein Entscheidungsverfahren für logisches Schließen -- Widerspruch zu Trakhtenbrot.
+% \qed
+% 
+% \end{frame}
+% 
+% \sectionSlide{Endliche Modelle in der Praxis}
+% 
+% \begin{frame}\frametitle{Wozu endliche Modelle}
+% 
+% In gewisser Weise ist Schließen mit endlichen Modellen also schwerer als mit unendlichen, weil man statt logischer Konsequenz nunmehr nur Nicht-Konsequenz semi-entscheiden kann
+% \bigskip
+% 
+% Trotzdem sind endliche Interpretationen in der Informatik praktisch relevant:\medskip
+% 
+% \anybox{purple}{Eine endliche Interpretation $\Inter$ ist (im Wesentlichen) das gleiche wie eine \redalert{relationale Datenbankinstanz}.
+% }
+% \emph{Intuition:}
+% \begin{itemize}
+% \item Prädikatsymbole $p$ bezeichnen Tabellen
+% \item Relationen $p^\Inter$ entsprechen den in der Datenbank gespeicherten Tabelleninhalten
+% \end{itemize}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Benannte Parameter}
+% 
+% Relationale Datenbanken verwenden \redalert{Namen für die Parameter} (Spalten) in Relationen,
+% anstatt sie mittels Reihenfolge zu adressieren:\bigskip
+% 
+% \scriptsize
+% 
+% \begin{tabular}[t]{|l|l|}
+% \multicolumn{2}{@{}l}{linien:}\\
+% \hline
+% \textbf{Linie} & \textbf{Typ} \\
+% \hline
+% 85 & Bus \\\hline
+% 3 & Tram \\\hline
+% F1 & Fähre \\\hline
+% \ldots & \ldots\\\hline
+% \end{tabular}
+% \hspace{15mm}
+% \begin{tabular}[t]{|l|l|l|}
+% \multicolumn{2}{@{}l}{haltestellen:}\\
+% \hline
+% \textbf{SID} & \textbf{Name} & \textbf{Rollstuhl}\\
+% \hline
+% 17 & Hauptbahnhof & true\\\hline
+% 42 & Helmholtzstr. & true\\\hline
+% 57 & Stadtgutstr. & true\\\hline
+% 123 & Gustav-Freytag-Str. & false\\\hline
+% \ldots & \ldots & \ldots\\\hline
+% \end{tabular}
+% 
+% \begin{tabular}[t]{|l|l|l|}
+% \multicolumn{2}{@{}l}{verbindung:}\\
+% \hline
+% \textbf{Von} & \textbf{Zu} & \textbf{Linie}\\
+% \hline
+% 57  & 42 & 85 \\\hline
+% 17  & 789 & 3 \\\hline
+% \ldots & \ldots & \ldots\\\hline
+% \end{tabular}
+% \hspace{0.5cm}
+% % 
+% % \medskip
+% \ghost{
+% \begin{minipage}[t]{7cm}
+% \vspace{0.0cm}
+% Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit Namen (und oft auch Datentypen) ersetzt:
+% \begin{itemize}
+% \item linien[Linie:string, Typ:string]
+% \item haltestellen[SID:int, Halt:string, Rollstuhl:bool]
+% \item verbindung[Von:int, Zu:int, Linie:string]
+% \end{itemize}
+% \end{minipage}}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Formeln = Anfragen}
+% 
+% Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
+% kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
+% 
+% \examplebox{Beispiel: Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+% hat drei freie Variablen. Für eine gegebene Datenbankinstanz (endliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
+% }\pause
+% 
+% Das Beispiel illustriert:
+% \begin{center}
+% \large
+% \redalert{Formeln (ev. mit freien Variablen) = Datenbankanfragen}\\[1ex]
+% \redalert{Erfüllende Zuweisungen = Anfrage-Ergebnisse}\\
+% \end{center}
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Prädikatenlogik $\approx$ SQL}
+% 
+% \redalert{Was ist eine Datenbank-Anfrage?}
+% \begin{itemize}
+% \item Syntax: Eine Anfrage $Q$ ist ein Wort aus einer Anfragesprache
+% \item Semantik: Jede Anfrage $Q$ definiert eine Anfragefunktion $f_Q$, \ghost{die}\\ für jede Datenbankinstanz $\Inter$ eine Ergebnisrelation $f_Q(\Inter)$ liefert
+% \end{itemize}\pause
+% 
+% \examplebox{Beispiel: für eine prädikatenlogische Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$ ist $f_Q$ die Funktion, die $\Inter$ auf die Relation $f_Q(\Inter)=\{\tuple{\delta_1,\ldots,\delta_n}\mid \Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q\}$ abbildet.
+% }\pause
+% 
+% Mit so einer allgemeinen Definition kann man sehr unterschiedliche Anfragesprachen über ihre Anfragefunktion vergleichen
+% \smallskip
+% 
+% \theobox{Satz: Die Menge der durch prädikatenlogische Formeln $Q$ darstellbaren Anfragefunktionen $f_Q$ ist genau die Menge der Anfragefunktionen, die durch einfache SQL-Anfragen darstellbar sind.}
+% 
+% \tiny "`einfaches SQL"': Relationale Algebra, der Kern von SQL; SELECT, JOIN, UNION, MINUS, aber keine komplexeren Features wie WITH RECURSIVE etc. Außerdem keine Datentypen, da wir diese in Logik nicht eingeführt haben.
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Relationale Algebren}
+% 
+% Datenbankanfragen werden oft in \redalert{relationaler Algebra} dargestellt,
+% bei der man Relationen mit Operationen zu einem Anfrageergebnis kombiniert
+% \bigskip
+% 
+% \examplebox{Beispiel: Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+% entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
+% \[ \pi_{\text{Von},\text{Zu},\text{Linie}}(\textsf{verbindung}\bowtie\textsf{linien})  \]
+% }
+% 
+% \footnotesize
+% \emph{Anmerkung:} SQL hat noch einen leicht anderen Stil. Variablen stehen dort für ganze Tabellenzeilen und man verwendet Notation der Form "`$\textsf{linien}.\text{Typ}$"', um auf deren Einträge zuzugreifen ("`Tuple-Relational Calculus"'). Das ändert an der Ausdrucksstärke nichts.
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Anfragebeantwortung als Modell Checking}
+% 
+% \emph{Erkenntnis:} Die wesentliche Berechnungsaufgabe bei der Beantwortung von Datenbankabfragen ist das folgende Entscheidungsproblem:\bigskip
+% 
+% \defbox{Das \redalert{Auswertungsproblem} (\alert{Model Checking}) der Prädikatenlogik lautet wie folgt:\\[1ex]
+% \emph{Gegeben:} Eine Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$; eine endliche Interpretation $\Inter$; Elemente $\delta_1,\ldots,\delta_n\in\Delta^\Inter$\\
+% \emph{Frage:} Gilt $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q$?
+% }\bigskip\pause
+% 
+% Naive Methode der Anfragebeantwortung:
+% \begin{itemize}
+% \item Betrachte alle $(\Delta^\Inter)^n$ möglichen Ergebnisse
+% \item Entscheide jeweils das Auswertungsproblem
+% \end{itemize}
+% 
+% Praktisch relevante Frage:\medskip
+% 
+% \redalert{Wie schwer ist das Auswertungsproblem?}
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Zusammenfassung und Ausblick}
+% 
+% Die prädikatenlogische Resolution ist ein vollständiges und korrektes Verfahren für die Unerfüllbarkeit logischer Formeln\bigskip
+% 
+% In gewissem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
+% \bigskip
+% 
+% Bei Beschränkung auf endliche Modelle gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
+% 
+% Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken
+% 
+% \anybox{yellow}{
+% Was erwartet uns als nächstes?
+% \begin{itemize}
+% \item Komplexität des Auswertungsproblems
+% \item Gödel
+% \item Probeklausur und 2. Repetitorium
+% \end{itemize}
+% }
+% 
+% \end{frame}
+
 
 \begin{frame}[t]\frametitle{Bildrechte}
 
-Folie \ref{frame_herbrand}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
+Folie \ref{frame_herbrand}, \ref{frame_herbrand_b}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
 
 \end{frame}
 
