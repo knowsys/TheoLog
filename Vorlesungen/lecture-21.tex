@@ -1,0 +1,705 @@
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
+
+\input{macros-lecture}
+
+\defineTitle{21}{Datalog und Logikprogrammierung}{2. Juli 2018}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}\frametitle{Rückblick: Kompaktheit}
+
+Die Existenz von vollständigen und korrekten logischen Schließverfahren wie Resolution
+ist eng verwandt mit einer grundsätzlichen Eigenschaft der Prädikatenlogik:\bigskip
+
+\theobox{Satz (Endlichkeitssatz, Kompaktheitssatz): Falls eine unendliche Menge prädikatenlogischer Sätze $\mathcal{T}$ eine logische Konsequenz $F$ hat, so ist $F$ auch Konsequenz einer endlichen Teilmenge von $\mathcal{T}$.}\pause
+
+\small
+\emph{Beweis:} Die gegebene logische Konsequenz ist gleichbedeutend damit, dass
+$\mathcal{T}\cup\{\neg F\}$ unerfüllbar ist.\medskip
+
+Laut Resolutionssatz (Vollständigkeit) kann die Unerfüllbarkeit von $\mathcal{T}\cup\{\neg F\}$ nach endlich vielen Schritten durch Ableitung der leeren Klausel nachgewiesen werden.\medskip
+
+Dabei können nur endlich viele Klauseln aus der Klauselform von $\mathcal{T}\cup\{\neg F\}$ verwendet worden sein. Laut Resolutionssatz (Korrektheit) folgt die Konsequenz also bereits aus einer endlichen Teilmenge von $\mathcal{T}$.\qed
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
+
+Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
+\smallskip
+
+\defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
+\narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
+}\pause
+
+\theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
+
+\emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
+
+Dann ist die folgende unendliche Theorie unerfüllbar:
+\[\begin{array}{rll}
+\big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
+& \neg\exists x_1,x_2.(r(a,x_1)\wedge
+r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
+\end{array}\]
+Aber jede endliche Teilmenge der Theorie ist erfüllbar.
+Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
+
+\end{frame}
+
+
+\sectionSlide{Endliche Modelle}
+
+\begin{frame}\frametitle{Endlichkeit von Modellen}
+
+\alert{Löwenheim-Skolem}: Jede erfüllbare Formel hat ein abzählbar großes Modell
+\bigskip
+
+\redalert{Kann man dies noch verstärken? Hat jede erfüllbare Formel vielleicht sogar ein endliches Modell?}\pause\bigskip
+
+\alert{Nein! Prädikatenlogik kann unendliche Modelle erzwingen:}\medskip
+
+\examplebox{Beispiel:\vspace{-2ex}
+\begin{align*}
+\forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatMutter}(x,y)\wedge\textsf{Mensch}(y))) \\
+\forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
+\forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))\\
+\forall x.&\neg \textsf{hatVorfahre}(x,x)
+\end{align*}
+Diese Theorie ist erfüllbar, aber hat nur unendliche Modelle.\\ (Kontrollfrage: Warum?)
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Logik über endlichen Modellen}
+
+Sind unendliche Modelle in der Praxis überhaupt wünschenswert?\\
+Geht es auch endlich?
+\bigskip\pause
+
+\defbox{\redalert{Prädikatenlogik mit endlichen Modellen} verwendet die gleiche Syntax und Semantik wie Prädikatenlogik allgemein, aber mit der zusätzlichen Bedingung, dass die Domäne von Interpretationen endlich sein muss.}\pause
+
+\emph{Monotonie (Rückblick):} weniger Modelle $=$ mehr Konsequenzen
+
+\examplebox{Beispiel:\vspace{-2ex}
+\begin{align*}
+\forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatVorfahre}(x,y)\wedge\textsf{Mensch}(y))) \\
+% \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
+\forall x,y,z.&((\textsf{hatVorfahre}(x,y)\wedge\textsf{hatVorfahre}(y,z))\to\textsf{hatVorfahre}(x,z))
+\end{align*}\vspace{-4ex}
+
+Diese Theorie ist in der Prädikatenlogik mit endlichen Modellen erfüllbar, aber jedes endliche Modell muss einen $\textsf{hatVorfahre}$-Zyklus enthalten. Daher folgt
+$\exists x.\textsf{hatVorfahre}(x,x)$, obwohl dies in der allgemeinen Prädikatenlogik keine Konsequenz wäre.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Erfüllbarkeit wird semi-entscheidbar}
+
+Die Bezeichnung der Elemente einer Interpretationsdomäne ist irrelevant -- für die Wahrheit von Sätzen kommt es nur darauf an, wie Konstanten und Prädikatsymbole interpretiert werden.\bigskip\pause
+
+\anybox{strongyellow}{\redalert{Erfüllbarkeitstest}\\[1ex]
+\emph{Gegeben:} Ein Satz $F$
+\begin{itemize}
+\item Betrachte systematisch alle endlichen Interpretationen der Symbole in $F$ (z.B. geordnet nach aufsteigender Größe der Domäne)
+\item Prüfe für jedes Modell $\Inter$, ob $\Inter\models F$ gilt:
+\begin{itemize}
+\item Falls ja, dann gib aus "`erfüllbar"'
+\item Falls nein, dann fahre mit nächster Interpretation fort
+\end{itemize}
+\end{itemize}
+}
+
+Es ist leicht zu sehen, dass dieser Algorithmus die Erfüllbarkeit in endlichen Modellen semi-entscheidet.
+
+\end{frame}
+
+\begin{frame}\frametitle{Endlich = einfach?}\pause
+
+Trotzdem bleibt logisches Schließen schwer:
+
+\theobox{Satz von Trakhtenbrot: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik mit endlichen Modellen ist unentscheidbar.}
+
+(ohne Beweis; mehr dazu in der Vorlesung \alert{Database Theory})\pause\bigskip
+
+\theobox{Korollar: Es gibt kein vollständiges und korrektes Beweissystem für Prädikatenlogik mit endlichen Modellen.}
+
+\emph{Beweis:} Angenommen es gäbe ein solches System.\pause{} Dann wäre logische Konsequenz und speziell auch Unerfüllbarkeit semi-entscheidbar.\bigskip\pause
+
+Wir wissen, dass Erfüllbarkeit ebenfalls semi-entscheidbar ist.\bigskip\pause
+
+Zusammen ergäbe sich also ein Entscheidungsverfahren für logisches Schließen -- Widerspruch zu Trakhtenbrot.
+\qed
+
+\end{frame}
+
+\sectionSlide{Endliche Modelle in der Praxis}
+
+\begin{frame}\frametitle{Wozu endliche Modelle}
+
+In gewisser Weise ist Schließen mit endlichen Modellen also schwerer als mit unendlichen, weil man statt logischer Konsequenz nunmehr nur Nicht-Konsequenz semi-entscheiden kann
+\bigskip
+
+Trotzdem sind endliche Interpretationen in der Informatik praktisch relevant:\medskip
+
+\anybox{purple}{Eine endliche Interpretation $\Inter$ ist (im Wesentlichen) das gleiche wie eine \redalert{relationale Datenbankinstanz}.
+}
+\emph{Intuition:}
+\begin{itemize}
+\item Prädikatsymbole $p$ bezeichnen Tabellen
+\item Relationen $p^\Inter$ entsprechen den in der Datenbank gespeicherten Tabelleninhalten
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Benannte Parameter}
+
+Relationale Datenbanken verwenden \redalert{Namen für die Parameter} (Spalten) in Relationen,
+anstatt sie mittels Reihenfolge zu adressieren:\bigskip
+
+\scriptsize
+
+\begin{tabular}[t]{|l|l|}
+\multicolumn{2}{@{}l}{linien:}\\
+\hline
+\textbf{Linie} & \textbf{Typ} \\
+\hline
+85 & Bus \\\hline
+3 & Tram \\\hline
+F1 & Fähre \\\hline
+\ldots & \ldots\\\hline
+\end{tabular}
+\hspace{15mm}
+\begin{tabular}[t]{|l|l|l|}
+\multicolumn{2}{@{}l}{haltestellen:}\\
+\hline
+\textbf{SID} & \textbf{Name} & \textbf{Rollstuhl}\\
+\hline
+17 & Hauptbahnhof & true\\\hline
+42 & Helmholtzstr. & true\\\hline
+57 & Stadtgutstr. & true\\\hline
+123 & Gustav-Freytag-Str. & false\\\hline
+\ldots & \ldots & \ldots\\\hline
+\end{tabular}
+
+\begin{tabular}[t]{|l|l|l|}
+\multicolumn{2}{@{}l}{verbindung:}\\
+\hline
+\textbf{Von} & \textbf{Zu} & \textbf{Linie}\\
+\hline
+57  & 42 & 85 \\\hline
+17  & 789 & 3 \\\hline
+\ldots & \ldots & \ldots\\\hline
+\end{tabular}
+\hspace{0.5cm}
+% 
+% \medskip
+\ghost{
+\begin{minipage}[t]{7cm}
+\vspace{0.0cm}
+Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit Namen (und oft auch Datentypen) ersetzt:
+\begin{itemize}
+\item linien[Linie:string, Typ:string]
+\item haltestellen[SID:int, Halt:string, Rollstuhl:bool]
+\item verbindung[Von:int, Zu:int, Linie:string]
+\end{itemize}
+\end{minipage}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Formeln = Anfragen}
+
+Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
+kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
+
+\examplebox{Beispiel: Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+hat drei freie Variablen. Für eine gegebene Datenbankinstanz (endliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
+}\pause
+
+Das Beispiel illustriert:
+\begin{center}
+\large
+\redalert{Formeln (ev. mit freien Variablen) = Datenbankanfragen}\\[1ex]
+\redalert{Erfüllende Zuweisungen = Anfrage-Ergebnisse}\\
+\end{center}
+\end{frame}
+
+\begin{frame}\frametitle{Logik und Datenbanken}
+
+\alert{Relationale Datenbankinstanzen = Endliche Interpretationen}
+\begin{itemize}
+\item Tabellen(namen) entsprechen Prädikatssymbolen
+\item Kleinere syntaktische Unterschiede (benannte vs. geordnete Parameter)
+\end{itemize}
+
+\alert{Relationale Datenbankanfragen = Prädikatenlogische Formeln}
+\begin{itemize}
+\item Zuweisungen $\Zuweisung$ zu freien Variablen als mögliche Anfrageergebnisse
+\item $\Inter,\Zuweisung\models Q$ bedeutet: $\Zuweisung$ ist Ergebnis der Anfrage $Q$ auf Datenbankinstanz $\Inter$
+% \item Prädikatenlogik kann die selben Anfragefunktionen ausdrücken wie normales SQL
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Prädikatenlogik $\approx$ SQL}
+
+\redalert{Was ist eine Datenbank-Anfrage?}
+\begin{itemize}
+\item Syntax: Eine Anfrage $Q$ ist ein Wort aus einer Anfragesprache
+\item Semantik: Jede Anfrage $Q$ definiert eine Anfragefunktion $f_Q$, \ghost{die}\\ für jede Datenbankinstanz $\Inter$ eine Ergebnisrelation $f_Q(\Inter)$ liefert
+\end{itemize}\pause
+
+\examplebox{Beispiel: für eine prädikatenlogische Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$ ist $f_Q$ die Funktion, die $\Inter$ auf die Relation $f_Q(\Inter)=\{\tuple{\delta_1,\ldots,\delta_n}\mid \Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q\}$ abbildet.
+}\pause
+
+Mit so einer allgemeinen Definition kann man sehr unterschiedliche Anfragesprachen über ihre Anfragefunktion vergleichen
+\smallskip
+
+\theobox{Satz: Die Menge der durch prädikatenlogische Formeln $Q$ darstellbaren Anfragefunktionen $f_Q$ ist genau die Menge der Anfragefunktionen, die durch einfache SQL-Anfragen darstellbar sind.}
+
+\tiny "`einfaches SQL"': Relationale Algebra, der Kern von SQL; SELECT, JOIN, UNION, MINUS, aber keine komplexeren Features wie WITH RECURSIVE etc. Außerdem keine Datentypen, da wir diese in Logik nicht eingeführt haben.
+
+\end{frame}
+
+\begin{frame}\frametitle{Relationale Algebren}
+
+Datenbankanfragen werden oft in \redalert{relationaler Algebra} dargestellt,
+bei der man Relationen mit Operationen zu einem Anfrageergebnis kombiniert
+\bigskip
+
+\examplebox{Beispiel: Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
+\[ \pi_{\text{Von},\text{Zu},\text{Linie}}(\textsf{verbindung}\bowtie\textsf{linien})  \]
+}\medskip
+
+% \footnotesize
+\emph{Anmerkung:} SQL hat noch einen leicht anderen Stil. Variablen stehen dort für ganze Tabellenzeilen und man verwendet Notation der Form "`$\textsf{linien}.\text{Typ}$"', um auf deren Einträge zuzugreifen ("`Tuple-Relational Calculus"'). Das ändert an der Ausdrucksstärke nichts.
+
+\end{frame}
+
+\begin{frame}\frametitle{Anfragebeantwortung als Model Checking}
+
+\emph{Erkenntnis:} Die wesentliche Berechnungsaufgabe bei der Beantwortung von Datenbankabfragen ist das folgende Entscheidungsproblem:\bigskip
+
+\defbox{Das \redalert{Auswertungsproblem} (\alert{Model Checking}) der Prädikatenlogik lautet wie folgt:\\[1ex]
+\emph{Gegeben:} Eine Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$; eine endliche Interpretation $\Inter$; Elemente $\delta_1,\ldots,\delta_n\in\Delta^\Inter$\\
+\emph{Frage:} Gilt $\Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q$?
+}\bigskip\pause
+
+Naive Methode der Anfragebeantwortung:
+\begin{itemize}
+\item Betrachte alle $(\Delta^\Inter)^n$ möglichen Ergebnisse
+\item Entscheide jeweils das Auswertungsproblem
+\end{itemize}
+
+Praktisch relevante Frage:\medskip
+
+\redalert{Wie schwer ist das Auswertungsproblem?}
+
+\end{frame}
+
+
+\newcommand{\mytab}{\texttt{~~}}
+\begin{frame}\frametitle{Ein Algorithmus für das Auswertungsproblem}
+
+Wir nehmen an, dass die Formel $F$ nur $\neg$, $\wedge$ und $\exists$ enthält
+(durch Umformung möglich)\bigskip
+
+\codebox{
+$\texttt{function}~\text{Eval}(F,\Inter,\Zuweisung) :$
+\smallskip
+
+\begin{tabular}{rl}
+01 & $\Scode{switch}~(F):$ \\[-1ex]
+02 & $\mytab\Scode{case}~p(c_1,\ldots,c_n):~\texttt{return}~\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$\\[-1ex]
+03 & $\mytab\Scode{case}~\neg G:~\texttt{return}~\Scode{not~}\text{Eval}(G,\Inter,\Zuweisung)$\\[-1ex]
+04 & $\mytab\Scode{case}~G_1\wedge G_2:~\texttt{return}~\text{Eval}(G_1,\Inter,\Zuweisung)\Scode{~and~}\text{Eval}(G_2,\Inter,\Zuweisung)$\\[-1ex]
+05 & $\mytab\Scode{case}~\exists x.G:$\\[-1ex]
+06 & $\mytab\mytab\Scode{for}~c\in\Delta^\Inter~:$\\[-1ex]
+07 & $\mytab\mytab\mytab\Scode{if}~\text{Eval}(G\{x\mapsto c\},\Inter,\Zuweisung)~\Scode{then}~\texttt{return}~\Scode{true}$\\[-1ex]
+08 & $\mytab\mytab\texttt{return}~\Scode{false}$\\[-1ex]
+\end{tabular}
+}
+
+\emph{Anmerkung:} Wenn Konstanten $c$ in der Anfrage vorkommen, dann nimmt man
+in der Regel an, dass $c^\Inter=c$ ist.\medskip
+
+\emph{Anmerkung 2:} In der Praxis stimmt das nicht ganz. Insbesondere bei Verwendung von Datentypen haben DB-Systeme normalerweise eingebaute Interpretationsfunktionen. Zum Beispiel würden die Konstanten $\Scodelit{\quoted{42}}$ und $\Scodelit{\quoted{+42}}$ die selbe Ganzzahl bezeichnen.
+
+\end{frame}
+
+\begin{frame}\frametitle{Zeitkomplexität}
+
+Sei $m$ die Größe von $F$ und $n=|\Inter|$ (Gesamtgröße der Datenbank)
+\bigskip
+
+\begin{itemize}
+\item Wie viele rekursive Aufrufe von Eval gibt es?\\\pause
+$\leadsto$ einen pro Teilformel: $\leq m$
+%
+\item Maximale Rekursionstiefe?\\\pause
+$\leadsto$ beschränkt durch Gesamtzahl der Aufrufe: $\leq m$
+%
+\item Maximale Zahl der Iterationen in $\Scode{for}$-Schleife?\\\pause
+$\leadsto$ $|\Delta^\Inter|\leq n$ pro rekursivem Aufruf\\
+$\leadsto$ insgesamt $\leq n^m$ Iterationen
+%
+\item $\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$ ist entscheidbar in linearer Zeit bzgl.\ $n$
+\end{itemize}
+\bigskip\pause
+
+Gesamtlaufzeit in $m\cdot n^m\cdot n=m\cdot n^{m+1}$:
+\begin{itemize}
+\item Komplexität des Algorithmus: \alert{in \ExpTime}
+\item Komplexität bzgl. Größe der Datenbank ($m$ konstant): \alert{in \PTime}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Speicherkomplexität}
+
+Wir erhalten eine bessere Komplexitätsabschätzung, wenn wir den Speicherbedarf
+betrachten
+\bigskip
+
+Sei $m$ die Größe von $F$ und $n=|\Inter|$ (Gesamtgröße der Datenbank)
+\bigskip
+
+\begin{itemize}
+\item Speichere pro (rekursivem) Aufruf einen Pointer auf eine Teilformel von $F$: $\log m$
+\item Speichere für jede Variable in $F$ (maximal $m$) die aktuelle Zuweisung (als Pointer): $m\cdot\log n$
+\item $\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$ ist entscheidbar in logarithmischem Speicher bzgl.\ $n$
+\end{itemize}
+\bigskip\pause
+
+Speicher in \ghost{$m\log m + m\log n + \log n = m\log m + (m+1)\log n$}
+\begin{itemize}
+\item Komplexität des Algorithmus: \alert{in \PSpace}
+\item Komplexität bzgl. Größe der Datenbank ($m$ konstant): \alert{in \LogSpace}
+\end{itemize}
+
+{\tiny\emph{Zur Erinnerung:} $\PSpace\subseteq\ExpTime$ und $\LogSpace\subseteq\PTime$, d.h. die obigen Schranken sind besser}
+
+\end{frame}
+
+\begin{frame}\frametitle{Komplexität des Auswertungsproblems}
+
+\theobox{Satz: Das Auswertungsproblem der Prädikatenlogik ist $\PSpace$-vollständig.}\pause
+
+\emph{Beweis:} Durch Reduktion vom Auswertungsproblem quantifizierter Boolscher Formeln (\Slang{TrueQBF}).\medskip
+
+Sei $\quantor_1 p_1. \quantor_2 p_2. \cdots \quantor_n p_n.F[p_1,\ldots,p_n]$ eine QBF (mit $\quantor_i\in\{\forall,\exists\}$)\pause
+\begin{itemize}
+\item Datenbankinstanz $\Inter$ mit $\Delta^\Inter=\{0,1\}$
+\item Eine Tabelle mit einer Spalte: $\textsf{true}(1)$
+\item Aus der gegebenen QBF erstellen wir die folgende prädikatenlogische Formel ohne freie Variablen:
+\[\quantor_1 x_1. \quantor_2 x_2. \cdots \quantor_n x_n.F[p_1/\textsf{true}(x_1),\ldots,p_n/\textsf{true}(x_n)]\]
+wobei $F[p_1/\textsf{true}(x_1),\ldots,p_n/\textsf{true}(x_n)]$ die Formel ist, die aus $F$ entsteht, wenn man jedes aussagenlogische Atom $p_i$ durch das prädikatenlogische Atom
+$\textsf{true}(x_n)$ ersetzt.
+\end{itemize}
+Die Korrektheit dieser Reduktion ist leicht zu zeigen. \qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Wie schwer sind Datenbankabfragen?}
+
+\theobox{Korollar: Die Beantwortung von SQL-Anfragen ist \PSpace-hart, sogar wenn die Datenbank nur eine einzige Tabelle mit einer einzigen Zeile enthält.}\bigskip
+
+Die Komplexität steckt vor allem in der Struktur der Anfrage.\bigskip
+
+Ist die Anfrage fest vorgegeben oder in ihrer Größe beschränkt, dann wird das praktische Verhalten oft von der Datenbankgröße dominiert: bezüglich dieser Größe ist das Problem aber in $\LogSpace$.\bigskip
+
+Man kann sogar noch niedrigere Komplexitätsschranken bzgl. der Datenbankgröße angeben (siehe Vorlesung Database Theory).
+\bigskip
+
+\alert{$\leadsto$ SQL-Anfragebeantwortung ist praktisch implementierbar, aber nur solange die Anfragen nicht zu komplex werden.}
+
+\end{frame}
+
+\sectionSlide{Die Grenzen der Prädikatenlogik}
+
+\begin{frame}\frametitle{Reprise: Formeln als Anfragen}
+
+{\scriptsize
+
+\begin{tabular}[t]{|l|l|}
+\multicolumn{2}{@{}l}{linien:}\\
+\hline
+\textbf{Linie} & \textbf{Typ} \\
+\hline
+85 & Bus \\\hline
+3 & Tram \\\hline
+F1 & Fähre \\\hline
+\ldots & \ldots\\\hline
+\end{tabular}
+\hspace{15mm}
+\begin{tabular}[t]{|l|l|l|}
+\multicolumn{2}{@{}l}{haltestellen:}\\
+\hline
+\textbf{SID} & \textbf{Name} & \textbf{Rollstuhl}\\
+\hline
+17 & Hauptbahnhof & true\\\hline
+42 & Helmholtzstr. & true\\\hline
+57 & Stadtgutstr. & true\\\hline
+123 & Gustav-Freytag-Str. & false\\\hline
+\ldots & \ldots & \ldots\\\hline
+\end{tabular}
+
+\begin{tabular}[t]{|l|l|l|}
+\multicolumn{2}{@{}l}{verbindung:}\\
+\hline
+\textbf{Von} & \textbf{Zu} & \textbf{Linie}\\
+\hline
+57  & 42 & 85 \\\hline
+17  & 789 & 3 \\\hline
+\ldots & \ldots & \ldots\\\hline
+\end{tabular}
+\hspace{0.5cm}
+% 
+% \medskip
+\ghost{
+\begin{minipage}[t]{9cm}
+\vspace{0.0cm}
+Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit Namen (und oft auch Datentypen) ersetzt:
+\begin{itemize}
+\item linien[Linie:string, Typ:string]
+\item haltestellen[SID:int, Halt:string, Rollstuhl:bool]
+\item verbindung[Von:int, Zu:int, Linie:string]
+\end{itemize}
+Relationale Algebra: Parameter (Spalten) durch Namen adressiert\\
+Prädikatenlogik: Parameter durch Reihenfolge adressiert
+\end{minipage}}}\vspace{1cm}
+
+Die Anfrage \alert{$\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))$}
+entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
+\alert{$\pi_{\text{Von},\text{Zu},\text{Linie}}(\textsf{verbindung}\bowtie\textsf{linien})$}.
+
+\end{frame}
+
+\begin{frame}\frametitle{Prädikatenlogik als Anfragesprache}
+
+\emph{Beispielanfragen:}\medskip
+
+\alert{``Haltestellen, die Helmholtzstr. sind:''}
+%
+\[ Q_0[x_0] = (x_0\approx 42) \]\pause
+% \[R_0 = \{\{\text{From}\mapsto 42\}\big\}\]\pause
+%
+\alert{``Haltestellen direkt neben Helmholtzstr.:''}
+\[
+   Q_1[x_1] = \exists x_0,z_\text{Linie}.(\text{verbindung}(x_0,x_1,z_\text{Linie})\wedge Q_0[x_0])
+\]\pause
+% \[
+% R_1 = \delta_{\text{To}\to\text{From}}(\pi_{\text{To}}(\text{Connect}\bowtie R_0))
+% \]\pause
+\alert{``Haltestellen, die zwei Halte weit von Helmholtzstr. entfernt sind:''}
+\[
+   Q_2[x_2] = \exists x_1,z_\text{Linie}.(\text{verbindung}(x_1,x_1,z_\text{Linie})\wedge Q_1[x_1])
+\]\pause
+Und so weiter \ldots\bigskip
+% \[
+% R_2 = \delta_{\text{To}\to\text{From}}(\pi_{\text{To}}(\text{Connect}\bowtie R_1))
+% \]\pause
+% 
+
+\alert{``Haltestellen, die von Helmholtzstr. aus mit einem Kurzstreckentticket erreichbar sind:''}
+\[
+	Q_0[x]\vee Q_1[x]\vee Q_2[x]\vee Q_3[x]\vee Q_4[x]
+\]
+% \[
+% R_0\cup R_1\cup R_2 \cup R_3 \cup R_4
+% \]
+% 
+% What about all stops reachable from Helmholtzstr.?\\\pause
+% $\leadsto$ see upcoming lectures \ldots
+% 
+\end{frame}
+
+
+\begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
+
+\redalert{Wie finden wir alle Haltestellen, die man von Helmholtzstr. aus erreichen kann?}\pause\medskip
+
+Es stellt sich heraus, dass das unmöglich ist.\bigskip
+
+\anybox{strongyellow}{\emph{Intuition:}
+Prädikatenlogik kann nur ``lokale'' Eigenschaften überprüfen.
+}\medskip\pause
+
+Das kann man mathematisch ausdrücken:\medskip
+
+\anybox{strongyellow}{\emph{Vage Behauptung (frei nach Gaifman's Locality Theorem):}
+Für jeden Satz $F$ gibt es eine Zahl $d$, so dass für beliebige Interpretationen $\Inter$ und $\Jnter$ gilt: 
+\begin{itemize}
+\item Wenn man nur zusammenhängende endliche Teile von $\Inter$ und $\Jnter$ betrachtet, die höchstens Pfade der Länge $d$ enthalten (``Durchmesser $\leq d$'')
+\item und wenn sich $\Inter$ und $\Jnter$ bezüglich dieser $d$-Umgebungen nicht unterscheiden,
+\item dann kann auch $F$ die Interpretationen nicht unterscheiden: $\Inter\models F$ gdw. $\Jnter\models F$.
+\end{itemize}
+}
+
+\textcolor{devilscss}{Der Durchmesser $d$, der angibt wie weit $F$ höchstens schauen kann, hängt exponentiell von der Schachtelungstiefe der Quantoren ab.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rekursive Anfragen}
+
+Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relevant (speziell in Graphdatenbanken)\medskip
+
+\redalert{Wie kann man solche Anfragen logisch ausdrücken?}\bigskip\pause
+
+\emph{Idee:} Um beliebig weit zu schauen muss man Rekursion einführen.\bigskip
+
+\examplebox{Beispiel: Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
+\begin{enumerate}[(1)]
+\item sie die Haltestelle Helmholtzstr. ist, oder
+\item sie neben einer Haltestelle liegt, die von Helmholtzstr. aus erreichbar ist.
+\end{enumerate}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Rekursion in Logik}
+
+\examplebox{Beispiel: Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
+\begin{enumerate}[(1)]
+\item sie die Haltestelle Helmholtzstr. ist, oder
+\item sie neben einer Haltestelle liegt, die von Helmholtzstr. aus erreichbar ist.
+\end{enumerate}}
+
+\redalert{Wie kann man das in Logik ausdrücken?}\medskip\pause
+
+\examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
+\begin{enumerate}[(1)]
+\item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
+\item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
+\end{enumerate}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Model Checking?}
+
+\examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
+\begin{enumerate}[(1)]
+\item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
+\item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
+\end{enumerate}}\medskip
+
+Sei $\mathcal{Q}$ die Menge der Formeln (1) und (2). \pause
+\begin{itemize}
+\item Die Modelle von $\mathcal{Q}$ sind alle Interpretationen, in denen $\text{Erreichbar}$ \alert{mindestens} die von Helmholtzstr. aus erreichbaren Haltestellen enthält.
+\item Eine gegebene Datenbankinstanz, betrachtet als Interpretation, ist normalerweise kein Modell von $\mathcal{Q}$, sofern es nicht schon eine entsprechende Tabelle für $\text{Erreichbar}$ gibt.
+\end{itemize}
+\redalert{$\leadsto$ Model Checking führt hier nicht zum gewünschten Ergebnis!}
+
+\end{frame}
+
+\begin{frame}\frametitle{Datenbanken als logische Theorien}
+
+Wir nehmen daher eine andere Perspektive ein:
+\begin{itemize}
+\item Datenbankinstanzen $\Inter$ werden als \redalert{endliche Menge von Fakten} $\mathcal{F}_\Inter$ dargestellt:
+\[ \mathcal{F}_\Inter= \{ p(c_1,\ldots,c_n)\mid c_1,\ldots,c_n\in\Slang{C}\text{ und }\tuple{c_1^\Inter,\ldots,c_n^\Inter}\in p^\Inter\}\]
+\textcolor{devilscss}{(wie zuvor nimmt man vereinfachend oft an, dass $c^\Inter=c$ gilt)}
+\item \redalert{Rekursive Anfragen} können wie im Beispiel als prädikatenlogische Formelmenge $\mathcal{Q}$ dargestellt werden
+\item Ein Fakt $p(c_1,\ldots,c_n)$ ist eine \redalert{Antwort} auf die Anfrage $\mathcal{Q}$ auf der Datenbank $\Inter$ wenn gilt: $\mathcal{F}_\Inter,\mathcal{Q}\models p(c_1,\ldots,c_n)$.
+\end{itemize}
+Das heißt, wir fassen \alert{Anfragebeantwortung als prädikatenlogisches Schließen} auf (Entailment, nicht Model Checking).
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel}
+
+\examplebox{Beispiel: Für die Anfrage
+\begin{align*}
+\mathcal{Q}=\{ & \text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}}),\\
+	& \forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)\}
+\end{align*}
+und die Datenbankinstanz $\Inter$ mit 
+\begin{align*}
+\mathcal{F}_\Inter = \{ & \text{verbindung}(\Scodelit{\texttt{helmholtzstr}},\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{85}})\\
+	& \text{verbindung}(\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{85}})\\
+	& \text{verbindung}(\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{zellescher\_weg}},\Scodelit{\texttt{11}})\\
+	& \text{verbindung}(\Scodelit{\texttt{schillerplatz}},\Scodelit{\texttt{körnerplatz}},\Scodelit{\texttt{61}})
+\}
+\end{align*}
+folgen genau die Antworten $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$, $\text{Erreichbar}(\Scodelit{\texttt{räcknitzhöhe}})$ und $\text{Erreichbar}(\Scodelit{\texttt{zellescher\_weg}})$.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Sind rekursive Anfragen praktikabel?}
+
+Wir wissen: prädikatenlogisches Schließen ist unentscheidbar.
+\bigskip
+
+\redalert{Ist die Beantwortung rekursiver Anfragen dann überhaupt möglich?}
+\bigskip\pause
+
+\alert{Ja, wenn wir uns auf bestimmte Formen von Anfragen beschränken.}
+\bigskip
+
+$\leadsto$ mehr dazu beim nächsten Mal
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
+
+Beschränkt man Prädikatenlogik auf endliche Modelle, so gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
+
+Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken\\
+(\PSpace-vollständig, aber sub-polynomiell bzgl. Datenbankgröße)\bigskip
+
+Prädikatenlogik hat Grenzen: 
+\begin{itemize}
+\item bei der Modellierung (logisches Schließen), z.B. transitiver Abschluss
+\item bei logischen Abfragen (Model Checking), z.B. Erreichbarkeit
+\end{itemize}\bigskip
+
+\anybox{yellow}{
+Was erwartet uns als nächstes?
+\begin{itemize}
+\item Datalog und Logik höherer Ordnung
+\item Gödel
+\item Probeklausur und 2. Repetitorium
+\end{itemize}
+}
+
+\end{frame}
+
+% \begin{frame}\frametitle{Zusammenfassung und Ausblick}
+% 
+% Die prädikatenlogische Resolution ist ein vollständiges und korrektes Verfahren für die Unerfüllbarkeit logischer Formeln\bigskip
+% 
+% In gewissem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
+% \bigskip
+% 
+% Bei Beschränkung auf endliche Modelle gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
+% 
+% Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken
+% 
+% \anybox{yellow}{
+% Was erwartet uns als nächstes?
+% \begin{itemize}
+% \item Komplexität des Auswertungsproblems
+% \item Gödel
+% \item Probeklausur und 2. Repetitorium
+% \end{itemize}
+% }
+% 
+% \end{frame}
+
+
+% \begin{frame}[t]\frametitle{Bildrechte}
+% 
+% Folie \ref{frame_herbrand}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
+% 
+% \end{frame}
+
+
+\end{document}
