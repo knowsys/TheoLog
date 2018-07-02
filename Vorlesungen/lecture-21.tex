@@ -563,89 +563,89 @@ Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relev
 
 \end{frame}
 
-\begin{frame}\frametitle{Rekursion in Logik}
-
-\examplebox{Beispiel: Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
-\begin{enumerate}[(1)]
-\item sie die Haltestelle Helmholtzstr. ist, oder
-\item sie neben einer Haltestelle liegt, die von Helmholtzstr. aus erreichbar ist.
-\end{enumerate}}
-
-\redalert{Wie kann man das in Logik ausdrücken?}\medskip\pause
-
-\examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
-\begin{enumerate}[(1)]
-\item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
-\item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
-\end{enumerate}}
-
-\end{frame}
-
-\begin{frame}\frametitle{Model Checking?}
-
-\examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
-\begin{enumerate}[(1)]
-\item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
-\item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
-\end{enumerate}}\medskip
-
-Sei $\mathcal{Q}$ die Menge der Formeln (1) und (2). \pause
-\begin{itemize}
-\item Die Modelle von $\mathcal{Q}$ sind alle Interpretationen, in denen $\text{Erreichbar}$ \alert{mindestens} die von Helmholtzstr. aus erreichbaren Haltestellen enthält.
-\item Eine gegebene Datenbankinstanz, betrachtet als Interpretation, ist normalerweise kein Modell von $\mathcal{Q}$, sofern es nicht schon eine entsprechende Tabelle für $\text{Erreichbar}$ gibt.
-\end{itemize}
-\redalert{$\leadsto$ Model Checking führt hier nicht zum gewünschten Ergebnis!}
-
-\end{frame}
-
-\begin{frame}\frametitle{Datenbanken als logische Theorien}
-
-Wir nehmen daher eine andere Perspektive ein:
-\begin{itemize}
-\item Datenbankinstanzen $\Inter$ werden als \redalert{endliche Menge von Fakten} $\mathcal{F}_\Inter$ dargestellt:
-\[ \mathcal{F}_\Inter= \{ p(c_1,\ldots,c_n)\mid c_1,\ldots,c_n\in\Slang{C}\text{ und }\tuple{c_1^\Inter,\ldots,c_n^\Inter}\in p^\Inter\}\]
-\textcolor{devilscss}{(wie zuvor nimmt man vereinfachend oft an, dass $c^\Inter=c$ gilt)}
-\item \redalert{Rekursive Anfragen} können wie im Beispiel als prädikatenlogische Formelmenge $\mathcal{Q}$ dargestellt werden
-\item Ein Fakt $p(c_1,\ldots,c_n)$ ist eine \redalert{Antwort} auf die Anfrage $\mathcal{Q}$ auf der Datenbank $\Inter$ wenn gilt: $\mathcal{F}_\Inter,\mathcal{Q}\models p(c_1,\ldots,c_n)$.
-\end{itemize}
-Das heißt, wir fassen \alert{Anfragebeantwortung als prädikatenlogisches Schließen} auf (Entailment, nicht Model Checking).
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel}
-
-\examplebox{Beispiel: Für die Anfrage
-\begin{align*}
-\mathcal{Q}=\{ & \text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}}),\\
-	& \forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)\}
-\end{align*}
-und die Datenbankinstanz $\Inter$ mit 
-\begin{align*}
-\mathcal{F}_\Inter = \{ & \text{verbindung}(\Scodelit{\texttt{helmholtzstr}},\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{85}})\\
-	& \text{verbindung}(\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{85}})\\
-	& \text{verbindung}(\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{zellescher\_weg}},\Scodelit{\texttt{11}})\\
-	& \text{verbindung}(\Scodelit{\texttt{schillerplatz}},\Scodelit{\texttt{körnerplatz}},\Scodelit{\texttt{61}})
-\}
-\end{align*}
-folgen genau die Antworten $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$, $\text{Erreichbar}(\Scodelit{\texttt{räcknitzhöhe}})$ und $\text{Erreichbar}(\Scodelit{\texttt{zellescher\_weg}})$.
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Sind rekursive Anfragen praktikabel?}
-
-Wir wissen: prädikatenlogisches Schließen ist unentscheidbar.
-\bigskip
-
-\redalert{Ist die Beantwortung rekursiver Anfragen dann überhaupt möglich?}
-\bigskip\pause
-
-\alert{Ja, wenn wir uns auf bestimmte Formen von Anfragen beschränken.}
-\bigskip
-
-$\leadsto$ mehr dazu beim nächsten Mal
-
-\end{frame}
+% \begin{frame}\frametitle{Rekursion in Logik}
+% 
+% \examplebox{Beispiel: Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
+% \begin{enumerate}[(1)]
+% \item sie die Haltestelle Helmholtzstr. ist, oder
+% \item sie neben einer Haltestelle liegt, die von Helmholtzstr. aus erreichbar ist.
+% \end{enumerate}}
+% 
+% \redalert{Wie kann man das in Logik ausdrücken?}\medskip\pause
+% 
+% \examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
+% \begin{enumerate}[(1)]
+% \item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
+% \item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
+% \end{enumerate}}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Model Checking?}
+% 
+% \examplebox{Beispiel: Das Prädikat $\text{Erreichbar}$ enthält alle von Helmholtzstr. erreichbaren Haltestellen, wenn die folgenden Formeln erfüllt sind:
+% \begin{enumerate}[(1)]
+% \item $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
+% \item $\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)$
+% \end{enumerate}}\medskip
+% 
+% Sei $\mathcal{Q}$ die Menge der Formeln (1) und (2). \pause
+% \begin{itemize}
+% \item Die Modelle von $\mathcal{Q}$ sind alle Interpretationen, in denen $\text{Erreichbar}$ \alert{mindestens} die von Helmholtzstr. aus erreichbaren Haltestellen enthält.
+% \item Eine gegebene Datenbankinstanz, betrachtet als Interpretation, ist normalerweise kein Modell von $\mathcal{Q}$, sofern es nicht schon eine entsprechende Tabelle für $\text{Erreichbar}$ gibt.
+% \end{itemize}
+% \redalert{$\leadsto$ Model Checking führt hier nicht zum gewünschten Ergebnis!}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Datenbanken als logische Theorien}
+% 
+% Wir nehmen daher eine andere Perspektive ein:
+% \begin{itemize}
+% \item Datenbankinstanzen $\Inter$ werden als \redalert{endliche Menge von Fakten} $\mathcal{F}_\Inter$ dargestellt:
+% \[ \mathcal{F}_\Inter= \{ p(c_1,\ldots,c_n)\mid c_1,\ldots,c_n\in\Slang{C}\text{ und }\tuple{c_1^\Inter,\ldots,c_n^\Inter}\in p^\Inter\}\]
+% \textcolor{devilscss}{(wie zuvor nimmt man vereinfachend oft an, dass $c^\Inter=c$ gilt)}
+% \item \redalert{Rekursive Anfragen} können wie im Beispiel als prädikatenlogische Formelmenge $\mathcal{Q}$ dargestellt werden
+% \item Ein Fakt $p(c_1,\ldots,c_n)$ ist eine \redalert{Antwort} auf die Anfrage $\mathcal{Q}$ auf der Datenbank $\Inter$ wenn gilt: $\mathcal{F}_\Inter,\mathcal{Q}\models p(c_1,\ldots,c_n)$.
+% \end{itemize}
+% Das heißt, wir fassen \alert{Anfragebeantwortung als prädikatenlogisches Schließen} auf (Entailment, nicht Model Checking).
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beispiel}
+% 
+% \examplebox{Beispiel: Für die Anfrage
+% \begin{align*}
+% \mathcal{Q}=\{ & \text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}}),\\
+% 	& \forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z) \to \text{Erreichbar}(y)\}
+% \end{align*}
+% und die Datenbankinstanz $\Inter$ mit 
+% \begin{align*}
+% \mathcal{F}_\Inter = \{ & \text{verbindung}(\Scodelit{\texttt{helmholtzstr}},\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{85}})\\
+% 	& \text{verbindung}(\Scodelit{\texttt{stadtgutstr}},\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{85}})\\
+% 	& \text{verbindung}(\Scodelit{\texttt{räcknitzhöhe}},\Scodelit{\texttt{zellescher\_weg}},\Scodelit{\texttt{11}})\\
+% 	& \text{verbindung}(\Scodelit{\texttt{schillerplatz}},\Scodelit{\texttt{körnerplatz}},\Scodelit{\texttt{61}})
+% \}
+% \end{align*}
+% folgen genau die Antworten $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$, $\text{Erreichbar}(\Scodelit{\texttt{räcknitzhöhe}})$ und $\text{Erreichbar}(\Scodelit{\texttt{zellescher\_weg}})$.
+% }
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Sind rekursive Anfragen praktikabel?}
+% 
+% Wir wissen: prädikatenlogisches Schließen ist unentscheidbar.
+% \bigskip
+% 
+% \redalert{Ist die Beantwortung rekursiver Anfragen dann überhaupt möglich?}
+% \bigskip\pause
+% 
+% \alert{Ja, wenn wir uns auf bestimmte Formen von Anfragen beschränken.}
+% \bigskip
+% 
+% $\leadsto$ mehr dazu beim nächsten Mal
+% 
+% \end{frame}
 
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
