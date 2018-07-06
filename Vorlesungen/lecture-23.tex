@@ -1,15 +1,13 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{21}{Endliche Modelle/ Gödels~1.~Unvollständigkeitssatz}{5. Juli 2017}
+\defineTitle{23}{Gödels~1.~Unvollständigkeitssatz}{9. Juli 2018}
 
 \begin{document}
 
 \maketitle
-
-
 
 
 \frame{\label{frame_goedel}\begin{center}
@@ -26,7 +24,7 @@ Was Gödel in 1931 zeigte war grob gesagt folgendes:\medskip
 
 \theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
-elementaren Arithmetik: Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
+elementaren Arithmetik:\\ Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
 }\bigskip
 
 \emph{Um das zu verstehen müssen wir einiges klären:}
@@ -51,7 +49,7 @@ Beweisbare Sätze heißen \redalert{Theoreme} des formalen Systems\\
 {\tiny {\emph{Anmerkung:} Auch die Axiome sind Theoreme, wenn auch mit sehr kurzen Beweisen}}
 \medskip\pause
 
-\examplebox{Beispiel: Prädikatenlogik liefert formales Systeme:
+\examplebox{Beispiel: Die Prädikatenlogik liefert formale Systeme:
 \begin{itemize}
 \item Sprache: Die Sprache der prädikatenlogischen Sätze
 \item Axiome: Eine gegebene Theorie, z.B. die Theorie der kommutativen Monoide
@@ -122,7 +120,7 @@ Gödels Unvollständigkeitssätze auf die erste!}
 \begin{frame}\frametitle{Beispiele}
 
 \examplebox{Beispiel: Angenommen ein Satz $F$ kann in einem formalen System
-$\mathcal{S}$ bewiesen und wir wissen, dass $\mathcal{S}$ konsistent ist.
+$\mathcal{S}$ bewiesen werden und wir wissen, dass $\mathcal{S}$ konsistent ist.
 Folgt daraus, dass $F$ semantisch wahr ist?
 }\medskip\pause
 
@@ -140,7 +138,7 @@ Folgt daraus, dass $F$ semantisch wahr ist?
 
 \theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
-elementaren Arithmetik: Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
+elementaren Arithmetik:\\ Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
 }
 
 Was ist mit "`eine gewisse Menge elementarer Arithmetik"' gemeint?\pause
@@ -165,7 +163,7 @@ Man kann die benötigte Menge von Arithmetik durch eine prädikatenlogische Theo
 Darstellung natürlicher Zahlen als Nachfolger von 0:\\[0.5ex]
 \narrowcentering{$\Sterm{0}\hat{=}0$, $s(\Sterm{0})\hat{=}1$, $s(s(\Sterm{0}))\hat{=}2$, \ldots}\bigskip
 
-Sätze zur Axiomaitiserung der Grundrechenarten:
+Sätze zur Axiomatisierung der Grundrechenarten:
 \begin{itemize}
 \item $\forall x.\neg(s(x)\approx \Sterm{0})$
 \item $\forall x.(x+\Sterm{0}\approx x)$ 
@@ -190,7 +188,7 @@ Wie kann man zeigen, dass irgendein Satz weder beweisbar noch widerlegbar ist?
 \begin{itemize}
 \item \alert{Annahme:} Sie glauben nur Dinge, die wirklich wahr sind, und was Sie glauben ist konsistent.\pause
 \item \alert{Behauptung:} Es gibt wahre Sätze, die sie nicht glauben.\pause
-\item \alert{Beweis:}\pause "`Ich mache jetzt eine wahre Behauptung, die Sie mir nicht glauben"'\pause{} ist eine Behauptung, die sie nicht glauben können:
+\item \alert{Beweis:}\pause{} "`Ich mache jetzt eine wahre Behauptung, die Sie mir nicht glauben"'\pause{} ist eine Behauptung, die Sie nicht glauben können:
 \begin{itemize}
 \item Wenn Sie sie glauben, dann muss sie wahr sein, d.h. Sie glauben sie nicht -- das wäre inkonsistent
 \item Also glauben Sie sie nicht. Dann ist die Behauptung wahr.\qed
@@ -255,7 +253,7 @@ Auch hier denkt man vielleicht zuerst, dass dies nicht möglich wäre, weil das 
 
 Es ist aber gar nicht so schwer:
 \bigskip
-\examplebox{Beispiel: Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen: $\squote$Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen: $\squote$ }
+\examplebox{Beispiel: Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$ }
 
 \end{frame}
 
@@ -287,7 +285,7 @@ Berechnungstheorie handelt von Sprachen, d.h. Mengen von Wörtern
 \bigskip
 
 Es ist leicht möglich, jedem Wort eine natürliche Zahl zuzuordnen -- man spricht von einer \redalert{Gödelzahl} für das Wort\\[0.5ex]
-{\tiny(dies ist möglich, da die Menge aller Wörter abzählbar ist, siehe Formale Systeme WS 2016/2017; natürlich gibt es viele mögliche Zuordnungen).
+{\tiny(dies ist möglich, da die Menge aller Wörter abzählbar ist, siehe Formale Systeme WS 2017/2018; natürlich gibt es viele mögliche Zuordnungen).
 
 }
 \bigskip\pause
@@ -317,7 +315,7 @@ Mögliche Strategie zum Beweis von Gödels 1. Satz:
 
 \begin{frame}\frametitle{Ein schweres arithmetisches Problem}
 
-Die Aufgabe wird viel einfacher, wenn man mit ein unentscheidbares Problem verwendet, welches sich schon auf arithmetische Aussagen bezieht.
+Die Aufgabe wird viel einfacher, wenn man ein unentscheidbares Problem verwendet, welches sich schon auf arithmetische Aussagen bezieht.
 
 \defbox{Eine \redalert{Diophantische Gleichung} ist ein arithmetischer Ausdruck der Form $D[x_1,\ldots,x_n]= 0$, wobei $D[x_1,\ldots,x_n]$ ein Funktionsterm über den Symbolen
 $x_1,\ldots,x_n,\Sterm{0},s,+,-,\times$ ist. Eine \redalert{Lösung} der Gleichung ist eine Liste von natürlichen Zahlen $z_1,\ldots,z_n$, für welche die Gleichung stimmt.}\pause
@@ -327,8 +325,8 @@ $x_1,\ldots,x_n,\Sterm{0},s,+,-,\times$ ist. Eine \redalert{Lösung} der Gleichu
 \item $y=3x+5$, d.h. $3\times x-y+5= 0$ (unendlich viele Lösungen)
 \item $x^2+y^2= -1$, d.h. $x\times x+y\times y+1 = 0$ (keine Lösung)
 \item $x^2+y^2=z^2$ (unendlich viele Lösungen)
-\item $x^4+y^4=z^4$ (genau eine Lösung, Fermatsche Vermutung)
-\item $x^2=2y^4-1$ (genau zwei Lösungen: 1 \& 1 und 13 \& 239)
+\item $x^2=2y^4-1$ (genau zwei Lösungen: $x=y=1$ und $x=239$ \& $y=13$)
+\item $x^4+y^4=z^4$ (genau zwei Lösungen: $x=y=z=0$ und $x=y=z=1$; Fermatsche Vermutung)
 \end{itemize}
 }
 
@@ -373,7 +371,7 @@ Wir wissen heute, dass dies unentscheidbar ist:
 Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
 \begin{enumerate}[(1)]
 \item $\mathcal{S}$ ist konsistent
-\item Jede wahre Aussage der Form $D[z_1,\ldots,z_n]= 0$ für eine beliebige diophantische Gleichungen und \alert{konkrete} Zahlenwerte $z_1,\ldots, z_n$ ist beweisbar {\tiny(einfach durch Ausrechnen des Wertes)}
+\item Jede wahre Aussage der Form $D[z_1,\ldots,z_n]= 0$ für eine beliebige diophantische Gleichung und \alert{konkrete} Zahlenwerte $z_1,\ldots, z_n$ ist beweisbar\\ {\tiny(einfach durch Ausrechnen des Wertes)}
 \item Sätze der Form $\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$ sind darstellbar und alle beweisbaren Sätze dieser Form sind korrekt
 \end{enumerate}\pause
 \emph{Wegen (1) und (2) gilt:} $\mathcal{S}$ beweist nur wahre Sätze der Form $\neg\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$\medskip\pause
@@ -391,8 +389,6 @@ Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Das Auswertungsproblem der Prädikatenlogik ist \PSpace-vollständig\bigskip
-
 Formale Systeme, die elementare Rechnungen auf natürlichen Zahlen ausführen können
 sind entweder inkonsistent oder (negations-)unvollständig
 \bigskip
@@ -402,9 +398,9 @@ Diese Unvollständigkeit hat damit zu tun, dass nicht alle Mengen natürlicher Z
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item 3. Repetitorium
-\item Probeklausur
 \item Gödels zweiter Unvollständigkeitssatz, Zusammenfassung und Ausblick
+\item 2. Repetitorium
+\item Probeklausur
 \end{itemize}
 }
 
