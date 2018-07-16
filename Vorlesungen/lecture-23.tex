@@ -223,7 +223,7 @@ Gödels Beweis (vereinfacht) für formale Systeme:
 
 \narrowcentering{\alert{"`$F$ ist wahr genau dann wenn $F$ nicht beweisbar ist."'}}\smallskip
 
-Die Herausforderung ist, solche Gödensätze zu definieren:
+Die Herausforderung ist, solche Gödelsätze zu definieren:
 Offenbar kann man $F$ nicht als Teilausdruck in $F$ verwenden!
 \bigskip\pause
 
@@ -324,9 +324,9 @@ $x_1,\ldots,x_n,\Sterm{0},s,+,-,\times$ ist. Eine \redalert{Lösung} der Gleichu
 \begin{itemize}
 \item $y=3x+5$, d.h. $3\times x-y+5= 0$ (unendlich viele Lösungen)
 \item $x^2+y^2= -1$, d.h. $x\times x+y\times y+1 = 0$ (keine Lösung)
-\item $x^2+y^2=z^2$ (unendlich viele Lösungen)
 \item $x^2=2y^4-1$ (genau zwei Lösungen: $x=y=1$ und $x=239$ \& $y=13$)
-\item $x^4+y^4=z^4$ (genau zwei Lösungen: $x=y=z=0$ und $x=y=z=1$; Fermatsche Vermutung)
+\item $(x+1)^2+(y+1)^2=(z+1)^2$ (unendlich viele Lösungen; vgl. Phytagoreische Tripel)
+\item $(x+1)^4+(y+1)^4=(z+1)^4$ (keine Lösung; Fermatsche Vermutung)
 \end{itemize}
 }
 
@@ -382,6 +382,33 @@ Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
 \item Die Menge aller wahren Sätze dieser Form ist nicht semi-entscheidbar
 \end{itemize}\pause
 \emph{Mit (3) gilt:} Es gibt Sätze $F$ der Form \ghost{$\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$,}\\ so dass weder $F$ noch $\neg F$ bewiesen wird.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Der 1. Gödelsche Unvollständigkeitssatz}
+
+\theobox{Satz (Gödel, 1931): Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
+elementaren Arithmetik.
+}\bigskip
+
+\emph{Relevante Begriffe:}
+\begin{itemize}
+\item \alert{Formales System:} Ein implementierbares Verfahren, mit dem man Theoreme endlich beweisen kann
+\item \alert{Konsistent:} Man kann niemals eine Aussage und ihr Gegenteil beweisen.
+\item \alert{Gewisse Menge Arithmetik:} Kodierung konkreter natürlicher Zahlen und deren korrekte Addition, Subtraktion, Multiplikation und Vergleich
+\item \alert{Unvollständig:} Es gibt Sätze, die weder bewiesen noch widerlegt werden können
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele}
+
+\examplebox{Beispiel: Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
+
+\redalert{Keine prädikatenlogische Theorie kann die elementare Arithmetik vollständig beschreiben.}\pause\bigskip
+
+\examplebox{Beispiel: Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
 
 \end{frame}
 
