@@ -1,9 +1,9 @@
-\documentclass[onlymath]{beamer}
-% \documentclass[onlymath,handout]{beamer}
+\documentclass[aspectratio=1610,onlymath]{beamer}
+% \documentclass[aspectratio=1610,onlymath,handout]{beamer}
 
 \input{macros-lecture}
 
-\defineTitle{22}{Gödel, Turing und der ganze Rest}{14. Juli 2017}
+\defineTitle{24}{Gödel, Turing und der ganze Rest}{13. Juli 2018}
 
 \begin{document}
 
@@ -226,10 +226,11 @@ Wesentliche Grundlagen der klassischen Komplexitätslehre wurden hier schon beha
 \item Relative Komplexität: Orakel
 \item Komplexitäten unterhalb von P: Schaltkreise als Rechenmodell
 \item Rechnen mit Zufall: Randomisierte Komplexität
+\item Einführung in Quantencomputer
 \item \ldots
 \end{itemize}
 
-$\leadsto$ siehe Vorlesung \redalert{Complexity Theory}
+$\leadsto$ siehe Vorlesung \redalert{Complexity Theory} (Wintersemester)
 
 \end{frame}
 
@@ -249,7 +250,7 @@ viele Themen aus theoretischer Informatik und Logik\bigskip
 \item \ldots
 \end{itemize}
 
-$\leadsto$ siehe Vorlesung \redalert{Database Theory}
+$\leadsto$ siehe Vorlesung \redalert{Database Theory} (Sommersemester)
 
 \end{frame}
 
@@ -273,35 +274,35 @@ $\leadsto$ siehe Vorlesung \redalert{Model Checking}
 \end{frame}
 
 % Quantum Computation -- advertise Aaronson's talk
-\begin{frame}\frametitle{Quantencomputer}
-
-Aktives Gebiet der theoretischen Informatik, speziell der Komplexitätstheorie\bigskip\pause
-
-% Zurzeit keine Vorlesung an TUD, aber:\medskip
-
-% \emph{Eingeladener Vortrag:}\\
-{\large Quantum Computing and the Limits of the Efficiently Computable}\\
-\alert{Scott Aaronson}, The University of Texas at Austin\\
-Montag, 28. August 2017, 14:00 -- APB E023
-\bigskip
-
-{\footnotesize
-I'll offer a crash course on quantum computing, which seeks to exploit the strange rules of
-quantum physics to solve certain problems dramatically faster than we know how to solve
-them with any existing computer. I promise no hype: just a sober summary of how a quantum
-computer would actually work (hint: it's not just by "trying every possible answer in parallel"), for
-which problems quantum computers are and aren't expected to provide an advantage, and the
-current status of the effort to make quantum computing practical. I'll also say something about
-the ultimate physical limits of computation, and about speculative proposals for going beyond
-even quantum computers.
-
-}
-\smallskip
-
-\tiny
-\url{https://cfaed.tu-dresden.de/cfaed-seminar-series/scott-aaronsons-talk}
-
-\end{frame}
+% \begin{frame}\frametitle{Quantencomputer}
+% 
+% Aktives Gebiet der theoretischen Informatik, speziell der Komplexitätstheorie\bigskip\pause
+% 
+% % Zurzeit keine Vorlesung an TUD, aber:\medskip
+% 
+% % \emph{Eingeladener Vortrag:}\\
+% {\large Quantum Computing and the Limits of the Efficiently Computable}\\
+% \alert{Scott Aaronson}, The University of Texas at Austin\\
+% Montag, 28. August 2017, 14:00 -- APB E023
+% \bigskip
+% 
+% {\footnotesize
+% I'll offer a crash course on quantum computing, which seeks to exploit the strange rules of
+% quantum physics to solve certain problems dramatically faster than we know how to solve
+% them with any existing computer. I promise no hype: just a sober summary of how a quantum
+% computer would actually work (hint: it's not just by "trying every possible answer in parallel"), for
+% which problems quantum computers are and aren't expected to provide an advantage, and the
+% current status of the effort to make quantum computing practical. I'll also say something about
+% the ultimate physical limits of computation, and about speculative proposals for going beyond
+% even quantum computers.
+% 
+% }
+% \smallskip
+% 
+% \tiny
+% \url{https://cfaed.tu-dresden.de/cfaed-seminar-series/scott-aaronsons-talk}
+% 
+% \end{frame}
 
 % Knowledge representation: tractability and decidability, siehe z.B. Beschreibungslogik
 \begin{frame}\frametitle{Symbolische Wissensrepräsentation}
@@ -337,9 +338,62 @@ Anwendungsgebiet zwischen Datenbanken, Wissensrepräsentation und Webtechnologie
 \item \ldots
 \end{itemize}
 
-$\leadsto$ siehe Vorlesung \redalert{Semantic Web Technologies}
+$\leadsto$ siehe Vorlesungen \redalert{Knowledge Graphs} (Wintersemester), \redalert{Semantic Web Technologies}
 
 \end{frame}
+
+\sectionSlide{Forschung (und studentische Arbeiten)}
+
+\begin{frame}\frametitle{Kernthemen der Professur WBS}\pause
+
+\emph{Wissensrepräsentation:} \alert{Wie kann menschliches Wissen digital dargestellt werden?}
+\begin{itemize}
+\item Herausforderung: Flexibilität vs. Nutzbarkeit
+\item Herausforderung: Ausdrucksstärke vs. Verarbeitungskomplexität
+\item Schwerpunkt: logische Ontologie- und Anfragesprachen (Regeln, DLs, \ghost{Graph-Queries, \ldots)}
+\end{itemize}\medskip\pause
+
+\emph{Wissensverarbeitung:} \alert{Wie kann dieses Wissen automatisch genutzt werden?}
+\begin{itemize}
+\item Herausforderung: theoretische Komplexität $\neq$ praktische Performance
+\item Herausforderung: prinzipielles Verfahren $\neq$ implementierbarer Algorithmus
+\item Schwerpunkt: Logisches Schließen, Anfragebeantwortung über großen Daten
+\end{itemize}\medskip\pause
+
+\emph{Wissensmanagement:} \alert{Wie können diese Ergebnisse praktisch genutzt werden?}
+\begin{itemize}
+\item Herausforderung: konkrete Märkte und Nutzer?
+\item Herausforderung: benötigt mehr als eine Kerntechnologie
+\item Schwerpunkt: Wikidata, Wissensgraphen, Ontologien in Life Sciences
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele für BSc/MSc-Themen}
+
+\emph{Wissensrepräsentation:} \alert{Wie kann menschliches Wissen digital dargestellt werden?}
+\begin{itemize}
+\item Weiterentwicklung aktueller Schließverfahren
+\item Verallgemeinerung neuer Ideen unter Anleitung
+\item \ldots
+\end{itemize}\medskip
+
+\emph{Wissensverarbeitung:} \alert{Wie kann dieses Wissen automatisch genutzt werden?}
+\begin{itemize}
+\item Ontologieschließen: Aufgaben Übersetzen und mit Regel-Engine lösen
+\item Regelanalyse: Implementierung kürzlich erfundener Verfahren
+\item Evaluation: Vergleich vorgeschlagener Algorithmen
+\end{itemize}\medskip
+
+\emph{Wissensmanagement:} \alert{Wie können diese Ergebnisse praktisch genutzt werden?}
+\begin{itemize}
+\item Analyse der Wikidata-Nutzung: Logs von SPARQL-Anfragen analysieren
+\item IDEs zur Ontologieentwicklung: Design, Prototypen
+\item Neue Anwendungen, z.B. Informationsextraktion mit logischen Regeln
+\end{itemize}
+
+\end{frame}
+
 
 \sectionSlide{Zusammenfassung}
 
@@ -352,7 +406,7 @@ $\leadsto$ siehe Vorlesung \redalert{Semantic Web Technologies}
 \emph{Komplexität:} NP, PSpace, Many-One-Reduktionen, Übersicht weiterer wichtiger Klassen
 \bigskip
 
-\emph{Logik:} Aussagenlogik (SAT), QBF, Prädikatenlogik, Resolution (mit vielen Teilschritten), Herbrandmodelle
+\emph{Logik:} Aussagenlogik (SAT), QBF, Prädikatenlogik, Resolution (mit vielen Teilschritten), Herbrandmodelle, Datalog
 \bigskip
 
 \emph{Bonusmaterial:} Gödel, Metamathematik, SQL, Geschichte und Geschichten
@@ -386,7 +440,8 @@ Beweisen -- Nachvollziehen -- Verstehen\pause\\[4ex]
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item Angestrengte Klausurvorbereitung
+\item Zweites Repetitorium
+\item Angestrengte Klausurvorbereitung (inklusive Besprechung Probeklausur)
 \item Betreute Lernräume
 \item Klausur
 \end{itemize}
