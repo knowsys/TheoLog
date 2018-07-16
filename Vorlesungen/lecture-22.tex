@@ -493,11 +493,11 @@ kann als Formel der Logik zweiter Stufe wie folgt dargestellt werden:
 \begin{align*}
 \forall \text{Erreichbar}.\Big(&
 (\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}}) \wedge{}\\
- &(\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z)\to \text{Erreichbar}(y)) )\to \text{Erreichbar}(x)
+ &\hspace{-5mm}(\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z)\to \text{Erreichbar}(y)) )\to \text{Erreichbar}(v)
 \Big)
 \end{align*}
-Die Formel hat eine freie Variable $x$ und stellt $\text{Erreichbar}$ als Prädikaten-Variable dar.
-Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann wenn $\Inter$ die Formel mit Variablenbelegung $x\mapsto a$ erfüllt.
+Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikaten-Variable dar.
+Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
 }
 
 \end{frame}
