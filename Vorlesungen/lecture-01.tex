@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{1}{Willkommen/Einleitung/Übersicht}{9. April 2018}
+\defineTitle{1}{Willkommen/Einleitung/Übersicht}{12. April 2021}
 
 \begin{document}
 
@@ -24,22 +24,23 @@
 
 \begin{itemize}
 \item \emph{Vorlesungen:}\\
-	Montag, DS2 (9:20--10:50), HSZ/0004
-	Freitag, DS3 (11:10--12:40), HSZ/0004\\
+	In der Regel asynchron, Videos online\\
+	Gelegentliche Konsultationstermine: Montag, DS2 (9:20--10:50)
+% 	Donnerstag, DS4 (...), HSZ/0004\\
 \item \emph{Keine Vorlesungen:}\\
-	Ausfall: 23.4. (Web Conference, Lyon)\\
+	Ausfall: 13.5. (Himmelfahrt)\\
 % 	Karfreitag: Fr 14.4.\\
 % 	Dies academicus: Mi 17.5.\\
-	Pfingstferien: Mo 21.5., Fr 25.5.
-\item \emph{Vorlesungswebseite}:\\[1ex]
-	\url{\lectureurl}\\[1ex]
+	Pfingstferien: Mo 24.5., Do 27.5.
+\item \emph{Vorlesungswebseite}:\\[0.5ex]
+	\url{\lectureurl}\\[0.5ex]
 	(Folien, Übungsblätter, Termine, etc.)
-\item \emph{Quellcode}:\\[1ex]
-	\url{https://github.com/mkroetzsch/TheoLog}\\[1ex]
+\item \emph{Quellcode}:\\[0.5ex]
+	\url{https://github.com/mkroetzsch/TheoLog}\\[0.5ex]
 	(Fragen, Bug-Reports, Pull-Requests sind willkommen)
-% \item \emph{Mailingliste}:\\[1ex]
-% 	\url{https://mailman.zih.tu-dresden.de/groups/listinfo/inf-thi-fs2016}\\[1ex]
-% 	(Support bei allen Fragen zur Vorlesung)
+\item \emph{Matrix (Chat)}:\\[0.5ex]
+	\url{https://matrix.tu-dresden.de/\#/room/\#theolog2021:tu-dresden.de}\\[0.5ex]
+	(Support bei allen Fragen zur Vorlesung)
 \end{itemize}
 
 \end{frame}
@@ -51,7 +52,7 @@
 \item \emph{Übungsblätter} jeweils mittwochs für folgende Woche
 % \\
 % 	(erstes Übungsblatt am 13. Oktober 2016)
-\item \emph{Beginn der Übungen:} 16. April 2018
+\item \emph{Beginn der Übungen:} 19. April 2021
 \item \emph{Übungsablauf}, vereinfacht, idealisiert:\\
 	Aufgaben werden zu Hause bearbeitet so gut es geht;\\
 	in der Übung helfen Gruppenleiter/innen bei Fragen und Problemen und zeigen Beispiellösungen
@@ -66,12 +67,12 @@
 
 \begin{frame}\frametitle{Prüfung und Prüfungsvorbereitung}
 \begin{itemize}
-\item schritliche Prüfung (90min) am Ende des Sommersemesters
+\item schritliche Prüfung (90min) am Ende des Sommersemesters, vermutlich online
 \item prüfungsrelevant:\\
 	kompletter Stoff aus Vorlesung \alert{und} Übung;\\
 	Wiedergeben (Definieren), Anwenden (Rechnen) und Erklären (Beweisen)
 \item Modulnote ergibt sich je nach Studiengang
-\item zur zusätzlichen Vorbereitung gibt es \alert{zwei oder drei Repetitorien} und \alert{eine Probeklausur}, jeweils an einem Vorlesungstermin
+\item zur zusätzlichen Vorbereitung gibt es \alert{mehrere Konsultationen} und \alert{eine Probeklausur}
 \end{itemize}
 
 \end{frame}
@@ -490,7 +491,7 @@ geschrieben als Wort (Bandinhalt), in dem der Zustand vor der Position des Kopfe
 
 \begin{frame}\frametitle{Was ist das Ergebnis einer TM-Berechnung?}
 
-Es gibt zwei wesentliche Arten, um DTMs zu benutzen:
+Es gibt zwei wesentliche Arten DTMs zu benutzen:
 
 \begin{enumerate}[(1)]
 \item \alert{Transducer:} Ausgabe der TM ist der Inhalt des Bandes, wenn sie hält, oder undefiniert, wenn sie nicht hält (partielle Funktion); Endzustände spielen keine Rolle und können weggelassen werden
@@ -504,14 +505,14 @@ Wir werden NTMs nur als Entscheider verwenden: in diesem Fall reicht es, wenn mi
 
 \begin{frame}\frametitle{NTM, DTM und die Church-Turing-These}
 
-Wir wissen: {\tiny(aus "`Formale Systeme"', Winter 2017/2018, 19. Vorlesung)}
+Wir wissen: {\tiny(aus "`Formale Systeme"', Winter 2020/2021, 19. Vorlesung)}
 
-\theobox{Satz: Jede NTM kann durch eine DTM simuliert werden. Insbesondere akzeptieren deterministische und nichtdeterministische Turingmaschinen die selben Sprachen.}
+\theobox{\textbf{Satz:} Jede NTM kann durch eine DTM simuliert werden. Insbesondere akzeptieren deterministische und nichtdeterministische Turingmaschinen die selben Sprachen.}
 \pause
 
 Allgemeiner gilt: kein bekanntes Berechnungsmodell kann mehr berechnen als TMs
 
-\anybox{purple}{Church-Turing-These: Jede (partielle) Funktion, die intuitiv als berechenbar angesehen werden kann, ist auch mit einer Turingmaschine berechenbar.}
+\anybox{purple}{\textbf{Church-Turing-These:} Jede (partielle) Funktion, die intuitiv als berechenbar angesehen werden kann, ist auch mit einer Turingmaschine berechenbar.}
 
 \begin{itemize}
 \item \emph{Lesart 1:} Vorschlag einer mathematischen Definition der intuitiven Idee von Berechenbarkeit
