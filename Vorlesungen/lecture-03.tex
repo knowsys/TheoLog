@@ -63,7 +63,7 @@ DTM, NTM, Entscheider, Aufzähler, berechenbar/entscheidbar, semi-entscheidbar, 
 
 \emph{Features:}
 \begin{itemize}
-\item Variablen \Sxsub{0}, \Sxsub{1}, \Sxsub{2}, \ldots oder auch \Svar{x}, \Svar{y}, \Svar{variablenName}, \ldots\\
+\item Variablen \Sxsub{0}, \Sxsub{1}, \Sxsub{2}, \ldots{} oder auch \Svar{x}, \Svar{y}, \Svar{variablenName}, \ldots\\
 alle vom Typ ``natürliche Zahl''
 \item Wertezuweisungen der Form\\[1ex]
 \mbox{}\hfill%
@@ -77,7 +77,7 @@ für beliebige natürliche Zahlen und Variablennamen
 
 \begin{frame}\frametitle{LOOP-Programme: Syntax}
 
-\defbox{Definition: Die Programmiersprache \redalert{LOOP} basiert auf einer unendlichen Menge $\Slang{V}$ von Variablen
+\defbox{\emph{Definition:} Die Programmiersprache \redalert{LOOP} basiert auf einer unendlichen Menge $\Slang{V}$ von Variablen
 und der Menge $\mathbb{N}$ der natürlichen Zahlen.
 \redalert{LOOP-Programme} sind induktiv definiert:
 \begin{itemize}
@@ -164,7 +164,7 @@ $P$ wird genau $n$-mal ausgeführt, für den Zahlenwert $n$, der $\Svar{x}$ anfa
 \end{itemize}
 \bigskip\pause
 
-\theobox{Satz: LOOP-Programme terminieren immer nach endlich vielen Schritten.}
+\theobox{\emph{Satz:} LOOP-Programme terminieren immer nach endlich vielen Schritten.}
 
 \pause
 \emph{Beweis:} Die Behauptung gilt sicherlich für Wertzuweisungen.
@@ -258,7 +258,7 @@ Dabei ist $\Svar{y}$ eine frische Variable, die bisher nirgends sonst verwendet 
 
 \begin{frame}\frametitle{LOOP-Berechenbare Funktionen}
 
-\defbox{Definition: Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
+\defbox{\emph{Definition:} Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
 \pause
 
 \examplebox{Beispiel: Die folgenden Funktionen sind LOOP-berechenbar:
@@ -297,7 +297,7 @@ In diesem Sinne sind viele weitere Funktionen LOOP-berechenbar.
 
 \begin{frame}\frametitle{Die Grenzen von LOOP}
 
-\theobox{Satz: Es gibt berechenbare Funktionen, die nicht LOOP-berechenbar sind.}\pause
+\theobox{\emph{Satz:} Es gibt berechenbare Funktionen, die nicht LOOP-berechenbar sind.}\pause
 
 Das ist weniger überraschend, als es vielleicht klingt:\smallskip
 
@@ -316,7 +316,7 @@ Das ist weniger überraschend, als es vielleicht klingt:\smallskip
 
 \begin{frame}\frametitle{LOOP-berechenbar $\neq$ berechenbar}
 
-\theobox{Satz: Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
+\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
 
 Das ist überraschend. Hilbert glaubte 1926 noch, dass alle Funktionen so berechnet werden können -- quasi ein erster Versuch der Definition von Berechenbarkeit.
 
@@ -345,7 +345,7 @@ Zeichen, aus denen es besteht. Dazu nehmen wir an:
 \item Wir betrachten $\Sseq$ als ein Zeichen (Zeilenumbrüche werden dagegen nicht gezählt)
 \end{itemize}\bigskip\pause
 
-\defbox{Definition: Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
+\defbox{\emph{Definition:} Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
 $\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ gibt.
 }\pause
 
@@ -359,7 +359,7 @@ $\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ g
 
 \begin{frame}\frametitle{Beispiele}
 
-\examplebox{Beispiel: Die LOOP-Anweisung
+\examplebox{\emph{Beispiel:} Die LOOP-Anweisung
 $\Sxsub{0}\texttt{:=}\Svar{y}\texttt{+}9$
 liefert das fleißigste Programm für $\ell=7$, d.h. $\bbfunc_{\textsf{LOOP}}(7)=9$.
 }\medskip\pause
@@ -379,7 +379,7 @@ als Konstante im Quelltext enthält? Wie könnte das entsprechende Programm auss
 
 \begin{frame}[t]\frametitle{Beweis (1)}
 
-\theobox{Satz: Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
+\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
 
 \emph{Beweis:} Wir zeigen zwei Teilaussagen:
 
@@ -402,7 +402,7 @@ Behauptung (1) ist leicht zu zeigen:
 
 \begin{frame}[t]\frametitle{Beweis (2)}
 
-\theobox{Satz: Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}
+\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}
 
 \emph{Beweis:} Wir zeigen zwei Teilaussagen:
 
@@ -440,7 +440,7 @@ $\leadsto$ Wir brauchen ein weniger vorhersehbares Programmkonstrukt
 
 \begin{frame}\frametitle{WHILE-Programme: Syntax und Semantik}
 
-\defbox{Definition: Die Programmiersprache \redalert{WHILE} basiert wie LOOP auf
+\defbox{\emph{Definition:} Die Programmiersprache \redalert{WHILE} basiert wie LOOP auf
 Variablen $\Slang{V}$ und natürlichen Zahlen $\mathbb{N}$.\\
 \redalert{WHILE-Programme} sind induktiv definiert:
 \begin{itemize}
@@ -492,7 +492,7 @@ Also sind LOOP-Schleifen eigentlich nicht mehr nötig.
 
 \begin{frame}\frametitle{WHILE-Berechenbare Funktionen}
 
-\defbox{Definition: Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
+\defbox{\emph{Definition:} Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
 \begin{itemize}
 \item Falls $f(n_1,\ldots,n_k)$ definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ mit der Ausgabe $f(n_1,\ldots,n_k)$
 \item Falls $f(n_1,\ldots,n_k)$ nicht definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ nicht
@@ -500,7 +500,7 @@ Also sind LOOP-Schleifen eigentlich nicht mehr nötig.
 
 Das wichtigste Ergebnis zu WHILE ist nun das folgende:
 
-\theobox{Satz: Eine partielle Funktion ist genau dann WHILE-berechenbar, wenn sie Turing-berechenbar ist.}
+\theobox{\emph{Satz:} Eine partielle Funktion ist genau dann WHILE-berechenbar, wenn sie Turing-berechenbar ist.}
 
 \end{frame}
 
@@ -626,8 +626,8 @@ aber nicht alle berechenbaren Probleme
 
 Beweistechniken: strukturelle Induktion, Widerspruch durch Selbstbezüglichkeit (Busy Beaver), TM mit zwei Stacks simulieren\bigskip
 
-Programme in LOOP und WHILE online testen:\\
-\url{http://www.eugenkiss.com/projects/lgw/}\bigskip
+% Programme in LOOP und WHILE online testen:\\
+% \url{http://www.eugenkiss.com/projects/lgw/}\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
