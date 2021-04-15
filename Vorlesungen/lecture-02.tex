@@ -501,6 +501,36 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 
 \end{frame}
 
+% \begin{frame}\frametitle{Die Maschine $\Smach{M}_{\times2}$}
+% 
+% % Das ist eine Übungsaufgabe. Sie können das auch selbst lösen, ohne diese Quellen zu studieren ;-)
+% 
+% \begin{center}
+% \begin{tikzpicture}[baseline={(q1.base)}]
+% \node (A) [circle,draw=black,thick] at (0,0) {$A$};
+% \node (B) [circle,draw=black,thick] at (3,0) {$B$};
+% \node (C) [circle,draw=black,thick] at (3,3) {$C$};
+% \node (D) [circle,draw=black,thick] at (0,3) {$D$};
+% \node (E) [circle,draw=black,thick] at (3,-3) {$E$};
+% \node (F) [circle,double,draw=black,thick] at (0,-3) {$F$};
+% %
+% \path[->,line width=0.5mm](-1,0) edge (A);
+% \path[->,line width=0.5mm](A) edge[] node[above,align=left] {$\Sterm{x}\mapsto\blank,R$} (B);
+% \path[->,line width=0.5mm](B) edge[] node[right] {$\Sterm{x}\mapsto\blank,R$} (C);
+% \path[->,line width=0.5mm](C) edge[] node[above,align=left] {$\blank\mapsto\Sterm{x},R$} (D);
+% \path[->,line width=0.5mm](D) edge[] node[left] {$\blank\mapsto\blank,R$} (A);
+% \path[->,line width=0.5mm](B) edge[] node[right] {$\blank\mapsto\Sterm{x},L$} (E);
+% \path[->,line width=0.5mm](E) edge[] node[above,align=left] {$\Sterm{x}\mapsto\Sterm{x},R$} (F);
+% \path[->,line width=0.5mm](A) edge[] node[left] {$\blank\mapsto\blank,R$} (F);
+% 
+% \path[->,line width=0.5mm](C) edge[loop right] node[right] {$\Sterm{x}\mapsto\Sterm{x},R$} (C);
+% \path[->,line width=0.5mm](D) edge[loop left] node[left] {$\Sterm{x}\mapsto\Sterm{x},L$} (D);
+% \path[->,line width=0.5mm](E) edge[loop right] node[right] {$\blank\mapsto\Sterm{x},L$} (E);
+% \end{tikzpicture}
+% \end{center}
+% 
+% \end{frame}
+
 \begin{frame}\frametitle{Bemerkungen zum Beweis}
 
 \emph{Anmerkung 1:} Der Beweis verwendet die interessante Idee, dass man TMs als "`Subroutinen"' von anderen TMs verwenden kann. Wir werden das noch an anderer Stelle verwenden.
@@ -565,6 +595,7 @@ Folie \ref{frame_cantor}: Fotografie von 1870, gemeinfrei\\
 Folie \ref{frame_rado}: Ausschnitt aus einer Fotografie von 1928, \url{http://www.bibl.u-szeged.hu/sztegy/photo/778.jpg}, CC-By-SA 3.0\\
 
 \end{frame}
+
 
 
 \end{document}
