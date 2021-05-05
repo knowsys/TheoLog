@@ -9,20 +9,6 @@
 
 \maketitle
 
-\begin{frame}\frametitle{Ankündigung}
-
-Die Übungsgruppen am 10. Mai werden verschoben:
-
-\begin{itemize}
-\item Mittwoch 9.5. in der 4. DS in APB/3027 
-\item Mittwoch 9.5. in der 5. DS in APB/3027
-\end{itemize}
-
-Studierende aus den den betroffenen Übungsgruppen sollten nach
-Möglichkeit die o.g. Ausweichtermine nutzen, können aber auch in eine
-der anderen Übungsgruppen die in der Woche stattfinden ausweichen.
-
-\end{frame}
 
 \begin{frame}\frametitle{Übersicht}
 
@@ -136,7 +122,7 @@ zyklischer Eulerpfad.}\bigskip\pause
 
 Euler zeigte also:\medskip
 
-\theobox{Satz (Euler): Ein Graph hat genau dann einen Eulerschen Pfad, wenn
+\theobox{\emph{Satz (Euler):} Ein Graph hat genau dann einen Eulerschen Pfad, wenn
 er maximal zwei Knoten ungeraden Grades besitzt.}\bigskip\pause
 
 
@@ -261,7 +247,7 @@ Feste Schranken ergeben wenig Sinn (endliche Automaten)\\
 \end{enumerate}
 \bigskip
 
-\examplebox{Beispiel: LBAs beschränken den verfügbaren Speicher auf die Anzahl der Symbole in der Eingabe.
+\examplebox{\emph{Beispiel:} LBAs beschränken den verfügbaren Speicher auf die Anzahl der Symbole in der Eingabe.
 Dies entspricht einer Funktion, welche die Länge $n$ der Eingabe auf den Maximalwert von $n$ Speicherzellen abbildet.}
 
 \end{frame}
@@ -285,7 +271,7 @@ asymmetrische Relation).\medskip
 
 \emph{Notation 2:} Manchmal schreibt man statt $f\in O(g)$ (oder $f=O(g)$) auch $f(n)\in O(g(n))$ (oder $f(n)=O(g(n))$).
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 \begin{minipage}[t]{7cm}\vspace{-1.7ex}
 \begin{itemize}
 \item $(10 n^3+42 n^2 - n + 100)\in O(n^3)$
@@ -329,9 +315,9 @@ dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor maxi
 \end{itemize}
 }\pause
 
-\examplebox{Beispiel: Ein LBA entspricht einer $O(n)$-speicherbeschränkten \ghost{TM.}}
+\examplebox{\emph{Beispiel:} Ein LBA entspricht einer $O(n)$-speicherbeschränkten \ghost{TM.}}
 
-\examplebox{Beispiel: Eine naive Suche nach einem Eulerpfad wäre $O(n!)$-zeitbeschränkt, wenn die Zahl der Kanten $n$ nicht übersteigt.}
+\examplebox{\emph{Beispiel:} Eine naive Suche nach einem Eulerpfad wäre $O(n!)$-zeitbeschränkt, wenn die Zahl der Kanten $n$ nicht übersteigt.}
 
 \end{frame}
 
@@ -344,20 +330,20 @@ geworfen?\bigskip\pause
 \alert{Nein.} Im Gegenteil: das TM-Modell der Berechnung kann konstante Faktoren
 nicht unterscheiden, zumindest wenn man mehrere Bänder erlaubt:\medskip
 
-\theobox{Satz (\alert{Linear Speedup Theorem}): 
+\theobox{\emph{Satz (\alert{Linear Speedup Theorem}):} 
 Sei $\Smach{M}$ eine TM mit $k>1$ Bändern, die bei Eingaben der Länge $n$ nach maximal
 $f(n)$ Schritten hält.
 Dann gibt es für jede natürliche Zahl $c>0$ eine äquivalente $k$-Band TM
 $\Smach{M}'$, die nach maximal $\frac{f(n)}{c}+n+2$ Schritten hält.
 }\medskip\pause
 
-\examplebox{Beispiel: Wenn ein Problem mit einer Zwei-Band-TM in $n^3$ Schritten gelöst werden kann, so ist das auch in $\frac{n^3}{1000000000}+n+2$ Schritten möglich.}
+\examplebox{\emph{Beispiel:} Wenn ein Problem mit einer Zwei-Band-TM in $n^3$ Schritten gelöst werden kann, so ist das auch in $\frac{n^3}{1000000000}+n+2$ Schritten möglich.}
 
 \end{frame}
 
 \begin{frame}\frametitle{Linear Speedup Theorem: Beweis (1)}
 
-\theobox{Satz (\alert{Linear Speedup Theorem}): 
+\theobox{\emph{Satz (\alert{Linear Speedup Theorem}):} 
 Sei $\Smach{M}$ eine TM mit $k>1$ Bändern, die bei Eingaben der Länge $n$ nach maximal
 $f(n)$ Schritten hält.
 Dann gibt es für jede natürliche Zahl $c>0$ eine äquivalente $k$-Band TM
@@ -379,7 +365,7 @@ Wir können Bandinhalte dadurch effizient kodieren:
 
 \begin{frame}\frametitle{Linear Speedup Theorem: Beweis (2)}
 
-\theobox{Satz (\alert{Linear Speedup Theorem}): 
+\theobox{\emph{Satz (\alert{Linear Speedup Theorem}):} 
 Sei $\Smach{M}$ eine TM mit $k>1$ Bändern, die bei Eingaben der Länge $n$ nach maximal
 $f(n)$ Schritten hält.
 Dann gibt es für jede natürliche Zahl $c>0$ eine äquivalente $k$-Band TM
@@ -440,11 +426,11 @@ Beschränkte TMs können verwendet werden, um viele weitere Sprachklassen zu def
 \end{itemize}
 }\pause
 
-\examplebox{Beispiel: Die naive Suche nach Eulerpfaden kann in $\Scomplclass{DSPACE}(n)$ implementiert werden (Übung: wie?).}\pause
+\examplebox{\emph{Beispiel:} Die naive Suche nach Eulerpfaden kann in $\Scomplclass{DSPACE}(n)$ implementiert werden (Übung: wie?).}\pause
 
 % \examplebox{Beispiel: $\Slang{SAT}\in\Scomplclass{DTIME}(2^n)$ und $\Slang{SAT}\in\Scomplclass{DSPACE}(n)$.}\pause
 
-\examplebox{Beispiel: Das Halteproblem ist in keiner der Klassen $\Scomplclass{DTIME}(f(n))$ oder $\Scomplclass{DSPACE}(f(n))$, da es durch keine TM entschieden wird.}
+\examplebox{\emph{Beispiel:} Das Halteproblem ist in keiner der Klassen $\Scomplclass{DTIME}(f(n))$ oder $\Scomplclass{DSPACE}(f(n))$, da es durch keine TM entschieden wird.}
 
 \end{frame}
 
@@ -456,7 +442,7 @@ Es gibt viele unterschiedliche Versionen von deterministischen TMs und viele alt
 
 \emph{Antwort:} "`Nein, aber bei vielen typischen Variationen gibt es nur polynomielle Unterschiede."'\bigskip
 
-\examplebox{Beispiel: Jede $O(f(n))$-zeitbeschränkte $k$-Band-TM kann durch eine $O(k\cdot f^2(n))$-zeitbeschränkte
+\examplebox{\emph{Beispiel:} Jede $O(f(n))$-zeitbeschränkte $k$-Band-TM kann durch eine $O(k\cdot f^2(n))$-zeitbeschränkte
 1-Band TM simuliert werden (siehe Formale Systeme, Vorlesung 18). Einfacher gesagt: Der Verzicht auf mehrere Bänder verursacht maximal quadratische Zeitkosten ($k$ ist hier ein linearer Faktor).}
 
 {\tiny \emph{Anmerkung:} Wir betrachten hier verschiedene Versionen deterministischer
@@ -477,7 +463,7 @@ kodiert werden können.\medskip
 \emph{Antwort:} "`Nein, aber vernünftige Kodierungen unterscheiden sich voneinander
 in der Regel nur polynomiell."'\bigskip
 
-\examplebox{Beispiel: Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
+\examplebox{\emph{Beispiel:} Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
 
 \emph{Aber:} Wir werden Fälle sehen, in denen eine (besonders ineffiziente) Kodierung die Komplexität verändert.
 
@@ -512,21 +498,21 @@ unterscheiden sich je nach
 
 Eine exakte Bestimmung solcher Schranken ist oft sehr schwer.\medskip\pause
 
-\examplebox{Beispiel: Ein naiver Algorithmus zur Matrixmultiplikation liegt in
+\examplebox{\emph{Beispiel:} Ein naiver Algorithmus zur Matrixmultiplikation liegt in
 $\Scomplclass{DTIME}(n^{\redalert{3}})$.
 \only<-2>{~\\~\\~\\}%
 \only<3->{\\Seit Jahrzehnten suchen Forscher nach besseren
 Lösungen:
-$\Scomplclass{DTIME}(n^{\redalert{2.808}})$ [\mbox{Strassen}, 1969], 
-$\Scomplclass{DTIME}(n^{\redalert{2.796}})$ [Pan, 1978],
-$\Scomplclass{DTIME}(n^{\redalert{2.780}})$ [Bini et al., 1979],
-$\Scomplclass{DTIME}(n^{\redalert{2.522}})$ [Schönhage, 1981],
-$\Scomplclass{DTIME}(n^{\redalert{2.517}})$ [Romani, 1982],
-$\Scomplclass{DTIME}(n^{\redalert{2.496}})$ [Coppersmith \& \mbox{Winograd}, 1981],
-$\Scomplclass{DTIME}(n^{\redalert{2.479}})$ [Strassen, 1986],
-$\Scomplclass{DTIME}(n^{\redalert{2.376}})$ [Coppersmith \& \mbox{Winograd}, 1990],
-$\Scomplclass{DTIME}(n^{\redalert{2.374}})$ [Stothers, 2010] und
-$\Scomplclass{DTIME}(n^{\redalert{2.373}})$ [Williams, 2011].}
+$\Scomplclass{DTIME}(n^{\redalert{2,808}})$ [\mbox{Strassen}, 1969], 
+$\Scomplclass{DTIME}(n^{\redalert{2,796}})$ [Pan, 1978],
+$\Scomplclass{DTIME}(n^{\redalert{2,780}})$ [Bini et al., 1979],
+$\Scomplclass{DTIME}(n^{\redalert{2,522}})$ [Schönhage, 1981],
+$\Scomplclass{DTIME}(n^{\redalert{2,517}})$ [Romani, 1982],
+$\Scomplclass{DTIME}(n^{\redalert{2,496}})$ [Coppersmith \& \mbox{Winograd}, 1981],
+$\Scomplclass{DTIME}(n^{\redalert{2,479}})$ [Strassen, 1986],
+$\Scomplclass{DTIME}(n^{\redalert{2,376}})$ [Coppersmith \& \mbox{Winograd}, 1990],
+$\Scomplclass{DTIME}(n^{\redalert{2,374}})$ [Stothers, 2010] und
+$\Scomplclass{DTIME}(n^{\redalert{2,373}})$ [Williams, 2011].}
 \only<-3>{\phantom{Vermutete} \phantom{optimale} \phantom{Lösung:} \phantom{$\Scomplclass{DTIME}(n^{\redalert{2}})$.}}%
 \only<4->{\\ Vermutete optimale Lösung: $\Scomplclass{DTIME}(n^{\redalert{2}})$.}
 }
@@ -547,7 +533,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2.373}})$ [Williams, 2011].}
 \begin{itemize}
 \item Wir betrachten \alert{noch allgemeinere Sprachklassen}, die auch gegenüber polynomiellen Änderungen der Ressourcen robust sind
 \item Nachteil: Wir können nicht mehr zwischen $n$ und $n^{1000}$ unterscheiden
-\item Vorteil: Wir müssen nicht mehr zwischen $n^{2.374}$ und $n^{2.373}$ unterscheiden
+\item Vorteil: Wir müssen nicht mehr zwischen $n^{2,374}$ und $n^{2,373}$ unterscheiden
 \end{itemize}
 
 \end{frame}
@@ -627,7 +613,7 @@ Offensichtlich führen (asymptotisch) höhere Ressourcenschranken zu größeren 
 Oft ist aber nicht klar, ob man mit mehr Ressourcen auch wirklich mehr (oder einfach nur gleich viele) Probleme lösen kann. Bei
 unseren Klassen ist das aber bekannt:\medskip
 
-\theobox{Fakt: Es gilt $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$ und
+\theobox{\emph{Fakt:} Es gilt $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$ und
 $\Scomplclass{LogSpace}\subsetneq\Scomplclass{PSpace}$.
 }\medskip\pause
 
@@ -637,7 +623,7 @@ Weiterhin kann man Speicher mit Zeit in Beziehung bringen:
 \item Alle möglichen Konfigurationen auf $n$ Speicherzellen kann man in exponentieller Zeit (bezüglich $n$) berechnen
 \end{itemize}
 
-\theobox{Fakt: Es gilt $\Scomplclass{LogSpace}\subseteq\Scomplclass{P}\subseteq\Scomplclass{PSpace}\subseteq\Scomplclass{Exp}$.
+\theobox{\emph{Fakt:} Es gilt $\Scomplclass{LogSpace}\subseteq\Scomplclass{P}\subseteq\Scomplclass{PSpace}\subseteq\Scomplclass{Exp}$.
 }
 
 \end{frame}
@@ -649,15 +635,15 @@ auf die Einordnung eines Problems.\\
 \alert{Oft genügt eine Implementierungsskizze um zu zeigen, dass eine Sprache
 in einer dieser Klassen liegt.}\pause
 
-\examplebox{Beispiel: Eulers Methode um die Existenz von Eulerpfaden zu entscheiden,
+\examplebox{\emph{Beispiel:} Eulers Methode um die Existenz von Eulerpfaden zu entscheiden,
 kann in $\Scomplclass{LogSpace}$ implementiert werden: wir zählen die Kanten jedes Knotens 
 und speichern die Zahl der Knoten ungeraden Grades, jeweils binär.}\pause
 
-\examplebox{Beispiel: Die Suche nach Hamilton-Pfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
+\examplebox{\emph{Beispiel:} Die Suche nach Hamilton-Pfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
 
-\examplebox{Beispiel: Ein typisches Problem in $\Scomplclass{P}$ haben wir bereits in
+\examplebox{\emph{Beispiel:} Ein typisches Problem in $\Scomplclass{P}$ haben wir bereits in
 der Vorlesung Formale Systeme kennengelernt: Erfüllbarkeit von propositionaler Horn-Logik. Unser Resolutionsalgorithmus
-liefert allerdings keinen Hinweis auf Machbarkeit in $\Scomplclass{LogSpace}$.}\pause
+liefert allerdings keinen Hinweis auf Machbarkeit in $\Scomplclass{LogSpace}$.}%\pause
 
 \end{frame}
 
@@ -676,7 +662,7 @@ Die wichtigsten deterministischen Komplexitätsklassen sind
 Was erwartet uns als nächstes?
 \begin{itemize}
 \item Effizient lösbare Probleme: $\Scomplclass{P}$
-\item Die kleinste traditionelle Komplexitätsklasse: $\Scomplclass{L}$
+\item Die kleinste "`traditionelle"' Komplexitätsklasse: $\Scomplclass{L}$
 \item Weitere Beziehungen zwischen Komplexitäten
 \end{itemize}
 }
