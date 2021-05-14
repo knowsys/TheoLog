@@ -31,7 +31,7 @@
 interessantes über dessen Komplexität.\pause
 \bigskip
 
-\theobox{Satz: Sei $\Slang{L}=\{\Sterm{a}\}$ eine Sprache über dem Alphabet $\{\Sterm{a}\}$.
+\theobox{\emph{Satz:} Sei $\Slang{L}=\{\Sterm{a}\}$ eine Sprache über dem Alphabet $\{\Sterm{a}\}$.
 Falls $\Slang{P}$ entscheidbar ist, dann gibt es eine Many-One-Reduktion $\Slang{P}\leq_m\Slang{L}$.}\pause
 
 \emph{Beweis:} Die Reduktion $f$ funktioniert wie folgt:
@@ -48,10 +48,10 @@ Falls $\Slang{P}$ entscheidbar ist, dann gibt es eine Many-One-Reduktion $\Slang
 Es gibt Situationen, in denen ein Problem in \Scomplclass{PTime} liegt 
 und dennoch nicht praktisch algorithmisierbar ist.\medskip
 
-\theobox{Satz: Jede endliche Sprache kann in $\Scomplclass{DTIME}(1)$ erkannt werden und liegt daher
+\theobox{\emph{Satz:} Jede endliche Sprache kann in $\Scomplclass{DTIME}(1)$ erkannt werden und liegt daher
 insbesondere in \Scomplclass{PTime} und \Scomplclass{LogSpace}.}\bigskip\pause
 
-\examplebox{Beispiel: Sei $\Slang{L}$ die Sprache, die alle wahren Aussagen aus der
+\examplebox{\emph{Beispiel:} Sei $\Slang{L}$ die Sprache, die alle wahren Aussagen aus der
 folgenden Menge enthält: $\{"`\Scomplclass{P}=\Scomplclass{NP}"', "`\Scomplclass{P}\neq\Scomplclass{NP}"'\}$. Dann ist $\Slang{L}\in\Scomplclass{PTime}$ und damit effizient berechenbar.}\pause
 
 \emph{Erkenntnis:} Man kann manchmal die Existenz eines effizienten Algorithmus beweisen,
@@ -130,7 +130,7 @@ Daraus ergibt sich die Definition einer Sprachklasse:
 \defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell} wenn es für sie einen polynomiellen
 Verifikator gibt.}\medskip\pause
 
-\examplebox{Beispiel: Die Entscheidung, ob ein gegebener Graph einen Hamilton-Pfad zulässt, ist nachweis-polynomiell.
+\examplebox{\emph{Beispiel:} Die Entscheidung, ob ein gegebener Graph einen Hamilton-Pfad zulässt, ist nachweis-polynomiell.
 Als Zertifikat dient der entsprechende Pfad.}\bigskip
 
 \end{frame}
@@ -139,7 +139,7 @@ Als Zertifikat dient der entsprechende Pfad.}\bigskip
 
 Wir hatten sodann gezeigt:\medskip
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}
 
 \emph{Beweisidee:}\\[1ex]
 "`$\Rightarrow$"' Gibt es einen polynomiellen Verifikator, dann gibt es auch eine polynomiell zeitbeschränkte NTM, die das Zertifikat rät und anschließend verifiziert\\[1ex]
@@ -179,7 +179,7 @@ NTM simuliert: das Zertifikat ist ein akzeptierender Lauf\qed
 
 Es ist leicht zu sehen:
 
-\theobox{Satz: Die Klasse \Scomplclass{P} ist unter Komplement abgeschlossen.}
+\theobox{\emph{Satz:} Die Klasse \Scomplclass{P} ist unter Komplement abgeschlossen.}
 
 \emph{Beweis:} Wenn es für \Slang{L} eine polynomiell-zeitbeschränkte TM \Smach{M}
 gibt, dann erhält man eine TM für $\overline{\Slang{L}}$ indem man akzeptierende
@@ -191,7 +191,7 @@ und nicht-akzeptierende Zustände von \Smach{M} vertauscht.\qed\medskip
 
 Für nichtdeterministische Klassen wie \Scomplclass{NP} ist das nicht so einfach:
 
-\examplebox{Beispiel: Es scheint kein einfaches Zertifikat dafür zu geben, dass
+\examplebox{\emph{Beispiel:} Es scheint kein einfaches Zertifikat dafür zu geben, dass
 ein Graph \alert{keinen} Hamiltonpfad hat.
 }\medskip\pause
 
@@ -297,19 +297,19 @@ bedeutet\\[1ex]
 
 \end{frame}
 
-\begin{frame}\frametitle{\Scomplclass{NP}-Härte und \Scomplclass{NP}-Vollständigkeit}
+\begin{frame}\frametitle{\Scomplclass{NP}-Schwere und \Scomplclass{NP}-Vollständigkeit}
 
 \defbox{Eine Sprache ist
 \begin{itemize}
-\item \redalert{\Scomplclass{NP}-hart,} wenn jede Sprache in \Scomplclass{NP} polynomiell darauf reduzierbar ist
-\item \redalert{\Scomplclass{NP}-vollständig,} wenn sie \Scomplclass{NP}-hart ist und in \Scomplclass{NP} liegt
+\item \redalert{\Scomplclass{NP}-schwer,} wenn jede Sprache in \Scomplclass{NP} polynomiell darauf reduzierbar ist
+\item \redalert{\Scomplclass{NP}-vollständig,} wenn sie \Scomplclass{NP}-schwer ist und in \Scomplclass{NP} liegt
 \end{itemize}}\medskip\pause
 
-\examplebox{Beispiel: \Slang{SAT} ist \Scomplclass{NP}-vollständig (Cook \& Levin).}
+\examplebox{\emph{Beispiel:} \Slang{SAT} ist \Scomplclass{NP}-vollständig (Cook \& Levin).}
 
-\examplebox{Beispiel: \Slang{Primzahl} ist in \Scomplclass{NP}, aber \alert{vermutlich} nicht \Scomplclass{NP}-hart. Gleiches gilt für viele Probleme in \Scomplclass{P} (bei einigen ist dagegen sicher, dass sie nicht \Scomplclass{NP}-hart sind).}
+\examplebox{\emph{Beispiel:} \Slang{Primzahl} ist in \Scomplclass{NP}, aber \alert{vermutlich} nicht \Scomplclass{NP}-schwer. Gleiches gilt für viele Probleme in \Scomplclass{P} (bei einigen ist dagegen sicher, dass sie nicht \Scomplclass{NP}-schwer sind).}
 
-\examplebox{Beispiel: Das Halteproblem ist \Scomplclass{NP}-hart aber sicher nicht in \Scomplclass{NP}. Gleiches gilt für jedes unentscheidbare Problem.}
+\examplebox{\emph{Beispiel:} Das Halteproblem ist \Scomplclass{NP}-schwer aber sicher nicht in \Scomplclass{NP}. Gleiches gilt für jedes unentscheidbare Problem.}
 
 \end{frame}
 
@@ -358,20 +358,20 @@ direkt durch eine Kante verbunden ist\medskip
 \emph{Frage:} Enthält $G$ eine Clique mit $k$ Knoten?\\
 }\medskip\pause
 
-\theobox{Satz: \Slang{Clique} ist \Scomplclass{NP}-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Clique} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:}\\
 (1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ghost{\ldots)}\pause
 
 }\medskip
 
-(2) Clique ist \Scomplclass{NP}-hart. Dazu konstruieren wir eine Reduktion von \Slang{SAT}.
+(2) Clique ist \Scomplclass{NP}-schwer. Dazu konstruieren wir eine Reduktion von \Slang{SAT}.
 
 \end{frame}
 
-\begin{frame}\frametitle{Clique: Härte (1)}
+\begin{frame}\frametitle{Clique: Schwere (1)}
 
-\emph{Beweis Teil (2):} Clique ist \Scomplclass{NP}-hart.
+\emph{Beweis Teil (2):} Clique ist \Scomplclass{NP}-schwer.
 \begin{itemize}
 \item Sei $F$ eine aussagenlogische Formel in CNF:\\
 $F=\left((L^1_1\vee \ldots\vee L^1_{n_1})\wedge \ldots\wedge (L^\ell_1\vee \ldots\vee L^\ell_{n_\ell})\right)$\pause
@@ -391,7 +391,7 @@ Offensichtlich kann man $G_F$ in polynomieller Zeit berechnen
 
 \end{frame}
 
-\begin{frame}\frametitle{Clique: Härte (2)}
+\begin{frame}\frametitle{Clique: Schwere (2)}
 
 \emph{Beispiel:} $F=((p\vee q \vee \neg r) \wedge (p\vee \neg q) \wedge (\neg p\vee r))$
 
@@ -457,7 +457,7 @@ Knoten mit einem anderen direkt verbunden ist\medskip
 \emph{Frage:} Enthält $G$ eine unabhängige Menge mit $k$ Knoten?\\
 }\medskip\pause
 
-\theobox{Satz: \Slang{Unabhängige Menge} ist \Scomplclass{NP}-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Unabhängige Menge} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:} Die Reduktion auf \Slang{Clique} ist sehr einfach:
 \begin{itemize}
