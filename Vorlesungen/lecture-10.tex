@@ -42,12 +42,12 @@ $\leq_p$\\
 
 \emph{Anmerkung:} Mehrere Gegenstände können gleiche Werte haben.\bigskip\pause
 
-\theobox{Satz: \Slang{Teilmengen-Summe} ist \Scomplclass{NP}-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Teilmengen-Summe} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:}
 \begin{enumerate}[(1)]
 \item $\Slang{Teilmengen-Summe}\in\Scomplclass{NP}$ haben wir bereits festgestellt
-\item \Scomplclass{NP}-Härte zeigen wir durch Reduktion $\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}$
+\item \Scomplclass{NP}-Schwere zeigen wir durch Reduktion $\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}$
 \end{enumerate}
 
 \end{frame}
@@ -234,12 +234,12 @@ Damit folgt: $\sum_{s\in T} \val{s} = z$
 \end{itemize}
 }\smallskip\pause
 
-\theobox{Satz: \Slang{Rucksack} ist \Scomplclass{NP}-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Rucksack} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:}
 \begin{enumerate}[(1)]
 \item $\Slang{Rucksack} \in \Scomplclass{NP}$: Das Zertifikat ist $T$
-\item \Slang{Rucksack} ist \Scomplclass{NP}-hart:\\
+\item \Slang{Rucksack} ist \Scomplclass{NP}-schwer:\\
 durch Reduktion $\Slang{Teilmengen-Summe}\leq_p\Slang{Rucksack}$
 \end{enumerate}
 
@@ -381,7 +381,7 @@ eine DTM gelöst wird, die polynomiell zeitbeschränkt ist bzgl. der Eingabelän
 \emph{Äquivalent:} ein Problem ist pseudopolynomiell, wenn es in $\Scomplclass{PTime}$
 liegt, wenn man alle Zahlen \alert{unär} kodiert.\medskip\pause
 
-\examplebox{Beispiel: \Slang{Rucksack} ist pseudopolynomiell: beschränkt man das Problem auf Instanzen mit $\ell\leq p(n)$ für ein Polynom $p$, so erhält man ein Problem in \Scomplclass{P} (wobei $n$ die Zahl der Gegenstände ist).
+\examplebox{\emph{Beispiel:} \Slang{Rucksack} ist pseudopolynomiell: beschränkt man das Problem auf Instanzen mit $\ell\leq p(n)$ für ein Polynom $p$, so erhält man ein Problem in \Scomplclass{P} (wobei $n$ die Zahl der Gegenstände ist).
 }
 
 \end{frame}
@@ -391,14 +391,14 @@ liegt, wenn man alle Zahlen \alert{unär} kodiert.\medskip\pause
 \defbox{Probleme, welche selbst dann noch \Scomplclass{NP}-vollständig sind, wenn 
 man alle Zahlen unär kodiert, heißen \redalert{stark \Scomplclass{NP}-vollständig}.}\medskip\pause
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 \begin{itemize}
 \item \Slang{SAT} ist stark \Scomplclass{NP}-vollständig (keine Zahlen in der Eingabe)
 \item \Slang{CLIQUE} ist stark \Scomplclass{NP}-vollständig
 \item \ldots
 \end{itemize}}\pause
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 \begin{itemize}
 \item \Slang{Rucksack} ist pseudopolynomiell
 \item \Slang{Teilmengen-Summe} ist pseudopolynomiell
@@ -421,7 +421,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
 
 \anybox{strongyellow}{Ist das Problem pseudopolynomiell?\\ Wie sind Zahlenbeträge kodiert?}\bigskip
 
-\examplebox{Beispiel: Molekulare Anordnungen zum Lösen von \Slang{Teilmengen-Summe}, wobei
+\examplebox{\emph{Beispiel:} Molekulare Anordnungen zum Lösen von \Slang{Teilmengen-Summe}, wobei
 Zahlen durch eine entsprechende Zahl an Molekülen kodiert werden.}
 
 \end{frame}
@@ -439,7 +439,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
 
 \anybox{strongyellow}{Wächst der neuartige Computer mit dem Problem?\\ Ist dieses Wachstum exponentiell?}\bigskip
 
-\examplebox{Beispiel: DNS-Rechner lösen Optimierunsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
+\examplebox{\emph{Beispiel:} DNS-Rechner lösen Optimierunsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
 
 \end{frame}
 
@@ -456,7 +456,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
 
 \anybox{strongyellow}{Wird das Problem wirklich gelöst oder handelt es sich eher um ein Approximationsverfahren? Ist klar, was ein "`Berechnungsschritt"' ist und ist deren Zahl wirklich polynomiell?}\bigskip
 
-\examplebox{Beispiel: Ein Schaltkreis mit Rückkopplungen, welcher "`in der Regel"' zu einer "`guten"' Lösung eines $\Scomplclass{NP}$-vollständigen Problems konvergiert, und das "`nach kurzer Zeit."'}
+\examplebox{\emph{Beispiel:} Ein Schaltkreis mit Rückkopplungen, welcher "`in der Regel"' zu einer "`guten"' Lösung eines $\Scomplclass{NP}$-vollständigen Problems konvergiert, und das "`nach kurzer Zeit."'}
 
 \end{frame}
 
@@ -534,7 +534,7 @@ ist das Problem dann effizient lösbar?}%
 
 Ladner hat gezeigt, dass Fall (2.a) unmöglich ist:
 
-\theobox{Satz (Ladner): Falls $\Scomplclass{P}\neq\Scomplclass{NP}$, dann gibt es
+\theobox{\emph{Satz (Ladner):} Falls $\Scomplclass{P}\neq\Scomplclass{NP}$, dann gibt es
 Probleme in \Scomplclass{NP}, die weder \Scomplclass{NP}-vollständig sind noch in \Scomplclass{P} liegen.}
 
 Diese Probleme heißen \redalert{\Scomplclass{NP}-intermediate} \pause{} -- wenn $\Scomplclass{P}\neq\Scomplclass{NP}$, dann sollte es viele davon geben \ldots aber wir kennen kaum Kandidaten:
