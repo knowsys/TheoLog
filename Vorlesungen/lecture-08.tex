@@ -84,7 +84,7 @@ Bei speicherbeschränkten TMs ist die Situation sogar etwas einfacher:
 Ist die Berechnungszeit beschränkt, so kann auch nur beschränkt viel 
 Speicher genutzt werden:\bigskip
 
-\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
+\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
 \[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
 }
 
@@ -98,7 +98,7 @@ Speicher genutzt werden:\bigskip
 
 Andererseits ist Speicher mächtiger als Zeit, da man Speicher mehrfach verwenden kann (Zeit leider nicht):\bigskip
 
-\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
+\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
 \[\Scomplclass{DSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)}).\]}
 
 \pause\emph{Beweis:} Gegeben sei eine Eingabe $w$ der Länge $|w|=n$.\pause
@@ -190,7 +190,7 @@ Auch hier beschränken wir uns auf einige wichtige Fälle:
 \end{align*}
 }\pause
 
-\examplebox{Beispiel: Die Existenz eines Hamiltonpfads ist in $\Scomplclass{NP}$ entscheidbar. Wenn ein Hamiltonpfad existiert, dann kann er in polynomieller Zeit
+\examplebox{\emph{Beispiel:} Die Existenz eines Hamiltonpfads ist in $\Scomplclass{NP}$ entscheidbar. Wenn ein Hamiltonpfad existiert, dann kann er in polynomieller Zeit
 erraten und überprüft werden.
 }
 
@@ -210,7 +210,7 @@ Die folgenden Konstruktionen funktionieren wie im deterministischen Fall:
 Die Beziehungen von Zeit und Speicher bleiben ebenfalls erhalten, mit einer Besonderheit:
 \medskip
 
-\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
+\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
 \begin{align*}
 \Scomplclass{NTIME}(f) & \subseteq \Scomplclass{NSPACE}(f) \\
 \Scomplclass{NSPACE}(f) &\subseteq \Scomplclass{\redalert{D}TIME}(2^{O(f)})
@@ -226,7 +226,7 @@ exponentiell groß, aber kann wie zuvor deterministisch durchsucht werden.\qed
 
 Wir haben also nebenbei auch gezeigt: $\Scomplclass{NTIME}(f) \subseteq \Scomplclass{NSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)})$.\bigskip
 
-\theobox{Satz: Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
+\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
 \[\Scomplclass{NTIME}(f) \subseteq \Scomplclass{DTIME}(2^{O(f)})\]}
 
 \emph{Anmerkung:} In Formale Systeme, Vorlesung 19, haben wir dieses Ergebnis durch eine alternative Konstruktion gezeigt (ausgehend von der Simulation einer beliebigen, unbeschränkten NTM durch deterministische Suche im Baum der möglichen Berechnungspfade).
@@ -259,7 +259,7 @@ Aus unseren Beobachtungen folgen verschiedene einfache Beziehungen:
 
 Zudem besagt der berühmte \alert{Satz von Savitch}, dass speicherbeschränkte NTMs durch DTMs mit nur quadratischen Mehrkosten simuliert werden können. Daraus folgt:
 
-\theobox{Satz (Savitch): $\Scomplclass{PSpace}= \Scomplclass{NPSpace}$.}
+\theobox{\emph{Satz (Savitch):} $\Scomplclass{PSpace}= \Scomplclass{NPSpace}$.}
 
 (ohne Beweis)\bigskip\pause
 
@@ -289,7 +289,7 @@ Es wird aber vermutet, dass alle  $\subseteq$ eigentlich $\subsetneq$ sind.
 % 
 Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
 
-\theobox{Satz: Die folgenden Inklusionen sind echt:
+\theobox{\emph{Satz:} Die folgenden Inklusionen sind echt:
 \begin{itemize}
 \item $\Scomplclass{NL}\subsetneq\Scomplclass{PSpace}$
 \item $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$
@@ -430,7 +430,7 @@ ebenfalls dargestellt als Menge
 
 \begin{frame}\frametitle{\Slang{2SAT} ist in \Scomplclass{P}}
 
-\theobox{Satz: $\Slang{2SAT}\in\Scomplclass{P}$}
+\theobox{\emph{Satz:} $\Slang{2SAT}\in\Scomplclass{P}$}
 
 \pause\emph{Beweis:} Dazu wollen wir einen polynomiellen Algorithmus angeben.
 \pause\bigskip
@@ -475,7 +475,7 @@ $\leadsto$ Komplexitätsklassen \Scomplclass{L} und \Scomplclass{NL}
 
 Damit kann man bereits viele einfache Algorithmen umsetzen\pause
 
-\examplebox{Beispiel: Die Sprache aller Wörter über $\{\Sterm{0},\Sterm{1}\}$, welche
+\examplebox{\emph{Beispiel:} Die Sprache aller Wörter über $\{\Sterm{0},\Sterm{1}\}$, welche
 die gleiche Anzahl der Symbole $\Sterm{0}$ und $\Sterm{1}$ enthalten, ist in \Scomplclass{L}:
 \begin{itemize}
 \item Wir verwenden zwei Zähler für die beiden Zahlen
@@ -487,7 +487,7 @@ die gleiche Anzahl der Symbole $\Sterm{0}$ und $\Sterm{1}$ enthalten, ist in \Sc
 
 \begin{frame}\frametitle{Noch ein Beispiel in \Scomplclass{L}}
 
-\examplebox{Beispiel: Die Sprache \Slang{Palindrom}, welche Wörter enthält, die von hinten gelesen genauso lauten wie von vorn, ist in \Scomplclass{L}:
+\examplebox{\emph{Beispiel:} Die Sprache \Slang{Palindrom}, welche Wörter enthält, die von hinten gelesen genauso lauten wie von vorn, ist in \Scomplclass{L}:
 \begin{itemize}
 \item Wir verwenden zwei Pointer in die Eingabe, einer auf die erste und einer auf die letzte Eingabezelle
 \item Die TM vergleicht die Speicherinhalte bei den Pointern und verschiebt sie anschließend um eine Zelle in Richtung Wortmitte
@@ -510,7 +510,7 @@ Man kann unsere Definitionen leicht auf andere Berechnungsprobleme übertragen.\
 
 \pause Bei logarithmischen Speicherschranken müssen wir vorsichtig sein: Das Ergebnis könnte größer sein als der Arbeitsspeicher!
 
-\defbox{Eine totale Funktion $f$ ist in \redalert{logarithmischen Speicher berechenbar}, wenn es eine 3-Band DTM $\Smach{M}$ gibt, die $f$ wie folgt berechnet:
+\defbox{Eine totale Funktion $f$ ist in \redalert{logarithmischem Speicher berechenbar}, wenn es eine 3-Band DTM $\Smach{M}$ gibt, die $f$ wie folgt berechnet:
 (1) die Eingabe befindet sich auf dem schreibgeschützten \alert{Eingabeband}, (2) die DTM verwendet maximal $O(\log n)$ Speicherzellen auf dem \alert{Arbeitsband},
 (3) die Ausgabe wird auf das \alert{Ausgabeband} geschrieben (pro Zelle einmaliges Schreiben, kein Lesen).%
 % \begin{itemize}
@@ -543,14 +543,14 @@ Logarithmische Many-One-Reduktionen könnten analog definiert werden (wir werden
 \emph{Idee:} Wenn man ein Problem $\Slang{A}$ leicht auf ein leichtes Problem $\Slang{B}$ reduzieren kann,
 dann ist $\Slang{A}$ ebenfalls leicht.\bigskip
 
-\theobox{Satz: Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{B}\in\Scomplclass{PTime}$, dann ist $\Slang{A}\in\Scomplclass{PTime}$.}
+\theobox{\emph{Satz:} Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{B}\in\Scomplclass{PTime}$, dann ist $\Slang{A}\in\Scomplclass{PTime}$.}
 
 \emph{Beweis:} Folgt durch Hintereinanderausführung der polynomiellen Prozeduren, da die Summe und Komposition von Polynomen ein Polynom ist.\qed
 \bigskip\pause
 
 Die Umkehrung wird uns später noch interessieren:
 
-\theobox{Satz: Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{A}\notin\Scomplclass{PTime}$, dann ist $\Slang{B}\notin\Scomplclass{PTime}$.}\bigskip
+\theobox{\emph{Satz:} Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{A}\notin\Scomplclass{PTime}$, dann ist $\Slang{B}\notin\Scomplclass{PTime}$.}\bigskip
 
 Dazu mehr in den kommenden Vorlesungen \ldots
 
@@ -595,30 +595,11 @@ Was erwartet uns als nächstes?
 \begin{itemize}
 \item $\Scomplclass{NP}$
 \item $\Scomplclass{NL}$
-\item Das erste Repetitorium
+% \item Das erste Repetitorium
 \end{itemize}
 }
 
 \end{frame}
-
-% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
-% 
-% \alert{Literatur}\bigskip
-% 
-% \begin{itemize}
-% \item Richard J. Lorentz:
-% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
-% Computers and Games 2000: 214--228
-% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
-% \end{itemize}
-% 
-% \bigskip\bigskip
-% 
-% \alert{Bildrechte}\bigskip
-% 
-% Folie \ref{frame_post}: gemeinfrei
-% 
-% \end{frame}
 
 
 \end{document}
