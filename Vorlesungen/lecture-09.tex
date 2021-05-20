@@ -93,6 +93,35 @@ Frank Nelson Cole
 
 \end{frame}
 
+\begin{frame}\frametitle{Der Vortrag ohne Worte}
+
+Am 31. Oktober 1903 auf einem Treffen der American Mathematical Society tritt Cole nach vorn und beginnt,
+an die Tafel zu schreiben \ldots \bigskip\pause
+
+~\hfill
+\begin{minipage}{6.5cm}
+$2^{67}-1$\\\pause
+$= \ldots$\\\pause
+$= \ldots$\\\pause
+$= \ldots$\\\pause
+$= 147\,573\,952\,589\,676\,412\,927$\pause
+\end{minipage}
+\begin{minipage}{6.5cm}
+$193\,707\,721 \times 761\,838\,257\,287$\\\pause
+$= \ldots$\\\pause
+$= \ldots$\\\pause
+$= \ldots$\\\pause
+$= 147\,573\,952\,589\,676\,412\,927$\pause
+\end{minipage}
+\hfill~
+\bigskip
+
+Damit endet Coles stundenlanger Vortrag, ohne dass ein Wort gesprochen wurde.\\
+Das Publikum steht auf und applaudiert.
+
+\end{frame}
+
+
 
 \begin{frame}\frametitle{Rückblick: Polynomielle Verifikatoren}
 
@@ -116,7 +145,7 @@ polynomiell-zeitbeschränkte, deterministische TM \Smach{M}, für die gilt:
 \item Zertifikate sollten kurz sein, damit die Prüfung selbst nicht länger dauert als die Lösung des Problems.
 \end{itemize}
 
-Zertifikate werden auch \alert{Nachweis}, \alert{Beweis} oder \alert{Zeuge} genannt
+Zertifikate werden auch \alert{Nachweis}, \alert{Beweis} oder \alert{Zeuge} genannt.
 
 \end{frame}
 
@@ -291,7 +320,7 @@ bedeutet\\[1ex]
 
 \bigskip
 \begin{itemize}
-\item Einordnung in Komplexitätsklassen: \alert{obere Schranke}\\ ("`\Slang{Q} ist mit höchstens polynomiellen Aufwand lösbar"')
+\item Einordnung in Komplexitätsklassen: \alert{obere Schranke}\\ ("`\Slang{Q} ist mit einem bestimmten Aufwand lösbar"')
 \item Reduktion auf andere Probleme: \alert{untere Schranke}\\ ("`\Slang{Q} benötigt mindestens so viel Aufwand wie \Slang{P}"')
 \end{itemize}
 
@@ -320,8 +349,7 @@ Der Beweis der \Scomplclass{NP}-Vollständigkeit von \Slang{SAT} war ein wichtig
 
 \emph{Beweisidee:}
 \begin{itemize}
-\item Durch direkte Reduktion auf das Wortproblem von polynomiell zeitbeschränkten NTMs
-{\tiny(dies ist eigentlich "`das erste"' NP-vollständige Problem!)}
+\item Durch direkte Reduktion von Wortproblemen polynomiell zeitbeschränkter NTMs
 \item Wir verwenden so viele aussagenlogische Variablen, dass sie jeden polynomiellen
 Lauf kodieren könnten (d.h. alle Speicherstellen, Zustände und Positionen in jedem Schritt!)
 \item Wir verwenden Formeln, so dass jede erfüllende Belegung einen korrekten, akzeptierenden Lauf kodiert
