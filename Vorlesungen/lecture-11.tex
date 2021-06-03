@@ -40,7 +40,7 @@ Das macht sie in der Praxis oft eher einfach.
 \bigskip
 
 \examplebox{
-Beispiel: Das Rucksackproblem ist nur dann NP-vollständig,
+\emph{Beispiel:} Das Rucksackproblem ist nur dann NP-vollständig,
 wenn die Gewichte der Gegenstände über-polynomiell wachsen dürfen. Ein Problem mit
 so schweren Gegenständen ist aber nur dann interessant, wenn auch der Rucksack
 eine sehr große Kapazität hat. Alternativ könnte man mit sehr hoher Genauigkeit wiegen.
@@ -120,7 +120,7 @@ lautet wie folgt:\\[1ex]
 \emph{Frage:} Gibt es in $G$ einen gerichteten Pfad von $s$ nach $t$?
 }\bigskip\pause
 
-\theobox{Satz:
+\theobox{\emph{Satz:}
 \Slang{Erreichbarkeit} in gerichteten Graphen liegt in NL.}\pause
 
 \emph{Beweis (Algorithmus):}
@@ -139,19 +139,18 @@ lautet wie folgt:\\[1ex]
 
 \begin{frame}\frametitle{NL-Vollständigkeit}
 
-Man kann NL-Härte ähnlich wie für NP definieren:
+Man kann NL-Schwere ähnlich wie für NP definieren:
 \begin{itemize}
 \item Statt polynomiellen Reduktionen verwendet man Logspace-Reduktionen
-\item NL-hart: jedes Problem in NL ist darauf logspace-reduzierbar
-\item NL-vollständig: in NL und NL-hart
+\item NL-schwer: jedes Problem in NL ist darauf logspace-reduzierbar
+\item NL-vollständig: in NL und NL-schwer
 \end{itemize}
 Intuition: NL-vollständige Probleme sind die schwersten in NL
 \bigskip\pause
 
-\examplebox{Beispiel: \Slang{Erreichbarkeit} in gerichteten Graphen ist NL-vollständig.}\bigskip\pause
+\examplebox{\emph{Beispiel:} \Slang{Erreichbarkeit} in gerichteten Graphen ist NL-vollständig.}\bigskip\pause
 
-\examplebox{Beispiel: \Slang{Erreichbarkeit} in \redalert{un}gerichteten Graphen ist in NL aber (vermutlich) nicht NL-hart: Das Problem liegt in L (Omer Reingold, 2005).}
-
+\examplebox{\emph{Beispiel:} \Slang{Erreichbarkeit} in \redalert{un}gerichteten Graphen ist in NL aber (vermutlich) nicht NL-schwer: Das Problem liegt in L (Omer Reingold, 2005).}
 \end{frame}
 
 \begin{frame}\frametitle{L, NL und coNL}
@@ -165,9 +164,9 @@ $\leadsto$ daraus folgt nicht $\Scomplclass{NL}\subseteq\Scomplclass{L}$!
 
 Man weiß dennoch:\bigskip
 
-\theobox{Satz (Immerman 1987, Szelepcs\'enyi 1987): $\Scomplclass{NL}=\Scomplclass{coNL}$.}\pause\medskip
+\theobox{\emph{Satz (Immerman 1987, Szelepcs\'enyi 1987):} $\Scomplclass{NL}=\Scomplclass{coNL}$.}\pause\medskip
 
-\examplebox{Beispiel: Nichterreichbarkeit in gerichteten Graphen kann in NL entschieden werden. Betrachtet man den NL-Algorithmus für Erreichbarkeit, dann ist das zunächst überraschend \ldots}
+\examplebox{\emph{Beispiel:} Nichterreichbarkeit in gerichteten Graphen kann in NL entschieden werden. Betrachtet man den NL-Algorithmus für Erreichbarkeit, dann ist das zunächst überraschend \ldots}
 \bigskip
 
 {\tiny
@@ -254,7 +253,7 @@ Eine \redalert{Quantifizierte Boolsche Formel} (QBF) ist eine logische Formel de
 mit $i\geq 0$, $\quantor_i\in\{\exists,\forall\}$ Quantoren, $p_i$ aussagenlogischen Atomen (Variablen) und $F$ einer aussagenlogischen Formel mit Atomen $p_1,\ldots,p_\ell$.
 }\pause
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 \begin{itemize}
 \item $\forall p.\exists q. (p\to q)\wedge(q\to p)$
 \item $\forall p_1,p_2,p_3.\exists q.(p_1\vee p_2\vee p_3)\to((p_1\vee q)\wedge (\neg q\vee p_2\vee p_3))$
@@ -281,7 +280,7 @@ Dabei heißt $\varphi[p/\top]$: "`$\varphi$ mit $p$ ersetzt durch $\top$"'; anal
 \end{itemize}
 }\pause
 
-\examplebox{Beispiel:\\\footnotesize
+\examplebox{\emph{Beispiel:}\\\footnotesize
 \begin{tabular}{@{}r@{~}l@{}}
 & $W(\forall p.\exists q. (p\to q)\wedge(q\to p))=\mytrue$ \\
 gdw. & $W(\exists q. (\top\to q)\wedge(q\to \top))=\mytrue$ und\\
@@ -302,15 +301,15 @@ Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht
 \emph{Gegeben:} eine QBF $Q$\\
 \emph{Frage:} Ist $W(Q)=\mytrue$?}\bigskip\pause
 
-\examplebox{Beispiel: \Slang{SAT} lässt sich auf \Slang{TrueQBF} reduzieren, indem man jedes Atom der gegebenen aussagenlogischen Formel existentiell quantifiziert.}\bigskip\pause
+\examplebox{\emph{Beispiel:} \Slang{SAT} lässt sich auf \Slang{TrueQBF} reduzieren, indem man jedes Atom der gegebenen aussagenlogischen Formel existentiell quantifiziert.}\bigskip\pause
 
-\examplebox{Beispiel: \Slang{Tautologie} lässt sich auf \Slang{TrueQBF} reduzieren, indem man jedes Atom der gegebenen aussagenlogischen Formel universell quantifiziert.}
+\examplebox{\emph{Beispiel:} \Slang{Tautologie} lässt sich auf \Slang{TrueQBF} reduzieren, indem man jedes Atom der gegebenen aussagenlogischen Formel universell quantifiziert.}
 
 \end{frame}
 
 \begin{frame}\frametitle{\Slang{TrueQBF} in polynomiellem Speicher}
 
-\theobox{Satz: \Slang{TrueQBF} ist in PSpace.}\pause
+\theobox{\emph{Satz:} \Slang{TrueQBF} ist in PSpace.}\pause
 
 \emph{Beweis:} Durch Angabe eines (Pseudo-)Algorithmus
 
@@ -337,12 +336,12 @@ Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht
 
 \end{frame}
 
-\begin{frame}\frametitle{PSpace-Härte}
+\begin{frame}\frametitle{PSpace-Schwere}
 
-\defbox{Ein Problem \Slang{Q} ist \redalert{PSpace-hart} wenn
-für jedes Problem \Slang{P} in PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-hart ist und in PSpace liegt.}\bigskip\pause
+\defbox{Ein Problem \Slang{Q} ist \redalert{PSpace-schwer} wenn
+für jedes Problem \Slang{P} in PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-schwer ist und in PSpace liegt.}\bigskip\pause
 
-\theobox{Satz: \Slang{TrueQBF} ist PSpace-hart.}\pause
+\theobox{\emph{Satz:} \Slang{TrueQBF} ist PSpace-schwer.}\pause
 
 \emph{Beweisidee:} siehe nächste Vorlesung
 
@@ -393,9 +392,9 @@ Man kann \Slang{TrueQBF} als Spiel auffassen:
 \end{frame}
 
 
-\begin{frame}\frametitle{\Slang{Geography} ist PSpace-complete}
+\begin{frame}\frametitle{\Slang{Geography} ist PSpace-vollständig}
 
-\theobox{Satz: \Slang{Geography} ist PSpace-complete}\pause
+\theobox{\emph{Satz:} \Slang{Geography} ist PSpace-vollständig}\pause
 
 \emph{Beweis:} nächste Vorlesung
 

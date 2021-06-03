@@ -52,7 +52,7 @@ ist echt schwerer als NP und \Scomplclass{coNP}
 
 \begin{frame}\frametitle{Rückblick: \Slang{TrueQBF} in \PSpace}
 
-\theobox{Satz: \Slang{TrueQBF} ist in \PSpace.}\pause
+\theobox{\emph{Satz:} \Slang{TrueQBF} ist in \PSpace.}\pause
 
 \emph{Beweis:} Durch Angabe eines (Pseudo-)Algorithmus
 
@@ -79,12 +79,12 @@ ist echt schwerer als NP und \Scomplclass{coNP}
 
 \end{frame}
 
-\begin{frame}\frametitle{\PSpace-Härte}
+\begin{frame}\frametitle{\PSpace-Schwere}
 
-\defbox{Ein Problem \Slang{Q} ist \redalert{\PSpace-hart} wenn
-für jedes Problem \Slang{P} in \PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{\PSpace-vollständig} wenn es \PSpace-hart ist und in \PSpace liegt.}\bigskip\pause
+\defbox{Ein Problem \Slang{Q} ist \redalert{\PSpace-schwer} wenn
+für jedes Problem \Slang{P} in \PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{\PSpace-vollständig} wenn es \PSpace-schwer ist und in \PSpace liegt.}\bigskip\pause
 
-\theobox{Satz: \Slang{TrueQBF} ist \PSpace-hart.}\pause
+\theobox{\emph{Satz:} \Slang{TrueQBF} ist \PSpace-schwer.}\pause
 
 \emph{Beweisidee:}
 \begin{itemize}
@@ -104,7 +104,7 @@ der Konfigurationsvariablen anlegen und jeden Übergang mit Formeln axiomatisier
 \begin{itemize}
 \item Man kann eine komplette TM-Konfiguration in polynomiell vielen Atomen
   kodieren (wie bei Cook-Levin)
-\item Ebenso kann man zwei oder drei Konfigurationen kodieren -- aber nicht exponentiell viele für jeden Schritt
+\item Ebenso kann man zwei oder drei Konfigurationen kodieren -- aber nicht exponentiell viele (für jeden Schritt)
 \item Direkte Übergänge, Start- und Endkonfiguration kann man mit Formeln axiomatisieren
 \end{itemize}\bigskip\pause
 
@@ -149,11 +149,11 @@ beschränkt auf QBF der Form $\exists p_1.\forall p_2.\exists p_3.\ldots\forall 
 Diese Version entspricht eher der Idee eines Spiels, bei dem Emilia und Anton abwechselnd
 Belegungen festlegen. Emilia erhält den ersten und den letzten Zug.\bigskip\pause
 
-\theobox{Satz: \Slang{TrueQBF}${}_{\Slang{alt}}$ ist \PSpace-vollständig.}
+\theobox{\emph{Satz:} \Slang{TrueQBF}${}_{\Slang{alt}}$ ist \PSpace-vollständig.}
 
 \pause\emph{Beweis:} $\Slang{TrueQBF}_{\Slang{alt}}\in\PSpace$ folgt aus $\Slang{TrueQBF}\in\PSpace$.\bigskip
 
-Für die Härte zeigen wir $\Slang{TrueQBF}\leq_p\Slang{TrueQBF}_{\Slang{alt}}$:
+Für die Schwere zeigen wir $\Slang{TrueQBF}\leq_p\Slang{TrueQBF}_{\Slang{alt}}$:
 \begin{itemize}
 \item man fügt einfach nach Bedarf zusätzliche Quantoren ein
 \item es müssen nicht alle quantifizierten Atome in $F$ vorkommen\qed
@@ -193,7 +193,7 @@ Für die Härte zeigen wir $\Slang{TrueQBF}\leq_p\Slang{TrueQBF}_{\Slang{alt}}$:
 \begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(1)}}
 
 \vspace{-1ex}
-\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Geography} ist \PSpace-vollständig.}\pause
 
 \emph{Beweis:} (1) \Slang{Geography} ist in \PSpace\pause
 \smallskip
@@ -224,9 +224,9 @@ Bei Startknoten $s$ und Graph $G$ erhalten wir die Antwort durch Aufruf von
 \begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(2)}}
 
 \vspace{-1ex}
-\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}\pause
+\theobox{\emph{Satz:} \Slang{Geography} ist \PSpace-vollständig.}\pause
 
-\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-hart\pause
+\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-schwer\pause
 \smallskip
 
 Durch Reduktion $\Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$:
@@ -234,7 +234,7 @@ Durch Reduktion $\Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$:
 Wir betrachten eine QBF $\exists p_1.\forall p_2\ldots \exists p_\ell. F$
 und konstruieren daraus einen Graphen für \Slang{Geography} \bigskip
 
-\alert{Siehe Tafel:} {\tiny (oder M. Sipser: Introduction to the Theory of Computation; 2013; Thm. 8.14)}
+\alert{Grundidee:} {\tiny (siehe auch M. Sipser: Introduction to the Theory of Computation; 2013; Thm. 8.14)}
 \begin{itemize}
 \item Der Graph beginnt mit einer Abfolge von Rauten-Strukturen, welche die 
 Entscheidungen der Spieler darstellen: für jedes Atom $p$ gibt es dort zwei Knoten, $p_{\mytrue}$ und $p_{\myfalse}$, von denen genau einer besucht wird
@@ -245,27 +245,7 @@ Entscheidungen der Spieler darstellen: für jedes Atom $p$ gibt es dort zwei Kno
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(3)}}
-
-\vspace{-1ex}
-\theobox{Satz: \Slang{Geography} ist \PSpace-vollständig.}
-
-\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-hart
-\smallskip
-
-Beweisidee:
-\begin{itemize}
-\item Zuerst bestimmen Anton und Emilia abwechselnd Wahrheitswerte, indem sie die Rauten
-jeweils links oder rechts durchlaufen
-\item Danach darf Anton zur Auswertung eine Klausel auswählen (die er für nicht erfüllt hält)
-\item Anschließend wählt Emilia ein Literal dieser Klausel (welches ihrer Meinung nach erfüllt ist)
-\item Emilia gewinnt, wenn das Literal wirklich erfüllt war (denn dann gibt es keinen Weg zu einem noch nicht besuchten Knoten)
-\item Anton gewinnt, wenn das Literal nicht erfüllt war (denn dann kann er den Weg noch genau einen Schritt fortsetzen)
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig: Beispiel}
+\begin{frame}<beamer: 0>[t, label=gameframe]\frametitle{\Slang{Geography} ist \PSpace-vollständig: Beispiel}
 
 Wir betrachten die Formel $\exists r.\forall p.\exists q.(r\vee q\vee p)\wedge(\neg p\vee q)\wedge(\neg q\vee p)$
 
@@ -360,6 +340,126 @@ Wir betrachten die Formel $\exists r.\forall p.\exists q.(r\vee q\vee p)\wedge(\
 
 \end{frame}
 
+
+\againframe<1>{gameframe}
+
+\begin{frame}[t]\frametitle{\Slang{Geography} ist \PSpace-vollständig \ghost{(3)}}
+
+\vspace{-1ex}
+\theobox{\emph{Satz:} \Slang{Geography} ist \PSpace-vollständig.}
+
+\emph{Beweis:} (2) \Slang{Geography} ist \PSpace-schwer
+\smallskip
+
+Beweisidee:
+\begin{itemize}
+\item Zuerst bestimmen Anton und Emilia abwechselnd Wahrheitswerte, indem sie die Rauten
+jeweils links oder rechts durchlaufen
+\item Danach darf Anton zur Auswertung eine Klausel auswählen (die er für nicht erfüllt hält)
+\item Anschließend wählt Emilia ein Literal dieser Klausel (welches ihrer Meinung nach erfüllt ist)
+\item Emilia gewinnt, wenn das Literal wirklich erfüllt war (denn dann gibt es keinen Weg zu einem noch nicht besuchten Knoten)
+\item Anton gewinnt, wenn das Literal nicht erfüllt war (denn dann kann er den Weg noch genau einen Schritt fortsetzen)
+\end{itemize}
+
+\end{frame}
+
+\againframe{gameframe}
+
+% \begin{frame}[t, label=game_frame]\frametitle{\Slang{Geography} ist \PSpace-vollständig: Beispiel}
+% 
+% Wir betrachten die Formel $\exists r.\forall p.\exists q.(r\vee q\vee p)\wedge(\neg p\vee q)\wedge(\neg q\vee p)$
+% 
+% 
+% \begin{center}
+% \scalebox{0.7}{%
+% \begin{tikzpicture}[scale=1.1]
+% % \draw[help lines] (0,0) grid (7,2);
+% \node (rs) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<2->{fill=lightgray}}] at (0,0) {$r_s$};
+% \node (r0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em,draw=black,thick] at (-1,-1) {$r_{\myfalse}$};
+% \node (r1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<3->{fill=strongyellow}}] at (1,-1) {$r_{\mytrue}$};
+% \node (re) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<4->{fill=lightpurple}}] at (0,-2) {$r_e$};
+% 
+% \visible<2->{
+% \node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=lightgray] at (9,-0.5) {Start};
+% \node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=strongyellow] at (9,-1.1) {Emilia};
+% \node [rectangle,rounded corners=1.5ex, minimum width=1.5cm, minimum height=1.5em, draw=black,thick,fill=lightpurple] at (9,-1.7) {Anton};
+% }
+% 
+% \path[->,line width=0.5mm](-1,0) edge (rs);
+% 
+% \path[->,line width=0.5mm](rs) edge (r0);
+% \path[->,line width=0.5mm](rs) edge (r1);
+% \path[->,line width=0.5mm](r0) edge (re);
+% \path[->,line width=0.5mm](r1) edge (re);
+% 
+% \node (ps) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<5->{fill=strongyellow}}] at (0,-3) {$p_s$};
+% \node (p0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<6->{fill=lightpurple}}] at (-1,-4) {$p_{\myfalse}$};
+% \node (p1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,-4) {$p_{\mytrue}$};
+% \node (pe) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<7->{fill=strongyellow}}] at (0,-5) {$p_e$};
+% 
+% \path[->,line width=0.5mm](re) edge (ps);
+% 
+% \path[->,line width=0.5mm](ps) edge (p0);
+% \path[->,line width=0.5mm](ps) edge (p1);
+% \path[->,line width=0.5mm](p0) edge (pe);
+% \path[->,line width=0.5mm](p1) edge (pe);
+% 
+% \node (qs) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<8->{fill=lightpurple}}] at (0,-6) {$q_s$};
+% \node (q0) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<9->{fill=strongyellow}}] at (-1,-7) {$q_{\myfalse}$};
+% \node (q1) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (1,-7) {$q_{\mytrue}$};
+% \node (qe) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<10->{fill=lightpurple}}] at (0,-8) {$q_e$};
+% 
+% \path[->,line width=0.5mm](pe) edge (qs);
+% 
+% \path[->,line width=0.5mm](qs) edge (q0);
+% \path[->,line width=0.5mm](qs) edge (q1);
+% \path[->,line width=0.5mm](q0) edge (qe);
+% \path[->,line width=0.5mm](q1) edge (qe);
+% 
+% \node (Q) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<11->{fill=strongyellow}}] at (9,-7.5) {$Q$};
+% 
+% \node (rpq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,-1) {$r\vee q \vee p$};
+% 
+% \node (npq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<12->{fill=lightpurple}}] at (6,-4) {$\neg p\vee q$};
+% 
+% \node (nqp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (6,-7) {$\neg q\vee p$};
+% 
+% \path[->,line width=0.5mm,bend right=10](Q) edge (rpq);
+% \path[->,line width=0.5mm,bend right=15](Q) edge (npq);
+% \path[->,line width=0.5mm,bend right=5](Q) edge (nqp);
+% 
+% \node (litr) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,0) {$r$};
+% \node (litp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-2) {$p$};
+% \node (litnp) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick,onslide={<13->{fill=strongyellow}}] at (3,-4) {$\neg p$};
+% \node (litq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-6) {$q$};
+% \node (litnq) [rectangle,rounded corners=1.5ex, minimum width=1.5em, minimum height=1.5em, draw=black,thick] at (3,-8) {$\neg q$};
+% 
+% \path[->,line width=0.5mm](rpq) edge (litr);
+% \path[->,line width=0.5mm](rpq) edge (litp);
+% \path[->,line width=0.5mm,bend right=10](rpq) edge (litq);
+% 
+% 	\path[->,line width=1.1mm,white](npq) edge (litnp);
+% \path[->,line width=0.5mm](npq) edge (litnp);
+% \path[->,line width=0.5mm](npq) edge (litq);
+% 
+% \path[->,line width=0.5mm](nqp) edge (litnq);
+% 	\path[->,line width=1.1mm,bend right=10,white](nqp) edge (litp);
+% \path[->,line width=0.5mm,bend right=10](nqp) edge (litp);
+% 
+% \path[->,line width=0.5mm,bend right=5](litr) edge (r1);
+% \path[->,line width=0.5mm,bend right=10](litp) edge (p1);
+% \path[->,line width=0.5mm,bend right=10](litq) edge (q1);
+% 	\path[->,line width=1.1mm,bend left=20,white](litnp) edge (p0);
+% \path[->,line width=0.5mm,bend left=20](litnp) edge (p0);
+% 	\path[->,line width=1.1mm,bend left=5,white](litnq) edge (q0);
+% \path[->,line width=0.5mm,bend left=5](litnq) edge (q0);
+% 
+% \path[->,line width=0.5mm,bend right=15](qe) edge (Q);
+% \end{tikzpicture}}
+% \end{center}
+% 
+% \end{frame}
+
 \sectionSlide{Weitere Komplexitätsklassen}
 
 \begin{frame}\frametitle{Komplexität jenseits von \PSpace?}
@@ -382,21 +482,22 @@ geringerer praktischer Relevanz
 
 \begin{frame}\frametitle{Gibt es so schwere Probleme?}\pause
 
-Jede Klasse hat ein für sie typisches Problem: das Wortproblem
-der entsprechenden Turingmaschine
-\bigskip
+Für $k$-$\complclass{Exp}$-Klassen lassen sich künstliche Probleme leicht finden: %\\
+"`Gegeben eine det.\ Turingmaschine $\mathcal{M}$ und eine Eingabe $w$, wird $\mathcal{M}$ das Wort $w$ in Zeit $\underbrace{2^{.^{.^{.^{2^{|w|}}}}}}_{k\text{-mal 2}}$ akzeptieren?"'\\[-1ex]
+{\tiny (Warum ist das $k$-$\complclass{Exp}$-vollständig? Funktioniert die Reduktion z.B. von Problemen, die in Zeit $2^{.^{.^{.^{2^{|w|^{42}}}}}}\!\!\!\!$ lösbar sind?)}
+\bigskip\pause
 
 Jenseits von \ExpSpace gibt es nur wenige relevante Probleme.\medskip
 
-\examplebox{Beispiel: Der W3C-Standard \alert{Web Ontology Language} (OWL, Version 2)
+\examplebox{\emph{Beispiel:} Der W3C-Standard \alert{Web Ontology Language} (OWL, Version 2)
 definiert die logische Beschreibungsspache OWL~2~DL. Logisches Schließen in dieser Sprache ist \NTwoExpTime-vollständig.
 }\pause
 
 Es gibt aber auch entscheidbare Probleme, die durch keine vielfach exponentiell 
-beschränkte TM entschieden werden: dies sind Probleme \redalert{nicht-elementarer}
+beschränkte TM entschieden werden: Dies sind Probleme \redalert{nicht-elementarer}
 Komplexität\medskip
 
-\examplebox{Beispiel: Die Äquivalenz von regulären Ausdrücken mit einem zusätzlichen
+\examplebox{\emph{Beispiel:} Die Äquivalenz von regulären Ausdrücken mit einem zusätzlichen
 Komplementierungsoperator ist entscheidbar, aber nicht elementar.
 }\pause
 
@@ -449,7 +550,7 @@ Es gibt auch \alert{noch einfachere praktisch relevante Probleme}, z.B.
 \item Wortprobleme bei endlichen Automaten
 \end{itemize}
 
-In diesen Fällen wird es immer schwerer, von "`Härte"' und "`Vollständigkeit"' zu sprechen
+In diesen Fällen wird es immer schwerer, von "`Schwere"' und "`Vollständigkeit"' zu sprechen
 
 \end{frame}
 
@@ -490,6 +591,10 @@ Es gibt viele weitere Themen in der Komplexitätstheorie
 \bigskip
 
 $\leadsto$ siehe Vorlesung "`Complexity Theory"' (Wintersemester)
+\bigskip
+
+\ldots und allgemein die Angebote im Track \alert{"`Logical Modeling"'} des
+internationalen Masterstudiengangs \alert{"`Computational Modeling and Simultation"'} an der TU Dresden
 
 \end{frame}
 
