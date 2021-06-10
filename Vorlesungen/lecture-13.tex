@@ -104,7 +104,7 @@ Aristoteles (384--324 v.Chr.):\\[1cm]
 
 \begin{frame}\frametitle{Gut, aber in der Informatik?}
 
-Wozu lehrt man Informatiker\_innen Logik?
+Wozu lehrt man Informatiker:innen Logik?
 \begin{itemize}
 \item \alert{Verifikation von Software:} Logik als Spezifikationssprache gewünschter Eigenschaften
 \item \alert{Künstliche Intelligenz:} Logik als Lehre vom folgerichtigen Denken
@@ -361,13 +361,13 @@ der Formel, welche selbst Formeln sind.}
 Die Menge der Teilformeln ist eindeutig bestimmt, wenn man der formalen 
 Definition der Formel folgt.
 
-\examplebox{Beispiel: Die Teilformeln von $\forall x.(p(x)\vee (q(x)\vee r(x)))$ sind
+\examplebox{\emph{Beispiel:} Die Teilformeln von $\forall x.(p(x)\vee (q(x)\vee r(x)))$ sind
 $(p(x)\vee (q(x)\vee r(x)))$, $(q(x)\vee r(x))$, $p(x)$, $q(x)$, $r(x)$ sowie die Formel selbst, aber nicht $p(x)\vee (q(x)$ oder $\forall x.(p(x)$.}
 
 \pause\emph{Anmerkung:} Lässt man manche Klammern zur Vereinfachung der Syntax weg, dann 
 sind die Teilformeln nicht mehr eindeutig bestimmt.
 
-\examplebox{Beispiel: $\forall x.(p(x)\vee q(x)\vee r(x))$  könnte sowohl
+\examplebox{\emph{Beispiel:} $\forall x.(p(x)\vee q(x)\vee r(x))$  könnte sowohl
 $\forall x.(p(x)\vee (q(x)\vee r(x)))$ als auch $\forall x.((p(x)\vee q(x))\vee r(x))$
 bezeichnen, was zu unterschiedlichen Teilformeln führt.}
 
@@ -391,7 +391,7 @@ Damit sind Vorkommen von Variablen $x$ genau dann \redalert{gebunden}
 wenn sie im Bereich eines Quantors auftauchen.
 }\pause
 
-\examplebox{Beispiel: Eine Variable kann gleichzeitig frei und gebunden in einer Formel 
+\examplebox{\emph{Beispiel:} Eine Variable kann gleichzeitig frei und gebunden in einer Formel 
 auftauchen, wie z.B. $x$ in $p(x)\wedge \exists x.q(x)$.}
 
 \end{frame}
@@ -422,7 +422,7 @@ Beweisen).\bigskip
 wie in der Aussagenlogik aus dem Wahrheitswert von Atomen ergeben.
 \bigskip
 
-\examplebox{Beispiel: Ein mögliches Atom ist $p(a,x)$ mit $a\in\Slang{C}$ und $x\in\Slang{V}$. Wie soll diesem Ausdruck ein Wahrheitswert zugeordnet werden?}
+\examplebox{\emph{Beispiel:} Ein mögliches Atom ist $p(a,x)$ mit $a\in\Slang{C}$ und $x\in\Slang{V}$. Wie soll diesem Ausdruck ein Wahrheitswert zugeordnet werden?}
 
 \alert{Dazu müssen drei Fragen beantwortet werden:}
 \begin{itemize}
@@ -499,7 +499,7 @@ $\tuple{\Zuweisung(x),\Zuweisung(y)}\notin\textsf{succ}^\Inter$ gilt.
 Wir schreiben: $\textsf{succ}(x,y)^{\Inter,\Zuweisung}=\myfalse$.
 \bigskip
 
-\anybox{strongyellow}{Anmerkung: Allgemein geben wir bei Interpretationen und Zuweisungen
+\anybox{strongyellow}{\emph{Anmerkung:} Allgemein geben wir bei Interpretationen und Zuweisungen
 nur die Belegungen an, die für die Auswertung einer gegebenen Formel relevant sind.
 Zum Beispiel müssen wir $\Zuweisung$ nicht für alle $z\in\Slang{V}$ definieren.
 }
@@ -591,7 +591,7 @@ Wir betrachten eine Interpretation $\Inter$ mit
 
 Dann gilt $\Inter\models F$ (unter jeder beliebigen Zuweisung).
 
-\anybox{strongyellow}{Notation: Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
+\anybox{strongyellow}{\emph{Notation:} Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
 
 \end{frame}
 
@@ -641,26 +641,6 @@ Was erwartet uns als nächstes?
 
 \end{frame}
 
-
-
-% \begin{frame}[t]\frametitle{Literatur und Bildrechte}
-% 
-% \alert{Literatur}\bigskip
-% 
-% \begin{itemize}
-% \item Richard J. Lorentz:
-% \emph{Creating Difficult Instances of the Post Correspondence Problem.}
-% Computers and Games 2000: 214--228
-% \item John J. O'Connor, Edmund F. Robertson: \emph{Emil Leon Post.} MacTutor History of Mathematics archive, University of St Andrews. \url{http://www-history.mcs.st-andrews.ac.uk/Biographies/Post.html}
-% \end{itemize}
-% 
-% \bigskip\bigskip
-% 
-% \alert{Bildrechte}\bigskip
-% 
-% Folie \ref{frame_post}: gemeinfrei
-% 
-% \end{frame}
 
 
 \end{document}
