@@ -9,21 +9,6 @@
 
 \maketitle
 
-\begin{frame}\frametitle{Ankündigung}
-
-Die Übungsgruppen am 6. Juni (Dies Academicus) werden verschoben:
-
-\begin{itemize}
-\item Dienstag 05.06.2018, 6.DS, APB/3027
-\item Donnerstag 07.06.2018, 6.DS, APB/3027
-\end{itemize}
-
-Studierende aus den den betroffenen Übungsgruppen sollten nach
-Möglichkeit die o.g. Ausweichtermine nutzen, können aber auch in eine
-der anderen Übungsgruppen die in der Woche stattfinden ausweichen.
-
-\end{frame}
-
 \begin{frame}\frametitle{Rückblick: Logelei}
 
 Wir kehren zurück auf das Inselreich mit Menschen von
@@ -176,7 +161,7 @@ Wir betrachten eine Interpretation $\Inter$ mit
 
 Dann gilt $\Inter\models F$ (unter jeder beliebigen Zuweisung).
 
-\anybox{strongyellow}{Notation: Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
+\anybox{strongyellow}{\emph{Notation:} Bei der Interpretation von Sätzen (Formeln ohne freie Variablen) spielen Zuweisungen keine Rolle. Wir schreiben sie in diesem Fall nicht.}
 
 \end{frame}
 
@@ -194,7 +179,7 @@ Dann gilt $\Inter\models F$ (unter jeder beliebigen Zuweisung).
 
 Eine Menge von Sätzen wird oft \redalert{Theorie} genannt.\pause
 
-\examplebox{Beispiel: Der Begriff stammt aus der Mathematik. Die Theorie der partiellen Ordnungen kann man z.B. wie folgt definieren:\vspace{-0.5ex}
+\examplebox{\emph{Beispiel:} Der Begriff stammt aus der Mathematik. Die Theorie der partiellen Ordnungen kann man z.B. wie folgt definieren:\vspace{-0.5ex}
 \begin{align*}
 \forall x. & (x\preceq x) & \text{Reflexivität}\\
 \forall x,y,z. & \big( (x\preceq y \wedge y\preceq z) \to x\preceq z \big)& \text{Transitivität}\\
@@ -485,14 +470,14 @@ Es folgt also: $F_3\models F_2$
 
 Die aus der Ausagenlogik bekannten Eigenschaften von $\equiv$ gelten auch allgemein:\bigskip
 
-\theobox{Satz: $\equiv$ ist eine Äquivalenzrelation, d.h. reflexiv, symmetrisch und transitiv.}%
+\theobox{\emph{Satz:} $\equiv$ ist eine Äquivalenzrelation, d.h. reflexiv, symmetrisch und transitiv.}%
 %
 % \emph{Beweis:} $\equiv$ ist definiert als die Gleichheit der Modellmengen. Die gesuchten Eigenschaften ergeben sich, da auch die Relation $=$ auf Mengen eine Äquivalenzrelation ist.\qed
 \medskip
 
 % Weitere Eigenschaften folgen direkt aus den Definitionen:\medskip
 
-\theobox{Satz:
+\theobox{\emph{Satz:}
 \begin{itemize}
 \item Alle Tautologien sind semantisch äquivalent
 \item Alle unerfüllbaren Formeln sind semantisch äquivalent
@@ -501,7 +486,7 @@ Die aus der Ausagenlogik bekannten Eigenschaften von $\equiv$ gelten auch allgem
 
 % \emph{Beweis:} Offensichtlich sind die Modellmengen jeweils gleich.\qed
 
-\theobox{Satz: Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
+\theobox{\emph{Satz:} Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
 % 
 \narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann wenn\hspace{5mm} $F\models G$ und $G\models F$}
 }
@@ -682,7 +667,7 @@ in Prädikatenlogik und Aussagenlogik gleich definiert:
 $\leadsto$ alle aussagenlogischen Gesetze gelten analog
 \bigskip\pause
 
-\examplebox{Beispiel: Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
+\examplebox{\emph{Beispiel:} Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
 $\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann wenn
 $\Inter,\Zuweisung\models (\neg F\vee \neg G)$, das heißt
 $\neg(F\wedge G)\equiv (\neg F\vee \neg G)$.
@@ -696,12 +681,12 @@ Allgemein gelten alle bekannten aussagenlogischen Äquivalenzen
 
 Auch die folgenden Sätze gelten analog zur Aussagenlogik\\ (siehe Formale Systeme, Vorlesung 22):\bigskip
 
-\theobox{Satz (Deduktionstheorem): Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt\\
+\theobox{\emph{Satz (Deduktionstheorem):} Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt\\
 $\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
 
-\theobox{Korollar: $F\wedge G\models H$ genau dann wenn $F\models G\to H$.}\bigskip
+\theobox{\emph{Korollar:} $F\wedge G\models H$ genau dann wenn $F\models G\to H$.}\bigskip
 
-\theobox{Korollar: $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
+\theobox{\emph{Korollar:} $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
 
 \redalert{Dennoch sind $\models$ und $\equiv$ nicht das selbe wie $\to$ und $\leftrightarrow$:}
 \begin{itemize}
@@ -716,7 +701,7 @@ $\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bi
 Auch das folgende intuitiv einleuchtende Ergebnis kann von der Aussagenlogik auf
 die Prädikatenlogik übertragen werden:\bigskip
 
-\theobox{Satz (Ersetzungstheorem): Sei $F$ eine Formel mit einer Teilformel $G$. 
+\theobox{\emph{Satz (Ersetzungstheorem):} Sei $F$ eine Formel mit einer Teilformel $G$. 
 Wenn $G\equiv G'$ und wenn $F'$ aus $F$ gebildet werden kann, indem man ein beliebiges Vorkommen von $G$ in $F$ durch $G'$ ersetzt, dann gilt auch $F\equiv F'$.}\bigskip
 
 Der detaillierte Beweis muss allerdings alle möglichen Formen von
@@ -865,7 +850,7 @@ Was erwartet uns als nächstes?
 \begin{itemize}
 \item Logisches Schließen: (Un)Entscheidbarkeit und Komplexität
 \item Resolution für Prädikatenlogik
-\item Zweites Repetitorium
+% \item Zweites Repetitorium
 \end{itemize}
 }
 
