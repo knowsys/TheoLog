@@ -55,7 +55,7 @@ logisches Schließen zur Kernaufgabe mathematischer Forschung\bigskip
 
 Dieses Problem ist zu verschiedenen anderen äquivalent:
 
-\theobox{Satz: Für endliche Theorie $\mathcal{T}$ und einen Satz $F$ sind die folgenden Fragen äquivalent:
+\theobox{\emph{Satz:} Für endliche Theorie $\mathcal{T}$ und einen Satz $F$ sind die folgenden Fragen äquivalent:
 \begin{itemize}
 \item Gilt $\mathcal{T}\models F$?
 \item Ist $\mathcal{T}\cup \{\neg F\}$ unerfüllbar? 
@@ -67,7 +67,7 @@ Dieses Problem ist zu verschiedenen anderen äquivalent:
 
 \begin{frame}\frametitle{Die Bedeutung von Erfüllbarkeit}
 
-\theobox{Satz: Für endliche Theorie $\mathcal{T}$ und einen Satz $F$ sind die folgenden Fragen äquivalent:
+\theobox{\emph{Satz:} Für endliche Theorie $\mathcal{T}$ und einen Satz $F$ sind die folgenden Fragen äquivalent:
 \begin{itemize}
 \item Gilt $\mathcal{T}\models F$?
 \item Ist $\mathcal{T}\cup \{\neg F\}$ unerfüllbar? 
@@ -98,7 +98,7 @@ spezielles \redalert{Gleichheitsprädikat $\approx$} gibt, welches man in der Re
 
 Wir haben bereits ein Beispiel dafür gesehen:
 
-\examplebox{Beispiel: Partielle Ordnungen $\preceq$ sind antisymmetrisch:\vspace{-0.5ex}
+\examplebox{\emph{Beispiel:} Partielle Ordnungen $\preceq$ sind antisymmetrisch:\vspace{-0.5ex}
 \begin{align*}
 \forall x,y. & \big(( x\preceq y \wedge y\preceq x )\to x\approx y\big)
 \end{align*}\vspace{-3ex}
@@ -106,7 +106,7 @@ Wir haben bereits ein Beispiel dafür gesehen:
 
 Auch erlaubt uns Gleichheit, in Logik zu zählen:
 
-\examplebox{Beispiel: "`Es gibt nur einen Rudi Völler"' (erster Suchvorschlag von Google bei Eingabe "`Es gibt nur einen "', Stand Mai 2017)
+\examplebox{\emph{Beispiel:} "`Es gibt nur einen Rudi Völler"' (erster Suchvorschlag von Google bei Eingabe "`Es gibt nur einen "', Stand Mai 2017)
 \begin{align*}
 \forall x,y.\big(\textsf{rudiVöller}(x)\wedge \textsf{rudiVöller}(y)\to x\approx y\big)
 \end{align*}
@@ -122,7 +122,7 @@ Die übliche Semantik von Prädikatenlogik erlaubt, dass verschiedene
 Konstanten gleich interpretiert werden.\bigskip
 
 Mit Gleichheit kann man das erzwingen oder verbieten:
-\examplebox{Beispiel: Seien nun $\textsf{rudiVöller},\textsf{tanteKäthe},\textsf{rudi}\in\Slang{C}$ Konstanten. Wir können ausdrücken:
+\examplebox{\emph{Beispiel:} Seien nun $\textsf{rudiVöller},\textsf{tanteKäthe},\textsf{rudi}\in\Slang{C}$ Konstanten. Wir können ausdrücken:
 \begin{align*}
 \textsf{rudiVöller}&\approx\textsf{tanteKäthe}\\
 \neg\; \textsf{rudiVöller}&\approx\textsf{rudi}\\
@@ -143,7 +143,7 @@ Wir können das aber auch leicht definieren:
 
 Ungleichheit von Konstanten kann man auch leicht ohne $\approx$ ausdrücken:\medskip
 
-\examplebox{Beispiel: Wir betrachten zwei neue, einstellige Prädikate $O_{\textsf{rudiVöller}}$ und $O_{\textsf{rudi}}$. Die folgende Theorie
+\examplebox{\emph{Beispiel:} Wir betrachten zwei neue, einstellige Prädikate $O_{\textsf{rudiVöller}}$ und $O_{\textsf{rudi}}$. Die folgende Theorie
 impliziert $\neg \textsf{rudiVöller}\approx\textsf{rudi}$:
 \begin{align*}
 O_{\textsf{rudiVöller}}(\textsf{rudiVöller})  & & O_{\textsf{rudi}}(\textsf{rudi}) &&
@@ -188,7 +188,7 @@ definieren wir \redalert{$\mathcal{T}_{\eqpred}$} als die Theorie, die man erhä
 indem man $\approx$ in allen Sätzen von $\mathcal{T}$ durch $\eqpred$ ersetzt.
 \bigskip
 
-\theobox{Satz: Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
+\theobox{\emph{Satz:} Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
 und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\medskip
 
 Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar, wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
@@ -206,7 +206,7 @@ Beschreibung von Gleichheit ersetzt
 
 \begin{frame}[t]\frametitle{Beweis (1)}
 
-\theobox{Satz: Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
+\theobox{\emph{Satz:} Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
 und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\medskip
 
 Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar, wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
@@ -229,7 +229,7 @@ $\leadsto$ $\Jnter\models\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$, das
 
 \begin{frame}[t]\frametitle{Beweis (2)}
 
-\theobox{Satz: Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
+\theobox{\emph{Satz:} Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
 und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\medskip
 
 Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
@@ -302,10 +302,10 @@ Wie kann man so eine Behauptung zeigen?\bigskip\pause
 $\leadsto$ \alert{Induktion über den Aufbau von Formeln}\bigskip
 
 \emph{Induktionsanfang:} Für atomare Formeln $F=p(t_1,\ldots,t_n)$ mit $p\neq{\approx}$ gilt die Behauptung,
-weil
-\[ \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter\text{ genau dann wenn }\tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \]
-$\Rightarrow$ folgt weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist\\
-$\Leftarrow$ folgt direkt aus der Definition von $p^\Inter$
+weil für all $\delta_1,\ldots,\delta_n\in\Delta^\Jnter$ gilt:
+\[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
+$\Rightarrow$ folgt direkt aus der Definition von $p^\Inter$\\
+$\Leftarrow$ folgt weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
 \bigskip\pause
 
 Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
@@ -354,7 +354,7 @@ dann haben alle Formeln die Eigenschaft $E$.
 \end{itemize}
 Allgemein kann man Induktion über jede induktiv definierte syntaktische Struktur durchführen (Formeln, Terme, Programme, \ghost{\ldots)}\medskip\pause
 
-\examplebox{Beispiel: Induktion auf der Insel der Wahrheitssager und Lügner. Ein Einwohner verkündet: "`Was ich jetzt sage, das habe ich schon einmal gesagt."' Welchen Typ hat er?}
+\examplebox{\emph{Beispiel:} Induktion auf der Insel der Wahrheitssager und Lügner. Ein Einwohner verkündet: "`Was ich jetzt sage, das habe ich schon einmal gesagt."' Welchen Typ hat er?}
 
 \end{frame}
 
