@@ -43,7 +43,7 @@ Ein konkreter Algorithmus zum logischen Schließen:
 Man kann jede Formel leicht durch Umbenennung gebundener Variablen
 bereinigen.
 
-\examplebox{Beispiel: Die Formel
+\examplebox{\emph{Beispiel:} Die Formel
 \[ \forall y.p(x,y)\to \exists x.(r(y,x)\wedge\forall y.q(x,y)) \]
 kann wie folgt bereinigt werden:
 \[ \forall y.p(x,y)\to \exists z.(r(y,z)\wedge\forall v.q(z,v)) \]
@@ -134,7 +134,7 @@ Man kann beliebige Formeln leicht in äquivalente Formeln in Pränexform umwande
 
 \begin{frame}[t]\frametitle{Umwandlung in Pränexform (1)}
 
-\theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
+\theobox{\emph{Satz:} Sei $F$ eine bereinigte Formel in NNF. Eine zu
 $F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
 \begin{align*}
 (\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G)  &\qquad
@@ -154,7 +154,7 @@ wir eine Formel durch eine Äquivalente ersetzen (Äquivalenz gilt, da $x$ in $G
 
 \begin{frame}[t]\frametitle{Umwandlung in Pränexform (2)}
 
-\theobox{Satz: Sei $F$ eine bereinigte Formel in NNF. Eine zu
+\theobox{\emph{Satz:} Sei $F$ eine bereinigte Formel in NNF. Eine zu
 $F$ semantische äquivalente Formel in Pränexform entsteht durch erschöpfende Ersetzung von Teilformeln nach folgendem Schema:\vspace{-1.5ex}
 \begin{align*}
 (\quantor x.F\circ G) & \mapsto \quantor x.(F\circ G) &\qquad
@@ -224,7 +224,7 @@ Skolem
 als Auswertung einer Funktion vorstellen, deren Funktionswert das
 gesuchte Element ist.}\medskip\pause
 
-\examplebox{Beispiel: Den Satz $\forall x.\exists y.\textsf{hatVater}(x,y)$ ("`Jeder hat einen Vater"') könnte formuliert werden als $\forall x.\textsf{hatVater}(x,\textsf{vater}(x))$. Letzteres ist so zu verstehen:
+\examplebox{\emph{Beispiel:} Den Satz $\forall x.\exists y.\textsf{hatVater}(x,y)$ ("`Jeder hat einen Vater"') könnte formuliert werden als $\forall x.\textsf{hatVater}(x,\textsf{vater}(x))$. Letzteres ist so zu verstehen:
 \begin{itemize}
 \item Es gibt eine einstellige Funktion $\textsf{vater}$,
 \item welche für jedes Domänenelement den Vater (genauer gesagt "`einen Vater"') des Elements liefert.
@@ -270,7 +270,7 @@ für ein $n$-stelliges Prädikatensymbol $p\in\Slang{P}$ und Terme $t_1,\ldots,t
 
 \defbox{Die Menge der \redalert{prädikatenlogischen Formeln mit Funktionssymbolen} ergibt sich wie bei Prädikatenlogik ohne Funktionen induktiv aus der Menge der Atome unter Verwendung der Operatoren $\neg$, $\wedge$, $\vee$, $\to$, $\leftrightarrow$, $\exists x.$ und $\forall x.$ ($x\in\Slang{V}$).}\medskip
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 \begin{itemize}
 \item $\forall x.(\textsf{hatBruder}(\textsf{mutter}(x))\to\textsf{hatOheim}(x,\textsf{bruder}(\textsf{mutter}(x))))$
 \item $\forall x,y.(\textsf{mutter}(x)\approx\textsf{mutter}(y)\to \textsf{geschwister}(x,y))$
@@ -359,7 +359,7 @@ Die Skolemisierung einer Formel in Pränexform erhält man durch Skolemisieren
 jeder ihrer existentiell quantifizierten Variablen, von vorn nach hinten.
 }\pause
 
-\examplebox{Beispiel: Für die Formel $\forall x.\exists y.\forall z.\exists v.p(x,y,z,v)$ ergibt sich:
+\examplebox{\emph{Beispiel:} Für die Formel $\forall x.\exists y.\forall z.\exists v.p(x,y,z,v)$ ergibt sich:
 \begin{tabular}{rl}
 Skolemisierung von $y$: & $\forall x.\forall z.\exists v.p(x,f(x),z,v)$\\
 Skolemisierung von $v$: & $\forall x.\forall z.p(x,f(x),z,g(x,z))$
@@ -372,12 +372,12 @@ Skolemisierung von $v$: & $\forall x.\forall z.p(x,f(x),z,g(x,z))$
 
 Skolemisierung führt nicht zu semantisch äquivalenten Formeln:\medskip
 
-\examplebox{Beispiel: Die Formel $\forall x.\exists y.(p(x)\to p(y))$ ist eine Tautologie,
+\examplebox{\emph{Beispiel:} Die Formel $\forall x.\exists y.(p(x)\to p(y))$ ist eine Tautologie,
 aber ihre Skolemisierung $\forall x.(p(x)\to p(f(x)))$ ist widerlegbar:\\ Sei $\Delta^\Inter\defeq\{\alpha,\beta\}$, $p^\Inter\defeq\{\alpha\}$ sowie $f^\Inter(\delta)\defeq\beta$ für alle $\delta\in\Delta^\Inter$.\\ Dann ist $\Inter\not\models\forall x.(p(x)\to p(f(x)))$, da $\Inter,\{x\mapsto\alpha\}\not\models p(x)\to p(f(x))$.}\medskip\pause
 
 Skolemisierung erhält aber Erfüllbarkeit:\medskip
 
-\theobox{Satz: Eine Formel in Pränexform $F$ ist genau dann erfüllbar, wenn auch die Skolemisierung von $F$ erfüllbar ist.}\medskip
+\theobox{\emph{Satz:} Eine Formel in Pränexform $F$ ist genau dann erfüllbar, wenn auch die Skolemisierung von $F$ erfüllbar ist.}\medskip
 
 \emph{Anmerkung:} Man kann einen Erfüllbarkeitstest also auf der Skolemisierten Formel ausführen -- das reicht, um logisches Schließen zu implementieren
 
@@ -385,7 +385,7 @@ Skolemisierung erhält aber Erfüllbarkeit:\medskip
 
 \begin{frame}\frametitle{Korrektheit der Skolemisierung: Beweis}
 
-\theobox{Satz: Eine Formel in Pränexform $F$ ist genau dann erfüllbar, wenn auch die Skolemisierung von $F$ erfüllbar ist.}\medskip
+\theobox{\emph{Satz:} Eine Formel in Pränexform $F$ ist genau dann erfüllbar, wenn auch die Skolemisierung von $F$ erfüllbar ist.}\medskip
 
 \emph{Beweis:} Wir zeigen die Behauptung für die Skolemisierung einer einzelnen Variablen, d.h. die Erfüllbarkeitsäquivalenz von $\forall x_1.\cdots\forall x_n.\exists y.F$ und $\forall x_1.\cdots\forall x_n.F[y\mapsto f(x_1,\ldots,x_n)]$.\\\pause
 Dann folgt der Satz durch Induktion über die Zahl der $\exists$.\bigskip\pause
@@ -424,7 +424,7 @@ r(g(f(x),y)) &\ \text{wird zu}\ \exists v,w.(p_f(x,v)\wedge p_g(v,y,w)\wedge r(w
 \end{align*}\pause
 Eine entsprechende Ersetzung kann man bei jedem Atom in einer Formel durchführen. Wir erhalten (ohne Beweis):
 
-\theobox{Satz: Für jede Formel der Prädikatenlogik mit Funktionen gibt es eine erfüllbarkeitsäquivalente Formel ohne Funktionssymbole, welche in linearer Zeit berechnet werden kann.}
+\theobox{\emph{Satz:} Für jede Formel der Prädikatenlogik mit Funktionen gibt es eine erfüllbarkeitsäquivalente Formel ohne Funktionssymbole, welche in linearer Zeit berechnet werden kann.}
 
 \end{frame}
 
@@ -471,7 +471,7 @@ Wir Skolemisieren das vorige Beispiel:
 
 \begin{frame}\frametitle{Konjunktive Normalform}
 
-Aus der Aussagelogik kennen wir die folgende Definition:
+Aus der Aussagenlogik kennen wir die folgende Definition:
 \bigskip
 
 \defbox{Eine Formel $F$ ist in \redalert{konjunktiver Normalform} (\alert{KNF}) wenn sie 
@@ -505,7 +505,7 @@ F\vee(G\wedge H) &\mapsto (F\vee G)\wedge (F\vee H)
 \end{align*}
 \end{enumerate}\pause
 
-\theobox{Satz: Die so aus einer Formel $F$ gebildete KNF ist erfüllbar genau dann wenn $F$ erfüllbar ist.}
+\theobox{\emph{Satz:} Die so aus einer Formel $F$ gebildete KNF ist erfüllbar genau dann wenn $F$ erfüllbar ist.}
 
 \emph{Beweis:} Schritte (1)--(3) liefern semantisch äquivalente Formeln. Schritt (4) liefert eine erfüllbarkeitsäquivalente Formel. Schritt (5) liefert eine zu dieser semantisch äquivalente Formel.\qed\medskip
 
@@ -547,7 +547,7 @@ Die \redalert{Klauselform} ist eine vereinfachte Schreibweise der KNF:
 \item Konjunktionen von Klauseln werden als Mengen von Mengen von Literalen geschrieben
 \end{itemize}
 
-\examplebox{Beispiel: Unser Beispiel kann damit wie folgt geschrieben werden:\\[-2.5ex]
+\examplebox{\emph{Beispiel:} Unser Beispiel kann damit wie folgt geschrieben werden:\\[-2.5ex]
 %
 \[\begin{array}{rl}
 \{& \{W(x_1), L(x_1)\},\\
