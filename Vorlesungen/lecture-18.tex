@@ -91,7 +91,7 @@ Die \redalert{Klauselform} ist eine vereinfachte Schreibweise der KNF:
 \item Konjunktionen von Klauseln werden als Mengen von Mengen von Literalen geschrieben
 \end{itemize}
 
-\examplebox{Beispiel: Unser Beispiel kann damit wie folgt geschrieben werden:\\[-2.5ex]
+\examplebox{\emph{Beispiel:} Unser Beispiel kann damit wie folgt geschrieben werden:\\[-2.5ex]
 %
 \[\begin{array}{rl}
 \{& \{W(x_1), L(x_1)\},\\
@@ -258,7 +258,7 @@ Die \redalert{Anwendung einer Substitution} auf einen Ausdruck $A$ (Formel oder 
 Eine Formel bzw. ein Term $A\sigma$, der durch Anwendung einer Substitution $\sigma$
 auf $A$ entsteht, nennt man \redalert{Instanz von $A$ (unter $\sigma$)}\pause
 
-\examplebox{Beispiele:\vspace{-7.7ex}
+\examplebox{\emph{Beispiele:}\vspace{-7.7ex}
 
 \begin{align*}
 p(x,y,z)\{x\mapsto f(y),y\mapsto a\} &= p(f(y),a,z) \\[-0.5ex]&~~~~{\footnotesize\text{(und nicht $p(f(a),a,z)$!) }}\\[-0.5ex]
@@ -281,7 +281,7 @@ ist die \redalert{Komposition $\sigma\circ\theta$} die folgende Substitution:
 \Big\{y_i\mapsto s_i\bigm| y_i\in\{y_1,\ldots,y_m\}\setminus\{x_1,\ldots,x_n\}\Big\}\]
 }\medskip\pause
 
-\theobox{Satz: Für alle Terme oder Formeln $A$ und Substitutionen $\sigma$ und $\theta$ gilt: $A(\sigma\circ\theta)=(A\sigma)\theta$.}\pause
+\theobox{\emph{Satz:} Für alle Terme oder Formeln $A$ und Substitutionen $\sigma$ und $\theta$ gilt: $A(\sigma\circ\theta)=(A\sigma)\theta$.}\pause
 
 \emph{Beweis:} Per struktureller Induktion über den Aufbau von Termen.\\[1ex]
 \alert{I-Anfang:} Satz gilt für Konstanten $A\in\Slang{C}$ und Variablen $A\in\Slang{V}$ per Definition.\\[1ex] \alert{I-Hypothese:} Satz gilt für Terme $t_1,\ldots,t_\ell$.\\[1ex]
@@ -302,7 +302,7 @@ Eine Substitution $\sigma$ ist ein \redalert{Unifikator} für $G$ falls
 $s_i\sigma=t_i\sigma$ für alle $i\in\{1,\ldots,n\}$ gilt.
 }\pause 
 
-\examplebox{Beispiele:
+\examplebox{\emph{Beispiele:}
 
 \begin{tabular}{rl}
 $\{ f(x)\unieq f(\text{sokrates}) \}$ & \pause hat den Unifikator $\{x\mapsto\text{sokrates}\}$\\\pause 
@@ -329,7 +329,7 @@ Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein 
 {\footnotesize
 (Die englische Bezeichnung des allgemeinsten Unifikators ist \alert{most general unifier (mgu)}.)}\medskip\pause
 
-\examplebox{Beispiel: Für $G=\{ x\unieq f(y), y\unieq g(z) \}$ ist
+\examplebox{\emph{Beispiel:} Für $G=\{ x\unieq f(y), y\unieq g(z) \}$ ist
 $\sigma=\{x\mapsto f(g(z)), y\mapsto g(z)\}$ ein allgemeinster Unifikator.
 Dagegen ist $\theta=\{x\mapsto f(g(f(b))), y\mapsto g(f(b)),z\mapsto f(b)\}$ ein Unifikator, der nicht allgemeinst ist, denn es gilt $\sigma\{z\mapsto f(b)\}=\theta$.}
 
@@ -337,14 +337,14 @@ Dagegen ist $\theta=\{x\mapsto f(g(f(b))), y\mapsto g(f(b)),z\mapsto f(b)\}$ ein
 
 \begin{frame}\frametitle{Eindeutigkeit des mgu}
 
-\theobox{Satz: Die allgemeinsten Unifikatoren von $G$ sind bis auf Umbenennung von Variablen identisch.}
+\theobox{\emph{Satz:} Die allgemeinsten Unifikatoren von $G$ sind bis auf Umbenennung von Variablen identisch.}
 
 (ohne Beweis)\medskip\pause
 
-\examplebox{Beispiel: Das Problem $\{f(x)\unieq f(z)\}$ hat die allgemeinsten Unifikatoren
+\examplebox{\emph{Beispiel:} Das Problem $\{f(x)\unieq f(z)\}$ hat die allgemeinsten Unifikatoren
 $\{x\mapsto z\}$ und $\{z\mapsto x\}$, aber auch z.B. $\{x\mapsto v,z\mapsto v\}$ ($v\in\Slang{V}$). Dagegen ist $\{x\mapsto a,z\mapsto a\}$ mit $a\in\Slang{C}$ ein nicht-allgemeinster Unifikator.}\bigskip\pause
 
-\theobox{Satz: Wenn ein Unifikationsproblem lösbar ist (d.h., einen Unifikator hat), dann hat es auch einen allgemeinsten Unifikator.}
+\theobox{\emph{Satz:} Wenn ein Unifikationsproblem lösbar ist (d.h., einen Unifikator hat), dann hat es auch einen allgemeinsten Unifikator.}
 
 Wir zeigen das durch Angabe eines Algorithmus für die mgu-Berechnung.
 
@@ -356,7 +356,7 @@ Wir zeigen das durch Angabe eines Algorithmus für die mgu-Berechnung.
 
 In diesem Fall definieren wir eine Substitution $\sigma_G\defeq\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$.}\smallskip\pause
 
-\theobox{Satz: Wenn $G$ ein Unifikationsproblem in gelöster Form ist, dann ist $\sigma_G$ ein allgemeinster Unifikator für $G$.}
+\theobox{\emph{Satz:} Wenn $G$ ein Unifikationsproblem in gelöster Form ist, dann ist $\sigma_G$ ein allgemeinster Unifikator für $G$.}
 
 \pause\emph{Beweis:} Sei $G=\{x_1\unieq t_1,\ldots,x_n\unieq t_n\}$. Dann ist
 $x_i\sigma_G=t_i=t_i\sigma_G$, wobei die zweite Gleichheit gilt, da $t_i$ keine Variable aus $x_1, \ldots,x_n $ enthält. Also ist $\sigma_G$ Unifikator für $G$.
@@ -413,7 +413,7 @@ ursprünglichen Unifikationsproblems
 
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (1)}
 
-\theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
+\theobox{\emph{Satz:} Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
 einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
 
 \emph{Beweis:} Wir zeigen nacheinander drei Aussagen, aus denen die Behauptung folgt.\medskip
@@ -464,7 +464,7 @@ gdw. & $\theta$ Unifikator für $\{x\unieq t\}\cup G'\sigma=G_2$
 
 \begin{itemize}
 \item Gemäß Hilfsaussage ($\ddagger$) erhält jeder Umformungsschritt die Unifikatoren und damit auch die allgemeinsten Unifikatoren\pause
-\item Per Induktion gilt also: jedes Unifikationsproblem, welches der Algorithmus erzeugt, hat den gleichen allgemeinsten Unifikator wie $G$\pause
+\item Per Induktion gilt also: Jedes Unifikationsproblem, welches der Algorithmus erzeugt, hat den gleichen allgemeinsten Unifikator wie $G$\pause
 \item Wenn der Algorithmus einen Unifikator ausgibt, dann ist dies ein allgemeinster Unifikator für eine gelöste Form (Satz auf Folie~\ref{slide_solvedunivsubst})
 \end{itemize}
 Damit folgt die Behauptung.
@@ -486,7 +486,7 @@ Damit folgt die Behauptung.
 \end{enumerate}
 \pause\emph{Begründung:} $G'$ muss eine Gleichung $s\unieq u$ enthalten, die nicht in gelöster Form ist.
 \begin{itemize}
-\item Fall 1: $s\unieq u$ hat auf einer Seite ein Variable. Dann hat sie die Form (a), da sonst Orientierung oder Löschen möglich wäre.
+\item Fall 1: $s\unieq u$ hat auf einer Seite eine Variable. Dann hat sie die Form (a), da sonst Orientierung oder Löschen möglich wäre.
 \item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre
 \end{itemize}
 \pause Aus der Beobachtung folgt (2), da Gleichungen (a) und (b) keinen Unifikator haben.
@@ -534,7 +534,7 @@ Für $G_1$ und $G_2$ mit $\kappa(G_i)=\tuple{v_i,g_i,r_i}$ gilt $G_1\succ G_2$, 
 \item $v_1=v_2$ und $g_1=g_2$ und $r_1>r_2$.
 \end{itemize}\pause
 
-\examplebox{Beispiel: $\tuple{4,2,1}\succ\tuple{3,42,23}\succ\tuple{3,42,22}\succ\tuple{3,41,1000}$.}\pause
+\examplebox{\emph{Beispiel:} $\tuple{4,2,1}\succ\tuple{3,42,23}\succ\tuple{3,42,22}\succ\tuple{3,41,1000}$.}\pause
 
 In dieser Ordnung gibt es keine unendlichen absteigenden Ketten immer kleiner werdender Unifikationsprobleme: Die Ordnung ist \redalert{wohlfundiert}. (ohne Beweis)
 
