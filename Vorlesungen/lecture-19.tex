@@ -21,7 +21,7 @@
 \tt
 \begin{minipage}{13.5cm}\setstretch{0.8}\normalsize
 Wir haben soeben aus La Bérarde erfahren, dass sich ein neuer Unfall auf dem Pelvoux ereignet hat:
-ein junger Mann, der Mitglied einer dreiköpfigen Gruppe aus Lyon gewesen ist, stürzte zu Tode.
+Ein junger Mann, der Mitglied einer dreiköpfigen Gruppe aus Lyon gewesen ist, stürzte zu Tode.
 \end{minipage}
 
 % 
@@ -102,7 +102,7 @@ ist und $L_i,L'_j$ beliebige Literale sind, ist die Klausel
 $\{L_1\sigma,\ldots,L_k\sigma,L'_1\sigma,\ldots,L'_\ell\sigma\}$.
 }\medskip\pause
 
-\examplebox{Beispiel: Die Klausel $K_1=\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}$ und die Klausel $K_2=\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}$ können resolviert werden. Ein allgemeinster Unifikator von $\{\textsf{hatVater}(x,f(x)),\textsf{hatVater}(z,v)\}$
+\examplebox{\emph{Beispiel:} Die Klausel $K_1=\{\neg\textsf{Mensch}(x),\textsf{hatVater}(x,f(x))\}$ und die Klausel $K_2=\{\neg\textsf{hatVater}(z,v),\textsf{hatKind}(v,z)\}$ können resolviert werden. Ein allgemeinster Unifikator von $\{\textsf{hatVater}(x,f(x)),\textsf{hatVater}(z,v)\}$
 ist $\sigma=\{z\mapsto x,v\mapsto f(x)\}$.
 Die entsprechende Resolvente von $K_1$ und $K_2$ ist $\{\neg\textsf{Mensch}(x),\textsf{hatKind}(f(x),x)\}$.
 }
@@ -151,7 +151,7 @@ Zusammen mit der Klauselform für $F$ erhalten wir die Klauseln:
 (7) & \{\neg L(x_5),\ghost{$\neg L(f_7(x_1,x_2,x_3,x_4,x_5))\}$} \\[-0.5ex]
 (8) & \{\neg W(a)\}\\[-0.5ex]\pause
 (9) & \{L(a)\} & \alert{(1)+(8)~~ \{x_1\mapsto a\}}\\[-0.5ex]\pause
-(10) & \{\neg L(f(x_1,x_2,x_3,x_4,a))\} & \alert{(9)+(7)~~ \{x_5\mapsto a\}}\\[-0.5ex]\pause
+(10) & \{\neg L(f_7(x_1,x_2,x_3,x_4,a))\} & \alert{(9)+(7)~~ \{x_5\mapsto a\}}\\[-0.5ex]\pause
 \end{array}
 \]}\vspace{-3.5ex}
 
@@ -159,9 +159,9 @@ Zusammen mit der Klauselform für $F$ erhalten wir die Klauseln:
 \redalert{Problem:}\hspace{-2mm}%
 \begin{minipage}[t]{8.5cm}\footnotesize\vspace{-2ex}
 \begin{itemize}
-\item $\neg L(f(x_1,x_2,x_3,x_4,a))$ bedeutet "`es gibt Nicht-Lügner"' (bezeichnet mit Termen der Form $f(x_1,x_2,x_3,x_4,a)$)\\[-2ex]
+\item $\neg L(f_7(x_1,x_2,x_3,x_4,a))$ bedeutet "`es gibt Nicht-Lügner"' (bezeichnet mit Termen der Form $f_7(x_1,x_2,x_3,x_4,a)$)\\[-2ex]
 \item Dies sollte z.B. mit (1) "`Jeder Nicht-Lügner ist Wahrheitssager"' resolvieren\\[-2ex]
-\item Aber $\{\neg L(f(x_1,x_2,x_3,x_4,a)), L(x_1)\}$ hat keinen Unifikator
+\item Aber $\{L(f_7(x_1,x_2,x_3,x_4,a)), L(x_1)\}$ hat keinen Unifikator
 \end{itemize}
 \end{minipage}
 
@@ -178,12 +178,12 @@ In Klauselform kann man sich also die Allquantoren direkt vor jeder einzelnen Kl
 (1) & \forall x_1.\{W(x_1), L(x_1)\}\\[-0.5ex]
 (2) & \forall x_1.\{\neg L(x_1), L(x_1)\}\\[-0.5ex]
 & \ldots\\
-(10) & \forall x_1,x_2,x_3,x_4.\{\neg L(f(x_1,x_2,x_3,x_4,a))\}
+(10) & \forall x_1,x_2,x_3,x_4.\{\neg L(f_7(x_1,x_2,x_3,x_4,a))\}
 \end{array}
 \]}\vspace{-1.5ex}\pause
 
 Daher darf man die Variablen jeder Klausel einheitlich umbenennen, unabhängig von jeder anderen Klausel, z.B.
-\[ \{\neg L(f(x_1,x_2,x_3,x_4,a))\} \quad\leadsto\quad \{\neg L(f(x'_1,x'_2,x'_3,x'_4,a))\} \]
+\[ \{\neg L(f_7(x_1,x_2,x_3,x_4,a))\} \quad\leadsto\quad \{\neg L(f_7(x'_1,x'_2,x'_3,x'_4,a))\} \]
 Klauseln, die durch eineindeutige Umbenennung von Variablen entstanden sind, nennt man \redalert{Varianten} (einer Klausel)\\[0.5ex]
 \alert{$\leadsto$ Wir bilden bei der Resolution Varianten um Konflikte von Variablen zu vermeiden}
 
@@ -204,11 +204,11 @@ Mit einer Variante von Klausel (11) gelingt die Resolution:
 (7) & \{\neg L(x_5),\ghost{$\neg L(f_7(x_1,x_2,x_3,x_4,x_5))\}$} \\[-0.5ex]
 (8) & \{\neg W(a)\}\\[-0.5ex]
 (9) & \{L(a)\} & \alert{(1)+(8)~~ \{x_1\mapsto a\}}\\[-0.5ex]
-(10) & \{\neg L(f(x'_1,x'_2,x'_3,x'_4,a))\} & \alert{(9)+(7)~~ \{x_5\mapsto a\}}\\[-0.5ex]\pause
-(11) & \{W(f(x'_1,x'_2,x'_3,x'_4,a))\} & \alert{(1)+(10)~~ \{x_1\mapsto f(x'_1,x'_2,x'_3,x'_4,a)\}}\\[-0.5ex]\pause
-(12) & \{W(x_3), L(x_4)\} & \alert{(11)+(5)~~ \{x_2\mapsto f(x'_1,x'_2,x'_3,x'_4,a)\}}\\[-0.5ex]\pause
+(10) & \{\neg L(f_7(x'_1,x'_2,x'_3,x'_4,a))\} & \alert{(9)+(7)~~ \{x_5\mapsto a\}}\\[-0.5ex]\pause
+(11) & \{W(f_7(x'_1,x'_2,x'_3,x'_4,a))\} & \alert{(1)+(10)~~ \{x_1\mapsto f_7(x'_1,x'_2,x'_3,x'_4,a)\}}\\[-0.5ex]\pause
+(12) & \{W(x_3), L(x_4)\} & \alert{(11)+(5)~~ \{x_2\mapsto f_7(x'_1,x'_2,x'_3,x'_4,a)\}}\\[-0.5ex]\pause
 (13) & \{L(x_4)\} & \alert{(12)+(8)~~ \{x_3\mapsto a\}}\\[-0.5ex]\pause
-(14) & \{\} & \alert{(13)+(10)~~ \{x_4\mapsto f(x'_1,x'_2,x'_3,x'_4,a)\}}
+(14) & \{\} & \alert{(13)+(10)~~ \{x_4\mapsto f_7(x'_1,x'_2,x'_3,x'_4,a)\}}
 \end{array}
 \]}
 
@@ -281,7 +281,7 @@ $\leadsto$ Die geprüfte logische Konsequenz $F\models \forall z.W(z)$ gilt
 
 Wir wollen den folgenden Satz schrittweise beweisen:
 
-\theobox{Resolutionssatz: Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
+\theobox{\emph{Resolutionssatz:} Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
 \begin{itemize}
 \item $F$ ist unerfüllbar
 \item Es gibt ein $\ell\geq 0$ mit $\bot\in\mathcal{K}_\ell$
@@ -321,7 +321,7 @@ Das heißt, jede Resolvente ist logische Konsequenz der resolvierten Klauseln.
 
 \begin{frame}\frametitle{Vollständigkeit des Resolutionsalgorithmus}
 
-\theobox{Resolutionssatz: Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
+\theobox{\emph{Resolutionssatz:} Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
 \begin{itemize}
 \item $F$ ist unerfüllbar
 \item Es gibt ein $\ell\geq 0$ mit $\bot\in\mathcal{K}_\ell$
@@ -450,7 +450,7 @@ Alle Herbrandinterpretationen stimmen auf der Domäne und (dem relevanten Teil) 
 
 Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{Lemma: Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
@@ -462,7 +462,7 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 
 \begin{frame}\frametitle{Erfüllbar + Skolem = Erfüllbarkeit bei Herbrand}
 
-\theobox{Satz: Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
+\theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
 Herbrandmodell hat.}\pause
 
 \emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
@@ -497,7 +497,7 @@ Der Schluss gilt für alle $t_1,\ldots,t_n\in\Delta_F$, d.h. $\Jnter\models F$.\
 
 Der Satz gilt nicht unbedingt, wenn Formeln nicht in Skolemform \ghost{sind:}\bigskip
 
-\examplebox{Beispiel: Die folgende Formel ist offensichtlich erfüllbar:
+\examplebox{\emph{Beispiel:} Die folgende Formel ist offensichtlich erfüllbar:
 \[ \exists x.p(x)\wedge\exists y.\neg p(y)\]
 Die Formel verwendet aber keine Funktionen oder Konstanten\\
 $\leadsto$ das Herbrand-Universum ist $\{a\}$

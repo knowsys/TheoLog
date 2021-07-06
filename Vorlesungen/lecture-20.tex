@@ -9,22 +9,20 @@
 
 \maketitle
 
-\bgroup
-\setbeamercolor{background canvas}{bg=black}
-\frame[plain]{\label{frame_herbrand}\begin{center}\color{white}
-\includegraphics[height=6cm]{images/Herbrand.jpg}
+% \bgroup
+% \setbeamercolor{background canvas}{bg=black}
+% \frame[plain]{\label{frame_herbrand}\begin{center}\color{white}
+% \includegraphics[height=6cm]{images/Herbrand.jpg}
 
-\LARGE
-Jacques Herbrand\medskip
+% \LARGE
+% Jacques Herbrand\medskip
+% 
+% \normalsize
+% \tt 12.2.1908 -- 27.7.1931
+% \end{center}}
+% \egroup
 
-\normalsize
-\tt 12.2.1908 -- 27.7.1931
-\end{center}}
-\egroup
-
-\sectionSlide{Evaluation}
-
-\begin{frame}\frametitle{Vollständigkeit der Resolution}
+\begin{frame}\frametitle{Der Resolutionsalgorithmus}
 
 Resolutionsregel:
 \[  \frac{
@@ -45,7 +43,7 @@ falls $\sigma$ allgemeinster Unifikator von $\{A_1,\ldots,A_n, A'_1,\ldots, A'_m
 
 \begin{frame}\frametitle{Vollständigkeit und Korrektheit}
 
-\theobox{Resolutionssatz: Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
+\theobox{\emph{Resolutionssatz:} Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
 \begin{itemize}
 \item $F$ ist unerfüllbar
 \item Es gibt ein $\ell\geq 0$ mit $\bot\in\mathcal{K}_\ell$
@@ -60,7 +58,7 @@ falls $\sigma$ allgemeinster Unifikator von $\{A_1,\ldots,A_n, A'_1,\ldots, A'_m
 
 \bgroup
 \setbeamercolor{background canvas}{bg=black}
-\frame[plain]{\label{frame_herbrand_b}\begin{center}\color{white}
+\frame[plain]{\label{frame_herbrand}\begin{center}\color{white}
 \includegraphics[height=6cm]{images/Herbrand.jpg}
 
 \LARGE
@@ -71,53 +69,69 @@ Jacques Herbrand\medskip
 \end{center}}
 \egroup
 
+\bgroup
+\setbeamercolor{background canvas}{bg=white}
+\frame[plain]{\label{frame_jasny}\begin{center}\color{black}
+\includegraphics[height=6cm]{images/Natascha_Artin_Brunswick.jpg}
+
+\LARGE
+Natasha Artin Brunswick\medskip
+
+\normalsize
+\tt 11.6.1909 -- 3.2.2003
+\end{center}}
+\egroup
+
 \begin{frame}\frametitle{Syntax vs. Semantik}
 
 Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{Lemma: Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
 \bigskip
 
-{\color{devilscss}\footnotesize \emph{Anmerkung:} Man kann ein entsprechendes Resultat auch für Nicht-Herbrand-Interpretationen zeigen. Dann muss man einfach den Term auf der linken Seite durch $t^{\Inter,\Zuweisung}$ ersetzen.}
+{\color{devilscss}\footnotesize \emph{Anmerkung:} Man kann ein entsprechendes Resultat auch für Nicht-Herbrand-Interpretationen zeigen. Dann muss man einfach den Term auf der linken Seite durch $t^{\Inter,\Zuweisung}$ ersetzen.}\bigskip
+
+\theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
+Herbrandmodell hat.}
 
 \end{frame}
 
-\begin{frame}\frametitle{Erfüllbar + Skolem = Erfüllbarkeit bei Herbrand}
-
-\theobox{Satz: Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
-Herbrandmodell hat.}\pause
-
-\emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
-
-$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$ indem wir festlegen:
-\begin{itemize}
-\item $p^\Jnter=\{\tuple{t_1,\ldots,t_n}\mid\tuple{t_1^\Inter,\ldots,t_n^\Inter}\in p^\Inter\}$\\
-{\footnotesize Anm.: $t_i$ sind variablenfrei, daher ist $t_i^\Inter$ wohldefiniert}
-\end{itemize}
-Behauptung: \alert{$\Jnter$ ist ein Herbrandmodell von $F$}
-
-\end{frame}
-
-\begin{frame}\frametitle{Beweis (Fortsetzung)}
-
-\emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrandmodell von $F$}\bigskip
-
-$F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
-\begin{itemize}
-\item Aus $\Inter\models F$ folgt also $\Inter,\Zuweisung\models G$ für jede Zuweisung $\Zuweisung$ für $\Inter$\pause
-\item Speziell gilt also für alle $t_1,\ldots,t_n\in\Delta_F$: $\Inter,\{x_1\mapsto t_1^{\Inter},\ldots,x_n\mapsto t_n^{\Inter}\}\models G$\pause
-\item Daraus folgt: $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$  (analog zu Lemma)\pause
-\item Daraus folgt: $\Jnter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$\\
-{\footnotesize(Für Atome $G$ direkt aus Definition; die Aussage kann leicht auf größere Boolsche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
-\item Es folgt: $\Jnter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ (Lemma)
-\end{itemize}
-Der Schluss gilt für alle $t_1,\ldots,t_n\in\Delta_F$, d.h. $\Jnter\models F$.\qed
-
-\end{frame}
-
+% \begin{frame}\frametitle{Erfüllbar + Skolem = Erfüllbarkeit bei Herbrand}
+% 
+% \theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
+% Herbrandmodell hat.}\pause
+% 
+% \emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
+% 
+% $(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$ indem wir festlegen:
+% \begin{itemize}
+% \item $p^\Jnter=\{\tuple{t_1,\ldots,t_n}\mid\tuple{t_1^\Inter,\ldots,t_n^\Inter}\in p^\Inter\}$\\
+% {\footnotesize Anm.: $t_i$ sind variablenfrei, daher ist $t_i^\Inter$ wohldefiniert}
+% \end{itemize}
+% Behauptung: \alert{$\Jnter$ ist ein Herbrandmodell von $F$}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beweis (Fortsetzung)}
+% 
+% \emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrandmodell von $F$}\bigskip
+% 
+% $F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
+% \begin{itemize}
+% \item Aus $\Inter\models F$ folgt also $\Inter,\Zuweisung\models G$ für jede Zuweisung $\Zuweisung$ für $\Inter$\pause
+% \item Speziell gilt also für alle $t_1,\ldots,t_n\in\Delta_F$: $\Inter,\{x_1\mapsto t_1^{\Inter},\ldots,x_n\mapsto t_n^{\Inter}\}\models G$\pause
+% \item Daraus folgt: $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$  (analog zu Lemma)\pause
+% \item Daraus folgt: $\Jnter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$\\
+% {\footnotesize(Für Atome $G$ direkt aus Definition; die Aussage kann leicht auf größere Boolsche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
+% \item Es folgt: $\Jnter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ (Lemma)
+% \end{itemize}
+% Der Schluss gilt für alle $t_1,\ldots,t_n\in\Delta_F$, d.h. $\Jnter\models F$.\qed
+% 
+% \end{frame}
+% 
 
 \sectionSlide{Prädikatenlogisches Schließen mit Aussagenlogik}
 
@@ -143,7 +157,7 @@ $HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\
 
 \begin{frame}\frametitle{Gödel, Herbrand, Skolem}
 
-\theobox{Satz von Gödel, Herbrand \& Skolem: Eine Formel $F$ in Skolemform ist genau dann erfüllbar, wenn $HE(F)$ aussagenlogisch erfüllbar ist.}\pause
+\theobox{\emph{Satz von Gödel, Herbrand \& Skolem:} Eine Formel $F$ in Skolemform ist genau dann erfüllbar, wenn $HE(F)$ aussagenlogisch erfüllbar ist.}\pause
 
 \emph{Beweis:} Wir zeigen, dass $F=\forall x_1,\ldots,x_n.G$ genau dann ein Herbrandmodell hat, wenn $HE(F)$ aussagenlogisch erfüllbar ist:\pause
 
@@ -161,7 +175,7 @@ $HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\
 
 Als Korollar der gezeigten Ergebnisse erhalten wir ein wichtiges Resultat:
 
-\theobox{Satz: Eine Formel $F$ in Skolemform ist genau dann unerfüllbar, wenn
+\theobox{\emph{Satz:} Eine Formel $F$ in Skolemform ist genau dann unerfüllbar, wenn
 eine endliche Teilmenge von $HE(F)$ aussagenlogisch unerfüllbar ist.}
 
 \pause\emph{Beweis:} Das Kontrapositiv des Satzes von Gödel, Herbrand \& Skolem besagt:\medskip
@@ -218,11 +232,11 @@ Offenbar ist das \redalert{kein praktischer Algorithmus}, aber er zeigt Semi-Ent
 
 Wir zeigen: Ja, jeder aussagenlogische Schluss (auf der Expansion) kann auf einen prädikatenlogischen Schluss (auf den Klauseln mit Variablen) "`angehoben"' werden.\medskip
 
-\theobox{Satz (Lifting-Lemma): Seien $K_1$ und $K_2$ prädikatenlogische Klauseln mit
+\theobox{\emph{Satz (Lifting-Lemma):} Seien $K_1$ und $K_2$ prädikatenlogische Klauseln mit
 Grundinstanzen $K'_1=K_1\sigma$ und $K'_2=K_2\sigma$.${^1}$\bigskip
 
 Wenn $R'$ eine (aussagenlogische) Resolvente von $K'_1$ und $K'_2$ ist, dann gibt es
-eine prädikatenlogische Resolvente $R$, welche $R'$ als Grundinstanz hat.
+eine prädikatenlogische Resolvente $R$ von $K_1$ und $K_2$, welche $R'$ als Grundinstanz hat.
 }
 
 \color{devilscss}
@@ -234,11 +248,11 @@ eine prädikatenlogische Resolvente $R$, welche $R'$ als Grundinstanz hat.
 
 \begin{frame}\frametitle{Lifting-Lemma: Beweis}
 
-\theobox{Satz (Lifting-Lemma): Seien $K_1$ und $K_2$ prädikatenlogische Klauseln mit
+\theobox{\emph{Satz (Lifting-Lemma):} Seien $K_1$ und $K_2$ prädikatenlogische Klauseln mit
 Grundinstanzen $K'_1=K_1\sigma$ und $K'_2=K_2\sigma$.\smallskip
 
 Wenn $R'$ eine (aussagenlogische) Resolvente von $K'_1$ und $K'_2$ ist, dann gibt es
-eine prädikatenlogische Resolvente $R$, welche $R'$ als Grundinstanz hat.
+eine prädikatenlogische Resolvente $R$ von $K_1$ und $K_2$, welche $R'$ als Grundinstanz hat.
 }
 
 \emph{Beweis:} Sei $A'\in K'_1$ das (geschlossene) Atom, über das resolviert wurde, d.h. $\neg A'\in K'_2$.\smallskip\pause
@@ -261,7 +275,7 @@ und es gilt: $R\lambda=\{L_1\theta\lambda,\ldots,L_n\theta\lambda\}=\{L_1\sigma,
 
 \begin{frame}[t]\frametitle{Vollständigkeit der Resolution (1)}
 
-\theobox{Resolutionssatz: Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
+\theobox{\emph{Resolutionssatz:} Sei $F$ eine prädikatenlogische Formel und $\mathcal{K}_i$ ($i\geq 0$) die vom Resolutionsalgorithmus ermittelten Klauselmengen. Dann sind die folgenden Aussagen äquivalent:
 \begin{itemize}
 \item $F$ ist unerfüllbar
 \item Es gibt ein $\ell\geq 0$ mit $\bot\in\mathcal{K}_\ell$
@@ -307,7 +321,7 @@ Restlicher Beweis durch Induktion über $i$:
 Die Existenz von vollständigen und korrekten logischen Schließverfahren wie Resolution
 ist eng verwandt mit einer grundsätzlichen Eigenschaft der Prädikatenlogik:\bigskip
 
-\theobox{Satz (Endlichkeitssatz, Kompaktheitssatz): Falls eine unendliche Menge prädikatenlogischer Sätze $\mathcal{T}$ eine logische Konsequenz $F$ hat, so ist $F$ auch Konsequenz einer endlichen Teilmenge von $\mathcal{T}$.}\pause
+\theobox{\emph{Satz (Endlichkeitssatz, Kompaktheitssatz):} Falls eine unendliche Menge prädikatenlogischer Sätze $\mathcal{T}$ eine logische Konsequenz $F$ hat, so ist $F$ auch Konsequenz einer endlichen Teilmenge von $\mathcal{T}$.}\pause
 
 \small
 \emph{Beweis:} Die gegebene logische Konsequenz ist gleichbedeutend damit, dass
@@ -368,7 +382,9 @@ Was erwartet uns als nächstes?
 
 \begin{frame}[t]\frametitle{Bildrechte}
 
-Folie \ref{frame_herbrand}, \ref{frame_herbrand_b}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
+Folie \ref{frame_herbrand}: Fotografie von Natasha Artin Brunswick, 1931, CC-By 3.0
+
+Folie \ref{frame_jasny}: Fotografie von Thomas Artin, 2000, CC-By 3.0
 
 \end{frame}
 
