@@ -332,30 +332,30 @@ Laut Resolutionssatz (Vollständigkeit) kann die Unerfüllbarkeit von $\mathcal{
 Dabei können nur endlich viele Klauseln aus der Klauselform von $\mathcal{T}\cup\{\neg F\}$ verwendet worden sein. Laut Resolutionssatz (Korrektheit) folgt die Konsequenz also bereits aus einer endlichen Teilmenge von $\mathcal{T}$.\qed
 
 \end{frame}
-% 
-% \begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
-% 
-% Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
-% \smallskip
-% 
-% \defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
-% \narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
-% }\pause
-% 
-% \theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
-% 
-% \emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
-% 
-% Dann ist die folgende unendliche Theorie unerfüllbar:
-% \[\begin{array}{rll}
-% \big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
-% & \neg\exists x_1,x_2.(r(a,x_1)\wedge
-% r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
-% \end{array}\]
-% Aber jede endliche Teilmenge der Theorie ist erfüllbar.
-% Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
-% 
-% \end{frame}
+
+\begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
+
+Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
+\smallskip
+
+\defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
+\narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
+}\pause
+
+\theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
+
+\emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
+
+Dann ist die folgende unendliche Theorie unerfüllbar:
+\[\begin{array}{rll}
+\big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
+& \neg\exists x_1,x_2.(r(a,x_1)\wedge
+r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
+\end{array}\]
+Aber jede endliche Teilmenge der Theorie ist erfüllbar.
+Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
+
+\end{frame}
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 

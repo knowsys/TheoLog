@@ -9,47 +9,47 @@
 
 \maketitle
 
-\begin{frame}\frametitle{Rückblick: Kompaktheit}
-
-Die Existenz von vollständigen und korrekten logischen Schließverfahren wie Resolution
-ist eng verwandt mit einer grundsätzlichen Eigenschaft der Prädikatenlogik:\bigskip
-
-\theobox{Satz (Endlichkeitssatz, Kompaktheitssatz): Falls eine unendliche Menge prädikatenlogischer Sätze $\mathcal{T}$ eine logische Konsequenz $F$ hat, so ist $F$ auch Konsequenz einer endlichen Teilmenge von $\mathcal{T}$.}\pause
-
-\small
-\emph{Beweis:} Die gegebene logische Konsequenz ist gleichbedeutend damit, dass
-$\mathcal{T}\cup\{\neg F\}$ unerfüllbar ist.\medskip
-
-Laut Resolutionssatz (Vollständigkeit) kann die Unerfüllbarkeit von $\mathcal{T}\cup\{\neg F\}$ nach endlich vielen Schritten durch Ableitung der leeren Klausel nachgewiesen werden.\medskip
-
-Dabei können nur endlich viele Klauseln aus der Klauselform von $\mathcal{T}\cup\{\neg F\}$ verwendet worden sein. Laut Resolutionssatz (Korrektheit) folgt die Konsequenz also bereits aus einer endlichen Teilmenge von $\mathcal{T}$.\qed
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
-
-Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
-\smallskip
-
-\defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
-\narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
-}\pause
-
-\theobox{Satz: Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
-
-\emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
-
-Dann ist die folgende unendliche Theorie unerfüllbar:
-\[\begin{array}{rll}
-\big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
-& \neg\exists x_1,x_2.(r(a,x_1)\wedge
-r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
-\end{array}\]
-Aber jede endliche Teilmenge der Theorie ist erfüllbar.
-Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
-
-\end{frame}
+% \begin{frame}\frametitle{Rückblick: Kompaktheit}
+% 
+% Die Existenz von vollständigen und korrekten logischen Schließverfahren wie Resolution
+% ist eng verwandt mit einer grundsätzlichen Eigenschaft der Prädikatenlogik:\bigskip
+% 
+% \theobox{\emph{Satz (Endlichkeitssatz, Kompaktheitssatz):} Falls eine unendliche Menge prädikatenlogischer Sätze $\mathcal{T}$ eine logische Konsequenz $F$ hat, so ist $F$ auch Konsequenz einer endlichen Teilmenge von $\mathcal{T}$.}\pause
+% 
+% \small
+% \emph{Beweis:} Die gegebene logische Konsequenz ist gleichbedeutend damit, dass
+% $\mathcal{T}\cup\{\neg F\}$ unerfüllbar ist.\medskip
+% 
+% Laut Resolutionssatz (Vollständigkeit) kann die Unerfüllbarkeit von $\mathcal{T}\cup\{\neg F\}$ nach endlich vielen Schritten durch Ableitung der leeren Klausel nachgewiesen werden.\medskip
+% 
+% Dabei können nur endlich viele Klauseln aus der Klauselform von $\mathcal{T}\cup\{\neg F\}$ verwendet worden sein. Laut Resolutionssatz (Korrektheit) folgt die Konsequenz also bereits aus einer endlichen Teilmenge von $\mathcal{T}$.\qed
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Die Grenzen der Prädikatenlogik}
+% 
+% Kompaktheit zeigt uns auch erste Grenzen der Prädikatenlogik auf.
+% \smallskip
+% 
+% \defbox{Eine logische Formel $F$ mit zwei freien Variablen $x$ und $y$ drückt den \redalert{transitiven Abschluss} einer binären Relation $r$ aus, wenn in jeder Interpretation $\Inter$ und für alle $\delta_1,\delta_2\in\Delta^\Inter$ gilt:\\[1ex]
+% \narrowcentering{$ \Inter,\{x\mapsto \delta_1,y\mapsto\delta_2\}\models F \quad\text{gdw.}\quad \tuple{\delta_1,\delta_2}\in (r^\Inter)^* $}
+% }\pause
+% 
+% \theobox{\emph{Satz:} Es gibt keine prädikatenlogische Formel, die den transitiven Abschluss einer binären Relation ausdrückt.}\pause
+% 
+% \emph{Beweis:} Angenommen es gäbe so eine Formel $F$.\medskip
+% 
+% Dann ist die folgende unendliche Theorie unerfüllbar:
+% \[\begin{array}{rll}
+% \big\{ & F\{x\mapsto a,y\mapsto b\},\neg r(a,b), \neg \exists x_1.(r(a,x_1)\wedge r(x_1,b)),\\
+% & \neg\exists x_1,x_2.(r(a,x_1)\wedge
+% r(x_1,x_2)\wedge r(x_2,b)),\ldots & \big\}
+% \end{array}\]
+% Aber jede endliche Teilmenge der Theorie ist erfüllbar.
+% Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
+% 
+% \end{frame}
 
 
 \sectionSlide{Endliche Modelle}
@@ -63,7 +63,7 @@ Die Existenz der Theorie würde also dem Endlichkeitssatz widersprechen.\qed
 
 \alert{Nein! Prädikatenlogik kann unendliche Modelle erzwingen:}\medskip
 
-\examplebox{Beispiel:\vspace{-2ex}
+\examplebox{\emph{Beispiel:}\vspace{-2ex}
 \begin{align*}
 \forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatMutter}(x,y)\wedge\textsf{Mensch}(y))) \\
 \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
@@ -85,7 +85,7 @@ Geht es auch endlich?
 
 \emph{Monotonie (Rückblick):} weniger Modelle $=$ mehr Konsequenzen
 
-\examplebox{Beispiel:\vspace{-2ex}
+\examplebox{\emph{Beispiel:}\vspace{-2ex}
 \begin{align*}
 \forall x.&(\textsf{Mensch}(x) \to\exists y.(\textsf{hatVorfahre}(x,y)\wedge\textsf{Mensch}(y))) \\
 % \forall x,y.&(\textsf{hatMutter}(x,y) \to\textsf{hatVorfahre}(x,y))\\
@@ -122,11 +122,11 @@ Es ist leicht zu sehen, dass dieser Algorithmus die Erfüllbarkeit in endlichen 
 
 Trotzdem bleibt logisches Schließen schwer:
 
-\theobox{Satz von Trakhtenbrot: Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik mit endlichen Modellen ist unentscheidbar.}
+\theobox{\emph{Satz von Trakhtenbrot:} Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik mit endlichen Modellen ist unentscheidbar.}
 
 (ohne Beweis; mehr dazu in der Vorlesung \alert{Database Theory})\pause\bigskip
 
-\theobox{Korollar: Es gibt kein vollständiges und korrektes Beweissystem für Prädikatenlogik mit endlichen Modellen.}
+\theobox{\emph{Korollar:} Es gibt kein vollständiges und korrektes Beweissystem für Prädikatenlogik mit endlichen Modellen.}
 
 \emph{Beweis:} Angenommen es gäbe ein solches System.\pause{} Dann wäre logische Konsequenz und speziell auch Unerfüllbarkeit semi-entscheidbar.\bigskip\pause
 
@@ -216,7 +216,7 @@ Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit
 Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
 kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
 
-\examplebox{Beispiel: Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+\examplebox{\emph{Beispiel:} Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
 hat drei freie Variablen. Für eine gegebene Datenbankinstanz (endliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
 }\pause
 
@@ -255,13 +255,13 @@ Das Beispiel illustriert:
 \item Semantik: Jede Anfrage $Q$ definiert eine Anfragefunktion $f_Q$, \ghost{die}\\ für jede Datenbankinstanz $\Inter$ eine Ergebnisrelation $f_Q(\Inter)$ liefert
 \end{itemize}\pause
 
-\examplebox{Beispiel: für eine prädikatenlogische Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$ ist $f_Q$ die Funktion, die $\Inter$ auf die Relation $f_Q(\Inter)=\{\tuple{\delta_1,\ldots,\delta_n}\mid \Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q\}$ abbildet.
+\examplebox{\emph{Beispiel:} für eine prädikatenlogische Formel $Q$ mit freien Variablen $x_1,\ldots,x_n$ ist $f_Q$ die Funktion, die $\Inter$ auf die Relation $f_Q(\Inter)=\{\tuple{\delta_1,\ldots,\delta_n}\mid \Inter,\{x_1\mapsto\delta_1,\ldots,x_n\mapsto\delta_n\}\models Q\}$ abbildet.
 }\pause
 
 Mit so einer allgemeinen Definition kann man sehr unterschiedliche Anfragesprachen über ihre Anfragefunktion vergleichen
 \smallskip
 
-\theobox{Satz: Die Menge der durch prädikatenlogische Formeln $Q$ darstellbaren Anfragefunktionen $f_Q$ ist genau die Menge der Anfragefunktionen, die durch einfache SQL-Anfragen darstellbar sind.}
+\theobox{\emph{Satz:} Die Menge der durch prädikatenlogische Formeln $Q$ darstellbaren Anfragefunktionen $f_Q$ ist genau die Menge der Anfragefunktionen, die durch einfache SQL-Anfragen darstellbar sind.}
 
 \tiny "`einfaches SQL"': Relationale Algebra, der Kern von SQL; SELECT, JOIN, UNION, MINUS, aber keine komplexeren Features wie WITH RECURSIVE etc. Außerdem keine Datentypen, da wir diese in Logik nicht eingeführt haben.
 
@@ -273,7 +273,7 @@ Datenbankanfragen werden oft in \redalert{relationaler Algebra} dargestellt,
 bei der man Relationen mit Operationen zu einem Anfrageergebnis kombiniert
 \bigskip
 
-\examplebox{Beispiel: Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
+\examplebox{\emph{Beispiel:} Die Anfrage \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
 entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Projektion ($\exists$):
 \[ \pi_{\text{Von},\text{Zu},\text{Typ}}(\textsf{verbindung}\bowtie\textsf{linien})  \]
 }\medskip
@@ -340,21 +340,21 @@ Sei $m$ die Größe von $F$ und $n=|\Inter|$ (Gesamtgröße der Datenbank)
 \bigskip
 
 \begin{itemize}
-\item Wie viele rekursive Aufrufe von Eval gibt es?\\\pause
-$\leadsto$ einen pro Teilformel: $\leq m$
-%
 \item Maximale Rekursionstiefe?\\\pause
-$\leadsto$ beschränkt durch Gesamtzahl der Aufrufe: $\leq m$
+$\leadsto$ beschränkt durch Zahl der Teilformeln: $\leq m$
 %
-\item Maximale Zahl der Iterationen in $\Scode{for}$-Schleife?\\\pause
+\item Maximale Zahl der Iterationen (und rekursiven Aufrufe) in $\Scode{for}$-Schleife?\\\pause
 $\leadsto$ $|\Delta^\Inter|\leq n$ pro rekursivem Aufruf\\
-$\leadsto$ insgesamt $\leq n^m$ Iterationen
+$\leadsto$ insgesamt $\leq n^m$ Iterationen\pause
+%
+\item Rekursive Aufrufe in anderen Fällen?\\
+$\leadsto$ 1 oder 2 \pause
 %
 \item $\tuple{c_1^{\Inter,\Zuweisung},\ldots,c_n^{\Inter,\Zuweisung}}\in p^\Inter$ ist entscheidbar in linearer Zeit bzgl.\ $n$
 \end{itemize}
 \bigskip\pause
 
-Gesamtlaufzeit in $m\cdot n^m\cdot n=m\cdot n^{m+1}$:
+Gesamtlaufzeit in $\max(n,2)^m\cdot n \leq (n+2)^{m+1}$:
 \begin{itemize}
 \item Komplexität des Algorithmus: \alert{in \ExpTime}
 \item Komplexität bzgl. Größe der Datenbank ($m$ konstant): \alert{in \PTime}
@@ -390,7 +390,7 @@ Speicher in \ghost{$m\log m + m\log n + \log n = m\log m + (m+1)\log n$}
 
 \begin{frame}\frametitle{Komplexität des Auswertungsproblems}
 
-\theobox{Satz: Das Auswertungsproblem der Prädikatenlogik ist $\PSpace$-vollständig.}\pause
+\theobox{\emph{Satz:} Das Auswertungsproblem der Prädikatenlogik ist $\PSpace$-vollständig.}\pause
 
 \emph{Beweis:} Durch Reduktion vom Auswertungsproblem quantifizierter Boolscher Formeln (\Slang{TrueQBF}).\medskip
 
@@ -409,11 +409,11 @@ Die Korrektheit dieser Reduktion ist leicht zu zeigen. \qed
 
 \begin{frame}\frametitle{Wie schwer sind Datenbankabfragen?}
 
-\theobox{Korollar: Die Beantwortung von SQL-Anfragen ist \PSpace-hart, sogar wenn die Datenbank nur eine einzige Tabelle mit einer einzigen Zeile enthält.}\bigskip
+\theobox{\emph{Korollar:} Die Beantwortung von SQL-Anfragen ist \PSpace-schwer, sogar wenn die Datenbank nur eine einzige Tabelle mit einer einzigen Zeile enthält.}\bigskip
 
 Die Komplexität steckt vor allem in der Struktur der Anfrage.\bigskip
 
-Ist die Anfrage fest vorgegeben oder in ihrer Größe beschränkt, dann wird das praktische Verhalten oft von der Datenbankgröße dominiert: bezüglich dieser Größe ist das Problem aber in $\LogSpace$.\bigskip
+Ist die Anfrage fest vorgegeben oder in ihrer Größe beschränkt, dann wird das praktische Verhalten oft von der Datenbankgröße dominiert: Bezüglich dieser Größe ist das Problem aber in $\LogSpace$.\bigskip
 
 Man kann sogar noch niedrigere Komplexitätsschranken bzgl. der Datenbankgröße angeben (siehe Vorlesung Database Theory).
 \bigskip
@@ -555,7 +555,7 @@ Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relev
 
 \emph{Idee:} Um beliebig weit zu schauen muss man Rekursion einführen.\bigskip
 
-\examplebox{Beispiel: Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
+\examplebox{\emph{Beispiel:} Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
 \begin{enumerate}[(1)]
 \item sie die Haltestelle Helmholtzstr. ist, oder
 \item sie neben einer Haltestelle liegt, die von Helmholtzstr. aus erreichbar ist.
