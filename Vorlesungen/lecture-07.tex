@@ -307,10 +307,10 @@ Die $O$-Notation wird verwendet, um allgemeine Ressourcenschranken für TMs anzu
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine Turingmaschine.
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }\pause
@@ -471,7 +471,7 @@ in der Regel nur polynomiell."'\bigskip
 
 \begin{frame}\frametitle{Implementierungsdetails}
 
-Es gibt viele unterschiedliche Arten um ein Problem praktisch zu lösen,
+Es gibt viele unterschiedliche Arten, um ein Problem praktisch zu lösen,
 z.B. unter Verwendung spezifischer Datenstrukturen.\\\smallskip
 
 \anybox{purple}{Sind $\Scomplclass{DTIME}(f)$ und $\Scomplclass{DSPACE}(f)$ für verschiedene Implementierungsdetails gleich?}\pause\bigskip
@@ -598,7 +598,7 @@ auf $O(\log(n))$-Speicherzellen beschränkt.
 
 {\footnotesize
 Das genügt zur Erkennung von Sprachen. Wenn die TM eine Ausgabe berechnen soll, dann wird dafür ein 
-drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben aber nicht lesen kann.\\
+drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben, aber nicht lesen kann.\\
 }
 
 \end{frame}

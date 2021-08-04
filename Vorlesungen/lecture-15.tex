@@ -232,7 +232,7 @@ $\leadsto$ $\Jnter\models\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$, das
 \theobox{\emph{Satz:} Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
 und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\medskip
 
-Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
+Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar, wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
 }
 
 \emph{Beweis:} "`$\Leftarrow$"' Nehmen wir an, $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ ist erfüllbar.\pause
@@ -305,7 +305,7 @@ $\leadsto$ \alert{Induktion über den Aufbau von Formeln}\bigskip
 weil für alle $\delta_1,\ldots,\delta_n\in\Delta^\Jnter$ gilt:
 \[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann, wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
 $\Rightarrow$ folgt direkt aus der Definition von $p^\Inter$\\
-$\Leftarrow$ folgt weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
+$\Leftarrow$ folgt, weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
 \bigskip\pause
 
 Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann, wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
@@ -346,10 +346,10 @@ $\Inter,\Zuweisung'[x\mapsto [\delta]]\models G$ für ein $\delta\in\Delta^\Jnte
 Die gezeigte Variante von Induktion heißt \redalert{strukturelle Induktion}
 \begin{itemize}
 \item \alert{Klassische Induktion:} Ist $E$ eine Eigenschaft, so dass gilt:
-(1) die Zahl $0$ hat $E$ und (2) eine natürliche Zahl $n>0$ hat $E$ falls ihr Vorgänger $n-1$ $E$ hat;
+(1) die Zahl $0$ hat $E$ und (2) eine natürliche Zahl $n>0$ hat $E$, falls ihr Vorgänger $n-1$ $E$ hat;
 dann haben alle natürlichen Zahlen die Eigenschaft $E$.
 \item \alert{Strukturelle Induktion auf Formeln:} Ist $E$ eine Eigenschaft, so dass gilt:
-(1) atomare Formeln haben $E$ und (2) eine nicht-atomare Formel $F$ hat $E$ falls ihre maximalen echten Teilformeln $E$ haben;
+(1) atomare Formeln haben $E$ und (2) eine nicht-atomare Formel $F$ hat $E$, falls ihre maximalen echten Teilformeln $E$ haben;
 dann haben alle Formeln die Eigenschaft $E$.
 \end{itemize}
 Allgemein kann man Induktion über jede induktiv definierte syntaktische Struktur durchführen (Formeln, Terme, Programme, \ghost{\ldots)}\medskip\pause

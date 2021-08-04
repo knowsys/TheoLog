@@ -36,7 +36,7 @@ falls $\sigma$ allgemeinster Unifikator von $\{A_1,\ldots,A_n, A'_1,\ldots, A'_m
 \begin{enumerate}[(1)]
 \item Bilde Klauselform
 \item Bilde systematisch Resolventen durch Resolution von Varianten bereits abgeleiteter Klauseln
-\item Wiederhole (2), bis entweder $\bot$ erzeugt wird ("`unerfüllbar"') oder keine neuen Klauseln mehr entstehen\footnote{Dieser Fall ist eher ungewöhnlich: Meist entstehen bei erfüllbaren Theorien immer mehr neue Klauseln ohne dass das Verfahren terminiert.}
+\item Wiederhole (2), bis entweder $\bot$ erzeugt wird ("`unerfüllbar"') oder keine neuen Klauseln mehr entstehen\footnote{Dieser Fall ist eher ungewöhnlich: Meist entstehen bei erfüllbaren Theorien immer mehr neue Klauseln, ohne dass das Verfahren terminiert.}
 \end{enumerate}
 
 \end{frame}
@@ -221,7 +221,7 @@ Offenbar ist das \redalert{kein praktischer Algorithmus}, aber er zeigt Semi-Ent
 \begin{itemize}
 \item Unerfüllbarkeit einer Klauselmenge zeigt sich in der Unerfüllbarkeit ihrer Herbrand-Expansion
 \item Die Unerfüllbarkeit der Herbrand-Expansion kann man mit aussagenlogischer Resolution beweisen
-\item Prädikatenlogische Resolution verallgemeinert aussagenlogische Resolution indem wir direkt mit Klauseln arbeiten, die noch Variablen enthalten
+\item Prädikatenlogische Resolution verallgemeinert aussagenlogische Resolution, indem wir direkt mit Klauseln arbeiten, die noch Variablen enthalten
 \end{itemize}\pause
 
 \emph{Frage:} Kann man alle Schlüsse, die man auf expandierten Formeln aussagenlogisch erzeugen kann, auch direkt prädikatenlogisch (mit Variablen) erhalten?
@@ -266,7 +266,7 @@ Sei $R$ die Resolvente von $K_1$ und $K_2$ bzgl. $\theta$.\smallskip\pause
 Dann enthalten $R'$ und $R$ Instanzen der gleichen Literale, d.h. sie sind von der Form
 $R'=\{L_1\sigma,\ldots,L_n\sigma\}$ und $R=\{L_1\theta,\ldots,L_n\theta\}$\smallskip\pause
 
-Da $\theta$ allgemeinster Unifikator ist gibt es $\lambda$ mit $\sigma=\theta\circ\lambda$
+Da $\theta$ allgemeinster Unifikator ist, gibt es $\lambda$ mit $\sigma=\theta\circ\lambda$
 und es gilt: $R\lambda=\{L_1\theta\lambda,\ldots,L_n\theta\lambda\}=\{L_1\sigma,\ldots,L_n\sigma\}=R'$\qed
 
 

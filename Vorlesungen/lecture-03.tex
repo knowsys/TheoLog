@@ -346,7 +346,7 @@ Zeichen, aus denen es besteht. Dazu nehmen wir an:
 \end{itemize}\bigskip\pause
 
 \defbox{\emph{Definition:} Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
-$\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ gibt.
+$\bbfunc_{\textsf{LOOP}}(\ell)=0$, falls es kein Programm der Länge $\leq\ell$ gibt.
 }\pause
 
 \emph{Beobachtung:} $\bbfunc_{\textsf{LOOP}}$ ist wohldefiniert:
@@ -453,7 +453,7 @@ ein WHILE-Programm, für jede Variable $\Svar{x}\in\Slang{V}$.
 }\bigskip\pause
 
 Semantik von $\SStartWhile{\Svar{x}}P~\SEndWhile{}$:\\
-$P$ wird ausgeführt solange der aktuelle Wert von $\Svar{x}$ ungleich $0$ ist.\\
+$P$ wird ausgeführt, solange der aktuelle Wert von $\Svar{x}$ ungleich $0$ ist.\\
 \textcolor{devilscss}{(dies hängt davon ab, wie $P$ den Wert von $\Svar{x}$ ändert)}
 \medskip
 

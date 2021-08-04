@@ -85,7 +85,7 @@ Andernfalls gib aus "`nicht unifizierbar"'.
 \emph{Beobachtungen:}
 \begin{itemize}
 \item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, so dass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
-\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$ wenn
+\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$, wenn
 $\sigma$ Unifikator für das folgende Unifikationsproblem $G_{\mathcal{A}}$ ist: 
 \[ \{ t_{1,1}\unieq t_{2,1},\ldots,t_{n-1,1}\unieq t_{n,1},\ldots,t_{1,\ell}\unieq t_{2,\ell},\ldots,t_{n-1,\ell}\unieq t_{n,\ell} \} \]
 \item Insbesondere ist der allgemeinste Unifikator für $G_{\mathcal{A}}$ auch der allgemeinste Unifikator für $\mathcal{A}$
@@ -185,7 +185,7 @@ In Klauselform kann man sich also die Allquantoren direkt vor jeder einzelnen Kl
 Daher darf man die Variablen jeder Klausel einheitlich umbenennen, unabhängig von jeder anderen Klausel, z.B.
 \[ \{\neg L(f_7(x_1,x_2,x_3,x_4,a))\} \quad\leadsto\quad \{\neg L(f_7(x'_1,x'_2,x'_3,x'_4,a))\} \]
 Klauseln, die durch eineindeutige Umbenennung von Variablen entstanden sind, nennt man \redalert{Varianten} (einer Klausel)\\[0.5ex]
-\alert{$\leadsto$ Wir bilden bei der Resolution Varianten um Konflikte von Variablen zu vermeiden}
+\alert{$\leadsto$ Wir bilden bei der Resolution Varianten, um Konflikte von Variablen zu vermeiden}
 
 \end{frame}
 
@@ -314,7 +314,7 @@ Sei $\Inter$ eine beliebige Interpretation.
 \item \emph{Fall 2:} $\Inter,\Zuweisung\not\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$.\\ Dann gilt $\Inter,\Zuweisung\models L_1\sigma\vee\ldots\vee L_k\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
 \item Also gilt $\Inter\models\forall K$.
 \end{itemize}
-Da $\Inter$ beliebig ist gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
+Da $\Inter$ beliebig ist, gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
 Das heißt, jede Resolvente ist logische Konsequenz der resolvierten Klauseln.
 
 \end{frame}
@@ -425,7 +425,7 @@ Mit dem Herbrand-Universum als Domäne kann man Interpretationen definieren, die
 \item $\Delta^\Inter=\Delta_F$ ist das Herbrand-Universum von $F$
 \item Für jeden Term $t\in\Delta_F$ gilt $t^\Inter=t$
 \end{itemize}
-$\Inter$ ist ein \redalert{Herbrandmodell} für $F$ wenn zudem gilt $\Inter\models F$.}
+$\Inter$ ist ein \redalert{Herbrandmodell} für $F$, wenn zudem gilt $\Inter\models F$.}
 
 \emph{Anmerkung:} Die Definition stellt Bedingungen an Grundbereich und Terminterpretation, aber sie lässt auch viele Freiheiten (z.B. die Interpretation von Prädikatensymbolen)
 

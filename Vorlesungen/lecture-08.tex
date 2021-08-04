@@ -88,7 +88,7 @@ Speicher genutzt werden:\bigskip
 \[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
 }
 
-\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
+\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt, um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
 
 \pause Daraus folgt zum Beispiel $\Scomplclass{PTime}\subseteq\Scomplclass{PSpace}$.
 
@@ -126,10 +126,10 @@ $\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }
@@ -395,7 +395,7 @@ typisches \Scomplclass{P}-Problem.\bigskip
 \begin{itemize}
 \item Eine \alert{Hornklausel} ist eine aussagenlogische Formel der Form $p_1\wedge\ldots\wedge p_n\to q$ mit $n\geq 0$
 {\tiny (bei $n=0$ ergibt sich einfach $q$ -- ein \alert{Fakt})}
-\item Eine Formel ist \alert{erfüllbar} wenn sie für eine Wertezuweisung auf wahr abgebildet wird
+\item Eine Formel ist \alert{erfüllbar}, wenn sie für eine Wertezuweisung auf wahr abgebildet wird
 \item Eine Menge von Formeln ist erfüllbar, wenn es eine Wert-\\zuweisung gibt, die alle
 ihre Elemente gleichzeitig wahr macht
 \end{itemize}\bigskip
