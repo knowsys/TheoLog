@@ -84,9 +84,9 @@ Natasha Artin Brunswick\medskip
 
 \begin{frame}\frametitle{Syntax vs. Semantik}
 
-Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
+Bei Herbrand-Interpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrand-Interpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
@@ -95,7 +95,7 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 {\color{devilscss}\footnotesize \emph{Anmerkung:} Man kann ein entsprechendes Resultat auch für Nicht-Herbrand-Interpretationen zeigen. Dann muss man einfach den Term auf der linken Seite durch $t^{\Inter,\Zuweisung}$ ersetzen.}\bigskip
 
 \theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
-Herbrandmodell hat.}
+Herbrand-Modell hat.}
 
 \end{frame}
 
@@ -141,7 +141,7 @@ Herbrandmodell hat.}
 \[ HE(F)\defeq\big\{ G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\mid t_1,\ldots,t_n\in\Delta_F\big\}\]
 }
 
-$HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\ freien Sätzen, die in Herbrandmodellen von $F$ gelten müssten.
+$HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\ freien Sätzen, die in Herbrand-Modellen von $F$ gelten müssten.
 \pause\bigskip
 
 \redalert{Quantorenfreie Sätze = aussagenlogische Formeln:}
@@ -159,10 +159,10 @@ $HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\
 
 \theobox{\emph{Satz von Gödel, Herbrand \& Skolem:} Eine Formel $F$ in Skolemform ist genau dann erfüllbar, wenn $HE(F)$ aussagenlogisch erfüllbar ist.}\pause
 
-\emph{Beweis:} Wir zeigen, dass $F=\forall x_1,\ldots,x_n.G$ genau dann ein Herbrandmodell hat, wenn $HE(F)$ aussagenlogisch erfüllbar ist:\pause
+\emph{Beweis:} Wir zeigen, dass $F=\forall x_1,\ldots,x_n.G$ genau dann ein Herbrand-Modell hat, wenn $HE(F)$ aussagenlogisch erfüllbar ist:\pause
 
 \begin{itemize}
-\item $\Inter$ ist ein Herbrandmodell von $F$\pause
+\item $\Inter$ ist ein Herbrand-Modell von $F$\pause
 \item gdw. $\Inter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ für alle $t_1,\ldots,t_n\in\Delta_F$\pause
 \item gdw. $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$ für alle $t_1,\ldots,t_n\in\Delta_F$ (Lemma)\pause
 \item gdw. für alle $H\in HE(F)$ gilt $\Inter\models H$\pause

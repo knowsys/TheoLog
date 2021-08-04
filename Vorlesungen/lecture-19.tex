@@ -395,11 +395,11 @@ Konstruktion von Modellen direkt aus den Formeln, welche sie erfüllen sollen
 
 \end{frame}
 
-\begin{frame}\frametitle{Herbranduniversum}
+\begin{frame}\frametitle{Herbrand-Universum}
 
 Der Kern von Herbrands Idee ist eine "`syntaktische"' Domäne:\medskip
 
-\defbox{Sei $a$ eine beliebige Konstante. Das \redalert{Herbranduniversum} $\Delta_F$ für eine Formel $F$ ist die
+\defbox{Sei $a$ eine beliebige Konstante. Das \redalert{Herbrand-Universum} $\Delta_F$ für eine Formel $F$ ist die
 Menge aller variablenfreien Terme, die man mit Konstanten und Funktionssymbolen in $F$ und der zusätzlichen Konstante $a$ bilden kann:
 \begin{itemize}
 \item $a\in\Delta_F$
@@ -410,22 +410,22 @@ Menge aller variablenfreien Terme, die man mit Konstanten und Funktionssymbolen 
 
 \emph{Anmerkung:} Das Herbrand-Universum ist immer abzählbar, manchmal endlich und niemals leer.\pause
 
-\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich das Herbranduniversum
+\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich das Herbrand-Universum
 $\Delta_F=\{a,f(a),g(a),f(f(a)),f(g(a)),g(f(a)),g(g(a)),\ldots\}$.
 }
 
 \end{frame}
 
-\begin{frame}\frametitle{Herbrandinterpretationen}
+\begin{frame}\frametitle{Herbrand-Interpretationen}
 
 Mit dem Herbrand-Universum als Domäne kann man Interpretationen definieren, die Terme "`durch sich selbst"' interpretieren:\medskip
 
-\defbox{Eine \redalert{Herbrandinterpretation} für eine Formel $F$ ist eine Interpretation $\Inter$ für die gilt:
+\defbox{Eine \redalert{Herbrand-Interpretation} für eine Formel $F$ ist eine Interpretation $\Inter$ für die gilt:
 \begin{itemize}
 \item $\Delta^\Inter=\Delta_F$ ist das Herbrand-Universum von $F$
 \item Für jeden Term $t\in\Delta_F$ gilt $t^\Inter=t$
 \end{itemize}
-$\Inter$ ist ein \redalert{Herbrandmodell} für $F$, wenn zudem gilt $\Inter\models F$.}
+$\Inter$ ist ein \redalert{Herbrand-Modell} für $F$, wenn zudem gilt $\Inter\models F$.}
 
 \emph{Anmerkung:} Die Definition stellt Bedingungen an Grundbereich und Terminterpretation, aber sie lässt auch viele Freiheiten (z.B. die Interpretation von Prädikatensymbolen)
 
@@ -435,22 +435,22 @@ $\Inter$ ist ein \redalert{Herbrandmodell} für $F$, wenn zudem gilt $\Inter\mod
 
 Betrachten wir wieder die (skolemisierte) Formel $F=\forall x.\textsf{hatVater}(x,f(x))$.\bigskip
 
-Herbranduniversum: $\Delta_F=\{a,f(a),f(f(a)),\ldots\}$\medskip
+Herbrand-Universum: $\Delta_F=\{a,f(a),f(f(a)),\ldots\}$\medskip
 
-Alle Herbrandinterpretationen stimmen auf der Domäne und (dem relevanten Teil) der Terminterpretation überein.
+Alle Herbrand-Interpretationen stimmen auf der Domäne und (dem relevanten Teil) der Terminterpretation überein.
 \begin{itemize}
-\item $\Inter_1$ mit $\textsf{hatVater}^{\Inter_1}=\emptyset$ ist kein Herbrandmodell
-\item $\Inter_2$ mit $\textsf{hatVater}^{\Inter_2}=\{\tuple{t,f(t)}\mid t\in\Delta_F\}$ ist ein Herbrandmodell
-\item $\Inter_3$ mit $\textsf{hatVater}^{\Inter_3}=\Delta_F\times\Delta_F$ ist ein Herbrandmodell
+\item $\Inter_1$ mit $\textsf{hatVater}^{\Inter_1}=\emptyset$ ist kein Herbrand-Modell
+\item $\Inter_2$ mit $\textsf{hatVater}^{\Inter_2}=\{\tuple{t,f(t)}\mid t\in\Delta_F\}$ ist ein Herbrand-Modell
+\item $\Inter_3$ mit $\textsf{hatVater}^{\Inter_3}=\Delta_F\times\Delta_F$ ist ein Herbrand-Modell
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}\frametitle{Syntax vs. Semantik}
 
-Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
+Bei Herbrand-Interpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrand-Interpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
@@ -463,22 +463,22 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 \begin{frame}\frametitle{Erfüllbar + Skolem = Erfüllbarkeit bei Herbrand}
 
 \theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
-Herbrandmodell hat.}\pause
+Herbrand-Modell hat.}\pause
 
-\emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
+\emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrand-Modelle auch Modelle sind.\bigskip\pause
 
-$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$ indem wir festlegen:
+$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrand-Interpretation $\Jnter$ indem wir festlegen:
 \begin{itemize}
 \item $p^\Jnter=\{\tuple{t_1,\ldots,t_n}\mid\tuple{t_1^\Inter,\ldots,t_n^\Inter}\in p^\Inter\}$\\
 {\footnotesize Anm.: $t_i$ sind variablenfrei, daher ist $t_i^\Inter$ wohldefiniert}
 \end{itemize}
-Behauptung: \alert{$\Jnter$ ist ein Herbrandmodell von $F$}
+Behauptung: \alert{$\Jnter$ ist ein Herbrand-Modell von $F$}
 
 \end{frame}
 
 \begin{frame}\frametitle{Beweis (Fortsetzung)}
 
-\emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrandmodell von $F$}\bigskip
+\emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrand-Modell von $F$}\bigskip
 
 $F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
 \begin{itemize}
@@ -731,7 +731,7 @@ $\leadsto$ Es gibt ein Herbrand-Modell mit dieser Domäne
 
 Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die Unerfüllbarkeit logischer Formeln\bigskip
 
-Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrandmodellen reduzieren
+Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrand-Modellen reduzieren
 (Fortsetzung folgt)
 % \bigskip
 % 
