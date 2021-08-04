@@ -271,7 +271,7 @@ Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit G
 \begin{itemize}
 \item Für eine Zuweisung $\Zuweisung$ für $\Jnter$ definieren wir eine Zuweisung $\Zuweisung'$ für $\Inter$ wie folgt: $\Zuweisung'(x)\defeq[\Zuweisung(x)]$ für alle $x\in\Slang{V}$
 \item Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 \item Daraus folgt wie gewünscht $\Inter\models\mathcal{T}$, weil $\mathcal{T}$ abgeschlossen ist (Zuweisung irrelevant) und $\Jnter\models\mathcal{T}_{\eqpred}$
 % 
 % \item Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit Gleichheit gilt\\
@@ -296,19 +296,19 @@ Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit G
 
 \emph{Beweis:} {\footnotesize(Forts.)}
 Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 Wie kann man so eine Behauptung zeigen?\bigskip\pause
 
 $\leadsto$ \alert{Induktion über den Aufbau von Formeln}\bigskip
 
 \emph{Induktionsanfang:} Für atomare Formeln $F=p(t_1,\ldots,t_n)$ mit $p\neq{\approx}$ gilt die Behauptung,
 weil für alle $\delta_1,\ldots,\delta_n\in\Delta^\Jnter$ gilt:
-\[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
+\[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann, wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
 $\Rightarrow$ folgt direkt aus der Definition von $p^\Inter$\\
 $\Leftarrow$ folgt weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
 \bigskip\pause
 
-Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
+Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann, wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
 \end{frame}
 
 \begin{frame}[t]\frametitle{Beweis (5)}
@@ -316,7 +316,7 @@ Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\d
 
 \emph{Beweis:} {\footnotesize(Forts.)}
 Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 % Wie kann man so eine Behauptung zeigen?\bigskip\pause
 
 % $\leadsto$ \alert{Induktion} (über den Aufbau von Formeln)\bigskip
