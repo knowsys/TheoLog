@@ -94,7 +94,7 @@ $\leq_p$\\
 \begin{frame}
   \frametitle{\Slang{SAT} $\leq_p$ \Slang{Teilmengen-Summe}}
     \emph{Gegeben: } Formel $F = (C_1 \wedge \dots \wedge C_k)$ in
-  CNF.\\
+  KNF.\\
   (o.B.d.A. mit maximal 9 Literalen pro Klausel)\pause\\[1ex]
   Seien $p_1, \dots, p_n$ die Variablen in $F$.\\
   Für jedes $p_i$ definieren wir Gegenstände $t_i$ und $f_i$:\\[10pt]
@@ -347,7 +347,7 @@ durch Reduktion $\Slang{Teilmengen-Summe}\leq_p\Slang{Rucksack}$
 Zusammenfassung:
 \begin{itemize}
 \item \Slang{Rucksack} ist \Scomplclass{NP}-vollständig
-\item \Slang{Rucksack} ist mittels Dynamischer Programmierung in Zeit $O(n\ell)$ lösbar
+\item \Slang{Rucksack} ist mittels dynamischer Programmierung in Zeit $O(n\ell)$ lösbar
 \end{itemize}
 
 \defbox{\Slang{Rucksack} (Knapsack)\\[1ex]
@@ -439,7 +439,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
 
 \anybox{strongyellow}{Wächst der neuartige Computer mit dem Problem?\\ Ist dieses Wachstum exponentiell?}\bigskip
 
-\examplebox{\emph{Beispiel:} DNS-Rechner lösen Optimierunsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
+\examplebox{\emph{Beispiel:} DNS-Rechner lösen Optimierungsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
 
 \end{frame}
 
@@ -566,7 +566,7 @@ Offene Fragen (geordnet von "`leicht"' nach schwer):
 Es sollte eigentlich eine Menge Probleme geben, die weder in \Scomplclass{P} liegen, noch \Scomplclass{NP}-vollständig sind\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item $\Scomplclass{NL}$
 \item Komplexität jenseits von $\Scomplclass{NP}$

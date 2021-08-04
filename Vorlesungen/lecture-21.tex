@@ -214,7 +214,7 @@ Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit
 \begin{frame}\frametitle{Formeln = Anfragen}
 
 Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
-kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
+kann man sie mit normalen prädikatenlogischen Atomen adressieren.\medskip
 
 \examplebox{\emph{Beispiel:} Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
 hat drei freie Variablen. Für eine gegebene Datenbankinstanz (endliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
@@ -330,7 +330,7 @@ $\texttt{function}~\text{Eval}(F,\Inter,\Zuweisung) :$
 \emph{Anmerkung:} Wenn Konstanten $c$ in der Anfrage vorkommen, dann nimmt man
 in der Regel an, dass $c^\Inter=c$ ist.\medskip
 
-\emph{Anmerkung 2:} In der Praxis stimmt das nicht ganz. Insbesondere bei Verwendung von Datentypen haben DB-Systeme normalerweise eingebaute Interpretationsfunktionen. Zum Beispiel würden die Konstanten $\Scodelit{\quoted{42}}$ und $\Scodelit{\quoted{+42}}$ die selbe Ganzzahl bezeichnen.
+\emph{Anmerkung 2:} In der Praxis stimmt das nicht ganz. Insbesondere bei Verwendung von Datentypen haben DB-Systeme normalerweise eingebaute Interpretationsfunktionen. Zum Beispiel würden die Konstanten $\Scodelit{\quoted{42}}$ und $\Scodelit{\quoted{+42}}$ dieselbe Ganzzahl bezeichnen.
 
 \end{frame}
 
@@ -508,7 +508,7 @@ Und so weiter \ldots\bigskip
 % \]\pause
 % 
 
-\alert{``Haltestellen, die von Helmholtzstr. aus mit einem Kurzstreckentticket erreichbar sind:''}
+\alert{``Haltestellen, die von Helmholtzstr. aus mit einem Kurzstreckenticket erreichbar sind:''}
 \[
 	Q_0[x]\vee Q_1[x]\vee Q_2[x]\vee Q_3[x]\vee Q_4[x]
 \]
@@ -577,7 +577,7 @@ Prädikatenlogik hat Grenzen:
 \end{itemize}\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Datalog und Logik höherer Ordnung
 \item Gödel

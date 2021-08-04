@@ -13,7 +13,7 @@
 
 \emph{Erinnerung:} $F$ ist logische Konsequenz von $G$, wenn alle Modelle von $F$ auch Modelle von $G$ sind.
 \begin{itemize}
-\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendliche viele Modelle
+\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendlich viele Modelle
 \item Ebenso schwer erscheinen die gleichwertigen Probleme der Erfüllbarkeit und Allgemeingültigkeit
 \end{itemize}\pause
 \emph{Intuition:} prädikatenlogisches Schließen ist unentscheidbar
@@ -313,7 +313,7 @@ Tautologie ist \ldots
 
 \alert{Geht es besser?}\pause
 \begin{itemize}
-\item Logischen Schließens ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
+\item Logisches Schließen ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
 \item Aber: Es gibt effizientere, zielgerichtetere Methoden
 \end{itemize}
 
@@ -365,7 +365,7 @@ Wir müssen aber mehr beachten als zuvor:
 Wir haben bereits gelernt (Vorlesung 14):
 \begin{itemize}
 \item In prädikatenlogischen Formeln darf man Teilformeln durch semantisch äquivalente
-Formeln ersetzten (Ersetzungstheorem)
+Formeln ersetzen (Ersetzungstheorem)
 \item Für die aussagenlogischen Junktoren gelten die gleichen Äquivalenzen wie in der Aussagenlogik
 \end{itemize}
 $\leadsto$ damit kann man schon viele Umformungen vornehmen
@@ -377,7 +377,7 @@ Es fehlen uns aber noch Äquivalenzen zum Umgang mit Quantoren
 
 \begin{frame}\frametitle{Äquivalenzen mit Quantoren}
 
-Es gelten die folgenen Beziehungen:
+Es gelten die folgenden Beziehungen:
 \begin{align*}
 \begin{split}
 \neg\exists x.F &\equiv \forall x.\neg F\\
@@ -391,8 +391,8 @@ Es gelten die folgenen Beziehungen:
 \end{split}
 & \text{\textcolor{devilscss}{Kommutativität}}\\[1ex]
 %
-\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributitivität $\exists$/$\vee$}}\\
-\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributitivität $\forall$/$\wedge$}}
+\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributivität $\exists$/$\vee$}}\\
+\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributivität $\forall$/$\wedge$}}
 \end{align*}
 
 \pause\emph{Beweis:} Die Beweise ergeben sich direkt aus der Semantik, z.B.:\bigskip
@@ -455,7 +455,7 @@ In NNF darf Negation also nur in Literalen auftauchen.
 Es ist möglich, eine Formel rekursiv in NNF umzuformen.
 \medskip
 
-Dazu ersetzten wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
+Dazu ersetzen wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
 unter Verwendung der bekannten Äquivalenzen:
 %
 \begin{align*}
@@ -704,7 +704,7 @@ Resolution kann auch in der Prädikatenlogik zum logischen Schließen eingesetzt
 Mithilfe semantischer Äquivalenzen kann man beliebige Formeln in einheitliche Normalformen überführen.\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Funktionen
 \item Resolution

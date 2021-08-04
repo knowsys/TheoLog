@@ -28,7 +28,7 @@
 \begin{frame}\frametitle{Warum sollten Reduktionen effizient sein?}
 
 \emph{Intuition:} Eine aufwändige Reduktion kann jedes Problem indirekt lösen, aber dadurch lernt man nichts
-interessantes über dessen Komplexität.\pause
+Interessantes über dessen Komplexität.\pause
 \bigskip
 
 \theobox{\emph{Satz:} Sei $\Slang{L}=\{\Sterm{a}\}$ eine Sprache über dem Alphabet $\{\Sterm{a}\}$.
@@ -199,7 +199,7 @@ NTM simuliert: das Zertifikat ist ein akzeptierender Lauf\qed
 
 \defbox{\Slang{Zusammengesetzte Zahl} (Nicht-Primzahl)\\[1ex]
 \emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
-\emph{Frage:} Gibt es eine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+\emph{Frage:} Gibt es natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
 }
 
 \end{frame}
@@ -242,7 +242,7 @@ ist $\Scomplclass{P}\subseteq\Scomplclass{coNP}\cap\Scomplclass{NP}$.
 
 \defbox{\Slang{Primzahl} (= $\overline{\Slang{Zusammengesetzte Zahl}}$)\\[1ex]
 \emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
-\emph{Frage:} Gibt es eine keine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+\emph{Frage:} Gibt es keine natürlichen Zahlen $p,q>1$ mit $p\cdot q = z$?\\
 }\pause
 
 Seit 1975 ist bekannt: $\Slang{Primzahl}\in\Scomplclass{NP}$, also
@@ -401,7 +401,7 @@ direkt durch eine Kante verbunden ist\medskip
 
 \emph{Beweis Teil (2):} Clique ist \Scomplclass{NP}-schwer.
 \begin{itemize}
-\item Sei $F$ eine aussagenlogische Formel in CNF:\\
+\item Sei $F$ eine aussagenlogische Formel in KNF:\\
 $F=\left((L^1_1\vee \ldots\vee L^1_{n_1})\wedge \ldots\wedge (L^\ell_1\vee \ldots\vee L^\ell_{n_\ell})\right)$\pause
 %
 \item Wir definieren einen Graphen $G_F$, so dass gilt:\\[1ex]
@@ -511,7 +511,7 @@ Polynomielle Reduktionen erlauben uns, die Schwere von Problemen zu vergleichen
 Es gibt sehr viele bekannte $\Scomplclass{NP}$-vollständige Probleme\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Mehr $\Scomplclass{NP}$
 \item Pseudopolynomielle Probleme
