@@ -370,7 +370,7 @@ Diese sind eng mit denen aus Datalog verwandt, weil man kontextfreie Grammatiken
 \begin{itemize}
 \item Für jedes Nichtterminal $\Snterm{A}\in V$, sei $A$ ein zweistelliges Prädikat
 \item Für jedes Terminal $\Sterm{b}\in \Sigma$, sei $b$ ein zweistelliges Prädikat
-\item Für jede Produktionsregel $\Snterm{A}\to v$ mit $v=v_1\ldots v_n\in(\Sigma\cup V)^*$ sei $A(x_0,x_n)\leftarrow v_1(x_0,x_1)\wedge\ldots\wedge v_n(x_{n-1},x_n)$ eine Datalogregel
+\item Für jede Produktionsregel $\Snterm{A}\to v$ mit $v=v_1\ldots v_n\in(\Sigma\cup V)^*$ sei $A(x_0,x_n)\leftarrow v_1(x_0,x_1)\wedge\ldots\wedge v_n(x_{n-1},x_n)$ eine Datalog-Regel
 \item Die Menge aller entsprechenden Regel bezeichnen wir mit $P_G$
 \end{itemize}
 Wir betrachten Datenbanken, die nur Prädikate aus $\Sigma$ enthalten\bigskip\pause
@@ -464,8 +464,8 @@ $\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
 
 \begin{frame}\frametitle{Logik höherer Ordnung: Syntax und Semantik}
 
-\emph{Syntax:} Wie in Prädikatenlogik, aber mit quantifizierten Prädikaten-Variablen.\\
-\textcolor{devilscss}{(Die Stelligkeit einer Prädikaten-Variablen muss jeweils klar festgelegt werden)}\medskip
+\emph{Syntax:} Wie in Prädikatenlogik, aber mit quantifizierten Prädikatenvariablen.\\
+\textcolor{devilscss}{(Die Stelligkeit einer Prädikatenvariablen muss jeweils klar festgelegt werden)}\medskip
 
 \examplebox{\emph{Beispiel:} ``Für jede Menge $M$ gilt: Enthält $M$ die Zahl $0$ und mit jeder natürlichen Zahl $n$ auch stets deren Nachfolger $s(n)$, so enthält $M$ alle natürlichen Zahlen.''
 %
@@ -474,7 +474,7 @@ $\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
 Wir verwenden hier ein Funktionssymbol $s$ zur Darstellung von Nachfolgern.
 }\bigskip\pause
 
-\emph{Semantik:} wie erwartet (gleiche Interpretationen wie in erster Stufe; Interpretation von Prädikaten-Variablen mit Zuweisungen wie bei Objektvariablen in erster Stufe)\medskip
+\emph{Semantik:} wie erwartet (gleiche Interpretationen wie in erster Stufe; Interpretation von Prädikatenvariablen mit Zuweisungen wie bei Objektvariablen in erster Stufe)\medskip
 
 \textcolor{devilscss}{(Intuition: zweite Stufe/erste Stufe = QBF/Aussagenlogik)}
 
@@ -505,7 +505,7 @@ kann als Formel der Logik zweiter Stufe wie folgt dargestellt werden:
  &\hspace{-5mm}(\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z)\to \text{Erreichbar}(y)) )\to \text{Erreichbar}(v)
 \Big)
 \end{align*}
-Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikaten-Variable dar.
+Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikatenvariable dar.
 Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann, wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
 }
 
