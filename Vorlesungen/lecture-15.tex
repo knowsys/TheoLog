@@ -197,7 +197,7 @@ Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüll
 \emph{Warum ist das nützlich?}
 \begin{itemize}
 \item Logisches Schließen kann auf den Test von Erfüllbarkeit zurückgeführt werden
-\item Erfüllbarkeit bleibt erhalten, wenn man "`eingebaute"' Gleicheit durch eine logische 
+\item Erfüllbarkeit bleibt erhalten, wenn man "`eingebaute"' Gleichheit durch eine logische 
 Beschreibung von Gleichheit ersetzt
 \end{itemize}
 \redalert{$\leadsto$ Schließen wird durch Gleichheit nicht wesentlich komplizierter}
@@ -232,7 +232,7 @@ $\leadsto$ $\Jnter\models\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$, das
 \theobox{\emph{Satz:} Sei $\mathcal{T}$ eine Theorie der Prädikatenlogik mit $\approx$
 und weiteren Prädikatensymbolen aus der endlichen Menge $\Slang{R}$.\medskip
 
-Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
+Dann ist $\mathcal{T}$ genau dann in der Prädikatenlogik mit Gleichheit erfüllbar, wenn $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ in der Prädikatenlogik ohne Gleichheit erfüllbar ist.
 }
 
 \emph{Beweis:} "`$\Leftarrow$"' Nehmen wir an, $\mathcal{T}_{\eqpred}\cup\mathcal{EQ}_{\Slang{R}}$ ist erfüllbar.\pause
@@ -267,11 +267,11 @@ gleichsetzen, welche in der Relation $\eqpred^\Jnter$ stehen
 
 Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit Gleichheit gilt.\footnote{\tiny Verständnischeck: Klingt das plausibel? Sogar offensichtlich? Gut. Warum genau?}\pause\medskip
 
-\alert{Wir zeigen eine allgemeinere Behauptung:}\only<2->{\footnote{\tiny Mathematische Taktik: Scheint ein Beweis zu schwer, dann beweise etwas stärkeres!}}
+\alert{Wir zeigen eine allgemeinere Behauptung:}\only<2->{\footnote{\tiny Mathematische Taktik: Scheint ein Beweis zu schwer, dann beweise etwas Stärkeres!}}
 \begin{itemize}
 \item Für eine Zuweisung $\Zuweisung$ für $\Jnter$ definieren wir eine Zuweisung $\Zuweisung'$ für $\Inter$ wie folgt: $\Zuweisung'(x)\defeq[\Zuweisung(x)]$ für alle $x\in\Slang{V}$
 \item Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 \item Daraus folgt wie gewünscht $\Inter\models\mathcal{T}$, weil $\mathcal{T}$ abgeschlossen ist (Zuweisung irrelevant) und $\Jnter\models\mathcal{T}_{\eqpred}$
 % 
 % \item Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit Gleichheit gilt\\
@@ -296,19 +296,19 @@ Wir wollen zeigen, dass $\Inter\models\mathcal{T}$ in der Prädikatenlogik mit G
 
 \emph{Beweis:} {\footnotesize(Forts.)}
 Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 Wie kann man so eine Behauptung zeigen?\bigskip\pause
 
 $\leadsto$ \alert{Induktion über den Aufbau von Formeln}\bigskip
 
 \emph{Induktionsanfang:} Für atomare Formeln $F=p(t_1,\ldots,t_n)$ mit $p\neq{\approx}$ gilt die Behauptung,
-weil für all $\delta_1,\ldots,\delta_n\in\Delta^\Jnter$ gilt:
-\[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
+weil für alle $\delta_1,\ldots,\delta_n\in\Delta^\Jnter$ gilt:
+\[ \tuple{\delta_1,\ldots,\delta_n}\in p^\Jnter \text{ genau dann, wenn } \tuple{[\delta_1],\ldots,[\delta_n]}\in p^\Inter \]
 $\Rightarrow$ folgt direkt aus der Definition von $p^\Inter$\\
-$\Leftarrow$ folgt weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
+$\Leftarrow$ folgt, weil $\Jnter\models\mathcal{EQ}_{\Slang{R}}$, so dass $\eqpred^\Jnter$ eine Kongruenzrelation ist
 \bigskip\pause
 
-Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
+Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\delta]=[\epsilon]$ genau dann, wenn $\tuple{\delta,\epsilon}\in\eqpred^\Jnter$.
 \end{frame}
 
 \begin{frame}[t]\frametitle{Beweis (5)}
@@ -316,7 +316,7 @@ Für atomare Formeln $F=(t_1\approx t_2)$ gilt die Behauptung ebenfalls, da $[\d
 
 \emph{Beweis:} {\footnotesize(Forts.)}
 Wir behaupten: Für jede Formel $F$ der Prädikatenlogik mit Gleichheit und jede Zuweisung $\Zuweisung$ für $\Jnter$ gilt
-\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann wenn } \Inter,\Zuweisung'\models F \]
+\[ \Jnter,\Zuweisung\models F_{\eqpred} \text{ genau dann, wenn } \Inter,\Zuweisung'\models F \]
 % Wie kann man so eine Behauptung zeigen?\bigskip\pause
 
 % $\leadsto$ \alert{Induktion} (über den Aufbau von Formeln)\bigskip
@@ -346,10 +346,10 @@ $\Inter,\Zuweisung'[x\mapsto [\delta]]\models G$ für ein $\delta\in\Delta^\Jnte
 Die gezeigte Variante von Induktion heißt \redalert{strukturelle Induktion}
 \begin{itemize}
 \item \alert{Klassische Induktion:} Ist $E$ eine Eigenschaft, so dass gilt:
-(1) die Zahl $0$ hat $E$ und (2) eine natürliche Zahl $n>0$ hat $E$ falls ihr Vorgänger $n-1$ $E$ hat;
+(1) die Zahl $0$ hat $E$ und (2) eine natürliche Zahl $n>0$ hat $E$, falls ihr Vorgänger $n-1$ $E$ hat;
 dann haben alle natürlichen Zahlen die Eigenschaft $E$.
 \item \alert{Strukturelle Induktion auf Formeln:} Ist $E$ eine Eigenschaft, so dass gilt:
-(1) atomare Formeln haben $E$ und (2) eine nicht-atomare Formel $F$ hat $E$ falls ihre maximalen echten Teilformeln $E$ haben;
+(1) atomare Formeln haben $E$ und (2) eine nichtatomare Formel $F$ hat $E$, falls ihre maximalen echten Teilformeln $E$ haben;
 dann haben alle Formeln die Eigenschaft $E$.
 \end{itemize}
 Allgemein kann man Induktion über jede induktiv definierte syntaktische Struktur durchführen (Formeln, Terme, Programme, \ghost{\ldots)}\medskip\pause
@@ -644,7 +644,7 @@ Logisches Schließen ist ein Kernproblem der Prädikatenlogik;\\
 es entspricht verschiedenen konkreten Fragen (Folgerung, Erfüllbarkeit, Allgemeingültigkeit)
 \bigskip
 
-Logisches Schließen über logischen Aussagem mit Gleichheit kann
+Logisches Schließen über logischen Aussagen mit Gleichheit kann
 auf logisches Schließen ohne Gleichheit reduziert werden\bigskip
 
 Strukturelle Induktion ist eine wichtige Beweismethode, um mit wenigen (endlich vielen) Schritten zu zeigen, dass eine Eigenschaft für alle (unendlich vielen) Formeln gilt\bigskip
@@ -655,7 +655,7 @@ Strukturelle Induktion ist eine wichtige Beweismethode, um mit wenigen (endlich 
 % (noch zu zeigen)
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Unentscheidbarkeit des logischen Schließens
 \item Ein konkretes Verfahren zum logischen Schließen

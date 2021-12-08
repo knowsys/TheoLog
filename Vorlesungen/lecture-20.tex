@@ -36,7 +36,7 @@ falls $\sigma$ allgemeinster Unifikator von $\{A_1,\ldots,A_n, A'_1,\ldots, A'_m
 \begin{enumerate}[(1)]
 \item Bilde Klauselform
 \item Bilde systematisch Resolventen durch Resolution von Varianten bereits abgeleiteter Klauseln
-\item Wiederhole (2), bis entweder $\bot$ erzeugt wird ("`unerfüllbar"') oder keine neuen Klauseln mehr entstehen\footnote{Dieser Fall ist eher ungewöhnlich: Meist entstehen bei erfüllbaren Theorien immer mehr neue Klauseln ohne dass das Verfahren terminiert.}
+\item Wiederhole (2), bis entweder $\bot$ erzeugt wird ("`unerfüllbar"') oder keine neuen Klauseln mehr entstehen\footnote{Dieser Fall ist eher ungewöhnlich: Meist entstehen bei erfüllbaren Theorien immer mehr neue Klauseln, ohne dass das Verfahren terminiert.}
 \end{enumerate}
 
 \end{frame}
@@ -84,9 +84,9 @@ Natasha Artin Brunswick\medskip
 
 \begin{frame}\frametitle{Syntax vs. Semantik}
 
-Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
+Bei Herbrand-Interpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrand-Interpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
@@ -95,7 +95,7 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 {\color{devilscss}\footnotesize \emph{Anmerkung:} Man kann ein entsprechendes Resultat auch für Nicht-Herbrand-Interpretationen zeigen. Dann muss man einfach den Term auf der linken Seite durch $t^{\Inter,\Zuweisung}$ ersetzen.}\bigskip
 
 \theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
-Herbrandmodell hat.}
+Herbrand-Modell hat.}
 
 \end{frame}
 
@@ -141,7 +141,7 @@ Herbrandmodell hat.}
 \[ HE(F)\defeq\big\{ G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\mid t_1,\ldots,t_n\in\Delta_F\big\}\]
 }
 
-$HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\ freien Sätzen, die in Herbrandmodellen von $F$ gelten müssten.
+$HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\ freien Sätzen, die in Herbrand-Modellen von $F$ gelten müssten.
 \pause\bigskip
 
 \redalert{Quantorenfreie Sätze = aussagenlogische Formeln:}
@@ -159,10 +159,10 @@ $HE(F)$ ist also die (möglicherweise unendliche) Menge von \ghost{variablen-}\\
 
 \theobox{\emph{Satz von Gödel, Herbrand \& Skolem:} Eine Formel $F$ in Skolemform ist genau dann erfüllbar, wenn $HE(F)$ aussagenlogisch erfüllbar ist.}\pause
 
-\emph{Beweis:} Wir zeigen, dass $F=\forall x_1,\ldots,x_n.G$ genau dann ein Herbrandmodell hat, wenn $HE(F)$ aussagenlogisch erfüllbar ist:\pause
+\emph{Beweis:} Wir zeigen, dass $F=\forall x_1,\ldots,x_n.G$ genau dann ein Herbrand-Modell hat, wenn $HE(F)$ aussagenlogisch erfüllbar ist:\pause
 
 \begin{itemize}
-\item $\Inter$ ist ein Herbrandmodell von $F$\pause
+\item $\Inter$ ist ein Herbrand-Modell von $F$\pause
 \item gdw. $\Inter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ für alle $t_1,\ldots,t_n\in\Delta_F$\pause
 \item gdw. $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$ für alle $t_1,\ldots,t_n\in\Delta_F$ (Lemma)\pause
 \item gdw. für alle $H\in HE(F)$ gilt $\Inter\models H$\pause
@@ -178,14 +178,14 @@ Als Korollar der gezeigten Ergebnisse erhalten wir ein wichtiges Resultat:
 \theobox{\emph{Satz:} Eine Formel $F$ in Skolemform ist genau dann unerfüllbar, wenn
 eine endliche Teilmenge von $HE(F)$ aussagenlogisch unerfüllbar ist.}
 
-\pause\emph{Beweis:} Das Kontrapositiv des Satzes von Gödel, Herbrand \& Skolem besagt:\medskip
+\pause\emph{Beweis:} Die Kontraposition des Satzes von Gödel, Herbrand \& Skolem besagt:\medskip
 
 Eine Formel $F$ in Skolemform ist genau dann unerfüllbar, wenn $HE(F)$ aussagenlogisch unerfüllbar ist.\bigskip
 
 Der Satz folgt nun, weil jede unerfüllbare aussagenlogische Formelmenge eine endliche
 Teilmenge hat, die unerfüllbar ist: \alert{Kompaktheit der Aussagenlogik}, ohne Beweis\\[1ex]
 {\tiny
-\textcolor{devilscss}{Das Ergebnis kann aus der Vollständigkeit der Verallgemeinerung aussagenlogischer Resolution auf unendliche Modelle gefolgert werden (siehe Formale Systeme, WS 2017/2018, Vorlesung 23): wenn die leere Klausel endlich abgeleitet werden kann, dann nutzt man dazu nur endlich viele Klauseln der Eingabe; wenn die leere Klausel nicht endlich abgeleitet werden kann, dann erhält man aus der unendlichen Menge aller möglichen Ableitungen ein Modell, analog zum endlichen Fall.}
+\textcolor{devilscss}{Das Ergebnis kann aus der Vollständigkeit der Verallgemeinerung aussagenlogischer Resolution auf unendliche Modelle gefolgert werden (siehe Formale Systeme, WS 2020/2021, Vorlesung 23): wenn die leere Klausel endlich abgeleitet werden kann, dann nutzt man dazu nur endlich viele Klauseln der Eingabe; wenn die leere Klausel nicht endlich abgeleitet werden kann, dann erhält man aus der unendlichen Menge aller möglichen Ableitungen ein Modell, analog zum endlichen Fall.}
 
 }\qed
 
@@ -221,7 +221,7 @@ Offenbar ist das \redalert{kein praktischer Algorithmus}, aber er zeigt Semi-Ent
 \begin{itemize}
 \item Unerfüllbarkeit einer Klauselmenge zeigt sich in der Unerfüllbarkeit ihrer Herbrand-Expansion
 \item Die Unerfüllbarkeit der Herbrand-Expansion kann man mit aussagenlogischer Resolution beweisen
-\item Prädikatenlogische Resolution verallgemeinert aussagenlogische Resolution indem wir direkt mit Klauseln arbeiten, die noch Variablen enthalten
+\item Prädikatenlogische Resolution verallgemeinert aussagenlogische Resolution, indem wir direkt mit Klauseln arbeiten, die noch Variablen enthalten
 \end{itemize}\pause
 
 \emph{Frage:} Kann man alle Schlüsse, die man auf expandierten Formeln aussagenlogisch erzeugen kann, auch direkt prädikatenlogisch (mit Variablen) erhalten?
@@ -240,7 +240,7 @@ eine prädikatenlogische Resolvente $R$ von $K_1$ und $K_2$, welche $R'$ als Gru
 }
 
 \color{devilscss}
-{\footnotesize ${^1}$ Die Verwendung der selben Substitution für $K'_1$ und $K'_2$ ist keine Einschränkung, da wir durch Variantenbildung sicherstellen können, dass $K_1$ und $K_2$ keine Variablen gemein haben.
+{\footnotesize ${^1}$ Die Verwendung derselben Substitution für $K'_1$ und $K'_2$ ist keine Einschränkung, da wir durch Variantenbildung sicherstellen können, dass $K_1$ und $K_2$ keine Variablen gemein haben.
 
 }
 
@@ -266,7 +266,7 @@ Sei $R$ die Resolvente von $K_1$ und $K_2$ bzgl. $\theta$.\smallskip\pause
 Dann enthalten $R'$ und $R$ Instanzen der gleichen Literale, d.h. sie sind von der Form
 $R'=\{L_1\sigma,\ldots,L_n\sigma\}$ und $R=\{L_1\theta,\ldots,L_n\theta\}$\smallskip\pause
 
-Da $\theta$ allgemeinster Unifikator ist gibt es $\lambda$ mit $\sigma=\theta\circ\lambda$
+Da $\theta$ allgemeinster Unifikator ist, gibt es $\lambda$ mit $\sigma=\theta\circ\lambda$
 und es gilt: $R\lambda=\{L_1\theta\lambda,\ldots,L_n\theta\lambda\}=\{L_1\sigma,\ldots,L_n\sigma\}=R'$\qed
 
 
@@ -303,7 +303,7 @@ und es gilt: $R\lambda=\{L_1\theta\lambda,\ldots,L_n\theta\lambda\}=\{L_1\sigma,
 \emph{Beweis (Vollständigkeit):} \alert{Behauptung:} Jede Klausel $K_i'$ ist Grundinstanz einer Klausel $K_i$ die in $\mathcal{K}_\ell$ vorkommt für ein $\ell\geq 0$.
 \medskip\pause
 
-Aussage klar für $K'_i\in HE(F)$: in diesem Fall ist $K'_i$ ist Grundinstanz einer Klausel $K_i$ in der Klauselform von $F$ und in $\mathcal{K}_0$\medskip\pause
+Aussage klar für $K'_i\in HE(F)$: in diesem Fall ist $K'_i$ Grundinstanz einer Klausel $K_i$ in der Klauselform von $F$ und in $\mathcal{K}_0$\medskip\pause
 
 Restlicher Beweis durch Induktion über $i$:
 \begin{itemize}
@@ -369,7 +369,7 @@ In gewissem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweis
 % Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Endliche Modelle und Datenbanken
 \item Datalog

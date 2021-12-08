@@ -88,7 +88,7 @@ Speicher genutzt werden:\bigskip
 \[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
 }
 
-\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
+\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt, um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
 
 \pause Daraus folgt zum Beispiel $\Scomplclass{PTime}\subseteq\Scomplclass{PSpace}$.
 
@@ -126,10 +126,10 @@ $\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }
@@ -157,7 +157,7 @@ Die entsprechenden Sprachklassen werden genau wie bei deterministischen TMs defi
 \end{frame}
 
 
-\begin{frame}\frametitle{Nichtdeterministische Komplextitätsklassen}
+\begin{frame}\frametitle{Nichtdeterministische Komplexitätsklassen}
 
 Auch hier beschränken wir uns auf einige wichtige Fälle:
 
@@ -310,8 +310,8 @@ Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
 
 Aber der Begriff "`linear"' ist nicht robust:
 \begin{itemize}
-\item Abhänging von Details des Maschinenmodells
-\item Abhänging von Details der Kodierung
+\item Abhängig von Details des Maschinenmodells
+\item Abhängig von Details der Kodierung
 \end{itemize}
 \bigskip
 $\leadsto$ Polynomielle Zeit als robuste Verallgemeinerung von Linearzeit:\bigskip
@@ -395,7 +395,7 @@ typisches \Scomplclass{P}-Problem.\bigskip
 \begin{itemize}
 \item Eine \alert{Hornklausel} ist eine aussagenlogische Formel der Form $p_1\wedge\ldots\wedge p_n\to q$ mit $n\geq 0$
 {\tiny (bei $n=0$ ergibt sich einfach $q$ -- ein \alert{Fakt})}
-\item Eine Formel ist \alert{erfüllbar} wenn sie für eine Wertezuweisung auf wahr abgebildet wird
+\item Eine Formel ist \alert{erfüllbar}, wenn sie für eine Wertezuweisung auf wahr abgebildet wird
 \item Eine Menge von Formeln ist erfüllbar, wenn es eine Wert-\\zuweisung gibt, die alle
 ihre Elemente gleichzeitig wahr macht
 \end{itemize}\bigskip
@@ -456,9 +456,9 @@ Wenn wir eine robuste Klasse wollen, die Linearzeit-Algorithmen enthält, dann e
 \smallskip\pause
 
 \begin{itemize}
-\item \emph{Sub-lineare Zeit} funktioniert mit dem normalen TM-Modell nicht, da man
+\item \emph{Sublineare Zeit} funktioniert mit dem normalen TM-Modell nicht, da man
 in dieser Zeit nicht einmal die Eingabe lesen kann {\tiny (erfordert Rechenmodelle mit einer Form von Parallelverarbeitung \ldots)}
-\item \emph{Sub-linearer Speicher} ist machbar, wenn man ein getrenntes schreibgeschütztes Eingabeband erlaubt (siehe letzte Vorlesung)
+\item \emph{Sublinearer Speicher} ist machbar, wenn man ein getrenntes schreibgeschütztes Eingabeband erlaubt (siehe letzte Vorlesung)
 \end{itemize}
 $\leadsto$ Komplexitätsklassen \Scomplclass{L} und \Scomplclass{NL}
 
@@ -529,7 +529,7 @@ effizient auf ein anderes reduzieren.\bigskip
 
 \defbox{Eine polynomiell berechenbare Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{polynomielle Many-One-Reduktion} von einer Sprache
 \Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_p \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
-\narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
+\narrowcentering{$w\in\Slang{P}\quad$ genau dann, wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
 
 Wir sprechen oft einfach von \redalert{polynomiellen Reduktionen}.
 \bigskip
@@ -591,7 +591,7 @@ Die Klassen \Scomplclass{P}, \Scomplclass{L} und \Scomplclass{NL} sind mathemati
 Mit polynomiellen Reduktionen kann man aus der Komplexität eines Problems auf die eines anderen schließen\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item $\Scomplclass{NP}$
 \item $\Scomplclass{NL}$

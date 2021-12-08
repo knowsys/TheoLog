@@ -13,7 +13,7 @@
 
 \emph{Erinnerung:} $F$ ist logische Konsequenz von $G$, wenn alle Modelle von $F$ auch Modelle von $G$ sind.
 \begin{itemize}
-\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendliche viele Modelle
+\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendlich viele Modelle
 \item Ebenso schwer erscheinen die gleichwertigen Probleme der Erfüllbarkeit und Allgemeingültigkeit
 \end{itemize}\pause
 \emph{Intuition:} prädikatenlogisches Schließen ist unentscheidbar
@@ -183,7 +183,7 @@ Falls "`sogar"' dieses Modell $ \exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_
 \item Für jedes Terminalsymbol $\Sterm{a}$:
 \[\forall x.\exists y. p_{\Sterm{a}}(x,y)\]
 \end{itemize}
-Dann gilt $\mathcal{T}\models\exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$ genau dann wenn es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$ gibt.
+Dann gilt $\mathcal{T}\models\exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$ genau dann, wenn es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$ gibt.
 \bigskip
 
 Die Unentscheidbarkeit von Erfüllbarkeit und Allgemeingültigkeit folgt, weil man logische Konsequenz auf diese Probleme reduzieren kann.
@@ -200,7 +200,7 @@ Offensichtlich wird das Schließen nicht einfacher, wenn man auch noch Gleichhei
 
 Umgekehrt kann man aus dem Beweis noch stärkere Ergebnisse folgern, z.B.:
 
-\theobox{\emph{Korollar:} Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar, selbst dann, wenn nur binäre Prädikatssymbole verwendet werden.}\bigskip
+\theobox{\emph{Korollar:} Logisches Schließen (Erfüllbarkeit, Allgemeingültigkeit, logische Konsequenz) in der Prädikatenlogik ist unentscheidbar, selbst dann, wenn nur binäre Prädikatensymbole verwendet werden.}\bigskip
 
 \end{frame}
 
@@ -299,11 +299,11 @@ einfängt:
 
 \begin{frame}\frametitle{Theorie und Praxis}
 
-Gödel zeigte damit auch die Semientscheidbarkeit des logischen Schließens:
+Gödel zeigte damit auch die Semi-Entscheidbarkeit des logischen Schließens:
 \begin{itemize}
 \item Man kann systematisch alle möglichen Ableitungen neuer Tautologien
 bilden
-\item Eine Formel ist eine Tautologie genau dann wenn sie irgendwann abgeleitet wird
+\item Eine Formel ist eine Tautologie genau dann, wenn sie irgendwann abgeleitet wird
 \item Ist eine Formel keine Tautologie, dann werden wir es auf diese Art nie erfahren
 \end{itemize}\pause
 
@@ -313,7 +313,7 @@ Tautologie ist \ldots
 
 \alert{Geht es besser?}\pause
 \begin{itemize}
-\item Logischen Schließens ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
+\item Logisches Schließen ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
 \item Aber: Es gibt effizientere, zielgerichtetere Methoden
 \end{itemize}
 
@@ -345,7 +345,7 @@ Resolution in der Prädikatenlogik funktioniert ganz ähnlich:
 \begin{enumerate}[(1)]
 \item Umformung in Klauselform
 \item Durchführung von Resolutionsschritten, bei denen jeweils zwei Klauseln kombiniert werden
-\item Terminierung wenn leere Klausel auftritt oder keine neuen Klauseln mehr entstehen
+\item Terminierung, wenn leere Klausel auftritt oder keine neuen Klauseln mehr entstehen
 \end{enumerate}
 \bigskip
 
@@ -365,7 +365,7 @@ Wir müssen aber mehr beachten als zuvor:
 Wir haben bereits gelernt (Vorlesung 14):
 \begin{itemize}
 \item In prädikatenlogischen Formeln darf man Teilformeln durch semantisch äquivalente
-Formeln ersetzten (Ersetzungstheorem)
+Formeln ersetzen (Ersetzungstheorem)
 \item Für die aussagenlogischen Junktoren gelten die gleichen Äquivalenzen wie in der Aussagenlogik
 \end{itemize}
 $\leadsto$ damit kann man schon viele Umformungen vornehmen
@@ -377,7 +377,7 @@ Es fehlen uns aber noch Äquivalenzen zum Umgang mit Quantoren
 
 \begin{frame}\frametitle{Äquivalenzen mit Quantoren}
 
-Es gelten die folgenen Beziehungen:
+Es gelten die folgenden Beziehungen:
 \begin{align*}
 \begin{split}
 \neg\exists x.F &\equiv \forall x.\neg F\\
@@ -391,8 +391,8 @@ Es gelten die folgenen Beziehungen:
 \end{split}
 & \text{\textcolor{devilscss}{Kommutativität}}\\[1ex]
 %
-\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributitivität $\exists$/$\vee$}}\\
-\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributitivität $\forall$/$\wedge$}}
+\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributivität $\exists$/$\vee$}}\\
+\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributivität $\forall$/$\wedge$}}
 \end{align*}
 
 \pause\emph{Beweis:} Die Beweise ergeben sich direkt aus der Semantik, z.B.:\bigskip
@@ -408,7 +408,7 @@ $\Inter,\Zuweisung\models \neg\exists x.F$
 
 \end{frame}
 
-\begin{frame}\frametitle{Nicht-Äquivalenzen mit Quantoren}
+\begin{frame}\frametitle{Nichtäquivalenzen mit Quantoren}
 
 Andere ähnliche Beziehungen gelten \redalert{nicht}.\bigskip\pause
 
@@ -436,7 +436,7 @@ $(\forall x.\textsf{glücklich}(x)\vee \forall x.\neg \textsf{glücklich}(x))$ (
 \end{enumerate}
 }\medskip
 
-Formeln, die negierte oder nicht-negierte Atome sind, nennt man \redalert{Literale}.
+Formeln, die negierte oder nichtnegierte Atome sind, nennt man \redalert{Literale}.
 In NNF darf Negation also nur in Literalen auftauchen.
 \medskip\pause
 
@@ -455,7 +455,7 @@ In NNF darf Negation also nur in Literalen auftauchen.
 Es ist möglich, eine Formel rekursiv in NNF umzuformen.
 \medskip
 
-Dazu ersetzten wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
+Dazu ersetzen wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
 unter Verwendung der bekannten Äquivalenzen:
 %
 \begin{align*}
@@ -704,7 +704,7 @@ Resolution kann auch in der Prädikatenlogik zum logischen Schließen eingesetzt
 Mithilfe semantischer Äquivalenzen kann man beliebige Formeln in einheitliche Normalformen überführen.\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Funktionen
 \item Resolution

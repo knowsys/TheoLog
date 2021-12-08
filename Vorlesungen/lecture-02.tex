@@ -47,9 +47,9 @@ Church und Turing (im Chor mit Kleene und Rosser):\\~\hfill"`Alle Computer sind 
 	Die Eingabe wird auf das erste Band geschrieben.
 \end{itemize}
 
-\theobox{Satz: Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
+\theobox{\emph{Satz:} Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
 
-Details siehe Vorlesung Formale Systeme (Winter 2017/2018, Vorlesungen 18 und 19)
+Details siehe Vorlesung Formale Systeme (Winter 2020/2021, Vorlesungen 18 und 19)
 
 \end{frame}
 
@@ -78,7 +78,7 @@ Es ist praktisch, wenn eine TM garantiert hält, da man Fall (2) meist nicht sic
 Eine Turingmaschine kann eine Funktion von Eingabewörtern auf Ausgabewörter definieren:\medskip
 
 \defbox{Eine DTM $\Smach{M}$ \redalert{berechnet} eine partielle Funktion $f_{\Smach{M}}:\Sigma^*\to\Sigma^*$ wie folgt.
-Für ein Wort $w\in\Sigma^*$ ist $f_{\Smach{M}}(w)=v$ wenn $\Smach{M}$ bei Eingabe $w$ mit einem Band anhält, auf dem 
+Für ein Wort $w\in\Sigma^*$ ist $f_{\Smach{M}}(w)=v$, wenn $\Smach{M}$ bei Eingabe $w$ mit einem Band anhält, auf dem 
 nur $v$ steht, d.h., wenn der Bandinhalt nach dem Halten die Form $v\blank\blank\blank\cdots$ hat.}\pause
 
 Es gibt also zwei Fälle, in denen $f_{\Smach{M}}(w)$ undefiniert ist:
@@ -122,7 +122,7 @@ gelangt, wird der aktuelle Bandinhalt -- vom Anfang bis zum ersten Zeichen, nach
 %
 Die \redalert{durch $\Smach{M}$ aufgezählte Sprache} ist die Menge aller Wörter
 aus $\Sigma^*$, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.\\
-{\tiny(Anmerkung: Die Definition erlaubt die Ausgabe von Wörtern aus $\Gamma^*\setminus\Sigma^*$. Diese gehören für uns nicht zur aufgezählten Sprache.}
+{\tiny(Anmerkung: Die Definition erlaubt die Ausgabe von Wörtern aus $\Gamma^*\setminus\Sigma^*$. Diese gehören für uns nicht zur aufgezählten Sprache.)}
 }\bigskip
 
 Die durch $\Smach{M}$ aufgezählte Sprache kann unendlich sein, wenn $\Smach{M}$ auf der leeren Eingabe nicht hält.
@@ -161,7 +161,7 @@ Aufgabe zur Selbstkontrolle: Schreiben Sie einen Aufzähler für diese Sprache, 
 
 \begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (1)}
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
 einen Aufzähler für $\Slang{L}$ gibt.
 }\pause
 
@@ -178,7 +178,7 @@ gibt, dann können wir $\Slang{L}$ wie folgt semi-entscheiden:
 
 \begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (2)}
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
 einen Aufzähler für $\Slang{L}$ gibt.
 }\pause
 
@@ -211,7 +211,7 @@ Wichtige Fälle:
 \item \alert{Tupel} (Listen) von Wörtern (oder natürlichen Zahlen, \ldots), können kodiert werden, indem man zum Eingabealphabet ein zusätzliches Trennzeichen $\Sterm{\#}$ hinzufügt
 \end{itemize}\bigskip\pause
 
-\examplebox{Beispiel: Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
+\examplebox{\emph{Beispiel:} Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
 semi-entscheidbaren Teilmengen von $\mathbb{N}\times\mathbb{N}$ sprechen.}\medskip
 
 Anmerkung: Oft gibt es viele denkbare Kodierungen eines Objektes als Wort. Vorerst sollen uns die Details nicht interessieren, solange klar ist, dass eine TM die Kodierung entschlüsseln kann.
@@ -224,14 +224,14 @@ Anmerkung: Oft gibt es viele denkbare Kodierungen eines Objektes als Wort. Vorer
 
 Berechenbarkeit von Funktionen und Sprachen sind eng verwandt.
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann entscheidbar, wenn die folgende Funktion $f:\Sigma^*\to\Sigma^*$ berechenbar ist (o.B.d.A. sei $\{\Sterm{0},\Sterm{1}\}\subseteq\Sigma$):
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann entscheidbar, wenn die folgende Funktion $f:\Sigma^*\to\Sigma^*$ berechenbar ist (o.B.d.A. sei $\{\Sterm{0},\Sterm{1}\}\subseteq\Sigma$):
 \[f(w)= \left\{\begin{array}{ll}
 \Sterm{1} & \text{falls $w\in\Slang{L}$}\\
 \Sterm{0} & \text{falls $w\notin\Slang{L}$}\\
 \end{array}\right.\]}\pause
 
 {\footnotesize
-\emph{Beweisskizze:} "`$\Rightarrow$"' Ein Entscheider für $\Slang{L}$ kann in eine TM für $f$ umgebaut werden. Dazu verwendet man "`Subroutinen"', die den Bandinhalt löschen und mit einem einzelnen Zeichen \Sterm{1} oder \Sterm{0} ersetzten. Diese Routinen werden aufgerufen, wenn der ursprüngliche Entscheider halten würde: die \Sterm{1}-Routine beim Halten in einem Endzustand, die \Sterm{0}-Routine andernfalls.\medskip
+\emph{Beweisskizze:} "`$\Rightarrow$"' Ein Entscheider für $\Slang{L}$ kann in eine TM für $f$ umgebaut werden. Dazu verwendet man "`Subroutinen"', die den Bandinhalt löschen und mit einem einzelnen Zeichen \Sterm{1} oder \Sterm{0} ersetzen. Diese Routinen werden aufgerufen, wenn der ursprüngliche Entscheider halten würde: die \Sterm{1}-Routine beim Halten in einem Endzustand, die \Sterm{0}-Routine andernfalls.\medskip
 
 {\tiny Eventuell muss man den Entscheider außerdem so modifizieren, dass das
 Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst wird das Löschen des gesamten Bandes problematisch!).
@@ -239,7 +239,7 @@ Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst 
 }
 \smallskip
 
-"`$\Leftarrow$"' Eine TM, die $f$ berechnet, kann in einen Entscheider für $\Slang{L}$ umgebaut werden. Die Idee ist wie zuvor, aber die Subroutinen prüfen jetzt, ob das Band \Sterm{1} oder \Sterm{0} enthält und wechseln entsprechend in einen akzeptierenden oder nicht-akzeptierenden Zustand.\qed
+"`$\Leftarrow$"' Eine TM, die $f$ berechnet, kann in einen Entscheider für $\Slang{L}$ umgebaut werden. Die Idee ist wie zuvor, aber die Subroutinen prüfen jetzt, ob das Band \Sterm{1} oder \Sterm{0} enthält und wechseln entsprechend in einen akzeptierenden oder nichtakzeptierenden Zustand.\qed
 
 }
 
@@ -249,7 +249,7 @@ Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst 
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
 \[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}
 
@@ -270,7 +270,7 @@ Falls $f$ total ist, dann hält auch die Erkennung von $\textsf{Graph}_f$.
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
 \[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}\pause
 
@@ -297,7 +297,7 @@ das kann man leicht tun (oder die Mehrband-TM auf einem Band simulieren).
 
 \begin{frame}\frametitle{Es gibt unentscheidbare Probleme}
 
-\theobox{Satz: Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
+\theobox{\emph{Satz:} Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
 
 \pause
 Dies kann man wie folgt zeigen:
@@ -369,7 +369,7 @@ Dies folgt aus einer Konstruktion von Georg Cantor:
  \visible<2->{\Slangsub{L}{d} & - & - & \times & \ldots & }
 \end{array}\]\pause
 \item Wir konstruieren eine Sprache $\Slangsub{L}{d}$ durch \alert{Diagonalisierung}.\\
-Formal: $w_i\in \Slangsub{L}{d}$ genau dann wenn $w_i\notin\Slangsub{L}{i}$.\pause
+Formal: $w_i\in \Slangsub{L}{d}$ genau dann, wenn $w_i\notin\Slangsub{L}{i}$.\pause
 \end{itemize}
 Dann kommt $\Slangsub{L}{d}$ in der Tabelle nicht vor. Widerspruch.
 
@@ -382,7 +382,7 @@ Wie finden wir konkrete unentscheidbare Probleme?
 
 Es reicht nicht aus, dass wir nicht wissen, wie ein Problem algorithmisch gelöst werden kann!\bigskip
 
-\examplebox{Beispiel: Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
+\examplebox{\emph{Beispiel:} Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
 
 \only<3->{%
 Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie könnte dennoch entscheidbar sein (z.B. wenn jede endliche Ziffernfolge irgendwo in $\pi$ vorkommt, was aber bisher nicht bekannt ist).}}
@@ -394,7 +394,7 @@ Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie 
 Es gibt sogar Fälle, in denen wir sicher sind, dass ein Problem entscheidbar ist,
 aber trotzdem nicht wissen, wie man es löst.\\[1.5ex]\pause
 
-\examplebox{Beispiel: Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
+\examplebox{\emph{Beispiel:} Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
 
 \only<3->{
 $\Slang{L}_{\pi7}$ ist entscheidbar:
@@ -422,7 +422,7 @@ Für jeden denkbaren Fall gibt es einen Algorithmus -- wir wissen nur nicht, wel
 
 \begin{frame}[t]\frametitle{Ein erstes unentscheidbares Problem (2)}
 
-\emph{Frage:} Falls eine TM \alert{mit $n$ Zuständen} und \alert{einem zwei-elementigen Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$} auf einem \alert{leeren Band} anhält, wie lange kann das im schlimmsten Fall dauern?\\
+\emph{Frage:} Falls eine TM \alert{mit $n$ Zuständen} und \alert{einem zweielementigen Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$} auf einem \alert{leeren Band} anhält, wie lange kann das im schlimmsten Fall dauern?\\
 \bigskip\pause
 
 \emph{Antwort:} Das kommt auf $n$ an \ldots\bigskip\pause
@@ -484,7 +484,7 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 
 % Wie schwer kann das schon sein \ldots?\pause
 
-\theobox{Satz: Die Busy-Beaver-Funktion ist nicht berechenbar.}
+\theobox{\emph{Satz:} Die Busy-Beaver-Funktion ist nicht berechenbar.}
 
 \pause
 \emph{Beweisskizze:} Nehmen wir an, $\bbfunc$ wäre berechenbar.\pause
@@ -578,7 +578,7 @@ Die Busy-Beaver-Funktion ist nicht berechenbar und wächst irrsinnig schnell
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Relevantere Probleme
 \item Reduktionen

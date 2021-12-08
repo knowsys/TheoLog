@@ -227,7 +227,7 @@ könnte man damit direkt lösen.\bigskip\pause
 
 \examplebox{\emph{Beispiel:} Die Goldbachsche Vermutung (Christian Goldbach, 1742) besagt, dass jede gerade Zahl $n\geq 4$ die Summe zweier Primzahlen ist. Zum Beispiel ist $4=2+2$ und $100=47+53$.}\pause
 
-Man kann leicht einen Algorithmus \Smach{A} angeben, der die Goldbachsche Vermuting systematisch verifiziert, d.h., für alle geraden Zahlen ab $4$ testet:
+Man kann leicht einen Algorithmus \Smach{A} angeben, der die Goldbachsche Vermutung systematisch verifiziert, d.h., für alle geraden Zahlen ab $4$ testet:
 \begin{itemize}
 \item Erfolg: teste die nächste gerade Zahl
 \item Misserfolg: terminiere mit Meldung "`Goldbach hat sich geirrt!"'
@@ -264,7 +264,7 @@ Dann kann man eine TM $\Smach{D}$ konstruieren, die folgendes tut:
 % \alert{Wer rasiert den Barbier?}
 \alert{Akzeptiert $\Smach{D}$ die Eingabe $\textsf{enc}(\Smach{D})$?}\pause\\[1ex]
 
-\narrowcentering{$\Smach{D}$ hält und akzeptiert $\quad$ genau dann wenn $\quad$ $\Smach{D}$ nicht hält}\\[1ex]
+\narrowcentering{$\Smach{D}$ hält und akzeptiert $\quad$ genau dann, wenn $\quad$ $\Smach{D}$ nicht hält}\\[1ex]
 
 Widerspruch.\qed
 
@@ -319,7 +319,7 @@ kann, welches ein Programm für $\Slang{Q}$ als Unterprogramm aufrufen darf.}
 
 \begin{frame}\frametitle{Turing-Reduktionen: Beispiel}
 
-\examplebox{\emph{Beispiel:} Das Nicht-Halteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$,
+\examplebox{\emph{Beispiel:} Das Nichthalteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$,
 ist definiert als\\[1ex]
 \narrowcentering{$\overline{\Slang{P}}_{\textsf{Halt}} = \{\textsf{enc}(\Smach{M})\Sterm{\#}\Sterm{\#}\textsf{enc}(w)\mid \text{$\Smach{M}$ hält nicht bei Eingabe $w$}\}$}\\[1ex]
 %
@@ -329,7 +329,7 @@ Analog kann auch $\Slang{P}_{\textsf{Halt}}$ auf $\overline{\Slang{P}}_{\textsf{
 
 Daraus ergibt sich:\medskip
 
-\theobox{\emph{Satz:} Das Nicht-Halteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$ ist unentscheidbar.}
+\theobox{\emph{Satz:} Das Nichthalteproblem $\overline{\Slang{P}}_{\textsf{Halt}}$ ist unentscheidbar.}
 
 \end{frame}
 
@@ -390,7 +390,7 @@ Wir haben zwei ähnliche Unentscheidbarkeitsbeweise gesehen:\bigskip
 \emph{Idee:} Im letzten Beweis verwendeten wir das $\epsilon$-Halteproblem nicht als Subroutine eines komplexen Programms, sondern wir formten das Halteproblem in ein $\epsilon$-Halteproblem um\bigskip
 
 \defbox{Eine berechenbare totale Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{Many-One-Reduktion} von einer Sprache \Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_m \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
-\narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
+\narrowcentering{$w\in\Slang{P}\quad$ genau dann, wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
 
 \examplebox{\emph{Beispiel:} Die folgende Funktion definiert eine Many-One-Reduktion vom
 Halteproblem auf das $\epsilon$-Halteproblem:%\\%[-4ex]
@@ -464,7 +464,7 @@ Many-One-Reduktionen $\Slang{P}\leq_m\Slang{Q}$ formen eine Problemstellung für
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Mehr zu Semi-Entscheidbarkeit 
 \item Ein unentscheidbares Problem von Emil Post \ldots

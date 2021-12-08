@@ -19,8 +19,8 @@ Der Raum der formalen Sprachen (Wortprobleme) lässt sich wie folgt aufteilen:\b
 
 \node (decback) [draw=nightblue, text depth = 1cm, text width = 1.9cm, fill=white, inner ysep=2.5mm, inner xsep=2.5mm] at (0,0) {\tiny\phantom{~}};
 
-\visible<3->{\node (re) [draw=darkgreen, text depth = 1.0cm, text width = 5.4cm, fill=darkgreen!10,thick,align=right, inner ysep=1mm, inner xsep=1mm,fill opacity=0.5, text opacity=1] at (1.7,0.02) {\footnotesize Co-Semientscheidbare\\ Probleme};}
-\visible<2->{\node (re) [draw=orange, text depth = 1.0cm, text width = 5.4cm, fill=orange!10,thick,align=left, inner ysep=1mm, inner xsep=1mm, fill opacity=0.5, text opacity=1] at (-1.7,-0.02) {\footnotesize Semientscheidbare\\ Probleme};}
+\visible<3->{\node (re) [draw=darkgreen, text depth = 1.0cm, text width = 5.4cm, fill=darkgreen!10,thick,align=right, inner ysep=1mm, inner xsep=1mm,fill opacity=0.5, text opacity=1] at (1.7,0.02) {\footnotesize Co-Semi-Entscheidbare\\ Probleme};}
+\visible<2->{\node (re) [draw=orange, text depth = 1.0cm, text width = 5.4cm, fill=orange!10,thick,align=left, inner ysep=1mm, inner xsep=1mm, fill opacity=0.5, text opacity=1] at (-1.7,-0.02) {\footnotesize Semi-Entscheidbare\\ Probleme};}
 
 
  \node (dec) [draw=strongyellow, text depth = 1cm, text width = 1.9cm, fill=strongyellow!10,thick,align=center, inner ysep=1mm, inner xsep=1mm] at (0,0) {\tiny 
@@ -47,7 +47,7 @@ Königsberg, Preussen (heute Kaliningrad, Russland):\bigskip
 
 \begin{frame}\frametitle{Ein klassisches Problem}
 
-Ein populäre Frage der Königsberger:\medskip
+Eine populäre Frage der Königsberger:\medskip
 
 \anybox{strongyellow}{Gibt es einen Weg durch die Stadt, auf dem man jede der sieben Brücken von Königsberg genau einmal überquert?}\bigskip
 
@@ -180,7 +180,7 @@ der jeden Knoten genau einmal durchquert. Ein \redalert{Hamiltonkreis} ist ein
 zyklischer Hamiltonpfad.}\bigskip\pause
 
 Wie bei Eulerpfaden ist die naive Lösung sehr ineffizient, da man
-alle (exponentiell viele) Pfade systematisch Durchprobieren muss.\bigskip\pause
+alle (exponentiell viele) Pfade systematisch durchprobieren muss.\bigskip\pause
 
 Aber im Gegensatz zu Eulerpfaden hat bislang niemand eine elegante
 einfache Lösung gefunden. Die meisten Experten glauben, dass es prinzipiell
@@ -200,7 +200,7 @@ keine effiziente Lösung geben kann.
 
 \anybox{strongyellow}{\emph{Aufgabe:} Gegeben einen Graphen mit zwei Knoten $A$ und $B$, finde einen längsten Weg von $A$ nach $B$.}\pause\bigskip
 
-\alert{Schwer!} Keine sub-exponentielle Lösung bekannt
+\alert{Schwer!} Keine subexponentielle Lösung bekannt
 \bigskip\pause
 
 \medskip
@@ -307,10 +307,10 @@ Die $O$-Notation wird verwendet, um allgemeine Ressourcenschranken für TMs anzu
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine Turingmaschine.
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }\pause
@@ -447,7 +447,7 @@ Es gibt viele unterschiedliche Versionen von deterministischen TMs und viele alt
 
 {\tiny \emph{Anmerkung:} Wir betrachten hier verschiedene Versionen deterministischer
 Rechenmodelle. Zwischen DTMs und NTMs gibt es vermutlich
-schon große (nicht-polynomielle) Unterschiede.
+schon große (nichtpolynomielle) Unterschiede.
 
 }
 
@@ -463,7 +463,7 @@ kodiert werden können.\medskip
 \emph{Antwort:} "`Nein, aber vernünftige Kodierungen unterscheiden sich voneinander
 in der Regel nur polynomiell."'\bigskip
 
-\examplebox{\emph{Beispiel:} Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
+\examplebox{\emph{Beispiel:} Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenzliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
 
 \emph{Aber:} Wir werden Fälle sehen, in denen eine (besonders ineffiziente) Kodierung die Komplexität verändert.
 
@@ -471,7 +471,7 @@ in der Regel nur polynomiell."'\bigskip
 
 \begin{frame}\frametitle{Implementierungsdetails}
 
-Es gibt viele unterschiedliche Arten um ein Problem praktisch zu lösen,
+Es gibt viele unterschiedliche Arten, um ein Problem praktisch zu lösen,
 z.B. unter Verwendung spezifischer Datenstrukturen.\\\smallskip
 
 \anybox{purple}{Sind $\Scomplclass{DTIME}(f)$ und $\Scomplclass{DSPACE}(f)$ für verschiedene Implementierungsdetails gleich?}\pause\bigskip
@@ -500,7 +500,7 @@ Eine exakte Bestimmung solcher Schranken ist oft sehr schwer.\medskip\pause
 
 \examplebox{\emph{Beispiel:} Ein naiver Algorithmus zur Matrixmultiplikation liegt in
 $\Scomplclass{DTIME}(n^{\redalert{3}})$.
-\only<-2>{~\\~\\~\\}%
+\only<-2>{\\~}%
 \only<3->{\\Seit Jahrzehnten suchen Forscher nach besseren
 Lösungen:
 $\Scomplclass{DTIME}(n^{\redalert{2,808}})$ [\mbox{Strassen}, 1969], 
@@ -538,7 +538,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2,373}})$ [Williams, 2011].}
 
 \end{frame}
 
-\begin{frame}\frametitle{Wichtige Komplextitätsklassen}
+\begin{frame}\frametitle{Wichtige Komplexitätsklassen}
 
 Die wichtigen deterministischen Komplexitätsklassen fassen jeweils ganze Familien von
 zeit- oder speicherbeschränkten Klassen zusammen. Wir erwähnen hier nur die praktisch wichtigsten:
@@ -598,7 +598,7 @@ auf $O(\log(n))$-Speicherzellen beschränkt.
 
 {\footnotesize
 Das genügt zur Erkennung von Sprachen. Wenn die TM eine Ausgabe berechnen soll, dann wird dafür ein 
-drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben aber nicht lesen kann.\\
+drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben, aber nicht lesen kann.\\
 }
 
 \end{frame}
@@ -639,7 +639,7 @@ in einer dieser Klassen liegt.}\pause
 kann in $\Scomplclass{LogSpace}$ implementiert werden: wir zählen die Kanten jedes Knotens 
 und speichern die Zahl der Knoten ungeraden Grades, jeweils binär.}\pause
 
-\examplebox{\emph{Beispiel:} Die Suche nach Hamilton-Pfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
+\examplebox{\emph{Beispiel:} Die Suche nach Hamiltonpfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
 
 \examplebox{\emph{Beispiel:} Ein typisches Problem in $\Scomplclass{P}$ haben wir bereits in
 der Vorlesung Formale Systeme kennengelernt: Erfüllbarkeit von propositionaler Horn-Logik. Unser Resolutionsalgorithmus
@@ -659,7 +659,7 @@ Die wichtigsten deterministischen Komplexitätsklassen sind
 \[\Scomplclass{L}\subseteq \Scomplclass{P}\subseteq\Scomplclass{PSpace}\subseteq \Scomplclass{Exp}\]
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Effizient lösbare Probleme: $\Scomplclass{P}$
 \item Die kleinste "`traditionelle"' Komplexitätsklasse: $\Scomplclass{L}$

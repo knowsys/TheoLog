@@ -41,7 +41,7 @@ Das macht sie in der Praxis oft eher einfach.
 
 \examplebox{
 \emph{Beispiel:} Das Rucksackproblem ist nur dann NP-vollständig,
-wenn die Gewichte der Gegenstände über-polynomiell wachsen dürfen. Ein Problem mit
+wenn die Gewichte der Gegenstände überpolynomiell wachsen dürfen. Ein Problem mit
 so schweren Gegenständen ist aber nur dann interessant, wenn auch der Rucksack
 eine sehr große Kapazität hat. Alternativ könnte man mit sehr hoher Genauigkeit wiegen.
 }
@@ -125,7 +125,7 @@ lautet wie folgt:\\[1ex]
 
 \emph{Beweis (Algorithmus):}
 \begin{itemize}
-\item Wir verweden einen Pointer $p$ auf einen Knoten (in der Eingabe) und einen Zähler $z$
+\item Wir verwenden einen Pointer $p$ auf einen Knoten (in der Eingabe) und einen Zähler $z$
 \item Initialisiere $*p=s$ und $z=1$
 \item Schleife:
 \begin{itemize}
@@ -141,8 +141,8 @@ lautet wie folgt:\\[1ex]
 
 Man kann NL-Schwere ähnlich wie für NP definieren:
 \begin{itemize}
-\item Statt polynomiellen Reduktionen verwendet man Logspace-Reduktionen
-\item NL-schwer: jedes Problem in NL ist darauf logspace-reduzierbar
+\item Statt polynomiellen Reduktionen verwendet man LogSpace-Reduktionen
+\item NL-schwer: jedes Problem in NL ist darauf LogSpace-reduzierbar
 \item NL-vollständig: in NL und NL-schwer
 \end{itemize}
 Intuition: NL-vollständige Probleme sind die schwersten in NL
@@ -339,7 +339,7 @@ Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht
 \begin{frame}\frametitle{PSpace-Schwere}
 
 \defbox{Ein Problem \Slang{Q} ist \redalert{PSpace-schwer} wenn
-für jedes Problem \Slang{P} in PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-schwer ist und in PSpace liegt.}\bigskip\pause
+für jedes Problem \Slang{P} in PSpace eine polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-schwer ist und in PSpace liegt.}\bigskip\pause
 
 \theobox{\emph{Satz:} \Slang{TrueQBF} ist PSpace-schwer.}\pause
 
@@ -358,7 +358,7 @@ Man kann \Slang{TrueQBF} als Spiel auffassen:
 \item Emilia gewinnt, wenn die Formel nach Entfernen aller Quantoren wahr wird
 \end{itemize}\bigskip\pause
 
-\anybox{strongyellow}{Beobachtung: Emilia hat eine Gewinnstrategie im Formelspiel genau dann wenn die gegebene QBF wahr ist.}
+\anybox{strongyellow}{Beobachtung: Emilia hat eine Gewinnstrategie im Formelspiel genau dann, wenn die gegebene QBF wahr ist.}
 
 \end{frame}
 
@@ -394,7 +394,7 @@ Man kann \Slang{TrueQBF} als Spiel auffassen:
 
 \begin{frame}\frametitle{\Slang{Geography} ist PSpace-vollständig}
 
-\theobox{\emph{Satz:} \Slang{Geography} ist PSpace-vollständig}\pause
+\theobox{\emph{Satz:} \Slang{Geography} ist PSpace-vollständig.}\pause
 
 \emph{Beweis:} nächste Vorlesung
 
@@ -433,13 +433,13 @@ Erreichbarkeit in gerichteten Graphen ist das typische NL-vollständige Problem
 
 Es gibt schwere Probleme, die keine leicht zu prüfende Lösung haben\bigskip
 
-Quantifizierte Boolesche Formeln verallgmeinern Aussagenlogik\bigskip
+Quantifizierte Boolesche Formeln verallgemeinern Aussagenlogik\bigskip
 
 PSpace ist die Klasse der interessanten Zwei-Spieler-Spiele, die nicht zu lange dauern
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Alternierung
 \item noch mehr Logik

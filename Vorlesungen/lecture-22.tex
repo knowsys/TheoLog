@@ -78,7 +78,7 @@ Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relev
 
 \redalert{Wie kann man solche Anfragen logisch ausdrücken?}\bigskip\pause
 
-\emph{Idee:} Um beliebig weit zu schauen muss man Rekursion einführen.\bigskip
+\emph{Idee:} Um beliebig weit zu schauen, muss man Rekursion einführen.\bigskip
 
 \examplebox{\emph{Beispiel:} Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
 \begin{enumerate}[(1)]
@@ -306,7 +306,7 @@ Klausel $H\vee\neg B_1\vee\ldots\vee\neg B_n$, wobei jeweils alle Variablen allq
 $\leadsto$ Datalog-Programme sind syntaktische Varianten skolemisierter Klauseln\\
 $\leadsto$ Für die Inferenz von Fakten kann man sich auf Herbrand-Modelle beschränken\bigskip\pause
 
-\emph{Beobachtung 2:} Die Berechnung eines Fakts $H\theta$ durch Anwendung einer solchen Regel entspricht einer (Hyper)-Resolution der Klausel $H\vee\neg B_1\vee\ldots\vee\neg B_n$ mit den Fakten $B_1\theta$, \ldots, $B_n\theta$, wobei $\theta$ der allgemeinste Unifikator ist.\medskip\pause
+\emph{Beobachtung 2:} Die Berechnung eines Fakts $H\theta$ durch Anwendung einer solchen Regel entspricht einer (Hyper-)Resolution der Klausel $H\vee\neg B_1\vee\ldots\vee\neg B_n$ mit den Fakten $B_1\theta$, \ldots, $B_n\theta$, wobei $\theta$ der allgemeinste Unifikator ist.\medskip\pause
 
 $\leadsto$ Abgeleitete Fakten sind logische Konsequenzen (Korrektheit)\bigskip\pause
 
@@ -370,12 +370,12 @@ Diese sind eng mit denen aus Datalog verwandt, weil man kontextfreie Grammatiken
 \begin{itemize}
 \item Für jedes Nichtterminal $\Snterm{A}\in V$, sei $A$ ein zweistelliges Prädikat
 \item Für jedes Terminal $\Sterm{b}\in \Sigma$, sei $b$ ein zweistelliges Prädikat
-\item Für jede Produktionsregel $\Snterm{A}\to v$ mit $v=v_1\ldots v_n\in(\Sigma\cup V)^*$ sei $A(x_0,x_n)\leftarrow v_1(x_0,x_1)\wedge\ldots\wedge v_n(x_{n-1},x_n)$ eine Datalogregel
+\item Für jede Produktionsregel $\Snterm{A}\to v$ mit $v=v_1\ldots v_n\in(\Sigma\cup V)^*$ sei $A(x_0,x_n)\leftarrow v_1(x_0,x_1)\wedge\ldots\wedge v_n(x_{n-1},x_n)$ eine Datalog-Regel
 \item Die Menge aller entsprechenden Regel bezeichnen wir mit $P_G$
 \end{itemize}
 Wir betrachten Datenbanken, die nur Prädikate aus $\Sigma$ enthalten\bigskip\pause
 
-Dann gilt: $P_G\models S(a,b)$ genau dann wenn es zwischen $a$ und $b$ einen
+Dann gilt: $P_G\models S(a,b)$ genau dann, wenn es zwischen $a$ und $b$ einen
 Pfad $w_1(a,c_1),w_2(c_1,c_2),\ldots,w_\ell(c_{\ell-1},b)$ gibt, wobei $\Sterm{w_1}\cdots \Sterm{w_\ell}\in\Slang{L}(G)$
 
 % briefly discuss use of Datalog derivation trees in pumping-lemma like constructions ...
@@ -388,7 +388,7 @@ Baumartige Darstellungen von logischen Ableitungen sind in verschiedenen Zusamme
 \begin{itemize}
 \item Intuitive Darstellung der Ableitungsschritte
 \item Umformungsoperationen auf Bäumen erlauben die Erzeugung neuer Ableitungen $\leadsto$ hilfreiche Beweistechnik
-\examplebox{\emph{Beispiel:} Wir haben Ableitungsbäume kontextfreier Grammatiken verwendet um das Pumpinglemma für kontextfrei Sprachen zu zeigen. Damit konnte man zeigen, dass manche Sprachen nicht kontextfrei sind.\medskip
+\examplebox{\emph{Beispiel:} Wir haben Ableitungsbäume kontextfreier Grammatiken verwendet, um das Pumpinglemma für kontextfreie Sprachen zu zeigen. Damit konnte man zeigen, dass manche Sprachen nicht kontextfrei sind.\medskip
 
 Analoge Techniken kann man auch für Datalog anwenden, zum Beispiel um zu zeigen, dass kein Datalog-Programm Paare von Elementen finden kann, zwischen denen es einen Pfad aus einem binären Prädikat $p$ gibt, dessen Länge eine Primzahl ist.}
 \item Zur Analyse von Datalogprogrammen werden oft (allgemeinere) endliche Automaten verwendet, welche auf Ableitungsbäumen arbeiten (Verallgemeinerung regulärer Sprachen von Wörtern auf Bäumen).
@@ -403,7 +403,7 @@ Mithilfe von $T_P$ kann man logische Konsequenzen berechnen\\
 
 \emph{Worst Case?}
 \begin{itemize}
-\item Sei $p$ die Anzahl der Prädikatensmbole, $a$ deren maximale Arität, $x$ die maximale Zahl an Variablen pro Regel und $n$ die Zahl der Konstanten
+\item Sei $p$ die Anzahl der Prädikatensymbole, $a$ deren maximale Arität, $x$ die maximale Zahl an Variablen pro Regel und $n$ die Zahl der Konstanten
 \item Dann gibt es insgesamt $\leq p\cdot n^a$ variablenfreie Fakten, die abgeleitet werden könnten
 \item Für eine Regel gibt es maximal $n^x$ Substitutionen, die bei der Ableitung eine Rolle spielen könnten
 \end{itemize}\pause
@@ -464,8 +464,8 @@ $\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
 
 \begin{frame}\frametitle{Logik höherer Ordnung: Syntax und Semantik}
 
-\emph{Syntax:} Wie in Prädikatenlogik, aber mit quantifizierten Prädikaten-Variablen.\\
-\textcolor{devilscss}{(Die Stelligkeit einer Prädikaten-Variablen muss jeweils klar festgelegt werden)}\medskip
+\emph{Syntax:} Wie in Prädikatenlogik, aber mit quantifizierten Prädikatenvariablen.\\
+\textcolor{devilscss}{(Die Stelligkeit einer Prädikatenvariablen muss jeweils klar festgelegt werden)}\medskip
 
 \examplebox{\emph{Beispiel:} ``Für jede Menge $M$ gilt: Enthält $M$ die Zahl $0$ und mit jeder natürlichen Zahl $n$ auch stets deren Nachfolger $s(n)$, so enthält $M$ alle natürlichen Zahlen.''
 %
@@ -474,7 +474,7 @@ $\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
 Wir verwenden hier ein Funktionssymbol $s$ zur Darstellung von Nachfolgern.
 }\bigskip\pause
 
-\emph{Semantik:} wie erwartet (gleiche Interpretationen wie in erster Stufe; Interpretation von Prädikaten-Variablen mit Zuweisungen wie bei Objektvariablen in erster Stufe)\medskip
+\emph{Semantik:} wie erwartet (gleiche Interpretationen wie in erster Stufe; Interpretation von Prädikatenvariablen mit Zuweisungen wie bei Objektvariablen in erster Stufe)\medskip
 
 \textcolor{devilscss}{(Intuition: zweite Stufe/erste Stufe = QBF/Aussagenlogik)}
 
@@ -505,8 +505,8 @@ kann als Formel der Logik zweiter Stufe wie folgt dargestellt werden:
  &\hspace{-5mm}(\forall x,y,z.\text{Erreichbar}(x)\wedge \text{verbindung}(x,y,z)\to \text{Erreichbar}(y)) )\to \text{Erreichbar}(v)
 \Big)
 \end{align*}
-Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikaten-Variable dar.
-Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
+Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikatenvariable dar.
+Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann, wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
 }
 
 \end{frame}
@@ -540,7 +540,7 @@ Ableitungen in Datalog können berechnet und dargestellt werden:
 \end{itemize}\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Gödel
 \item Konsultation, Probeklausur und Prüfung

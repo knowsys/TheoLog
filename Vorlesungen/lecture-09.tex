@@ -28,7 +28,7 @@
 \begin{frame}\frametitle{Warum sollten Reduktionen effizient sein?}
 
 \emph{Intuition:} Eine aufwändige Reduktion kann jedes Problem indirekt lösen, aber dadurch lernt man nichts
-interessantes über dessen Komplexität.\pause
+Interessantes über dessen Komplexität.\pause
 \bigskip
 
 \theobox{\emph{Satz:} Sei $\Slang{L}=\{\Sterm{a}\}$ eine Sprache über dem Alphabet $\{\Sterm{a}\}$.
@@ -156,10 +156,10 @@ Zertifikate werden auch \alert{Nachweis}, \alert{Beweis} oder \alert{Zeuge} gena
 
 Daraus ergibt sich die Definition einer Sprachklasse:
 
-\defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell} wenn es für sie einen polynomiellen
+\defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell}, wenn es für sie einen polynomiellen
 Verifikator gibt.}\medskip\pause
 
-\examplebox{\emph{Beispiel:} Die Entscheidung, ob ein gegebener Graph einen Hamilton-Pfad zulässt, ist nachweis-polynomiell.
+\examplebox{\emph{Beispiel:} Die Entscheidung, ob ein gegebener Graph einen Hamiltonpfad zulässt, ist nachweis-polynomiell.
 Als Zertifikat dient der entsprechende Pfad.}\bigskip
 
 \end{frame}
@@ -197,9 +197,9 @@ NTM simuliert: das Zertifikat ist ein akzeptierender Lauf\qed
 
 % \emph{Anmerkung:} Mehrere Gegenstände können gleiche Werte haben.\bigskip\pause
 
-\defbox{\Slang{Zusammengesetzte Zahl} (Nicht-Primzahl)\\[1ex]
+\defbox{\Slang{Zusammengesetzte Zahl} (Nichtprimzahl)\\[1ex]
 \emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
-\emph{Frage:} Gibt es eine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+\emph{Frage:} Gibt es natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
 }
 
 \end{frame}
@@ -211,8 +211,8 @@ Es ist leicht zu sehen:
 \theobox{\emph{Satz:} Die Klasse \Scomplclass{P} ist unter Komplement abgeschlossen.}
 
 \emph{Beweis:} Wenn es für \Slang{L} eine polynomiell-zeitbeschränkte TM \Smach{M}
-gibt, dann erhält man eine TM für $\overline{\Slang{L}}$ indem man akzeptierende
-und nicht-akzeptierende Zustände von \Smach{M} vertauscht.\qed\medskip
+gibt, dann erhält man eine TM für $\overline{\Slang{L}}$, indem man akzeptierende
+und nichtakzeptierende Zustände von \Smach{M} vertauscht.\qed\medskip
 
 \emph{Allgemein gilt:} Jede deterministische Komplexitätsklasse ist unter Komplement abgeschlossen.
 
@@ -242,7 +242,7 @@ ist $\Scomplclass{P}\subseteq\Scomplclass{coNP}\cap\Scomplclass{NP}$.
 
 \defbox{\Slang{Primzahl} (= $\overline{\Slang{Zusammengesetzte Zahl}}$)\\[1ex]
 \emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
-\emph{Frage:} Gibt es eine keine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+\emph{Frage:} Gibt es keine natürlichen Zahlen $p,q>1$ mit $p\cdot q = z$?\\
 }\pause
 
 Seit 1975 ist bekannt: $\Slang{Primzahl}\in\Scomplclass{NP}$, also
@@ -401,7 +401,7 @@ direkt durch eine Kante verbunden ist\medskip
 
 \emph{Beweis Teil (2):} Clique ist \Scomplclass{NP}-schwer.
 \begin{itemize}
-\item Sei $F$ eine aussagenlogische Formel in CNF:\\
+\item Sei $F$ eine aussagenlogische Formel in KNF:\\
 $F=\left((L^1_1\vee \ldots\vee L^1_{n_1})\wedge \ldots\wedge (L^\ell_1\vee \ldots\vee L^\ell_{n_\ell})\right)$\pause
 %
 \item Wir definieren einen Graphen $G_F$, so dass gilt:\\[1ex]
@@ -490,7 +490,7 @@ Knoten mit einem anderen direkt verbunden ist\medskip
 \emph{Beweis:} Die Reduktion auf \Slang{Clique} ist sehr einfach:
 \begin{itemize}
 \item Ein Graph hat eine unabhängige Menge der Größe $k$\\
-genau dann wenn
+genau dann, wenn
 \item sein Komplementgraph eine Clique der Größe $k$ hat
 \end{itemize}
 $\leadsto$ Komplementierung ist polynomiell\qed
@@ -511,7 +511,7 @@ Polynomielle Reduktionen erlauben uns, die Schwere von Problemen zu vergleichen
 Es gibt sehr viele bekannte $\Scomplclass{NP}$-vollständige Probleme\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Mehr $\Scomplclass{NP}$
 \item Pseudopolynomielle Probleme

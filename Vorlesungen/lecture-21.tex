@@ -141,7 +141,7 @@ Zusammen ergäbe sich also ein Entscheidungsverfahren für logisches Schließen 
 
 \begin{frame}\frametitle{Wozu endliche Modelle}
 
-In gewisser Weise ist Schließen mit endlichen Modellen also schwerer als mit unendlichen, weil man statt logischer Konsequenz nunmehr nur Nicht-Konsequenz semi-entscheiden kann
+In gewisser Weise ist Schließen mit endlichen Modellen also schwerer als mit unendlichen, weil man statt logischer Konsequenz nunmehr nur Nichtkonsequenz semi-entscheiden kann
 \bigskip
 
 Trotzdem sind endliche Interpretationen in der Informatik praktisch relevant:\medskip
@@ -214,7 +214,7 @@ Die einfache Arität der Prädikatenlogik wird durch ein\\ \redalert{Schema} mit
 \begin{frame}\frametitle{Formeln = Anfragen}
 
 Benannt oder nicht -- sofern die Parameter eine definierte Reihenfolge haben,
-kann man sie mit normalen prädikatenlogischen Atomen addressieren.\medskip
+kann man sie mit normalen prädikatenlogischen Atomen adressieren.\medskip
 
 \examplebox{\emph{Beispiel:} Die Formel \[Q=\exists z_{\text{Linie}}.(\textsf{verbindung}(x_\text{Von},x_\text{Zu}, z_{\text{Linie}})\wedge \textsf{linien}(z_{\text{Linie}},x_{\text{Typ}}))\]
 hat drei freie Variablen. Für eine gegebene Datenbankinstanz (endliche Interpretation) $\Inter$ bedeutet $\Inter,\{x_\text{Von}\mapsto\delta_1,x_\text{Zu}\mapsto\delta_2,x_\text{Typ}\mapsto\delta_3\}\models Q$, dass es in der Datenbank eine Verbindung von $\delta_1$ nach $\delta_2$ vom Typ $\delta_3$ gibt.
@@ -224,7 +224,7 @@ Das Beispiel illustriert:
 \begin{center}
 \large
 \redalert{Formeln (ev. mit freien Variablen) = Datenbankanfragen}\\[1ex]
-\redalert{Erfüllende Zuweisungen = Anfrage-Ergebnisse}\\
+\redalert{Erfüllende Zuweisungen = Anfrageergebnisse}\\
 \end{center}
 \end{frame}
 
@@ -232,7 +232,7 @@ Das Beispiel illustriert:
 
 \alert{Relationale Datenbankinstanzen = Endliche Interpretationen}
 \begin{itemize}
-\item Tabellen(namen) entsprechen Prädikatssymbolen
+\item Tabellen(namen) entsprechen Prädikatensymbolen
 \item Kleinere syntaktische Unterschiede (benannte vs. geordnete Parameter)
 \end{itemize}
 
@@ -249,7 +249,7 @@ Das Beispiel illustriert:
 
 \begin{frame}\frametitle{Prädikatenlogik $\approx$ SQL}
 
-\redalert{Was ist eine Datenbank-Anfrage?}
+\redalert{Was ist eine Datenbankanfrage?}
 \begin{itemize}
 \item Syntax: Eine Anfrage $Q$ ist ein Wort aus einer Anfragesprache
 \item Semantik: Jede Anfrage $Q$ definiert eine Anfragefunktion $f_Q$, \ghost{die}\\ für jede Datenbankinstanz $\Inter$ eine Ergebnisrelation $f_Q(\Inter)$ liefert
@@ -330,7 +330,7 @@ $\texttt{function}~\text{Eval}(F,\Inter,\Zuweisung) :$
 \emph{Anmerkung:} Wenn Konstanten $c$ in der Anfrage vorkommen, dann nimmt man
 in der Regel an, dass $c^\Inter=c$ ist.\medskip
 
-\emph{Anmerkung 2:} In der Praxis stimmt das nicht ganz. Insbesondere bei Verwendung von Datentypen haben DB-Systeme normalerweise eingebaute Interpretationsfunktionen. Zum Beispiel würden die Konstanten $\Scodelit{\quoted{42}}$ und $\Scodelit{\quoted{+42}}$ die selbe Ganzzahl bezeichnen.
+\emph{Anmerkung 2:} In der Praxis stimmt das nicht ganz. Insbesondere bei Verwendung von Datentypen haben DB-Systeme normalerweise eingebaute Interpretationsfunktionen. Zum Beispiel würden die Konstanten $\Scodelit{\quoted{42}}$ und $\Scodelit{\quoted{+42}}$ dieselbe Ganzzahl bezeichnen.
 
 \end{frame}
 
@@ -508,7 +508,7 @@ Und so weiter \ldots\bigskip
 % \]\pause
 % 
 
-\alert{``Haltestellen, die von Helmholtzstr. aus mit einem Kurzstreckentticket erreichbar sind:''}
+\alert{``Haltestellen, die von Helmholtzstr. aus mit einem Kurzstreckenticket erreichbar sind:''}
 \[
 	Q_0[x]\vee Q_1[x]\vee Q_2[x]\vee Q_3[x]\vee Q_4[x]
 \]
@@ -553,7 +553,7 @@ Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relev
 
 \redalert{Wie kann man solche Anfragen logisch ausdrücken?}\bigskip\pause
 
-\emph{Idee:} Um beliebig weit zu schauen muss man Rekursion einführen.\bigskip
+\emph{Idee:} Um beliebig weit zu schauen, muss man Rekursion einführen.\bigskip
 
 \examplebox{\emph{Beispiel:} Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
 \begin{enumerate}[(1)]
@@ -568,7 +568,7 @@ Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relev
 Beschränkt man Prädikatenlogik auf endliche Modelle, so gibt es kein vollständiges und korrektes Verfahren zum logischen Schließen -- dafür wird Erfüllbarkeit semi-entscheidbar\bigskip
 
 Auswertungsproblem auf endlichen Modellen = Anfragebeantwortung in Datenbanken\\
-(\PSpace-vollständig, aber sub-polynomiell bzgl. Datenbankgröße)\bigskip
+(\PSpace-vollständig, aber subpolynomiell bzgl. Datenbankgröße)\bigskip
 
 Prädikatenlogik hat Grenzen: 
 \begin{itemize}
@@ -577,7 +577,7 @@ Prädikatenlogik hat Grenzen:
 \end{itemize}\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Datalog und Logik höherer Ordnung
 \item Gödel

@@ -34,7 +34,7 @@ Ein konkreter Algorithmus zum logischen Schließen:
 
 \begin{frame}\frametitle{Bereinigte Formeln}
 
-\defbox{Eine Formel $F$ ist \redalert{bereinigt} wenn sie die folgenden beiden Eigenschaften hat:
+\defbox{Eine Formel $F$ ist \redalert{bereinigt}, wenn sie die folgenden beiden Eigenschaften hat:
 \begin{enumerate}[(1)]
 \item Keine Variable in $F$ kommt sowohl frei als auch gebunden vor
 \item Keine Variable in $F$ wird in mehr als einem Quantor gebunden
@@ -232,7 +232,7 @@ gesuchte Element ist.}\medskip\pause
 Daraus folgt insbesondere auch, dass jeder einen Vater hat.
 }\medskip
 
-Um das zu formalisieren müssen wir zunächst Funktionssymbole in die Logik einführen.
+Um das zu formalisieren, müssen wir zunächst Funktionssymbole in die Logik einführen.
 
 \end{frame}
 
@@ -251,7 +251,7 @@ Jedes Prädikat und jedes Funktionssymbol hat eine \redalert{Stelligkeit} $\geq 
 
 Mit Funktionssymbolen lassen sich komplexere Terme konstruieren:
 \defbox{Ein \redalert{Term} der Prädikatenlogik mit Funktionen ist jeder Ausdruck $t$, der
-eine der folgenden rekursiven Bedinungen erfüllt:
+eine der folgenden rekursiven Bedingungen erfüllt:
 \begin{itemize}
 \item $t\in\Slang{V}\cup\Slang{C}$, d.h. $t$ ist eine Variable oder eine Konstante
 \item $t=f(t_1,\ldots,t_n)$, wobei $f\in\Slang{F}$ ein $n$-stelliges Funktionssymbol ist
@@ -431,7 +431,7 @@ Eine entsprechende Ersetzung kann man bei jedem Atom in einer Formel durchführe
 \begin{frame}\frametitle{Zusammenfassung: Funktionen}
 
 Die folgenden Varianten von Prädikatenlogik haben also in gewissem Sinne die \alert{gleiche
-Ausdruckstärke:}
+Ausdrucksstärke:}
 \begin{itemize}
 \item Prädikatenlogik (ohne Funktionssymbole)
 \item Prädikatenlogik mit Funktionssymbolen
@@ -484,7 +484,7 @@ eine Konjunktion von Disjunktionen von Literalen ist, d.h. wenn sie die Form hat
 wobei die Formeln $L_{i,j}$ Literale sind. Eine Disjunktion von Literalen heißt \redalert{Klausel}.
 }\medskip
 
-(Zur Erinnerung: \redalert{Literale} = negierte oder nicht-negierte Atome)
+(Zur Erinnerung: \redalert{Literale} = negierte oder nichtnegierte Atome)
 \bigskip
 
 $\leadsto$ Die gleiche Form kann für den quantorenfreien inneren Teil jeder Formel in Pränexform hergestellt werden.
@@ -505,7 +505,7 @@ F\vee(G\wedge H) &\mapsto (F\vee G)\wedge (F\vee H)
 \end{align*}
 \end{enumerate}\pause
 
-\theobox{\emph{Satz:} Die so aus einer Formel $F$ gebildete KNF ist erfüllbar genau dann wenn $F$ erfüllbar ist.}
+\theobox{\emph{Satz:} Die so aus einer Formel $F$ gebildete KNF ist erfüllbar genau dann, wenn $F$ erfüllbar ist.}
 
 \emph{Beweis:} Schritte (1)--(3) liefern semantisch äquivalente Formeln. Schritt (4) liefert eine erfüllbarkeitsäquivalente Formel. Schritt (5) liefert eine zu dieser semantisch äquivalente Formel.\qed\medskip
 
@@ -589,7 +589,7 @@ Konjunktive Normalform und Klauselform werden wie in der Aussagenlogik gebildet
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Herbrand, genialer Mathematiker aber unglücklicher Bergsteiger
 \item Unifikation und Resolution

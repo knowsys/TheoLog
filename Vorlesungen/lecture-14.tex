@@ -488,7 +488,7 @@ Die aus der Aussagenlogik bekannten Eigenschaften von $\equiv$ gelten auch allge
 
 \theobox{\emph{Satz:} Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
 % 
-\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann wenn\hspace{5mm} $F\models G$ und $G\models F$}
+\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann, wenn\hspace{5mm} $F\models G$ und $G\models F$}
 }
 
 Die Behauptungen folgen jeweils direkt aus den Definitionen.
@@ -668,7 +668,7 @@ $\leadsto$ alle aussagenlogischen Gesetze gelten analog
 \bigskip\pause
 
 \examplebox{\emph{Beispiel:} Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
-$\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann wenn
+$\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann, wenn
 $\Inter,\Zuweisung\models (\neg F\vee \neg G)$, das heißt
 $\neg(F\wedge G)\equiv (\neg F\vee \neg G)$.
 }
@@ -682,13 +682,13 @@ Allgemein gelten alle bekannten aussagenlogischen Äquivalenzen
 Auch die folgenden Sätze gelten analog zur Aussagenlogik\\ (siehe Formale Systeme, Vorlesung 22):\bigskip
 
 \theobox{\emph{Satz (Deduktionstheorem):} Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt\\
-$\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
+$\mathcal{F}\models G\to H$ genau dann, wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
 
-\theobox{\emph{Korollar:} $F\wedge G\models H$ genau dann wenn $F\models G\to H$.}\bigskip
+\theobox{\emph{Korollar:} $F\wedge G\models H$ genau dann, wenn $F\models G\to H$.}\bigskip
 
-\theobox{\emph{Korollar:} $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
+\theobox{\emph{Korollar:} $F\equiv G$ genau dann, wenn $\models F\leftrightarrow G$.}\bigskip
 
-\redalert{Dennoch sind $\models$ und $\equiv$ nicht das selbe wie $\to$ und $\leftrightarrow$:}
+\redalert{Dennoch sind $\models$ und $\equiv$ nicht dasselbe wie $\to$ und $\leftrightarrow$:}
 \begin{itemize}
 \item $\models$ und $\equiv$ können sich auch auf (möglicherweise unendliche) Mengen von Formeln beziehen
 \item $\to$ und $\leftrightarrow$ sind syntaktische Operatoren und können (eventuell geschachtelt) in Formeln auftreten
@@ -742,7 +742,7 @@ F\vee F & \equiv F
 F\wedge (F\vee G) & \equiv F\\
 F\vee (F\wedge G) & \equiv F
 \end{split}
-		& \text{\textcolor{devilscss}{Absorbtion}}
+		& \text{\textcolor{devilscss}{Absorption}}
 \end{align*}
 
 \end{frame}
@@ -802,7 +802,7 @@ $\leadsto$ es gibt aber nur ein einziges nullstelliges Tupel $\tuple{}$\pause
 	\end{itemize}
 \end{itemize}
 
-Deshalb kann man nullstellige Prädikate wie aussagenlogsiche Atome verwenden
+Deshalb kann man nullstellige Prädikate wie aussagenlogische Atome verwenden
 \bigskip
 
 In diesem Sinne ist die Aussagenlogik ein Teil der Prädikatenlogik
@@ -840,13 +840,13 @@ Modelltheorie definiert logische Semantik aus der Beziehung von Formeln (Behaupt
 % Die Modelltheorie der Prädikatenlogik basiert auf Interpretationen und Zuweisungen, aber bei Sätzen reichen Interpretationen
 % \bigskip
 
-Logisches Schließen ist die Berechnung (Überprüfung) einzelner Beziehungen der Form $\Inter\models F$ (Model checking) bzw. $F\models G$ (Schlussfolgerung)\bigskip
+Logisches Schließen ist die Berechnung (Überprüfung) einzelner Beziehungen der Form $\Inter\models F$ (Model Checking) bzw. $F\models G$ (Schlussfolgerung)\bigskip
 
 Prädikatenlogik verallgemeinert Aussagenlogik und viele der dort gültigen Gesetze
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Logisches Schließen: (Un)Entscheidbarkeit und Komplexität
 \item Resolution für Prädikatenlogik

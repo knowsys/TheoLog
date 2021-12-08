@@ -67,7 +67,7 @@
 
 \begin{frame}\frametitle{Prüfung und Prüfungsvorbereitung}
 \begin{itemize}
-\item schritliche Prüfung (90min) am Ende des Sommersemesters, vermutlich online
+\item schriftliche Prüfung (90min) am Ende des Sommersemesters, vermutlich online
 \item prüfungsrelevant:\\
 	kompletter Stoff aus Vorlesung \alert{und} Übung;\\
 	Wiedergeben (Definieren), Anwenden (Rechnen) und Erklären (Beweisen)
@@ -223,7 +223,7 @@ Methode: Spezifikation von einfachen Regeln, aus denen komplexe Systeme entstehe
 \begin{itemize}
 \item Was heißt "`berechnen"'?
 \item Welche Probleme kann man auf reellen Computern lösen?
-\item Was wäre wenn wir mächtigere Computer hätten?
+\item Was wäre, wenn wir mächtigere Computer hätten?
 \item Was macht Rechenprobleme "`schwer"' oder "`einfach"'?
 \item Sind alternative Rechenmodelle denkbar?
 \item Welche (mathematischen/physikalischen/biologischen) Systeme können sonst noch rechnen?
@@ -479,7 +479,7 @@ Ausgabe: $\Sterm{0011}$
 geschrieben als Wort (Bandinhalt), in dem der Zustand vor der Position des Kopfes eingefügt ist
 \bigskip
 
-\redalert{Übergangsrelation:} Beziehung zwischen zwei Konfigurationen wenn die TM von der ersten in die zweite übergehen kann (deterministisch oder nichtdeterministisch); geschrieben als $\vdash$
+\redalert{Übergangsrelation:} Beziehung zwischen zwei Konfigurationen, wenn die TM von der ersten in die zweite übergehen kann (deterministisch oder nichtdeterministisch); geschrieben als $\vdash$
 \bigskip
 
 \redalert{Lauf:} mögliche Abfolge von Konfigurationen einer TM, beginnend mit der Startkonfiguration; kann endlich oder unendlich sein
@@ -495,7 +495,7 @@ Es gibt zwei wesentliche Arten DTMs zu benutzen:
 
 \begin{enumerate}[(1)]
 \item \alert{Transducer:} Ausgabe der TM ist der Inhalt des Bandes, wenn sie hält, oder undefiniert, wenn sie nicht hält (partielle Funktion); Endzustände spielen keine Rolle und können weggelassen werden
-\item \alert{Entscheider:} Ausgabe der TM hat nur zwei Werte: die TM "`akzeptiert"', wenn sie in einem Endzustand hält und sie "`verwirft"' wenn sie in einem Nicht-Endzustand oder gar nicht hält;
+\item \alert{Entscheider:} Ausgabe der TM hat nur zwei Werte: die TM "`akzeptiert"', wenn sie in einem Endzustand hält und sie "`verwirft"' wenn sie in einem Nichtendzustand oder gar nicht hält;
 Bandinhalt beim Halten spielt keine Rolle und kann ignoriert werden
 \end{enumerate}
 
@@ -507,12 +507,12 @@ Wir werden NTMs nur als Entscheider verwenden: in diesem Fall reicht es, wenn mi
 
 Wir wissen: {\tiny(aus "`Formale Systeme"', Winter 2020/2021, 19. Vorlesung)}
 
-\theobox{\textbf{Satz:} Jede NTM kann durch eine DTM simuliert werden. Insbesondere akzeptieren deterministische und nichtdeterministische Turingmaschinen die selben Sprachen.}
+\theobox{\emph{Satz:} Jede NTM kann durch eine DTM simuliert werden. Insbesondere akzeptieren deterministische und nichtdeterministische Turingmaschinen dieselben Sprachen.}
 \pause
 
 Allgemeiner gilt: kein bekanntes Berechnungsmodell kann mehr berechnen als TMs
 
-\anybox{purple}{\textbf{Church-Turing-These:} Jede (partielle) Funktion, die intuitiv als berechenbar angesehen werden kann, ist auch mit einer Turingmaschine berechenbar.}
+\anybox{purple}{\emph{Church-Turing-These:} Jede (partielle) Funktion, die intuitiv als berechenbar angesehen werden kann, ist auch mit einer Turingmaschine berechenbar.}
 
 \begin{itemize}
 \item \emph{Lesart 1:} Vorschlag einer mathematischen Definition der intuitiven Idee von Berechenbarkeit
@@ -533,11 +533,11 @@ Church-Turing-These: "`Alle Computer sind gleich"'
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Probleme
 \item Paradoxien
-\item Phenomenal große Zahlen
+\item Phänomenal große Zahlen
 \end{itemize}
 }
 

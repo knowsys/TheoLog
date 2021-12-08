@@ -256,7 +256,7 @@ Dabei ist $\Svar{y}$ eine frische Variable, die bisher nirgends sonst verwendet 
 
 \end{frame}
 
-\begin{frame}\frametitle{LOOP-Berechenbare Funktionen}
+\begin{frame}\frametitle{LOOP-berechenbare Funktionen}
 
 \defbox{\emph{Definition:} Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
 \pause
@@ -301,7 +301,7 @@ In diesem Sinne sind viele weitere Funktionen LOOP-berechenbar.
 
 Das ist weniger überraschend, als es vielleicht klingt:\smallskip
 
-\emph{Beweis:} Ein LOOP-Programm terminiert immer. Daher ist jede LOOP-berechenbare Funktion total. Es gibt aber auch nicht-totale Funktionen, die berechenbar sind (z.B. die ``partiellste'' Funktion, die nirgends definiert ist).\qed
+\emph{Beweis:} Ein LOOP-Programm terminiert immer. Daher ist jede LOOP-berechenbare Funktion total. Es gibt aber auch nichttotale Funktionen, die berechenbar sind (z.B. die ``partiellste'' Funktion, die nirgends definiert ist).\qed
 % \bigskip\pause
 % 
 % \theobox{Satz: Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
@@ -346,7 +346,7 @@ Zeichen, aus denen es besteht. Dazu nehmen wir an:
 \end{itemize}\bigskip\pause
 
 \defbox{\emph{Definition:} Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
-$\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ gibt.
+$\bbfunc_{\textsf{LOOP}}(\ell)=0$, falls es kein Programm der Länge $\leq\ell$ gibt.
 }\pause
 
 \emph{Beobachtung:} $\bbfunc_{\textsf{LOOP}}$ ist wohldefiniert:
@@ -453,7 +453,7 @@ ein WHILE-Programm, für jede Variable $\Svar{x}\in\Slang{V}$.
 }\bigskip\pause
 
 Semantik von $\SStartWhile{\Svar{x}}P~\SEndWhile{}$:\\
-$P$ wird ausgeführt solange der aktuelle Wert von $\Svar{x}$ ungleich $0$ ist.\\
+$P$ wird ausgeführt, solange der aktuelle Wert von $\Svar{x}$ ungleich $0$ ist.\\
 \textcolor{devilscss}{(dies hängt davon ab, wie $P$ den Wert von $\Svar{x}$ ändert)}
 \medskip
 
@@ -490,7 +490,7 @@ Also sind LOOP-Schleifen eigentlich nicht mehr nötig.
 
 \end{frame}
 
-\begin{frame}\frametitle{WHILE-Berechenbare Funktionen}
+\begin{frame}\frametitle{WHILE-berechenbare Funktionen}
 
 \defbox{\emph{Definition:} Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
 \begin{itemize}
@@ -630,7 +630,7 @@ Beweistechniken: strukturelle Induktion, Widerspruch durch Selbstbezüglichkeit 
 % \url{http://www.eugenkiss.com/projects/lgw/}\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Relevantere Probleme
 \item Reduktionen

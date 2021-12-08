@@ -85,7 +85,7 @@ Andernfalls gib aus "`nicht unifizierbar"'.
 \emph{Beobachtungen:}
 \begin{itemize}
 \item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, so dass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
-\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$ wenn
+\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$, wenn
 $\sigma$ Unifikator für das folgende Unifikationsproblem $G_{\mathcal{A}}$ ist: 
 \[ \{ t_{1,1}\unieq t_{2,1},\ldots,t_{n-1,1}\unieq t_{n,1},\ldots,t_{1,\ell}\unieq t_{2,\ell},\ldots,t_{n-1,\ell}\unieq t_{n,\ell} \} \]
 \item Insbesondere ist der allgemeinste Unifikator für $G_{\mathcal{A}}$ auch der allgemeinste Unifikator für $\mathcal{A}$
@@ -159,8 +159,8 @@ Zusammen mit der Klauselform für $F$ erhalten wir die Klauseln:
 \redalert{Problem:}\hspace{-2mm}%
 \begin{minipage}[t]{8.5cm}\footnotesize\vspace{-2ex}
 \begin{itemize}
-\item $\neg L(f_7(x_1,x_2,x_3,x_4,a))$ bedeutet "`es gibt Nicht-Lügner"' (bezeichnet mit Termen der Form $f_7(x_1,x_2,x_3,x_4,a)$)\\[-2ex]
-\item Dies sollte z.B. mit (1) "`Jeder Nicht-Lügner ist Wahrheitssager"' resolvieren\\[-2ex]
+\item $\neg L(f_7(x_1,x_2,x_3,x_4,a))$ bedeutet "`es gibt Nichtlügner"' (bezeichnet mit Termen der Form $f_7(x_1,x_2,x_3,x_4,a)$)\\[-2ex]
+\item Dies sollte z.B. mit (1) "`Jeder Nichtlügner ist Wahrheitssager"' resolvieren\\[-2ex]
 \item Aber $\{L(f_7(x_1,x_2,x_3,x_4,a)), L(x_1)\}$ hat keinen Unifikator
 \end{itemize}
 \end{minipage}
@@ -185,7 +185,7 @@ In Klauselform kann man sich also die Allquantoren direkt vor jeder einzelnen Kl
 Daher darf man die Variablen jeder Klausel einheitlich umbenennen, unabhängig von jeder anderen Klausel, z.B.
 \[ \{\neg L(f_7(x_1,x_2,x_3,x_4,a))\} \quad\leadsto\quad \{\neg L(f_7(x'_1,x'_2,x'_3,x'_4,a))\} \]
 Klauseln, die durch eineindeutige Umbenennung von Variablen entstanden sind, nennt man \redalert{Varianten} (einer Klausel)\\[0.5ex]
-\alert{$\leadsto$ Wir bilden bei der Resolution Varianten um Konflikte von Variablen zu vermeiden}
+\alert{$\leadsto$ Wir bilden bei der Resolution Varianten, um Konflikte von Variablen zu vermeiden}
 
 \end{frame}
 
@@ -314,7 +314,7 @@ Sei $\Inter$ eine beliebige Interpretation.
 \item \emph{Fall 2:} $\Inter,\Zuweisung\not\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$.\\ Dann gilt $\Inter,\Zuweisung\models L_1\sigma\vee\ldots\vee L_k\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
 \item Also gilt $\Inter\models\forall K$.
 \end{itemize}
-Da $\Inter$ beliebig ist gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
+Da $\Inter$ beliebig ist, gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
 Das heißt, jede Resolvente ist logische Konsequenz der resolvierten Klauseln.
 
 \end{frame}
@@ -395,11 +395,11 @@ Konstruktion von Modellen direkt aus den Formeln, welche sie erfüllen sollen
 
 \end{frame}
 
-\begin{frame}\frametitle{Herbranduniversum}
+\begin{frame}\frametitle{Herbrand-Universum}
 
 Der Kern von Herbrands Idee ist eine "`syntaktische"' Domäne:\medskip
 
-\defbox{Sei $a$ eine beliebige Konstante. Das \redalert{Herbranduniversum} $\Delta_F$ für eine Formel $F$ ist die
+\defbox{Sei $a$ eine beliebige Konstante. Das \redalert{Herbrand-Universum} $\Delta_F$ für eine Formel $F$ ist die
 Menge aller variablenfreien Terme, die man mit Konstanten und Funktionssymbolen in $F$ und der zusätzlichen Konstante $a$ bilden kann:
 \begin{itemize}
 \item $a\in\Delta_F$
@@ -410,22 +410,22 @@ Menge aller variablenfreien Terme, die man mit Konstanten und Funktionssymbolen 
 
 \emph{Anmerkung:} Das Herbrand-Universum ist immer abzählbar, manchmal endlich und niemals leer.\pause
 
-\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich das Herbranduniversum
+\examplebox{Beispiel: Für die Formel $F=p(f(x),y,g(z))$ ergibt sich das Herbrand-Universum
 $\Delta_F=\{a,f(a),g(a),f(f(a)),f(g(a)),g(f(a)),g(g(a)),\ldots\}$.
 }
 
 \end{frame}
 
-\begin{frame}\frametitle{Herbrandinterpretationen}
+\begin{frame}\frametitle{Herbrand-Interpretationen}
 
 Mit dem Herbrand-Universum als Domäne kann man Interpretationen definieren, die Terme "`durch sich selbst"' interpretieren:\medskip
 
-\defbox{Eine \redalert{Herbrandinterpretation} für eine Formel $F$ ist eine Interpretation $\Inter$ für die gilt:
+\defbox{Eine \redalert{Herbrand-Interpretation} für eine Formel $F$ ist eine Interpretation $\Inter$ für die gilt:
 \begin{itemize}
 \item $\Delta^\Inter=\Delta_F$ ist das Herbrand-Universum von $F$
 \item Für jeden Term $t\in\Delta_F$ gilt $t^\Inter=t$
 \end{itemize}
-$\Inter$ ist ein \redalert{Herbrandmodell} für $F$ wenn zudem gilt $\Inter\models F$.}
+$\Inter$ ist ein \redalert{Herbrand-Modell} für $F$, wenn zudem gilt $\Inter\models F$.}
 
 \emph{Anmerkung:} Die Definition stellt Bedingungen an Grundbereich und Terminterpretation, aber sie lässt auch viele Freiheiten (z.B. die Interpretation von Prädikatensymbolen)
 
@@ -435,22 +435,22 @@ $\Inter$ ist ein \redalert{Herbrandmodell} für $F$ wenn zudem gilt $\Inter\mode
 
 Betrachten wir wieder die (skolemisierte) Formel $F=\forall x.\textsf{hatVater}(x,f(x))$.\bigskip
 
-Herbranduniversum: $\Delta_F=\{a,f(a),f(f(a)),\ldots\}$\medskip
+Herbrand-Universum: $\Delta_F=\{a,f(a),f(f(a)),\ldots\}$\medskip
 
-Alle Herbrandinterpretationen stimmen auf der Domäne und (dem relevanten Teil) der Terminterpretation überein.
+Alle Herbrand-Interpretationen stimmen auf der Domäne und (dem relevanten Teil) der Terminterpretation überein.
 \begin{itemize}
-\item $\Inter_1$ mit $\textsf{hatVater}^{\Inter_1}=\emptyset$ ist kein Herbrandmodell
-\item $\Inter_2$ mit $\textsf{hatVater}^{\Inter_2}=\{\tuple{t,f(t)}\mid t\in\Delta_F\}$ ist ein Herbrandmodell
-\item $\Inter_3$ mit $\textsf{hatVater}^{\Inter_3}=\Delta_F\times\Delta_F$ ist ein Herbrandmodell
+\item $\Inter_1$ mit $\textsf{hatVater}^{\Inter_1}=\emptyset$ ist kein Herbrand-Modell
+\item $\Inter_2$ mit $\textsf{hatVater}^{\Inter_2}=\{\tuple{t,f(t)}\mid t\in\Delta_F\}$ ist ein Herbrand-Modell
+\item $\Inter_3$ mit $\textsf{hatVater}^{\Inter_3}=\Delta_F\times\Delta_F$ ist ein Herbrand-Modell
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}\frametitle{Syntax vs. Semantik}
 
-Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
+Bei Herbrand-Interpretationen kann man semantische Elemente (wie sie in Zuweisungen vorkommen) durch syntaktische Elemente (wie sie in Substitutionen vorkommen) ausdrücken:\medskip
 
-\theobox{\emph{Lemma:} Für jede Herbrandinterpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
+\theobox{\emph{Lemma:} Für jede Herbrand-Interpretation $\Inter$, jede Zuweisung $\Zuweisung$ für $\Inter$, jeden Term $t\in\Delta^\Inter$ und jede Formel $F$ gilt:
 \[ \Inter,\Zuweisung\{x\mapsto t\} \models F \qquad \text{gdw.}\qquad \Inter,\Zuweisung \models F\{x\mapsto t\}\]}
 
 (ohne Beweis; einfach)
@@ -463,22 +463,22 @@ Bei Herbrandinterpretationen kann man semantische Elemente (wie sie in Zuweisung
 \begin{frame}\frametitle{Erfüllbar + Skolem = Erfüllbarkeit bei Herbrand}
 
 \theobox{\emph{Satz:} Ein Satz $F$ in Skolemform ist genau dann erfüllbar, wenn $F$ ein
-Herbrandmodell hat.}\pause
+Herbrand-Modell hat.}\pause
 
-\emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
+\emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrand-Modelle auch Modelle sind.\bigskip\pause
 
-$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$ indem wir festlegen:
+$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrand-Interpretation $\Jnter$ indem wir festlegen:
 \begin{itemize}
 \item $p^\Jnter=\{\tuple{t_1,\ldots,t_n}\mid\tuple{t_1^\Inter,\ldots,t_n^\Inter}\in p^\Inter\}$\\
 {\footnotesize Anm.: $t_i$ sind variablenfrei, daher ist $t_i^\Inter$ wohldefiniert}
 \end{itemize}
-Behauptung: \alert{$\Jnter$ ist ein Herbrandmodell von $F$}
+Behauptung: \alert{$\Jnter$ ist ein Herbrand-Modell von $F$}
 
 \end{frame}
 
 \begin{frame}\frametitle{Beweis (Fortsetzung)}
 
-\emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrandmodell von $F$}\bigskip
+\emph{Behauptung:} \alert{$\Jnter$ ist ein Herbrand-Modell von $F$}\bigskip
 
 $F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
 \begin{itemize}
@@ -731,7 +731,7 @@ $\leadsto$ Es gibt ein Herbrand-Modell mit dieser Domäne
 
 Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die Unerfüllbarkeit logischer Formeln\bigskip
 
-Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrandmodellen reduzieren
+Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrand-Modellen reduzieren
 (Fortsetzung folgt)
 % \bigskip
 % 
@@ -741,7 +741,7 @@ Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Her
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Was erwartet uns als Nächstes?
 \begin{itemize}
 \item Beweis der Vollständigkeit der Resolution
 \item Logik über endlichen Modellen und ihre praktische Anwendung
