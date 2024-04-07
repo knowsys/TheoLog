@@ -4,9 +4,9 @@ Vorlesungsfolien Theoretische Informatik und Logik
 [![Project Stats](https://www.openhub.net/p/TheoLog/widgets/project_thin_badge.gif)](https://www.openhub.net/p/TheoLog)
 
 *(This repository contains LaTeX sources of a
-[German language university course in theoretical computer science](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2017)/en).)*
+[German language university course in theoretical computer science](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2021)/en).)*
 
-Dieses Repository enthält die LaTeX-Quellen der Folien zur Vorlesung [Theoretische Informatik und Logik](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2017))
+Dieses Repository enthält die LaTeX-Quellen der Folien zur Vorlesung [Theoretische Informatik und Logik](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2021))
 der [Fakultät Informatik der Technischen Universität Dresden](https://tu-dresden.de/ing/informatik), wie sie im
 Sommersemester 2017 präsentiert wurden.
 
