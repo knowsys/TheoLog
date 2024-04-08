@@ -15,6 +15,7 @@ tail -n +3 lecture-$1.tex >> $tmpfilename.tex
 pdflatex $tmpfilename.tex
 pdflatex $tmpfilename.tex
 # pdfnup --nup 2x2 --outfile $printfilename $tmpfilename.pdf
+mv $tmpfilename.pdf $printfilename
 
 printf "\\documentclass[aspectratio=1610,onlymath]{beamer}\n\n" > $tmpfilename.tex
 tail -n +3 lecture-$1.tex >> $tmpfilename.tex
