@@ -47,7 +47,7 @@ Church und Turing (im Chor mit Kleene und Rosser):\\~\hfill"`Alle Computer sind 
 	Die Eingabe wird auf das erste Band geschrieben.
 \end{itemize}
 
-\theobox{Satz: Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
+\theobox{\emph{Satz:} Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
 
 Details siehe Vorlesung Formale Systeme (Winter 2023/2024, Vorlesungen 18 und 19)
 
@@ -161,7 +161,7 @@ Aufgabe zur Selbstkontrolle: Schreiben Sie einen Aufzähler für diese Sprache, 
 
 \begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (1)}
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
 einen Aufzähler für $\Slang{L}$ gibt.
 }\pause
 
@@ -178,7 +178,7 @@ gibt, dann können wir $\Slang{L}$ wie folgt semi-entscheiden:
 
 \begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (2)}
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
 einen Aufzähler für $\Slang{L}$ gibt.
 }\pause
 
@@ -211,7 +211,7 @@ Wichtige Fälle:
 \item \alert{Tupel} (Listen) von Wörtern (oder natürlichen Zahlen, \ldots), können kodiert werden, indem man zum Eingabealphabet ein zusätzliches Trennzeichen $\Sterm{\#}$ hinzufügt
 \end{itemize}\bigskip\pause
 
-\examplebox{Beispiel: Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
+\examplebox{\emph{Beispiel:} Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
 semi-entscheidbaren Teilmengen von $\mathbb{N}\times\mathbb{N}$ sprechen.}\medskip
 
 Anmerkung: Oft gibt es viele denkbare Kodierungen eines Objektes als Wort. Vorerst sollen uns die Details nicht interessieren, solange klar ist, dass eine TM die Kodierung entschlüsseln kann.
@@ -224,7 +224,7 @@ Anmerkung: Oft gibt es viele denkbare Kodierungen eines Objektes als Wort. Vorer
 
 Berechenbarkeit von Funktionen und Sprachen sind eng verwandt.
 
-\theobox{Satz: Eine Sprache $\Slang{L}$ ist genau dann entscheidbar, wenn die folgende Funktion $f:\Sigma^*\to\Sigma^*$ berechenbar ist (o.B.d.A. sei $\{\Sterm{0},\Sterm{1}\}\subseteq\Sigma$):
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann entscheidbar, wenn die folgende Funktion $f:\Sigma^*\to\Sigma^*$ berechenbar ist (o.B.d.A. sei $\{\Sterm{0},\Sterm{1}\}\subseteq\Sigma$):
 \[f(w)= \left\{\begin{array}{ll}
 \Sterm{1} & \text{falls $w\in\Slang{L}$}\\
 \Sterm{0} & \text{falls $w\notin\Slang{L}$}\\
@@ -249,7 +249,7 @@ Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst 
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
 \[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}
 
@@ -270,7 +270,7 @@ Falls $f$ total ist, dann hält auch die Erkennung von $\textsf{Graph}_f$.
 
 Für die Umkehrung stellen wir Funktionen als Mengen dar:
 
-\theobox{Satz: Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
+\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
 \[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
 Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}\pause
 
@@ -297,7 +297,7 @@ das kann man leicht tun (oder die Mehrband-TM auf einem Band simulieren).
 
 \begin{frame}\frametitle{Es gibt unentscheidbare Probleme}
 
-\theobox{Satz: Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
+\theobox{\emph{Satz:} Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
 
 \pause
 Dies kann man wie folgt zeigen:
@@ -329,7 +329,7 @@ Dies folgt in zwei Schritten:
 \item \ldots
 \end{itemize}
 \footnotesize
-(Vgl. dazu auch Formale Systeme, Winter 2017/2018, Vorlesung 2)
+(Siehe dazu auch Formale Systeme, Winter 2023/2024, Vorlesung 2)
 
 \end{itemize}
 
@@ -382,7 +382,7 @@ Wie finden wir konkrete unentscheidbare Probleme?
 
 Es reicht nicht aus, dass wir nicht wissen, wie ein Problem algorithmisch gelöst werden kann!\bigskip
 
-\examplebox{Beispiel: Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
+\examplebox{\emph{Beispiel:} Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
 
 \only<3->{%
 Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie könnte dennoch entscheidbar sein (z.B. wenn jede endliche Ziffernfolge irgendwo in $\pi$ vorkommt, was aber bisher nicht bekannt ist).}}
@@ -394,7 +394,7 @@ Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie 
 Es gibt sogar Fälle, in denen wir sicher sind, dass ein Problem entscheidbar ist,
 aber trotzdem nicht wissen, wie man es löst.\\[1.5ex]\pause
 
-\examplebox{Beispiel: Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
+\examplebox{\emph{Beispiel:} Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
 
 \only<3->{
 $\Slang{L}_{\pi7}$ ist entscheidbar:
@@ -484,7 +484,7 @@ Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\St
 
 % Wie schwer kann das schon sein \ldots?\pause
 
-\theobox{Satz: Die Busy-Beaver-Funktion ist nicht berechenbar.}
+\theobox{\emph{Satz:} Die Busy-Beaver-Funktion ist nicht berechenbar.}
 
 \pause
 \emph{Beweisskizze:} Nehmen wir an, $\bbfunc$ wäre berechenbar.\pause
