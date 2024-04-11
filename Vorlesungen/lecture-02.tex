@@ -118,11 +118,10 @@ alle Elemente von $\Slang{L}$ der Reihe nach "`aufzählt"':\bigskip
 
 \defbox{Ein \redalert{Aufzähler} ist eine deterministische Turingmaschine $\Smach{M}$ mit einem speziellen
 Zustand $q_{\textsf{Ausgabe}}$. Immer wenn $\Smach{M}$ in den Zustand $q_{\textsf{Ausgabe}}$
-gelangt, wird der aktuelle Bandinhalt -- vom Anfang bis zum ersten Zeichen, nach dem nur noch $\blank$ folgen -- ausgegeben.\\[1ex]
+gelangt, wird der aktuelle Bandinhalt vom Anfang bis zum ersten Zeichen in $\Gamma\setminus\Sigma$ (z.B. $\blank$) ausgegeben.\\[1ex]
 %
-Die \redalert{durch $\Smach{M}$ aufgezählte Sprache} ist die Menge aller Wörter
-aus $\Sigma^*$, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.\\
-{\tiny(Anmerkung: Die Definition erlaubt die Ausgabe von Wörtern aus $\Gamma^*\setminus\Sigma^*$. Diese gehören für uns nicht zur aufgezählten Sprache.}
+Die \redalert{durch $\Smach{M}$ aufgezählte Sprache} ist die Menge aller Wörter, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.\\
+{\tiny(Anmerkung: Per Definition sind alle ausgegebenen Wörter in $\Sigma^*$.)}
 }\bigskip
 
 Die durch $\Smach{M}$ aufgezählte Sprache kann unendlich sein, wenn $\Smach{M}$ auf der leeren Eingabe nicht hält.
@@ -169,7 +168,7 @@ einen Aufzähler für $\Slang{L}$ gibt.
 gibt, dann können wir $\Slang{L}$ wie folgt semi-entscheiden:
 \begin{itemize}
 \item Simuliere den Aufzähler auf einem leeren Band (wir dürfen eine Mehrband-TM verwenden).
-\item Immer wenn $q_{\textsf{Ausgabe}}$ erreicht wird: vergleiche das Eingabeband mit dem Aufzählerband und akzeptiere, wenn beide das gleiche Wort beinhalten.
+\item Immer wenn $q_{\textsf{Ausgabe}}$ erreicht wird: Vergleiche das Wort auf dem Eingabeband mit dem auszugebeneden Wort aus $\Sigma^*$ auf dem Aufzählerband und akzeptiere, wenn beide das gleich sind.
 \item Andernfalls fahre mit der Aufzählung fort.
 \item Falls die Aufzählung terminiert (ohne dass die Eingabe gefunden wurde), dann verwerfe.
 \end{itemize}
@@ -194,7 +193,8 @@ einen Aufzähler für $\Slang{L}$ gibt.
 		\end{itemize}
 	\end{itemize}
 \end{itemize}
-Anmerkung: Der so konstruierte Aufzähler terminiert nicht (selbst wenn die aufgezählte Menge endlich ist).\qed
+Anmerkung 1: Der so konstruierte Aufzähler terminiert nicht (selbst wenn die aufgezählte Menge endlich ist).\\[1ex]
+Anmerkung 2: Der Wert von $n$ während der Iteration kann in Symbolen aus $\Gamma\setminus\Sigma$ hinter dem jeweils auszugebenen Wort gespeichert werden.\qed
 
 \end{frame}
 
