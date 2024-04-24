@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{4}{Das Halteproblem und Reduktionen}{22. April 2021}
+\defineTitle{4}{Das Halteproblem und Reduktionen}{18. April 2024}
 
 \begin{document}
 
@@ -267,6 +267,31 @@ Dann kann man eine TM $\Smach{D}$ konstruieren, die folgendes tut:
 \narrowcentering{$\Smach{D}$ hält und akzeptiert $\quad$ genau dann wenn $\quad$ $\Smach{D}$ nicht hält}\\[1ex]
 
 Widerspruch.\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Diagonalisierung, graphische Darstellung}
+
+\begin{minipage}{5cm}
+\emph{Bekannt:} Eine Maschine hält auf einem Input oder nicht:\bigskip
+
+\includegraphics[width=5cm]{images/halting-tm}\bigskip
+
+\emph{Annahme:} Es gibt eine Maschine, die Halten entscheidet:\bigskip
+
+\includegraphics[width=5cm]{images/halting-oracle}
+
+\vspace{0.9cm}~
+\end{minipage}\hfill%
+\begin{minipage}{7cm}
+
+\emph{Bauplan Diagonalisierungsmaschine:}\bigskip
+
+~\hspace{0.5cm}\includegraphics[height=5cm]{images/halting-d}\bigskip
+
+\emph{Paradoxon:}
+~\hspace{0.5cm}\includegraphics[height=1cm,valign=c]{images/halting-paradox}%\hfill~
+\end{minipage}
 
 \end{frame}
 
