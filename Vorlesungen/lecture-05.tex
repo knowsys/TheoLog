@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{5}{Der Satz von Rice und das Postsche Korrespondenzproblem}{26. April 2021}
+\defineTitle{5}{Der Satz von Rice und das Postsche Korrespondenzproblem}{22. April 2024}
 
 \begin{document}
 
@@ -388,7 +388,7 @@ Wie kann man sicherstellen, dass die MPCP-Lösung eine korrekte Folge von TM-Kon
 \begin{itemize}
 \item Das Lösungswort soll wie folgt beginnen: $\Sterm{\#}c_0\Sterm{\#}c_1\Sterm{\#}c_3\Sterm{\#}\ldots$, wobei $c_i$ Konfigurationen kodieren
 \item Beim PCP entsteht das Lösungswort doppelt, oben und unten
-\item Wir beginnen mit $\left[\begin{matrix}\Sterm{\#}\\\Sterm{\#}c_0\Sterm{\#}\end{matrix}\right]$, d.h. das obere Wort liegt eine Konfiguration zurück
+\item Wir beginnen mit $\left[\begin{matrix}\epsilon\\\Sterm{\#}c_0\end{matrix}\right]$, d.h. das obere (leere) Wort liegt eine Konfiguration zurück
 \item Wir definieren die Wortpaare so, dass man oben eine Kopie der unteren Konfiguration nur dann erzeugen kann, wenn man gleichzeitig unten die Nachfolgerkonfiguration anfügt
 \item Falls die TM hält, dann sorgen wir dafür, dass das obere Wort die fehlende Konfiguration aufholen kann
 \end{itemize}
@@ -448,7 +448,7 @@ Am rechten Rand kann die TM das Band beliebig erweitern:
 Die \alert{Startregel} schließlich setzt die Berechnung in Gang:
 
 \begin{align*}
-\left[\begin{matrix}\Sterm{\#}\\ \Sterm{\#}q_0 w\Sterm{\#}\end{matrix}\right]\quad
+\left[\begin{matrix}\epsilon\\ \Sterm{\#}q_0 w\end{matrix}\right]\quad
 	& \text{wobei $q_0$ der Startzustand und $w\in\Sigma^*$ das Eingabewort ist}
 \end{align*}
 
