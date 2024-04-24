@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{6}{Unentscheidbare Probleme formaler Sprachen}{29. April 2021}
+\defineTitle{6}{Unentscheidbare Probleme formaler Sprachen}{25. April 2024}
 
 \begin{document}
 
@@ -385,7 +385,7 @@ Die Situation ist ziemlich kompliziert:
 \item $\Slang{A}\not\leq_T \Slang{B}$ und $\Slang{B}\not\leq_T \Slang{A}$
 \end{itemize}
 
-Man kann also mit $\not\leq_T$ nicht einmal alle Klassen unentscheidbarer Probleme
+Man kann also mit $\leq_T$ nicht einmal alle Klassen unentscheidbarer Probleme
 in eine totale Ordnung bringen.
 
 {\tiny Bewiesen in 1956 (unabhängig!) von Friedberg (USA) und Muchnik (USSR)}
@@ -424,7 +424,7 @@ akzeptiert:\\
 \pause Das Universalitätsproblem vom TMs ist schwerer als das Halteproblem (aber Turing-reduzierbar auf $\Slang{P}^2_{\text{halt}}$). Das zeigt sich auch bei Sonderfällen:
 \begin{itemize}
 \item \alert{Kontextfreie Grammatiken:} Wortproblem und Leerheitsproblem entscheidbar; Universalität unentscheidbar
-\item \alert{Endliche Automaten:} Wortproblem und Leerheitsproblem effizient lösbar (polynomiell); Universalität PSpace-hart (nur exponentielle Algorithmen bekannt)
+\item \alert{Endliche Automaten:} Wortproblem und Leerheitsproblem effizient lösbar (polynomiell); Universalität PSpace-schwer (nur exponentielle Algorithmen bekannt)
 \end{itemize}
 
 \end{frame}
