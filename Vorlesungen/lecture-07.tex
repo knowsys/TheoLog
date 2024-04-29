@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{7}{Einführung in die Komplexitätstheorie}{6. Mai 2021}
+\defineTitle{7}{Einführung in die Komplexitätstheorie}{29. April 2024}
 
 \begin{document}
 
@@ -511,8 +511,13 @@ $\Scomplclass{DTIME}(n^{\redalert{2,517}})$ [Romani, 1982],
 $\Scomplclass{DTIME}(n^{\redalert{2,496}})$ [Coppersmith \& \mbox{Winograd}, 1981],
 $\Scomplclass{DTIME}(n^{\redalert{2,479}})$ [Strassen, 1986],
 $\Scomplclass{DTIME}(n^{\redalert{2,376}})$ [Coppersmith \& \mbox{Winograd}, 1990],
-$\Scomplclass{DTIME}(n^{\redalert{2,374}})$ [Stothers, 2010] und
-$\Scomplclass{DTIME}(n^{\redalert{2,373}})$ [Williams, 2011].}
+$\Scomplclass{DTIME}(n^{\redalert{2,374}})$ [Stothers, 2010],
+$\Scomplclass{DTIME}(n^{\redalert{2,3729}})$ [Williams, 2011],
+$\Scomplclass{DTIME}(n^{\redalert{2,3728639}})$ [Le Gall, 2014],
+$\Scomplclass{DTIME}(n^{\redalert{2,3728596}})$ [Alman \& Williams, 2020],
+$\Scomplclass{DTIME}(n^{\redalert{2,371866}})$ [Duan et al., 2022],
+und
+$\Scomplclass{DTIME}(n^{\redalert{2,371552}})$ [Williams et al., 2024].}
 \only<-3>{\phantom{Vermutete} \phantom{optimale} \phantom{Lösung:} \phantom{$\Scomplclass{DTIME}(n^{\redalert{2}})$.}}%
 \only<4->{\\ Vermutete optimale Lösung: $\Scomplclass{DTIME}(n^{\redalert{2}})$.}
 }
@@ -533,7 +538,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2,373}})$ [Williams, 2011].}
 \begin{itemize}
 \item Wir betrachten \alert{noch allgemeinere Sprachklassen}, die auch gegenüber polynomiellen Änderungen der Ressourcen robust sind
 \item Nachteil: Wir können nicht mehr zwischen $n$ und $n^{1000}$ unterscheiden
-\item Vorteil: Wir müssen nicht mehr zwischen $n^{2,374}$ und $n^{2,373}$ unterscheiden
+\item Vorteil: Wir müssen nicht mehr zwischen $n^{2,371866}$ und $n^{2,371552}$ unterscheiden
 \end{itemize}
 
 \end{frame}
@@ -636,7 +641,7 @@ auf die Einordnung eines Problems.\\
 in einer dieser Klassen liegt.}\pause
 
 \examplebox{\emph{Beispiel:} Eulers Methode um die Existenz von Eulerpfaden zu entscheiden,
-kann in $\Scomplclass{LogSpace}$ implementiert werden: wir zählen die Kanten jedes Knotens 
+kann in $\Scomplclass{LogSpace}$ implementiert werden: Wir zählen die Kanten jedes Knotens 
 und speichern die Zahl der Knoten ungeraden Grades, jeweils binär.}\pause
 
 \examplebox{\emph{Beispiel:} Die Suche nach Hamilton-Pfaden ist in $\Scomplclass{ExpTime}$ aber auch in $\Scomplclass{PSpace}$.}\pause
