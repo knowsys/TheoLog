@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{14}{Modelltheorie und logisches Schließen}{14. Juni 2021}
+\defineTitle{14}{Modelltheorie und logisches Schließen}{3. Juni 2024}
 
 \begin{document}
 
@@ -75,6 +75,55 @@ abbildet.
 }
 
 \defbox{Eine \redalert{Zuweisung} $\Zuweisung$ für eine Interpretation $\Inter$ ist eine Funktion $\Zuweisung:\Slang{V}\to\Delta^\Inter$, die Variablen auf Elemente der Domäne abbildet. Für $x\in\Slang{V}$ und $\delta\in\Delta^\Inter$ schreiben wir \redalert{$\Zuweisung [x\mapsto \delta]$} für die Zuweisung, die $x$ auf $\delta$ und alle anderen Variablen $y\neq x$ auf $\Zuweisung(y)$ abbildet.}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beispiel (1)}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ \textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten eine Interpretation $\Inter$ mit
+\begin{itemize}
+\item $\Delta^\Inter=\mathbb{R}$ die Menge der reellen Zahlen
+\item $\textsf{null}^\Inter=0$
+\item $\textsf{NatNum}^\Inter=\mathbb{N}\subseteq\mathbb{R}$ die Menge der natürlichen Zahlen
+\item $\textsf{succ}^\Inter=\{\tuple{d,e}\mid d,e\in\mathbb{R},d<e\}$
+\end{itemize}
+
+Unter dieser Interpretation ist das Atom $\textsf{NatNum}(\textsf{null})$ wahr, da
+$\textsf{null}^\Inter\in\textsf{NatNum}^\Inter$ gilt.
+\smallskip
+
+Wir schreiben: $\textsf{NatNum}(\textsf{null})^\Inter=\mytrue$.
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Beispiel (2)}
+
+\alert{"`Null ist eine natürliche Zahl und jede natürliche Zahl hat einen Nachfolger, der
+ebenfalls eine natürliche Zahl ist."'}
+\[ \textsf{NatNum}(\textsf{null})\wedge \forall x.\Big(\textsf{NatNum}(x)\to\exists y.\big(\textsf{succ}(x,y)\wedge \textsf{NatNum}(y)\big)\Big)\]
+
+Wir betrachten für die vorherige Interpretation $\Inter$ 
+eine Zuweisung $\Zuweisung$ mit
+\begin{itemize}
+\item $\Zuweisung(x)=42$
+\item $\Zuweisung(y)=5$
+\end{itemize}
+
+Unter dieser Interpretation und Zuweisung ist das Atom $\textsf{succ}(x,y)$ falsch, da
+$\tuple{\Zuweisung(x),\Zuweisung(y)}\notin\textsf{succ}^\Inter$ gilt.
+\smallskip
+
+Wir schreiben: $\textsf{succ}(x,y)^{\Inter,\Zuweisung}=\myfalse$.
+\bigskip
+
+\anybox{strongyellow}{\emph{Anmerkung:} Allgemein geben wir bei Interpretationen und Zuweisungen
+nur die Belegungen an, die für die Auswertung einer gegebenen Formel relevant sind.
+Zum Beispiel müssen wir $\Zuweisung$ nicht für alle $z\in\Slang{V}$ definieren.
+}
 
 \end{frame}
 
