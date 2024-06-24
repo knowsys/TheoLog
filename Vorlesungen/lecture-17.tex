@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{17}{Funktionen und Normalformen}{24. Juni 2021}
+\defineTitle{17}{Funktionen und Normalformen}{20. Juni 2024}
 
 \begin{document}
 
@@ -166,7 +166,7 @@ für beliebige $\quantor\in\{\exists,\forall\}$ und $\circ\in\{\vee,\wedge\}$.
 
 \emph{Beweis:} (Terminierung) Man kann die Ersetzungen nicht unendlich oft anwenden:\pause
 \begin{itemize}
-\item Für einer Formel $F$ sei $J(F)$ die Zahl der Junktoren in $F$
+\item Für eine Formel $F$ sei $J(F)$ die Zahl der Junktoren in $F$
 \item Sei $Q(F)\defeq \sum\{J(\quantor x.G)\mid \quantor x.G\text{ Teilformel in }F\}$
 die Summe der Zahl von Junktoren unterhalb jedes Quantors\pause
 \item $Q(F)$ wird in jedem Ersetzungsschritt größer, aber die Gesamtzahl der Quantoren und Junktoren bleibt gleich, d.h. es gibt
@@ -379,7 +379,7 @@ Skolemisierung erhält aber Erfüllbarkeit:\medskip
 
 \theobox{\emph{Satz:} Eine Formel in Pränexform $F$ ist genau dann erfüllbar, wenn auch die Skolemisierung von $F$ erfüllbar ist.}\medskip
 
-\emph{Anmerkung:} Man kann einen Erfüllbarkeitstest also auf der Skolemisierten Formel ausführen -- das reicht, um logisches Schließen zu implementieren
+\emph{Anmerkung:} Man kann einen Erfüllbarkeitstest also auf der skolemisierten Formel ausführen -- das reicht, um logisches Schließen zu implementieren
 
 \end{frame}
 

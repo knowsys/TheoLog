@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{18}{Unifikation}{28. Juni 2021}
+\defineTitle{18}{Unifikation}{24. Juni 2024}
 
 \begin{document}
 
@@ -331,7 +331,8 @@ Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein 
 
 \examplebox{\emph{Beispiel:} Für $G=\{ x\unieq f(y), y\unieq g(z) \}$ ist
 $\sigma=\{x\mapsto f(g(z)), y\mapsto g(z)\}$ ein allgemeinster Unifikator.
-Dagegen ist $\theta=\{x\mapsto f(g(f(b))), y\mapsto g(f(b)),z\mapsto f(b)\}$ ein Unifikator, der nicht allgemeinst ist, denn es gilt $\sigma\{z\mapsto f(b)\}=\theta$.}
+Dagegen ist $\theta=\{x\mapsto f(g(f(b))), y\mapsto g(f(b)),z\mapsto f(b)\}$ ein Unifikator, der nicht allgemeinst ist, denn es gilt zwar $\sigma\{z\mapsto f(b)\}=\theta$,
+aber es gibt keine Substitution $\lambda$ mit $\theta\circ\lambda=\sigma$ (denn dazu müsste $\lambda(f(b))=z$ sein, was nicht möglich ist).}
 
 \end{frame}
 
@@ -487,7 +488,7 @@ Damit folgt die Behauptung.
 \pause\emph{Begründung:} $G'$ muss eine Gleichung $s\unieq u$ enthalten, die nicht in gelöster Form ist.
 \begin{itemize}
 \item Fall 1: $s\unieq u$ hat auf einer Seite eine Variable. Dann hat sie die Form (a), da sonst Orientierung oder Löschen möglich wäre.
-\item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre
+\item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre. (Wir schließen hier den Fall ein, dass eines der Funktionssymbolen 0-stellig ist, also eine Konstante.)
 \end{itemize}
 \pause Aus der Beobachtung folgt (2), da Gleichungen (a) und (b) keinen Unifikator haben.
 Laut ($\ddagger$) hat damit auch $G$ keinen Unifikator.
