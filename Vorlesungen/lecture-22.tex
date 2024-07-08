@@ -5,7 +5,7 @@
 
 \hyphenation{Exp-Time}
 
-\defineTitle{22}{Datalog}{12. Juli 2021}
+\defineTitle{22}{Datalog}{8. Juli 2024}
 
 \begin{document}
 
@@ -247,6 +247,7 @@ Zur Ermittlung aller Schlüsse muss man $T_P$ iterativ anwenden:\medskip
 \emph{Beobachtungen:} 
 \begin{itemize}
 \item $T_P^1=T_P(\emptyset)$ ist die Menge aller Fakten in $P$
+\item $T_P^i\subseteq T_P^{i+1}$ (frühere Regelanwendungen bleiben weiterhin möglich; Monotonie)
 \item $T_P^i$ enthält nur Fakten, die man bilden kann, indem man einen Regelkopf aus $P$ mit Konstanten aus $P$ instanziiert $\leadsto$ endlich viele mögliche Schlüsse
 \end{itemize}
 \medskip\pause
@@ -427,7 +428,7 @@ ist \ExpTime-vollständig.}
 \item In Abhängigkeit von der Größe der Datenbank (der Zahl der Fakten) wächst die Laufzeit lediglich polynomiell $\leadsto$ gutes Skalierungsverhalten für große Datenmengen
 \item Es gibt inzwischen eine Reihe sehr effizienter Implementierungen, z.B.
 \begin{itemize}
-\item hochskalierbare speicherbasierte Systeme: z.B. VLog/Rulewerk (VU Amsterdam, TU Dresden), RDFox (Oxford)
+\item hochskalierbare speicherbasierte Systeme: z.B. Nemo (TU Dresden; \alert{\href{https://tools.iccl.inf.tu-dresden.de/nemo/}{online demo}}), RDFox (Oxford), Souffl\'{e}
 \item Systeme basierend auf relationalen Datenbanken: z.B. Llunatic
 \item Systeme für komplexere Logiken, die Datalog als Sonderfall unterstützen: z.B. clingo, DLV (Answer Set Programming), E (Theorembeweiser)
 \end{itemize}
