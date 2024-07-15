@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{23}{Gödels~1.~Unvollständigkeitssatz}{19. Juli 2021}
+\defineTitle{23}{Gödels~1.~Unvollständigkeitssatz}{11. Juli 2024}
 
 \begin{document}
 
@@ -22,7 +22,7 @@ Kurt Gödel
 
 Was Gödel in 1931 zeigte war grob gesagt folgendes:\medskip
 
-\theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+\theobox{\emph{Satz:} Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
 elementaren Arithmetik:\\ Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
 }\bigskip
@@ -49,7 +49,7 @@ Beweisbare Sätze heißen \redalert{Theoreme} des formalen Systems\\
 {\tiny {\emph{Anmerkung:} Auch die Axiome sind Theoreme, wenn auch mit sehr kurzen Beweisen}}
 \medskip\pause
 
-\examplebox{Beispiel: Die Prädikatenlogik liefert formale Systeme:
+\examplebox{\emph{Beispiel:} Die Prädikatenlogik liefert uns formale Systeme:
 \begin{itemize}
 \item Sprache: Die Sprache der prädikatenlogischen Sätze
 \item Axiome: Eine gegebene Theorie, z.B. die Theorie der kommutativen Monoide
@@ -69,9 +69,9 @@ Formale Systeme können viele Formen haben -- zum Beispiel beinhalten sie auch j
 Die Details sind relativ egal, aber
 wir wollen doch ein paar Anforderungen stellen:
 
-\anybox{purple}{Grundeigenschaft Formaler Systeme: Die Menge der Theoreme eines formalen Systems ist rekursiv aufzählbar (semi-entscheidbar).}
+\anybox{purple}{\emph{Grundeigenschaft Formaler Systeme:} Die Menge der Theoreme eines formalen Systems ist rekursiv aufzählbar (semi-entscheidbar).}
 
-\anybox{purple}{Negation: Für jeden Satz $S$ gibt es in der Sprache eines formalen Systems auch einen negierten Satz $\neg S$, so dass gilt:
+\anybox{purple}{\emph{Negation:} Für jeden Satz $S$ gibt es in der Sprache eines formalen Systems auch einen negierten Satz $\neg S$, so dass gilt:
 \begin{itemize}
 \item $S$ ist genau dann ein Theorem, wenn $\neg\neg S$ ein Theorem ist.
 \item Wenn $S$ und $\neg S$ Theoreme sind, dann sind alle Sätze Theoreme.
@@ -119,12 +119,12 @@ Gödels Unvollständigkeitssätze auf die erste!}
 
 \begin{frame}\frametitle{Beispiele}
 
-\examplebox{Beispiel: Angenommen ein Satz $F$ kann in einem formalen System
+\examplebox{\emph{Beispiel:} Angenommen ein Satz $F$ kann in einem formalen System
 $\mathcal{S}$ bewiesen werden und wir wissen, dass $\mathcal{S}$ konsistent ist.
 Folgt daraus, dass $F$ semantisch wahr ist?
 }\medskip\pause
 
-\examplebox{Beispiel: Aus der Logik bekannte Zusammenhänge gelten auch hier:
+\examplebox{\emph{Beispiel:} Aus der Logik bekannte Zusammenhänge gelten auch hier:
 \begin{itemize}
 \item Ein Satz $F$ ist genau dann in $\mathcal{S}$ beweisbar wenn $\mathcal{S}$ bei Hinzunahme des Axioms $\neg F$ inkonsistent wird.
 \item Weder $F$ noch $\neg F$ sind in $\mathcal{S}$ beweisbar gdw. $\mathcal{S}$ sowohl bei Hinzunahme von $F$ als auch bei Hinzunahme von $\neg F$ konsistent ist
@@ -136,7 +136,7 @@ Folgt daraus, dass $F$ semantisch wahr ist?
 
 \begin{frame}\frametitle{Eine gewisse Menge Arithmetik}
 
-\theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+\theobox{\emph{Satz:} Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
 elementaren Arithmetik:\\ Es gibt solche Sätze, die weder bewiesen noch widerlegt werden können.
 }
@@ -253,7 +253,7 @@ Auch hier denkt man vielleicht zuerst, dass dies nicht möglich wäre, weil das 
 
 Es ist aber gar nicht so schwer:
 \bigskip
-\examplebox{Beispiel: Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$ }
+\examplebox{\emph{Beispiel:} Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$Gib den folgenden Satz zweimal aus, beim zweiten mal in Anführungszeichen:~$\squote$ }
 
 \end{frame}
 
@@ -334,7 +334,7 @@ $x_1,\ldots,x_n,\Sterm{0},s,+,-,\times$ ist. Eine \redalert{Lösung} der Gleichu
 
 \begin{frame}\frametitle{Hilberts Zehntes und MRDP}
 
-\anybox{purple}{Hilberts 10. Problem: Man finde ein Verfahren um zu ermitteln, ob eine gegebene diophantische Gleichung lösbar ist.}\pause
+\anybox{purple}{\emph{Hilberts 10. Problem:} Man finde ein Verfahren um zu ermitteln, ob eine gegebene diophantische Gleichung lösbar ist.}\pause
 
 Wir wissen heute, dass dies unentscheidbar ist:
 \begin{itemize}
@@ -343,7 +343,7 @@ Wir wissen heute, dass dies unentscheidbar ist:
 \item Alle diophantischen Mengen sind rekursiv aufzählbar: teste systematisch alle möglichen Belegungen von $D[x_1,\ldots,x_n,y]= 0$ und gib bei jeder gefundenen Lösung den Wert von $y$ aus
 \end{itemize}\pause
 
-\theobox{Satz (Matiyasevich/Robinson/Davis/Putnam): Jede rekursiv aufzählbare Menge natürlicher Zahlen ist diophantisch.}
+\theobox{\emph{Satz (Matiyasevich/Robinson/Davis/Putnam):} Jede rekursiv aufzählbare Menge natürlicher Zahlen ist diophantisch.}
 {\tiny Intuitiv: diophantische Gleichungen sind Turing-mächtig!}
 
 \end{frame}
@@ -374,7 +374,7 @@ Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
 \item Jede wahre Aussage der Form $D[z_1,\ldots,z_n]= 0$ für eine beliebige diophantische Gleichung und \alert{konkrete} Zahlenwerte $z_1,\ldots, z_n$ ist beweisbar\\ {\tiny(einfach durch Ausrechnen des Wertes)}
 \item Sätze der Form $\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$ sind darstellbar und alle beweisbaren Sätze dieser Form sind korrekt
 \end{enumerate}\pause
-\emph{Wegen (1) und (2) gilt:} $\mathcal{S}$ beweist nur wahre Sätze der Form $\neg\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$\medskip\pause
+\emph{Wegen (1) und (2) gilt:} $\mathcal{S}$ beweist Sätze der Form $\neg\exists x_1,\ldots, x_n.D[x_1,\ldots,x_n]= 0$ nur wenn sie wahr sind.\medskip\pause
 
 \emph{Aber:} $\mathcal{S}$ kann nicht alle wahren Sätze dieser Form beweisen:
 \begin{itemize}
@@ -387,7 +387,7 @@ Sei $\mathcal{S}$ ein formales System, welches das folgende erfüllt:
 
 \begin{frame}\frametitle{Der 1. Gödelsche Unvollständigkeitssatz}
 
-\theobox{Satz (Gödel, 1931): Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+\theobox{\emph{Satz (Gödel, 1931):} Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
 elementaren Arithmetik.
 }\bigskip
@@ -404,11 +404,11 @@ elementaren Arithmetik.
 
 \begin{frame}\frametitle{Beispiele}
 
-\examplebox{Beispiel: Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
+\examplebox{\emph{Beispiel:} Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
 
 \redalert{Keine prädikatenlogische Theorie kann die elementare Arithmetik vollständig beschreiben.}\pause\bigskip
 
-\examplebox{Beispiel: Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
+\examplebox{\emph{Beispiel:} Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
 
 \end{frame}
 
@@ -426,8 +426,8 @@ Diese Unvollständigkeit hat damit zu tun, dass nicht alle Mengen natürlicher Z
 Was erwartet uns als nächstes?
 \begin{itemize}
 \item Gödels zweiter Unvollständigkeitssatz, Zusammenfassung und Ausblick
-\item 2. Repetitorium
-\item Probeklausur
+\item Zusammenfassung
+\item Prüfungsvorbereitung
 \end{itemize}
 }
 

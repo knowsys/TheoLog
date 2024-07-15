@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{24}{Gödel, Turing und der ganze Rest}{22. Juli 2021}
+\defineTitle{24}{Gödel, Turing und der ganze Rest}{15. Juli 2024}
 
 \begin{document}
 
@@ -19,7 +19,7 @@ Kurt Gödel
 % Goedels Unvollstaendigkeitssaetze (mit vagen Formulierungen), ev. erstmal nur UV1
 \begin{frame}\frametitle{Der 1. Gödelsche Unvollständigkeitssatz}
 
-\theobox{Satz (Gödel, 1931): Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
+\theobox{\emph{Satz (Gödel, 1931):} Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik korrekt
 dargestellt werden kann, ist unvollständig in Bezug auf die Beweisbarkeit von Sätzen der
 elementaren Arithmetik.
 }\bigskip
@@ -36,11 +36,11 @@ elementaren Arithmetik.
 
 \begin{frame}\frametitle{Beispiele}
 
-\examplebox{Beispiel: Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
+\examplebox{\emph{Beispiel:} Natürliche Zahlen und einfache Rechenregeln können mit einer prädikatenlogischen Theorie definiert werden. Mit Resolution kann man daraus korrekte neue Schlüsse ziehen. Laut Gödels erstem Satz kann man auf diese Art aber niemals alle wahren Aussagen der Arithmetik beweisen, außer wenn die Theorie widersprüchlich ist.}
 
 \redalert{Keine prädikatenlogische Theorie kann die elementare Arithmetik vollständig beschreiben.}\pause\bigskip
 
-\examplebox{Beispiel: Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
+\examplebox{\emph{Beispiel:} Die moderne Mathematik basiert auf der Mengenlehre von Zermelo-Fraenkel unter Hinzunahme des Auswahlaxioms. Dieses formale System heißt \alert{ZFC}. Es ist klar definiert, was ein korrekter mathematischer Beweis in ZFC ist. Laut Gödels erstem Satz gibt es also wahre Aussagen über elementare Arithmetik, die nicht in ZFC bewiesen werden können.}
 
 \end{frame}
 
@@ -48,8 +48,8 @@ elementaren Arithmetik.
 
 Gödel kam direkt zu einer weiteren Schlussfolgerung:\medskip
 
-\theobox{Satz: Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik
-dargestellt werden kann, kann nicht seine eigene Konsistenz beweisen.
+\theobox{\emph{Satz:} Jedes konsistente formale System, in dem eine gewisse Menge elementarer Arithmetik korrekt
+dargestellt werden kann, kann nicht seine eigene Konsistenz \\beweisen.
 }\bigskip
 
 \emph{Auch hier gibt es einige vage Punkte:}
@@ -102,10 +102,10 @@ Also kann die Konsistenz des Systems nicht beweisbar sein. \qed
 
 \begin{frame}\frametitle{Beispiele}
 
-\examplebox{Beispiel: Es gibt keinen elementaren arithmetischen Beweis für die Widerspruchsfreiheit der Peano-Arithmetik. Man kann deren Konsistenz aber leicht im 
+\examplebox{\emph{Beispiel:} Es gibt keinen elementaren arithmetischen Beweis für die Widerspruchsfreiheit der Peano-Arithmetik. Man kann deren Konsistenz aber leicht im 
 stärkeren System ZFC beweisen.}\bigskip\pause
 
-\examplebox{Beispiel: Es ist nicht möglich, die Widerspruchsfreiheit der modernen Mathematik
+\examplebox{\emph{Beispiel:} Es ist nicht möglich, die Widerspruchsfreiheit der modernen Mathematik
 (ZFC) aus sich selbst heraus zu beweisen. Auch das kann man allerdings in mächtigeren Systemen erreichen.}\bigskip\pause
 
 \emph{Anmerkung:} Dadurch wird die Mathematik nicht in eine Sinnkrise gestürzt. Selbst wenn
@@ -134,7 +134,7 @@ Oder: "`Hilberts Programm als Turingmaschine"'
 
 \redalert{$\leadsto$ Vermutlich hält die TM nicht, aber die moderne Mathematik kann das nicht beweisen.}\pause\medskip
 
-\emph{Anmerkung:} Es gibt eine bekannte TM mit 7910 Zuständen, die sich so verhält [Yedidia \& Aaronson 2016] und sogar eine mit nur 1919 Zuständen [O’Rear, 2016]
+\emph{Anmerkung:} Es gibt eine bekannte TM mit 7910 Zuständen, die sich so verhält [Yedidia \& Aaronson 2016] und sogar eine mit nur 1919 Zuständen [O’Rear, 2016].
 
 \end{frame}
 
@@ -181,8 +181,6 @@ unentscheidbar.
 }
 
 \end{frame}
-
-\sectionSlide{Besprechung Lehrevaluation}
 
 
 \sectionSlide{Ausblick}
@@ -364,7 +362,7 @@ $\leadsto$ siehe Vorlesungen \redalert{Knowledge Graphs} (Wintersemester), \reda
 \begin{itemize}
 \item Herausforderung: konkrete Märkte und Nutzer?
 \item Herausforderung: benötigt mehr als eine Kerntechnologie
-\item Schwerpunkt: Wikidata, Wissensgraphen, Ontologien in Life Sciences
+\item Schwerpunkt: Wissensgraphen, Wikidata, Ontologien für LLMs und Co.
 \end{itemize}
 
 \end{frame}
@@ -373,23 +371,23 @@ $\leadsto$ siehe Vorlesungen \redalert{Knowledge Graphs} (Wintersemester), \reda
 
 \emph{Wissensrepräsentation:} \alert{Wie kann menschliches Wissen digital dargestellt werden?}
 \begin{itemize}
-\item Weiterentwicklung aktueller Schließverfahren
+\item Weiterentwicklung von Methoden der logischen Modellierung
+\item Analyse von Komplexität und Ausdrucksstärke
 \item Verallgemeinerung neuer Ideen unter Anleitung
-\item \ldots
 \end{itemize}\medskip
 
 \emph{Wissensverarbeitung:} \alert{Wie kann dieses Wissen automatisch genutzt werden?}
 \begin{itemize}
-\item Ontologieschließen: Aufgaben Übersetzen und mit Regel-Engine lösen
-\item Regelanalyse: Implementierung kürzlich erfundener Verfahren
-\item Evaluation: Vergleich vorgeschlagener Algorithmen
+\item Regelengine Nemo: neue Ideen implementieren und testen
+\item Logische Modelle analysieren und automatisch verstehen
+\item Ansätze verknüpfen und Ideen übertragen
 \end{itemize}\medskip
 
 \emph{Wissensmanagement:} \alert{Wie können diese Ergebnisse praktisch genutzt werden?}
 \begin{itemize}
-\item Analyse der Wikidata-Nutzung: Logs von SPARQL-Anfragen analysieren
-\item IDEs zur Ontologieentwicklung: Design, Prototypen
-\item Neue Anwendungen, z.B. Informationsextraktion mit logischen Regeln
+\item Erklärbarkeit und Verständlichkeit: UIs, Bedienkonzepte, \ldots
+\item Große Wissensgraphen nutzen: Qualität, Aufteilung, \ldots 
+\item Neue Anwendungen: Wissensgraphen in LLMs, räumlich-zeitliche Modelle, \ldots
 \end{itemize}
 
 \end{frame}
@@ -422,7 +420,7 @@ Informatik ist überall dort, wo gerechnet wird\pause\\[4ex]
 
 Rechnen = Schlussfolgern\pause\\[4ex]
 
-Beweisen -- Nachvollziehen -- Verstehen\pause\\[4ex]
+Beweisen -- Nachvollziehen -- Verstehen\\[4ex]
 
 \end{center}
 
@@ -440,8 +438,8 @@ Beweisen -- Nachvollziehen -- Verstehen\pause\\[4ex]
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item Zweites Repetitorium
-\item Angestrengte Klausurvorbereitung (inklusive Besprechung Probeklausur)
+\item Repetitorium
+\item Angestrengte Klausurvorbereitung (inklusive Probeklausur)
 \item Betreute Lernräume
 \item Klausur
 \end{itemize}
