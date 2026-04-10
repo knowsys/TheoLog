@@ -4,11 +4,10 @@ Vorlesungsfolien Theoretische Informatik und Logik
 [![Project Stats](https://www.openhub.net/p/TheoLog/widgets/project_thin_badge.gif)](https://www.openhub.net/p/TheoLog)
 
 *(This repository contains LaTeX sources of a
-[German language university course in theoretical computer science](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2024)/en).)*
+[German language university course in theoretical computer science](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2026)/en).)*
 
-Dieses Repository enthält die LaTeX-Quellen der Folien zur Vorlesung [Theoretische Informatik und Logik](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2024))
-der [Fakultät Informatik der Technischen Universität Dresden](https://tu-dresden.de/ing/informatik), wie sie im
-Sommersemester 2017 präsentiert wurden.
+Dieses Repository enthält die LaTeX-Quellen der Folien zur Vorlesung [Theoretische Informatik und Logik](https://iccl.inf.tu-dresden.de/web/Theoretische_Informatik_und_Logik_(SS2026))
+der [Fakultät Informatik der Technischen Universität Dresden](https://tu-dresden.de/ing/informatik). Die Inhalte werden im Sommersemester 2026 schrittweise angepasst und präsentiert.
 
 Die Vorlesung vermittelt eine vertiefende Einleitung in die theoretische 
 Informatik, beginnend mit den Grundlagen der Berechenbarkeits- und 
@@ -28,13 +27,15 @@ PDFs erstellen
 
 Die Quellen können mit ```pdflatex``` in PDFs umgewandelt werden.
 
-Die fertigen PDFs aus dem Sommer 2024 sind online zu finden unter https://iccl.inf.tu-dresden.de/web/TheoLog2024.
+Die fertigen PDFs aus dem Sommer 2024 sind online zu finden unter https://iccl.inf.tu-dresden.de/web/TheoLog2026.
 
 Vorlesungsvideos
 ----------------
 
 Videovorlesung aus dem Sommersemester 2021 sind auf der [Vorlesungswebseite 2021](https://iccl.inf.tu-dresden.de/web/TheoLog2021)
-zu finden. Diese Videos sind auch für 2024 verwendbar.
+zu finden. Diese Videos sind auch für 2024 geeignet. In 2026 gibt es einige inhaltliche Änderungen, so dass die Videos nicht mehr synchron
+zu den Vorlesungen sind. Es gibt aber auch weiterhin große Überschneidungen der Inhalte, so dass die Videos dennoch hilfreich sein können, auch
+wenn sie nicht alle Inhalte der überarbeiteten Vorlesung abdecken.
 
 Lizenz und Nutzung in der Lehre
 -------------------------------
@@ -43,7 +44,7 @@ Soweit nicht anders angegeben stehen alle Texte unter der Lizenz
 [Creative Commons CC By 3.0 Deutschland](https://creativecommons.org/licenses/by/3.0/de/) genutzt, weitergegeben
 und modifiziert werden. Als Namensnennung muss dabei folgende Angabe eingefügt werden:
 
-(C) Markus Krötzsch, https://iccl.inf.tu-dresden.de/web/TheoLog2024, CC BY 3.0 DE
+(C) Markus Krötzsch, https://iccl.inf.tu-dresden.de/web/TheoLog2026, CC BY 3.0 DE
 
 Bildrechte können davon abweichen und sind gesondert in den LaTeX-Dateien angegeben.
 Die Foliensätze enthalten keinerlei Texte, die aus Werken entnommen sind, für welche die VG Wort Verwertungsrechte vertritt.
