@@ -4,7 +4,7 @@
 #
 # Usage sh build.sh <lectureNumberAsString>
 
-fileprefix="TheoLog2024-Vorlesung-" # the start of generated PDFs
+fileprefix="TheoLog2026-Vorlesung-" # the start of generated PDFs
 tmpfilename="tmplecturefile" # don't have any files called like this!
 
 printfilename=$fileprefix$1-print.pdf
