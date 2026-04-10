@@ -19,7 +19,7 @@ und verrückte Logiker, vergleichen SQL mit Tic Tac Toe und stellen die großen 
 unseres Fachgebiets.
 
 Die Vorlesung ist weitgehend selbsterklärend, aber Grundlagen aus der Veranstaltung
-[Formale Systeme](https://iccl.inf.tu-dresden.de/web/Formale_Systeme_(WS2023)) können
+[Formale Systeme](https://iccl.inf.tu-dresden.de/web/Formale_Systeme_(WS2025)) können
 hilfreich sein.
 
 PDFs erstellen
