@@ -3,14 +3,14 @@
 
 \input{macros-lecture}
 
-\defineTitle{1}{Willkommen/Einleitung/Übersicht}{8. April 2024}
+\defineTitle{1}{Willkommen/Einleitung/Übersicht}{13. April 2026}
 
 \begin{document}
 
 \maketitle
 
 
-\sectionSlide{Willkommen zur Vorlesung\\Theoretische Informatik und Logik}
+\sectionSlide{Willkommen zur Vorlesung\\Theoretische Informatik und Logik\\{\large (ab Oktober 2026: ``Logik und Komplexität'')}}
 
 % \begin{frame}\frametitle{}
 %
@@ -27,10 +27,11 @@
 	montags DS3 (11:10–12:40) in HÜL/S386\\
 	donnerstags DS4 (13:00–14:30) in HSZ/0002
 \item \emph{Keine Vorlesungen:}\\
-	Feiertag: 9.5. (Himmelfahrt)\\
+%	Feiertag: 1.5. (Tag der Arbeit)\\
+	Feiertag: 14.5. (Himmelfahrt)\\
 % 	Karfreitag: Fr 14.4.\\
 % 	Dies academicus: Mi 17.5.\\
-	Pfingstferien: Mo 20.5., Do 23.5.
+	Pfingstferien: Mo 25.5., Do 28.5.
 \item \emph{Vorlesungswebseite}:\\[0.5ex]
 	\url{\lectureurl}\\[0.5ex]
 	(Folien, Übungsblätter, Termine, etc.)
@@ -47,11 +48,11 @@
 
 \begin{frame}\frametitle{Übungen}
 \begin{itemize}
-\item \emph{Anmeldung} zu den Übungen über OPAL \\(Link siehe Vorlesungswebseite; Beginn Einschreibung 8.4. um 18:00 Uhr)
+\item \emph{Anmeldung} zu den Übungen über OPAL \\(Link siehe Vorlesungswebseite; Beginn Einschreibung 13.4. um 15:00 Uhr)
 \item \emph{Übungsblätter} jeweils freitags für übernächste Woche
 % \\
 % 	(erstes Übungsblatt am 13. Oktober 2016)
-\item \emph{Beginn der Übungen:} 15. April 2024
+\item \emph{Beginn der Übungen:} 20. April 2026
 \item \emph{Übungsablauf}, vereinfacht, idealisiert:\\
 	Aufgaben werden zu Hause bearbeitet so gut es geht;\\
 	in der Übung helfen Gruppenleiter bei Fragen und Problemen und zeigen Beispiellösungen
@@ -67,12 +68,33 @@
 \begin{frame}\frametitle{Prüfung und Prüfungsvorbereitung}
 \begin{itemize}
 \item schritliche Prüfung (90min) am Ende des Sommersemesters
+\item kann für alte und neue Studienordnungen belegt werden (INF-B-290, INF-D-330, INF-LE-EUI, INF-25-BA-LUK)
 \item prüfungsrelevant:\\
 	kompletter Stoff aus Vorlesung \alert{und} Übung;\\
 	Wiedergeben (Definieren), Anwenden (Rechnen) und Erklären (Beweisen)
 \item Modulnote ergibt sich je nach Studiengang
 \item zur zusätzlichen Vorbereitung gibt es \alert{mehrere Konsultationen} und \alert{eine Probeklausur}
 \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{2. Wiederholungsprüfung TheoLog?}
+
+\redalert{ACHTUNG!}
+\begin{itemize}
+\item Im Oktober 2026 findet ein automatischer Übertritt in die neuen Studienordnungen statt 
+\item TheoLog bestanden? $\leadsto$ Modulnote wird für INF-25-BA-LUK übernommen
+\item TheoLog nicht bestanden? $\leadsto$ Fehlversuche werden nicht übernommen
+\item Wer Sommer eine 2. Wiederholungsprüfung antritt und nicht besteht, beendet sein Studium vor dem Übertritt. Der zweite Fehlversuch kann nicht gelöscht werden.
+\item Für die 2. Wiederholung müssen Sie sich zum nächstmöglichen Termin (SoSe'26) anmelden, wenn (1) der schriftliche Bescheid zum ``wiederholten Nichtbestehen'' rechtzeitig zugestellt wurde und (2) Sie nicht in einem Urlaubssemester sind. Sie müssen die Prüfung dann auch ablegen (falls Sie nicht am Prüfungstag krank sind).
+\end{itemize}
+\redalert{$\leadsto$ Informieren Sie sich über die für Sie geltenden Fristen!} 
+\medskip
+
+{\tiny Analoge Bemerkungen gelten für viele andere Prüfungen im SoSe 2026.\\ Siehe \url{https://tu-dresden.de/ing/informatik/studium/examination-office/ueberleitung-zwangsuebertritt}
+
+}
 
 \end{frame}
 
@@ -94,156 +116,38 @@
 % \end{frame}
 
 
-\sectionSlide{Motivation}
 
-\begin{frame}\frametitle{Paris im August 1900}\label{frame_paris}
+% 
+% \begin{frame}\frametitle{Kernfragen der theoretischen Informatik}
+% 
+% \begin{itemize}
+% \item Was heißt "`berechnen"'?
+% \item Welche Probleme kann man auf reellen Computern lösen?
+% \item Was wäre wenn wir mächtigere Computer hätten?
+% \item Was macht Rechenprobleme "`schwer"' oder "`einfach"'?
+% \item Sind alternative Rechenmodelle denkbar?
+% \item Welche (mathematischen/physikalischen/biologischen) Systeme können sonst noch rechnen?
+% \end{itemize}
+% 
+% Diese finden sich wieder in zahlreichen Teilgebieten (Berechenbarkeit, Automaten, Komplexität, Quantencomputing, logisches Schließen, künstliche Intelligenz, \ldots)
+% 
+% \end{frame}
 
-~\hfill
-\includegraphics[height=6.5cm]{images/Paris-1900-Weltausstellung}
-\hfill~
+\begin{frame}\frametitle{Übersicht "`TheoLog"' (vorläufige Planung)}
 
-\end{frame}
-
-\begin{frame}\frametitle{Der 2. Internationale Mathematikerkongress}\label{frame_hilbert}
-
-\begin{minipage}{7cm}
-\anybox{purple}{
-"`Wer von uns würde nicht gern den Schleier lüften, unter dem die Zukunft verborgen liegt, um einen Blick zu werfen auf die bevorstehenden Fortschritte unsrer Wissenschaft und in die Geheimnisse ihrer Entwickelung während der künftigen Jahrhunderte!"'\\
-\mbox{}\hfill-- David Hilbert, Paris, August 1900
-}
-\end{minipage}
-\begin{minipage}{2.5cm}
-~\hspace{8mm}
-\includegraphics[width=2cm]{images/Hilbert}
-\end{minipage}
-\medskip\pause
-
-Hilbert präsentiert eine Liste offener Fragen für die Mathematik des 20. Jahrhunderts:
+\alert{Teil 1: Aussagenlogik}
 \begin{itemize}
-	\item 1. Problem: Kontinuumshypothese (und Auswahlaxiom)
-	\item 2. Problem: Widerspruchsfreiheit der Arithmetik
-	\item \ldots
-\end{itemize}
-
-
-\end{frame}
-
-\begin{frame}\frametitle{Hilberts Programm}
-
-Aber Hilberts wahres Ziel ist ein neues Verständnis der \ghost{Mathematik:}
-\medskip
-
-\anybox{purple}{
-"`So unzugänglich diese Probleme uns erscheinen und so ratlos wir zur Zeit ihnen gegenüber stehen -- wir haben dennoch die sichere Ueberzeugung, daß ihre \alert{Lösung durch eine endliche Anzahl rein logischer Schlüsse} gelingen muß.
-
-[\ldots]
-
-Diese Ueberzeugung von der \alert{Lösbarkeit eines jeden mathematischen Problems} ist uns ein kräftiger Ansporn während der Arbeit; wir hören in uns den steten Zuruf: \alert{Da ist das Problem, suche die Lösung.} Du kannst sie durch reines Denken finden; denn in der Mathematik giebt es kein Ignorabimus$^*$!"'
-\\
-\mbox{}\hfill-- David Hilbert, Paris, August 1900
-}
-
-$^*)$ lat. "`wir werden es niemals wissen"'
-% \bigskip
-%
-
-\end{frame}
-
-\begin{frame}\frametitle{Der Rest ist Geschichte \ldots}
-
-\begin{itemize}
-\item 1910--1913: Whitehead und Russel formalisieren in ihrer \alert{Principia Mathematica} logische Grundlagen der Mathematik\pause
-\item 1918--1922: Hilbert spezifiziert sein Programm zur widerspruchsfreien Formalisierung der Mathematik\pause
-\item 1928: Hilbert beschreibt das \alert{Entscheidungsproblem} der Prädikatenlogik\pause
-\item 1929: Gödel beweist seinen \alert{Vollständigkeitssatz}: "`es gibt ein Kalkül, das alle Wahrheiten der Prädikatenlogik endlich beweisen kann"'\pause
-\item 1936: Turing definiert ein universelles Rechenmodell: die \alert{Turingmaschine}\pause
-\item 1951: Tarski publiziert ein Verfahren, mit dem alle wahren logischen Aussagen über reelle Zahlen, $+$ und $*$ automatisch durch Computer entschieden werden können
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{Der Rest ist Geschichte \ldots}
-
-\begin{itemize}
-\item 1976: Computerbeweis des Vier-Farben-Problems (Appel \& \ghost{Haken)}\pause
-\item 1992: IBM's Supercomputer WHILE-S beweist die Fermatsche Vermutung\pause
-\item ab 1995: erste Programmierumgebungen mit automatischer Verifikation\pause
-\item 2001: IBM beweist die Goldbachsche Vermutung\pause
-\item 2005: Google beweist die Riemannsche Vermutung\pause
-\item 2007: "`American Mathematical Society"' benennt sich um in "`Association of Mathematical Programmers"'\pause
-\item 2010: Zusammenbruch des Banksystems infolge der Veröffentlichung des Computerbeweises zur Entschlüsselung von Public-Key-Kryptographie\pause
-\item 2013: Einstellung des Studiengangs Mathematik an der TU Dresden (Übertragung der Mathematiklehrer-Ausbildung an die Fakultät Informatik)
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{}
-
-\pause
-\begin{center}
-{\huge\redalert{So ist es nicht gewesen.$^*$}}
-\vspace{1cm}
-
-\visible<3->{{\huge\alert{Warum nicht?}}}
-\visible<4->{\vspace{5mm}
-
-\begin{minipage}{7.5cm}
-\begin{enumerate}[(A)]
-\visible<4-7>{\item Historischer Zufall -- es kam einfach anders}
-\visible<5-7>{\item Die Hardware ist noch nicht so weit}
-\visible<6-7>{\item Die Software ist noch nicht so weit}
-\visible<7-8>{\item Die beschriebene Entwicklung ist in unserem Universum unmöglich}
-\end{enumerate}
-\end{minipage}}
-\end{center}
-\vspace{1cm}
-
-$^*)$ alle Ereignisse ab 1992 sind nie passiert
-
-\end{frame}
-
-\begin{frame}\frametitle{Informatik als Naturwissenschaft}
-
-\anybox{strongyellow}{\vspace{-5mm}\begin{center}
-Informatik erforscht, was Computer sind\\ und welche Probleme man mit ihnen lösen kann.\end{center}}\bigskip\pause
-
-Computer = ein System das rechnet (CMOS-Schaltkreise, die Turingmaschine, DNA-Moleküle, ein quantenmechanisches System, das Universum, Minecraft, \ldots)
-\bigskip
-
-Ziel: universelle Erkenntnisse -- nicht nur über die Computertechnologie, die wir gerade nutzen, sondern über die Welt, in der wir leben  {\tiny wie Physik}
-\bigskip
-
-Methode: Spezifikation von einfachen Regeln, aus denen komplexe Systeme entstehen {\tiny anders als Physik, die mit dem System anfängt und dessen "`Regeln"' sucht}
-
-\end{frame}
-
-\begin{frame}\frametitle{Kernfragen der theoretischen Informatik}
-
-\begin{itemize}
-\item Was heißt "`berechnen"'?
-\item Welche Probleme kann man auf reellen Computern lösen?
-\item Was wäre wenn wir mächtigere Computer hätten?
-\item Was macht Rechenprobleme "`schwer"' oder "`einfach"'?
-\item Sind alternative Rechenmodelle denkbar?
-\item Welche (mathematischen/physikalischen/biologischen) Systeme können sonst noch rechnen?
-\end{itemize}
-
-Diese finden sich wieder in zahlreichen Teilgebieten (Berechenbarkeit, Automaten, Komplexität, Quantencomputing, logisches Schließen, künstliche Intelligenz, \ldots)
-
-\end{frame}
-
-\begin{frame}\frametitle{Übersicht "`TheoLog"'}
-
-\alert{Teil 1: Berechenbarkeit}
-\begin{itemize}
-\item Turingmaschinen und andere Modelle
-\item Entscheidbarkeit und unentscheidbare Probleme
+\item Syntax und Semantik
+\item logisches Schließen (Resolution)
+\item Horn-Logik als Vereinfachung
+\item Praktische Anwendungen, SMT-Solver
 \end{itemize}
 
 \alert{Teil 2: Komplexität}
 \begin{itemize}
 \item Zeit und Raum
-\item P, NP und PSpace
+\item P und NP
+\item PSpace
 \end{itemize}
 
 \alert{Teil 3: Prädikatenlogik}
@@ -253,16 +157,15 @@ Diese finden sich wieder in zahlreichen Teilgebieten (Berechenbarkeit, Automaten
 \item Logisches Schließen mit Resolution
 \end{itemize}
 
-\alert{Teil 4: Logik + Berechnung}
+\alert{Teil 4: Weitere Themen}
 \begin{itemize}
-\item Logik und formale Sprachen
-\item Gödel
-\item Weitere Themen \ldots
+\item Datalog
+\item Modallogiken
+\item Gödel (wenn die Zeit ausreicht)
+% \item \ldots
 \end{itemize}
 
 \end{frame}
-
-% \overviewslide
 
 \begin{frame}\frametitle{Literatur: Lehrbücher}
 
@@ -304,251 +207,661 @@ Büchern weniger formal behandelt, z.B.:
 
 \end{frame}
 
-\frame{\begin{center}\label{frame_turing_child}
-\LARGE
-Wiederholung: Turingmaschinen\bigskip
 
-\includegraphics[height=5cm]{images/Turing-5.jpg}\\
-{\tiny Alan Turing (5 Jahre alt)}
-\end{center}}
+\begin{frame}\frametitle{Logik für InformatikerInnen}
 
-\begin{frame}\frametitle{Turingmaschinen -- informell}
-
-\emph{Schematische Darstellung:}\medskip
-
-\narrowcentering{%
-\begin{tikzpicture}[
-	scale=0.50,
-	decoration=penciline, decorate
-]
-% \path[use as bounding box] (-3.2,0) rectangle (3.5,-5); % add "draw" to see it
-% \draw[help lines] (0,0) grid (5,5);
-\pgfmathsetseed{5712}
-%
-\node (inlabel) [rectangle,draw=none,inner sep=1pt] at (3,0.5) {\alert{Eingabe-/Speicherband}};
-\draw[decorate,line width=0.3mm] (-1,0) -- (10.5,0);
-\draw[decorate,line width=0.3mm] (-1,-1) -- (10.5,-1);
-\foreach \x in {0,...,10} {
-	\draw[decorate,line width=0.3mm] (\x-1,0) -- (\x-1,-0.9);
-	\node (s\x) [circle,draw=none,inner sep=1pt] at (\x-0.5,-0.5) {\ifthenelse{\x<5}{\ifthenelse{\x<3}{\Sterm{a}}{\Sterm{b}}}{\ifthenelse{\x=5 \OR \x=7 \OR \x=8}{\Snterm{C}}{\ifthenelse{\x=9}{\Sterm{b}}{\Snterm{D}}}}};
-}
-\draw[decorate,line width=0.3mm] (10,0) -- (10,-0.9);
-\node (dots) [circle,draw=none,inner sep=1pt] at (11.1,-0.5) {$\cdots$};
-
-% \draw[decorate,line width=0.3mm] (5.5,0) -- (6,0) -- (6,-0.9) -- (5.5,-0.9) ;
-% \draw[decorate,line width=0.3mm] (6,0) -- (6,-0.9);
-
-\draw[fill=none,decorate,line width=0.3mm]
-	(2,-3) -- (6,-3) -- (6,-7) -- (2,-7) -- cycle;
-\node (falabel) [circle,draw=none,inner sep=1pt,align=left] at (4,-5) {Endliche\\Steuerung};
-\draw[fill=none,decorate,line width=0.4mm,darkblue,->]
-	(4,-3) -- (4,-2) -- (6.5,-2) -> (6.5,-1);
-\node (headlabel) [rectangle,draw=none,inner sep=1pt,align=left] at (9.5,-2.0) {\footnotesize\alert{Lese-/Schreibkopf}\\[-0.6ex]\footnotesize\alert{(beweglich)}};
-
-\node[rectangle,align=center,draw,line width=0.3mm,decorate, minimum width=8mm, minimum height=8mm] (state) at (8, -6) {$q$};
-\draw[fill=none,decorate,line width=0.4mm,darkblue,->]
-	(6,-6) -> (state.180);
-\node (qlabel) [rectangle,draw=none,inner sep=1pt] at (11.5,-6) {\footnotesize\alert{Zustandsvariable}};
-
-% \node[cloud, cloud puffs=15.7, cloud ignores aspect, minimum width=4cm, minimum height=1cm, align=center, draw,line width=0.3mm] (memory) at (11, -1) {\alert{zusätzlicher}\\\alert{Speicher}};
-%
-% \draw[fill=none,decorate,line width=0.3mm] (9,0) -- (14,0);
-% \draw[fill=none,decorate,line width=0.3mm] (9,-1) -- (14,-1);
-% \draw[fill=none,decorate,line width=0.3mm] (9,0) -- (9,-1);
-% \foreach \y in {10,...,14} {
-% 	\draw[fill=none,decorate,line width=0.3mm] (\y,0) -- (\y,-0.9);
-% 	\node (k\y) [circle,draw=none,inner sep=1pt] at (\y-0.5,-0.5) {\ifthenelse{\y<12}{\Snterm{A}}{\Snterm{B}}};
-% }
-% \draw[fill=none,decorate,line width=0.4mm,darkblue,->]
-% 	(6,-3.5) -- (7.5,-3.5) -- (7.5,-0.5) -> (9,-0.5);
-% \node (stacklabel) [circle,draw=none,inner sep=1pt] at (11.5,-1.5) {\alert{Warteschlange}};
-\end{tikzpicture}}
-\bigskip\pause
-
-\emph{Übergangsfunktion:}
-\begin{itemize}
-\item \alert{Eingabe:} aktueller Zustand, gelesenes Zeichen
-\item \alert{Ausgabe:} neuer Zustand, geschriebenes Zeichen, Änderung Lese-/Schreibadresse (${}\hat{=}{}$ Bewegung Lese-/Schreibkopf)
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{Definition DTM}
-
-\defbox{Eine \redalert{deterministische Turingmaschine} (DTM) ist ein Tupel
-$\Smach{M}=\tuple{Q,\Sigma,\Gamma,\delta,q_0,F}$ mit
-den folgenden Bestandteilen:
-\begin{itemize}
-\item $Q$: endliche Menge von \redalert{Zuständen}
-\item $\Sigma$: \redalert{Eingabealphabet}
-\item $\Gamma$: \redalert{Arbeitsalphabet} mit $\Gamma\supseteq\Sigma\cup\{\blank\}$
-\item $\delta$: \redalert{Übergangsfunktion}, eine partielle Funktion\\[1ex]
-\narrowcentering{$Q\times\Gamma \to Q\times\Gamma\times\{L,R,N\}$}
-\item $q_0$: \redalert{Startzustand} $q_0\in Q$
-\item $F$: Menge von akzeptierenden \redalert{Endzuständen} $F\subseteq Q$
-\end{itemize}
-}
-
-\alert{Dabei bedeutet $\delta(q,a)=\tuple{p,b,D}$:}\\
-\hspace{5mm}"`Liest die TM in Zustand $q$ unter dem Lese-/Schreibkopf ein $a$,\\
-\hspace{5.8mm}dann wechselt sie zu Zustand $p$, überschreibt das $a$ mit $b$\\
-\hspace{5.8mm}und verschiebt den Lese-/Schreibkopf gemäß $D\in\{L,R,N\}$\\
-\hspace{5.8mm}(nach links, nach rechts, gar nicht)."'
-
-\end{frame}
-
-\begin{frame}\frametitle{Definition NTM}
-
-\defbox{Eine \redalert{nichtdeterministische Turingmaschine} (NTM) ist ein Tupel
-$\Smach{M}=\tuple{Q,\Sigma,\Gamma,\delta,q_0,F}$ mit
-den folgenden Bestandteilen:
-\begin{itemize}
-\item $Q$: endliche Menge von \redalert{Zuständen}
-\item $\Sigma$: \redalert{Eingabealphabet}
-\item $\Gamma$: \redalert{Arbeitsalphabet} mit $\Gamma\supseteq\Sigma\cup\{\blank\}$
-\item $\delta$: \redalert{Übergangsfunktion}, eine totale Funktion\\[1ex]
-\narrowcentering{$Q\times\Gamma \to 2^{Q\times\Gamma\times\{L,R,N\}}$}\\
-wobei $2^{Q\times\Gamma\times\{L,R,N\}}$ die Potenzmenge von $Q\times\Gamma\times\{L,R,N\}$ ist
-\item $q_0$: \redalert{Startzustand} $q_0\in Q$
-\item $F$: Menge von akzeptierenden \redalert{Endzuständen} $F\subseteq Q$
-\end{itemize}
-}
-
-\alert{Dabei bedeutet $\tuple{p,b,D}\in\delta(q,a)$:}\\
-\hspace{5mm}"`Liest die TM in Zustand $q$ unter dem Lese-/Schreibkopf ein $a$,\\
-\hspace{5.8mm}dann \alert{kann} sie zu Zustand $p$ wechseln, $a$ mit $b$ überschreiben\\
-\hspace{5.8mm}und den Lese-/Schreibkopf gemäß $D\in\{L,R,N\}$ verschieben."'
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel}
-
-\emph{Wir können TMs in Diagrammen darstellen:}\medskip
-
-Ein Pfeil $s_1\mapsto s_2,D$ von $q_1$ nach $q_2$ bedeutet\\
-$\delta(q_1,s_1)=\tuple{q_2,s_2,D}$ (DTM) bzw. $\tuple{q_2,s_2,D}\in\delta(q_1,s_1)$ (NTM)
-\bigskip
-
-\emph{Beispiel:}\medskip
-
+\pause
 \begin{center}
-\begin{tikzpicture}[baseline={(q1.base)}]
-% \draw[help lines] (0,0) grid (7,2);
-\node (q1) [circle,draw=black,thick] at (0,0) {$q_0$};
-\node (q2) [circle,double,draw=black,thick] at (3,0) {$q_1$};
-%
-\path[->,line width=0.5mm](-1,0) edge (q1);
-\path[->,line width=0.5mm](q1) edge node[below,align=left] {$\Sterm{0}\mapsto\Sterm{1},R$\\$\blank\mapsto\Sterm{1},R$} (q2);
-\path[->,line width=0.5mm](q1) edge[loop above] node[above] {$\Sterm{1}\mapsto\Sterm{0},R$} (q1);
-\end{tikzpicture}
+\Huge Warum?
 \end{center}
 
-NTM oder DTM? Was tut diese Turingmaschine?
-
 \end{frame}
 
-\begin{frame}\frametitle{TM: Beispiel Abarbeitung}
-
-TMs gehen schrittweise von einer Konfiguration in die nächste über:
+\begin{frame}\frametitle{Logik für InformatikerInnen: Darum (1)}
 
 \begin{center}
-\begin{tikzpicture}[baseline={(q1.base)}]
-% \draw[help lines] (0,0) grid (7,2);
-\node (q1) [circle,draw=black,thick] at (0,0) {$q_0$};
-\node (q2) [circle,double,draw=black,thick] at (3,0) {$q_1$};
-%
-\path[->,line width=0.5mm](-1,0) edge (q1);
-\path[->,line width=0.5mm](q1) edge node[below,align=left] {$\Sterm{0}\mapsto\Sterm{1},R$\\$\blank\mapsto\Sterm{1},R$} (q2);
-\path[->,line width=0.5mm](q1) edge[loop above] node[above] {$\Sterm{1}\mapsto\Sterm{0},R$} (q1);
-\end{tikzpicture}
+\LARGE 
+\[ \frac{\text{Logik}}{\text{Informatik}} = \frac{\text{Analysis}}{\text{Ingenieurwesen}}\]
+
+\bigskip
+\large
+"`Wer rechnende Systeme verstehen und konstruieren will, der benötigt passende mathematische Modelle.\\Dieser Weg führt oftmals zur Logik."'
 \end{center}
 
-Eingabe: $\Sterm{1101}$\bigskip\pause
 
-$q_0\Sterm{1101}\pause\vdash \Sterm{0}q_0\Sterm{101}\pause\vdash \Sterm{00}q_0\Sterm{01}\pause\vdash \Sterm{001}q_1\Sterm{1}$
-\bigskip\pause
-
-Ausgabe: $\Sterm{0011}$
-
-\end{frame}
-
-\begin{frame}\frametitle{Wiederholung Grundbegriffe}
-
-\redalert{Konfiguration:} der "`Gesamtzustand"' einer TM, bestehend aus Zustand, Bandinhalt und Position des Lese-/Schreibkopfs;\\[1ex]
-geschrieben als Wort (Bandinhalt), in dem der Zustand vor der Position des Kopfes eingefügt ist
-\bigskip
-
-\redalert{Übergangsrelation:} Beziehung zwischen zwei Konfigurationen wenn die TM von der ersten in die zweite übergehen kann (deterministisch oder nichtdeterministisch); geschrieben als $\vdash$
-\bigskip
-
-\redalert{Lauf:} mögliche Abfolge von Konfigurationen einer TM, beginnend mit der Startkonfiguration; kann endlich oder unendlich sein
-\bigskip
-
-\redalert{Halten:} Ende der Abarbeitung, wenn die TM in einer Konfiguration keinen Übergang mehr zur Verfügung hat
+\begin{itemize}
+\item Modellierung von Programm\alert{logik} und \alert{logischen} Schaltungen
+\item Berechnung praktisch relevanter Eigenschaften durch logisches Schließen
+\item Hauptanwendung: \redalert{Verifikation von Systemen}
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Was ist das Ergebnis einer TM-Berechnung?}
+\begin{frame}\frametitle{Logik für InformatikerInnen: Darum (2)}
 
-Es gibt zwei wesentliche Arten DTMs zu benutzen:
+\begin{center}
+\LARGE 
+Logik = Wissenschaft vom folgerichtigen Denken
 
-\begin{enumerate}[(1)]
-\item \alert{Transducer:} Ausgabe der TM ist der Inhalt des Bandes, wenn sie hält, oder undefiniert, wenn sie nicht hält (partielle Funktion); Endzustände spielen keine Rolle und können weggelassen werden
-\item \alert{Entscheider:} Ausgabe der TM hat nur zwei Werte: die TM "`akzeptiert"', wenn sie in einem Endzustand hält und sie "`verwirft"' wenn sie in einem Nicht-Endzustand oder gar nicht hält;
-Bandinhalt beim Halten spielt keine Rolle und kann ignoriert werden
-\end{enumerate}
+\bigskip
+\large
+"`Wer intelligente Software entwickeln will, der muss logische Schlussfolgerungen algorithmisch umsetzen.\\
+Die Logik liefert die nötigen Methoden."'
+\end{center}
 
-Wir werden NTMs nur als Entscheider verwenden: in diesem Fall reicht es, wenn mindestens ein möglicher Lauf akzeptiert.
+
+\begin{itemize}
+\item Kodierung von gültigen Zusammenhängen und Regeln
+\item Logisches Schließen als Simulation von intelligentem Denken
+\item Hauptanwendung: \redalert{Künstliche Intelligenz}
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{NTM, DTM und die Church-Turing-These}
 
-Wir wissen: {\tiny(aus "`Formale Systeme"', Winter 2023/2024, 19. Vorlesung)}
+\begin{frame}\frametitle{Logik für InformatikerInnen: Darum (3)}
 
-\theobox{\textbf{Satz:} Jede NTM kann durch eine DTM simuliert werden. Insbesondere akzeptieren deterministische und nichtdeterministische Turingmaschinen die selben Sprachen.}
+\begin{center}
+\LARGE 
+Logisches Schließen = Problemlösen
+
+\bigskip
+\large
+"`Bedeutende Klassen von (schweren) Problemen lassen sich\\ durch logische Schlussfolgerung lösen.\\
+Algorithmen aus der Logik sind in vielen anderen Bereichen anwendbar."'
+\end{center}
+
+
+\begin{itemize}
+\item Logik als Spezifikationssprache für komplexe Probleme
+\item Logisches Schließen als Suche nach zulässigen Lösungen
+\item Anwendungen: \redalert{Constraint-Satisfaction-Probleme} und verwandte Optimierungsaufgaben
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Logik für InformatikerInnen: Darum (4)}
+
+\begin{center}
+\LARGE 
+Logiken = Beschreibungssprachen
+
+\bigskip
+\large
+"`Überall wo Informationen maschinell kodiert werden und wo exakt spezifiziert ist, was eine Anwendung\\ aus dieser Kodierung ableiten darf,\\hat man es mit einer Art Logik zu tun."'
+\end{center}
+
+
+\begin{itemize}
+\item Logik als Oberbegriff exakt spezifizierter Datenformate
+\item Schlussfolgerung zur \ghost{Interpretation/Analyse/Optimierung}
+\item Anwendungen: \redalert{Wissensrepräsentation} und \redalert{Datenbanken}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Was ist Logik?}
 \pause
 
-Allgemeiner gilt: kein bekanntes Berechnungsmodell kann mehr berechnen als TMs
-
-\anybox{purple}{\textbf{Church-Turing-These:} Jede (partielle) Funktion, die intuitiv als berechenbar angesehen werden kann, ist auch mit einer Turingmaschine berechenbar.}
-
+"`Logik"' ist ein allgemeiner Oberbegriff für viele mathematische und technische Formalismen,
+gekennzeichnet durch:
 \begin{itemize}
-\item \emph{Lesart 1:} Vorschlag einer mathematischen Definition der intuitiven Idee von Berechenbarkeit
-\item \emph{Lesart 2:} "`Naturgesetz"' über die Möglichkeiten und Grenzen des Rechnens an \ghost{sich}
+\item \redalert{Syntax:} Sprache einer Logik (normalerweise Formeln mit logischen Operatoren)
+\item \redalert{Semantik:} Definition der Bedeutung (Worauf beziehen sich die Formeln? Wann ist eine Formel wahr oder falsch?)
+% \item \redalert{Inferenz:} Spezifikation der korrekten logische Schlussfolgerungen (Welche neuen Formeln kann man aus den bekannten ableiten?)
+\end{itemize}\bigskip\pause
+
+Typische Zielstellung: \redalert{Logische Schlussfolgerung}
+\begin{itemize}
+\item Welche Schlüsse kann man aus einer gegebenen (Menge von) Formel(n) ziehen?
+\item Spezifikation der korrekten Schlussfolgerungen sollte sich aus Semantik ergeben
+\item Praktische Berechnung von Schlussfolgerungen ist oft kompliziert
 \end{itemize}
 
 \end{frame}
+
+\begin{frame}\frametitle{Viele Logiken}
+
+Es gibt sehr viele Logiken, z.B.
+\begin{itemize}
+\item Aussagenlogik
+\item Prädikatenlogik (erster Stufe)
+\item Prädikatenlogik zweiter Stufe
+\item Beschreibungslogiken (Wissensrepräsentation und KI, z.B. Modallogik $\mathcal{ALC}$)
+\item Temporallogiken (z.B. Modallogik LTL)
+\item Logikprogramme (Datalog, Answer Set Programming, Prolog, \ldots)
+\item Nichtklassische Logiken (z.B. intuitionistische Logik)
+\item Mehrwertige Logiken (z.B. probabilistische Logik)
+\item \ldots und viele andere mehr
+\end{itemize}
+
+$\leadsto$ In dieser Vorlesung lernen wir zunächst \alert{Aussagenlogik} kennen,\\\phantom{$\leadsto${}} später dann \alert{Prädikatenlogik}, \alert{Modallogiken} und \alert{Datalog}
+
+\end{frame}
+
+
+\sectionSlide{Aussagenlogik}
+
+\begin{frame}\frametitle{Aussagenlogik}
+
+Die Aussagenlogik untersucht \alert{logische Verknüpfungen von atomaren Aussagen}.
+\bigskip
+
+\redalert{Atomare Aussagen} sind Behauptungen, die wahr oder falsch sein können, z.B.:
+
+\examplebox{\vspace{-2ex}
+\begin{enumerate}[{A}1]
+\item "`Morgen schneit es."'
+\item "`Wir werden einen Schneemann bauen."'
+% \item "`"'
+\end{enumerate}\vspace{-1ex}
+\begin{enumerate}[{B}1]
+\item "`Die Vorstellung von der globalen Erderwärmung wurde von den Chinesen erfunden."'
+\item "`Die Temperatur der Ozeane ist seit 1998 in unverminderter Geschwindigkeit angestiegen."'
+\end{enumerate}\vspace{-1ex}
+\begin{enumerate}[{C}1]
+\item "`Typ-2-Sprachen sind unter Vereinigung abgeschlossen."'
+\item "`Typ-2-Sprachen sind unter Komplement abgeschlossen."'
+\item "`Typ-2-Sprachen sind unter Schnitt abgeschlossen."'
+\end{enumerate}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Aussagen verknüpfen}
+
+Atomare Aussagen können mithilfe logischer \alert{Junktoren} (oder \alert{Operatoren}) verknüpft werden:
+
+\examplebox{\vspace{-2ex}
+\begin{itemize}
+\item $\text{A1}\to \text{A2}$: "`Wenn es morgen schneit, dann werden wir einen Schneemann bauen."'
+\item $\text{A1}\vee \neg\text{A1}$: "`Entweder schneit es morgen oder nicht."'
+\item $\text{B1}\to \neg\text{B2}$: "`Falls die Chinesen die globale Erwärmung erfunden haben, dann steigt die Temperatur der Ozeane nicht unvermindert an."'
+\item $(\text{C1}\wedge\text{C2})\to \text{C3}$: "`Sind Typ-2-Sprachen unter Vereinigung und Komplement abgeschlossen, dann sind sie auch unter Schnitt abgeschlossen."'
+\end{itemize}}
+
+\end{frame}
+
+% \begin{frame}
+% 
+% ~\hfill
+% \includegraphics[height=6.5cm]{a6}
+% \hfill~
+% % \rotatebox{90}{\tiny Randall Munroe, \url{http://xkcd.com/208/}, CC-BY-NC 2.5}
+% 
+% \end{frame}
+
+\begin{frame}\frametitle{Logisches Schließen}
+
+Wenn einige Formeln als wahr angenommen werden, dann kann die Wahrheit anderer Formeln daraus abgeleitet werden.
+\bigskip
+
+\examplebox{%
+\emph{Beispiele:}
+\begin{itemize}
+\item Aus $\text{B2}$ und $\text{B1}\to \neg\text{B2}$ folgt $\neg\text{B1}$
+\item Aus $\text{C1}$, $\neg\text{C3}$ und $(\text{C1}\wedge\text{C2})\to \text{C3}$ folgt $\neg\text{C2}$
+\item Aus $\text{A1}\to \text{A2}$ und $\neg\text{A1}$ folgt \redalert{nicht} $\neg\text{A2}$
+\end{itemize}}\pause\bigskip
+
+\anybox{purple}{
+Die Gültigkeit bestimmter Schlussfolgerungen hat nichts mit Schneemännern,\\ Erderhitzung oder Typ-2-Sprachen zu tun!\\
+Sie ist eine rein logische Konsequenz.
+}
+
+\end{frame}
+
+\newcommand{\Aname}{Anna}
+\newcommand{\Bname}{Barbara}
+\newcommand{\Cname}{Chris}
+
+\begin{frame}\frametitle{Beispiel: Logelei}
+
+\Aname{} behauptet: "`\Bname{} lügt!"'
+\bigskip
+
+\Bname{} behauptet: "`\Cname{} lügt!"'
+\bigskip
+
+\Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'
+\bigskip\bigskip
+
+{\Large
+\narrowcentering{\alert{Wer lügt?}}
+}
+
+\medskip
+{\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% \bigskip
+
+% 
+% $A\leftrightarrow\neg B$
+% $B\leftrightarrow\neg C$
+% $C\leftrightarrow\neg A \wedge \neg B$
+
+\end{frame}
+
+\begin{frame}\frametitle{Aussagenlogik: Syntax}
+
+Wir betrachten eine abzählbar unendliche Menge $\Slang{P}$ von
+\redalert{atomaren Aussagen} (auch bekannt als: \redalert{aussagenlogische Variablen}, \redalert{Propositionen} oder schlicht \redalert{Atome})
+\medskip
+
+\defbox{Die Menge der \redalert{aussagenlogischen Formeln} ist induktiv\footnote{Das bedeutet: Die Definition ist selbstbezüglich und soll die kleinste\\ Menge an Formeln beschreiben, die alle Bedingungen erfüllen.} definiert:
+\begin{itemize}
+\item Jedes Atom $p\in\Slang{P}$ ist eine aussagenlogische Formel
+\item Wenn $F$ und $G$ aussagenlogische Formeln sind, so auch:
+	\begin{itemize}
+	\item $\neg F$: \redalert{Negation}, "`nicht $F$"'
+	\item $(F\wedge G)$: \redalert{Konjunktion}, "`$F$ und $G$"'
+	\item $(F\vee G)$: \redalert{Disjunktion}, "`$F$ oder $G$"'
+	\item $(F\to G)$: \redalert{Implikation}, "`$F$ impliziert $G$"'
+	\item $(F\leftrightarrow G)$: \redalert{Äquivalenz}, "`$F$ ist äquivalent zu $G$"'
+	\end{itemize}
+\end{itemize}
+}
+
+Wir verzichten hier oft auf "`aussagenlogisch"' und sprechen z.B. einfach von "`Formeln"'.
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiele}
+
+Die folgenden Ausdrücke sind aussagenlogische Formeln:
+\begin{itemize}
+\item $p$
+\item $((p\to q)\to p)\to p$
+\item $\neg \neg \neg p$
+\end{itemize}
+\medskip
+
+Die folgenden Ausdrücke sind \redalert{keine} aussagenlogischen Formeln:
+\begin{itemize}
+\item $p\wedge q \vee r$ (fehlende Klammern)\\
+\anybox{strongyellow}{%
+\alert{Vereinfachung:} Äußere Klammern dürfen wegfallen, d.h. wir erlauben z.B. $p\to q$ anstatt auf $(p\to q)$ zu bestehen.
+}
+\item $(p\leftarrow q)$ (Operator $\leftarrow$ undefiniert)
+% \item $(p\leftrightarrow q)$ (Operator $\leftrightarrow$ undefiniert)
+% \anybox{strongyellow}{%
+% \alert{Notation:} Wir erlauben $(p\leftarrow q)$ als alternative Schreibweise für $(q\to p)$ und $(p\leftrightarrow q)$
+% als Abkürzung für $((p\to q)\wedge (q\to p))$.}
+\item $\overline{p\wedge q}$ (wir verwenden $\overline{\phantom{x}}$ nicht als Negation)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Teilformeln}
+
+Wir können Formeln als Wörter über (endlichen Teilmengen aus) dem unendlichen Alphabet
+$\Slang{P}\cup\{\Sterm{\neg},\Sterm{\wedge},\Sterm{\vee},\Sterm{\to},\Sterm{\leftrightarrow},\Sterm{(},\Sterm{)}\}$ sehen:
+
+\[ \Snterm{F}\to \Slang{P}\mid \Sterm{\neg}\Snterm{F}\mid\Sterm{(}\Snterm{F}\Sterm{\wedge}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\vee}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\to}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\leftrightarrow}\Snterm{F}\Sterm{)}
+\]\pause
+%
+Eine \redalert{Teilformel} ist ein Teilwort (Infix) einer Formel, welches selbst eine Formel ist.
+Teilformeln werden auch \redalert{Unterformeln} genannt.\pause
+\medskip
+
+Alternativ kann man Teilformeln auch rekursiv definieren:
+
+\defbox{Die \redalert{Menge $\textsf{Sub}(F)$ der Teilformeln} einer Formel $F$ ist definiert als:
+\vspace{-2ex}
+\[ \textsf{Sub}(F) =\left\{\begin{array}{l@{~~}l@{}}
+	\{F\} & \text{falls }F\in\Slang{P} \\
+	\{\neg G\}\cup\textsf{Sub}(G) & \text{falls }F=\neg G \\
+	\{(G_1\wedge G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\wedge G_2) \\
+	\{(G_1\vee G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\vee G_2) \\
+	\{(G_1\to G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\to G_2) \\
+	\{(G_1\leftrightarrow G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\leftrightarrow G_2)
+\end{array}\right.\]\vspace{-2ex}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Semantik}
+
+\alert{Was bedeutet eine aussagenlogische Formel?}\pause
+\begin{itemize}
+\item Atome an sich bedeuten zunächst nichts\\
+$\leadsto$ sie können einfach wahr oder falsch sein\pause
+\item Je nachdem, welche Atome wahr sind und welche falsch, ergeben sich verschiedene "`Interpretationen"'\\
+$\leadsto$ dargestellt durch \redalert{Wertzuweisungen}\\
+\mbox{}\phantom{$\leadsto$} (Funktionen von $\Slang{P}$ nach $\{\mytrue,\myfalse\}$; $\mytrue$="`wahr"' und $\myfalse$="`falsch"')\pause
+\item Die Wahrheit (oder Falschheit) einer Formel ergibt sich aus dem Wahrheitswert der in ihr vorkommenden Atome\\
+$\leadsto$ Wertzuweisungen machen Formeln wahr oder falsch
+\end{itemize}
+
+\anybox{purple}{
+Die Bedeutung einer Formel besteht darin, dass sie uns Informationen darüber liefert,
+welche Wertzuweisungen möglich sind, falls die Formel wahr sein soll.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Wertzuweisungen können Formeln erfüllen}
+
+Eine \redalert{Wertzuweisung} ist eine Funktion $w:\Slang{P}\to\{\mytrue,\myfalse\}$
+\bigskip
+
+% Die Wahrheit einer Formel kann rekursiv definiert werden:
+
+\defbox{Eine Wertzuweisung $w$ \redalert{erfüllt} eine Formel $F$, in Symbolen \redalert{$w\models F$}, wenn
+eine der folgenden rekursiven Bedingungen gilt:\smallskip
+
+\narrowcentering{\begin{tabular}{rll}
+\rowcolor{darkred!70!gray}
+\textcolor{white}{Form von $F$} & \textcolor{white}{$w\models F$ wenn:} & \textcolor{white}{$w\not\models F$ wenn:}\\
+$F\in \Slang{P}$: & $w(F)=\mytrue$ & $w(F)=\myfalse$\\
+\rowcolor{lightred!20}
+$F=\neg G$ & $w\not\models G$ & $w\models G$\\
+$F=(G_1\wedge G_2)$ & $w\models G_1$ und $w\models G_2$ & $w\not\models G_1$ oder $w\not\models G_2$\\
+\rowcolor{lightred!20}
+$F=(G_1\vee G_2)$ & $w\models G_1$ oder $w\models G_2$ & $w\not\models G_1$ und $w\not\models G_2$\\
+$F=(G_1\to G_2)$ & $w\not\models G_1$ oder $w\models G_2$ & $w\models G_1$ und $w\not\models G_2$\\
+\rowcolor{lightred!20}
+$F=(G_1\leftrightarrow G_2)$ & $w\models G_1$ und $w\models G_2$ & $w\models G_1$ und $w\not\models G_2$\\%[-1ex]
+\rowcolor{lightred!20}
+	& \multicolumn{1}{c}{\raisebox{1ex}{oder}} & \multicolumn{1}{c}{\raisebox{1ex}{oder}} \\[-2ex]
+\rowcolor{lightred!20}
+	& $w\not\models G_1$ und $w\not\models G_2$ & $w\not\models G_1$ und $w\models G_2$\\[-1ex]
+\\[-1.5ex]
+\end{tabular}}
+
+% Dabei schließt "`oder"' immer den Fall ein, dass beide Möglichkeiten gelten.
+Dabei bedeutet "`A oder B"' immer "`A oder B oder beides"'.
+
+% 
+% \begin{tabular}{rl}
+% $F\in \Slang{P}$: & $w\models F$ gdw. $w(F)=\mytrue$\\
+% $F=\neg G$: & $w\models F$ gdw. $w\not\models G$\\
+% $F=(G_1\wedge G_2)$: & $w\models F$ gdw. $w\models G_1$ und $w\models G_2$
+% \end{tabular}
+% 
+% \begin{itemize}
+% \item $F\in \Slang{P}$ mit $w(F)=\mytrue$
+% \item $F=\neg G$ mit $w\not\models G$
+% \item $F=(G_1\wedge G_2)$ mit $w\models G_1$ und $w\models G_2$
+% \item $F=(G_1\vee G_2)$ mit $w\models G_1$ oder $w\models G_2$ (oder beides!)
+% \item $F=(G_1\to G_2)$ mit $w\not\models G_1$ oder $w\models G_2$
+% \item $F=(G_1\leftrightarrow G_2)$ mit $w\models G_1$ genau dann wenn $w\models G_2$
+% \end{itemize}
+% 
+% Der \redalert{Wahrheitswert $\hat{w}(F)$} einer Formel $F$ unter einer Wertezuweisung $w$ ist
+% wie folgt definiert:
+% \vspace{-2ex}
+% \[ \hat{w}(F) =\left\{\begin{array}{l@{~~}l@{}}
+% 	w(F) & \text{falls }F\in\Slang{P} \\
+% 	\{\neg G\}\cup\textsf{Sub}(G) & \text{falls }F=\neg G \\
+% 	\{(G_1\wedge G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\wedge G_2) \\
+% 	\{(G_1\vee G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\vee G_2) \\
+% 	\{(G_1\to G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\to G_2) \\
+% 	\{(G_1\leftrightarrow G_2)\}\cup\textsf{Sub}(G_1)\cup\textsf{Sub}(G_2) & \text{falls }F=(G_1\leftrightarrow G_2)
+% \end{array}\right.\]\vspace{-2ex}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Formeln Wahrheitswerte zuweisen}
+
+Wir können Wertzuweisungen von Atomen auf Formeln erweitern:
+\[ w(F)=\left\{\begin{array}{rl}\mytrue & \text{falls } w\models F\\
+\myfalse & \text{falls } w\not\models F
+\end{array}\right.\]\pause
+
+\redalert{Wahrheitswertetabellen} illustrieren die Semantik der Junktoren:\medskip
+
+\narrowcentering{%
+\begin{tabular}{cc}
+\rowcolor{lightblue!20}
+$w(F)$ & $w(\neg F)$\\
+\myfalse & \mytrue \\
+\rowcolor{gray!10}
+\mytrue & \myfalse \\
+\end{tabular}}\medskip
+
+\narrowcentering{\begin{tabular}{cccccc}
+\rowcolor{lightblue!20}
+$w(F)$ & $w(G)$ & $w(F\wedge G)$ & $w(F\vee G)$ & $w(F\to G)$ & $w(F\leftrightarrow G)$\\
+\myfalse & \myfalse & \myfalse & \myfalse& \mytrue & \mytrue\\
+\rowcolor{gray!10}
+\mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \myfalse\\
+\myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \myfalse\\
+\rowcolor{gray!10}
+\mytrue & \mytrue & \mytrue & \mytrue& \mytrue & \mytrue\\
+\end{tabular}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Wahrheitswerte von Formeln bestimmen}
+
+\begin{itemize}
+\item Der Wahrheitswert einer Formel hängt nur vom Wahrheitswert der (endlich vielen) Atome ab, die in
+ihr vorkommen.\\
+$\leadsto$ Wir geben oft nur diese an.
+\item Der Wahrheitswert einer Formel ergibt sich rekursiv aus dem Wahrheitswert ihrer Teilformeln.\\
+$\leadsto$ Darstellung in Wahrheitswertetabelle
+\end{itemize}
+
+\examplebox{\emph{Beispiel:} Für die Formel $F=((p\to q)\leftrightarrow(\neg q\to\neg p))$ und Wertzuweisung 
+$w$ mit $w(p)=\myfalse$ und $w(q)=\mytrue$ ergibt sich die folgende Tabelle:
+\medskip
+
+\narrowcentering{\begin{tabular}{ccccccc}
+\rowcolor{darkgreen!30}
+$w(p)$ & $w(q)$ & $w(p\to q)$ & $w(\neg p)$ & $w(\neg q)$ & $w(\neg q\to \neg p)$ & $w(F)$\\
+\myfalse & \mytrue & \mytrue & \mytrue & \myfalse & \mytrue & \mytrue\\
+\end{tabular}}
+
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel: Logelei}
+
+\Aname{} behauptet: "`\Bname{} lügt!"'\hfill \visible<2->{$A\leftrightarrow \neg B$}
+\bigskip
+
+\Bname{} behauptet: "`\Cname{} lügt!"'\hfill \visible<3->{$B\leftrightarrow \neg C$}
+\bigskip
+
+\Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill \visible<4->{$C\leftrightarrow (\neg A\wedge \neg B)$}
+\bigskip\bigskip
+
+{\Large
+\narrowcentering{\alert{Wer lügt?}}
+}
+
+\medskip
+{\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% \bigskip
+
+% 
+% $A\leftrightarrow\neg B$
+% $B\leftrightarrow\neg C$
+% $C\leftrightarrow\neg A \wedge \neg B$
+
+\end{frame}
+
+% \begin{frame}\frametitle{Logische Konsequenzen}
+% 
+% \defbox{Eine Wertzuweisung $w$ ist \redalert{Modell einer Formel $F$} wenn $w\models F$ (also wenn $w(F)=\mytrue$).
+% % Wir erweitern diese Notation auf (möglicherweise unendliche) Formelmengen: $w$ ist ein \redalert{Modell der Menge $\mathcal{F}$}
+% %  wenn $w\models F$ für alle $F\in\mathcal{F}$ gilt. In diesem Fall schreiben wir \redalert{$w\models\mathcal{F}$}.
+% % 
+% Ist $\mathcal{F}$ eine (möglicherweise unendliche) Menge von Formeln, dann ist $w$ ein \redalert{Modell der Menge $\mathcal{F}$}
+%  wenn $w\models F$ für alle $F\in\mathcal{F}$ gilt. In diesem Fall schreiben wir \redalert{$w\models\mathcal{F}$}.
+% }\pause
+% 
+% Die logischen Schlussfolgerungen aus einer Formel(menge) ergeben sich aus ihren Modellen:
+% 
+% \defbox{Sei $\mathcal{F}$ eine Menge von Formeln.
+% Eine Formel $G$ ist eine \redalert{logische Konsequenz} aus $\mathcal{F}$ wenn jedes Modell
+% von $\mathcal{F}$ auch ein Modell von $G$ ist.\\ In diesem Fall schreiben wir $\mathcal{F}\models G$.
+% }
+% 
+% \begin{enumerate}[$\leadsto$]
+% \item Die Formeln in $\mathcal{F}$ schränken die möglichen Interpretationen \ghost{ein:}\\
+% Je mehr Formeln wahr sein sollen,\\ desto weniger Freiheiten gibt es bei der Wahl der Modelle
+% \item $G$ ist eine logische Konsequenz wenn gilt:\\ Falls $\mathcal{F}$ wahr ist, dann ist auch $G$ garantiert wahr
+% % 
+% % Eine logische Konsequenz $G$ von $\mathcal{F}$ ist in jedem Fall (jedem Modell wahr in dem $\mathcal{F}$ wahr ist
+% \end{enumerate}
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Beispiel: Logelei}
+% 
+% \Aname{} behauptet: "`\Bname{} lügt!"'\hfill {$A\leftrightarrow \neg B$}\\[1ex]
+% \Bname{} behauptet: "`\Cname{} lügt!"'\hfill {$B\leftrightarrow \neg C$}\\[1ex]
+% \Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill {$C\leftrightarrow (\neg A\wedge \neg B)$}\\[2ex]
+% 
+% \begin{tabular}{c@{~ }c@{~ }cc@{\hspace{3mm}}c@{\hspace{3mm}}c}
+% \rowcolor{lightblue!20}
+% $w(A)$ & $w(B)$ & $w(C)$ & $w(A\leftrightarrow \neg B)$ & $w(B\leftrightarrow \neg C)$ & $w(C\leftrightarrow (\neg A\wedge \neg B))$\\
+% \myfalse & \myfalse & \myfalse & \myfalse& \myfalse & \myfalse\\
+% \rowcolor{gray!10}
+% \mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \mytrue\\
+% \myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \mytrue\\
+% \rowcolor{gray!10}
+% \mytrue & \mytrue & \myfalse & \myfalse& \mytrue & \mytrue\\
+% \myfalse & \myfalse & \mytrue & \myfalse& \mytrue & \mytrue\\
+% \rowcolor{gray!10}
+% \mytrue & \myfalse & \mytrue & \mytrue& \mytrue & \myfalse\\
+% \myfalse & \mytrue & \mytrue & \mytrue& \myfalse & \myfalse\\
+% \rowcolor{gray!10}
+% \mytrue & \mytrue & \mytrue & \myfalse& \myfalse & \myfalse\\
+% \end{tabular}
+% 
+% % {\Large
+% % \narrowcentering{\alert{Wer lügt?}}
+% % }
+% % 
+% % \medskip
+% % {\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% % \bigskip
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Beispiel: Logelei (2)}
+% 
+% \Aname{} behauptet: "`\Bname{} lügt!"'\hfill {$A\leftrightarrow \neg B$}\\[1ex]
+% \Bname{} behauptet: "`\Cname{} lügt!"'\hfill {$B\leftrightarrow \neg C$}\\[1ex]
+% \Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill {$C\leftrightarrow (\neg A\wedge \neg B)$}\\[2ex]
+% 
+% \begin{tabular}{c@{~ }c@{~ }cc@{\hspace{3mm}}c@{\hspace{3mm}}c}
+% \rowcolor{lightblue!20}
+% $w(A)$ & $w(B)$ & $w(C)$ & $w(A\leftrightarrow \neg B)$ & $w(B\leftrightarrow \neg C)$ & $w(C\leftrightarrow (\neg A\wedge \neg B))$\\
+% % \myfalse & \myfalse & \myfalse & \myfalse& \myfalse & \myfalse\\
+% % \rowcolor{gray!10}
+% % \mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \mytrue\\
+% \myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \mytrue\\
+% % \rowcolor{gray!10}
+% % \mytrue & \mytrue & \myfalse & \myfalse& \mytrue & \mytrue\\
+% % \myfalse & \myfalse & \mytrue & \myfalse& \mytrue & \mytrue\\
+% % \rowcolor{gray!10}
+% % \mytrue & \myfalse & \mytrue & \mytrue& \mytrue & \myfalse\\
+% % \myfalse & \mytrue & \mytrue & \mytrue& \myfalse & \myfalse\\
+% % \rowcolor{gray!10}
+% % \mytrue & \mytrue & \mytrue & \myfalse& \myfalse & \myfalse\\
+% \end{tabular}
+% 
+% $\leadsto$ Genau ein Modell (bezüglich der relevanten Atome)
+% \pause\bigskip
+% 
+% \emph{Logische Konsequenzen:} Alle Formeln, die unter einer Wertzuweisung mit $w(A)=\myfalse$, $w(B)=\mytrue$ und $w(C)=\myfalse$ wahr sind, \ghost{z.B.:}
+% \begin{itemize}
+% \item $\neg A$ ("`\Aname{} lügt"')
+% \item $\neg C$ ("`\Cname{} lügt"')
+% \item $\neg A\wedge \neg C$ ("`\Aname{} und \Cname{} lügen"')
+% \item $B$ ("`\Bname{} sagt die Wahrheit"')
+% \item Aber auch: $D\vee \neg D$
+% \end{itemize}
+% 
+% % {\Large
+% % \narrowcentering{\alert{Wer lügt?}}
+% % }
+% % 
+% % \medskip
+% % {\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% % \bigskip
+% 
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Allgemeingültigkeit und Co.}
+% 
+% \defbox{Eine Formel $F$ ist:
+% \begin{itemize}
+% \item \redalert{unerfüllbar} (oder \alert{inkonsistent}), wenn sie keine Modelle hat
+% \item \redalert{erfüllbar} (oder \alert{konsistent}), wenn sie Modelle hat
+% \item \redalert{allgemeingültig} (oder eine \alert{Tautologie}), wenn alle Wertzuweisungen Modelle für die Formel sind
+% \item \redalert{widerlegbar}, wenn sie nicht allgemeingültig ist
+% \end{itemize}
+% Diese Begriffe kann man für Mengen von Formeln genauso definieren.
+% }
+% 
+% \examplebox{\emph{Beispiel:} 
+% \begin{itemize}
+% \item $p\wedge\neg p$ ist unerfüllbar (und widerlegbar)
+% \item $p\vee\neg p$ ist allgemeingültig (und erfüllbar)
+% \item $p\wedge q$ ist erfüllbar und widerlegbar
+% \end{itemize}}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Allgemeingültigkeit und Unerfüllbarkeit}
+% 
+% % Speziell Allgemeingültigkeit und Unerfüllbarkeit sind für logische Schlussfolgerung von Bedeutung:
+% 
+% \theobox{\emph{Satz:}
+% \begin{enumerate}[(1)]
+% \item Eine allgemeingültige Formel ist logische Konsequenz jeder anderen Formel(menge).
+% \item Eine unerfüllbare Formel(menge) hat jede andere Formel als logische Konsequenz.
+% \end{enumerate}}
+% 
+% \emph{Beweis:} Folgt direkt aus Definition von logischer Konsequenz. Für (2) ist es wichtig, dass eine Eigenschaft "`für alle Modelle"' gilt, wenn es keine Modelle gibt (sie gilt dann für "`alle null Modelle"'). \qed
+% \bigskip\pause
+% 
+% \anybox{purple}{
+% Der unerwartete(?) Effekt (2) ist im Deutschen sprichwörtlich:\medskip
+% 
+% \narrowcentering{"`Wenn das stimmt, dann bin ich der Kaiser von China!"'}\medskip
+% 
+% drückt aus, dass aus einer mutmaßlich falschen Annahme alles folgt, selbst wenn 
+% es offensichtlich unwahr ist.
+% }
+% 
+% \end{frame}
+
+
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Die Theorie der Informatik untersucht Systeme im Hinblick auf ihre Fähigkeit zur Informationsverarbeitung (Berechnung)
+\redalert{Logik}, logisches Modellieren und logisches Schlussfolgern hat in der Informatik viele direkte und indirekte Anwendungen
 \bigskip
 
-Grundbegriffe: Turingmaschine (det./nichtdet.), Konfiguration, Lauf, Akzeptanz
+Mithilfe der \redalert{Aussagenlogik} kann man logische Beziehungen atomarer Aussagen spezifizieren
 \bigskip
 
-Church-Turing-These: "`Alle Computer sind gleich"'
+\redalert{Wertzuweisungen} können eine aussagenlogische Formel erfüllen -- dann nennt man sie \redalert{Modell} -- oder widerlegen
 \bigskip
+
+% Die Modelle einer Formel(menge) definieren ihre \redalert{logischen Konsequenzen}
+% (="`alles, was in diesen Fällen noch gilt"')\bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Offene Fragen:
 \begin{itemize}
-\item Probleme
-\item Paradoxien
-\item Phenomenal große Zahlen
+\item Geht logisches Schließen auch ohne Wahrheitswertetabellen?
+\item Wie (in)effizient ist logisches Schließen?
+\item Was hat das mit Komplexität zu tun?
 \end{itemize}
 }
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Bildrechte}
-
-Folie \ref{frame_paris}: Fotografie von 1900, gemeinfrei\\
-Folie \ref{frame_hilbert}: Fotografie von 1912, gemeinfrei\\
-Folie \ref{frame_turing_child}: Fotografie von 1917, gemeinfrei\\
-
-\end{frame}
 
 
 \end{document}
