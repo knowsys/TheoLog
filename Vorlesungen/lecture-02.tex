@@ -3,599 +3,674 @@
 
 \input{macros-lecture}
 
-\defineTitle{2}{Berechenbarkeit und Unentscheidbarkeit}{11. April 2024}
+\usepackage{setspace}
+\usepackage{minted}
+
+\defineTitle{2}{Äquivalenzen und Normalformen}{16. April 2026}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}\frametitle{Was bisher geschah \ldots}\label{frame_hilbert}\label{frame_turing_child}
+\newcommand{\Aname}{Anna}
+\newcommand{\Bname}{Barbara}
+\newcommand{\Cname}{Chris}
 
-\begin{minipage}{2.3cm}
-% ~\hspace{8mm}
-\includegraphics[width=2cm]{images/Hilbert}
-\end{minipage}
-\begin{minipage}{7.5cm}
-Hilbert: "`Die Mathematik hat mehr als ein Problem. Wir brauchen ein formales Fundament! Dann kann jedes mathematische Problem durch endlich viele `Rechenschritte' gelöst werden!"'
-\end{minipage}
+\begin{frame}\frametitle{Rückblick: Aussagenlogik}
 
-\bigskip
+\emph{Syntax:}
+\[ \Snterm{F}\to \Slang{P}\mid \Sterm{\neg}\Snterm{F}\mid\Sterm{(}\Snterm{F}\Sterm{\wedge}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\vee}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\to}\Snterm{F}\Sterm{)} \mid\Sterm{(}\Snterm{F}\Sterm{\leftrightarrow}\Snterm{F}\Sterm{)}
+\]
 
-\begin{minipage}{7.3cm}
-Turing: "`Es gibt Dinge, die man nicht berechnen kann. Ich kann das beweisen \ldots{} aber erst einmal muss ich definieren, was `berechnen' eigentlich bedeutet."'
-\end{minipage}
-\begin{minipage}{2.4cm}
-~\hspace{4mm}
-\includegraphics[width=2cm]{images/Turing}
-\end{minipage}
-
-\bigskip
-
-Church und Turing (im Chor mit Kleene und Rosser):\\~\hfill"`Alle Computer sind gleich!"'\hfill~
-
-\end{frame}
-
-\begin{frame}\frametitle{Wichtige Typen von Turingmaschinen}
-
+\emph{Semantik:}
 \begin{itemize}
-\item \alert{Deterministische Turingmaschine} (DTM)
-\item \alert{Nichtdeterministische Turingmaschine} (NTM)
-\item \alert{Mehrband-Turingmaschine}\\
-	Wir ändern die Definition so, dass statt einem Band in jedem Schritt $k\geq 2$ Bänder gelesen
-	und beschrieben werden.\\
-	Jedes Band hat einen unabhängigen Lese-/Schreibkopf.\\
-	Die Eingabe wird auf das erste Band geschrieben.
-\end{itemize}
-
-\theobox{\emph{Satz:} Deterministische und nichtdeterministische Turingmaschinen mit einer beliebigen Anzahl von Bändern können die gleichen Berechnungen ausführen.}
-
-Details siehe Vorlesung Formale Systeme (Winter 2023/2024, Vorlesungen 18 und 19)
-
-\end{frame}
-
-\sectionSlide{Grundbegriffe: Berechnen und Entscheiden}
-
-\begin{frame}\frametitle{TMs, die Mengen definieren}
-
-Eine Turingmaschine kann eine Menge von akzeptierten Eingaben definieren:
-
-\defbox{Die von einer TM $\Smach{M}$ \redalert{erkannte Sprache} $\Slang{L}(\Smach{M})$ ist die Menge aller Wörter, die von einer TM akzeptiert werden, d.h., bei deren Eingabe $\Smach{M}$
-in einem Endzustand hält (DTM) / halten könnte (NTM).}\pause
-
-Zwei Gründe für Nichtakzeptanz von Wörtern:
-\begin{enumerate}[(1)]
-\item TM hält in einem Zustand, der kein Endzustand ist
-\item TM hält nicht (Endlosschleife)
-\end{enumerate}
-Es ist praktisch, wenn eine TM garantiert hält, da man Fall (2) meist nicht sicher erkennen kann (man weiß nicht, ob die TM irgendwann doch noch anhält)
-
-\defbox{Eine TM ist ein \redalert{Entscheider}, wenn sie bei jeder Eingabe garantiert hält (bei NTMs: in jedem möglichen Lauf). Wir sagen in diesem Fall, dass die TM die von ihr erkannte Sprache \redalert{entscheidet}.}
-
-\end{frame}
-
-\begin{frame}\frametitle{TMs, die Funktionen definieren}
-
-Eine Turingmaschine kann eine Funktion von Eingabewörtern auf Ausgabewörter definieren:\medskip
-
-\defbox{Eine DTM $\Smach{M}$ \redalert{berechnet} eine partielle Funktion $f_{\Smach{M}}:\Sigma^*\to\Sigma^*$ wie folgt.
-Für ein Wort $w\in\Sigma^*$ ist $f_{\Smach{M}}(w)=v$ wenn $\Smach{M}$ bei Eingabe $w$ mit einem Band anhält, auf dem 
-nur $v$ steht, d.h., wenn der Bandinhalt nach dem Halten die Form $v\blank\blank\blank\cdots$ hat.}\pause
-
-Es gibt also zwei Fälle, in denen $f_{\Smach{M}}(w)$ undefiniert ist:
-\begin{enumerate}[(1)]
-\item $\Smach{M}$ hält bei Eingabe $w$ mit einem Band, das nicht die geforderte Form hat
-\item $\Smach{M}$ hält bei Eingabe $w$ gar nicht
-\end{enumerate}
-
-Das heißt: Wenn $f_{\Smach{M}}$ eine totale Funktion ist, dann muss $\Smach{M}$ immer halten.
-
-\end{frame}
-
-\begin{frame}\frametitle{Entscheidbarkeit und Berechenbarkeit}
-
-Wir interessieren uns für Funktionen, die man berechnen kann:
-
-\defbox{Eine totale oder partielle Funktion $f$ heißt \redalert{berechenbar}, wenn es eine DTM $\Smach{M}$ gibt, die $f$ berechnet, d.h. mit $f=f_{\Smach{M}}$.}
-
-Anmerkung: Berechenbare totale Funktionen nennt man auch \redalert{rekursiv}; berechenbare partielle Funktionen \redalert{partiell rekursiv}.
-\bigskip\pause
-
-Bei Sprachen unterscheiden wir mehrere Fälle:
-
-\defbox{Eine Sprache $\Slang{L}$ ist \redalert{entscheidbar} (=\redalert{berechenbar}=\redalert{rekursiv}), wenn es eine TM $\Smach{M}$ gibt,
-die ihr Wortproblem entscheidet, d.h. $\Smach{M}$ ist Entscheider und $\Slang{L}=\Slang{L}(\Smach{M})$.
-Andernfalls heißt $\Slang{L}$ \redalert{unentscheidbar}.\\[1ex]
-%
-$\Slang{L}$ ist \redalert{semi-entscheidbar} (=\redalert{Turing-erkennbar}=\redalert{Turing-akzeptierbar}=\redalert{rekursiv aufzählbar}) wenn
-es eine TM $\Smach{M}$ gibt mit $\Slang{L}=\Slang{L}(\Smach{M})$, auch wenn $\Smach{M}$ kein Entscheider ist.}
-
-\end{frame}
-
-\begin{frame}\frametitle{Warum heißt es "`rekursiv aufzählbar"'?}
-
-Bei rekursiv aufzählbaren Sprachen $\Slang{L}$ kann man eine TM konstruieren, die
-alle Elemente von $\Slang{L}$ der Reihe nach "`aufzählt"':\bigskip
-
-\defbox{Ein \redalert{Aufzähler} ist eine deterministische Turingmaschine $\Smach{M}$ mit einem speziellen
-Zustand $q_{\textsf{Ausgabe}}$. Immer wenn $\Smach{M}$ in den Zustand $q_{\textsf{Ausgabe}}$
-gelangt, wird der aktuelle Bandinhalt vom Anfang bis zum ersten Zeichen in $\Gamma\setminus\Sigma$ (z.B. $\blank$) ausgegeben.\\[1ex]
-%
-Die \redalert{durch $\Smach{M}$ aufgezählte Sprache} ist die Menge aller Wörter, die $\Smach{M}$ ausgibt, wenn $\Smach{M}$ auf dem leeren Band gestartet wird.\\
-{\tiny(Anmerkung: Per Definition sind alle ausgegebenen Wörter in $\Sigma^*$.)}
-}\bigskip
-
-Die durch $\Smach{M}$ aufgezählte Sprache kann unendlich sein, wenn $\Smach{M}$ auf der leeren Eingabe nicht hält.
-\bigskip
-
-Es ist erlaubt, dass Wörter mehr als einmal in der Aufzählung vorkommen.
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel für einen Aufzähler}
-
-Wir betrachten das Alphabet $\Sigma=\{\Sterm{a},\Sterm{b}\}$
-
-\begin{center}
-\begin{tikzpicture}[baseline={(q1.base)}]
-% \draw[help lines] (0,0) grid (7,2);
-\node (q0) [circle,draw=black,thick] at (0,0) {$q_0$};
-\node (q1) [circle,draw=black,thick] at (3,0) {$q_1$};
-\node (q2) [rectangle,rounded corners=1.5ex, minimum height=2em,draw=black,thick] at (6,0) {$q_{\textsf{Ausgabe}}$};
-%
-\path[->,line width=0.5mm](-1,0) edge (q0);
-\path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
-\path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
-\path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
-\end{tikzpicture}
-\end{center}
-
-\emph{Frage:} Welche Menge zählt diese TM auf?\pause\bigskip
-
-\emph{Antwort:} $\{ \Sterm{a}^{2n+1}\Sterm{b}\mid 0\leq n\}$
-\bigskip
-
-Aufgabe zur Selbstkontrolle: Schreiben Sie einen Aufzähler für diese Sprache, ohne dabei die Bewegungsrichtung $N$ zu verwenden.
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (1)}
-
-\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
-einen Aufzähler für $\Slang{L}$ gibt.
-}\pause
-
-\emph{Beweis:} "`$\Leftarrow$"' (Vom Aufzähler zur TM) Wenn es für $\Slang{L}$ einen Aufzähler
-gibt, dann können wir $\Slang{L}$ wie folgt semi-entscheiden:
-\begin{itemize}
-\item Simuliere den Aufzähler auf einem leeren Band (wir dürfen eine Mehrband-TM verwenden).
-\item Immer wenn $q_{\textsf{Ausgabe}}$ erreicht wird: Vergleiche das Wort auf dem Eingabeband mit dem auszugebeneden Wort aus $\Sigma^*$ auf dem Aufzählerband und akzeptiere, wenn beide das gleich sind.
-\item Andernfalls fahre mit der Aufzählung fort.
-\item Falls die Aufzählung terminiert (ohne dass die Eingabe gefunden wurde), dann verwerfe.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Aufzählbar = semi-entscheidbar (2)}
-
-\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann semi-entscheidbar, wenn es
-einen Aufzähler für $\Slang{L}$ gibt.
-}\pause
-
-\emph{Beweis:} "`$\Rightarrow$"' (Von der TM zum Aufzähler) Wenn $\Slang{L}$ durch eine TM $\Smach{M}$ erkannt wird, dann können wir $\Slang{L}$ wie folgt aufzählen:
-\begin{itemize}
-\item Betrachte eine systematisch berechenbare Aufzählung aller Wörter $w_0, w_1, w_2, \ldots$ aus $\Sigma^*$
-\item Für jede natürliche Zahl $n\geq 1$:
-	\begin{itemize}
-	\item Für jedes $i\in\{1,\ldots, n\}$:
-		\begin{itemize}
-		\item Simuliere $\Smach{M}$ auf Eingabe $w_i$ für $n$ Schritte
-		\item Falls $\Smach{M}$ bei dieser Simulation terminiert und $w_i$ akzeptiert, dann gib $w_i$ aus
-		\end{itemize}
-	\end{itemize}
-\end{itemize}
-Anmerkung 1: Der so konstruierte Aufzähler terminiert nicht (selbst wenn die aufgezählte Menge endlich ist).\\[1ex]
-Anmerkung 2: Der Wert von $n$ während der Iteration kann in Symbolen aus $\Gamma\setminus\Sigma$ hinter dem jeweils auszugebenen Wort gespeichert werden.\qed
-
-\end{frame}
-
-\begin{frame}\frametitle{Berechnungen jenseits von $\Sigma^*$}
-
-\pause
-Wir können den Berechnungsbegriff leicht auf beliebige Objekte ausdehnen, die als
-Wörter kodiert werden können.
-\bigskip
-
-Wichtige Fälle:
-\begin{itemize}
-\item \alert{Natürliche Zahlen $\mathbb{N}$} können z.B. binär als Wörter über $\{\Sterm{0},\Sterm{1}\}$ kodiert werden
-\item \alert{Tupel} (Listen) von Wörtern (oder natürlichen Zahlen, \ldots), können kodiert werden, indem man zum Eingabealphabet ein zusätzliches Trennzeichen $\Sterm{\#}$ hinzufügt
-\end{itemize}\bigskip\pause
-
-\examplebox{\emph{Beispiel:} Mithilfe dieser Kodierungen können wir z.B. von berechenbaren Funktionen $\mathbb{N}\to\mathbb{N}$ oder von
-semi-entscheidbaren Teilmengen von $\mathbb{N}\times\mathbb{N}$ sprechen.}\medskip
-
-Anmerkung: Oft gibt es viele denkbare Kodierungen eines Objektes als Wort. Vorerst sollen uns die Details nicht interessieren, solange klar ist, dass eine TM die Kodierung entschlüsseln kann.
-
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Zusammenhang von Sprache und Funktion}
-
-Berechenbarkeit von Funktionen und Sprachen sind eng verwandt.
-
-\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann entscheidbar, wenn die folgende Funktion $f:\Sigma^*\to\Sigma^*$ berechenbar ist (o.B.d.A. sei $\{\Sterm{0},\Sterm{1}\}\subseteq\Sigma$):
-\[f(w)= \left\{\begin{array}{ll}
-\Sterm{1} & \text{falls $w\in\Slang{L}$}\\
-\Sterm{0} & \text{falls $w\notin\Slang{L}$}\\
-\end{array}\right.\]}\pause
-
-{\footnotesize
-\emph{Beweisskizze:} "`$\Rightarrow$"' Ein Entscheider für $\Slang{L}$ kann in eine TM für $f$ umgebaut werden. Dazu verwendet man "`Subroutinen"', die den Bandinhalt löschen und mit einem einzelnen Zeichen \Sterm{1} oder \Sterm{0} ersetzten. Diese Routinen werden aufgerufen, wenn der ursprüngliche Entscheider halten würde: die \Sterm{1}-Routine beim Halten in einem Endzustand, die \Sterm{0}-Routine andernfalls.\medskip
-
-{\tiny Eventuell muss man den Entscheider außerdem so modifizieren, dass das
-Zeichen $\blank$ nur am Ende des verwendeten Bandinhaltes vorkommen kann (sonst wird das Löschen des gesamten Bandes problematisch!).
-
-}
-\smallskip
-
-"`$\Leftarrow$"' Eine TM, die $f$ berechnet, kann in einen Entscheider für $\Slang{L}$ umgebaut werden. Die Idee ist wie zuvor, aber die Subroutinen prüfen jetzt, ob das Band \Sterm{1} oder \Sterm{0} enthält und wechseln entsprechend in einen akzeptierenden oder nicht-akzeptierenden Zustand.\qed
-
-}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Zusammenhang von Funktion und Sprache}
-
-Für die Umkehrung stellen wir Funktionen als Mengen dar:
-
-\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
-\[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
-Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}
-
-\pause
-\emph{Beweis:} "`$\Rightarrow$"' Sei $f$ berechenbar. Dann kann man $\textsf{Graph}_f$ wie folgt
-erkennen:
-\begin{itemize}
-\item Für eine Eingabe $\tuple{w,v}$, berechne $f(w)$ (als Subroutine).
-\item Wenn die Berechnung von $f(w)$ terminiert, dann akzeptiere falls $f(w)=v$.
-\item Wenn die Berechnung von $f(w)$ nicht terminiert, dann wird auch die Erkennung von $\textsf{Graph}_f$ nicht halten. Dieses Verhalten ist korrekt, da in diesem Fall $f(w)$ undefiniert ist und
-$\tuple{w,v}\notin\textsf{Graph}_f$.
-\end{itemize}\pause
-Falls $f$ total ist, dann hält auch die Erkennung von $\textsf{Graph}_f$.
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Zusammenhang von Funktion und Sprache (2)}
-
-Für die Umkehrung stellen wir Funktionen als Mengen dar:
-
-\theobox{\emph{Satz:} Eine partielle Funktion $f$ ist genau dann berechenbar, wenn die Sprache
-\[\textsf{Graph}_f=\{\tuple{w,f(w)}\mid w\in\Sigma^*,\; f(w)\text{ definiert}\}\] semi-entscheidbar ist.
-Ist $f$ total, dann ist $\textsf{Graph}_f$ sogar entscheidbar.}\pause
-
-\emph{Beweis:} "`$\Leftarrow$"' Sei $\textsf{Graph}_f$ semi-entscheidbar. Dann kann
-man $f$ wie folgt berechnen:
-\begin{itemize}
-\item Wir konstruieren einen Aufzähler für $\textsf{Graph}_f$ wie zuvor gezeigt
-\item Der Aufzähler wird auf einem eigenen Band simuliert.
-\item Immer wenn der Aufzähler ein Paar $\tuple{w,f(w)}$ ausgibt, vergleichen wir
-	$w$ mit dem Inhalt des Eingabebandes
-\item Wenn die Eingabe mit $w$ übereinstimmt, dann wird $f(w)$ als Ergebnis verwendet und die TM hält.
-\item Andernfalls wird die Simulation der Aufzählung fortgesetzt.\qed
-\end{itemize}
-
-{\tiny
-Anmerkung: Wir haben nicht formal definiert, was bei einer Mehrband-TM die Ausgabe ist, aber
-das kann man leicht tun (oder die Mehrband-TM auf einem Band simulieren).
-
-}
-\end{frame}
-
-\sectionSlide{Unentscheidbare Probleme}
-
-
-\begin{frame}\frametitle{Es gibt unentscheidbare Probleme}
-
-\theobox{\emph{Satz:} Es gibt Sprachen und Funktionen, die nicht berechenbar sind.}
-
-\pause
-Dies kann man wie folgt zeigen:
-\begin{itemize}
-\item Die Menge der Turingmaschinen ist abzählbar
-\item Die Menge der Sprachen über jedem Alphabet ist überabzählbar
-\item Also muss es Sprachen geben, die durch keine TM entschieden werden.
-\end{itemize}
-\pause
-
-Das Argument funktioniert analog mit (partiellen) Funktionen, deren Menge ebenfalls überabzählbar groß ist.\medskip
-
-Das Argument zeigt zudem auch, dass die meisten Sprachen nicht einmal semi-entscheidbar sind (Kontrollfrage: Warum?).
-
-\end{frame}
-
-\begin{frame}\frametitle{Die Menge der TMs ist abzählbar}
-
-\pause
-Dies folgt in zwei Schritten:
-\begin{itemize}
-\item Jede TM kann leicht durch ein endliches Wort kodiert werden (z.B. binär)
-\item Es gibt abzählbar viele Wörter. Man kann sie zum Beispiel wie folgt abzählen:
-\begin{itemize}
-\item Beginne mit dem leeren Wort $\epsilon$.
-\item Reihe dann alle Wörter der Länge 1 auf
-\item Reihe dann alle Wörter der Länge 2 auf
-\item Reihe dann alle Wörter der Länge 3 auf
-\item \ldots
-\end{itemize}
+\item Wertzuweisungen $w:\Slang{P}\to\{\mytrue,\myfalse\}$ zur Interpretation von Atomen
+\item Erweiterung von Atomen auf Formeln:
 \footnotesize
-(Siehe dazu auch Formale Systeme, Winter 2023/2024, Vorlesung 2)
+\narrowcentering{%
+\begin{tabular}[t]{cc}
+\rowcolor{lightblue!20}
+$w(F)$ & $w(\neg F)$\\
+\myfalse & \mytrue \\
+\rowcolor{gray!10}
+\mytrue & \myfalse \\
+\end{tabular}}\medskip
+
+\begin{tabular}{cccccc}
+\rowcolor{lightblue!20}
+$w(F)$ & $w(G)$ & $w(F\wedge G)$ & $w(F\vee G)$ & $w(F\to G)$ & $w(F\leftrightarrow G)$\\
+\myfalse & \myfalse & \myfalse & \myfalse& \mytrue & \mytrue\\
+\rowcolor{gray!10}
+\mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \myfalse\\
+\myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \myfalse\\
+\rowcolor{gray!10}
+\mytrue & \mytrue & \mytrue & \mytrue& \mytrue & \mytrue\\
+\end{tabular}
 
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Die Menge der Sprachen ist überabzählbar (1)}\label{frame_cantor}
+\begin{frame}\frametitle{Beispiel: Logelei}
 
-\begin{minipage}{2.5cm}
-\includegraphics[width=2cm]{images/Cantor-1870}
-\end{minipage}\pause%
-\begin{minipage}{7.5cm}
+\Aname{} behauptet: "`\Bname{} lügt!"'\hfill \visible<1->{$A\leftrightarrow \neg B$}
+\bigskip
 
-Dies folgt aus einer Konstruktion von Georg Cantor:
+\Bname{} behauptet: "`\Cname{} lügt!"'\hfill \visible<1->{$B\leftrightarrow \neg C$}
+\bigskip
 
-\begin{itemize}
-\item Beweis durch Widerspruch: Wir nehmen an, dass die Menge aller Sprachen abzählbar ist.
-\item Sei $\Slangsub{L}{1},\Slangsub{L}{2},\Slangsub{L}{3}, \ldots$ eine entsprechende Aufzählung aller Sprachen.
-\item Wir reihen außerdem alle Wörter in $\Sigma^*$ auf: $w_1, w_2, w_3, \ldots$.
-\end{itemize}
+\Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill \visible<1->{$C\leftrightarrow (\neg A\wedge \neg B)$}
+\bigskip\bigskip
 
-\end{minipage}
-
-\end{frame}
-
-\begin{frame}\frametitle{Die Menge der Sprachen ist überabzählbar (2)}
-
-\begin{itemize}
-\item Man kann sich die Relation $\in$ zwischen Wörtern und Sprachen jetzt als unendliche Tabelle vorstellen:
-%
-\[ \begin{array}{l|c|c|c|c|c}
- & w_1 & w_2 & w_3 & w_4 & \ldots \\\hline
- \Slangsub{L}{1} & \only<2->{\cellcolor{purple!20}}\times & - & - & \times & \ldots \\\hline
- \Slangsub{L}{2} & - & \only<2->{\cellcolor{purple!20}}\times &  - & \times & \ldots \\\hline
- \Slangsub{L}{3} & - & \times & \only<2->{\cellcolor{purple!20}}- &  - & \ldots \\\hline
- \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
- \visible<2->{\\\hline}
- \visible<2->{\Slangsub{L}{d} & - & - & \times & \ldots & }
-\end{array}\]\pause
-\item Wir konstruieren eine Sprache $\Slangsub{L}{d}$ durch \alert{Diagonalisierung}.\\
-Formal: $w_i\in \Slangsub{L}{d}$ genau dann wenn $w_i\notin\Slangsub{L}{i}$.\pause
-\end{itemize}
-Dann kommt $\Slangsub{L}{d}$ in der Tabelle nicht vor. Widerspruch.
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Nichtwissen $\neq$ Unentscheidbarkeit}
-
-Wie finden wir konkrete unentscheidbare Probleme?
-\bigskip\pause
-
-Es reicht nicht aus, dass wir nicht wissen, wie ein Problem algorithmisch gelöst werden kann!\bigskip
-
-\examplebox{\emph{Beispiel:} Sei $\Slang{L}_\pi$ die Menge aller endlichen Ziffernfolgen, die in der Dezimaldarstellung von $\pi$ vorkommen. Zum Beispiel gilt $\Sterm{14159265}\in\Slang{L}_\pi$ und $\Sterm{41}\in\Slang{L}_\pi$. \\[1ex]
-
-\only<3->{%
-Wir wissen nicht, ob man die Sprache $\Slang{L}_\pi$ entscheiden kann, aber sie könnte dennoch entscheidbar sein (z.B. wenn jede endliche Ziffernfolge irgendwo in $\pi$ vorkommt, was aber bisher nicht bekannt ist).}}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Nichtwissen $\neq$ Unentscheidbarkeit (2)}
-
-Es gibt sogar Fälle, in denen wir sicher sind, dass ein Problem entscheidbar ist,
-aber trotzdem nicht wissen, wie man es löst.\\[1.5ex]\pause
-
-\examplebox{\emph{Beispiel:} Sei $\Slang{L}_{\pi7}$ die Menge aller Ziffernfolgen der Form $\Sterm{7}^n$, die in der Dezimaldarstellung von $\pi$ vorkommen.\\[1ex]
-
-\only<3->{
-$\Slang{L}_{\pi7}$ ist entscheidbar:
-\begin{itemize}
-\item Möglichkeit 1: $\pi$ enthält beliebig lange Ketten der Ziffer $\Sterm{7}$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $\Sterm{7}^n$ akzeptiert.
-\item Möglichkeit 2: $\pi$ enthält Ketten der Ziffer $\Sterm{7}$ nur bis zu einer maximalen Länge $\ell$. Dann wird $\Slang{L}_{\pi7}$ durch eine TM entschieden, die alle Wörter der Form $\Sterm{7}^n$ mit $n\leq\ell$ akzeptiert.
-\end{itemize}
-Für jeden denkbaren Fall gibt es einen Algorithmus -- wir wissen nur nicht, welcher davon korrekt ist.}
+{\Large
+\narrowcentering{\alert{Wer lügt?}}
 }
 
+\medskip
+{\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% \bigskip
+
+% 
+% $A\leftrightarrow\neg B$
+% $B\leftrightarrow\neg C$
+% $C\leftrightarrow\neg A \wedge \neg B$
+
 \end{frame}
 
-\begin{frame}[t]\frametitle{Ein erstes unentscheidbares Problem (1)}
+\sectionSlide{Logische Konsequenzen}
 
-\emph{Frage:} Falls eine TM anhält, wie lange kann das im schlimmsten Fall dauern?\\
-\bigskip\pause
+\begin{frame}\frametitle{Logische Konsequenzen}
 
-\emph{Antwort:} Beliebig lange, weil:
-\begin{enumerate}[(a)]
-\item die Eingabe beliebig groß sein kann
-\item die TM beliebig groß sein kann
+\defbox{Eine Wertzuweisung $w$ ist \redalert{Modell einer Formel $F$} wenn $w\models F$ (also wenn $w(F)=\mytrue$).
+% Wir erweitern diese Notation auf (möglicherweise unendliche) Formelmengen: $w$ ist ein \redalert{Modell der Menge $\mathcal{F}$}
+%  wenn $w\models F$ für alle $F\in\mathcal{F}$ gilt. In diesem Fall schreiben wir \redalert{$w\models\mathcal{F}$}.
+% 
+Ist $\mathcal{F}$ eine (möglicherweise unendliche) Menge von Formeln, dann ist $w$ ein \redalert{Modell der Menge $\mathcal{F}$}
+ wenn $w\models F$ für alle $F\in\mathcal{F}$ gilt. In diesem Fall schreiben wir \redalert{$w\models\mathcal{F}$}.
+}\pause
+
+Die logischen Schlussfolgerungen aus einer Formel(menge) ergeben sich aus ihren Modellen:
+
+\defbox{Sei $\mathcal{F}$ eine Menge von Formeln.
+Eine Formel $G$ ist eine \redalert{logische Konsequenz} aus $\mathcal{F}$ wenn jedes Modell
+von $\mathcal{F}$ auch ein Modell von $G$ ist.\\ In diesem Fall schreiben wir $\mathcal{F}\models G$.
+}
+
+\begin{enumerate}[$\leadsto$]
+\item Die Formeln in $\mathcal{F}$ schränken die möglichen Interpretationen \ghost{ein:}\\
+Je mehr Formeln wahr sein sollen,\\ desto weniger Freiheiten gibt es bei der Wahl der Modelle
+\item $G$ ist eine logische Konsequenz wenn gilt:\\ Falls $\mathcal{F}$ wahr ist, dann ist auch $G$ garantiert wahr
+% 
+% Eine logische Konsequenz $G$ von $\mathcal{F}$ ist in jedem Fall (jedem Modell wahr in dem $\mathcal{F}$ wahr ist
 \end{enumerate}
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Ein erstes unentscheidbares Problem (2)}
+\begin{frame}[t]\frametitle{Beispiel: Logelei}
 
-\emph{Frage:} Falls eine TM \alert{mit $n$ Zuständen} und \alert{einem zwei-elementigen Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$} auf einem \alert{leeren Band} anhält, wie lange kann das im schlimmsten Fall dauern?\\
-\bigskip\pause
+\Aname{} behauptet: "`\Bname{} lügt!"'\hfill {$A\leftrightarrow \neg B$}\\[1ex]
+\Bname{} behauptet: "`\Cname{} lügt!"'\hfill {$B\leftrightarrow \neg C$}\\[1ex]
+\Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill {$C\leftrightarrow (\neg A\wedge \neg B)$}\\[2ex]
 
-\emph{Antwort:} Das kommt auf $n$ an \ldots\bigskip\pause
+\begin{tabular}{c@{~ }c@{~ }cc@{\hspace{3mm}}c@{\hspace{3mm}}c}
+\rowcolor{lightblue!20}
+$w(A)$ & $w(B)$ & $w(C)$ & $w(A\leftrightarrow \neg B)$ & $w(B\leftrightarrow \neg C)$ & $w(C\leftrightarrow (\neg A\wedge \neg B))$\\
+\myfalse & \myfalse & \myfalse & \myfalse& \myfalse & \myfalse\\
+\rowcolor{gray!10}
+\mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \mytrue\\
+\myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \mytrue\\
+\rowcolor{gray!10}
+\mytrue & \mytrue & \myfalse & \myfalse& \mytrue & \mytrue\\
+\myfalse & \myfalse & \mytrue & \myfalse& \mytrue & \mytrue\\
+\rowcolor{gray!10}
+\mytrue & \myfalse & \mytrue & \mytrue& \mytrue & \myfalse\\
+\myfalse & \mytrue & \mytrue & \mytrue& \myfalse & \myfalse\\
+\rowcolor{gray!10}
+\mytrue & \mytrue & \mytrue & \myfalse& \myfalse & \myfalse\\
+\end{tabular}
 
-\defbox{Wir definieren $S(n)$ als die maximale Zahl an Schritten, die eine DTM mit
-$n$ Zuständen und dem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$ auf dem leeren Band ausführt, bevor sie schließlich hält.}
+% {\Large
+% \narrowcentering{\alert{Wer lügt?}}
+% }
+% 
+% \medskip
+% {\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% \bigskip
 
-\emph{Beobachtung:} $S$ ist wohldefiniert.
-\begin{itemize}
-\item Die Zahl der TMs mit maximal $n$ Zuständen ist endlich
-\item Unter den relevanten $n$-Zustand-TMs, gibt es eine maximale Anzahl an Schritten bis zum Halten (TMs die nicht halten werden ignoriert)
-\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Fleißige Biber}\label{frame_rado}
+\begin{frame}[t]\frametitle{Beispiel: Logelei (2)}
 
-\begin{minipage}[b]{10.5cm}
-Eine leichte Abwandlung des Schrittzählers ist\\das Busy-Beaver-Problem:
-\end{minipage}%
-\begin{minipage}[t]{2.5cm}
-~\hspace{2mm}\includegraphics[width=2cm]{images/Rado}\\
-{\tiny \mbox{}\hspace{2mm}Tibor Rad\'{o}, BB-Erfinder}
-\end{minipage}\bigskip
+\Aname{} behauptet: "`\Bname{} lügt!"'\hfill {$A\leftrightarrow \neg B$}\\[1ex]
+\Bname{} behauptet: "`\Cname{} lügt!"'\hfill {$B\leftrightarrow \neg C$}\\[1ex]
+\Cname{} behauptet: "`\Aname{} und \Bname{} lügen!"'\hfill {$C\leftrightarrow (\neg A\wedge \neg B)$}\\[2ex]
+
+\begin{tabular}{c@{~ }c@{~ }cc@{\hspace{3mm}}c@{\hspace{3mm}}c}
+\rowcolor{lightblue!20}
+$w(A)$ & $w(B)$ & $w(C)$ & $w(A\leftrightarrow \neg B)$ & $w(B\leftrightarrow \neg C)$ & $w(C\leftrightarrow (\neg A\wedge \neg B))$\\
+% \myfalse & \myfalse & \myfalse & \myfalse& \myfalse & \myfalse\\
+% \rowcolor{gray!10}
+% \mytrue & \myfalse & \myfalse & \mytrue& \myfalse & \mytrue\\
+\myfalse & \mytrue & \myfalse & \mytrue& \mytrue & \mytrue\\
+% \rowcolor{gray!10}
+% \mytrue & \mytrue & \myfalse & \myfalse& \mytrue & \mytrue\\
+% \myfalse & \myfalse & \mytrue & \myfalse& \mytrue & \mytrue\\
+% \rowcolor{gray!10}
+% \mytrue & \myfalse & \mytrue & \mytrue& \mytrue & \myfalse\\
+% \myfalse & \mytrue & \mytrue & \mytrue& \myfalse & \myfalse\\
+% \rowcolor{gray!10}
+% \mytrue & \mytrue & \mytrue & \myfalse& \myfalse & \myfalse\\
+\end{tabular}
+
+$\leadsto$ Genau ein Modell (bezüglich der relevanten Atome)
+\pause\bigskip
+
+\emph{Logische Konsequenzen:} Alle Formeln, die unter einer Wertzuweisung mit $w(A)=\myfalse$, $w(B)=\mytrue$ und $w(C)=\myfalse$ wahr sind, \ghost{z.B.:}
+\begin{itemize}
+\item $\neg A$ ("`\Aname{} lügt"')
+\item $\neg C$ ("`\Cname{} lügt"')
+\item $\neg A\wedge \neg C$ ("`\Aname{} und \Cname{} lügen"')
+\item $B$ ("`\Bname{} sagt die Wahrheit"')
+\item Aber auch: $D\vee \neg D$
+\end{itemize}
+
+% {\Large
+% \narrowcentering{\alert{Wer lügt?}}
+% }
+% 
+% \medskip
+% {\footnotesize\narrowcentering{(Und wie kann man das beweisen?)}}
+% \bigskip
 
 
-\defbox{Die \redalert{Busy-Beaver-Funktion} $\bbfunc:\mathbb{N}\to\mathbb{N}$ ist eine totale Funktion, wobei $\bbfunc(n)$ die maximale Zahl an $\Sterm{x}$ ist, die eine DTM mit höchstens
-$n$ Zuständen und dem Arbeitsalphabet $\Gamma=\{\Sterm{x}, \blank\}$ beginnend mit dem leeren Band schreiben kann, bevor sie schließlich hält.}
+\end{frame}
 
-Anmerkung: Der genaue Wert von $\bbfunc(n)$ hängt von Details der TM-Definition ab.\\[0.5ex]
-{\footnotesize Üblich ist hier insbesondere die Verwendung eines zweiseitig unendlichen Bands, das man bei Bedarf nach links und rechts erweitern kann.
 
+\begin{frame}\frametitle{Allgemeingültigkeit und Co.}
+
+\defbox{Eine Formel $F$ ist:
+\begin{itemize}
+\item \redalert{unerfüllbar} (oder \alert{inkonsistent}), wenn sie keine Modelle hat
+\item \redalert{erfüllbar} (oder \alert{konsistent}), wenn sie Modelle hat
+\item \redalert{allgemeingültig} (oder eine \alert{Tautologie}), wenn alle Wertzuweisungen Modelle für die Formel sind
+\item \redalert{widerlegbar}, wenn sie nicht allgemeingültig ist
+\end{itemize}
+Diese Begriffe kann man für Mengen von Formeln genauso definieren.
+}
+
+\examplebox{\emph{Beispiel:} 
+\begin{itemize}
+\item $p\wedge\neg p$ ist unerfüllbar (und widerlegbar)
+\item $p\vee\neg p$ ist allgemeingültig (und erfüllbar)
+\item $p\wedge q$ ist erfüllbar und widerlegbar
+\end{itemize}}
+
+\end{frame}
+
+\begin{frame}\frametitle{Allgemeingültigkeit und Unerfüllbarkeit}
+
+% Speziell Allgemeingültigkeit und Unerfüllbarkeit sind für logische Schlussfolgerung von Bedeutung:
+
+\theobox{\emph{Satz:}
+\begin{enumerate}[(1)]
+\item Eine allgemeingültige Formel ist logische Konsequenz jeder anderen Formel(menge).
+\item Eine unerfüllbare Formel(menge) hat jede andere Formel als logische Konsequenz.
+\end{enumerate}}
+
+\emph{Beweis:} Folgt direkt aus Definition von logischer Konsequenz. Für (2) ist es wichtig, dass eine Eigenschaft "`für alle Modelle"' gilt, wenn es keine Modelle gibt (sie gilt dann für "`alle null Modelle"'). \qed
+\bigskip\pause
+
+\anybox{purple}{
+Der unerwartete(?) Effekt (2) ist im Deutschen sprichwörtlich:\medskip
+
+\narrowcentering{"`Wenn das stimmt, dann bin ich der Kaiser von China!"'}\medskip
+
+drückt aus, dass aus einer mutmaßlich falschen Annahme alles folgt, selbst wenn 
+es offensichtlich unwahr ist.
 }
 
 \end{frame}
 
-\begin{frame}\frametitle{Beispiel}
 
-Die Busy-Beaver-Zahl $\bbfunc(2)$ ist $4$, wenn man ein beidseitig unendliches Band annimmt.\\
-Die folgende TM realisiert dieses Verhalten:
+\begin{frame}\frametitle{Logische Schlussfolgerung}
 
-\begin{center}
-\begin{tikzpicture}[baseline={(q1.base)}]
-% \draw[help lines] (0,0) grid (7,2);
-\node (A) [circle,draw=black,thick] at (0,0) {$A$};
-\node (B) [circle,draw=black,thick] at (3,0) {$B$};
-%
-\path[->,line width=0.5mm](-1,0) edge (A);
-\path[->,line width=0.5mm](A) edge[bend left] node[above,align=left] {$\blank\mapsto\Sterm{x},R$\\$\Sterm{x}\mapsto\Sterm{x},L$} (B);
-\path[->,line width=0.5mm](B) edge[bend left] node[below] {$\blank\mapsto\Sterm{x},L$} (A);
-\end{tikzpicture}
-\end{center}
+\emph{Modelle:}\smallskip
 
-Wir erhalten: $A\blank\vdash \Sterm{x}B\blank\vdash A\Sterm{xx}\vdash B\blank\Sterm{xx}\vdash A\blank\Sterm{xxx}\vdash \Sterm{x}B\Sterm{xxx}$
+$w\models F$ \alert{gdw.} $w(F)=\mytrue$ \alert{gdw.} "`$w$ ist Modell von $F$"' \alert{gdw.} "`$w$ erfüllt $F$"'
+\bigskip
+
+\emph{Logische Konsequenzen:}
+\begin{itemize}
+\item $\mathcal{F}\models G$ \alert{gdw.}
+\item jedes Modell von $\mathcal{F}$ ist auch ein Modell von $G$ \alert{gdw.}
+\item $G$ ist immer wahr wenn alle Formeln in $\mathcal{F}$ wahr sind
+\end{itemize}\pause
+
+\emph{Dualität von Modellen und Formeln:}
+\begin{itemize}
+\item Je mehr Formeln in $\mathcal{F}$
+\item desto weniger Modelle erfüllen alle Formeln in $\mathcal{F}$
+\item desto mehr Formeln sind in allen diesen Modellen wahr
+\item desto mehr Konsequenzen hat $\mathcal{F}$
+\end{itemize}
+$\leadsto$ Aussagenlogik ist \redalert{monoton} (mehr Annahmen $\Rightarrow$ mehr Schlüsse)
 
 \end{frame}
 
-\begin{frame}\frametitle{Busy-Beaver berechnen?}
+\sectionSlide{Modellierung in Aussagenlogik}
 
-% Wie schwer kann das schon sein \ldots?\pause
+\begin{frame}\frametitle{Modellierungsbeispiel: Sudoku (1)}
 
-\theobox{\emph{Satz:} Die Busy-Beaver-Funktion ist nicht berechenbar.}
+Sudoku ist ein bekanntes Zahlenpuzzle.
+\bigskip
 
-\pause
-\emph{Beweisskizze:} Nehmen wir an, $\bbfunc$ wäre berechenbar.\pause
+\narrowcentering{
+\includegraphics[height=4cm]{images/Sudoku}
+}
+
+Aufgabe: 
 \begin{itemize}
-\item Dann kann man eine TM $\Smach{M}_{\bbfunc}$ erzeugen, die mit dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet und die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{\bbfunc(n)}$ berechnet.\pause
-\item Sei $\Smach{M}_{+1}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{n+1}$ berechnet.\pause
-\item Sei $\Smach{M}_{\times2}$ eine TM, welche die Funktion $\Sterm{x}^n\mapsto\Sterm{x}^{2n}$ berechnet.\pause
-\item Sei $k$ die Gesamtzahl der Zustände in $\Smach{M}_{\bbfunc}$, $\Smach{M}_{+1}$ und $\Smach{M}_{\times2}$. Es gibt eine TM $\Smach{I}_k$ mit $k+1$ Zuständen, die das Wort $\Sterm{x}^k$ auf das leere Band schreibt.\pause
-\item Wenn man nun hintereinander $\Smach{I}_k$, $\Smach{M}_{\times2}$, $\Smach{M}_{\bbfunc}$ und $\Smach{M}_{+1}$ ausführt, dann erhält man eine TM mit $\leq 2k$ Zuständen,$^\ast$ die insgesamt $\bbfunc(2k)+1$ mal $\Sterm{x}$ schreibt und dann hält.\\
-{\tiny $^\ast$ Bei der Hintereinanderausführung kann man End- und Anfangszustand jeweils verschmelzen.}\pause
-\item Also ist $\bbfunc(2k)\geq\bbfunc(2k)+1$ -- Widerspruch.\qed
+\item Fülle jedes Feld mit einer Ziffer von $1$ bis $9$, so dass
+\item Spalten, Zeilen und die fetten Teilquadrate jede Ziffer nur einmal enthalten
 \end{itemize}
 
+\end{frame}
+
+\begin{frame}\frametitle{Modellierungsbeispiel: Sudoku (2)}
+
+Wir können Sudoku aussagenlogisch modellieren:\pause
+
+\begin{itemize}
+\item \alert{Atome:} Für jede Ziffer $z\in\{1,\ldots,9\}$ und alle Koordinaten $i,j\in\{1,\ldots,9\}$ verwenden wir ein Atom $p_z[i,j]$ für die Aussage "`an Position $(i,j)$ steht die Ziffer $z$"'
+\pause
+\item \alert{Spielregeln} modellieren wir als logische Formeln:
+\end{itemize}\vspace{-2.5ex}
+\begin{align*}
+\text{Für alle $i,j$:} & \quad p_1[i,j]\vee p_2[i,j]\vee\ldots\vee p_9[i,j] %& \quad\text{(mindestens eine Ziffer pro Feld)}
+\\
+\text{Für alle $i,j,z,z'$ mit $z\neq z'$:} & \quad p_z[i,j] \to \neg p_{z'}[i,j] %& \text{(höchstens eine Ziffer pro Feld)}
+\\
+\text{Für alle $i,i',j,z$ mit $i\neq i'$:} & \quad p_z[i,j] \to \neg p_z[i',j] %& \text{(höchstens eine Ziffer pro Feld)}
+\\
+\text{Für alle $i,j,j',z$ mit $j\neq j'$:} & \quad p_z[i,j] \to \neg p_z[i,j'] %& \text{(höchstens eine Ziffer pro Feld)}
+\\
+\text{Für alle $i,j,i',j',z$ mit $(i,j)\neq (i',j')$;}\\
+\text{$(i,j)$, $(i',j')$  im gleichen Teilquadrat:} & \quad p_z[i,j] \to \neg p_z[i',j'] %& \text{(höchstens eine Ziffer pro Feld)}
+\end{align*}\vspace{-4ex}\pause
+\begin{itemize}
+\item \alert{Vorgegebene Ziffern} werden als atomare Formeln dargestellt, z.B. $p_3[3,1]$ im vorigen Beispiel
+\end{itemize}\pause
+$\leadsto$ Modelle der Formelmenge entsprechen Lösungen des Sudoku
 
 \end{frame}
 
-% \begin{frame}\frametitle{Die Maschine $\Smach{M}_{\times2}$}
-% 
-% % Das ist eine Übungsaufgabe. Sie können das auch selbst lösen, ohne diese Quellen zu studieren ;-)
-% 
-% \begin{center}
-% \begin{tikzpicture}[baseline={(q1.base)}]
-% \node (A) [circle,draw=black,thick] at (0,0) {$A$};
-% \node (B) [circle,draw=black,thick] at (3,0) {$B$};
-% \node (C) [circle,draw=black,thick] at (3,3) {$C$};
-% \node (D) [circle,draw=black,thick] at (0,3) {$D$};
-% \node (E) [circle,draw=black,thick] at (3,-3) {$E$};
-% \node (F) [circle,double,draw=black,thick] at (0,-3) {$F$};
-% %
-% \path[->,line width=0.5mm](-1,0) edge (A);
-% \path[->,line width=0.5mm](A) edge[] node[above,align=left] {$\Sterm{x}\mapsto\blank,R$} (B);
-% \path[->,line width=0.5mm](B) edge[] node[right] {$\Sterm{x}\mapsto\blank,R$} (C);
-% \path[->,line width=0.5mm](C) edge[] node[above,align=left] {$\blank\mapsto\Sterm{x},L$} (D);
-% \path[->,line width=0.5mm](D) edge[] node[left] {$\blank\mapsto\blank,R$} (A);
-% \path[->,line width=0.5mm](B) edge[] node[right] {$\blank\mapsto\Sterm{x},L$} (E);
-% \path[->,line width=0.5mm](E) edge[] node[above,align=left] {$\Sterm{x}\mapsto\Sterm{x},N$} (F);
-% \path[->,line width=0.5mm](A) edge[] node[left] {$\blank\mapsto\blank,N$} (F);
-% 
-% \path[->,line width=0.5mm](C) edge[loop right] node[right] {$\Sterm{x}\mapsto\Sterm{x},R$} (C);
-% \path[->,line width=0.5mm](D) edge[loop left] node[left] {$\Sterm{x}\mapsto\Sterm{x},L$} (D);
-% \path[->,line width=0.5mm](E) edge[loop right] node[right] {$\blank\mapsto\Sterm{x},L$} (E);
-% \end{tikzpicture}
-% \end{center}
-% 
-% \end{frame}
+\begin{frame}\frametitle{Logische Modellierung: Allgemeines Vorgehen}
 
-\begin{frame}\frametitle{Bemerkungen zum Beweis}
+Es ist oft nicht sofort ersichtlich, wie (oder ob) eine Problemstellung
+gut in Aussagenlogik ausgedrückt werden kann.
+\medskip
 
-\emph{Anmerkung 1:} Der Beweis verwendet die interessante Idee, dass man TMs als "`Subroutinen"' von anderen TMs verwenden kann. Wir werden das noch an anderer Stelle verwenden.
-\bigskip
+\anybox{strongyellow}{\emph{Allgemeines Vorgehen:}
+\begin{enumerate}
+\item \alert{Vokabular festlegen:} Welche Atome sollen verwendet werden, um eine Instanz der Frage und seiner Lösung darzustellen?
+\item \alert{Bedingungen festlegen:} Welche aussagenlogischen Formeln müssen gelten, damit die Belegung der Atome eine korrekte Lösung des Problems kodiert?
+\end{enumerate}}
 
-\emph{Anmerkung 2:} Der Schritt von einer beliebigen Berechnung einer Funktion $f:\mathbb{N}\to\mathbb{N}$ zu einer TM, die eine Funktion $\Sterm{x}^n\mapsto \Sterm{x}^{f(n)}$ berechnet, ist nicht schwer; man ändert nur die Kodierung der Ein- und Ausgabe von binär auf unär.
-\bigskip
-
-\emph{Anmerkung 3:} Der Schritt von einer beliebigen TM zu einer, die auf dem Alphabet $\{\Sterm{x},\blank\}$ arbeitet, ist etwas kniffliger, aber machbar.
+\medskip
+\begin{itemize}
+\item Schritt 1 kann zu hunderten oder tausenden Atome führen (die ja jeweils nur ein \ghost{Bit)}\\ $\leadsto$ keine Angst vor großen Vokabularen
+\item Schritt 2 kann je nach gewählter Kodierung direkter oder umständlicher sein\\ $\leadsto$ gegebenenfalls Kodierung aus Schritt 1 überdenken
+\item Oft gut darstellbar: Aufgaben deren Lösung eine fest vorgegebene Größe hat und leicht überprüft werden kann (obwohl sie nicht leicht zu finden ist)\\
+(Sudoku: Ja; nächster Zug im Schach: Nein (nicht einfach zu prüfen); Plan zum Lösen eines Sokoban-Puzzles: Nein (unbekannte, möglicherweise große \ghost{Schrittzahl))}
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Theorie und Praxis}
 
-\textcolor{darkred}{
-"`Unentscheidbarkeit ist doch eine rein theoretische Eigenschaft! In der Praxis ist es egal, ob wir $\bbfunc(n)$ für beliebig große $n$ berechnen können. Die praktisch relevanten Fälle können wir sicher klären."'}
-\bigskip\pause
+\sectionSlide{Äquivalenzen}
 
-Nun ja \ldots{} seit den 1960ern ist man noch nicht so weit gekommen:\medskip
+\newcommand{\emphcell}[1]{\only<#1>{\cellcolor{strongyellow}}}
 
-\begin{tabular}{@{}rllllllll@{}}
-$n$:          & $1$ & $2$ & \visible<3->{$3$} & \visible<4->{$4$}  & \visible<5->{$5$} & \visible<6->{$6$} & \visible<7->{$7$} & \visible<8->{$8$} \\\hline
-$\bbfunc(n)$: & $1$ & $4$ & \visible<3->{$6$} & \visible<4->{$13$} & \visible<5->{$\geq 4098$} & \visible<6->{$\geq 3,5\times 10^{18267}$} & \visible<7->{riesig} & \visible<8->{irrsinnig}
-\end{tabular}
-\bigskip
+\begin{frame}\frametitle{Logische Äquivalenz}
 
-\visible<9->{
-Für $n=10$ kann man eine untere Schranke der Form $\bbfunc(10)>3^{3^{3^{.^{.^{.^3}}}}}$ angeben, wobei der komplette Ausdruck über $7,6$ Billionen mal die Zahl $3$ enthält.}
+Formeln sind äquivalent, wenn sie die gleiche Semantik haben:
+
+\defbox{Zwei Formeln $F$ und $G$ sind \redalert{semantisch äquivalent}, in Symbolen \redalert{$F\equiv G$},
+wenn sie genau die selben Modelle haben, d.h. wenn\\[1ex]
+
+\narrowcentering{für alle Wertzuweisungen $w$ gilt: $w(F)=w(G)$}}\pause
+
+\examplebox{Beispiel: $p\to q \equiv \neg p\vee q$, wie man mithilfe der Wahrheitswertetabelle zeigen kann (die Spalten der Formeln sind gleich):\smallskip
+
+\narrowcentering{%
+\begin{tabular}{cccccc}
+\rowcolor{darkgreen!30}
+$p$ & $q$ & $p\to q$ & $\neg p$ & $\neg p\vee q$ & ${}^*$\\
+\myfalse & \myfalse & \emphcell{3-}{\mytrue} & \mytrue & \emphcell{3-}{\mytrue} \\
+\mytrue & \myfalse & \emphcell{3-}{\myfalse} & \myfalse & \emphcell{3-}{\myfalse} \\
+\myfalse & \mytrue & \emphcell{3-}{\mytrue} & \mytrue & \emphcell{3-}{\mytrue} \\
+\mytrue & \mytrue & \emphcell{3-}{\mytrue} & \myfalse & \emphcell{3-}{\mytrue} \\
+\end{tabular}}
+}
+
+{\footnotesize ${}^*$ Vereinfachung: Wir beschriften Tabellenspalten ab jetzt nur mit $F$ statt \ghost{$w(F)$.}}
 
 \end{frame}
+
+\begin{frame}\frametitle{Nützliche Eigenschaften von $\equiv$}
+
+\theobox{\emph{Satz:} $\equiv$ ist eine Äquivalenzrelation, d.h. reflexiv, symmetrisch und transitiv.}
+
+\emph{Beweis:} $\equiv$ ist definiert als die Gleichheit der Modellmengen. Die gesuchten Eigenschaften ergeben sich, da auch die Relation $=$ auf Mengen eine Äquivalenzrelation ist.\qed
+\bigskip
+
+Weitere Eigenschaften folgen direkt aus den Definitionen:\medskip
+
+\theobox{\emph{Satz:}
+\begin{itemize}
+\item Alle Tautologien sind semantisch äquivalent
+\item Alle unerfüllbaren Formeln sind semantisch äquivalent
+\end{itemize}
+}
+
+% \emph{Beweis:} Offensichtlich sind die Modellmengen jeweils gleich.\qed
+
+\theobox{\emph{Satz:} Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
+% 
+\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann wenn\hspace{5mm} $F\models G$ und $G\models F$}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Nützliche Eigenschaften von $\equiv$}
+
+% 
+% \emph{Intuition:} Äquivalente Formeln sind untereinander austauschbar, da sie sich logisch immer gleich verhalten
+% \bigskip
+
+
+\theobox{\emph{Satz (Ersetzungstheorem):} Sei $F$ eine Formel mit einer Teilformel $G$. 
+Wenn $G\equiv G'$ und wenn $F'$ aus $F$ gebildet werden kann, indem man ein beliebiges Vorkommen von $G$ in $F$ durch $G'$ ersetzt, dann gilt auch $F\equiv F'$.}\pause
+
+\emph{Beweisskizze${}^*$:} Aus $G\equiv G'$ folgt, dass $w\models G$ gdw. $w\models G'$ für beliebige Wertzuweisungen $w$ gilt.
+% Gemäß der rekursiven Definition von $\models$ hängt $w\models H$ nur davon ab, welche der direkten Unterformeln von
+% $H$ durch $w$ erfüllt sind.
+In der rekursiven Definition von $\models$ erfüllt daher die Teilformel $G$ genau die selben Bedingungen wie $G'$, so
+dass sich auch für $F$ und $F'$ der selbe Wert ergibt.\qed
+\bigskip
+
+Dieser Satz ist ein Sonderfall der allgemeingültigen und intuitiven Tatsache, dass der Wert von rekursiv definierten Funktionen gleich bleibt, wenn man die syntaktische Definition einer Teilberechnung durch eine andere ersetzt, die stets den gleichen Wert liefert.
+\bigskip
+
+\setstretch{0.9}
+
+{\tiny ${}^*$ Streng genommen folgt aus der Definition von $\models$ zunächst nur, dass die Ersetzung einer direkten Unterformel
+Äquivalenz erhält. Zum Beispiel folgt $G\wedge H\equiv G'\wedge H$ aus $G\equiv G'$. Um zu zeigen, dass auch Ersetzungen in beliebiger Tiefe Äquivalenz erhalten, ist noch ein induktives Argument nötig, welches die Äquivalenz im Formelbaum "`nach oben"' propagiert. Aus $G\wedge H\equiv G'\wedge H$ folgt z.B. $(G\wedge H)\vee J\equiv (G'\wedge H)\vee J$ usw. usf.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Junktoren äquivalent ausdrücken}
+
+Viele Junktoren können durch andere ausgedrückt werden:
+% 
+\begin{align*}
+F\to G & \equiv \neg F\vee G \equiv \neg(F\wedge\neg G) \\
+F\leftrightarrow G & \equiv (F\to G)\wedge(G\to F)\equiv (F\wedge G)\vee(\neg F\wedge \neg G) \\
+F\wedge G & \equiv \neg(\neg F\vee\neg G) \quad \text{\textcolor{devilscss}{(De Morgansches Gesetz)}} \\
+F\vee G & \equiv \neg(\neg F\wedge\neg G) \quad \text{\textcolor{devilscss}{(De Morgansches Gesetz)}}
+\end{align*}\pause
+%
+Weitere Junktoren können mithilfe äquivalenter Formeln definiert werden:
+% 
+\begin{align*}
+F\uparrow G & \equiv \neg (F\wedge G) \equiv \neg F\vee \neg G & \text{\textcolor{devilscss}{(NAND)}}\\
+F\downarrow G & \equiv \neg (F\vee G) \equiv \neg F\wedge \neg G & \text{\textcolor{devilscss}{(NOR)}}\\
+\top & \equiv \neg p\vee p \equiv p\to p & \text{\textcolor{devilscss}{(Wahrheit; $p\in\Slang{P}$ beliebig)}} \\
+\bot & \equiv \neg p\wedge p & \text{\textcolor{devilscss}{(Falschheit; $p\in\Slang{P}$ beliebig)}}
+\end{align*}\vspace{-4ex}
+
+Wir werden insbesondere $\top$ und $\bot$ manchmal verwenden.
+
+\end{frame}
+
+\begin{frame}\frametitle{Junktoren äquivalent ausdrücken (2)}
+
+% Mit dem Ersetzungstheorem folgt nun leicht:\medskip
+
+\theobox{\emph{Satz:} Sei $F$ eine beliebige aussagenlogische Formel.
+\begin{itemize}
+\item Es gibt eine zu $F$ äquivalente Formel, die nur die Junktoren $\wedge$ und $\neg$ enthält.
+\item Es gibt eine zu $F$ äquivalente Formel, die nur die Junktoren $\vee$ und $\neg$ enthält.
+\end{itemize}}\pause
+
+\emph{Beweis:} Für den ersten Fall ersetzen wir iterativ Teilformeln, die nicht die gewünschte Form haben, gemäß den folgenden Regeln:
+\begin{align*}
+(G\vee H) &\qquad\mapsto\qquad \neg(\neg G\wedge\neg H)\\
+(G\to H) &\qquad\mapsto\qquad\neg (G\wedge\neg H)\\
+(G\leftrightarrow H) &\qquad\mapsto\qquad (\neg (G\wedge\neg H)\wedge\neg (H\wedge\neg G))
+\end{align*}
+Jede Ersetzung führt zu einer äquivalenten Formel (Ersetzungstheorem), der Algorithmus terminiert (jeder Junktor wird höchstens einmal ersetzt) und das Ergebnis hat die gewünschte Form.
+% 
+Der zweite Fall ist analog.
+\qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Nützliche Äquivalenzen (1)}
+
+\begin{align*}
+\begin{split}
+F\wedge G & \equiv G\wedge F\\
+F\vee G & \equiv G\vee F
+\end{split}
+		& \text{\textcolor{devilscss}{Kommutativität}} \\[1ex]
+%
+\begin{split}
+(F\wedge G)\wedge H & \equiv F\wedge (G\wedge H)\\
+(F\vee G)\vee H & \equiv F\vee (G\vee H)
+\end{split}
+		& \text{\textcolor{devilscss}{Assoziativität}} \\[1ex]
+%
+\begin{split}
+F\wedge (G\vee H) & \equiv (F\wedge G) \vee (F\wedge H)\\
+F\vee (G\wedge H) & \equiv (F\vee G)\wedge (F\vee H)
+\end{split}
+		& \text{\textcolor{devilscss}{Distributivität}} \\[1ex]
+%
+\begin{split}
+F\wedge F & \equiv F\\
+F\vee F & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Idempotenz}} \\[1ex]
+%
+\begin{split}
+F\wedge (F\vee G) & \equiv F\\
+F\vee (F\wedge G) & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Absorption}}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}\frametitle{Nützliche Äquivalenzen (2)}
+
+\begin{align*}
+\neg\neg F &\equiv F
+		& \text{\textcolor{devilscss}{doppelte Negation}}\\[1ex]
+%
+\begin{split}
+\neg(F\wedge G) & \equiv (\neg F\vee \neg G)\\
+\neg(F\vee G) & \equiv (\neg F\wedge \neg G)
+\end{split}
+		& \text{\textcolor{devilscss}{De Morgansche Gesetze}} \\[1ex]
+%
+\begin{split}
+F\wedge \top & \equiv F\\
+F\vee \top & \equiv \top
+\end{split}
+		& \text{\textcolor{devilscss}{Gesetze mit $\top$}}\\[1ex]
+%
+\begin{split}
+F\wedge \bot & \equiv \bot\\
+F\vee \bot & \equiv F
+\end{split}
+		& \text{\textcolor{devilscss}{Gesetze mit $\bot$}}\\[1ex]
+%
+\begin{split}
+\neg\top & \equiv \bot\\
+\neg\bot & \equiv \top
+\end{split}
+		& 
+\end{align*}
+
+Alle diese Äquivalenzen können leicht mit Wahrheitswertetabellen überprüft werden.
+
+\end{frame}
+
+\begin{frame}\frametitle{Äquivalente Mengen von Formeln}
+
+Die Definition von Äquivalenz ist leicht auf Formelmengen erweiterbar:\medskip
+
+\defbox{Zwei Formelmengen $\mathcal{F}$ und $\mathcal{G}$ sind äquivalent, in Symbolen $\mathcal{F}\equiv\mathcal{G}$, wenn sie die selben Modelle haben.}\medskip\pause
+
+Formelmengen verallgemeinern die Konjunktion, denn es gilt:\\[0.5ex]
+%
+\narrowcentering{
+$ \{F_1,\ldots, F_n\}\equiv \{ F_1\wedge\ldots\wedge F_n\}$}\\[1ex]
+%
+\emph{Vereinfachung:} Dank Assoziativität verzichten wir ab jetzt in Formeln wie $(((F_1\wedge F_2)\wedge F_3)\wedge F_4)$
+auf Klammern (ebenso für $\vee$).
+\bigskip
+
+Allerdings dürfen Formelmengen auch unendlich sein (Konjunktionen dagegen nicht).
+
+\end{frame}
+
+\begin{frame}\frametitle{$\models$ entspricht $\to$ und $\equiv$ entspricht $\leftrightarrow$}
+
+\theobox{\emph{Satz (Deduktionstheorem):} Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt $\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\pause
+
+\emph{Beweis:} Einfache Anwendung der Definitionen.
+($\Rightarrow$) Wenn jedes Modell von $\mathcal{F}$ die Formel $G\to H$ erfüllt, 
+dann muss jedes dieser Modelle, welches zudem $G$ erfüllt, $H$ erfüllen.  ($\Leftarrow$) Wenn jedes Modell von $\mathcal{F}$, welches zudem $G$ erfüllt, auch $H$ erfüllt, dann muss jedes Modell von $\mathcal{F}$ auch $G\to H$ erfüllen.\qed\medskip\pause
+
+\anybox{purple}{\emph{Notation:}
+Wir schreiben $\models F$ statt $\emptyset\models F$ um auszudrücken, dass $F$ allgemeingültig ist.}
+
+\theobox{\emph{Satz:} $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\pause
+
+\emph{Beweis:} $F\equiv G$ \alert{gdw.} $F\models G$ und $G\models F$ \alert{gdw.} $\models F\to G$ und $\models G\to F$ (wegen Deduktionstheorem) \alert{gdw.} $\models F\leftrightarrow G$. \qed
+
+\end{frame}
+
+\begin{frame}\frametitle{Curry}
+
+Mit Deduktionstheorem und dem Bezug von Formelmengen und Konjunktionen erhält man ein weiteres interessantes
+Ergebnis:\medskip
+
+\narrowcentering{%
+\begin{tabular}{@{}r@{~~}l@{~~}l@{}}
+$\models (F\wedge G)\to H$ & gdw. $\{F\wedge G\}\models H$ & gdw. $\{F,G\}\models H$ \\
+	& gdw. $\{F\}\models G\to H$ & gdw. $\models F\to (G\to H)$\\[1ex]
+\end{tabular}}\medskip\pause
+
+Tatsächlich gilt allgemein:
+% 
+\[ (F\wedge G)\to H\equiv F\to (G\to H)\]
+% 
+Die Ersetzung von $(F\wedge G)\to H$ durch $F\to (G\to H)$ wird \alert{Currying} (im Deutschen manchmal
+auch: \alert{Schönfinkeln}) genannt\\
+$\leadsto$ vgl. \redalert{funktionale Programmierung}
+
+\end{frame}
+
+\sectionSlide{Aussagenlogisch Schließen in der Praxis}
+
+\begin{frame}\frametitle{SAT Solver}
+
+Programme zum aussagenlogischen Schließen heißen \alert{SAT Solver}.
+\begin{itemize}
+\item Hochoptimierte Systeme treten auf der jährlichen SAT-Competition gegeneinander an (\url{https://satcompetition.github.io/})
+\item Praxissysteme sind teils weniger extrem optimiert aber anwendungsfreundlicher oder vielseitiger
+\item Alle relevanten Programmiersprachen sollten geeignete Bibliotheken anbieten, zumeist frei und open source
+\item Oft mit weiteren Features (nicht-boolesche Datentypen, weiche Optimierungskriterien, bestimmte prädikatenlogische Features, usw.)
+\end{itemize}
+\redalert{$\leadsto$ wir werden mit Z3 in Python arbeiten}
+
+\end{frame}
+
+\newcommand{\terminalbox}[1]{\begin{tikzpicture}%
+\node [draw=black!50, fill=black!80, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=10pt, align=left, text width=0.8\linewidth] (box){%
+\textcolor{white}{\texttt{#1}}
+};%
+\end{tikzpicture}}
+
+\begin{frame}[fragile]\frametitle{Der SMT-Solver Z3}
+
+\alert{Z3 ist ein leistungsfähiger Theorembeweiser}
+\begin{itemize}
+\item Typ SMT-Solver (insbesondere vollständig \& korrekt für Aussagenlogik)
+\item Ursprüngliches Anwendungsgebiet Softwareverifikation; inzwischen vielfältig eingesetzt
+\item Frei und OSS (MIT-Lizenz), entwickelt von Microsoft Research seit 2012
+\item C++, viele Sprachbindungen (Python, JavaScript, C, Rust, Java, \ldots) sowie Unterstützung des Austauschformats SMTLIB2\\[1ex]
+\terminalbox{pip~install~z3-solver}
+\end{itemize}
+\medskip
+
+Dokumentation: \url{https://microsoft.github.io/z3guide/}\\($\to$Programming Z3$\to$Python)
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Z3 in Python}
+
+\begin{tikzpicture}%
+\node [draw=black!50, fill=white, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=10pt, align=left, text width=0.8\linewidth] (box){%
+\vspace{-2ex}
+\begin{minted}{python}
+from z3 import *
+
+p,q,r = Bools('p q r')
+
+s = Solver()
+s.add(And(p, Or(Not(q), r)))
+
+print(s.check())
+print(s.model())
+\end{minted}
+};%
+\end{tikzpicture}\medskip\pause
+
+\terminalbox{sat\newline
+[p = True, q = False, r = False]}
+
+
+\end{frame}
+
 
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Turingmaschinen sind auf viele Arten verwendbar (und definierbar)
+Die Modelle einer Formel(menge) definieren ihre \redalert{logischen Konsequenzen}
+(="`alles, was in diesen Fällen noch gilt"')\bigskip
+
+In der Aussagenlogik gelten viele \redalert{nützliche Äquivalenzen} die man für Umformungen ausnutzen kann
 \bigskip
 
-Funktionen und Mengen können berechenbar sein, aber die meisten sind es nicht
-\bigskip
-
-Semi-entscheidbare Mengen können durch Aufzähler erzeugt werden
-\bigskip
-
-Die Busy-Beaver-Funktion ist nicht berechenbar und wächst irrsinnig schnell
+Es gibt viele freie Softwarepakete zum aussagenlogischen Schließen, zum Beispiel \redalert{Z3}
 \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Offene Fragen:
 \begin{itemize}
-\item Relevantere Probleme
-\item Reduktionen
-\item Rechenmodelle, die nicht auf TMs beruhen
+\item Wie funktioniert logisches Schließen ohne Wahrheitswertetabellen?
+\item Wie (in)effizient ist logisches Schließen?
+\item Was hat das mit Komplexität zu tun?
 \end{itemize}
 }
 
 \end{frame}
-
-\begin{frame}[t]\frametitle{Bildrechte}
-
-Folie \ref{frame_hilbert}: gemeinfrei\\
-Folie \ref{frame_cantor}: Fotografie von 1870, gemeinfrei\\
-Folie \ref{frame_rado}: Ausschnitt aus einer Fotografie von 1928, \url{http://www.bibl.u-szeged.hu/sztegy/photo/778.jpg}, CC-By-SA 3.0\\
-
-\end{frame}
-
 
 
 \end{document}
