@@ -4,13 +4,24 @@
 \input{macros-lecture}
 
 \usepackage{setspace}
+
+% Resetting the definition of \\ is essential to avind global layout changes in beamer when loading minted.
+% It does not seem to break other functionality in obvious ways.
+% If the global override causes any issues, the more local one using \addtobeamertemplate{frametitle} (in document) might be a workaround.
+\let\beameroriginaldoublebackslash\\
 \usepackage{minted}
+\let\\=\beameroriginaldoublebackslash
+
 
 \defineTitle{2}{Äquivalenzen und Normalformen}{16. April 2026}
 
 \begin{document}
 
 \maketitle
+
+% \addtobeamertemplate{frametitle}{%
+%   \let\\=\beameroriginaldoublebackslash
+% }{}
 
 \newcommand{\Aname}{Anna}
 \newcommand{\Bname}{Barbara}
@@ -607,7 +618,7 @@ Programme zum aussagenlogischen Schließen heißen \alert{SAT Solver}.
 };%
 \end{tikzpicture}}
 
-\begin{frame}[fragile]\frametitle{Der SMT-Solver Z3}
+\begin{frame}\frametitle{Der SMT-Solver Z3}
 
 \alert{Z3 ist ein leistungsfähiger Theorembeweiser}
 \begin{itemize}
