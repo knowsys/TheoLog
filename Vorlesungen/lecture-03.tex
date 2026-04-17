@@ -3,650 +3,633 @@
 
 \input{macros-lecture}
 
-\defineTitle{3}{WHILE und LOOP}{15. April 2024}
+\defineTitle{3}{Verfahren zum Logischen Schließen}{20. April 2026}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}\frametitle{Was bisher geschah \ldots}
+\sectionSlide{Nachtrag: Currying}
 
-\emph{Grundbegriffe, die wir verstehen und erklären können:}\\
-DTM, NTM, Entscheider, Aufzähler, berechenbar/entscheidbar, semi-entscheidbar, unentscheidbar, Church-Turing-These
+\begin{frame}\frametitle{Logisches Schließen}
+
+Allgemein umfasst \redalert{logisches Schließen} jede Berechnung,
+bei der semantische Eigenschaften von Formeln ermittelt werden.
 \bigskip
 
-\emph{Das Unentscheidbare:}
-\begin{itemize}
-\item "`An algorithm is a finite answer to an infinite number of questions."'\\ (Stephen Kleene)
-\item Aber: Es gibt mehr Möglichkeiten, unendlich viele Fragen zu beantworten, als es Algorithmen geben kann (Cantor)
-\end{itemize}
+Vielfach hat man es mit Entscheidungsproblemen zu tun, z.B.:
 
-\bigskip
-\emph{Weitere wichtige Ergebnisse:}
+\defbox{\redalert{Schlussfolgerung}:
 \begin{itemize}
-\item DTM und NTM haben die gleiche Ausdrucksstärke
-\item Zusammenhang Aufzähler $\leftrightarrow$ Semi-Entscheidbarkeit
-\item Busy Beaver ist unentscheidbar:\\ "`Was eine TM schaffen kann, das kann keine TM vorherberechnen."'
+\item \emph{Eingabe:} endliche Formelmenge $\mathcal{F}$, Formel $G$
+\item \emph{Ausgabe:} "`ja"' wenn $\mathcal{F}\models G$ gilt; sonst "`nein."'
 \end{itemize}
+}
+
+\defbox{\redalert{Allgemeingültigkeit}:
+\begin{itemize}
+\item \emph{Eingabe:} Formel $F$
+\item \emph{Ausgabe:} "`ja"' wenn $F$ allgemeingültig ist; sonst "`nein."'
+\end{itemize}
+}
+
+\defbox{\redalert{Unerfüllbarkeit}:
+\begin{itemize}
+\item \emph{Eingabe:} Formel $F$
+\item \emph{Ausgabe:} "`ja"' wenn $F$ unerfüllbar ist; sonst "`nein."'
+\end{itemize}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Viele logische Probleme -- viele Algorithmen?}
+
+Oft kann man unterschiedliche Probleme leicht ineinander umwandeln:
+\medskip
+
+\begin{itemize}
+\item $\mathcal{F}\models G$ (für endliche $\mathcal{F}$) \alert{gdw.}\\ $\bigwedge_{F\in\mathcal{F}}F\to G$ allgemeingültig \alert{gdw.} $\bigwedge_{F\in\mathcal{F}}F\wedge\neg G$ unerfüllbar
+\item $F$ allgemeingültig \alert{gdw.} $\emptyset\models F$ \alert{gdw.} $\neg F$ unerfüllbar
+\item $F$ unerfüllbar \alert{gdw.} $F\models \bot$ \alert{gdw.} $\neg F$ allgemeingültig
+\end{itemize}
+\begin{enumerate}[$\leadsto$]
+\item Jedes Verfahren, welches eines dieser Probleme lösen kann, lässt sich prinzipiell auch zur Lösung der anderen einsetzen.
+\end{enumerate}
+
+{\footnotesize\textcolor{devilscss}{%
+(Es gibt auch Probleme des logischen Schließens, für die das höchstwahrscheinlich nicht zutrifft, z.B. "`Gegeben eine Formel $F$, entscheide ob es eine kürzere Formel gibt, die zu $F$ äquivalent ist."')}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Schließen mit Wahrheitswertetabellen}
+
+Die genannten Probleme sind mittels Wahrheitswertetabelle lösbar:%
+\begin{itemize}
+\item \alert{Allgemeingültigkeit:} Ist der Wert von $F$ für jede Belegung $\mytrue$?
+\item \alert{Unerfüllbarkeit:} Ist der Wert von $F$ für jede Belegung $\myfalse$?
+\item \alert{Schlussfolgerung:} Ist der Wert von $G$ für jede Belegung $\mytrue$, unter der alle Formeln von $\mathcal{F}$ den Wert $\mytrue$ annehmen?
+\end{itemize}\pause
+
+\emph{Nachteil:} Die Tabelle hat $2^n$ Zeilen, wenn die betrachteten Formeln $n$ Atome haben
+\bigskip
+
+\examplebox{\emph{Beispiel:} Für die Modellierung von Sudoku nutzen wir $9\times 9\times 9$ Atome. Die entsprechende Tabelle hat also $2^{729}$ (ca. $2.8\times 10^{219}$) Zeilen. Zum Vergleich:
+\begin{itemize}\pause
+\item Anzahl der Neuronen im menschlichen Gehirn: ca. $1.5\times 10^{14}$\pause
+% \item Zahl der Sterne im beobachtbaren Universum: unter $10^{24}$\pause
+\item Jemals digital gespeicherte Daten in Bytes: $<<10^{24}$\pause
+\item Nanosekunden bis der Kern der Sonne ausbrennt: ca. $10^{29}$\pause
+\item Anzahl der Atome im beobachtbaren Universum: $10^{78}$ -- $10^{82}$
+\end{itemize}
+}
 
 \end{frame}
 
 
-\sectionSlide{LOOP}
+\sectionSlide{Normalformen}
 
-\begin{frame}\frametitle{Von TMs zu Programmiersprachen}
+\begin{frame}\frametitle{Normalform}
 
-\emph{Turingmaschinen als Berechnungsmodell}
-\begin{itemize}
-\item \alert{Pro:} Einfache, kurze Beschreibung (eine Folie)\\
-	$\leadsto$ Beweise oft ebenfalls einfach und kurz
-\item \redalert{Kontra:} Umständliche Programmierung\\
-	$\leadsto$ einfache Algorithmen erfordern tausende Einzelschritte
-\end{itemize}
-\bigskip\pause
-
-\emph{Programmiersprachen als Berechnungsmodell}
-\begin{itemize}
-\item \alert{Pro:} Einfache, bequeme Programmierung\\
-	$\leadsto$ Großer Befehlssatz + Bibliotheken für Standardaufgaben
-\item \redalert{Kontra:} Umständliche Beschreibung\\
-	(z.B. Beschreibung von C++ [ISO/IEC 14882] hat 776 Seiten)\\
-	$\leadsto$ Eigenschaften oft unklar; Beweise sehr umständlich
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{LOOP-Programme}
-
-\emph{Idee:} Definiere eine imperative Programmiersprache, die dennoch sehr einfach ist.
+\redalert{Normalformen} sind besondere syntaktische Formen aussagenlogischer Formeln
 \bigskip
 
-\emph{Features:}
+Sie heißen so, weil sich jede aussagenlogische Formel in eine äquivalente Formel in Normalform umformen lässt
+\bigskip
+
+\emph{Zweck von Normalformen:} Vereinfachung von Algorithmen
 \begin{itemize}
-\item Variablen \Sxsub{0}, \Sxsub{1}, \Sxsub{2}, \ldots{} oder auch \Svar{x}, \Svar{y}, \Svar{variablenName}, \ldots\\
-alle vom Typ ``natürliche Zahl''
-\item Wertezuweisungen der Form\\[1ex]
-\mbox{}\hfill%
-$\Svar{x} \Svassign \Svar{y} \Splus \Scodelit{42}\qquad$ und $\qquad\Svar{x} \Svassign \Svar{y} \Sminus \Scodelit{23}$\hfill\mbox{}\\[1ex]
-%
-für beliebige natürliche Zahlen und Variablennamen
-\item ``For-Schleifen'': \SStartLoop{\Svar{x}} \ldots{} \SEndLoop
+\item Reduktion der syntaktischen Vielfalt (weniger Fälle)
+\item Leichtere Verarbeitung (algorithmenfreundliches Format)
+\item Manche Softwarewerkzeuge (z.B. manche SAT Solver) verlangen Eingaben in einer Normalform
 \end{itemize}
+\bigskip
+
+Wir werden hier drei wichtige Normalformen kennenlernen:
+\begin{itemize}
+\item \alert{Negationsnormalform} (NNF)
+\item \alert{Konjunktive Normalform} (KNF)
+\item \alert{Disjunktive Normalform} (DNF)
+\end{itemize}
+\
+\end{frame}
+
+\begin{frame}\frametitle{Negationsnormalform}
+
+\defbox{Eine Formel $F$ ist in \redalert{Negationsnormalform} (\alert{NNF}) wenn
+\begin{enumerate}[(a)]
+\item sie nur die Junktoren $\wedge$, $\vee$ und $\neg$ enthält und
+\item der Junktor $\neg$ nur direkt vor Atomen vorkommt (d.h. nur in Teilformeln der Form $\neg p$ mit $p\in\Slang{P}$).
+\end{enumerate}
+}\medskip
+
+Formeln, die negierte oder nichtnegierte Atome sind, nennt man \redalert{Literale}.
+In NNF darf Negation also nur in Literalen auftauchen.
+\medskip\pause
+
+\examplebox{\emph{Beispiele:}
+\begin{itemize}
+\item $(\neg p\wedge q)\vee (p\wedge\neg q)$ ist in NNF
+\item $(b\wedge b)\vee\neg(b\wedge b)$ ist nicht in NNF
+\item $q\vee \neg\neg p$ ist nicht in NNF
+\item $p\leftrightarrow p$ ist nicht in NNF
+\end{itemize}}
 
 \end{frame}
 
-\begin{frame}\frametitle{LOOP-Programme: Syntax}
+\begin{frame}\frametitle{Umwandlung in NNF}
 
-\defbox{\emph{Definition:} Die Programmiersprache \redalert{LOOP} basiert auf einer unendlichen Menge $\Slang{V}$ von Variablen
-und der Menge $\mathbb{N}$ der natürlichen Zahlen.
-\redalert{LOOP-Programme} sind induktiv definiert:
+Es ist möglich, eine Formel rekursiv in NNF umzuformen.
+\medskip
+
+Dazu ersetzen wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ durch äquivalente Formeln (wie zuvor).
+\bigskip
+
+\defbox{Sei $F$ eine Formel, die nur die Junktoren $\wedge$, $\vee$ und $\neg$ enthält. Wir definieren eine Formel $\textsf{NNF}(F)$ rekursiv wie folgt:
 \begin{itemize}
-\item Die Ausdrücke\vspace{-1ex}
-\[\Svar{x} \Svassign \Svar{y} \Splus n \quad\text{und}\quad \Svar{x} \Svassign \Svar{y} \Sminus n \quad\text{\redalert{(Wertzuweisung)}}\]\vspace{-3.5ex}
-
-sind LOOP-Programme für alle $\Svar{x},\Svar{y}\in\Slang{V}$ und $n\in\mathbb{N}$.
-\item Wenn $P_1$ und $P_2$ LOOP-Programme sind, dann ist\vspace{-1ex}
-\[P_1\Sseq{}~P_2 \quad\text{\redalert{(Hintereinanderausführung)}}\]\vspace{-3.5ex}
-
-ein LOOP-Programm.
-\item Wenn $P$ ein LOOP-Programm ist, dann ist\vspace{-1ex}
-\[\SStartLoop{\Svar{x}}P~\SEndLoop{}\quad\text{\redalert{(Schleife)}}\]\vspace{-3.5ex}
-
-ein LOOP-Programm, für jede Variable $\Svar{x}\in\Slang{V}$.
+\item $\textsf{NNF}(p)=p$ falls $p\in\Slang{P}$
+\item $\textsf{NNF}(F\wedge G)=\textsf{NNF}(F)\wedge\textsf{NNF}(G)$
+\item $\textsf{NNF}(F\vee G)=\textsf{NNF}(F)\vee\textsf{NNF}(G)$
+\item $\textsf{NNF}(\neg p)=\neg p$ falls $p\in\Slang{P}$
+\item $\textsf{NNF}(\neg\neg F)=\textsf{NNF}(F)$
+\item $\textsf{NNF}(\neg(F\wedge G))=\textsf{NNF}(\neg F)\vee\textsf{NNF}(\neg G)$
+\item $\textsf{NNF}(\neg(F\vee G))=\textsf{NNF}(\neg F)\wedge\textsf{NNF}(\neg G)$
 \end{itemize}
 
 }
-
-\emph{Vereinfachung:} Wir erlauben \Sseq{} in Programmen durch Zeilenumbrüche zu ersetzen
 
 \end{frame}
 
 \begin{frame}\frametitle{Beispiel}
 
-Das folgende LOOP-Programm addiert zum Wert von \Svar{y} genau \Svar{x}-mal die Zahl $2$:
-\bigskip
-
-\codebox{{\tt
-\SStartLoop{\Svar{x}}\\
-~~~\Svar{y}\Svassign \Svar{y}\Splus\Scodelit{2}\\
-\SEndLoop{}
-}}\bigskip
-\pause
-
-Dies entspricht also der Zuweisung $\Svar{y}\Svassign \Svar{y}\Splus (\Scodelit{2}~\texttt{*}~\Svar{x})$, die wir in LOOP nicht direkt schreiben können.
-
-
-\end{frame}
-
-\begin{frame}\frametitle{LOOP-Programme: Semantik (1)}
-
-\emph{Funktionsweise eines LOOP-Programms $P$:}
-\begin{itemize}
-\item \alert{Eingabe:} Eine Liste von $k$ natürlichen Zahlen\\
-(Anmerkung: $k$ wird nicht durch das Programm festgelegt)
-\item \alert{Ausgabe:} Eine natürliche Zahl
-\end{itemize}
-$P$ berechnet also eine totale Funktion $\mathbb{N}^k\to \mathbb{N}$, für beliebige $k$
+Wir betrachten die Formel $((p\to q)\to p)\to p$.
 \bigskip\pause
 
-\emph{Initialisierung für Eingabe $n_1,\ldots,n_k$:}
-\begin{itemize}
-\item LOOP speichert für jede Variable eine natürliche Zahl als Wert
-\item Den Variablen $\Sxsub{1},\ldots,\Sxsub{k}$ werden anfangs die Werte $n_1,\ldots,n_k$ zugewiesen
-\item Allen anderen Variablen wird der Anfangswert $0$ zugewiesen
+Zunächst eliminieren wir Vorkommen von $\to$ in beliebiger Reihenfolge:
 
-\end{itemize}
+\narrowcentering{
+$\begin{array}{r@{{}\equiv{}}l}
+(\underline{(p\to q)}\to p)\to p  \pause &\underline{((\neg p\vee q)\to p)}\to p \\\pause
+	& \underline{(\neg(\neg p\vee q)\vee p)\to p}\\\pause
+	& \neg(\neg(\neg p\vee q)\vee p)\vee p\\
+\end{array}$
+}\medskip
 
-\end{frame}
+Anschließend wenden wir $\textsf{NNF}$ an:\pause
+\medskip
 
-\begin{frame}\frametitle{LOOP-Programme: Semantik (2)}
-
-Nach der Initialisierung wird das LOOP-Programm abgearbeitet:
-\begin{itemize}
-\item $\Svar{x} \Svassign \Svar{y} \Splus n$:\\
-der Variable $\Svar{x}$ wird als neuer Wert die Summe des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugewiesen
-\item $\Svar{x} \Svassign \Svar{y} \Sminus n$:\\
-der Variable $\Svar{x}$ wird als neuer Wert die Differenz des (alten) Wertes für $\Svar{y}$ und der Zahl $n$ zugewiesen, falls diese größer $0$ ist; ansonsten wird $\Svar{x}$ der Wert $0$ zugewiesen
-\item $P_1\Sseq{}~P_2$:\\
-erst wird $P_1$ abgearbeitet, dann $P_2$
-\item $\SStartLoop{\Svar{x}}P~\SEndLoop{}$:\\
-$P$ wird genau $n$-mal ausgeführt, für den Zahlenwert $n$, der $\Svar{x}$ anfangs zugewiesen ist\\
-\textcolor{devilscss}{($n$ ändert sich also nicht, wenn $P$ den Wert von $\Svar{x}$ ändert)}
-\end{itemize}
+$\begin{array}{r@{{}={}}l}
+\textcolor{darkblue}{\textsf{NNF}(}\neg(\neg(\neg p\vee q)\vee p)\vee p\textcolor{darkblue}{)}	\pause&
+\textcolor{darkblue}{\textsf{NNF}(}\neg(\neg(\neg p\vee q)\vee p)\textcolor{darkblue}{)}\vee \textcolor{darkblue}{\textsf{NNF}(}p\textcolor{darkblue}{)}\\\pause
+% 	& \textcolor{darkblue}{\textsf{NNF}(}\neg\neg(\neg p\vee q)\wedge \neg p\textcolor{darkblue}{)}\vee \textcolor{darkblue}{\textsf{NNF}(}p\textcolor{darkblue}{)}\\\pause
+	& (\textcolor{darkblue}{\textsf{NNF}(}\neg\neg(\neg p\vee q)\textcolor{darkblue}{)}\wedge \textcolor{darkblue}{\textsf{NNF}(}\neg p\textcolor{darkblue}{)})\vee p\\\pause
+	& (\textcolor{darkblue}{\textsf{NNF}(}\neg p\vee q\textcolor{darkblue}{)}\wedge \neg p)\vee p\\\pause
+	& ((\textcolor{darkblue}{\textsf{NNF}(}\neg p\textcolor{darkblue}{)}\vee \textcolor{darkblue}{\textsf{NNF}(}q\textcolor{darkblue}{)})\wedge \neg p)\vee p\\\pause
+	& ((\neg p\vee q)\wedge \neg p)\vee p
+\end{array}$
 
 \end{frame}
 
-\begin{frame}\frametitle{LOOP-Programme: Semantik (3)}
+\begin{frame}\frametitle{NNF-Definition (Wiederholung)}
 
-\emph{Ausgabe eines LOOP-Programms:}\\
+\defbox{Sei $F$ eine Formel, die nur die Junktoren $\wedge$, $\vee$ und $\neg$ enthält. Wir definieren eine Formel $\textsf{NNF}(F)$ rekursiv wie folgt:
 \begin{itemize}
-\item Das Ergebnis der Abarbeitung ist der Wert der Variable $\Sxsub{0}$ nach dem Beenden der Berechnung
-\end{itemize}
-\bigskip\pause
-
-\theobox{\emph{Satz:} LOOP-Programme terminieren immer nach endlich vielen Schritten.}
-
-\pause
-\emph{Beweis:} Die Behauptung gilt sicherlich für Wertzuweisungen.
-\bigskip
-
-Weitere Fälle:
-\begin{itemize}
-\item $P_1\Sseq{}~P_2$:\\
-	wenn $P_1$ und $P_2$ nach endlich vielen Schritten terminieren, dann auch $P_1\Sseq{}~P_2$
-\item $\SStartLoop{\Svar{x}}P~\SEndLoop{}$:\\
-	für jede mögliche Zuweisung von $\Svar{x}$ wird $P$ endlich oft wiederholt;
-	wenn $P$ in endlich vielen Schritten terminiert, dann also auch die Schleife\qed
+\item $\textsf{NNF}(p)=p$ falls $p\in\Slang{P}$
+\item $\textsf{NNF}(F\wedge G)=\textsf{NNF}(F)\wedge\textsf{NNF}(G)$
+\item $\textsf{NNF}(F\vee G)=\textsf{NNF}(F)\vee\textsf{NNF}(G)$
+\item $\textsf{NNF}(\neg p)=\neg p$ falls $p\in\Slang{P}$
+\item $\textsf{NNF}(\neg\neg F)=\textsf{NNF}(F)$
+\item $\textsf{NNF}(\neg(F\wedge G))=\textsf{NNF}(\neg F)\vee\textsf{NNF}(\neg G)$
+\item $\textsf{NNF}(\neg(F\vee G))=\textsf{NNF}(\neg F)\wedge\textsf{NNF}(\neg G)$
 \end{itemize}
 
-\end{frame}
-
-\begin{frame}\frametitle{Anmerkung: Strukturelle Induktion}
-
-Der vorangegangene einfache Beweis verwendet \redalert{Induktion}, um eine
-Aussage für unendlich viele Programme zu zeigen:
-\begin{itemize}
-\item \alert{Induktionsanfang:} Die Behauptung gilt für Wertzuweisungen (die einfachsten LOOP-Programme)
-\item \alert{Induktionsannahme:} Die Behauptung gilt bereits für Programme $P$, $P_1$, $P_2$
-\item \alert{Induktionsschritte:}
-\begin{enumerate}[(1)]
-\item Die Behauptung gilt dann auch für $P_1\Sseq{}~P_2$.
-\item Die Behauptung gilt dann auch für $\SStartLoop{\Svar{x}}P~\SEndLoop{}$.
-\end{enumerate}
-\end{itemize}
-\bigskip
-
-\anybox{strongyellow}{Merke: Induktion kann man nicht nur auf natürliche Zahlen anwenden, sondern auf alle
-(unendlichen) Mengen, die man induktiv mit endlich vielen Operationen aus Grundfällen erzeugen kann.
 }
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Programmieren in LOOP (1)}
+\begin{frame}\frametitle{NNF-Umwandlung: Korrektheit}
 
-LOOP hat nur wenige Ausdrucksmittel, aber man kann sich leicht weitere als Makros definieren.\\[1ex]
-
-\emph{Wertzuweisung mit Variable:} ``$\Svar{x}\Svassign \Svar{y}$'':\pause
-
-\codebox{{\tt
-\Svar{x}\Svassign \Svar{y}\Splus \Scodelit{0}
-}}\bigskip\pause
-
-\emph{Wertzuweisung mit $0$:} ``$\Svar{x}\Svassign \Scodelit{0}$'':\pause
-
-\codebox{{\tt
-\SStartLoop{\Svar{x}}\\
-~~~\Svar{x}\Svassign \Svar{x}\Sminus\Scodelit{1}\\
-\SEndLoop{}
-}}\bigskip\pause
-
-\emph{Wertzuweisung einer beliebigen konstanter Zahl:} ``$\Svar{x}\Svassign n$'':\pause
-
-\codebox{{\tt
-\Svar{x}\Svassign \Scodelit{0}\\
-\Svar{x}\Svassign \Svar{x}\Splus n
-}}%\bigskip
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Programmieren in LOOP (2)}
-
-LOOP hat nur wenige Ausdrucksmittel, aber man kann sich leicht weitere als Makros definieren.\\[1ex]
-
-\emph{Wertzuweisung:} ``$\Svar{x}\Svassign \Svar{y}~\texttt{+}~\Svar{z}$'':\pause
-
-\codebox{{\tt
-\Svar{x}\Svassign\Svar{y}\\
-\SStartLoop{\Svar{z}}\\
-~~~\Svar{x}\Svassign \Svar{x}\Splus\Scodelit{1}\\
-\SEndLoop{}
-}}\bigskip\pause
-
-
-\emph{Fallunterscheidung:} ``$\SStartIf{\Svar{x}\Svneq\Scodelit{0}}~P~\SEndIf$'':\pause
-
-\codebox{{\tt
-\SStartLoop{\Svar{x}}~\Svar{y}\Svassign \Scodelit{1}~~\SEndLoop{}\\
-\SStartLoop{\Svar{y}}~P~~\SEndLoop{}
-}}\medskip
-
-Dabei ist $\Svar{y}$ eine frische Variable, die bisher nirgends sonst verwendet wird.
-
-% \bigskip
-
-\end{frame}
-
-\begin{frame}\frametitle{LOOP-Berechenbare Funktionen}
-
-\defbox{\emph{Definition:} Eine Funktion $\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{LOOP-berechenbar}, wenn es ein LOOP-Programm gibt, das die Funktion berechnet.}\bigskip
-\pause
-
-\examplebox{Beispiel: Die folgenden Funktionen sind LOOP-berechenbar:
+Ist diese Umformung korrekt?
 \begin{itemize}
-\item Addition: $\tuple{x,y}\mapsto x+y$ (gerade gezeigt)
-\item Multiplikation: $\tuple{x,y}\mapsto x\cdot y$ (siehe Übung)
-\item Potenz: $\tuple{x,y}\mapsto x^y$ (entsteht aus $\cdot$ wie $\cdot$ aus $+$)
-\item und viele andere \ldots (max, min, div, mod, usw.)
-\end{itemize}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{LOOP jenseits von $\mathbb{N}$}
-
-\pause
-LOOP kann auch das $\Svar{x}$-te Bit der Binärkodierung von $\Svar{y}$ berechnen. Dadurch kann
-man in LOOP (auf umständliche Weise) auch Daten verarbeiten, die keine Zahlen sind:
-\begin{enumerate}[(1)]
-\item Kodiere beliebigen Input binär
-\item Evaluiere die Binärkodierung als natürliche Zahl und verwende diese als Eingabe
-\item Dekodiere den Input im LOOP-Programm
-\end{enumerate}
-In diesem Sinne sind viele weitere Funktionen LOOP-berechenbar.
-\bigskip\pause
-
-\examplebox{Beispiele für LOOP-berechenbare Funktionen:
-\begin{itemize}
-\item das Wortproblem regulärer, kontextfreier und kontextsensitiver Sprachen
-\item alle Probleme in \complclass{NP}, z.B. Erfüllbarkeit propositionaler Logik
-\item praktisch alle gängigen Algorithmen (Sortieren, Suchen, Optimieren, \ldots)
-\end{itemize}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Die Grenzen von LOOP}
-
-\theobox{\emph{Satz:} Es gibt berechenbare Funktionen, die nicht LOOP-berechenbar sind.}\pause
-
-Das ist weniger überraschend, als es vielleicht klingt:\smallskip
-
-\emph{Beweis:} Ein LOOP-Programm terminiert immer. Daher ist jede LOOP-berechenbare Funktion total. Es gibt aber auch nicht-totale Funktionen, die berechenbar sind (z.B. die ``partiellste'' Funktion, die nirgends definiert ist).\qed
-% \bigskip\pause
-% 
-% \theobox{Satz: Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
-% 
-% Das ist überraschend. Hilbert glaubte 1926 noch, dass alle Funktionen so berechnet werden können -- quasi ein erster Versuch der Definition von Berechenbarkeit.
-% 
-% {\tiny Hilbert definierte LOOP-Berechenbarkeit etwas anders, mithilfe sogenannter \redalert{primitiv rekursiver Funktionen}.
-% }
-
-\end{frame}
-
-
-\begin{frame}\frametitle{LOOP-berechenbar $\neq$ berechenbar}
-
-\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
-
-Das ist überraschend. Hilbert glaubte 1926 noch, dass alle Funktionen so berechnet werden können -- quasi ein erster Versuch der Definition von Berechenbarkeit.
-
-{\tiny Hilbert definierte LOOP-Berechenbarkeit etwas anders, mithilfe sogenannter \redalert{primitiv rekursiver Funktionen}.
-}\pause\bigskip
-
-Bewiesen wurde der Satz zuerst von zwei Studenten Hilberts:
-\begin{itemize}
-\item Gabriel Sudan (1927)
-\item Wilhelm Ackermann (1928)
+\item \alert{Wohldefiniertheit:} Deckt die Rekursion wirklich jeden Fall ab?\\\pause
+	\redalert{Ja}, wie man leicht überprüfen kann (der Fall $\neg$ ist nach der Form der negierten Formel nochmals in vier Unterfälle aufgespalten).\pause
+\item \alert{Terminierung:} Ist sichergestellt, dass die rekursive Berechnung terminiert?\\\pause
+	\redalert{Ja}, denn $\textsf{NNF}$ wir in jedem Rekursionsschritt auf Formeln angewendet, die insgesamt weniger Junktoren haben als zuvor.\pause
+\item \alert{Korrektheit:} Ist das Ergebnis der rekusiven Umwandlung in NNF?\\\pause
+	\redalert{Ja}, denn $\neg$ kommt im Ergebnis nur in Fall $\neg p$ ($p\in\Slang{P}$) vor.\\\pause
+	Ist das Ergebnis semantisch äquivalent zur Eingabe?\\\pause
+	\redalert{Ja}, wie man durch ein induktives Argument leicht zeigen kann\\
+	{\tiny Induktionsanfang: Äquivalenz gilt für $p$ und $\neg p$; Induktionshypothese: $F\equiv \textsf{NNF}(F)$ und $G\equiv \textsf{NNF}(G)$; Induktionsschritt: für jeden rekursiven Fall folgt Äquivalenz aus Hypothese, Ersetzungstheorem und bekannten Äquivalenzgesetzen.
+	
+	}
 \end{itemize}\pause
-Jeder der beiden gab eine Funktion an (Sudan-Funktion und Ackermann-Funktion), die nicht LOOP-berechenbar ist.
-\bigskip
 
-Unser Beweis verwendet eine etwas andere Idee \ldots
+\theobox{\emph{Satz:} Jede Formel kann (in linearer Zeit) in eine äquivalente Formel in NNF umgewandelt werden.}
 
 \end{frame}
 
-\begin{frame}\frametitle{Fleißige Biber für LOOP}
+\begin{frame}\frametitle{Konjunktive und Disjunktive Normalform}
 
-Die \redalert{Länge} eines LOOP-Programms ist die Anzahl an
-Zeichen, aus denen es besteht. Dazu nehmen wir an:
+Zur Erinnerung: \redalert{Literale} = negierte oder nichtnegierte Atome
+
+\defbox{Eine Formel $F$ ist in \redalert{konjunktiver Normalform} (\alert{KNF}) wenn sie 
+eine Konjunktion von Disjunktionen von Literalen ist, d.h. wenn sie die Form hat:\\[1ex]
+%
+\narrowcentering{$(L_{1,1}\vee \ldots\vee L_{1,m_1})\wedge(L_{2,1}\vee \ldots\vee L_{2,m_2})\wedge\ldots
+\wedge(L_{n,1}\vee \ldots\vee L_{n,m_n}) $}\\[1ex]
+% \narrowcentering{$\bigwedge_{i=1}^n \bigvee_{j=1}^{m_i} L_{i,j}$}\\[1ex]
+%
+wobei die Formeln $L_{i,j}$ Literale sind. Eine Disjunktion von Literalen heißt \redalert{Klausel}.
+}\medskip
+
+\defbox{Eine Formel $F$ ist in \redalert{disjunktiver Normalform} (\alert{DNF}) wenn sie 
+eine Disjunktion von Konjunktionen von Literalen ist, d.h. wenn sie die Form hat:\\[1ex]
+%
+\narrowcentering{$(L_{1,1}\wedge \ldots\wedge L_{1,m_1})\vee(L_{2,1}\wedge \ldots\wedge L_{2,m_2})\vee\ldots
+\vee(L_{n,1}\wedge \ldots\wedge L_{n,m_n}) $}\\[1ex]
+% \narrowcentering{$\bigwedge_{i=1}^n \bigvee_{j=1}^{m_i} L_{i,j}$}\\[1ex]
+%
+wobei die Formeln $L_{i,j}$ Literale sind. Eine Konjunktion von Literalen heißt \redalert{Monom}.
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{KNF und DNF bilden (Methode 1)}
+
+Man kann KNF und DNF direkt aus der Wahrheitswertetabelle ablesen:
+\medskip
+
+\begin{minipage}{3cm}
+\begin{tabular}[t]{ccc}
+\rowcolor{lightblue!20}
+$p$ & $q$ & $\neg p\leftrightarrow q$\\
+\myfalse & \myfalse & \myfalse\\
+\rowcolor{gray!10}
+\mytrue & \myfalse & \mytrue\\
+\myfalse & \mytrue & \mytrue\\
+\rowcolor{gray!10}
+\mytrue & \mytrue & \myfalse\\
+\\
+\\
+\\
+\\
+\\
+\end{tabular}
+\end{minipage}
+\begin{minipage}{6cm}%
+\alert{Disjunktive Normalform:}
 \begin{itemize}
-\item Zahlen werden in ihrer Dezimalkodierung geschrieben
-\item Variablen sind mit lateinischen Buchstaben und Ziffern benannt (wir sehen $\Sxsub{123}$ als Schreibweise für $\Svar{x123}$ an)
-\item Wir betrachten $\Sseq$ als ein Zeichen (Zeilenumbrüche werden dagegen nicht gezählt)
-\end{itemize}\bigskip\pause
+% \item Betrachte alle Zeilen mit Wert $\mytrue$
+\item Für jede Zeile mit Wert $\mytrue$, bilde ein Monom mit allen Atomen, wobei
+genau die Atome mit Wert $\myfalse$ negiert werden
+% 	Atome $p$ mit Wert $\mytrue$ als $p$,
+% 	Atome $p$ mit Wert $\myfalse$ als $\neg p$
+\item Beispiel: $(p\wedge\neg q)\vee(\neg p\wedge q)$
+\end{itemize}
 
-\defbox{\emph{Definition:} Die Funktion $\bbfunc_{\textsf{LOOP}}:\mathbb{N}\to\mathbb{N}$ liefert für jede Zahl $\ell$ die größte Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$, die ein LOOP-Programm der Länge $\leq\ell$ für eine leere Eingabe (alle Variablen sind $0$) ausgibt. Dabei sei
-$\bbfunc_{\textsf{LOOP}}(\ell)=0$ falls es kein Programm der Länge $\leq\ell$ gibt.
+\alert{Konjunktive Normalform:}
+\begin{itemize}
+% \item Betrachte alle Zeilen mit Wert $\myfalse$
+\item Für jede Zeile mit Wert $\myfalse$, bilde eine Klausel mit allen Atomen, wobei
+genau die Atome mit Wert $\mytrue$ negiert werden
+% 	Atome $p$ mit Wert $\mytrue$ als $p$,
+% 	Atome $p$ mit Wert $\myfalse$ als $\neg p$
+\item Beispiel: $(p\vee q)\wedge(\neg p\vee \neg q)$
+\end{itemize}
+\end{minipage}
+
+\end{frame}
+
+\newcommand{\colA}[2]{\textcolor<#2>{darkred}{#1}}
+\newcommand{\colB}[2]{\textcolor<#2>{darkblue}{#1}}
+\newcommand{\colC}[2]{\textcolor<#2>{darkgreen}{#1}}
+
+\begin{frame}\frametitle{KNF und DNF bilden (Methode 2)}
+
+Man kann KNF und DNF bilden, indem man die NNF erzeugt und anschließend Distributivgesetze anwendet
+$\leadsto$ oft direkter\bigskip
+
+\emph{Konjunktive Normalform}
+\medskip
+
+Distributivgesetz: $\colA{F}{2-}\vee(\colB{G}{2-}\wedge \colC{H}{2-}) \equiv (\colA{F}{2-}\vee \colB{G}{2-})\wedge (\colA{F}{2-}\vee \colC{H}{2-})$\pause
+\medskip
+
+\examplebox{\emph{Beispiel:}\\
+$\begin{array}{r@{{}\equiv{}}l}
+	\colA{(p\wedge\neg q)}{3}\vee(\colB{\neg p}{3}\wedge\colC{q}{3}) \pause& (\colA{(\colB{p}{4}\wedge\colC{\neg q}{4})}{3}\vee\colA{\colB{\neg p}{3}}{4})\wedge (\colA{(p\wedge\neg q)}{3}\vee \colC{q}{3})) \pause\\
+		& (\colB{p}{4}\vee\colA{\neg p}{4})\wedge(\colC{\neg q}{4}\vee\colA{\neg p}{4})\wedge ((\colB{p}{5}\wedge\colC{\neg q}{5})\vee \colA{q}{5}))\pause\\
+		& (p\vee\neg p)\wedge(\neg q\vee\neg p)\wedge (\colB{p}{5}\vee \colA{q}{5})\wedge(\colC{\neg q}{5}\vee \colA{q}{5})\pause
+\end{array}$\\[1ex]
+(Man könnte die wahren Klauseln $(p\vee\neg p)$ und $(\neg q\vee q)$ streichen.)
+}\smallskip
+
+\visible<6->{
+\emph{Disjunktive Normalform}
+\medskip
+
+Distributivgesetz: $F\wedge(G\vee H) \equiv (F\wedge G)\vee (F\wedge H)$ ~~~(analog)
+}
+\end{frame}
+
+\begin{frame}\frametitle{Wie effizient sind die Umformungen in KNF?}
+
+\emph{Ableitung aus Wahrheitswertetabelle}\medskip
+
+Anzahl der Zeilen (=Klauseln) \alert{exponentiell} in Variablenzahl
+\bigskip\pause
+
+\emph{Umformung mit Distributivgesetz}%\medskip
+
+\begin{itemize}
+\item Negationsnormalform hat lineare Größe
+\item Distributivgesetz kann Vorkommen von Formeln verdoppeln $\leadsto$ exponentielles Wachstum
+\end{itemize}\pause
+
+\examplebox{%
+\emph{Beispiel:} Wir betrachten die Atome $a_i$ und $b_i$ für $i\in\{1,\ldots,n\}$. Für\\[1ex]
+%
+\narrowcentering{$(a_1\wedge b_1)\vee(a_2\wedge b_2)\vee\ldots\vee(a_n\wedge b_n)$}\\[1ex]
+%
+ergibt sich die KNF:\\[1ex]
+%
+\narrowcentering{$\underbrace{(a_1\vee a_2\vee\ldots\vee a_n)
+\wedge(b_1\vee a_2\vee\ldots\vee a_n)
+% \wedge(a_1\vee b_2\vee\ldots\vee a_n)
+\wedge\ldots
+\wedge(b_1\vee b_2\vee\ldots\vee b_n)}_{\text{$2^n$ Klauseln mit allen Kombinationen aus $a_i$ und $b_i$}}
+$}}\\[1ex]
+$\leadsto$ Anzahl der Klauseln \alert{exponentiell} in Variablenzahl
+
+\end{frame}
+
+\begin{frame}\frametitle{Effizientere Normalformen?}
+
+Unsere Umformungen sind schlimmstenfalls exponentiell
+\begin{itemize}
+\item Allgemein unvermeidbar: Es gibt oft keine kleinere KNF/DNF
+\item Für KNF (aber nicht für DNF!) kann das Problem durch Einführung zusätzlicher Hilfsvariablen gelöst werden\\[1ex]
+{\tiny (Es gibt eine polynomielle Formel in KNF mit zusätzlichen Variablen, welche\\[-1.5ex] "`bezüglich der Variablen der ursprünglichen Formel"' semantisch äquivalent ist)}
+\end{itemize}
+
+\examplebox{
+\emph{Beispiel:} $(a_1\wedge b_1)\vee(a_2\wedge b_2)\vee\ldots\vee(a_n\wedge b_n)$ ist ausdrückbar als:
+%
+\begin{align*}
+& ((a_1\wedge b_1)\vee c_1) \\
+{}\wedge{} & (c_1 \leftrightarrow ((a_2\wedge b_2)\vee c_2)) 
+%& (\neg c_1{\vee} a_2{\vee} c_2)\wedge (\neg c_1{\vee} b_2{\vee} c_2)\wedge(\neg a_2{\vee} \neg b_2{\vee} c_1)\wedge(\neg c_2{\vee} c_1)
+\\
+{}\wedge{} & (c_2 \leftrightarrow ((a_3\wedge b_3)\vee c_3)) \\
+\ldots 
+{}\wedge{} & (c_{n-1} \leftrightarrow (a_n\wedge b_n))
+\end{align*}
+Diese Formel ist "`fast"' äquivalent (bis auf die zusätzlichen $c_i$) und hat eine polynomielle KNF\\
+{\tiny (Jede Zeile kann einzeln in KNF übersetzt werden, wobei Formeln fester Größe entstehen, von denen es linear viele
+gibt.)}}
+
+% Zum Beispiel ist $(c_1 \leftrightarrow ((a_2\wedge b_2)\vee c_2))\equiv (\neg c_1\vee a_2\vee c_2)\wedge (\neg c_1\vee b_2\vee c_2)\wedge(\neg a_2\vee \neg b_2\vee c_1)\wedge(\neg c_2\vee c_1)$
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Schließen mit DNF}
+
+Man kann (Un)Erfüllbarkeit leicht aus DNF ablesen:\medskip
+
+\theobox{\emph{Satz:} Eine Formel in DNF ist genau dann erfüllbar, wenn eines ihrer Monome erfüllbar ist. Dies ist genau
+dann der Fall, wenn das Monom kein Atom gleichzeitig negiert und nichtnegiert enthält.
+}
+
+Mögliches Verfahren:
+\begin{itemize}
+\item Führe logisches Problem auf (Un)Erfüllbarkeit zurück
+\item Bilde die DNF und prüfe jedes Monom auf komplementäre Literale
+\end{itemize}
+\emph{Nachteil:} Die DNF kann ebenfalls exponentiell groß werden\\ (muss sie aber nicht in jedem Fall)
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Schließen mit KNF}
+
+Man kann Widerlegbarkeit/Allgemeingültigkeit aus KNF ablesen:\medskip
+
+\theobox{\emph{Satz:} Eine Formel in KNF ist genau dann widerlegbar, wenn eine ihrer Klauseln widerlegbar ist. Dies ist genau
+dann der Fall, wenn die Klausel kein Atom gleichzeitig negiert und nichtnegiert enthält.
+}
+
+Mögliches Verfahren:
+\begin{itemize}
+\item Führe logisches Problem auf Allgemeingültigkeit zurück
+\item Bilde die KNF und prüfe jede Klausel auf komplementäre Literale
+\end{itemize}
+\emph{Nachteil:} Die KNF kann ebenfalls exponentiell groß werden\\ (muss sie aber nicht in jedem Fall)
+\bigskip\pause
+
+\alert{Können wir durch Hilfsatome eine kleinere KNF erzeugen?}\\\pause
+\redalert{Ja, aber dabei wird nur Erfüllbarkeit erhalten, nicht \ghost{Allgemeingültigkeit!}}\\
+$\leadsto$ nicht geeignet, um das Problem effizienter zu lösen
+
+\end{frame}
+
+\sectionSlide{Resolution}
+
+\newcommand{\Aname}{Anna}
+\newcommand{\Bname}{Barbara}
+\newcommand{\Cname}{Chris}
+
+\begin{frame}\frametitle{Resolution}
+
+\emph{Ziel:} Verfahren, um \redalert{(Un)Erfüllbarkeit} einer \redalert{KNF} zu bestimmen
+\bigskip
+
+Leider ist (Un)Erfüllbarkeit nicht an einzelnen Klauseln erkennbar.
+\medskip
+
+\examplebox{\emph{Beispiel:} Die Logelei aus Vorlesung 21 haben wir mit den Formeln $\mathcal{F}=\{A\leftrightarrow \neg B, B\leftrightarrow \neg C,C\leftrightarrow (\neg A\wedge \neg B)\}$ dargestellt. Wir wollen beweisen, dass
+\Bname{} die Wahrheit sagt, also $\mathcal{F}\models B$. Dazu kann man zeigen, dass $\mathcal{F}\cup\{\neg B\}$ unerfüllbar
+ist. Bei Anwendung des Distributivgesetztes erhalten wir die folgende KNF:
+\begin{align*}
+(\neg A\vee \neg B)\wedge (A\vee B)&\wedge{}\\
+(\neg B\vee \neg C)\wedge (B\vee C)&\wedge{}\\
+(\neg C\vee \neg A)\wedge(A\vee B\vee C)&\wedge{}\\
+\neg B
+\end{align*}
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Die Klauselform}
+
+Wenn man grundsätzlich mit KNF arbeitet, dann bieten sich einige syntaktische Vereinfachungen an:
+\begin{itemize}
+\item Eine Klausel $L_1\vee\ldots\vee L_n$ wir dargestellt als Menge $\{L_1,\ldots,L_n\}$
+\item Eine Konjunktion von Klauseln $K_1\wedge\ldots\wedge K_\ell$ wird dargestellt als Menge $\{K_1,\ldots,K_\ell\}$
+\end{itemize}
+Eine Menge von Mengen von Literalen unter dieser Interpretation heißt \redalert{Klauselform}.
+\medskip\pause
+
+\examplebox{\emph{Beispiel:} Die KNF\vspace{-3ex}
+\begin{align*}
+(\neg A\vee \neg B)\wedge (A\vee B)&\wedge{}\\
+(\neg B\vee \neg C)\wedge (B\vee C)&\wedge{}\\
+(\neg C\vee \neg A)\wedge(A\vee B\vee C)&\wedge{}\\
+\neg B
+\end{align*}\vspace{-5ex}
+
+kann in Klauselform dargestellt werden als:\vspace{-1ex}
+\[\{\{\neg A, \neg B\}, \{A, B\},\{\neg B, \neg C\},\{B, C\},
+\{\neg C, \neg A\},\{A, B, C\},\{\neg B\}\}\]
+}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ableitungen mittels Resolution}
+
+Beim Resolutionsverfahren leiten wir schrittweise neue Klauseln aus den gegebenen ab.
+\bigskip
+
+Ein einzelner Resolutionschritt funktioniert wie folgt:
+
+\defbox{
+Gegeben seien zwei Klauseln $K_1$ und $K_2$ für die es ein Atom $p\in\Slang{P}$ gibt mit $p\in K_1$ und $\neg p\in K_2$.
+Die \redalert{Resolvente von $K_1$ und $K_2$ bezüglich $p$} ist die Klausel \alert{$(K_1\setminus\{p\})\cup(K_2\setminus\{\neg p\})$}.\medskip
+
+Eine Klausel $R$ ist eine \redalert{Resolvente einer Klauselmenge $\mathcal{K}$} wenn $R$ Resolvente zweier Klauseln  $K_1,K_2\in\mathcal{K}$ ist.
 }\pause
 
-\emph{Beobachtung:} $\bbfunc_{\textsf{LOOP}}$ ist wohldefiniert:
+\examplebox{\emph{Beispiel:} Resolventen für die Menge $\{\{\neg A, \neg B\},\allowbreak \{A, B\},\allowbreak\{\neg B, \neg C\},\allowbreak\{B, C\},\allowbreak
+\{\neg C, \neg A\},\allowbreak\{A, B, C\},\allowbreak\{\neg B\}\}$ sind z.B.
 \begin{itemize}
-\item Die Zahl der LOOP-Programme mit maximaler Länge $\ell$ ist endlich
-\item Unter diesen Programmen gibt es eine maximale Ausgabe
+\item $\{B,\neg A\}$ aus den Klauseln $\{B, C\}$ und $\{\neg C,\neg A\}$
+\item $\{A\}$ aus den Klauseln $\{A, B\}$ und $\{\neg B\}$
+\item $\{B,\neg B\}$ aus den Klauseln $\{B,C\}$ und $\{\neg B, \neg C\}$
 \end{itemize}
 
-\end{frame}
-
-\begin{frame}\frametitle{Beispiele}
-
-\examplebox{\emph{Beispiel:} Die LOOP-Anweisung
-$\Sxsub{0}\texttt{:=}\Svar{y}\texttt{+}9$
-liefert das fleißigste Programm für $\ell=7$, d.h. $\bbfunc_{\textsf{LOOP}}(7)=9$.
-}\medskip\pause
-
-Für $\ell=8$ gilt dementsprechend bereits $\bbfunc_{\textsf{LOOP}}(8)=99$.
-\medskip
-
-Für $\ell<7$ gibt es keine Zuweisung, die $\Sxsub{0}$ ändert, d.h., $\bbfunc_{\textsf{LOOP}}(\ell)=0$.
-\bigskip\pause
-
-\alert{Bonusaufgabe:} Gibt es eine Zahl $\ell$, bei der $\bbfunc_{\textsf{LOOP}}(\ell)$ durch ein
-Programm berechnet wird, welches die Zahl $\bbfunc_{\textsf{LOOP}}(\ell)$ nicht
-als Konstante im Quelltext enthält? Wie könnte das entsprechende Programm aussehen?
-
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{Beweis (1)}
-
-\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}\pause
-
-\emph{Beweis:} Wir zeigen zwei Teilaussagen:
-
-\begin{enumerate}[(1)]
-\item $\bbfunc_{\textsf{LOOP}}$ ist berechenbar
-\item $\bbfunc_{\textsf{LOOP}}$ ist nicht LOOP-berechenbar
-\end{enumerate}\pause\medskip
-
-Behauptung (1) ist leicht zu zeigen:
-\begin{itemize}
-\item Es gibt endlich viele LOOP-Programme der Länge $\leq \ell$
-\item Man kann alle davon durchlaufen und auf einem Computer simulieren
-\item Die Simulation liefert immer nach endlich vielen Schritten ein Ergebnis
-\item Das Maximum aller Ergebnisse ist der Wert von $\bbfunc_{\textsf{LOOP}}(\ell)$
-\end{itemize}
-{\footnotesize (Anmerkung: Wir verwenden hier einen intuitiven Berechnungsbegriff und Church-Turing.)
 }
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Beweis (2)}
+\begin{frame}\frametitle{Bedeutung von Resolutionsschritten}
 
-\theobox{\emph{Satz:} Es gibt berechenbare totale Funktionen, die nicht LOOP-berechenbar sind.}
-
-\emph{Beweis:} Wir zeigen zwei Teilaussagen:
-
-\begin{enumerate}[(1)]
-\item $\bbfunc_{\textsf{LOOP}}$ ist berechenbar
-\item $\bbfunc_{\textsf{LOOP}}$ ist nicht LOOP-berechenbar
-\end{enumerate}\pause
-
-Behauptung (2) zeigen wir per Widerspruch:\pause
+Wir betrachten Klauseln $\{L_1,\ldots,L_n,p\}$ und $\{\neg p,M_1,\ldots,M_\ell\}$:\pause
 \begin{itemize}
-\item Angenommen $\bbfunc_{\textsf{LOOP}}$ ist LOOP-berechenbar durch Programm $P_{\bbfunc}$. Sei $k$ die Länge von $P_{\bbfunc}$.\pause
-\item Wir wählen eine Zahl $m$ mit $m\geq k+17+\log_{10} m$ (immer \ghost{möglich)}\pause
-\item Sei $P_m$ das Programm $\Sxsub{1}\texttt{:=}\Sxsub{1}\texttt{+}m$ (Länge: $7+\lceil\log_{10}m\rceil$)\pause
-\item Sei $P_{++}$ das Programm $\Sxsub{0}\texttt{:=}\Sxsub{0}\texttt{+}\Scodelit{1}$ (Länge: $8$)\pause
-\item Wir definieren $P = P_m\Sseq\, P_{\bbfunc}\Sseq\, P_{++}$.\\\pause
-Die Länge von $P$ ist $k+17+\lceil\log_{10}m\rceil$ und damit $\leq m$.\\\pause
-Aber $P$ gibt die Zahl $\bbfunc_{\textsf{LOOP}}(m)+1$ aus. 
-Widerspruch.\qed
-\end{itemize}
+\item $\{L_1,\ldots,L_n,p\}\equiv (L_1\vee\ldots\vee L_n\vee p) \equiv \alert{(\neg L_1\wedge\ldots\wedge\neg L_n)\to p}$\pause
+\item $\{\neg p,M_1,\ldots,M_\ell\}\equiv (\neg p\vee M_1\vee\ldots\vee M_\ell)\equiv \alert{p\to (M_1\vee\ldots\vee M_\ell)}$\pause
+\end{itemize}\medskip
 
-\end{frame}
-
-\sectionSlide{WHILE}
-
-\begin{frame}\frametitle{Was fehlt?}
-
-\alert{Frage:} Wieso ist LOOP zu schwach?\medskip\pause
-
-\alert{Intuitive Antwort:} LOOP-Programme terminieren immer (zu vorhersehbar)
+Daraus folgt unmittelbar \alert{$(\neg L_1\wedge\ldots\wedge\neg L_n)\to (M_1\vee\ldots\vee M_\ell)$}\\
+$\leadsto$ dies entspricht der Klausel $\{L_1,\ldots,L_n,M_1,\ldots,M_\ell\}$\pause
 \bigskip
 
-$\leadsto$ Wir brauchen ein weniger vorhersehbares Programmkonstrukt
+\theobox{\emph{Satz:} Wenn $R$ Resolvente der Klauseln $K_1$ und $K_2$ ist, dann gilt $\{K_1,K_2\}\models R$.
+}
+
+Resolutionsschritte produzieren also logische Schlüsse. Diese Eigenschaft einer Ableitungsregel wird \redalert{Korrektheit} genannt ("`jede Ableitung ist tatsächlich eine logische Konsequenz"').
+
 
 \end{frame}
 
-\begin{frame}\frametitle{WHILE-Programme: Syntax und Semantik}
+\begin{frame}\frametitle{Die leere Klausel}
 
-\defbox{\emph{Definition:} Die Programmiersprache \redalert{WHILE} basiert wie LOOP auf
-Variablen $\Slang{V}$ und natürlichen Zahlen $\mathbb{N}$.\\
-\redalert{WHILE-Programme} sind induktiv definiert:
+Die Resolvente kann eine leere Menge $\emptyset$ sein.\\[1ex]
+
+\examplebox{\emph{Beispiel:} Die Resolvente der Klauseln $\{p\}$ und $\{\neg p\}$ ist leer.
+}\medskip
+
+\emph{Was bedeutet so eine \redalert{leere Klausel}?}\pause
 \begin{itemize}
-\item Jedes LOOP-Programm ist ein WHILE-Programm
-\item Wenn $P$ ein WHILE-Programm ist, dann ist\vspace{-1ex}
-\[\SStartWhile{\Svar{x}}P~\SEndWhile{}\]\vspace{-3.5ex}
-
-ein WHILE-Programm, für jede Variable $\Svar{x}\in\Slang{V}$.
+\item Klauseln sind Disjunktionen
+\item Die leere Klausel entspricht einer Disjunktion von $0$ Literalen
+\item Dieser Ausdruck sollte das neutrale Element der Disjunktion sein, d.h. immer den Wert $\myfalse$ annehmen
 \end{itemize}
-}\bigskip\pause
+$\leadsto$ Wir bezeichnen die leere Klausel mit $\bot$.
+\bigskip\pause
 
-Semantik von $\SStartWhile{\Svar{x}}P~\SEndWhile{}$:\\
-$P$ wird ausgeführt solange der aktuelle Wert von $\Svar{x}$ ungleich $0$ ist.\\
-\textcolor{devilscss}{(dies hängt davon ab, wie $P$ den Wert von $\Svar{x}$ ändert)}
+\emph{Was bedeutet es, wenn $\bot$ in Klauselform auftaucht?}\pause
+\begin{itemize}
+\item Die Klauselform beschreibt eine Konjunktion von Klauseln
+\item Wenn eine der Klauseln $\bot$ ist, dann ist die gesamte Formel unerfüllbar
+\end{itemize}
+$\leadsto$ Die Ableitung von $\bot$ zeigt Unerfüllbarkeit.
+
+\end{frame}
+
+\begin{frame}\frametitle{Das Resolutionskalkül}
+
+Wir können damit das gesamte Verfahren angeben:
+
+\codebox{\emph{Resolution}\\
+Gegeben: Formel $\mathcal{F}$ in Klauselform\\
+Gesucht: Ist $\mathcal{F}$ erfüllbar oder unerfüllbar?\\[1ex]
+
+\begin{enumerate}[(1)]
+\item Finde ein Klauselpaar $K_1,K_2\in \mathcal{F}$ mit Resolvente $R\notin \mathcal{F}$
+\item Setze $\mathcal{F}\defeq \mathcal{F}\cup\{R\}$
+\item Wiederhole Schritt (1) und (2) bis keine neuen Resolventen gefunden werden können
+\item Falls $\bot\in \mathcal{F}$, dann gib "`unerfüllbar"' aus;\\andernfalls gib "`erfüllbar"' aus
+\end{enumerate}
+}\pause
+
+\emph{Beobachtung:} Unerfüllbarkeit steht fest, sobald $\bot$ abgeleitet \ghost{wurde}\\
+$\leadsto$ dann kann man das Verfahren frühzeitig abbrechen
 \medskip
 
-Ansonsten werden WHILE-Programme wie LOOP-Programme ausgewertet.
+Erfüllbarkeit kann dagegen erst erkannt werden, wenn alle Resolventen erschöpfend gebildet worden sind
 
 \end{frame}
 
-\begin{frame}\frametitle{WHILE: Beobachtungen}
+\begin{frame}\frametitle{Beispiel}
 
-Es ist möglich, dass ein WHILE-Programm nicht terminiert, z.B.\medskip
+\begin{tabular}{rlll}
+(1) & $\{\neg A, \neg B\}$ && \textcolor{devilscss}{\Aname{} oder \Bname{} lügen.}\\
+(2) & $\{A, B\}$  && \textcolor{devilscss}{\Aname{} oder \Bname{} sagen die Wahrheit.} \\
+(3) & $\{\neg B, \neg C\}$  && \textcolor{devilscss}{\Bname{} oder \Cname{} lügen.} \\
+(4) & $\{B, C\}$ && \textcolor{devilscss}{\Bname{} oder \Cname{} sagen die Wahrheit.} \\
+(5) & $\{\neg C, \neg A\}$ && \textcolor{devilscss}{\Cname{} oder \Aname{} lügen.} \\
+(6) & $\{A, B, C\}$ && \textcolor{devilscss}{Jemand sagt die Wahrheit.}  \\
+(7) & $\{\neg B\}$ && \textcolor{devilscss}{\Bname{} lügt.} \\\pause
+(8) & $\{C\}$   &  (4)+(7) & \textcolor{devilscss}{\Cname{} sagt die Wahrheit.} \\\pause
+(9) & $\{\neg A\}$ & (8)+(5) & \textcolor{devilscss}{\Aname{} lügt.}\\\pause
+(10) & $\{B\}$  & (2)+(9) & \textcolor{devilscss}{\Bname{} sagt die Wahrheit.} \\\pause
+(11) & $\bot$ & (10)+(7) & \textcolor{devilscss}{Widerspruch.} 
+\end{tabular}\bigskip
 
-\codebox{{\tt
-\Svar{x}\Svassign \Scodelit{1}\\
-\SStartWhile{\Svar{x}}\\
-~~~\Svar{y}\Svassign \Svar{y}\Splus\Scodelit{2}\\
-\SEndLoop{}
-}}\bigskip
-\pause
-
-Wir können $\SStartLoop{\Svar{x}}P~\SEndLoop{}$
-ersetzen durch:\medskip
-
-\codebox{{\tt
-\Svar{z}\Svassign \Svar{x}\\
-\SStartWhile{\Svar{z}}\\
-~~~P\\
-~~~\Svar{z}\Svassign \Svar{z}\Sminus\Scodelit{1}\\
-\SEndWhile{}
-}}
-
-(für ein frisches $\Svar{z}$)\bigskip
-
-Also sind LOOP-Schleifen eigentlich nicht mehr nötig.
-
-\end{frame}
-
-\begin{frame}\frametitle{WHILE-Berechenbare Funktionen}
-
-\defbox{\emph{Definition:} Eine partielle Funktion $f:\mathbb{N}^k\to\mathbb{N}$ heißt \redalert{WHILE-berechenbar}, wenn es ein WHILE-Programm $P$ gibt, so dass gilt:
-\begin{itemize}
-\item Falls $f(n_1,\ldots,n_k)$ definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ mit der Ausgabe $f(n_1,\ldots,n_k)$
-\item Falls $f(n_1,\ldots,n_k)$ nicht definiert ist, dann terminiert $P$ bei Eingabe $n_1,\ldots,n_k$ nicht
-\end{itemize}}\bigskip\pause
-
-Das wichtigste Ergebnis zu WHILE ist nun das folgende:
-
-\theobox{\emph{Satz:} Eine partielle Funktion ist genau dann WHILE-berechenbar, wenn sie Turing-berechenbar ist.}
-
-\end{frame}
-
-\begin{frame}\frametitle{WHILE $\to$ TM}
-
-\emph{Behauptung 1:} DTMs können WHILE-Programme simulieren:\pause
-\medskip
-
-% Wir skizzieren die Arbeitsweise der Turingmaschine:
-\begin{itemize}
-\item Wir verwenden eine Mehrband-TM, in der es für jede Variable im simulierten Programm ein eigenes Band gibt.\pause
-\item Natürliche Zahlen werden auf den Bändern binär kodiert.\pause
-\item DTMs können leicht (a) ein Band auf ein anderes kopieren, (b) die Zahl auf einem Band um eins erhöhen \\$\leadsto$ daraus kann man schon DTMs für $\Svar{x}\Svassign\Svar{y}\Splus n$ erzeugen\pause
-\item Simulation von $\Svar{x}\Svassign\Svar{y}\Sminus n$ ist analog möglich (mit zusätzlichem Test auf Gleichheit mit $0$ beim Dekrementieren)\pause
-\item Sequentielle Programmausführung $P_1\Sseq P_2$ wird direkt im Zustandsgraphen der DTM umgesetzt ("`Hintereinanderhängung"' von TMs)\pause
-\item While-Schleifen sind durch Zyklen im Zustandsgraph darstellbar, wobei am Anfang jeweils ein Test auf Gleichheit mit $0$ steht, um die Schleife verlassen zu können
-\end{itemize}
-
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{TM $\to$ WHILE (1)}
-
-\emph{Behauptung 2:} WHILE-Programme können DTMs simulieren:\pause
-\medskip
-
-\begin{itemize}
-\item Wir nehmen zur Vereinfachung an, dass das \ghost{TM-Arbeitsalphabet}\\
-$\Gamma=\{0,1\}$ ist, und dass die Zustände natürliche Zahlen \ghost{sind}
-\item Eine TM-Konfiguration $a_1 a_2 \cdots a_p \,q\, a_{p+1}a_{p+2}\cdots a_{\ell}$ wird dargestellt durch drei Variablen:
-\begin{itemize}
-\item \Svar{left} hat den Wert, der durch $a_1 a_2 \cdots a_p$ binär kodiert wird (least significant bit ist dabei $a_p$)
-\item \Svar{state} hat den Wert $q$
-\item \Svar{thgir} hat den Wert, der durch $a_{\ell} \cdots a_{p+2} a_{p+1}$ binär kodiert wird (least significant bit ist also $a_{p+1}$)
-\end{itemize}
-\item Diese Kodierung kann leicht auf größere Arbeitsalphabete erweitert werden ($n$-äre statt binäre Kodierung)
-% \item Das WHILE-Programm simuliert die TM-Übergänge auf diesen drei Variablen
-\end{itemize}
+$\leadsto$ Es gilt $\{\{\neg A, \neg B\},\{A, B\},\{\neg B, \neg C\},\{B, C\},\{\neg C, \neg A\},\{A, B, C\}\}\models B$
 
 \end{frame}
 
 
-\begin{frame}[t]\frametitle{TM $\to$ WHILE (2)}
 
-\emph{Behauptung 2:} WHILE-Programme können DTMs simulieren:
-\medskip
-
-\begin{itemize}
-\item Wie gesagt:\\
-\Svar{left} hat den Wert, der durch $a_1 a_2 \cdots a_p$ binär kodiert wird \pause
-\item Wir wollen auf (die Binärkodierung von) \Svar{left} wie auf einen \alert{Stapel} (Keller, Stack) zugreifen:\pause
-\begin{itemize}
-\item \alert{Pop:} der folgende Pseudocode ist in WHILE (und LOOP) implementierbar 
-\codebox{{\tt
-\Svar{top}\Svassign \Svar{left}\texttt{ mod }\Scodelit{2}\\
-\Svar{left}\Svassign \Svar{left}\texttt{ div }\Scodelit{2}\\
-}}\pause
-\item \alert{Push:} der folgende Pseudocode ist in WHILE (und LOOP) implementierbar 
-\codebox{{\tt
-\Svar{left}\Svassign \Svar{left}\texttt{ * }\Scodelit{2}\Splus\Svar{top}
-}}
-\end{itemize}
-\item Auf \Svar{thgir} kann man genauso zugreifen
-\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}[t]\frametitle{TM $\to$ WHILE (3)}
-
-\emph{Behauptung 2:} WHILE-Programme können DTMs simulieren:
-\medskip
-
-\begin{itemize}
-\item Wir haben das Band in zwei Stacks kodiert, mit den Zeichen links und rechts neben dem TM-Kopf an oberster Stelle\pause
-\item Die TM-Simulation erfolgt jetzt in einer WHILE-Schleife
-	$\SStartWhile{\Svar{halt}} \quad P_{\text{Einzelschritt}}~\quad \SEndWhile$
-\item Das Programm $P_{\text{Einzelschritt}}$ führt einen Schritt aus:
-\begin{itemize}
-\item \Svar{thgir.pop()} liefert Zeichen an Leseposition
-\item Durch eine Folge von If-Bedingungen kann man für jede Kombination aus
-Zustand $q$ (in \Svar{state}) und gelesenem Zeichen eine Behandlung festlegen
-\item Schreiben von Symbol $a$ durch \Svar{thgir.push(\textit{a})}
-\item Bewegung nach rechts: \Svar{left.push(thgir.pop())}
-\item Bewegung nach links: \Svar{thgir.push(left.pop())}
-\item Zustandsänderung durch einfache Zuweisung
-\item Anhalten durch Zuweisung $\Svar{halt}\Svassign\Scodelit{0}$
-\end{itemize}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[t]\frametitle{TM $\to$ WHILE (3)}
-
-\emph{Behauptung 2:} WHILE-Programme können DTMs simulieren:
-\medskip
-
-\alert{Zusammenfassung:}
-\begin{itemize}
-\item Natürliche Zahlen simulieren Stacks der Bandsymbole links und rechts
-\item Berechnungsschritte werden durch einfache Arithmetik implementiert (in LOOP möglich)
-\item WHILE-Schleife arbeitet Schritte ab, bis die TM hält
-\end{itemize}
-\medskip
-
-\alert{Was fehlt noch zum detaillierten Beweis?}
-\begin{itemize}
-\item Unsere Stack-Implementierung kann noch nicht mit dem leeren Stack umgehen $\leadsto$ zusätzliche Tests und Sonderfälle (bei einseitig unendlichem TM-Band asymmetrisch)
-\item Für größere Arbeitsalphabete würde man statt Binärkodierung eine $n$-äre Kodierung verwenden\qed
-\end{itemize}
-
-\end{frame}
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-WHILE-Programme können alle berechenbaren Probleme lösen\\
-(ein weiteres Indiz für die Church-Turing-These)
+Das \redalert{logische Schließen} umfasst viele Fragen (meist Entscheidungsprobleme), die aber oft
+auf Erfüllbarkeit zurückgeführt werden können
 \bigskip
 
-LOOP-Programme können fast alle praktisch relevanten Probleme lösen,
-aber nicht alle berechenbaren Probleme
+Die \redalert{Negationsnormalform} vereinfacht Formeln, indem Negationen "`nach unten"' verschoben werden
 \bigskip
 
-Beweistechniken: strukturelle Induktion, Widerspruch durch Selbstbezüglichkeit (Busy Beaver), TM mit zwei Stacks simulieren\bigskip
+\redalert{Konjunktive} und \redalert{disjunktive Normalform} stellen beliebige Formeln als Konjunktion bzw. Disjunktion dar, allerdings zum Teil mit erheblichen (exponentiellen) Kosten\bigskip
 
-% Programme in LOOP und WHILE online testen:\\
-% \url{http://www.eugenkiss.com/projects/lgw/}\bigskip
+\redalert{Resolution} ist ein bekanntes Widerlegungskalkül, welches über die Aussagenlogik hinaus von Bedeutung ist
+\bigskip
+% 
+% Die betrachteten Beweisverfahren für Aussagenlogik benötigen schlimmstenfalls \redalert{exponentiell viel Zeit}%;
+% % bei \redalert{Horn-Formeln} gibt es dagegen polynomielle Schlussfolgerungsalgorithmen
+% \bigskip
 
 \anybox{yellow}{
-Was erwartet uns als nächstes?
+Offene Fragen:
 \begin{itemize}
-\item Relevantere Probleme
-\item Reduktionen
-\item Rice
+\item Ist Resolution korrekt?
+\item Ist Resolution effizient?
+% \item Ist logisches Schließen immer so schwer?
+% \item Gibt es auch sub-exponentielle Algorithmen für aussagenlogisches Schließen?
+\item Was hat Aussagenlogik mit Sprachen, Berechnung und TMs zu tun?
 \end{itemize}
 }
 
 \end{frame}
-
-% \begin{frame}[t]\frametitle{Bildrechte}
-% 
-% Folie \ref{frame_hilbert}: gemeinfrei\\
-% Folie \ref{frame_cantor}: Fotografie von 1870, gemeinfrei\\
-% Folie \ref{frame_rado}: Ausschnitt aus einer Fotografie von 1928, \url{http://www.bibl.u-szeged.hu/sztegy/photo/778.jpg}, CC-By-SA 3.0\\
-% 
-% \end{frame}
-
 
 \end{document}
