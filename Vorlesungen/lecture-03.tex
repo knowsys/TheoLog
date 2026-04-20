@@ -4,6 +4,12 @@
 \input{macros-lecture}
 
 \defineTitle{3}{Verfahren zum logischen Schließen}{20. April 2026}
+%%%% Notes 2026:
+%%%% - Spent extra time on discussing Curry (re functional programming, re "(constrictive) proofs as computations")
+%%%% - Spent extra time discussing Z3 example (two-valued entailment decision problems vs. "three-valued" epistemic view vs. two-valued model checking)
+
+
+
 
 % Resetting the definition of \\ is essential to avind global layout changes in beamer when loading minted.
 % It does not seem to break other functionality in obvious ways.
@@ -15,6 +21,10 @@
 \begin{document}
 
 \maketitle
+
+% \addtobeamertemplate{frametitle}{%
+%   \let\\=\beameroriginaldoublebackslash
+% }{}
 
 \sectionSlide{Nachtrag: Currying}
 
@@ -486,175 +496,6 @@ $\leadsto$ nicht geeignet, um das Problem effizienter zu lösen
 
 \end{frame}
 
-\sectionSlide{Resolution}
-
-\newcommand{\Aname}{Anna}
-\newcommand{\Bname}{Barbara}
-\newcommand{\Cname}{Chris}
-
-\begin{frame}\frametitle{Resolution}
-
-\emph{Ziel:} Verfahren, um \redalert{(Un)Erfüllbarkeit} einer \redalert{KNF} zu bestimmen
-\bigskip
-
-Leider ist (Un)Erfüllbarkeit nicht an einzelnen Klauseln erkennbar.
-\medskip
-
-\examplebox{\emph{Beispiel:} Die Logelei aus Vorlesung 21 haben wir mit den Formeln $\mathcal{F}=\{A\leftrightarrow \neg B, B\leftrightarrow \neg C,C\leftrightarrow (\neg A\wedge \neg B)\}$ dargestellt. Wir wollen beweisen, dass
-\Bname{} die Wahrheit sagt, also $\mathcal{F}\models B$. Dazu kann man zeigen, dass $\mathcal{F}\cup\{\neg B\}$ unerfüllbar
-ist. Bei Anwendung des Distributivgesetztes erhalten wir die folgende KNF:
-\begin{align*}
-(\neg A\vee \neg B)\wedge (A\vee B)&\wedge{}\\
-(\neg B\vee \neg C)\wedge (B\vee C)&\wedge{}\\
-(\neg C\vee \neg A)\wedge(A\vee B\vee C)&\wedge{}\\
-\neg B
-\end{align*}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Die Klauselform}
-
-Wenn man grundsätzlich mit KNF arbeitet, dann bieten sich einige syntaktische Vereinfachungen an:
-\begin{itemize}
-\item Eine Klausel $L_1\vee\ldots\vee L_n$ wir dargestellt als Menge $\{L_1,\ldots,L_n\}$
-\item Eine Konjunktion von Klauseln $K_1\wedge\ldots\wedge K_\ell$ wird dargestellt als Menge $\{K_1,\ldots,K_\ell\}$
-\end{itemize}
-Eine Menge von Mengen von Literalen unter dieser Interpretation heißt \redalert{Klauselform}.
-\medskip\pause
-
-\examplebox{\emph{Beispiel:} Die KNF\vspace{-3ex}
-\begin{align*}
-(\neg A\vee \neg B)\wedge (A\vee B)&\wedge{}\\
-(\neg B\vee \neg C)\wedge (B\vee C)&\wedge{}\\
-(\neg C\vee \neg A)\wedge(A\vee B\vee C)&\wedge{}\\
-\neg B
-\end{align*}\vspace{-5ex}
-
-kann in Klauselform dargestellt werden als:\vspace{-1ex}
-\[\{\{\neg A, \neg B\}, \{A, B\},\{\neg B, \neg C\},\{B, C\},
-\{\neg C, \neg A\},\{A, B, C\},\{\neg B\}\}\]
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Ableitungen mittels Resolution}
-
-Beim Resolutionsverfahren leiten wir schrittweise neue Klauseln aus den gegebenen ab.
-\bigskip
-
-Ein einzelner Resolutionschritt funktioniert wie folgt:
-
-\defbox{
-Gegeben seien zwei Klauseln $K_1$ und $K_2$ für die es ein Atom $p\in\Slang{P}$ gibt mit $p\in K_1$ und $\neg p\in K_2$.
-Die \redalert{Resolvente von $K_1$ und $K_2$ bezüglich $p$} ist die Klausel \alert{$(K_1\setminus\{p\})\cup(K_2\setminus\{\neg p\})$}.\medskip
-
-Eine Klausel $R$ ist eine \redalert{Resolvente einer Klauselmenge $\mathcal{K}$} wenn $R$ Resolvente zweier Klauseln  $K_1,K_2\in\mathcal{K}$ ist.
-}\pause
-
-\examplebox{\emph{Beispiel:} Resolventen für die Menge $\{\{\neg A, \neg B\},\allowbreak \{A, B\},\allowbreak\{\neg B, \neg C\},\allowbreak\{B, C\},\allowbreak
-\{\neg C, \neg A\},\allowbreak\{A, B, C\},\allowbreak\{\neg B\}\}$ sind z.B.
-\begin{itemize}
-\item $\{B,\neg A\}$ aus den Klauseln $\{B, C\}$ und $\{\neg C,\neg A\}$
-\item $\{A\}$ aus den Klauseln $\{A, B\}$ und $\{\neg B\}$
-\item $\{B,\neg B\}$ aus den Klauseln $\{B,C\}$ und $\{\neg B, \neg C\}$
-\end{itemize}
-
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Bedeutung von Resolutionsschritten}
-
-Wir betrachten Klauseln $\{L_1,\ldots,L_n,p\}$ und $\{\neg p,M_1,\ldots,M_\ell\}$:\pause
-\begin{itemize}
-\item $\{L_1,\ldots,L_n,p\}\equiv (L_1\vee\ldots\vee L_n\vee p) \equiv \alert{(\neg L_1\wedge\ldots\wedge\neg L_n)\to p}$\pause
-\item $\{\neg p,M_1,\ldots,M_\ell\}\equiv (\neg p\vee M_1\vee\ldots\vee M_\ell)\equiv \alert{p\to (M_1\vee\ldots\vee M_\ell)}$\pause
-\end{itemize}\medskip
-
-Daraus folgt unmittelbar \alert{$(\neg L_1\wedge\ldots\wedge\neg L_n)\to (M_1\vee\ldots\vee M_\ell)$}\\
-$\leadsto$ dies entspricht der Klausel $\{L_1,\ldots,L_n,M_1,\ldots,M_\ell\}$\pause
-\bigskip
-
-\theobox{\emph{Satz:} Wenn $R$ Resolvente der Klauseln $K_1$ und $K_2$ ist, dann gilt $\{K_1,K_2\}\models R$.
-}
-
-Resolutionsschritte produzieren also logische Schlüsse. Diese Eigenschaft einer Ableitungsregel wird \redalert{Korrektheit} genannt ("`jede Ableitung ist tatsächlich eine logische Konsequenz"').
-
-
-\end{frame}
-
-\begin{frame}\frametitle{Die leere Klausel}
-
-Die Resolvente kann eine leere Menge $\emptyset$ sein.\\[1ex]
-
-\examplebox{\emph{Beispiel:} Die Resolvente der Klauseln $\{p\}$ und $\{\neg p\}$ ist leer.
-}\medskip
-
-\emph{Was bedeutet so eine \redalert{leere Klausel}?}\pause
-\begin{itemize}
-\item Klauseln sind Disjunktionen
-\item Die leere Klausel entspricht einer Disjunktion von $0$ Literalen
-\item Dieser Ausdruck sollte das neutrale Element der Disjunktion sein, d.h. immer den Wert $\myfalse$ annehmen
-\end{itemize}
-$\leadsto$ Wir bezeichnen die leere Klausel mit $\bot$.
-\bigskip\pause
-
-\emph{Was bedeutet es, wenn $\bot$ in Klauselform auftaucht?}\pause
-\begin{itemize}
-\item Die Klauselform beschreibt eine Konjunktion von Klauseln
-\item Wenn eine der Klauseln $\bot$ ist, dann ist die gesamte Formel unerfüllbar
-\end{itemize}
-$\leadsto$ Die Ableitung von $\bot$ zeigt Unerfüllbarkeit.
-
-\end{frame}
-
-\begin{frame}\frametitle{Das Resolutionskalkül}
-
-Wir können damit das gesamte Verfahren angeben:
-
-\codebox{\emph{Resolution}\\
-Gegeben: Formel $\mathcal{F}$ in Klauselform\\
-Gesucht: Ist $\mathcal{F}$ erfüllbar oder unerfüllbar?\\[1ex]
-
-\begin{enumerate}[(1)]
-\item Finde ein Klauselpaar $K_1,K_2\in \mathcal{F}$ mit Resolvente $R\notin \mathcal{F}$
-\item Setze $\mathcal{F}\defeq \mathcal{F}\cup\{R\}$
-\item Wiederhole Schritt (1) und (2) bis keine neuen Resolventen gefunden werden können
-\item Falls $\bot\in \mathcal{F}$, dann gib "`unerfüllbar"' aus;\\andernfalls gib "`erfüllbar"' aus
-\end{enumerate}
-}\pause
-
-\emph{Beobachtung:} Unerfüllbarkeit steht fest, sobald $\bot$ abgeleitet \ghost{wurde}\\
-$\leadsto$ dann kann man das Verfahren frühzeitig abbrechen
-\medskip
-
-Erfüllbarkeit kann dagegen erst erkannt werden, wenn alle Resolventen erschöpfend gebildet worden sind
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiel}
-
-\begin{tabular}{rlll}
-(1) & $\{\neg A, \neg B\}$ && \textcolor{devilscss}{\Aname{} oder \Bname{} lügen.}\\
-(2) & $\{A, B\}$  && \textcolor{devilscss}{\Aname{} oder \Bname{} sagen die Wahrheit.} \\
-(3) & $\{\neg B, \neg C\}$  && \textcolor{devilscss}{\Bname{} oder \Cname{} lügen.} \\
-(4) & $\{B, C\}$ && \textcolor{devilscss}{\Bname{} oder \Cname{} sagen die Wahrheit.} \\
-(5) & $\{\neg C, \neg A\}$ && \textcolor{devilscss}{\Cname{} oder \Aname{} lügen.} \\
-(6) & $\{A, B, C\}$ && \textcolor{devilscss}{Jemand sagt die Wahrheit.}  \\
-(7) & $\{\neg B\}$ && \textcolor{devilscss}{\Bname{} lügt.} \\\pause
-(8) & $\{C\}$   &  (4)+(7) & \textcolor{devilscss}{\Cname{} sagt die Wahrheit.} \\\pause
-(9) & $\{\neg A\}$ & (8)+(5) & \textcolor{devilscss}{\Aname{} lügt.}\\\pause
-(10) & $\{B\}$  & (2)+(9) & \textcolor{devilscss}{\Bname{} sagt die Wahrheit.} \\\pause
-(11) & $\bot$ & (10)+(7) & \textcolor{devilscss}{Widerspruch.} 
-\end{tabular}\bigskip
-
-$\leadsto$ Es gilt $\{\{\neg A, \neg B\},\{A, B\},\{\neg B, \neg C\},\{B, C\},\{\neg C, \neg A\},\{A, B, C\}\}\models B$
-
-\end{frame}
-
-
-
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
@@ -667,8 +508,8 @@ Die \redalert{Negationsnormalform} vereinfacht Formeln, indem Negationen "`nach 
 
 \redalert{Konjunktive} und \redalert{disjunktive Normalform} stellen beliebige Formeln als Konjunktion bzw. Disjunktion dar, allerdings zum Teil mit erheblichen (exponentiellen) Kosten\bigskip
 
-\redalert{Resolution} ist ein bekanntes Widerlegungskalkül, welches über die Aussagenlogik hinaus von Bedeutung ist
-\bigskip
+% \redalert{Resolution} ist ein bekanntes Widerlegungskalkül, welches über die Aussagenlogik hinaus von Bedeutung ist
+% \bigskip
 % 
 % Die betrachteten Beweisverfahren für Aussagenlogik benötigen schlimmstenfalls \redalert{exponentiell viel Zeit}%;
 % % bei \redalert{Horn-Formeln} gibt es dagegen polynomielle Schlussfolgerungsalgorithmen
@@ -677,8 +518,9 @@ Die \redalert{Negationsnormalform} vereinfacht Formeln, indem Negationen "`nach 
 \anybox{yellow}{
 Offene Fragen:
 \begin{itemize}
-\item Ist Resolution korrekt?
-\item Ist Resolution effizient?
+\item Welche Methoden des logischen Schließens sind praktikabel?
+% \item Ist Resolution korrekt?
+% \item Ist Resolution effizient?
 % \item Ist logisches Schließen immer so schwer?
 % \item Gibt es auch sub-exponentielle Algorithmen für aussagenlogisches Schließen?
 \item Was hat Aussagenlogik mit Sprachen, Berechnung und TMs zu tun?
