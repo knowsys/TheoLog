@@ -5,6 +5,13 @@
 
 \defineTitle{3}{Verfahren zum Logischen Schließen}{20. April 2026}
 
+% Resetting the definition of \\ is essential to avind global layout changes in beamer when loading minted.
+% It does not seem to break other functionality in obvious ways.
+% If the global override causes any issues, the more local one using \addtobeamertemplate{frametitle} (in document) might be a workaround.
+\let\beameroriginaldoublebackslash\\
+\usepackage{minted}
+\let\\=\beameroriginaldoublebackslash
+
 \begin{document}
 
 \maketitle
@@ -60,6 +67,54 @@ Oft kann man unterschiedliche Probleme leicht ineinander umwandeln:
 (Es gibt auch Probleme des logischen Schließens, für die das höchstwahrscheinlich nicht zutrifft, z.B. "`Gegeben eine Formel $F$, entscheide ob es eine kürzere Formel gibt, die zu $F$ äquivalent ist."')}
 }
 
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Schlussfolgerungen checken mit Z3 in Python}
+
+\begin{minipage}{0.48\linewidth}\begin{tikzpicture}%
+\node [draw=black!50, fill=white, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=10pt, align=left, text width=0.85\linewidth] (box){%
+\vspace{-2ex}
+\begin{minted}{python}
+from z3 import *
+
+# Atome deklarieren:
+p,q = Bools('p q')
+rs = [ Bool("r_%s" % (i+1))
+      for i in range(10) ]
+
+# Formeln hinzufügen:
+s = Solver()
+s.add(...)
+
+# Schlussfolgerungen prüfen:
+print('Checking r_3: ',
+    check_entailment(rs[2],s))
+\end{minted}
+};%
+\end{tikzpicture}\end{minipage}%
+\begin{minipage}{0.52\linewidth}%
+\begin{tikzpicture}%
+\node [draw=black!50, fill=white, very thick, rectangle, rounded corners, inner sep=10pt, inner ysep=10pt, align=left, text width=1\linewidth] (box){%
+\vspace{-2ex}
+\begin{minted}{python}
+def follows(formula, solver):
+    solver.push() # start changes ...
+    solver.add(Not(formula))
+    result = solver.check()
+    solver.pop() # ... undo changes
+    return result == unsat
+
+def check_entailment(formula, solver):
+    if follows(formula, solver):
+        return "true"
+    elif follows(Not(formula), solver):
+        return "false"
+    else:
+        return "uncertain"
+\end{minted}
+};%
+\end{tikzpicture}\end{minipage}%
 \end{frame}
 
 \begin{frame}\frametitle{Schließen mit Wahrheitswertetabellen}
