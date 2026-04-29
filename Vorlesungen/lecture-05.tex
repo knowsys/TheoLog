@@ -469,10 +469,10 @@ $\leadsto$ benötigt spezifische Verfahren\\
 \alert{Theory} bezeichnet die logisch-mathematische Theorie für einen Datentyp und eine Menge unterstützter Operationen
 \medskip
 
-Beispiele:
+\emph{Beispiele:}
 \begin{itemize}
 \item Relle Zahlen mit $*$, $+$, $-$, $/$
-\item Ganze Zahlen mit lineraren Gleichungssysteme
+\item Ganze Zahlen mit lineraren Gleichungssystemen
 \item Strings mit Verkettungsoperationen und lexikographischer Ordnung
 \item IEEE Gleitkommazahlen mit Gleitkomma-Arithmetik
 \item \ldots
@@ -490,7 +490,7 @@ Beispiele:
 
 \begin{frame}\frametitle{SMT-Solving: Ausblick}
 
-Die "`erweiterten aussagenlogischen Formeln"' in SMT gehören schon in den Bereich der Prädikatenlogik
+Die "`erweiterten aussagenlogischen Formeln"' in SMT gehören schon in den Bereich der \alert{Prädikatenlogik}
 $\leadsto$ später mehr dazu
 \bigskip
 
@@ -504,12 +504,12 @@ SMT-Solver wie Z3 benötigen weitere Techniken, unter anderem
 \end{itemize}
 \bigskip
 
-Z3 (und andere SMT-Solver) in der Praxis:
+\anybox{strongyellow}{\emph{Z3 (und andere SMT-Solver) in der Praxis:}
 \begin{itemize}
 \item vielfältig anwendbar, auch ohne detaillierte Kenntnisse
 \item oft viele verschiedene Problemkodierungen möglich
 \item Performance in der Regel nicht theoretisch vorhersagbar (aber Hintergrundkenntnisse und Erfahrung helfen)
-\end{itemize}
+\end{itemize}}
 
 
 \end{frame}
@@ -636,7 +636,7 @@ basierend auf systematischer Modellsuche
 Wichtige darin vorkommende Methoden sind \redalert{Backtracking} (und Splitting), \redalert{Unit Propagation} und
 die Eliminierung von \redalert{Pure Literals}\bigskip
 
-DPLL kann auf nicht-boolesche Domänen erweitert werden, was nützlich für SMT-Solving ist, aber Resolution ist besser
+DPLL kann auf nicht-boolesche Domänen erweitert werden, was wichtig für \redalert{SMT-Solving} ist, aber Resolution ist besser
 auf ausdrucksstarke Logiken übertragbar (später mehr dazu)
 \bigskip
 
