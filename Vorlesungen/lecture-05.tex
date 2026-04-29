@@ -81,7 +81,7 @@ DPLL arbeitet mit Formeln in \alert{Klauselform} (muss vorab gebildet werden)\\[
 \anybox{strongyellow}{\emph{Hintergrund:} DPLL steht für die Namen Davis, Putnam, Logemann, Loveland
 \begin{itemize}
 \item Davis \& Putnam hatten einen resolutionsbasierten Vorgängeralgorithmus entwickelt [1960]
-\item Davis, Logemann, \& Loveland entwickelten daraus die hier vorgestellte Version [1961]
+\item Davis, Logemann \& Loveland entwickelten daraus die hier vorgestellte Version [1961]
 \item Weitere Verbesserungen wurden erst viel später entwickelt, aber Grundideen bis heute in Solvern relevant
 \end{itemize}}
 
@@ -511,6 +511,118 @@ Z3 (und andere SMT-Solver) in der Praxis:
 \item Performance in der Regel nicht theoretisch vorhersagbar (aber Hintergrundkenntnisse und Erfahrung helfen)
 \end{itemize}
 
+
+\end{frame}
+
+\sectionSlide{Logisches Schließen als Wortproblem}
+
+\begin{frame}\frametitle{Schließen als Entscheidungsproblem}
+
+Wir wissen bereits, dass Schließen ein Entscheidungsproblem ist,\ghost{ z.B.:}
+
+\defbox{\redalert{Erfüllbarkeit}:
+\begin{itemize}
+\item \emph{Eingabe:} Formel $F$
+\item \emph{Ausgabe:} "`ja"' wenn $F$ erfüllbar ist; sonst "`nein."'
+\end{itemize}
+}
+
+Wie wir wissen, können solche Probleme als Definition einer Sprache angesehen werden:
+\[\Slang{SAT} = \{ \textsf{enc}(F)\mid F\text{ ist erfüllbar}\}\]
+wobei $\textsf{enc}(F)$ eine (vernünftige) Kodierung der Formel $F$ als Wort über einem endlichen Alphabet (z.B.\ $\{\Sterm{0},\Sterm{1}\}$) ist. Vor allem müssen wir beliebig viele Atome mit nur endlich vielen Zeichen kodieren.
+\bigskip\pause
+
+\anybox{purple}{%
+\narrowcentering{Was für eine Sprache ist $\Slang{SAT}$?}\\
+\narrowcentering{Durch welches Automatenmodell wird sie erkannt?}}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Schließen als Sprache (1)}
+
+\anybox{purple}{%
+\narrowcentering{Was für eine Sprache ist $\Slang{SAT}$?}\\
+\narrowcentering{Durch welches Automatenmodell wird sie erkannt?}}\medskip
+
+Wir wissen, dass $\Slang{SAT}$ entscheidbar ist und daher von Typ 0 ist.\pause\\
+Der folgende naive Algorithmus entscheidet $\Slang{SAT}$ auf einer TM:
+% Auch für Typ~1 gibt es ein positives Resultat:
+
+\codebox{%Der folgende Algorithmus entscheidet $\Slang{SAT}$ auf einem LBA:
+Naiver Erfüllbarkeitstest (Skizze):
+\begin{itemize}
+\item Wir prüfen systematisch jede Wertzuweisung auf den Atomen der gegebenen Formel
+\item Dazu iteriert die TM über alle Wertzuweisungen und berechnet für jede rekursiv den Wahrheitswert der Formel
+\item Falls eine erfüllende Zuweisung gefunden wird, dann hält die TM und akzeptiert
+\item Falls alle Wertzuweisungen ohne Erfolg durchlaufen worden sind, dann hält die TM und verwirft
+\end{itemize}
+}
+
+\end{frame}
+
+\newcommand{\vtriple}[3]{\small\begin{pmatrix}#1\\[-1.3ex]#2\\[-1.3ex]\Sterm{#3}\end{pmatrix}}
+\newcommand{\vtripletext}[3]{\footnotesize\begin{array}{r}\text{#1}\\[-1.0ex]\text{#2}\\[-1.0ex]\text{#3}\end{array}}
+
+\begin{frame}[t]\frametitle{Schließen als Sprache (2)}
+
+\anybox{purple}{%
+\narrowcentering{Was für eine Sprache ist $\Slang{SAT}$?}\\
+\narrowcentering{Durch welches Automatenmodell wird sie erkannt?}}\smallskip
+
+Der naive Erfüllbarkeitstest kann in linearem Speicher ablaufen, d.h. auf einem LBA \alert{$\leadsto$ $\Slang{SAT}$ ist von Typ 1}\pause
+% Auch für Typ~1 gibt es ein positives Resultat:
+
+\codebox{%
+Naive Erfüllbarkeit auf LBA (Skizze):\footnotesize
+\begin{itemize}%
+\item Wir verwenden ein Arbeitsalphabet mit mehreren "`Spuren"': (1)~Eingabe, (2)~aktuell ermittelte Wahrheitswerte aller Teilformeln, (3)~aktuell getestete Wertzuweisung\vspace{-0.5ex}
+\item Skizze der Kodierung (ohne Binärkodierung der Formel):\\[1ex]
+\narrowcentering{$
+\vtripletext{Spur 3}{Spur 2}{Spur 1}
+% 
+\vtriple{}{}{(}
+\vtriple{}{}{(}
+\vtriple{\mytrue}{\mytrue}{p}
+\vtriple{}{\myfalse}{\to}
+\vtriple{\myfalse}{\myfalse}{q}
+\vtriple{}{}{)}
+\vtriple{}{\mytrue}{\vee}
+\vtriple{}{}{(}
+\vtriple{}{\myfalse}{q}
+\vtriple{}{\mytrue}{\to}
+\vtriple{\myfalse}{\myfalse}{r}
+\vtriple{}{}{)}
+\vtriple{}{}{)}
+$}
+\item Man kann nun systematisch Spur 3 iterieren, Spur 2 rekursiv berechnen und den Wert der Gesamtformel prüfen
+(machbar, wir verzichten auf die Details)
+% \item Dabei ordnen wir jeder Teilformel eine eindeutige Position zu: bei Atomen ist dies das
+% erste Zeichen der Kodierung des Atoms, bei zusammengesetzten Formeln das erste Zeichen der Kodierung des Junktors
+% \item Der aktuelle Wahrheitswert der Teilformel wir in Spur~2 an ihrer Position gespeichert.
+% \item Die aktuelle Wertzuweisung ergibt sich aus den Wahrheitswerten der Atome
+% \item Wenn man das erste Vorkommen jedes Atoms in der Formel markiert, dann ist es nicht schwer, die jeweils nöchste Wertzuweisung zu berechnen (durch binäre Addition von $1$).
+\end{itemize}\vspace{-3.5ex}~}
+
+\end{frame}
+
+\begin{frame}\frametitle{Welches Berechnungsmodell passt zu $\Slang{SAT}$?}
+
+Erkenntnisse bisher:
+\begin{itemize}
+\item LBAs sind stark genug für $\Slang{SAT}$ (d.h. $\Slang{SAT}$ ist von Typ 1)
+\item $\Slang{SAT}$ ist keine reguläre Sprache, da FAs korrekte Klammerung nicht erkennen können (d.h. $\Slang{SAT}$ ist nicht von Typ 3)
+% \item ??? $\Slang{SAT}$ ist keine kontextfreie Sprache (d.h. $\Slang{SAT}$ ist nicht von Typ 2)
+\end{itemize}\bigskip\pause
+
+Man kann außerdem zeigen:
+\theobox{\narrowcentering{$\Slang{SAT}$ ist nicht kontextfrei.}}
+(zumindest wenn eine offensichtliche Kodierung verwendet wird; siehe
+\url{http://cstheory.stackexchange.com/questions/37322/is-sat-a-context-free-language})
+\bigskip\pause
+
+\anybox{purple}{%
+Können wir $\Slang{SAT}$ noch genauer charakterisieren als mit LBAs?}\\\pause
+$\leadsto$ Ja, mithilfe anderer Arten von eingeschränkten TMs.
 
 \end{frame}
 
