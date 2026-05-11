@@ -3,603 +3,764 @@
 
 \input{macros-lecture}
 
-\defineTitle{8}{Beziehungen zwischen Komplexitätsklassen / Effizient lösbare Probleme}{2. Mai 2024}
+\defineTitle{8}{NP}{11. Mai 2026}
 
 \begin{document}
 
 \maketitle
 
-\begin{frame}\frametitle{Rückblick}
+\sectionSlide{NP}
 
-Die wichtigsten Ressourcen zur Messung von Komplexität
-sind \alert{Rechenzeit} und \alert{Speicher}.
+\begin{frame}\frametitle{Welche Komplexität hat $\Slang{SAT}$?}
+
+Wie schwer ist $\Slang{SAT}$?\pause
 \bigskip
 
-Die wichtigsten deterministischen Komplexitätsklassen sind:
-{\footnotesize
-\begin{align*}
-\Scomplclass{P} = \Scomplclass{PTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(n^d)
-	& \text{\redalert{polynomielle Zeit}}
-%   & \Scomplclass{NP} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(n^k)
-  \\[1ex]
-\hspace{-1.5cm}\Scomplclass{Exp} = \Scomplclass{ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{n^d})
-    & \text{\redalert{exponentielle Zeit}${}^*$}
-% %   & \Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{n^k})
-%   \\[1ex]
-% \hspace{-1.5cm}\Scomplclass{2Exp} = \Scomplclass{2ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{2^{n^d}})
-% %   & \Scomplclass{N2Exp} = \Scomplclass{N2ExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{2^{n^k}})
-% 	& \text{doppelt-exponentielle Zeit}
-%   \\[1ex]
-% \Scomplclass{E} = \Scomplclass{ETime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{dn})
-%    & \text{exp.\ Zeit mit linearem Exponent}
-   \\[4ex]
-\hspace{-1.5cm}\Scomplclass{L} = \Scomplclass{LogSpace} &= \Scomplclass{DSpace}(\log n)
-%   & \Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
-	& \text{\redalert{logarithmischer Speicher}}
-  \\[1ex]
-\Scomplclass{PSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(n^d)
-	& \text{\redalert{polynomieller Speicher}}
-%   \\[1ex]
-% \Scomplclass{ExpSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(2^{n^d})
-% 	& \text{exponentieller Speicher}
-\end{align*}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Robustheit von Zeitklassen}
-
-Zwei wichtige Erkenntnisse zur Robustheit von Zeitklassen:
+\alert{Alle unsere Methoden für Erfüllbarkeitstests liefen in schlimmstenfalls exponentieller \ghost{Zeit.}}\\ \pause
+$\leadsto$ $\Slang{SAT}\in\Scomplclass{ExpTime}$
 \bigskip
 
-\anybox{strongyellow}{Konstante Faktoren haben keinen Einfluss auf die Probleme, die eine zeitbeschränkte Mehrband-TM lösen kann, sofern mindestens lineare Zeit erlaubt ist (Linear Speedup Theorem).}\bigskip
-
-\emph{Anmerkung:} Wenn nicht wenigstens lineare Zeit zur Verfügung steht, dann kann die TM nicht einmal die Eingabe lesen. Das ergibt also bei einer herkömmlichen TM wenig Sinn.
+\alert{Beim Durchsuchen der Wahrheitswertetabelle müssen wir stets nur eine Zeile im Speicher halten.}\\ \pause
+$\leadsto$ $\Slang{SAT}\in\Scomplclass{PSpace}$
 \bigskip\pause
 
-\anybox{strongyellow}{Die Anzahl der Bänder hat lediglich einen polynomiellen (quadratischen) Einfluss auf die Probleme, die eine zeitbeschränkte TM lösen kann.}\bigskip
-
-Das hatten wir in Formale Systeme durch Simulation mehrerer Bänder auf einem gezeigt.
-
-\end{frame}
-
-\begin{frame}\frametitle{Robustheit von Speicherklassen}
-
-Bei speicherbeschränkten TMs ist die Situation sogar etwas einfacher:
+\alert{Wir könnten auch nichtdeterministisch eine Zeile raten und nur diese prüfen.}\\\pause
+$\leadsto$ $\Slang{SAT}\in\Scomplclass{NP}$
 \bigskip
 
-\anybox{strongyellow}{Konstante Faktoren haben keinen Einfluss auf die Probleme, die eine speicherbeschränkte TM lösen kann.}\bigskip\pause
-
-\emph{Beweis:} Ähnlich zu Linear Speedup, aber viel einfacher.\bigskip\pause
-
-\anybox{strongyellow}{Die Anzahl der Bänder hat keinen Einfluss auf die Probleme, die eine speicherbeschränkte TM lösen kann.}\bigskip\pause
-
-\emph{Beweis:} Reduktion von $k$ Bändern auf $1$ Band wie gehabt, kombiniert mit einer $1/k$ Speicherreduktion.
-
 \end{frame}
 
 
-\begin{frame}\frametitle{Beziehung von Zeit und Raum (1)}
+\begin{frame}\frametitle{NP-Probleme effizient lösen?}
 
-Ist die Berechnungszeit beschränkt, so kann auch nur beschränkt viel 
-Speicher genutzt werden:\bigskip
+Wir haben gesehen:
+\[ \Slang{SAT}\in\Scomplclass{NP}\subseteq\Scomplclass{PSpace}\subseteq\Scomplclass{ExpTime}\]
 
-\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
-\[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
+\begin{itemize}
+\item Dennoch haben alle unsere Algorithmen für $\Slang{SAT}$ bisher 
+exponentielle Laufzeit.
+\item $\Slang{SAT}\in\Scomplclass{NP}$ führt nicht direkt zu einer besseren Lösung, da real existierende Computer nicht wie NTMs arbeiten.
+\item Andererseits spricht auch nichts dagegen, dass es einen schnelleren Algorithmus gibt.
+\end{itemize}
+
+\anybox{purple}{Kann man $\Slang{SAT}$ auch effizienter lösen?}
+$\leadsto$ Dazu sollten wir erst einmal $\Scomplclass{NP}$ etwas besser verstehen
+
+\end{frame}
+
+\begin{frame}\frametitle{Lösungen prüfen}
+
+\emph{Eine interessante Eigenschaft von \Slang{SAT}:}
+\begin{itemize}
+\item Es scheint schwer, die Erfüllbarkeit einer Formel zu ermitteln (z.B. können wir exponentiell viele
+	Wertzuweisungen durchsuchen).
+\item Es ist einfach, Erfüllbarkeit einer Formel zu überprüfen, wenn ein Modell gegeben ist (dazu muss nur der Wahrheitswert der Formel berechnet werden).
+\end{itemize}\pause
+
+\emph{Ähnlich ist es bei Sudoku:}
+\begin{itemize}
+\item Es ist schwer, ein Sudoku korrekt auszufüllen.
+\item Es ist einfach, zu prüfen, ob ein Sudoku korrekt ausgefüllt \ghost{wurde.}
+\end{itemize}\pause
+
+\anybox{purple}{
+\emph{Gibt es noch mehr Probleme, die sich so verhalten?}
+\begin{itemize}
+\item Es ist schwer, eine Lösung zu finden.
+\item Es ist einfach, eine gegebene Lösung zu prüfen.
+\end{itemize}}
+
+\end{frame}
+
+\begin{frame}\frametitle{TMs die Lösungen überprüfen}
+
+Wir wollen diese Idee formalisieren:
+
+\defbox{Ein \redalert{polynomieller Verifikator} für eine Sprache $\Slang{L}\subseteq \Sigma^*$ ist eine
+polynomiell-zeitbeschränkte, deterministische TM \Smach{M}, für die gilt:
+\begin{itemize}
+\item \Smach{M} akzeptiert nur Wörter der Form $w\# z$ mit:
+	\begin{itemize}
+	\item $w\in\Slang{L}$
+	\item $z\in\Sigma^*$ ist ein \redalert{Zertifikat} polynomieller Länge\\(d.h. für \Smach{M} gibt es ein Polynom $p$ mit $|z|\leq p(|w|)$)
+	\end{itemize}
+\item Für jedes Wort $w\in\Slang{L}$ gibt es ein solches Wort $w\# z\in\Slang{L}(\Smach{M})$.
+\end{itemize}
 }
 
-\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
-
-\pause Daraus folgt zum Beispiel $\Scomplclass{PTime}\subseteq\Scomplclass{PSpace}$.
-
-\end{frame}
-
-\begin{frame}\frametitle{Beziehung von Zeit und Raum (2)}
-
-Andererseits ist Speicher mächtiger als Zeit, da man Speicher mehrfach verwenden kann (Zeit leider nicht):\bigskip
-
-\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt
-\[\Scomplclass{DSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)}).\]}
-
-\pause\emph{Beweis:} Gegeben sei eine Eingabe $w$ der Länge $|w|=n$.\pause
-{\footnotesize
+\emph{Intuition:}
 \begin{itemize}
-\item Es gibt $|\Gamma|^{f(n)}=2^{\log_2(|\Gamma|)\cdot f(n)}$ Speicherbelegungen der Länge $f(n)$\pause
-\item Hinzu kommen $f(n)$ mögliche Kopfpositionen und $|Q|$ \ghost{Zustände}\pause
-\item Es gibt also $|Q|\cdot f(n)\cdot 2^{\log_2(|\Gamma|)\cdot f(n)}\in O(2^{O(f)})$
-\ghost{TM-Konfigurationen.}\pause
-\item Aus diesen kann man für eine gegebene Eingabe in polynomieller Zeit einen \alert{Konfigurationsgraph} berechnen, in dem (gerichtete) Kanten die möglichen Übergänge darstellen.\pause
-\item Daraus kann man die Akzeptanz der Eingabe in polynomieller Zeit ermitteln ("`Ist von der Startkonfiguration aus eine akzeptierende Endkonfiguration erreichbar?"').
-\end{itemize}}
-Damit hat man das Wortproblem in Zeit $O(2^{O(f)})$ entschieden.\qed
+\item Das Zertifikat $z$ kodiert die Lösung des Problems $w$, die der Verifikator lediglich nachprüft.
+\item Zertifikate sollten kurz sein, damit die Prüfung selbst nicht länger dauert als die Lösung des Problems.
+\end{itemize}
+
+Zertifikate werden auch \alert{Nachweis}, \alert{Beweis} oder \alert{Zeuge} genannt
+
 \end{frame}
 
-\sectionSlide{Nichtdeterministische Komplexitätsklassen}
+\begin{frame}\frametitle{Nachweis-polynomielle Sprachen}
 
-\begin{frame}\frametitle{Ressourcen nichtdeterministischer TMs}
+\defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell} wenn es für sie einen polynomiellen
+Verifikator gibt.}\medskip\pause
 
-Bei NTMs gibt es viele mögliche Berechnungspfade.\\
-$\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
-~\hfill{\alert{-- Alle!}}
+\examplebox{\emph{Beispiel:} \Slang{SAT} ist nachweis-polynomiell. Ein möglicher polynomiellen Verifikator für
+\Slang{SAT} akzeptiert Wörter $F\#w$, wobei $F$ die Kodierung einer erfüllbaren Formel ist und $w$ eine Kodierung einer
+Wertzuweisung, die $F$ erfüllt.}\medskip\pause
+
+\examplebox{\emph{Beispiel:} Die Entscheidung, ob ein gegebener Graph einen Hamilton-Pfad zulässt, ist nachweis-polynomiell.
+Als Zertifikat dient der entsprechende Pfad.}\medskip\pause
+
+\examplebox{\emph{Beispiel:} Jede Sprache $\Slang{L}\in\Scomplclass{P}$ ist nachweis-polynomiell. Als Verifikator
+verwenden wir einfach einen polynomiell-zeitbeschränkten Entscheider für $\Slang{L}$. Das Zertifikat kann leer sein.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Beispiel: Drei-Farben-Problem}
+
+Das \redalert{Drei-Farben-Problem} besteht darin, die Knoten eines ungerichteten Graphen so mit den
+drei Farben rot, grün und blau zu färben, dass keine zwei benachbarten Knoten die gleiche Farbe haben.
 \medskip
 
-\defbox{%
-Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
-\begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
-dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
-%
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
-dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
-\end{itemize}
-}
-
-Eine zeit- oder speicherbeschränkte NTM muss also auch auf erfolglosen Pfaden ("`falsch geratene Übergänge"') garantiert
-innerhalb der Ressourcengrenzen halten.
-
-\end{frame}
-
-\begin{frame}\frametitle{Zeit und Raum, nichtdeterministisch}
-
-Die entsprechenden Sprachklassen werden genau wie bei deterministischen TMs definiert:\medskip
-
-\defbox{Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion.
-\begin{itemize}
-\item \redalert{\Scomplclass{NTIME}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-zeitbeschränkte NTM entschieden werden können.
-\item \redalert{\Scomplclass{NSPACE}(f(n))} ist die Klasse aller Sprachen $\Slang{L}$, welche durch eine $O(f)$-speicherbeschränkte NTM entschieden werden können.
-\end{itemize}
-}%\pause
-% 
-% \examplebox{Beispiel: $\Slang{SAT}\in\Scomplclass{DTIME}(2^n)$ und $\Slang{SAT}\in\Scomplclass{DSPACE}(n)$.}\pause
-% 
-% \examplebox{Beispiel: Das Halteproblem ist in keiner der Klassen $\Scomplclass{DTIME}(f(n))$ oder $\Scomplclass{DSPACE}(f(n))$. Unentscheidbare Probleme benötigen uneingeschränkten Zugang zu beliebig vielen Ressourcen einer TM.}
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Nichtdeterministische Komplextitätsklassen}
-
-Auch hier beschränken wir uns auf einige wichtige Fälle:
-
-{\footnotesize
-\begin{align*}
-\Scomplclass{NP} = \Scomplclass{NPTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(n^d)
-	& \text{\redalert{nichtdet. polynomielle Zeit}}
-%   & \Scomplclass{NP} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(n^k)
-  \\[1ex]
-\hspace{-1.5cm}\Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{d\geq 1} \Scomplclass{NTime}(2^{n^d})
-    & \text{\redalert{nichtdet. exponentielle Zeit}}
-% %   & \Scomplclass{NExp} = \Scomplclass{NExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{n^k})
-%   \\[1ex]
-% \hspace{-1.5cm}\Scomplclass{2Exp} = \Scomplclass{2ExpTime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{2^{n^d}})
-% %   & \Scomplclass{N2Exp} = \Scomplclass{N2ExpTime} &= \bigcup_{k\geq 1} \Scomplclass{NTime}(2^{2^{n^k}})
-% 	& \text{doppelt-exponentielle Zeit}
-%   \\[1ex]
-% \Scomplclass{E} = \Scomplclass{ETime} &= \bigcup_{d\geq 1} \Scomplclass{DTime}(2^{dn})
-%    & \text{exp.\ Zeit mit linearem Exponent}
-   \\[4ex]
-\hspace{-1.5cm}\Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
-%   & \Scomplclass{NL} = \Scomplclass{NLogSpace} &= \Scomplclass{NSpace}(\log n)
-	& \text{\redalert{nichtdet. logarithmischer Speicher}}
-  \\[1ex]
-\Scomplclass{NPSpace} &= \bigcup_{d\geq 1} \Scomplclass{NSpace}(n^d)
-	& \text{\redalert{nichtdet. polynomieller Speicher}}
-%   \\[1ex]
-% \Scomplclass{ExpSpace} &= \bigcup_{d\geq 1} \Scomplclass{DSpace}(2^{n^d})
-% 	& \text{exponentieller Speicher}
-\end{align*}
+\narrowcentering{
+\includegraphics[width=3cm]{images/graph1}
+\begin{minipage}[b]{3cm}
+~\\\huge
+\narrowcentering{$\Rightarrow$}\\[5mm]~
+\end{minipage}
+\includegraphics[width=3cm]{images/graph3}
 }\pause
 
-\examplebox{\emph{Beispiel:} Die Existenz eines Hamiltonpfads ist in $\Scomplclass{NP}$ entscheidbar. Wenn ein Hamiltonpfad existiert, dann kann er in polynomieller Zeit
-erraten und überprüft werden.
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Einfache Beobachtungen}
-
-% Die nichtdeterministischen Klassen sind genauso robust wie die deterministischen.\bigskip
-
-Die folgenden Konstruktionen funktionieren wie im deterministischen Fall:
-\begin{itemize}
-\item Zeitreduktion durch linear Speedup
-\item Lineare Speicherreduktion
-\item Bandreduktion von Mehrband-TMs
-\end{itemize}\pause
-
-Die Beziehungen von Zeit und Speicher bleiben ebenfalls erhalten, mit einer Besonderheit:
+\medskip
+Das Problem kann als Wortproblem aufgefasst werden, wenn man Graphen als Wörter kodiert (z.B. als Adjazenzliste oder als zeilenweise kodierte Adjazenzmatrix).
 \medskip
 
-\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
-\begin{align*}
-\Scomplclass{NTIME}(f) & \subseteq \Scomplclass{NSPACE}(f) \\
-\Scomplclass{NSPACE}(f) &\subseteq \Scomplclass{\redalert{D}TIME}(2^{O(f)})
-\end{align*}}
-
-\pause\emph{Beweis:} Beide Fälle wie im deterministischen Fall.
-Der Konfigurationsgraph ist auch hier
-exponentiell groß, aber kann wie zuvor deterministisch durchsucht werden.\qed
+\alert{Das Drei-Farben-Problem ist nachweis-polynomiell}\\ (Zertifikat: Farbzuweisung).
 
 \end{frame}
 
-\begin{frame}\frametitle{Deterministisch vs. nichtdeterministisch}
+\begin{frame}\frametitle{Beispiel: Faktorisierung}
 
-Wir haben also nebenbei auch gezeigt: $\Scomplclass{NTIME}(f) \subseteq \Scomplclass{NSPACE}(f)\subseteq \Scomplclass{DTIME}(2^{O(f)})$.\bigskip
+\defbox{Die \redalert{Faktorisierung} einer natürlichen Zahl $n$ ist die Darstellung der 
+Zahl als Produkt von natürlichen Zahlen $f_1\cdot f_2=n$.}\medskip
 
-\theobox{\emph{Satz:} Für jede beliebige Funktion $f:\mathbb{N}\to\mathbb{R}$ gilt:
-\[\Scomplclass{NTIME}(f) \subseteq \Scomplclass{DTIME}(2^{O(f)})\]}
+Folgende Sprache ist nachweis-polynomiell:\\[1ex]
+\narrowcentering{$\Slang{COMPOSITE}=\{\textsf{bin}(n)\mid \text{es gibt }f_1,f_2>1 \text{ mit }n=f_1\cdot f_2\}$}\\[1ex]
+(Zertifikat: Kodierung von $f_1$ und $f_2$)
+\bigskip\pause
 
-\emph{Anmerkung:} In Formale Systeme, Vorlesung 19, haben wir dieses Ergebnis durch eine alternative Konstruktion gezeigt (ausgehend von der Simulation einer beliebigen, unbeschränkten NTM durch deterministische Suche im Baum der möglichen Berechnungspfade).
-\bigskip
+Überraschender Weise ist auch folgende Sprache nachweis-polynomiell:\\[1ex]
+\narrowcentering{$\Slang{PRIMES}=\{\textsf{bin}(n)\mid \text{es gibt \redalert{keine} }f_1,f_2>1 \text{ mit }n=f_1\cdot f_2\}$}\\[1ex]
+(Zertifikat: "`\href{https://en.wikipedia.org/wiki/Primality_certificate}{Primality certificate}"', bekannt seit 1975)
+\bigskip\pause
 
-\emph{Anmerkung 2:} Es ist bis heute nicht bekannt, ob $\Scomplclass{NTIME}(f) \subseteq \Scomplclass{DTIME}(g)$ auch für eine Funktion $g\in o(2^{O(f)})$ gilt
-(Achtung: Klein-o-Notation!).
-%
+\textcolor{devilscss}{(Seit 2002 wissen wir: $\textbf{PRIMES}\in\Scomplclass{P}$}
+\textcolor{devilscss}{$\leadsto$ Primzahlentest nach Agrawal, Kayal und Saxena)}
 
 \end{frame}
 
-\begin{frame}\frametitle{Was wir wissen}
+\begin{frame}[t]\frametitle{NP steht für "`nachweis-polynomiell"' (1)}
 
-Aus unseren Beobachtungen folgen verschiedene einfache Beziehungen:
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip\pause
+
+\emph{Beweis:}
+$(\Rightarrow)$ Sei $\Slang{L}$ nachweis-polynomiell mit Verifikator \Smach{V}. Wir erhalten eine polynomiell-zeitbeschränkte NTM \Smach{M} für $\Slang{L}$ wie folgt:\pause
 \begin{itemize}
-\item \alert{"`DTM $\subseteq$ NTM"':}
-	$\Scomplclass{L}\subseteq \Scomplclass{NL}$,
-	$\Scomplclass{P}\subseteq \Scomplclass{NP}$,
-	$\Scomplclass{PSpace}\subseteq \Scomplclass{NPSpace}$,
-	\ghost{$\Scomplclass{Exp}\subseteq \Scomplclass{NExp}$}
-\item \alert{"`Zeit $\subseteq$ Speicher"':}
-	$\Scomplclass{P}\subseteq \Scomplclass{PSpace}$,
-% 	$\Scomplclass{ExpTime}\subseteq \Scomplclass{ExpSpace}$,
-	$\Scomplclass{NP}\subseteq \Scomplclass{NPSpace}$
-% 	$\Scomplclass{NExpTime}\subseteq \Scomplclass{NExpSpace}$,
-\item \alert{"`(N)Speicher $\subseteq$ $2^{\text{(D)Zeit}}$"':}
-	$\Scomplclass{NL}\subseteq \Scomplclass{P}$,
-	$\Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}$
-\end{itemize}\bigskip\pause
-
-Zudem besagt der berühmte \alert{Satz von Savitch}, dass speicherbeschränkte NTMs durch DTMs mit nur quadratischen Mehrkosten simuliert werden können. Daraus folgt:
-
-\theobox{\emph{Satz (Savitch):} $\Scomplclass{PSpace}= \Scomplclass{NPSpace}$.}
-
-(ohne Beweis)\bigskip\pause
-
-Zusammenfassung der wichtigsten bekannten Beziehungen:
-\theobox{
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
-\vspace{-2.5ex}
-}
+\item für eine Eingabe $w$ rät \Smach{M} nichtdeterministisch ein polynomielles Zertifikat $z$\\
+(dabei muss \Smach{M} die Länge von $z$ selbst beschränken)
+\item anschließend führt \Smach{M} die Berechnungen wie \Smach{V} aus um das geratene Zertifikat in polynomieller Zeit zu prüfen
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Was wir nicht wissen}
+\begin{frame}[t]\frametitle{NP steht für "`nachweis-polynomiell"' (2)}
 
-Wir wissen:
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip
 
-\theobox{
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
-\vspace{-2.5ex}
-}
-
-\begin{itemize}
-\item Wir wissen nicht, ob irgendeines dieser $\subseteq$ sogar $\subsetneq$ ist.
-\item Insbesondere wissen wir nicht, ob $\Scomplclass{P}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{P}=\Scomplclass{NP}$.
-\item Wir wissen nicht einmal, ob $\Scomplclass{L}\subsetneq\Scomplclass{NP}$ oder $\Scomplclass{L}=\Scomplclass{NP}$.
-\end{itemize}\pause
-Es wird aber vermutet, dass alle  $\subseteq$ eigentlich $\subsetneq$ sind.
+\emph{Beweis:}
+$(\Leftarrow)$ Sei \Smach{M} eine polynomiell-zeitbeschränkte NTM für $\Slang{L}$. Wir erhalten einen polynomiellen Verifikator \Smach{V} für $\Slang{L}$ wie folgt.\pause
 % 
-Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
-
-\theobox{\emph{Satz:} Die folgenden Inklusionen sind echt:
 \begin{itemize}
-\item $\Scomplclass{NL}\subsetneq\Scomplclass{PSpace}$
-\item $\Scomplclass{P}\subsetneq\Scomplclass{Exp}$
-\item $\Scomplclass{NP}\subsetneq\Scomplclass{NExp}$
-\end{itemize}}
-
-(ohne Beweis; folgt aus dem sogenanntem \alert{Time (bzw. Space) Hierarchy Theorem})
-
-\end{frame}
-
-
-\sectionSlide{Effizient lösbare Probleme}
-
-\begin{frame}\frametitle{Was bedeutet "`effizient"'?}
-
-\emph{Intuitiv klar:} Lineare Algorithmen sind "`effizient"'
-\bigskip\pause
-
-Aber der Begriff "`linear"' ist nicht robust:
-\begin{itemize}
-\item Abhänging von Details des Maschinenmodells
-\item Abhänging von Details der Kodierung
-\end{itemize}
-\bigskip
-$\leadsto$ Polynomielle Zeit als robuste Verallgemeinerung von Linearzeit:\bigskip
-
-\defbox{
-\[\Scomplclass{P} = \Scomplclass{PTime} = \bigcup_{d\geq 1} \Scomplclass{DTime}(n^d)\]
-}
-%
-
-\end{frame}
-
-
-\begin{frame}\frametitle{Wachstum einiger Funktionen}
-
-\begin{tikzpicture}[xscale=0.09,yscale=0.07]
-	\draw[->] (0,0) -- (100,0) node[right] {$n$};
-	\draw[->] (0,0) -- (0,85) node[above] {Zeit in $\mu s$};
-	\node [circle,draw=none,inner sep=1pt] at (1,-4) {$1$};
-	\foreach \x in {1,...,9} {
-		\draw (10*\x,0.9) -- (10*\x,-0.9);
-		\node [circle,draw=none,inner sep=1pt] at (10*\x,-4) {$\x0$};
-	}
-	\foreach \y in {0,...,8} {
-		\draw (-0.9,10*\y) -- (0.9,10*\y);
-		\pgfmathtruncatemacro\yexp{\y*3}
-		\node [circle,draw=none,inner sep=1pt] at (-5,10*\y) {$10^{\yexp}$};
-	}
-	
-	\draw[dashed,-,darkblue] (0,25.9) -- (100,25.9);
-	\node [draw=none,align=right,darkblue] at (95,28) {\footnotesize 1 Min.};
-	\draw[dashed,-,darkblue] (0,36.4) -- (100,36.4);
-	\node [draw=none,align=right,darkblue] at (95,38.4) {\footnotesize 1 Tag};
-	\draw[dashed,-,darkblue] (0,44.95) -- (100,44.95);
-	\node [draw=none,align=right,darkblue] at (95,47) {\footnotesize 1 Jahr};
-	\draw[dashed,-,darkblue] (0,54.96) -- (100,54.96);
-	\node [draw=none,align=left,darkblue] at (91,57) {\footnotesize 1000 Jahre};
-	\draw[dashed,-,darkblue] (0,78.76) -- (100,78.76);
-	\node [draw=none,align=right,darkblue] at (50,81) {\footnotesize Alter des Universums};
-
-	\visible<2->{\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*10*log2(\x)}) node [right] {$n^{10}$};}
-	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*3*log2(\x)}) node [right] {$n^3$};
-	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*2*log2(\x)}) node [right] {$n^2$};
-	\draw[domain=1:96,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*log2(\x)}) node [right] {$n$};
-	\draw[domain=1:86,smooth,variable=\x,darkred,line width=0.3mm] plot ({\x},{1.003433*\x-1}) node [right] {$2^n$};
-	
-	\draw[-,darkred,line width=0.3mm] (1,0) -- (2,1) -- (3,2.59) -- (4,4.6) -- (5,6.93) -- (6,9.52) --
-		(7,12.34) -- (8,15.35) -- (9,18.53) -- (10,21.87) -- (11,25.34) -- (12,28.93) --
-		(13,32.65) -- (14,36.47) -- (15,40.39) -- (16,44.40) -- (17,48.50) --
-		(18,52.69) -- (19,56.95) -- (20,61.29) -- (21,65.69) -- (22,70.17) --
-		(23,74.71) -- (24,79.31) -- (25,83.97) node [above] {$n!$};
-\end{tikzpicture}
-
-\end{frame}
-
-\begin{frame}\frametitle{Polynomiell = effizient?}
-
-Wir verwenden \Scomplclass{P} als mathematisches Modell für die Klasse
-der praktisch lösbaren Probleme.
-\bigskip
-
-\emph{Aber:} diese Übereinstimmung ist nicht perfekt
-\begin{itemize}
-\item Polynome hohen Grades können sehr schnell wachsen
-\item Die konstanten Faktoren können auch sehr groß sein (und Linear Speedup hilft in der Praxis wenig)
-\end{itemize}\bigskip\pause
-
-\emph{Dennoch:} \Scomplclass{P} ist von praktischem wie theoretischem Interesse
-\begin{itemize}
-\item \alert{Praxis:} Die meisten polynomiellen Probleme erlauben Algorithmen in $O(x^2)$ oder $O(x^3)$, während man zum Beispiel $O(x^{10})$ selten antrifft
-\item \alert{Theorie:} Unabhängig von der tatsächlichen Laufzeit liefert uns \Scomplclass{P} tiefe Einsichten in die Struktur eines Problems
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{Probleme in \Scomplclass{P}}
-
-Aus der Vorlesung Formale Systeme kennen wir bereits ein
-typisches \Scomplclass{P}-Problem.\bigskip
-
-\emph{Rückblick:}
-\begin{itemize}
-\item Eine \alert{Hornklausel} ist eine aussagenlogische Formel der Form $p_1\wedge\ldots\wedge p_n\to q$ mit $n\geq 0$
-{\tiny (bei $n=0$ ergibt sich einfach $q$ -- ein \alert{Fakt})}
-\item Eine Formel ist \alert{erfüllbar} wenn sie für eine Wertezuweisung auf wahr abgebildet wird
-\item Eine Menge von Formeln ist erfüllbar, wenn es eine Wert-\\zuweisung gibt, die alle
-ihre Elemente gleichzeitig wahr macht
-\end{itemize}\bigskip
-
-\defbox{\redalert{Erfüllbarkeit propositionaler Horn-Formeln}
-(\Slang{HornSAT}) ist das folgende Entscheidungsproblem:\\[1ex]
-\emph{Gegeben:} Eine Menge aussagenlogischer Formeln Hornklauseln\\
-\emph{Frage:} Ist diese Menge erfüllbar?
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{\Slang{2SAT}}
-
-Ein weiteres Beispiel für ein polynomiell lösbares Problem aus der Aussagenlogik:
-\bigskip
-
-\emph{Rückblick:}
-\begin{itemize}
-\item Ein \alert{Literal} ist ein aussagenlogisches Atom oder ein negiertes aussagenlogisches Atom
-\item Eine \alert{Klausel} ist eine Disjunktion von Literalen, die man oft einfach als Menge darstellt
-\item Eine Formel in \alert{Klauselform} ist eine Konjunktion von Klauseln,
-ebenfalls dargestellt als Menge
+\item Für jedes Wort $w\in\Slang{L}$ gibt es einen akzeptierenden Lauf von \ghost{\Smach{M}.}
+\item In jedem Schritt dieses Laufs wählt \Smach{M} nichtdeterministisch einen Übergang aus.
+\item Der Lauf ist von polynomieller Länge, da \Smach{M} polynomiell-zeitbeschränkt ist.
 \end{itemize}\pause
+$\leadsto$ Die Liste der Übergänge eines akzeptierenden Laufs kann als Zertifikat dienen
+\medskip
 
-\defbox{\Slang{2SAT} ist das folgende Entscheidungsproblem:\\[1ex]
-\emph{Gegeben:} Eine aussagenlogische Formel $F$ in Klauselform, bei der jede Klausel höchstens zwei Literale enthält\\
-\emph{Frage:} Ist $F$ erfüllbar?
+\Smach{V} prüft, ob die durch $z$ gegebenen Entscheidungen für die Eingabe $w$ zu einem akzeptierenden Lauf von \Smach{M} führen.\qed 
+
+\end{frame}
+
+\begin{frame}\frametitle{\Scomplclass{NP} ist nicht symmetrisch}
+
+Es ist leicht zu sehen:
+
+\theobox{\emph{Satz:} Die Klasse \Scomplclass{P} ist unter Komplement abgeschlossen.}
+
+\emph{Beweis:} Wenn es für \Slang{L} eine polynomiell-zeitbeschränkte TM \Smach{M}
+gibt, dann erhält man eine TM für $\overline{\Slang{L}}$ indem man akzeptierende
+und nichtakzeptierende Zustände von \Smach{M} vertauscht.\qed
+\medskip\pause
+
+Für \Scomplclass{NP} ist das nicht so einfach möglich. \\
+Wir haben das schon für NFAs beobachtet (eine spezielle Art von NTMs).${}^*$
+
+\examplebox{\emph{Beispiele:} Es scheint kein einfaches Zertifikat dafür zu geben, dass
+eine Formel \alert{nicht} erfüllbar ist oder dass ein Graph \alert{keine} Dreifärbung zulässt.
+}
+
+\visible<3->{\defbox{Die Klasse aller Sprachen $\Slang{L}$, für die $\overline{\Slang{L}}\in\Scomplclass{NP}$ gilt, heißt $\Scomplclass{coNP}$.}
+
+Jede nichtdeterministische Klasse kann komplementiert werden: $\Scomplclass{coNL}$, $\Scomplclass{coNExp}$,\ldots\\
+Jede deterministische Klasse ist ihr eigenes Komplement (Beweis wie bei \Scomplclass{P}).
+\medskip}
+
+{\tiny ${}^*$ Grund: für ein akzeptiertes Wort kann es bei einer NTM akzeptierende \emph{und} verwerfende Läufe geben. Nach dem Austausch der Endzustände gäbe es dann aber immer noch akzeptierende Läufe.\\
 }
 
 \end{frame}
 
-\begin{frame}\frametitle{\Slang{2SAT} ist in \Scomplclass{P}}
+\begin{frame}\frametitle{In \Scomplclass{NP} oder nicht?}
 
-\theobox{\emph{Satz:} $\Slang{2SAT}\in\Scomplclass{P}$}
-
-\pause\emph{Beweis:} Dazu wollen wir einen polynomiellen Algorithmus angeben.
-\pause\bigskip
-
-Der Resolutionsalgorithmus aus der Vorlesung Formale Systeme erfüllt den Zweck ohne jegliche Abwandlungen:
-\begin{itemize}
-\item Ein Resolutionsschritt kombiniert zwei Klauseln $\{p,L_1\}$ und $\{\neg p,L_2\}$
-zu einer neuen Klausel $\{L_1,L_2\}$
-\item Aus Zweier-Klauseln entstehen also immer wieder Klauseln mit höchstens zwei Literalen
-\item Es gibt nur quadratisch viele Klauseln mit höchstens zwei Literalen
-\item Der Algorithmus terminiert also nach polynomieller Zeit\qed
-\end{itemize}
-
-\end{frame}
-
-% \sectionSlide{Noch effizienter}
-
-\begin{frame}\frametitle{Effizienter als \Scomplclass{P}?}
-
-Wenn wir eine robuste Klasse wollen, die Linearzeit-Algorithmen enthält, dann enthält sie auch beliebige polynomiellen Algorithmen.\bigskip
-
-\alert{Gibt es Probleme, die noch einfacher sind?}
-\smallskip\pause
-
-\begin{itemize}
-\item \emph{Sub-lineare Zeit} funktioniert mit dem normalen TM-Modell nicht, da man
-in dieser Zeit nicht einmal die Eingabe lesen kann {\tiny (erfordert Rechenmodelle mit einer Form von Parallelverarbeitung \ldots)}
-\item \emph{Sub-linearer Speicher} ist machbar, wenn man ein getrenntes schreibgeschütztes Eingabeband erlaubt (siehe letzte Vorlesung)
-\end{itemize}
-$\leadsto$ Komplexitätsklassen \Scomplclass{L} und \Scomplclass{NL}
-
-\end{frame}
-
-\begin{frame}\frametitle{Was kann \Scomplclass{L}?}
-
-\emph{Intuition:} ein Algorithmus mit logarithmischem Speicher kann:
-\begin{itemize}
-\item Eine feste Anzahl an binärkodierten Zählern speichern, die nicht größer als $O(n)$ werden
-\item Eine feste Anzahl an "`Pointern"' auf eine Position der Eingabe speichern
-\item Den Inhalt von Zählern und Speicherstellen miteinander vergleichen
-\end{itemize}
-
-Damit kann man bereits viele einfache Algorithmen umsetzen\pause
-
-\examplebox{\emph{Beispiel:} Die Sprache aller Wörter über $\{\Sterm{0},\Sterm{1}\}$, welche
-die gleiche Anzahl der Symbole $\Sterm{0}$ und $\Sterm{1}$ enthalten, ist in \Scomplclass{L}:
-\begin{itemize}
-\item Wir verwenden zwei Zähler für die beiden Zahlen
-\item Die TM liest das Wort von links nach rechts und erhöht jeweils den entsprechenden Zähler
-\item Am Ende wird der Wert beider Zähler verglichen
-\end{itemize}}
-
-\end{frame}
-
-\begin{frame}\frametitle{Noch ein Beispiel in \Scomplclass{L}}
-
-\examplebox{\emph{Beispiel:} Die Sprache \Slang{Palindrom}, welche Wörter enthält, die von hinten gelesen genauso lauten wie von vorn, ist in \Scomplclass{L}:
-\begin{itemize}
-\item Wir verwenden zwei Pointer in die Eingabe, einer auf die erste und einer auf die letzte Eingabezelle
-\item Die TM vergleicht die Speicherinhalte bei den Pointern und verschiebt sie anschließend um eine Zelle in Richtung Wortmitte
-\item Das Wort wird akzeptiert, wenn die Pointer sich treffen und alle Vergleiche erfolgreich waren
-\end{itemize}
-
-}
-
-\end{frame}
-
-\sectionSlide{Reduktionen}
-
-\begin{frame}\frametitle{Effizient berechenbare Funktionen}
-
-Bisher haben wir Entscheidungsprobleme betrachtet.
-Man kann unsere Definitionen leicht auf andere Berechnungsprobleme übertragen.\medskip
-
-\defbox{Eine totale Funktion $f$ ist in \redalert{polynomieller Zeit berechenbar}, wenn es eine polynomiell zeitbeschränkte DTM $\Smach{M}$ gibt, die $f$ berechnet, d.h. mit $f=f_{\Smach{M}}$.
-}
-
-\pause Bei logarithmischen Speicherschranken müssen wir vorsichtig sein: Das Ergebnis könnte größer sein als der Arbeitsspeicher!
-
-\defbox{Eine totale Funktion $f$ ist in \redalert{logarithmischem Speicher berechenbar}, wenn es eine 3-Band DTM $\Smach{M}$ gibt, die $f$ wie folgt berechnet:
-(1) die Eingabe befindet sich auf dem schreibgeschützten \alert{Eingabeband}, (2) die DTM verwendet maximal $O(\log n)$ Speicherzellen auf dem \alert{Arbeitsband},
-(3) die Ausgabe wird auf das \alert{Ausgabeband} geschrieben (pro Zelle einmaliges Schreiben, kein Lesen).%
-% \begin{itemize}
-% \item Die Eingabe befindet sich auf dem schreibgeschützten Eingabeband
-% \item Die DTM verwendet maximal $O(\log n)$ Speicherzellen auf dem Arbeitsband
-% \item Die Ausgabe wird auf das Ausgabeband geschrieben (pro Zelle einmaliges Schreiben, kein Lesen)
-% \end{itemize}
-}
-
-\end{frame}
-
-\begin{frame}\frametitle{Polynomielle Many-One-Reduktionen}
-
-Mithilfe effizient berechenbarer Funktionen können wir ein Problem
-effizient auf ein anderes reduzieren.\bigskip
-
-\defbox{Eine polynomiell berechenbare Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{polynomielle Many-One-Reduktion} von einer Sprache
-\Slang{P} auf eine Sprache \Slang{Q} (in Symbolen: $\Slang{P}\leq_p \Slang{Q}$), wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
-\narrowcentering{$w\in\Slang{P}\quad$ genau dann wenn $\quad f(w)\in\Slang{Q}$}}\pause\bigskip
-
-Wir sprechen oft einfach von \redalert{polynomiellen Reduktionen}.
+\emph{Vermutung:} $\Scomplclass{coNP}\neq\Scomplclass{NP}$, d.h. Komplemente von
+"`typischen"' Problemen in $\Scomplclass{NP}$ sind nicht in $\Scomplclass{NP}$.
 \bigskip
 
-Logarithmische Many-One-Reduktionen könnten analog definiert werden (wir werden uns damit nicht näher beschäftigen).
-
-\end{frame}
-
-\begin{frame}\frametitle{Komplexität durch Reduktion zeigen}
-
-\emph{Idee:} Wenn man ein Problem $\Slang{A}$ leicht auf ein leichtes Problem $\Slang{B}$ reduzieren kann,
-dann ist $\Slang{A}$ ebenfalls leicht.\bigskip
-
-\theobox{\emph{Satz:} Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{B}\in\Scomplclass{PTime}$, dann ist $\Slang{A}\in\Scomplclass{PTime}$.}
-
-\emph{Beweis:} Folgt durch Hintereinanderausführung der polynomiellen Prozeduren, da die Summe und Komposition von Polynomen ein Polynom ist.\qed
+\emph{Aber:} Es gibt viele Probleme in $\Scomplclass{coNP}\cap\Scomplclass{NP}$. Zum Beispiel
+ist $\Scomplclass{P}\subseteq\Scomplclass{coNP}\cap\Scomplclass{NP}$.
 \bigskip\pause
 
-Die Umkehrung wird uns später noch interessieren:
+\defbox{\Slang{Primzahl} (= $\overline{\Slang{Zusammengesetzte Zahl}}$)\\[1ex]
+\emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
+\emph{Frage:} Gibt es eine keine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+}\pause
 
-\theobox{\emph{Satz:} Falls $\Slang{A}\leq_p\Slang{B}$ und $\Slang{A}\notin\Scomplclass{PTime}$, dann ist $\Slang{B}\notin\Scomplclass{PTime}$.}\bigskip
+Seit 1975 ist bekannt: $\Slang{Primzahl}\in\Scomplclass{NP}$, also
+$\Slang{Primzahl}\in\Scomplclass{NP}\cap\Scomplclass{coNP}$\\
+(Zertifikat: "`\href{https://en.wikipedia.org/wiki/Primality_certificate}{Primality certificate}"')
+\bigskip\pause
 
-Dazu mehr in den kommenden Vorlesungen \ldots
+Seit 2002 ist bekannt: $\Slang{Primzahl}\in\Scomplclass{P}$\\
+(Primzahlentest nach Agrawal, Kayal und Saxena)
+
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Randbemerkung: Ist Kryptografie sicher?}
+
+Das Wirkprinzip asymmetrischer Verschlüsselungsverfahren:
+\begin{itemize}
+\item Es ist \alert{leicht}, zwei Zahlen zu multiplizieren
+\item Es ist \alert{schwer}, eine Zahl in ihre Faktoren zu zerlegen
+\end{itemize}\medskip
+\emph{Aber seit 2002 wissen wir:} Man kann in polynomieller Zeit entscheiden, ob es
+Faktoren mit $p\cdot q=z$ gibt.\bigskip
+
+\narrowcentering{%
+\redalert{Haben Agrawal, Kayal und Saxena die Kryptografie geknackt?}}\pause\bigskip
+
+\emph{Nein:}
+\begin{itemize}
+\item Es ist \alert{leicht} zu entscheiden, ob eine Zahl echte Faktoren hat
+\item Aber es ist dennoch \alert{schwer} die Faktoren zu bestimmen\\
+(glauben wir zumindest \ldots)
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}\frametitle{Beispiel}
+\begin{frame}\frametitle{Faktorisierung}
 
-% Als Beispiel betrachten wir folgendes Problem:
+(Nicht)Existenz von Faktoren (\Slang{Primzahl}) erfasst nicht wirklich,
+wie schwer Faktorisierung ist\\
+$\leadsto$ Wie kann man das komplexitätstheoretisch ausdrücken?
+\medskip\pause
 
-\defbox{\redalert{2-Färbbarkeit} (\Slang{2Col}) ist das folgende Problem:\\
-\emph{Gegeben:} Ein ungerichteter Graph $G$\\
-\emph{Frage:} Kann man die Knoten von $G$ mit zwei Farben (rot und blau) so einfärben, dass keine gleichfarbigen Knoten durch Kanten verbunden sind?}
+\defbox{\Slang{Faktor-7}\\[1ex]
+\emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
+\emph{Frage:} Hat $z$ einen Primfaktor, der mit der Ziffer $7$ endet?\\
+}\pause
 
-Man kann $\Slang{2Col}\in\Scomplclass{P}$ leicht durch Reduktion auf \Slang{2SAT} zeigen:
+Ein interessantes Entscheidungsproblem:
 \begin{itemize}
-\item Für jeden Knoten $v$ führen wir ein Atom $p_v$ ein
-\item Für jede Kante $v\to w$ führen wir zwei Klauseln ein: $\{p_v,p_w\}$ und $\{\neg p_v,\neg p_w\}$\pause
+\item \Slang{Faktor-7} erfordert (vermutlich) die Kenntnis der Primfaktoren, nicht nur
+die Bestimmung deren Existenz\pause
+\item $\Slang{Faktor-7}\in\Scomplclass{NP}$\pause: Zertifikat ist die Liste aller Primfaktoren${}^*$
+\visible<6->{\item $\Slang{Faktor-7}\in\Scomplclass{coNP}$\visible<7->{: Zertifikat ist die Liste aller Primfaktoren${}^*$}}
+\visible<8->{\item Aber niemand konnte bisher zeigen, dass $\Slang{Faktor-7}\in\Scomplclass{P}$\\
+vermutlich gilt $\Slang{Faktor-7}\notin\Scomplclass{P}$}
 \end{itemize}
-Dies kann man offenbar in polynomieller Zeit berechnen.\bigskip\pause% (sogar in logarithmischer!).\bigskip
 
-Die Reduktionseigenschaft gilt:
-\begin{itemize}
-\item Wenn der Graph 2-färbbar ist, dann verwenden wir die Farben als Wahrheitswerte und erhalten eine
-	erfüllende Zuweisung
-\item Wenn die Formel erfüllbar ist, dann erhalten wir umgekehrt aus der Wertzuweisung eine korrekte 2-Färbung.\qed
-\end{itemize}
+\visible<5->{\tiny
+${}^*$ Kontrollfrage: Wieso kann man polynomiell verifizieren, dass dies wirklich Primfaktoren sind?
+
+}
 
 \end{frame}
+
+
+% \sectionSlide{NP-Vollständigkeit}
+% 
+% \definecolor{myred}{rgb}{0.80, 0.20, 0.20}
+% \definecolor{mygreen}{rgb}{0.20, 0.80, 0.20}
+% \definecolor{myblue}{rgb}{0.20, 0.20, 0.80}
+% \newcommand{\ppred}[1]{\color{myred}{\text{r}_{#1}}\color{text}{}}
+% \newcommand{\pgreen}[1]{\color{mygreen}{\text{g}_{#1}}\color{text}{}}
+% \newcommand{\pblue}[1]{\color{myblue}{\text{b}_{#1}}\color{text}{}}
+% 
+% \begin{frame}\frametitle{Reduktionen}
+% 
+% Manche Probleme lassen sich auf andere zurückführen\pause
+% \bigskip
+% 
+% % \bigskip
+% % 
+% % \alert{Beispiel:}\\
+% \emph{Beispiel:} Drei-Farben-Problem ist auf \Slang{SAT} reduzierbar.
+% \bigskip
+% 
+% \only<2>{\includegraphics[width=2.5cm]{images/graph1}}%
+% \only<3-5>{\includegraphics[width=2.5cm]{images/graph2}}%
+% \only<6->{\includegraphics[width=2.5cm]{images/graph3}}%
+% %
+% \raisebox{5mm}{%
+% \hspace{7mm}%
+% \uncover<3->{\begin{minipage}[b]{6cm}
+% Darstellung von Farben mit Atomen:
+% \begin{itemize}
+% \item $\ppred{i}$ bedeutet "`Knoten $i$ ist rot"'
+% \item $\pgreen{i}$ bedeutet "`Knoten $i$ ist grün"'
+% \item $\pblue{i}$ bedeutet "`Knoten $i$ ist blau"'
+% \end{itemize}
+% \end{minipage}}}
+% \bigskip
+% 
+% \uncover<4->{
+% Färbe-Bedingungen für Knoten:\\
+% $(\ppred{1}\wedge\neg\pgreen{1}\wedge\neg\pblue{1})\vee
+% (\neg\ppred{1}\wedge\pgreen{1}\wedge\neg\pblue{1})\vee
+% (\neg\ppred{1}\wedge\neg\pgreen{1}\wedge\pblue{1})$
+% \hfill(usw. für alle Knoten)
+% % $(\ppred{10}\wedge\neg\pgreen{10}\wedge\neg\pblue{10})\vee
+% % (\neg\ppred{10}\wedge\pgreen{10}\wedge\neg\pblue{10})\vee
+% % (\neg\ppred{10}\wedge\neg\pgreen{10}\wedge\pblue{10})$\\
+% }
+% 
+% \bigskip
+% \uncover<4->{
+% Färbe-Bedingungen für Kanten:
+% 
+% $\neg(\ppred{1}\wedge\ppred{2})\wedge\neg(\pgreen{1}\wedge\pgreen{2})\wedge\neg(\pblue{1}\wedge\pblue{2})$
+% \mbox{}\hfill(usw. für alle Kanten)
+% }
+% \uncover<5->{
+% \begin{center}
+% \alert{Erfüllende Wertzuweisung $\Leftrightarrow$ zulässige Färbung}
+% \end{center}
+% }
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Polynomielle Reduktionen}
+% 
+% \defbox{Eine Funktion $f:\Sigma^*\to\Sigma^*$ ist \redalert{polynomiell berechenbar} wenn es eine
+% polynomiell-zeitbeschränkte TM gibt, die bei einer Eingabe $w$ die Ausgabe $f(w)$ auf das Band schreibt
+% und anschließend anhält.
+% }\bigskip
+% 
+% \defbox{Eine polynomiell berechenbare Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{polynomielle Reduktion} von einer
+% Sprache $\Slang{L}$ auf eine Sprache $\Slang{G}$, wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
+% %
+% \narrowcentering{$w\in\Slang{L}\quad$ genau dann wenn $\quad f(w)\in\Slang{G}$}
+% }\bigskip\pause
+% 
+% \examplebox{\emph{Beispiel:} Die soeben skizzierte Funktion von Graphen auf logische Formeln ist eine polynomielle Reduktion
+% des Drei-Farben-Problems auf \Slang{SAT}.}
+% 
+% \examplebox{\emph{Beispiel:} Wir haben das Inklusionsproblem endlicher Automaten in Formale Systeme (10. Vorlesung) auf das Leerheitsproblem reduziert. Diese Reduktion war bei deterministischen Automaten polynomiell.}
+% 
+% \end{frame}
+% 
+% \begin{frame}[t]\frametitle{Die Struktur von NP}
+% Idee: polynomielle Reduzierbarkeit definiert eine Art Ordnung auf Problemen
+% 
+% \vspace{1cm}
+% \begin{center}
+% \only<1>{\includegraphics[scale=1.5]{images/np1}}%
+% \only<2>{\includegraphics[scale=1.5]{images/np2}}%
+% \only<3>{\includegraphics[scale=1.5]{images/np3}}%
+% \only<4>{\includegraphics[scale=1.5]{images/np4}}%
+% \only<5>{\includegraphics[scale=1.5]{images/np5}}
+% \end{center}
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Das schwerste Problem in NP?}
+% 
+% \bigskip
+% ~\hfill%
+% \begin{minipage}{1.5cm}\includegraphics[height=1.4cm]{images/cook}\\\scalebox{0.8}{Stephen Cook}\end{minipage}\hfill
+% \begin{minipage}{1.5cm}\includegraphics[height=1.4cm]{images/levin}\\\scalebox{0.8}{Leonid Levin}\end{minipage}\hfill
+% \begin{minipage}{1.5cm}\includegraphics[height=1.4cm]{images/karp}\\\scalebox{0.8}{Richard Karp}\end{minipage}\hfill~
+% \bigskip
+% 
+% \theobox{\emph{Satz von Cook [1971] \& Levin [1973]:}
+% Alle Probleme in \Scomplclass{NP} können polynomiell auf \Slang{SAT} reduziert werden.}\pause
+% 
+% \begin{itemize}
+% \item Wer \Slang{SAT} polynomiell löst, der hat alle Probleme in \Scomplclass{NP} polynomiell gelöst\pause
+% \item Es gibt in \Scomplclass{NP} eine maximale Klasse, die ein praktisch interessantes Problem enthält\pause
+% \item Karp findet kurz darauf 21 weitere solcher Probleme (1972)
+% \item Seitdem wurden tausende weitere entdeckt \ldots
+% \end{itemize}
+% % \pause
+% \bigskip
+% % $\leadsto$ Die Klasse der "`schwersten"' Probleme in NP ist praktisch interessant
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{\Scomplclass{NP}-Schwere und \Scomplclass{NP}-Vollständigkeit}
+% 
+% \defbox{Eine Sprache ist
+% \begin{itemize}
+% \item \redalert{\Scomplclass{NP}-schwer,} wenn jede Sprache in \Scomplclass{NP} polynomiell darauf reduzierbar ist
+% \item \redalert{\Scomplclass{NP}-vollständig,} wenn sie \Scomplclass{NP}-schwer ist und in \Scomplclass{NP} liegt
+% \end{itemize}}\medskip\pause
+% 
+% \examplebox{\emph{Beispiel:} \Slang{SAT} ist \Scomplclass{NP}-vollständig (Cook \& Levin).}
+% 
+% \examplebox{\emph{Beispiel:} \Slang{PRIMES} ist in \Scomplclass{NP}, aber \alert{vermutlich} nicht \Scomplclass{NP}-schwer. Gleiches gilt für viele Probleme in \Scomplclass{P} (bei einigen ist dagegen sicher, dass sie nicht \Scomplclass{NP}-schwer sind).}
+% 
+% \examplebox{\emph{Beispiel:} Das Halteproblem ist \Scomplclass{NP}-schwer aber sicher nicht in \Scomplclass{NP}. Gleiches gilt für viele unentscheidbare Probleme.}
+% 
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Beispiele}
+% 
+% \examplebox{\emph{Beispiel:} Das Drei-Farben-Problem ist \Scomplclass{NP}-vollständig.}
+% 
+% \examplebox{\emph{Beispiel:} Verallgemeinertes Sudoku ($n^2$ Zahlen in einem $n^2\times n^2$-Feld mit $n\times n$-Unterfeldern) ist \Scomplclass{NP}-vollständig. Das Entscheidungsproblem dabei ist, ob das gegebene, teilweise gefüllte Feld eine Lösung zulässt. Gleiches gilt für Verallgemeinerungen vieler anderer Solitärspiele (z.B. Minesweeper).}
+% 
+% \examplebox{\emph{Beispiel:} Das Wortproblem für Typ-1-Sprachen (gegeben als Grammatik) ist \Scomplclass{NP}-schwer aber \alert{vermutlich} nicht in \Scomplclass{NP}. Gleiches gilt für das Halteproblem von LBAs.}
+% 
+% \examplebox{\emph{Beispiel:} Das Problem des Handelsreisenden ist \Scomplclass{NP}-vollständig. Es besteht darin, in einem
+% Graph mit bewerteten Kanten einen Pfad durch alle Knoten zu finden, so dass die Summe der Kantenwerte unter einem
+% gegebenen Maximum liegt.}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Wie findet man \Scomplclass{NP}-schwere Probleme?}
+% 
+% Schwer ist, worauf sich schwere Dinge leicht zurückführen lassen:
+% 
+% \theobox{\emph{Satz:} Wenn $\Slang{L}$ \Scomplclass{NP}-schwer ist und polynomiell auf $\Slang{G}$
+% reduziert werden kann, dann ist $\Slang{G}$ auch \Scomplclass{NP}-schwer.}
+% 
+% \emph{Beweis:} Folgt direkt aus der Definition, da die Komposition von zwei polynomiellen Reduktionen ebenfalls eine
+% polynomielle Reduktion ist.\qed
+% \bigskip\pause
+% 
+% \emph{Technik zum Beweis von \Scomplclass{NP}-Schwere:}
+% \begin{itemize}
+% \item Suche ein bekanntes \Scomplclass{NP}-schweres Problem, welches dem untersuchten Problem möglichst ähnlich ist.
+% \item Gib eine polynomielle Reduktion an und zeige, dass sie korrekt ist.
+% \end{itemize}
+% \begin{enumerate}[$\leadsto$]
+% \item Oft nicht schwer, wenn man bereits viele \Scomplclass{NP}-schwere Probleme kennt -- aber wo fängt man an?
+% \end{enumerate}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Cook/Levin: Beweisskizze (1)}
+% 
+% \alert{Wie stellen wir TM-Berechnungen in aussagenlogisch dar?}
+% \bigskip
+% 
+% \emph{Idee:}
+% \begin{itemize}
+% \item Jedes Problem in \Scomplclass{NP} ist durch eine konkrete NTM \Smach{M} in einer Zeit lösbar, die durch ein konkretes Polynom $p$ gegeben ist.
+% \item Für eine Eingabe $|w|$ kennen wir also die maximale Zahl an Schritten $p(|w|)$ dieser Berechnung.
+% \end{itemize}
+% \begin{enumerate}[$\leadsto$]
+% \item Ein Lauf ist eine Folge von maximal $p(|w|)$ Konfigurationen, die jeweils maximal $p(|w|)$ Speicherstellen verwenden
+% \end{enumerate}
+% \bigskip
+% 
+% \emph{Ansatz:} Kodiere \Smach{M} und $w$ so in Logik, dass die möglichen Läufe genau den erfüllenden Wertzuweisungen entsprechen
+% 
+% \end{frame}
+% 
+% 
+% \begin{frame}\frametitle{Cook/Levin: Beweisskizze (2)}
+% 
+% 
+% % Illustration eines Laufs in $p(|w|)$ Schritten:
+% 
+% \begin{tikzpicture}[
+% 	scale=0.50,
+% 	decoration=penciline, decorate
+% ]
+% % \path[use as bounding box] (-3.2,0) rectangle (3.5,-5); % add "draw" to see it
+% % \draw[help lines] (0,0) grid (5,5);
+% \pgfmathsetseed{5712}
+% 
+% \draw [thick, darkblue,decorate,decoration={brace,amplitude=3pt},xshift=0.4pt,yshift=-0.7mm](-1,0.6) -- (13,0.6) node[black,midway,yshift=0.36cm] {\alert{$p(|w|)$ Speicherstellen}};
+% 
+% \draw [thick, darkblue,decorate,decoration={brace,mirror,amplitude=3pt},xshift=0.4pt,yshift=-0.7mm](-1.5,0) -- (-1.5,-7.5) node[black,midway,xshift=-0.36cm] {\rotatebox{90}{\alert{$p(|w|)$ Berechnungsschritte}}};
+% 
+% \draw[decorate,line width=0.3mm] (-1,0) -- (10.5,0);
+% \draw[decorate,line width=0.3mm] (-1,-1) -- (10.5,-1);
+% \node [circle,draw=none,inner sep=1pt] at (11.1,0) {$\cdots$};
+% \node [circle,draw=none,inner sep=1pt] at (11.1,-1) {$\cdots$};
+% \draw[decorate,line width=0.3mm] (11.5,0) -- (13,0);
+% \draw[decorate,line width=0.3mm] (11.5,-1) -- (13,-1);
+% 
+% \foreach \x in {0,...,10} {
+% 	\draw[decorate,line width=0.3mm] (\x-1,0) -- (\x-1,-0.9);
+% 	\node [circle,draw=none,inner sep=1pt] at (\x-0.5,-0.5) {\ifthenelse{\x<5}{\ifthenelse{\x<3}{\Sterm{a}}{\Sterm{b}}}{\ifthenelse{\x=5 \OR \x=7 \OR \x=8}{\Sterm{c}}{\ifthenelse{\x=10}{$\blank$}{\Sterm{d}}}}};
+% }
+% \draw[decorate,line width=0.3mm] (10,0) -- (10,-0.9);
+% \draw[decorate,line width=0.3mm] (12,0) -- (12,-0.9);
+% \node [circle,draw=none,inner sep=1pt] at (12.5,-0.5) {$\blank$};
+% \draw[decorate,line width=0.3mm] (13,0) -- (13,-0.9);
+% 
+% \draw[fill=none,line width=0.4mm,darkblue,->] (-0.5,-1.5) -> (-0.5,-1.1);
+% \node [circle,draw=none,inner sep=1pt] at (-0.5,-1.8) {$q_0$};
+% 
+% 
+% \draw[decorate,line width=0.3mm] (-1,-2.5) -- (10.5,-2.5);
+% \draw[decorate,line width=0.3mm] (-1,-3.5) -- (10.5,-3.5);
+% \node [circle,draw=none,inner sep=1pt] at (11.1,-2.5) {$\cdots$};
+% \node [circle,draw=none,inner sep=1pt] at (11.1,-3.5) {$\cdots$};
+% \draw[decorate,line width=0.3mm] (11.5,-2.5) -- (13,-2.5);
+% \draw[decorate,line width=0.3mm] (11.5,-3.5) -- (13,-3.5);
+% 
+% \foreach \x in {0,...,10} {
+% 	\draw[decorate,line width=0.3mm] (\x-1,-2.5) -- (\x-1,-3.4);
+% 	\node [circle,draw=none,inner sep=1pt] at (\x-0.5,-3.0) {\ifthenelse{\x=0}{\Snterm{A}}{\ifthenelse{\x<5}{\ifthenelse{\x<3}{\Sterm{a}}{\Sterm{b}}}{\ifthenelse{\x=5 \OR \x=7 \OR \x=8}{\Sterm{c}}{\ifthenelse{\x=10}{$\blank$}{\Sterm{d}}}}}};
+% }
+% \draw[decorate,line width=0.3mm] (10,-2.5) -- (10,-3.4);
+% \draw[decorate,line width=0.3mm] (12,-2.5) -- (12,-3.4);
+% \node [circle,draw=none,inner sep=1pt] at (12.5,-3) {$\blank$};
+% \draw[decorate,line width=0.3mm] (13,-2.5) -- (13,-3.4);
+% 
+% \draw[fill=none,line width=0.4mm,darkblue,->] (0.5,-4.0) -> (0.5,-3.6);
+% \node [circle,draw=none,inner sep=1pt] at (0.5,-4.3) {$q_1$};
+% 
+% \node [circle,draw=none,inner sep=1pt] at (-0.5,-5.2) {$\vdots$};
+% \node [circle,draw=none,inner sep=1pt] at (9.5,-5.2) {$\vdots$};
+% \node [circle,draw=none,inner sep=1pt] at (12.5,-5.2) {$\vdots$};
+% 
+% \draw[decorate,line width=0.3mm] (-1,-6.5) -- (10.5,-6.5);
+% \draw[decorate,line width=0.3mm] (-1,-7.5) -- (10.5,-7.5);
+% \node [circle,draw=none,inner sep=1pt] at (11.1,-6.5) {$\cdots$};
+% \node [circle,draw=none,inner sep=1pt] at (11.1,-7.5) {$\cdots$};
+% \draw[decorate,line width=0.3mm] (11.5,-6.5) -- (13,-6.5);
+% \draw[decorate,line width=0.3mm] (11.5,-7.5) -- (13,-7.5);
+% 
+% \foreach \x in {0,...,10} {
+% 	\draw[decorate,line width=0.3mm] (\x-1,-6.5) -- (\x-1,-7.4);
+% 	\node [circle,draw=none,inner sep=1pt] at (\x-0.5,-7.0) {\ifthenelse{\x=2}{\Snterm{B}}{\ifthenelse{\x<5}{\ifthenelse{\x<3}{\Snterm{A}}{\Sterm{a}}}{\ifthenelse{\x=5 \OR \x=7 \OR \x=8}{\Snterm{C}}{\ifthenelse{\x=10}{\Snterm{A}}{\Sterm{b}}}}}};
+% }
+% \draw[decorate,line width=0.3mm] (10,-6.5) -- (10,-7.4);
+% \draw[decorate,line width=0.3mm] (12,-6.5) -- (12,-7.4);
+% \node [circle,draw=none,inner sep=1pt] at (12.5,-7) {\Snterm{B}};
+% \draw[decorate,line width=0.3mm] (13,-6.5) -- (13,-7.4);
+% 
+% \draw[fill=none,line width=0.4mm,darkblue,->] (5.5,-8.0) -> (5.5,-7.6);
+% \node [circle,draw=none,inner sep=1pt] at (5.5,-8.4) {$q_f$};
+% 
+% \end{tikzpicture}
+% 
+% Wir können diesen Lauf mit aussagenlogischen Atomen kodieren:
+% \begin{itemize}
+% \item $Q_{q,s}$: "`TM ist in Schritt $s$ in Zustand $q$"'
+% % 
+% % Für jede Position $i\in\{1,\ldots,p(|w|)\}$, jeden Schritt $s\in\{1,\ldots,p(|w|)\}$
+% \item $P_{i,s}$: "`TM-Kopf ist in Schritt $s$ an Position $i$"'
+% \item $S_{a,i,s}$: "`Das Band enthält in Schritt $s$ Zeichen $a$ an Position $i$"'
+% \end{itemize}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Cook/Levin: Beweisskizze (3)}
+% 
+% Wir können diesen Lauf mit aussagenlogischen Atomen kodieren:
+% \begin{itemize}
+% \item $Q_{q,s}$: "`TM ist in Schritt $s$ in Zustand $q$"'
+% % 
+% % Für jede Position $i\in\{1,\ldots,p(|w|)\}$, jeden Schritt $s\in\{1,\ldots,p(|w|)\}$
+% \item $P_{i,s}$: "`TM-Kopf ist in Schritt $s$ an Position $i$"'
+% \item $S_{a,i,s}$: "`Das Band enthält in Schritt $s$ Zeichen $a$ an Position $i$"'
+% \end{itemize}
+% $\leadsto$ Nur polynomiell viele Atome nötig
+% \bigskip
+% 
+% Mithilfe von Formeln kann man alle Bedingungen ausdrücken, die für einen korrekten Lauf der NTM gelten müssen.
+% 
+% % , z.B.
+% % dass  zu jedem Zeitpunkt nur ein Zustand gilt ($Q_{q,s}\to\neg Q_{q',s}$ für alle $s\in\{1,\ldots,p(|w|)\}$ und Zustände $q\neq q'$).
+% \medskip
+% 
+% \examplebox{
+% Die Übergangsrelation wird z.B. mit Formel der folgenden Form kodiert:
+% \[(Q_{q,s}\wedge P_{i,s}\wedge S_{a,i,s})\to\bigvee_{\substack{\tuple{q',b,D}\in\delta(q,a)\\ i'=D(i)}} (S_{b,i,s+1}\wedge Q_{q',s+1}\wedge P_{i',s+1})\]
+% (für alle $s\in\{1,\ldots,p(|w|)\}$ und Positionen $i\in\{1,\ldots,p(|w|)\}$).}
+% 
+% 
+% \end{frame}
+% 
+% \sectionSlide{Weitere \Scomplclass{NP}-vollständige Probleme}
+% 
+% 
+% \begin{frame}\frametitle{Clique}
+% 
+% Eine \redalert{Clique} ist ein Graph, bei dem jeder Knoten mit jedem anderen
+% direkt durch eine Kante verbunden ist\medskip
+% 
+% \defbox{\Slang{Clique}\\[1ex]
+% \emph{Gegeben:} Ein Graph $G$ und eine Zahl $k$\\[1ex]
+% \emph{Frage:} Enthält $G$ eine Clique mit $k$ Knoten?\\
+% }\medskip\pause
+% 
+% \theobox{\emph{Satz:} \Slang{Clique} ist \Scomplclass{NP}-vollständig.}\pause
+% 
+% \emph{Beweis:}\\
+% (1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ghost{\ldots)}\pause
+% 
+% }\medskip
+% 
+% (2) Clique ist \Scomplclass{NP}-schwer. Dazu konstruieren wir eine Reduktion von \Slang{SAT}.
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Clique: Schwere (1)}
+% 
+% \emph{Beweis Teil (2):} Clique ist \Scomplclass{NP}-schwer.
+% \begin{itemize}
+% \item Sei $F$ eine aussagenlogische Formel in CNF:\\
+% $F=\left((L^1_1\vee \ldots\vee L^1_{n_1})\wedge \ldots\wedge (L^\ell_1\vee \ldots\vee L^\ell_{n_\ell})\right)$\pause
+% %
+% \item Wir definieren einen Graphen $G_F$, so dass gilt:\\[1ex]
+% \narrowcentering{$G_F$ hat eine Clique der Größe $\ell$ ~~~~~gdw.~~~~~ $F$ ist erfüllbar}\pause
+% %
+% \item \alert{Knoten von $G_F$:} die Paare $\tuple{L^i_j,i}$, für alle $i\in\{1,\ldots,\ell\}$ und $j\in\{1,\ldots,n_i\}$\pause
+% %
+% \item \alert{Kanten von $G_F$:} alle Paare $\tuple{L,i}-\tuple{L',j}$, für die gilt:
+% \begin{enumerate}[(1)]
+% \item $i\neq j$ und
+% \item $L\wedge L'$ ist erfüllbar, d.h. $L\neq \neg L'$ und $L'\neq \neg L$
+% \end{enumerate}
+% \end{itemize}
+% Offensichtlich kann man $G_F$ in polynomieller Zeit berechnen
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Clique: Schwere (2)}
+% 
+% \emph{Beispiel:} $F=((p\vee q \vee \neg r) \wedge (p\vee \neg q) \wedge (\neg p\vee r))$
+% 
+% \begin{center}
+% \begin{tikzpicture}
+% % \draw[help lines] (0,0) grid (7,2);
+% \node (l11) [rectangle,draw=none,thick] at (0,0) {$\tuple{p,1}$};
+% \node (l12) [rectangle,draw=none,thick] at (3,0) {$\tuple{q,1}$};
+% \node (l13) [rectangle,draw=none,thick] at (6,0) {$\tuple{\neg r,1}$};
+% 
+% \node (l21) [rectangle,draw=none,thick] at (0,-2) {$\tuple{p,2}$};
+% \node (l22) [rectangle,draw=none,thick] at (6,-2) {$\tuple{\neg q,2}$};
+% 
+% \node (l31) [rectangle,draw=none,thick] at (0,-4) {$\tuple{\neg p,3}$};
+% \node (l32) [rectangle,draw=none,thick] at (6,-4) {$\tuple{r,3}$};
+% 
+% \path[-] (l11) edge (l21);
+% \path[-,onslide={<2>{dashed,darkred}}] (l11) edge (l22);
+% 
+% \path[-] (l12) edge (l21);
+% %\path[-] (l12) edge (l22);
+% 
+% \path[-] (l13) edge (l21);
+% \path[-] (l13) edge (l22);
+% 
+% 
+% % \path[-] (l11) edge (l31);
+% \path[-,onslide={<2>{dashed,darkred}}] (l11) edge (l32);
+% 
+% \path[-] (l12) edge (l31);
+% \path[-] (l12) edge (l32);
+% 
+% \path[-] (l13) edge (l31);
+% % \path[-] (l13) edge (l32);
+% 
+% 
+% % \path[-] (l21) edge (l31);
+% \path[-] (l21) edge (l32);
+% 
+% \path[-] (l22) edge (l31);
+% \path[-,onslide={<2>{dashed,darkred}}] (l22) edge (l32);
+% 
+% % \path[->,line width=0.5mm](-1,0) edge (q0);
+% % \path[->,line width=0.5mm](q0) edge node[above] {$\blank\mapsto\Sterm{a},R$} (q1);
+% % \path[->,line width=0.5mm](q1) edge node[above] {$\blank\mapsto\Sterm{b},N$} (q2);
+% % \path[->,line width=0.5mm](q2) edge[bend left] node[below] {$\Sterm{b}\mapsto\Sterm{a},R$} (q0);
+% \end{tikzpicture}
+% \end{center}
+% 
+% \onslide<2->{Erfüllende Belegung: $p\mapsto\mytrue,q\mapsto \myfalse,r\mapsto\mytrue$}\medskip
+% 
+% \visible<3->{Man sieht leicht, dass unsere Reduktion korrekt ist.\qed}
+% 
+% \end{frame}
+% 
+% \begin{frame}\frametitle{Unabhängige Mengen}
+% 
+% Eine \redalert{unabhängige Menge} ist eine Teilmenge von Knoten in einem Graph, bei der kein
+% Knoten mit einem anderen direkt verbunden ist\medskip
+% 
+% \defbox{\Slang{Unabhängige Menge}\\[1ex]
+% \emph{Gegeben:} Ein Graph $G$ und eine Zahl $k$\\[1ex]
+% \emph{Frage:} Enthält $G$ eine unabhängige Menge mit $k$ Knoten?\\
+% }\medskip\pause
+% 
+% \theobox{\emph{Satz:} \Slang{Unabhängige Menge} ist \Scomplclass{NP}-vollständig.}\pause
+% 
+% \emph{Beweis:} Die Reduktion auf \Slang{Clique} ist sehr einfach:
+% \begin{itemize}
+% \item Ein Graph hat eine unabhängige Menge der Größe $k$\\
+% genau dann wenn
+% \item sein Komplementgraph eine Clique der Größe $k$ hat
+% \end{itemize}
+% $\leadsto$ Komplementierung ist polynomiell\qed
+% 
+% \end{frame}
 
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Die grundlegenden Beziehungen der Komplexitätsklassen sind
-\[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
+$\Scomplclass{NP}$ entspricht der Klasse der nachweis-polynomiellen Probleme
+\bigskip
 
-Die Klassen \Scomplclass{P}, \Scomplclass{L} und \Scomplclass{NL} sind mathematische Modelle für effiziente Algorithmen\bigskip
+Die Klasse der Komplemente von $\Scomplclass{NP}$-Problemen ist $\Scomplclass{coNP}$\bigskip
 
-Mit polynomiellen Reduktionen kann man aus der Komplexität eines Problems auf die eines anderen schließen\bigskip
+Polynomielle Reduktionen erlauben uns, die Schwere von Problemen zu vergleichen
+\bigskip
+
+% Es gibt sehr viele bekannte $\Scomplclass{NP}$-vollständige Probleme\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item $\Scomplclass{NP}$
-\item $\Scomplclass{NL}$
-% \item Das erste Repetitorium
+\item Mehr $\Scomplclass{NP}$
+\item Pseudopolynomielle Probleme
+\item Komplexität jenseits von $\Scomplclass{NP}$
 \end{itemize}
 }
 
 \end{frame}
+
 
 
 \end{document}
