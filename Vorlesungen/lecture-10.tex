@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{10}{NP, Teil 2}{13. Mai 2024}
+\defineTitle{10}{NP-Vollständigkeit, Teil 2}{21. Mai 2026}
 
 \begin{document}
 
@@ -94,8 +94,11 @@ $\leq_p$\\
 \begin{frame}
   \frametitle{\Slang{SAT} $\leq_p$ \Slang{Teilmengen-Summe}}
     \emph{Gegeben: } Formel $F = (C_1 \wedge \dots \wedge C_k)$ in
-  CNF.\\
-  (o.B.d.A. mit maximal 9 Literalen pro Klausel)\pause\\[1ex]
+  KNF mit maximal 9 Literalen pro Klausel\\
+  {\tiny Das ist "`o.B.d.A."' \emph{Übung:} Reduzieren Sie \Slang{SAT} für beliebige Formeln auf eine KNF mit maximal 3 Literalen pro Klausel.\\
+  Vorsicht: Unsachgemäß erstellte KNF können explodieren! (siehe 3. Vorlesung oder auch Wikipedia \underline{\href{https://de.wikipedia.org/wiki/Zeitin-Transformation}{Tseitin-Transformation}})
+  
+  }\pause\medskip
   Seien $p_1, \dots, p_n$ die Variablen in $F$.\\
   Für jedes $p_i$ definieren wir Gegenstände $t_i$ und $f_i$:\\[10pt]
 
