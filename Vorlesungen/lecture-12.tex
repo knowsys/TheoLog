@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{12}{\PSpace-Vollständigkeit}{27. Mai 2024}
+\defineTitle{12}{\PSpace-Vollständigkeit}{4. Juni 2026}
 
 \begin{document}
 
@@ -483,8 +483,8 @@ geringerer praktischer Relevanz
 \begin{frame}\frametitle{Gibt es so schwere Probleme?}\pause
 
 Für $k$-$\complclass{Exp}$-Klassen lassen sich künstliche Probleme leicht finden: %\\
-"`Gegeben eine det.\ Turingmaschine $\mathcal{M}$ und eine Eingabe $w$, wird $\mathcal{M}$ das Wort $w$ in Zeit $\underbrace{2^{.^{.^{.^{2^{|w|}}}}}}_{k\text{-mal 2}}$ akzeptieren?"'\\[-1ex]
-{\tiny (Warum ist das $k$-$\complclass{Exp}$-vollständig? Funktioniert die Reduktion z.B. von Problemen, die in Zeit $2^{.^{.^{.^{2^{|w|^{42}}}}}}\!\!\!\!$ lösbar sind?)}
+"`Gegeben eine det.\ Turingmaschine $\mathcal{M}$, eine Eingabe $w$, und ein `Füllwort' $\Sterm{a}^m$ der Länge $m$, wird $\mathcal{M}$ das Wort $w$ in Zeit $\underbrace{2^{.^{.^{.^{2^{m}}}}}}_{k\text{-mal 2}}$ akzeptieren?"'
+{\tiny (Warum ist das $k$-$\complclass{Exp}$-vollständig? Zeigen Sie Inklusion und Schwere.)}
 \bigskip\pause
 
 Jenseits von \ExpSpace gibt es nur wenige relevante Probleme.\medskip
@@ -522,7 +522,7 @@ Will man \emph{noch kleinere Komplexitätsklassen} betrachten, dann muss man zu 
 Berechnungsmodellen greifen:
 \begin{itemize}
 \item Schaltkreise statt TMs ($\leadsto$ \redalert{circuit complexity})
-\item Logarithmisch zeitbeschränkte TMs mit beschränkter Parallelverarbeitung ($\leadsto$ \redalert{alternating, random access TM})
+\item Logarithmisch zeitbeschränkte TMs mit beschränkter Parallelverarbeitung\\ ($\leadsto$ \redalert{alternating, random access TM})
 \item Automatenmodelle ($\leadsto$ DFA, PDA, \ldots)
 \end{itemize}
 Manche der Klassen sind dann sehr stark von Details der Problemdefinition
