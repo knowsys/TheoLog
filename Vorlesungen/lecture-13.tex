@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{13}{Prädikatenlogik: Syntax und Semantik}{30. Mai 2024}
+\defineTitle{13}{Prädikatenlogik: Syntax und Semantik}{8. Juni 2026}
 
 \begin{document}
 
@@ -11,34 +11,46 @@
 
 \sectionSlide{Halbzeit:\\Zusammenfassung und Ausblick}
 
-\begin{frame}\frametitle{Überblick Berechenbarkeit}
+\begin{frame}\frametitle{Überblick Aussagenlogik}
 
 \begin{center}
 \alert{Vorlesung 1}\\
-Hilbert in Paris $\bullet$ Die Turingmaschine $\bullet$ Church-Turing-These\\[1ex]
+Warum Logik? $\bullet$ Aussagenlogik Syntax \& Semantik $\bullet$ Anna lügt\\[1ex]
 \alert{Vorlesung 2}\\
-Berechenbarkeit $\bullet$ Entscheidbarkeit $\bullet$ Busy Beaver \\[1ex]
-\alert{Vorlesung 3}\\LOOP $\bullet$ WHILE $\bullet$ Turing-Mächtigkeit von WHILE \\[1ex]
-\alert{Vorlesung 4}\\Die Kraft des LOOP $\bullet$ Halteproblem $\bullet$ Reduktionen \\[1ex]
-\alert{Vorlesung 5}\\Satz von Rice $\bullet$ Semi-Entscheidbarkeit\\ Postsches Korrespondenzproblem \\[1ex]
-\alert{Vorlesung 6}\\Probleme formaler Sprachen $\bullet$ Noch unentscheidbarere Probleme\\ Euklid als Informatiker
+Aussagenlogische Konsequenzen \& Äquivalenzen $\bullet$ Modellierung (Sudoku) $\bullet$ Z3 \\[1ex]
+\alert{Vorlesung 3}\\Logisches Schließen $\bullet$ NNF, DNF \& KNF\\ Strukturelle (Tseitin-)Transformation bei KNF \\[1ex]
+\alert{Vorlesung 4}\\Aussagenlogische Resolution $\bullet$ Korrektheit der Resolution $\bullet$ Horn-Logik \\[1ex]
+\alert{Vorlesung 5}\\Splitting, Backtracking und DPLL $\bullet$ SMT-Solving\\ Schließen als Wortproblem
 \end{center}
+
+% \begin{center}
+% \alert{Vorlesung 1}\\
+% Hilbert in Paris $\bullet$ Die Turingmaschine $\bullet$ Church-Turing-These\\[1ex]
+% \alert{Vorlesung 2}\\
+% Berechenbarkeit $\bullet$ Entscheidbarkeit $\bullet$ Busy Beaver \\[1ex]
+% \alert{Vorlesung 3}\\LOOP $\bullet$ WHILE $\bullet$ Turing-Mächtigkeit von WHILE \\[1ex]
+% \alert{Vorlesung 4}\\Die Kraft des LOOP $\bullet$ Halteproblem $\bullet$ Reduktionen \\[1ex]
+% \alert{Vorlesung 5}\\Satz von Rice $\bullet$ Semi-Entscheidbarkeit\\ Postsches Korrespondenzproblem \\[1ex]
+% \alert{Vorlesung 6}\\Probleme formaler Sprachen $\bullet$ Noch unentscheidbarere Probleme\\ Euklid als Informatiker
+% \end{center}
 
 \end{frame}
 
 \begin{frame}\frametitle{Überblick Komplexität}
 
 \begin{center}
+\alert{Vorlesung 6}\\
+Königsberger Brücken $\bullet$ Beschränkte TMs $\bullet$ Robuste Komplexität\ghost{en}\\[0.8ex]
 \alert{Vorlesung 7}\\
-Königsberger Brücken $\bullet$ Beschränkte TMs $\bullet$ Robuste Komplexität\ghost{en}\\[1ex]
+Zeit vs. Raum $\bullet$ \complclass{P} und \complclass{L}  $\bullet$ Polynomielle Reduktionen \\[0.8ex]
 \alert{Vorlesung 8}\\
-Zeit vs. Raum $\bullet$ \complclass{P} und \complclass{L}  $\bullet$ Polynomielle Reduktionen \\[1ex]
+Komplexität von $\Slang{SAT}$ $\bullet$ \complclass{NP} $\bullet$ Nachweispolynomialität \\[0.8ex]
 \alert{Vorlesung 9}\\
-Coles Beweis ohne Worte $\bullet$ \complclass{NP}\\$\Slang{SAT}\leq_p \Slang{Clique}\leq_p \Slang{Unabhänige Menge}$ \\[1ex]
+Coles Beweis ohne Worte $\bullet$ \complclass{NP}-Vollständigkeit $\bullet$ Cook-Levin $\bullet$ $\Slang{SAT}\leq_p \Slang{Clique}\leq_p \Slang{Unabhänige Menge}$ \\[0.8ex]
 \alert{Vorlesung 10}\\
-$\Slang{SAT}\leq_p \Slang{Teilmengen Summe}\leq_p \Slang{Rucksack}$ \\Pseudopolynomialität $\bullet$ Fake News zu \complclass{NP} \\[1ex]
+$\Slang{SAT}\leq_p \Slang{Teilmengen Summe}\leq_p \Slang{Rucksack}$ $\bullet$ Pseudopolynomialität $\bullet$ Fake News zu \complclass{NP} \\[0.8ex]
 \alert{Vorlesung 11}\\
-\complclass{NL} und Erreichbarkeit $\bullet$ Schach ist schwer $\bullet$ \PSpace und QBF \\[1ex]
+\complclass{NL} und Erreichbarkeit $\bullet$ Schach ist schwer $\bullet$ \PSpace und QBF \\[0.8ex]
 \alert{Vorlesung 12}\\
 $\Slang{TrueQBF}\leq_p \Slang{TrueQBF}_{\Slang{alt}}\leq_p \Slang{Geography}$ $\bullet$ Spiele 
 %$\bullet$ Evaluation
@@ -63,24 +75,40 @@ Normalformen $\bullet$ Funktionssymbole $\bullet$ Skolemisierung\\[1ex]
 Unifikation $\bullet$ Substitutionen \\[1ex]
 \alert{Vorlesung 19}\\
 Resolution $\bullet$ Herbrand $\bullet$ Löwenheim-Skolem
-
 \end{center}
 
 \end{frame}
 
-\begin{frame}\frametitle{Ausblick: Logik und mehr}
+\begin{frame}\frametitle{Ausblick: Noch mehr Logik}
 
 \begin{center}
 \alert{Vorlesung 20}\\
-Korrektheit der Resolution $\bullet$ endliche Modelle\\[1ex]
+Korrektheit der Resolution $\bullet$ Grenzen der Prädikatenlogik\\[1ex]
 \alert{Vorlesung 21}\\
-Datalog $\bullet$ Logikprogrammierung \\[1ex]
+endliche Modelle $\bullet$ Datenbanken $\bullet$ Komplexität von SQL \\[1ex]
 \alert{Vorlesung 22}\\
-Logik höherer Ordnung $\bullet$ entscheidbare Fragmente\\[1ex]
+Datalog $\bullet$ Logik höherer Ordnung \\[1ex]
+% 
+% Logik höherer Ordnung $\bullet$ entscheidbare Fragmente\\[1ex]
 \alert{Vorlesung 23}\\
-Logik auf natürlichen Zahlen $\bullet$ Gödel\\[1ex]
+Modallogiken $\bullet$ entscheidbare Fragmente von Prädikatenlogik\\[1ex]
 \alert{Vorlesung 24}\\
+% Logik auf natürlichen Zahlen $\bullet$ Gödel
 Gödel \& Turing $\bullet$ Zusammenfassung $\bullet$ Ausblick
+\end{center}
+
+\end{frame}
+
+\begin{frame}\frametitle{Lehrevaluation}
+
+\begin{center}
+\includegraphics[width=5cm]{images/qrcode-eval-2026.png}
+\bigskip
+
+{\large \url{https://tud.link/96s4tp}
+
+}
+(Teilnahme bis 21.06.2026 möglich)
 \end{center}
 
 \end{frame}
@@ -426,7 +454,7 @@ wie in der Aussagenlogik aus dem Wahrheitswert von Atomen ergeben.
 \alert{Dazu müssen drei Fragen beantwortet werden:}
 \begin{itemize}
 \item Was bedeutet $p$?\\
-	\visible<2->{Prädikatssymbole stehen für Relationen gleicher Stelligkeit}
+	\visible<2->{Prädikatssymbole stehen für Relationen entsprechender Stelligkeit}
 \item Was bedeutet $a$?\\
 	\visible<3->{Konstanten stehen für Elemente, die in Relationen stehen \ghost{können}}
 \item Was bedeutet $x$?\\
