@@ -5,7 +5,14 @@
 
 \hyphenation{Exp-Time}
 
-\defineTitle{22}{Datalog}{8. Juli 2024}
+\defineTitle{22}{Datalog}{13. Juli 2026}
+
+% Resetting the definition of \\ is essential to avind global layout changes in beamer when loading minted.
+% It does not seem to break other functionality in obvious ways.
+% If the global override causes any issues, the more local one using \addtobeamertemplate{frametitle} (in document) might be a workaround.
+\let\beameroriginaldoublebackslash\\
+\usepackage{minted}
+\let\\=\beameroriginaldoublebackslash
 
 \begin{document}
 
@@ -392,7 +399,7 @@ Baumartige Darstellungen von logischen Ableitungen sind in verschiedenen Zusamme
 \examplebox{\emph{Beispiel:} Wir haben Ableitungsbäume kontextfreier Grammatiken verwendet um das Pumpinglemma für kontextfrei Sprachen zu zeigen. Damit konnte man zeigen, dass manche Sprachen nicht kontextfrei sind.\medskip
 
 Analoge Techniken kann man auch für Datalog anwenden, zum Beispiel um zu zeigen, dass kein Datalog-Programm Paare von Elementen finden kann, zwischen denen es einen Pfad aus einem binären Prädikat $p$ gibt, dessen Länge eine Primzahl ist.}
-\item Zur Analyse von Datalogprogrammen werden oft (allgemeinere) endliche Automaten verwendet, welche auf Ableitungsbäumen arbeiten (Verallgemeinerung regulärer Sprachen von Wörtern auf Bäumen).
+\item Zur Analyse von Datalogprogrammen werden oft (allgemeinere) endliche Automaten verwendet, welche auf Ableitungsbäumen arbeiten (Verallgemeinerung regulärer Sprachen von Wörtern zu Bäumen).
 \end{itemize}
 
 \end{frame}
@@ -435,6 +442,67 @@ ist \ExpTime-vollständig.}
 \end{itemize}
 
 \end{frame}
+
+\begin{frame}[fragile]\frametitle{Datalog-Syntax in der Praxis}
+
+In praktischen Systemen kommen viele syntaktische Formen von Datalog zum Einsatz, z.B.:\medskip
+
+\begin{minted}[bgcolor=blue!5,linenos]{tex}
+          hasOnkel(X, Z) :- hatVater(X, Y), hatBruder(Y, Z) .           
+          hasOnkel(x, z) :- hatVater(x, y), hatBruder(y, z) .           
+        hasOnkel(?x, ?z) :- hatVater(?x, ?y), hatBruder(?y, ?z) .        
+     [?x, :hasOnkel, ?z] :- [?x, :hatVater, ?y], [?y, :hatBruder, ?z] .     
+ hasOnkel(x, z) distinct :- hatVater(x, y), hatBruder(y, z) ;   
+      [(hat-onkel ?x ?z)    [?x :hat-vater ?y] [?y :hat-bruder ?z]]      
+hasOnkel(p: x, uncle: z) :- hatVater(child: x, vater: y),
+                             hatBruder(p: y, bruder: z) .                    
+{ ?X :hatVater ?Y . ?Y :hatBruder ?Z } => { ?X :hatOnkel ?Z } .
+\end{minted}
+
+\emph{Systeme und Standards zu diesen Beispielen:}
+1~Prolog/ASP, 2~Souffl\'{e}, 3~Nemo, 4~RDFox, 5~Logica, 6~Datomic, 7/8~Percial, 9~N3
+
+\end{frame}
+
+\begin{frame}\frametitle{Datalog selber ausprobieren}
+
+Wir verwenden \alert{Nemo} zum Ausprobieren und in Übungen.
+
+\begin{center}
+ \includegraphics[height=2.5cm]{images/nemo-logo-rusty}
+%  \vspace{2mm}
+ 
+\large
+
+Web app: \url{https://tools.iccl.inf.tu-dresden.de/nemo/}
+\vspace{7mm}
+
+\examplebox{Voriges Beispiel online öffnen: \url{https://tud.link/aj17gh}}%\medskip
+
+% 
+% Full documentation is avaiable online:\\ \url{https://knowsys.github.io/nemo-doc/}
+\end{center}\pause
+
+\emph{Übung:} Definiere eine Relation ``Tante oder Onkel'' (Tankel? Onte?).\\
+\textcolor{devilscss}{Hinweis: Dabei kann Ungleichheit \texttt{!=} helfen.}\medskip
+
+\alert{Nemo ist frei und open source. Bug-Reports und Feature-Requests sind willkommen.}
+
+\end{frame}
+
+\begin{frame}\frametitle{Ableitungsbäume in Nemo}
+
+\begin{minipage}{5cm}
+In Nemo wird neben jedem abgeleiteten Fakt ein Lupensymbol\raisebox{-0.4ex}{\includegraphics[height=2ex]{images/nemo-magnifier}} angezeigt.\\
+Es öffnet einen Ableitungsbaum.\\[4cm]~
+\end{minipage}\hspace{5mm}%
+\begin{minipage}{5cm}
+\ghost{\raisebox{-4.5cm}{\includegraphics[height=9cm]{images/nemo-derivation-tree}}}%\phantom{A\\A\\A\\A}
+\end{minipage}
+
+
+\end{frame}
+
 
 
 \begin{frame}\frametitle{Logik höherer Ordnung}
@@ -543,13 +611,26 @@ Ableitungen in Datalog können berechnet und dargestellt werden:
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
+\item Modallogik
 \item Gödel
-\item Konsultation, Probeklausur und Prüfung
+\item Probeklausur und Prüfung
 \end{itemize}
 }
 
 \end{frame}
 
+
+\begin{frame}[t]\frametitle{Weiterführende Literatur}
+
+\alert{Sommerschulkurs (Skript und Folien) zu Datalog:}\\[1ex]
+Markus Krötzsch. \emph{Modern Datalog: Concepts, Methods, Applications.}
+In Joint Proceedings of the 20th and 21st Reasoning Web Summer Schools (RW 2024 \& RW 2025),
+volume 138 of OASIcs, 2025. Dagstuhl Publishing. \url{https://iccl.inf.tu-dresden.de/web/Inproceedings3435}
+% \bigskip
+
+
+
+\end{frame}
 
 % \begin{frame}[t]\frametitle{Bildrechte}
 % 
