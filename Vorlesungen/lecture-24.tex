@@ -3,7 +3,7 @@
 
 \input{macros-lecture}
 
-\defineTitle{24}{Gödel, Turing und der ganze Rest}{15. Juli 2024}
+\defineTitle{24}{Gödel, Turing und der ganze Rest}{19. Juli 2026}
 
 \begin{document}
 
@@ -182,266 +182,22 @@ unentscheidbar.
 
 \end{frame}
 
+\begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-\sectionSlide{Ausblick}
-
-% Second-Order Logic (siehe Advanced Logics)
-\begin{frame}\frametitle{Logik höherer Ordnung}
-
-Prädikatenlogik ist genau genommen \alert{Prädikatenlogik erster Stufe}.
+Konsistente formale Systeme, die genügend ausdrucksstark sind, können ihre eigene Konsistenz nicht beweisen.
 \bigskip
 
-\emph{Hintergrund:}
-\begin{itemize}
-\item Erste Stufe: Quantoren beziehen sich auf Domänenelemente\smallskip
-
-\examplebox{Beispiel: "`Jede natürliche Zahl $n$ hat einen Nachfolger $s(n)$"'}
-% \[ \forall x.(\textsf{natnum}(x)\to\textsf{natnum}(s(x))) \]
-\item Zweite Stufe: Quantoren beziehen sich auf Prädikate\smallskip
-
-\examplebox{Beispiel: "`Für jede Menge $M$ gilt: Enthält $M$ die Zahl $0$ und mit jeder natürlichen Zahl $n$ auch stets deren Nachfolger $s(n)$, so enthält $M$ alle natürlichen Zahlen."'}
-\end{itemize}\bigskip
-
-\emph{Logik zweiter Ordnung:}
-\begin{itemize}
-\item Ausdrucksstärker; kann z.B. die natürlichen Zahlen exakt charakterisieren
-\item Schwieriger: kein vollständiges und korrektes \ghost{Beweisverfahren}
-\end{itemize}
-
-$\leadsto$ siehe Vorlesung \redalert{Advanced Logic}
-
-\end{frame}
-
-% Complexity Theory
-\begin{frame}\frametitle{Komplexitätstheorie}
-
-Wesentliche Grundlagen der klassischen Komplexitätslehre wurden hier schon behandelt
+In jedem turing-vollständigen Formalismus gibt es semi-entscheidbare Probleme, die dem Halteproblem entsprechen.
+Dann gibt es immer auch einzelne Instanzen, für welche die Antwort auf dieses Problem "`nein"' ist, aber für die
+man das nicht mathematisch beweisen kann.
 \bigskip
-
-\emph{Weiterführende Themen (Beispiele):}
-\begin{itemize}
-\item Hierarchietheoreme: Kann man mit mehr Zeit/Speicher wirklich mehr berechnen?
-\item Relative Komplexität: Orakel
-\item Komplexitäten unterhalb von P: Schaltkreise als Rechenmodell
-\item Rechnen mit Zufall: Randomisierte Komplexität
-\item Einführung in Quantencomputer
-\item \ldots
-\end{itemize}
-
-$\leadsto$ siehe Vorlesung \redalert{Complexity Theory} (Wintersemester)
-
-\end{frame}
-
-% Database Theory
-\begin{frame}\frametitle{Datenbanktheorie}
-
-Die Theorie der Datenbanken ist ein wichtiges Anwendungsgebiet für
-viele Themen aus theoretischer Informatik und Logik\bigskip
-
-\emph{Weiterführende Themen (Beispiele):}
-\begin{itemize}
-\item Anfragesprachen vergleichen bzgl. Komplexität und Ausdrucksstärke
-\item Relationales Kalkül (=Prädikatenlogik)
-\item Datalog: rekursive Anfragesprache, Fragment der Logik zweiter Stufe
-\item Graph-Anfragen: Erreichbarkeit und Co. berechnen
-\item Anfragen unter Berücksichtigung von Constraints
-\item \ldots
-\end{itemize}
-
-$\leadsto$ siehe Vorlesung \redalert{Database Theory} (Sommersemester)
-
-\end{frame}
-
-% Verifikation
-\begin{frame}\frametitle{Verifikation}
-
-Programm- und Hardwareverifikation ist eine wichtige Anwendung logischer Methoden
-\bigskip
-
-\emph{Weiterführende Themen (Beispiele):}
-\begin{itemize}
-\item Modellierung reaktiver Systeme: Transaktionssysteme
-\item Automatenmodelle zur Darstellung verifizierbarer Eigenschaften
-\item Lineare Temporallogik (LTL) und Computation Tree Logic (CTL)
-\item Probabilistische und zeitgesteuerte Automaten
-\item \ldots
-\end{itemize}
-
-$\leadsto$ siehe Vorlesung \redalert{Model Checking}
-
-\end{frame}
-
-% Quantum Computation -- advertise Aaronson's talk
-% \begin{frame}\frametitle{Quantencomputer}
-% 
-% Aktives Gebiet der theoretischen Informatik, speziell der Komplexitätstheorie\bigskip\pause
-% 
-% % Zurzeit keine Vorlesung an TUD, aber:\medskip
-% 
-% % \emph{Eingeladener Vortrag:}\\
-% {\large Quantum Computing and the Limits of the Efficiently Computable}\\
-% \alert{Scott Aaronson}, The University of Texas at Austin\\
-% Montag, 28. August 2017, 14:00 -- APB E023
-% \bigskip
-% 
-% {\footnotesize
-% I'll offer a crash course on quantum computing, which seeks to exploit the strange rules of
-% quantum physics to solve certain problems dramatically faster than we know how to solve
-% them with any existing computer. I promise no hype: just a sober summary of how a quantum
-% computer would actually work (hint: it's not just by "trying every possible answer in parallel"), for
-% which problems quantum computers are and aren't expected to provide an advantage, and the
-% current status of the effort to make quantum computing practical. I'll also say something about
-% the ultimate physical limits of computation, and about speculative proposals for going beyond
-% even quantum computers.
-% 
-% }
-% \smallskip
-% 
-% \tiny
-% \url{https://cfaed.tu-dresden.de/cfaed-seminar-series/scott-aaronsons-talk}
-% 
-% \end{frame}
-
-% Knowledge representation: tractability and decidability, siehe z.B. Beschreibungslogik
-\begin{frame}\frametitle{Symbolische Wissensrepräsentation}
-
-Anwendungsgebiet der formalen Logik, bei dem menschliches Wissen logisch kodiert und automatisch ausgewertet wird
-\bigskip
-
-\emph{Weiterführende Themen (Beispiele):}
-\begin{itemize}
-\item Entwicklung logischer Sprachen, für die Schlussfolgerung (effizient) entscheidbar ist
-\item Meist durch Einschränkung auf Teilmengen der Prädikatenlogik, z.B. bei Beschreibungslogiken
-\item Ontologien: logische Wissensmodelle
-\item Entwicklung effizienter Ableitungsalgorithmen und Implementierungen
-\item \ldots
-\end{itemize}
-
-$\leadsto$ verschiedene Vorlesungen, z.B. \redalert{Description Logics}
-
-\end{frame}
-
-% The Semantic Web
-\begin{frame}\frametitle{Semantic Web \& Datenaustausch}
-
-Anwendungsgebiet zwischen Datenbanken, Wissensrepräsentation und Webtechnologie
-\bigskip
-
-\emph{Weiterführende Themen (Beispiele):}
-\begin{itemize}
-\item Standards zur Kodierung von Fakten und Schemainformationen: RDF, OWL, \ldots
-\item Informationsintegration in (Web)Graphdatenbanken
-\item Anfragesprachen: SPARQL und ontologiebasierte Anfragen
-\item Anwendungen (z.B. Wikidata)
-\item \ldots
-\end{itemize}
-
-$\leadsto$ siehe Vorlesungen \redalert{Knowledge Graphs} (Wintersemester), \redalert{Semantic Web Technologies}
-
-\end{frame}
-
-\sectionSlide{Forschung (und studentische Arbeiten)}
-
-\begin{frame}\frametitle{Kernthemen der Professur WBS}\pause
-
-\emph{Wissensrepräsentation:} \alert{Wie kann menschliches Wissen digital dargestellt werden?}
-\begin{itemize}
-\item Herausforderung: Flexibilität vs. Nutzbarkeit
-\item Herausforderung: Ausdrucksstärke vs. Verarbeitungskomplexität
-\item Schwerpunkt: logische Ontologie- und Anfragesprachen (Regeln, DLs, \ghost{Graph-Queries, \ldots)}
-\end{itemize}\medskip\pause
-
-\emph{Wissensverarbeitung:} \alert{Wie kann dieses Wissen automatisch genutzt werden?}
-\begin{itemize}
-\item Herausforderung: theoretische Komplexität $\neq$ praktische Performance
-\item Herausforderung: prinzipielles Verfahren $\neq$ implementierbarer Algorithmus
-\item Schwerpunkt: Logisches Schließen, Anfragebeantwortung über großen Daten
-\end{itemize}\medskip\pause
-
-\emph{Wissensmanagement:} \alert{Wie können diese Ergebnisse praktisch genutzt werden?}
-\begin{itemize}
-\item Herausforderung: konkrete Märkte und Nutzer?
-\item Herausforderung: benötigt mehr als eine Kerntechnologie
-\item Schwerpunkt: Wissensgraphen, Wikidata, Ontologien für LLMs und Co.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}\frametitle{Beispiele für BSc/MSc-Themen}
-
-\emph{Wissensrepräsentation:} \alert{Wie kann menschliches Wissen digital dargestellt werden?}
-\begin{itemize}
-\item Weiterentwicklung von Methoden der logischen Modellierung
-\item Analyse von Komplexität und Ausdrucksstärke
-\item Verallgemeinerung neuer Ideen unter Anleitung
-\end{itemize}\medskip
-
-\emph{Wissensverarbeitung:} \alert{Wie kann dieses Wissen automatisch genutzt werden?}
-\begin{itemize}
-\item Regelengine Nemo: neue Ideen implementieren und testen
-\item Logische Modelle analysieren und automatisch verstehen
-\item Ansätze verknüpfen und Ideen übertragen
-\end{itemize}\medskip
-
-\emph{Wissensmanagement:} \alert{Wie können diese Ergebnisse praktisch genutzt werden?}
-\begin{itemize}
-\item Erklärbarkeit und Verständlichkeit: UIs, Bedienkonzepte, \ldots
-\item Große Wissensgraphen nutzen: Qualität, Aufteilung, \ldots 
-\item Neue Anwendungen: Wissensgraphen in LLMs, räumlich-zeitliche Modelle, \ldots
-\end{itemize}
-
-\end{frame}
-
-
-\sectionSlide{Zusammenfassung}
-
-\begin{frame}\frametitle{Übersicht}
-
-
-\emph{Berechenbarkeit:} Turingmaschinen, LOOP/WHILE, Entscheidbarkeit, Beispielprobleme (Halten, PCP)
-\bigskip
-
-\emph{Komplexität:} NP, PSpace, Many-One-Reduktionen, Übersicht weiterer wichtiger Klassen
-\bigskip
-
-\emph{Logik:} Aussagenlogik (SAT), QBF, Prädikatenlogik, Resolution (mit vielen Teilschritten), Herbrandmodelle, Datalog
-\bigskip
-
-\emph{Bonusmaterial:} Gödel, Metamathematik, SQL, Geschichte und Geschichten
-
-\end{frame}
-
-\begin{frame}\frametitle{Querschnittsthemen}
-
-\begin{center}
-\large
-
-Informatik ist überall dort, wo gerechnet wird\pause\\[4ex]
-
-Rechnen = Schlussfolgern\pause\\[4ex]
-
-Beweisen -- Nachvollziehen -- Verstehen\\[4ex]
-
-\end{center}
-
-\end{frame}
-
-
-\begin{frame}\frametitle{The End}
-
-\bigskip
-\begin{center}
-{\Huge Fragen?}
-\end{center}
-\bigskip\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
 \begin{itemize}
-\item Repetitorium
-\item Angestrengte Klausurvorbereitung (inklusive Probeklausur)
-\item Betreute Lernräume
-\item Klausur
+\item Zusammenfassung
+\item Ausblick
+\item Prüfungsvorbereitung
 \end{itemize}
 }
 
