@@ -39,21 +39,21 @@ Vielfach hat man es mit Entscheidungsproblemen zu tun, z.B.:
 \defbox{\redalert{Schlussfolgerung}:
 \begin{itemize}
 \item \emph{Eingabe:} endliche Formelmenge $\mathcal{F}$, Formel $G$
-\item \emph{Ausgabe:} "`ja"' wenn $\mathcal{F}\models G$ gilt; sonst "`nein."'
+\item \emph{Ausgabe:} "`ja"', wenn $\mathcal{F}\models G$ gilt; sonst "`nein."'
 \end{itemize}
 }
 
 \defbox{\redalert{Allgemeingültigkeit}:
 \begin{itemize}
 \item \emph{Eingabe:} Formel $F$
-\item \emph{Ausgabe:} "`ja"' wenn $F$ allgemeingültig ist; sonst "`nein."'
+\item \emph{Ausgabe:} "`ja"', wenn $F$ allgemeingültig ist; sonst "`nein."'
 \end{itemize}
 }
 
 \defbox{\redalert{Unerfüllbarkeit}:
 \begin{itemize}
 \item \emph{Eingabe:} Formel $F$
-\item \emph{Ausgabe:} "`ja"' wenn $F$ unerfüllbar ist; sonst "`nein."'
+\item \emph{Ausgabe:} "`ja"', wenn $F$ unerfüllbar ist; sonst "`nein."'
 \end{itemize}
 }
 
@@ -74,7 +74,7 @@ Oft kann man unterschiedliche Probleme leicht ineinander umwandeln:
 \end{enumerate}
 
 {\footnotesize\textcolor{devilscss}{%
-(Es gibt auch Probleme des logischen Schließens, für die das höchstwahrscheinlich nicht zutrifft, z.B. "`Gegeben eine Formel $F$, entscheide ob es eine kürzere Formel gibt, die zu $F$ äquivalent ist."')}
+(Es gibt auch Probleme des logischen Schließens, für die das höchstwahrscheinlich nicht zutrifft, z.B. "`Gegeben eine Formel $F$, entscheide, ob es eine kürzere Formel gibt, die zu $F$ äquivalent ist."')}
 }
 
 \end{frame}
@@ -279,8 +279,8 @@ Ist diese Umformung korrekt?
 \item \alert{Wohldefiniertheit:} Deckt die Rekursion wirklich jeden Fall ab?\\\pause
 	\redalert{Ja}, wie man leicht überprüfen kann (der Fall $\neg$ ist nach der Form der negierten Formel nochmals in vier Unterfälle aufgespalten).\pause
 \item \alert{Terminierung:} Ist sichergestellt, dass die rekursive Berechnung terminiert?\\\pause
-	\redalert{Ja}, denn $\textsf{NNF}$ wir in jedem Rekursionsschritt auf Formeln angewendet, die insgesamt weniger Junktoren haben als zuvor.\pause
-\item \alert{Korrektheit:} Ist das Ergebnis der rekusiven Umwandlung in NNF?\\\pause
+	\redalert{Ja}, denn $\textsf{NNF}$ wird in jedem Rekursionsschritt auf Formeln angewendet, die insgesamt weniger Junktoren haben als zuvor.\pause
+\item \alert{Korrektheit:} Ist das Ergebnis der rekursiven Umwandlung in NNF?\\\pause
 	\redalert{Ja}, denn $\neg$ kommt im Ergebnis nur in Fall $\neg p$ ($p\in\Slang{P}$) vor.\\\pause
 	Ist das Ergebnis semantisch äquivalent zur Eingabe?\\\pause
 	\redalert{Ja}, wie man durch ein induktives Argument leicht zeigen kann\\
