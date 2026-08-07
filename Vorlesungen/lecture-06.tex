@@ -36,7 +36,7 @@ Der Raum der formalen Sprachen (Wortprobleme) lässt sich wie folgt aufteilen:\b
 
 \begin{frame}\frametitle{Königsberg im 18. Jahrhundert}
 
-Königsberg, Preussen (heute Kaliningrad, Russland):\bigskip
+Königsberg, Preußen (heute Kaliningrad, Russland):\bigskip
 
 \narrowcentering{%
 \includegraphics[height=6.5cm]{images/Koenigsberg,_Map_by_Merian-Erben_1652}}
@@ -48,7 +48,7 @@ Königsberg, Preussen (heute Kaliningrad, Russland):\bigskip
 
 \begin{frame}\frametitle{Ein klassisches Problem}
 
-Ein populäre Frage der Königsberger:\medskip
+Eine populäre Frage der Königsberger:\medskip
 
 \anybox{strongyellow}{Gibt es einen Weg durch die Stadt, auf dem man jede der sieben Brücken von Königsberg genau einmal überquert?}\bigskip
 
@@ -181,7 +181,7 @@ der jeden Knoten genau einmal durchquert. Ein \redalert{Hamiltonkreis} ist ein
 zyklischer Hamiltonpfad.}\bigskip\pause
 
 Wie bei Eulerpfaden ist die naive Lösung sehr ineffizient, da man
-alle (exponentiell viele) Pfade systematisch Durchprobieren muss.\bigskip\pause
+alle (exponentiell viele) Pfade systematisch durchprobieren muss.\bigskip\pause
 
 Aber im Gegensatz zu Eulerpfaden hat bislang niemand eine elegante
 einfache Lösung gefunden. Die meisten Experten glauben, dass es prinzipiell
@@ -339,10 +339,10 @@ Die $O$-Notation wird verwendet, um allgemeine Ressourcenschranken für TMs anzu
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine Turingmaschine.
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }\pause
@@ -382,7 +382,7 @@ Dann gibt es für jede natürliche Zahl $c>0$ eine äquivalente $k$-Band TM
 $\Smach{M}'$, die nach maximal $\frac{f(n)}{c}+n+2$ Schritten hält.
 }
 
-\pause\emph{Beweisskizze:} Wenn $\Smach{M}$ das Arbeitsalphabet $\Gamma$ hatte, dann verwenden wird für $\Smach{M}'$ das Arbeitsalphabet $\Gamma'=\Sigma\cup\Gamma^{6c}$.
+\pause\emph{Beweisskizze:} Wenn $\Smach{M}$ das Arbeitsalphabet $\Gamma$ hatte, dann verwenden wir für $\Smach{M}'$ das Arbeitsalphabet $\Gamma'=\Sigma\cup\Gamma^{6c}$.
 \bigskip
 
 Wir können Bandinhalte dadurch effizient kodieren:
@@ -495,7 +495,7 @@ kodiert werden können.\medskip
 \emph{Antwort:} "`Nein, aber vernünftige Kodierungen unterscheiden sich voneinander
 in der Regel nur polynomiell."'\bigskip
 
-\examplebox{\emph{Beispiel:} Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
+\examplebox{\emph{Beispiel:} Ein Graph kann als Adjazenzmatrix kodiert werden ($O(n^2)$ Speicher) oder z.B. auch als Adjazenzliste ($O(e\cdot \log v)$ Speicher für $e$ Kanten und $v$ Knoten). Letzteres ist deutlich effizienter für lichte Graphen, aber der Unterschied bleibt stets polynomiell.}\bigskip
 
 \emph{Aber:} Wir werden Fälle sehen, in denen eine (besonders ineffiziente) Kodierung die Komplexität verändert.
 
@@ -503,7 +503,7 @@ in der Regel nur polynomiell."'\bigskip
 
 \begin{frame}\frametitle{Implementierungsdetails}
 
-Es gibt viele unterschiedliche Arten um ein Problem praktisch zu lösen,
+Es gibt viele unterschiedliche Arten, um ein Problem praktisch zu lösen,
 z.B. unter Verwendung spezifischer Datenstrukturen.\\\smallskip
 
 \anybox{purple}{Sind $\Scomplclass{DTIME}(f)$ und $\Scomplclass{DSPACE}(f)$ für verschiedene Implementierungsdetails gleich?}\pause\bigskip
@@ -564,7 +564,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2,371339}})$ [Alman et al., 2024].
 \emph{Problem:}
 \begin{itemize}
 \item Die exakte Bestimmung der Komplexität ist selbst bei einfachsten Algorithmen bisher nicht gelungen.
-\item Selbst wenn sie gelänge wäre sie von vielen detaillierten Annahmen abhängig, die praktische Computer eventuell nicht erfüllen.
+\item Selbst wenn sie gelänge, wäre sie von vielen detaillierten Annahmen abhängig, die praktische Computer eventuell nicht erfüllen.
 \end{itemize}
 \bigskip\pause
 
@@ -577,7 +577,7 @@ $\Scomplclass{DTIME}(n^{\redalert{2,371339}})$ [Alman et al., 2024].
 
 \end{frame}
 
-\begin{frame}\frametitle{Wichtige Komplextitätsklassen}
+\begin{frame}\frametitle{Wichtige Komplexitätsklassen}
 
 Die wichtigen deterministischen Komplexitätsklassen fassen jeweils ganze Familien von
 zeit- oder speicherbeschränkten Klassen zusammen. Wir erwähnen hier nur die praktisch wichtigsten:
@@ -630,14 +630,14 @@ Eine $O(\log(n))$-speicherbeschränkte TM darf also weniger Speicher verwenden a
 
 \defbox{Man definiert \redalert{$O(\log(n))$-speicherbeschränkte Turingmaschinen} als besondere Mehrband-TMs:
 \begin{itemize}
-\item Das erste Band ist das \redalert{Eingabeband}. Es enthält die Eingabe und darf nur gelesen aber nicht beschrieben werden.
+\item Das erste Band ist das \redalert{Eingabeband}. Es enthält die Eingabe und darf nur gelesen, aber nicht beschrieben werden.
 \item Das zweite Band ist das \redalert{Arbeitsband}. Es darf beliebig gelesen und beschrieben werden, aber es ist
 auf $O(\log(n))$-Speicherzellen beschränkt.
 \end{itemize}}
 
 {\footnotesize
 Das genügt zur Erkennung von Sprachen. Wenn die TM eine Ausgabe berechnen soll, dann wird dafür ein 
-drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben aber nicht lesen kann.\\
+drittes \redalert{Ausgabeband} verwendet, auf dem man beliebig viele Zeichen einmalig schreiben, aber nicht lesen kann.\\
 }
 
 \end{frame}
@@ -671,7 +671,7 @@ Weiterhin kann man Speicher mit Zeit in Beziehung bringen:
 
 Unsere Klassen sind recht robust: Details der Implementierung haben oft keinen Einfluss
 auf die Einordnung eines Problems.\\
-\alert{Oft genügt eine Implementierungsskizze um zu zeigen, dass eine Sprache
+\alert{Oft genügt eine Implementierungsskizze, um zu zeigen, dass eine Sprache
 in einer dieser Klassen liegt.}\pause
 
 \examplebox{\emph{Beispiel:} Eulers Methode um die Existenz von Eulerpfaden zu entscheiden,
