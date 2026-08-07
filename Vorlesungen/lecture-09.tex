@@ -64,7 +64,7 @@ bedeutet\\[1ex]
 \begin{frame}\frametitle{Warum sollten Reduktionen effizient sein?}
 
 \emph{Intuition:} Eine aufwändige Reduktion kann jedes Problem indirekt lösen, aber dadurch lernt man nichts
-interessantes über dessen Komplexität.\pause
+Interessantes über dessen Komplexität.\pause
 \bigskip
 
 \theobox{\emph{Satz:} Sei $\Slang{L}=\{\Sterm{a}\}$ eine Sprache über dem Alphabet $\{\Sterm{a}\}$.
@@ -141,7 +141,7 @@ Das Publikum steht auf und applaudiert.$^1$\medskip
 
 {\tiny $^1$ Sicher ist, dass Cole die Faktoren der Mersenne-Zahl $2^{67}-1$ als erster ermitteln konnte.\\
 Die historischen Belege für den genauen Ablauf des Vortrags sind dagegen eher schwach.\\
-In Italien würde man sagen: "`Si non è vero, è ben trovato`' -- Falls es nicht stimmt, so ist es doch gut erfunden!
+In Italien würde man sagen: "`Se non è vero, è ben trovato`' -- Falls es nicht stimmt, so ist es doch gut erfunden!
 
 }
 
@@ -150,13 +150,13 @@ In Italien würde man sagen: "`Si non è vero, è ben trovato`' -- Falls es nich
 
 \begin{frame}\frametitle{Rückblick: Polynomielle Verifikatoren}
 
-Die Geschichte zu Cole's Vortrag veranschaulicht:\\
+Die Geschichte zu Coles Vortrag veranschaulicht:\\
 \alert{Manche Probleme scheinen schwer zu lösen, aber ihre Lösung ist -- wenn sie erst einmal vorliegt -- leicht zu überprüfen.}
 \bigskip
 
 \begin{itemize}
-\item Formalisierung durch \alert{polyomielle Verifikatoren}\\$\leadsto$ nachweispolynomielle Sprachen
-\item Satz: eine Sprache ist genau nachweispolynomiell wenn sie in $\Scomplclass{NP}$ liegt
+\item Formalisierung durch \alert{polynomielle Verifikatoren}\\$\leadsto$ nachweis-polynomielle Sprachen
+\item Satz: eine Sprache ist genau nachweis-polynomiell, wenn sie in $\Scomplclass{NP}$ liegt
 \end{itemize}
 \bigskip
 
@@ -235,7 +235,7 @@ $\neg(\ppred{1}\wedge\ppred{2})\wedge\neg(\pgreen{1}\wedge\pgreen{2})\wedge\neg(
 
 \begin{frame}\frametitle{Rückblick: Polynomielle Reduktionen}
 
-\defbox{Eine Funktion $f:\Sigma^*\to\Sigma^*$ ist \redalert{polynomiell berechenbar} wenn es eine
+\defbox{Eine Funktion $f:\Sigma^*\to\Sigma^*$ ist \redalert{polynomiell berechenbar}, wenn es eine
 polynomiell-zeitbeschränkte TM gibt, die bei einer Eingabe $w$ die Ausgabe $f(w)$ auf das Band schreibt
 und anschließend anhält.
 }\bigskip
@@ -243,7 +243,7 @@ und anschließend anhält.
 \defbox{Eine polynomiell berechenbare Funktion $f:\Sigma^*\to\Sigma^*$ ist eine \redalert{polynomielle Reduktion} von einer
 Sprache $\Slang{L}$ auf eine Sprache $\Slang{G}$, wenn für alle Wörter $w\in\Sigma^*$ gilt:\\[1ex]
 %
-\narrowcentering{$w\in\Slang{L}\quad$ genau dann wenn $\quad f(w)\in\Slang{G}$}
+\narrowcentering{$w\in\Slang{L}\quad$ genau dann, wenn $\quad f(w)\in\Slang{G}$}
 }\bigskip\pause
 
 \examplebox{\emph{Beispiel:} Die soeben skizzierte Funktion von Graphen auf logische Formeln ist eine polynomielle Reduktion
@@ -256,7 +256,7 @@ des Drei-Farben-Problems auf \Slang{SAT}.}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Die Struktur von NP}
-Idee: polynomielle Reduzierbarkeit definiert eine Art Ordnung auf Problemen
+Idee: Polynomielle Reduzierbarkeit definiert eine Art Ordnung auf Problemen
 
 \vspace{1cm}
 \begin{center}
@@ -307,7 +307,7 @@ Alle Probleme in \Scomplclass{NP} können polynomiell auf \Slang{SAT} reduziert 
 
 \examplebox{\emph{Beispiel:} \Slang{PRIMES} ist in \Scomplclass{NP}, aber \alert{vermutlich} nicht \Scomplclass{NP}-schwer. Gleiches gilt für viele Probleme in \Scomplclass{P} (bei einigen ist dagegen sicher, dass sie nicht \Scomplclass{NP}-schwer sind).}
 
-\examplebox{\emph{Beispiel:} Das Halteproblem ist \Scomplclass{NP}-schwer aber sicher nicht in \Scomplclass{NP}. Gleiches gilt für viele unentscheidbare Probleme.}
+\examplebox{\emph{Beispiel:} Das Halteproblem ist \Scomplclass{NP}-schwer, aber sicher nicht in \Scomplclass{NP}. Gleiches gilt für viele unentscheidbare Probleme.}
 
 
 \end{frame}
@@ -318,10 +318,10 @@ Alle Probleme in \Scomplclass{NP} können polynomiell auf \Slang{SAT} reduziert 
 
 \examplebox{\emph{Beispiel:} Verallgemeinertes Sudoku ($n^2$ Zahlen in einem $n^2\times n^2$-Feld mit $n\times n$-Unterfeldern) ist \Scomplclass{NP}-vollständig. Das Entscheidungsproblem dabei ist, ob das gegebene, teilweise gefüllte Feld eine Lösung zulässt. Gleiches gilt für Verallgemeinerungen vieler anderer Solitärspiele (z.B. Minesweeper).}
 
-\examplebox{\emph{Beispiel:} Das Wortproblem für Typ-1-Sprachen (gegeben als Grammatik) ist \Scomplclass{NP}-schwer aber \alert{vermutlich} nicht in \Scomplclass{NP}. Gleiches gilt für das Halteproblem von LBAs.}
+\examplebox{\emph{Beispiel:} Das Wortproblem für Typ-1-Sprachen (gegeben als Grammatik) ist \Scomplclass{NP}-schwer, aber \alert{vermutlich} nicht in \Scomplclass{NP}. Gleiches gilt für das Halteproblem von LBAs.}
 
 \examplebox{\emph{Beispiel:} Das Problem des Handelsreisenden ist \Scomplclass{NP}-vollständig. Es besteht darin, in einem
-Graph mit bewerteten Kanten einen Pfad durch alle Knoten zu finden, so dass die Summe der Kantenwerte unter einem
+Graph mit bewerteten Kanten einen Pfad durch alle Knoten zu finden, sodass die Summe der Kantenwerte unter einem
 gegebenen Maximum liegt.}
 
 \end{frame}
@@ -350,7 +350,7 @@ polynomielle Reduktion ist.\qed
 
 \begin{frame}\frametitle{Cook/Levin: Beweisskizze (1)}
 
-\alert{Wie stellen wir TM-Berechnungen in aussagenlogisch dar?}
+\alert{Wie stellen wir TM-Berechnungen aussagenlogisch dar?}
 \bigskip
 
 \emph{Idee:}
@@ -492,7 +492,7 @@ Mithilfe von Formeln kann man alle Bedingungen ausdrücken, die für einen korre
 \begin{frame}\frametitle{Clique}
 
 Eine \redalert{Clique} ist ein Graph, bei dem jeder Knoten mit jedem anderen
-direkt durch eine Kante verbunden ist\medskip
+direkt durch eine Kante verbunden ist.\medskip
 
 \defbox{\Slang{Clique}\\[1ex]
 \emph{Gegeben:} Ein Graph $G$ und eine Zahl $k$\\[1ex]
@@ -502,7 +502,7 @@ direkt durch eine Kante verbunden ist\medskip
 \theobox{\emph{Satz:} \Slang{Clique} ist \Scomplclass{NP}-vollständig.}\pause
 
 \emph{Beweis:}\\
-(1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ghost{\ldots)}\pause
+(1) $\Slang{Clique}\in\Scomplclass{NP}$: Die Clique selbst ist ein geeignetes Zertifikat.\\[1ex] {\tiny(Kontrollfrage: Ist dieses Zertifikat wirklich polynomiell? Ist $k$ in Binärkodierung gegeben, dann ist diese Eingabe schließlich nur $\log(k)$ Zeichen lang \ghost{\ldots)}\pause
 
 }\medskip
 
@@ -517,7 +517,7 @@ direkt durch eine Kante verbunden ist\medskip
 \item Sei $F$ eine aussagenlogische Formel in CNF:\\
 $F=\left((L^1_1\vee \ldots\vee L^1_{n_1})\wedge \ldots\wedge (L^\ell_1\vee \ldots\vee L^\ell_{n_\ell})\right)$\pause
 %
-\item Wir definieren einen Graphen $G_F$, so dass gilt:\\[1ex]
+\item Wir definieren einen Graphen $G_F$, sodass gilt:\\[1ex]
 \narrowcentering{$G_F$ hat eine Clique der Größe $\ell$ ~~~~~gdw.~~~~~ $F$ ist erfüllbar}\pause
 %
 \item \alert{Knoten von $G_F$:} die Paare $\tuple{L^i_j,i}$, für alle $i\in\{1,\ldots,\ell\}$ und $j\in\{1,\ldots,n_i\}$\pause
@@ -591,7 +591,7 @@ Offensichtlich kann man $G_F$ in polynomieller Zeit berechnen
 \begin{frame}\frametitle{Unabhängige Mengen}
 
 Eine \redalert{unabhängige Menge} ist eine Teilmenge von Knoten in einem Graph, bei der kein
-Knoten mit einem anderen direkt verbunden ist\medskip
+Knoten mit einem anderen direkt verbunden ist.\medskip
 
 \defbox{\Slang{Unabhängige Menge}\\[1ex]
 \emph{Gegeben:} Ein Graph $G$ und eine Zahl $k$\\[1ex]
@@ -603,7 +603,7 @@ Knoten mit einem anderen direkt verbunden ist\medskip
 \emph{Beweis:} Die Reduktion auf \Slang{Clique} ist sehr einfach:
 \begin{itemize}
 \item Ein Graph hat eine unabhängige Menge der Größe $k$\\
-genau dann wenn
+genau dann, wenn
 \item sein Komplementgraph eine Clique der Größe $k$ hat
 \end{itemize}
 $\leadsto$ Komplementierung ist polynomiell\qed
@@ -812,10 +812,10 @@ $\leadsto$ Komplementierung ist polynomiell\qed
 
 % Die Klasse der Komplemente von $\Scomplclass{NP}$-Problemen ist $\Scomplclass{coNP}$\bigskip
 
-Polynomielle Reduktionen erlauben uns, die Schwere von Problemen zu vergleichen
+Polynomielle Reduktionen erlauben uns, die Schwere von Problemen zu vergleichen.
 \bigskip
 
-$\Slang{SAT}$ ist das historisch erste von vielen $\Scomplclass{NP}$-vollständigen Problemen (Cook \& Levin)\bigskip
+$\Slang{SAT}$ ist das historisch erste von vielen $\Scomplclass{NP}$-vollständigen Problemen (Cook \& Levin.)\bigskip
 
 $\Slang{SAT}\leq_p\Slang{CLIQUE}\leq_p \Slang{Unabhängige Menge}$
 \bigskip
