@@ -88,7 +88,7 @@ Speicher genutzt werden:\bigskip
 \[\Scomplclass{DTIME}(f)\subseteq \Scomplclass{DSPACE}(f).\]
 }
 
-\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
+\emph{Beweis:} Die TM benötigt immer mindestens einen Schritt, um eine zusätzliche Speicherstelle zu beschreiben.\qed\bigskip
 
 \pause Daraus folgt zum Beispiel $\Scomplclass{PTime}\subseteq\Scomplclass{PSpace}$.
 
@@ -126,10 +126,10 @@ $\leadsto$ Welche Pfade meinen wir, wenn wir Ressourcen beschränken?\\\pause
 \defbox{%
 Sei $f:\mathbb{N}\to\mathbb{R}$ eine Funktion und $\Smach{M}$ eine nichtdeterministische \ghost{TM.}
 \begin{itemize}
-\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-zeitbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ \alert{auf jedem Berechnungspfad} nach maximal $g(|w|)$ Schritten anhält.
 %
-\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt} wenn es eine Funktion $g\in O(f)$ gibt, so
+\item $\Smach{M}$ heißt \redalert{$O(f)$-speicherbeschränkt}, wenn es eine Funktion $g\in O(f)$ gibt, so
 dass $\Smach{M}$ für eine beliebige Eingabe $w\in\Sigma^*$ hält und zuvor \alert{auf jedem Berechnungspfad} maximal $g(|w|)$ Speicherzellen verwendet.
 \end{itemize}
 }
@@ -202,7 +202,7 @@ erraten und überprüft werden.
 
 Die folgenden Konstruktionen funktionieren wie im deterministischen Fall:
 \begin{itemize}
-\item Zeitreduktion durch linear Speedup
+\item Zeitreduktion durch Linear Speedup
 \item Lineare Speicherreduktion
 \item Bandreduktion von Mehrband-TMs
 \end{itemize}\pause
@@ -296,7 +296,7 @@ Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
 \item $\Scomplclass{NP}\subsetneq\Scomplclass{NExp}$
 \end{itemize}}
 
-(ohne Beweis; folgt aus dem sogenanntem \alert{Time (bzw. Space) Hierarchy Theorem})
+(ohne Beweis; folgt aus dem sogenannten \alert{Time (bzw. Space) Hierarchy Theorem})
 
 \end{frame}
 
@@ -310,8 +310,8 @@ Bekannt ist das aber nur bei exponentiell großen Ressourcenunterschieden:
 
 Aber der Begriff "`linear"' ist nicht robust:
 \begin{itemize}
-\item Abhänging von Details des Maschinenmodells
-\item Abhänging von Details der Kodierung
+\item Abhängig von Details des Maschinenmodells
+\item Abhängig von Details der Kodierung
 \end{itemize}
 \bigskip
 $\leadsto$ Polynomielle Zeit als robuste Verallgemeinerung von Linearzeit:\bigskip
@@ -394,14 +394,14 @@ Aus der 4. Vorlesung kennen wir bereits ein typisches \Scomplclass{P}-Problem.\b
 \begin{itemize}
 \item Eine \alert{Hornklausel} ist eine aussagenlogische Formel der Form $p_1\wedge\ldots\wedge p_n\to q$ mit $n\geq 0$
 {\tiny (bei $n=0$ ergibt sich einfach $q$ -- ein \alert{Fakt})}
-\item Eine Formel ist \alert{erfüllbar} wenn sie für eine Wertezuweisung auf wahr abgebildet \ghost{wird}
+\item Eine Formel ist \alert{erfüllbar}, wenn sie für eine Wertzuweisung auf wahr abgebildet \ghost{wird}
 \item Eine Menge von Formeln ist erfüllbar, wenn es eine Wertzuweisung gibt, die alle
 ihre Elemente gleichzeitig wahr macht
 \end{itemize}\bigskip
 
 \defbox{\redalert{Erfüllbarkeit propositionaler Horn-Formeln}
 (\Slang{HornSAT}) ist das folgende Entscheidungsproblem:\\[1ex]
-\emph{Gegeben:} Eine Menge aussagenlogischer Formeln Hornklauseln\\
+\emph{Gegeben:} Eine Menge von Hornklauseln\\
 \emph{Frage:} Ist diese Menge erfüllbar?
 }
 
@@ -449,7 +449,7 @@ zu einer neuen Klausel $\{L_1,L_2\}$
 
 \begin{frame}\frametitle{Effizienter als \Scomplclass{P}?}
 
-Wenn wir eine robuste Klasse wollen, die Linearzeit-Algorithmen enthält, dann enthält sie auch beliebige polynomiellen Algorithmen.\bigskip
+Wenn wir eine robuste Klasse wollen, die Linearzeit-Algorithmen enthält, dann enthält sie auch beliebige polynomielle Algorithmen.\bigskip
 
 \alert{Gibt es Probleme, die noch einfacher sind?}
 \smallskip\pause
@@ -573,7 +573,7 @@ Dies kann man offenbar in polynomieller Zeit berechnen.\bigskip\pause% (sogar in
 Die Reduktionseigenschaft gilt:
 \begin{itemize}
 \item Wenn der Graph 2-färbbar ist, dann verwenden wir die Farben als Wahrheitswerte und erhalten eine
-	erfüllende Zuweisung
+	erfüllende Zuweisung.
 \item Wenn die Formel erfüllbar ist, dann erhalten wir umgekehrt aus der Wertzuweisung eine korrekte 2-Färbung.\qed
 \end{itemize}
 
@@ -585,9 +585,9 @@ Die Reduktionseigenschaft gilt:
 Die grundlegenden Beziehungen der Komplexitätsklassen sind
 \[\Scomplclass{L}\subseteq\Scomplclass{NL}\subseteq \Scomplclass{P}\subseteq\Scomplclass{NP}\subseteq\Scomplclass{PSpace}= \Scomplclass{NPSpace}\subseteq \Scomplclass{Exp}\subseteq \Scomplclass{NExp}\]
 
-Die Klassen \Scomplclass{P}, \Scomplclass{L} und \Scomplclass{NL} sind mathematische Modelle für effiziente Algorithmen\bigskip
+Die Klassen \Scomplclass{P}, \Scomplclass{L} und \Scomplclass{NL} sind mathematische Modelle für effiziente Algorithmen.\bigskip
 
-Mit polynomiellen Reduktionen kann man aus der Komplexität eines Problems auf die eines anderen schließen\bigskip
+Mit polynomiellen Reduktionen kann man aus der Komplexität eines Problems auf die eines anderen schließen.\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?
