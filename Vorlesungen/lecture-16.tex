@@ -13,10 +13,10 @@
 
 \emph{Erinnerung:} $F$ ist logische Konsequenz von $G$, wenn alle Modelle von $G$ auch Modelle von $F$ sind.
 \begin{itemize}
-\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendliche viele Modelle
+\item Es ist nicht offensichtlich, wie man das überprüfen sollte, denn es gibt unendlich viele Modelle
 \item Ebenso schwer erscheinen die gleichwertigen Probleme der Erfüllbarkeit und Allgemeingültigkeit
 \end{itemize}\pause
-\emph{Intuition:} prädikatenlogisches Schließen ist unentscheidbar
+\emph{Intuition:} Prädikatenlogisches Schließen ist unentscheidbar
 \bigskip
 
 \alert{Wie kann man das beweisen?}\pause\bigskip
@@ -92,7 +92,7 @@ Die Kodierung von Grammatiken ist nun direkt möglich:
 \item Wir nehmen o.B.d.A. an, dass $G_1$ und $G_2$ keine Nichtterminale gemeinsam haben.
 \item Eine Produktionsregel $\Snterm{A}\to \sigma_1\cdots\sigma_n$ kodieren wir als Formel:
 \[ \forall x_0,\ldots,x_n. \big((p_{\sigma_1}(x_0,x_1)\wedge \ldots\wedge p_{\sigma_n}(x_{n-1},x_n)) \to p_{\Snterm{A}}(x_0,x_n)\big)\]
-\item Idee: die Formel \alert{erkennt}, ob eine gegebene Kette aus Terminalen und Nichtterminalen aus einem anderen Nichtterminal entstehen kann
+\item Idee: Die Formel \alert{erkennt}, ob eine gegebene Kette aus Terminalen und Nichtterminalen aus einem anderen Nichtterminal entstehen kann
 \end{itemize}
 
 \end{frame}
@@ -126,7 +126,7 @@ Dazu fügen wir noch folgende Sätze hinzu:
 
 \begin{itemize}
 \item Jedes Modell dieser Theorie muss Kodierungen aller Wörter enthalten (aber eventuell als zyklische oder überlappende Pfade, z.B. in einem Modell mit nur einem Element, welches in jeder möglichen Relation zu sich selbst steht)\pause
-\item Gibt es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$, dann muss auch dieses Wort kodiert vorkommen: es folgt $ \exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$\pause
+\item Gibt es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$, dann muss auch dieses Wort kodiert vorkommen: Es folgt $ \exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$\pause
 \item Folgt $\exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$, erfüllen alle Modelle diesen Satz, speziell auch das Modell, welches man erhält, indem man einen unendlichen Baum aller Wörter aufbaut
 \end{itemize}
 
@@ -183,7 +183,7 @@ Falls "`sogar"' dieses Modell $ \exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_
 \item Für jedes Terminalsymbol $\Sterm{a}$:
 \[\forall x.\exists y. p_{\Sterm{a}}(x,y)\]
 \end{itemize}
-Dann gilt $\mathcal{T}\models\exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$ genau dann wenn es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$ gibt.
+Dann gilt $\mathcal{T}\models\exists x,y. (p_{\Sntermsub{S}{1}}(x,y)\wedge p_{\Sntermsub{S}{2}}(x,y))$ genau dann, wenn es ein Wort $w\in\Slang{L}(G_1)\cap\Slang{L}(G_2)$ gibt.
 \bigskip
 
 Die Unentscheidbarkeit von Erfüllbarkeit und Allgemeingültigkeit folgt, weil man logische Konsequenz auf diese Probleme reduzieren kann.
@@ -234,10 +234,10 @@ Gödel
 Wir haben bisher zwei Dinge erkannt:
 \begin{enumerate}[(1)]
 \item \alert{Prädikatenlogik ist sehr ausdrucksstark:}
-mit ihr können wir z.B. das mathematische Konzept der Gleichheit axiomatisieren oder
+Mit ihr können wir z.B. das mathematische Konzept der Gleichheit axiomatisieren oder
 Probleme über formale Sprachen beschreiben
 \item \alert{Prädikatenlogisches Schließen ist unentscheidbar:}
-man kann Probleme definieren, die nicht mehr algorithmisch lösbar sind
+Man kann Probleme definieren, die nicht mehr algorithmisch lösbar sind
 \end{enumerate}
 
 Eignet sich Prädikatenlogik also als universelle Beschreibungssprache für
@@ -276,7 +276,7 @@ Mehr dazu in späteren Vorlesungen \ldots
 
 \sectionSlide{Algorithmen zum logischen Schließen}
 
-\begin{frame}\frametitle{Wie können wir logisch Schließen?}
+\begin{frame}\frametitle{Wie können wir logisch schließen?}
 
 Gödel betrachtete ein konkretes Verfahren zum logischen Schließen,
 basierend auf:
@@ -303,7 +303,7 @@ Gödel zeigte damit auch die Semientscheidbarkeit des logischen Schließens:
 \begin{itemize}
 \item Man kann systematisch alle möglichen Ableitungen neuer Tautologien
 bilden
-\item Eine Formel ist eine Tautologie genau dann wenn sie irgendwann abgeleitet wird
+\item Eine Formel ist eine Tautologie genau dann, wenn sie irgendwann abgeleitet wird
 \item Ist eine Formel keine Tautologie, dann werden wir es auf diese Art nie erfahren
 \end{itemize}\pause
 
@@ -313,7 +313,7 @@ Tautologie ist \ldots
 
 \alert{Geht es besser?}\pause
 \begin{itemize}
-\item Logischen Schließens ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
+\item Logisches Schließenn ist unentscheidbar: kein Verfahren kann die Frage nach Allgemeingültigkeit sicher beantworten
 \item Aber: Es gibt effizientere, zielgerichtetere Methoden
 \end{itemize}
 
@@ -365,7 +365,7 @@ Wir müssen aber mehr beachten als zuvor:
 Wir haben bereits gelernt (Vorlesung 14):
 \begin{itemize}
 \item In prädikatenlogischen Formeln darf man Teilformeln durch semantisch äquivalente
-Formeln ersetzten (Ersetzungstheorem)
+Formeln ersetzen (Ersetzungstheorem)
 \item Für die aussagenlogischen Junktoren gelten die gleichen Äquivalenzen wie in der Aussagenlogik
 \end{itemize}
 $\leadsto$ damit kann man schon viele Umformungen vornehmen
@@ -377,7 +377,7 @@ Es fehlen uns aber noch Äquivalenzen zum Umgang mit Quantoren
 
 \begin{frame}\frametitle{Äquivalenzen mit Quantoren}
 
-Es gelten die folgenen Beziehungen:
+Es gelten die folgenden Beziehungen:
 \begin{align*}
 \begin{split}
 \neg\exists x.F &\equiv \forall x.\neg F\\
@@ -391,8 +391,8 @@ Es gelten die folgenen Beziehungen:
 \end{split}
 & \text{\textcolor{devilscss}{Kommutativität}}\\[1ex]
 %
-\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributitivität $\exists$/$\vee$}}\\
-\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributitivität $\forall$/$\wedge$}}
+\exists x.(F\vee G) &\equiv (\exists x.F\vee \exists x.G) & \text{\textcolor{devilscss}{Distributivität $\exists$/$\vee$}}\\
+\forall x.(F\wedge G) &\equiv (\forall x.F\wedge \forall x.G) & \text{\textcolor{devilscss}{Distributivität $\forall$/$\wedge$}}
 \end{align*}
 
 \pause\emph{Beweis:} Die Beweise ergeben sich direkt aus der Semantik, z.B.:\bigskip
@@ -429,7 +429,7 @@ $(\forall x.\textsf{glücklich}(x)\vee \forall x.\neg \textsf{glücklich}(x))$ (
 
 \begin{frame}\frametitle{Negationsnormalform}
 
-\defbox{Eine Formel $F$ ist in \redalert{Negationsnormalform} (\alert{NNF}) wenn
+\defbox{Eine Formel $F$ ist in \redalert{Negationsnormalform} (\alert{NNF}), wenn
 \begin{enumerate}[(a)]
 \item sie nur Quantoren und die Junktoren $\wedge$, $\vee$ und $\neg$ enthält und
 \item der Junktor $\neg$ nur direkt vor Atomen vorkommt.
@@ -455,7 +455,7 @@ In NNF darf Negation also nur in Literalen auftauchen.
 Es ist möglich, eine Formel rekursiv in NNF umzuformen.
 \medskip
 
-Dazu ersetzten wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
+Dazu ersetzen wir zunächst alle Vorkommen von $\to$ und $\leftrightarrow$ 
 unter Verwendung der bekannten Äquivalenzen:
 %
 \begin{align*}
@@ -694,11 +694,11 @@ kann wie folgt bereinigt werden:
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
 Logisches Schließen in Prädikatenlogik ist unentscheidbar
-(gezeigt)
+(gezeigt), 
 aber semi-entscheidbar 
-(noch zu zeigen)\bigskip
+(noch zu zeigen).\bigskip
 
-Resolution kann auch in der Prädikatenlogik zum logischen Schließen eingesetzt werden
+Resolution kann auch in der Prädikatenlogik zum logischen Schließen eingesetzt werden.
 \bigskip
 
 Mithilfe semantischer Äquivalenzen kann man beliebige Formeln in einheitliche Normalformen überführen.\bigskip
