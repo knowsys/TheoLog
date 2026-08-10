@@ -33,10 +33,10 @@ Ein konkreter Algorithmus zum logischen Schließen:
 
 \begin{frame}\frametitle{Konjunktive Normalform in Prädikatenlogik}
 
-\defbox{Eine Formel ist in \redalert{konjunktiver Normalform} (\alert{KNF}) wenn sie 
+\defbox{Eine Formel ist in \redalert{konjunktiver Normalform} (\alert{KNF}), wenn sie 
 in Pränexform $\quantor x_1.\cdots\quantor x_n.F$ ist, wobei $F$
 eine Konjunktion von Disjunktionen von Literalen ist, welche keine Quantoren enthält.
-Das heißt $F$ hat die Form:\\[1ex]
+Das heißt, $F$ hat die Form:\\[1ex]
 %
 \narrowcentering{$(L_{1,1}\vee \ldots\vee L_{1,m_1})\wedge(L_{2,1}\vee \ldots\vee L_{2,m_2})\wedge\ldots
 \wedge(L_{n,1}\vee \ldots\vee L_{n,m_n}) $}\\[1ex]
@@ -216,7 +216,7 @@ Entsprechende Klauseln:
 }
 \]
 Passen $\textsf{hatVater}(x,f(x))$ und $\neg\textsf{hatVater}(z,v)$ zusammen?\\\pause
-\redalert{Ja}, wenn wir $z$ durch $x$ ersetzten und $v$ durch $f(x)$, denn es gilt:
+\redalert{Ja}, wenn wir $z$ durch $x$ ersetzen und $v$ durch $f(x)$, denn es gilt:
 
 ~\hspace{-1cm}%
 \begin{minipage}{8cm}
@@ -241,7 +241,7 @@ Für die Anwendung von Resolution benötigt man jeweils zwei gleiche Atome\\ (ei
 
 Wir erreichen das in Prädikatenlogik durch folgende Methoden:
 \begin{itemize}
-\item Wir ersetzten (universell quantifizierte) Variablen durch andere Terme $\leadsto$~\redalert{Substitution}
+\item Wir ersetzen (universell quantifizierte) Variablen durch andere Terme $\leadsto$~\redalert{Substitution}
 \item Damit wollen wir erreichen, dass Terme (und letztlich Atome) gleich werden $\leadsto$~\redalert{Unifikation}
 \end{itemize}
 
@@ -298,7 +298,7 @@ Beweis für Formeln analog (aber mit mehr Fällen im I-Schritt).
 \defbox{Ein \redalert{Unifikationsproblem} ist eine endliche Menge von Gleichungen
 der Form \mbox{$G=\{s_1\unieq t_1,\ldots,s_n\unieq t_n\}$}.\medskip
 
-Eine Substitution $\sigma$ ist ein \redalert{Unifikator} für $G$ falls
+Eine Substitution $\sigma$ ist ein \redalert{Unifikator} für $G$, falls
 $s_i\sigma=t_i\sigma$ für alle $i\in\{1,\ldots,n\}$ gilt.
 }\pause 
 
@@ -322,9 +322,9 @@ Das Problem $\{ x\unieq f(y), y\unieq g(z) \}$ hat viele Unifikatoren -- gibt es
 
 \defbox{Eine Substitution $\sigma$ ist \redalert{allgemeiner} als eine Substitution
 $\theta$, in Symbolen \redalert{$\sigma\preceq\theta$}, wenn es eine Substitution
-$\lambda$ gibt, so dass $\sigma\circ\lambda =\theta$.\medskip
+$\lambda$ gibt, sodass $\sigma\circ\lambda =\theta$.\medskip
 
-Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein Unifikator $\sigma$ für $G$, so dass $\sigma\preceq\theta$ für alle Unifikatoren $\theta$ für $G$.}
+Der \redalert{allgemeinste Unifikator} für ein Unifikationsproblem $G$ ist ein Unifikator $\sigma$ für $G$, sodass $\sigma\preceq\theta$ für alle Unifikatoren $\theta$ für $G$.}
 
 {\footnotesize
 (Die englische Bezeichnung des allgemeinsten Unifikators ist \alert{most general unifier (mgu)}.)}\medskip\pause
@@ -385,8 +385,8 @@ Wende die folgenden Umformungsregeln auf $G$ an, bis keine Regel mehr zu einer �
 \begin{itemize}
 \item \alert{Löschen:} $\{t\unieq t\}\cup G' \leadsto G'$
 \item \alert{Zerlegung:} $\{f(s_1,\ldots,s_n)\unieq f(u_1,\ldots,u_n)\}\cup G' \leadsto \{s_1\unieq u_1,\ldots,s_n\unieq u_n\}\cup G'$
-\item \alert{Orientierung:} $\{t\unieq x\}\cup G' \leadsto \{x\unieq t\}\cup G'$ falls $x\in\Slang{V}$ und $t\notin\Slang{V}$
-\item \alert{Eliminierung:} $\{x\unieq t\}\cup G' \leadsto \{x\unieq t\}\cup G'\{x\mapsto t\}$ falls $x\in\Slang{V}$ nicht in $t$ vorkommt 
+\item \alert{Orientierung:} $\{t\unieq x\}\cup G' \leadsto \{x\unieq t\}\cup G'$, falls $x\in\Slang{V}$ und $t\notin\Slang{V}$
+\item \alert{Eliminierung:} $\{x\unieq t\}\cup G' \leadsto \{x\unieq t\}\cup G'\{x\mapsto t\}$, falls $x\in\Slang{V}$ nicht in $t$ vorkommt 
 \end{itemize}
 Wenn $G$ dann in gelöster Form ist, dann gib $\sigma_G$ aus.\\
 Andernfalls gib aus "`nicht unifizierbar"'.
@@ -408,14 +408,14 @@ Andernfalls gib aus "`nicht unifizierbar"'.
 \bigskip
 
 Die zugehörige Substitution $\{x\mapsto f(a), y\mapsto f(a)\}$ ist Unifikator des
-ursprünglichen Unifikationsproblems
+ursprünglichen Unifikationsproblems.
 
 \end{frame}
 
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (1)}
 
 \theobox{\emph{Satz:} Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis:} Wir zeigen nacheinander drei Aussagen, aus denen die Behauptung folgt.\medskip
 
@@ -431,7 +431,7 @@ Bei der Eingabe beliebiger Unifikationsprobleme $G$ gilt:
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (2)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} Als erstes zeigen wir eine Hilfsaussage ($\ddagger$):\\[1ex]
 Wenn ein Unifikationsproblem $G_1$ in einem Ersetzungsschritt in ein Problem $G_2$
@@ -458,7 +458,7 @@ gdw. & $\theta$ Unifikator für $\{x\unieq t\}\cup G'\sigma=G_2$
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (3)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} (1) Wenn der Algorithmus eine Substitution $\sigma$ ausgibt, dann ist $\sigma$ ein allgemeinster Unifikator für $G$.
 \smallskip\pause
@@ -475,7 +475,7 @@ Damit folgt die Behauptung.
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (4)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} (2) Wenn der Algorithmus "`nicht unifizierbar"' ausgibt, dann hat $G$ keinen Unifikator.
 \smallskip\pause
@@ -488,7 +488,7 @@ Damit folgt die Behauptung.
 \pause\emph{Begründung:} $G'$ muss eine Gleichung $s\unieq u$ enthalten, die nicht in gelöster Form ist.
 \begin{itemize}
 \item Fall 1: $s\unieq u$ hat auf einer Seite eine Variable. Dann hat sie die Form (a), da sonst Orientierung oder Löschen möglich wäre.
-\item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre. (Wir schließen hier den Fall ein, dass eines der Funktionssymbolen 0-stellig ist, also eine Konstante.)
+\item Fall 2: $s\unieq u$ hat auf keiner Seite eine Variable. Dann hat sie die Form (b), da sonst Zerlegung möglich wäre. (Wir schließen hier den Fall ein, dass eines der Funktionssymbole 0-stellig ist, also eine Konstante.)
 \end{itemize}
 \pause Aus der Beobachtung folgt (2), da Gleichungen (a) und (b) keinen Unifikator haben.
 Laut ($\ddagger$) hat damit auch $G$ keinen Unifikator.
@@ -499,7 +499,7 @@ Laut ($\ddagger$) hat damit auch $G$ keinen Unifikator.
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (5)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
 \smallskip
@@ -521,7 +521,7 @@ vorkommt und dabei nicht in $t$ enthalten ist
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (6)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
 \smallskip
@@ -544,7 +544,7 @@ In dieser Ordnung gibt es keine unendlichen absteigenden Ketten immer kleiner we
 \begin{frame}[t]\frametitle{Korrektheit des Unifikationsalgorithmus (7)}
 
 % \theobox{Satz: Der Unifikationsalgorithmus berechnet für jedes Unifikationsproblem
-% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"' wenn es keinen gibt.}
+% einen allgemeinsten Unifikator, falls es einen Unifikator gibt, und liefert "`nicht unifizierbar"', wenn es keinen gibt.}
 
 \emph{Beweis (Fortsetz.):} (3) Der Algorithmus terminiert, d.h. erzeugt nach endlich vielen Schritten eine der beiden Ausgaben.
 \smallskip
@@ -598,8 +598,8 @@ Es gilt: $\tuple{2,9,0}\succ\tuple{1,12,0}\succ\tuple{1,10,1}\succ\tuple{1,6,1}\
 % 
 % \emph{Beobachtungen:}
 % \begin{itemize}
-% \item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, so dass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
-% \item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$ wenn
+% \item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, sodass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
+% \item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$, wenn
 % $\sigma$ Unifikator für das folgende Unifikationsproblem $G_{\mathcal{A}}$ ist: 
 % \[ \{ t_{1,1}\unieq t_{2,1},\ldots,t_{n-1,1}\unieq t_{n,1},\ldots,t_{1,\ell}\unieq t_{2,\ell},\ldots,t_{n-1,\ell}\unieq t_{n,\ell} \} \]
 % \item Insbesondere ist der allgemeinste Unifikator für $G_{\mathcal{A}}$ auch der allgeeinste Unifikator für $\mathcal{A}$
@@ -637,7 +637,7 @@ Es gilt: $\tuple{2,9,0}\succ\tuple{1,12,0}\succ\tuple{1,10,1}\succ\tuple{1,6,1}\
 % 
 % Da jede Klausel für sich eine allquantifizierte Formel kodiert ($\forall$ distribuiert über $\wedge$) darf man Variablen aber umbenennen. Wir können z.B. die folgende \redalert{Variante} der zweiten Klausel bilden:
 % \[ \{\neg \textsf{Mensch}(y),\textsf{Mensch}(f(y))\} \]
-% $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(y))\}$ hat den einen Unifikator, so dass wir z.B. die folgende Resolvente erhalten:
+% $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(y))\}$ hat den einen Unifikator, sodass wir z.B. die folgende Resolvente erhalten:
 % \[\{\neg \textsf{Mensch}(y),\textsf{hatVater}(f(y),f(f(y)))\}\]
 % 
 % \end{frame}
@@ -651,13 +651,13 @@ Es gilt: $\tuple{2,9,0}\succ\tuple{1,12,0}\succ\tuple{1,10,1}\succ\tuple{1,6,1}\
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Bei der prädikatenlogischen Resolution müssen Atome unifiziert werden\bigskip
+Bei der prädikatenlogischen Resolution müssen Atome unifiziert werden.\bigskip
 
-Unifikation von Termen findet mit Hilfe von Substitutionen statt
+Unifikation von Termen findet mit Hilfe von Substitutionen statt.
 \bigskip
 
 Der Unifikationsalgorithmus erlaubt uns, allgemeinste Unifikatoren zu berechnen, falls
-diese existieren
+diese existieren.
 \bigskip
 
 \anybox{yellow}{
