@@ -1,4 +1,4 @@
-#*#
+\#*#
 *~
 *.aux
 *.log
@@ -10,5 +10,7 @@
 *.snm
 *.toc
 *.fdb_latexmk
+*.vrb
 Uebungen/auto/
 Vorlesungen/auto/
+Vorlesungen/_minted/
