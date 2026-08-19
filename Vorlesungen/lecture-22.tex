@@ -81,11 +81,11 @@ entspricht einer (natürlichen) Join-Operation ($\wedge$) mit anschließender Pr
 
 \emph{Rückblick:} Mit Prädikatenlogik können nur lokale Eigenschaften getestet werden.\medskip
 
-Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relevant (speziell in Graphdatenbanken)\medskip
+Nichtlokale Eigenschaften wie die Erreichbarkeit in Graphen sind praktisch relevant (speziell in Graphdatenbanken).\medskip
 
 \redalert{Wie kann man solche Anfragen logisch ausdrücken?}\bigskip\pause
 
-\emph{Idee:} Um beliebig weit zu schauen muss man Rekursion einführen.\bigskip
+\emph{Idee:} Um beliebig weit zu schauen, muss man Rekursion einführen.\bigskip
 
 \examplebox{\emph{Beispiel:} Eine Haltestelle ist von Helmholtzstr. aus erreichbar, wenn
 \begin{enumerate}[(1)]
@@ -139,7 +139,7 @@ Wir nehmen daher eine andere Perspektive ein:
 \[ \mathcal{F}_\Inter= \{ p(c_1,\ldots,c_n)\mid c_1,\ldots,c_n\in\Slang{C}\text{ und }\tuple{c_1^\Inter,\ldots,c_n^\Inter}\in p^\Inter\}\]
 \textcolor{devilscss}{(wie zuvor nimmt man vereinfachend oft an, dass $c^\Inter=c$ gilt)}
 \item \redalert{Rekursive Anfragen} können wie im Beispiel als prädikatenlogische Formelmenge $\mathcal{Q}$ dargestellt werden
-\item Ein Fakt $p(c_1,\ldots,c_n)$ ist eine \redalert{Antwort} auf die Anfrage $\mathcal{Q}$ auf der Datenbank $\Inter$ wenn gilt: $\mathcal{F}_\Inter,\mathcal{Q}\models p(c_1,\ldots,c_n)$.
+\item Ein Fakt $p(c_1,\ldots,c_n)$ ist eine \redalert{Antwort} auf die Anfrage $\mathcal{Q}$ auf der Datenbank $\Inter$, wenn gilt: $\mathcal{F}_\Inter,\mathcal{Q}\models p(c_1,\ldots,c_n)$.
 \end{itemize}
 Das heißt, wir fassen \alert{Anfragebeantwortung als prädikatenlogisches Schließen} auf (Entailment, nicht Model Checking).
 
@@ -167,7 +167,7 @@ folgen genau die Antworten $\text{Erreichbar}(\Scodelit{\texttt{helmholtzstr}})$
 
 \begin{frame}\frametitle{Sind rekursive Anfragen praktikabel?}
 
-Wir wissen: prädikatenlogisches Schließen ist unentscheidbar.
+Wir wissen: Prädikatenlogisches Schließen ist unentscheidbar.
 \bigskip
 
 \redalert{Ist die Beantwortung rekursiver Anfragen dann überhaupt möglich?}
@@ -224,7 +224,7 @@ Es ist üblich, die Allquantoren nicht explizit zu schreiben. Fakten schreibt ma
 \emph{Idee:} Wende Regeln iterativ auf gegebene Fakten an, um neue Fakten abzuleiten
 
 \begin{itemize}
-\item Wir betrachten hier Datenbanken (Interpretationen) als logische Theorie, d.h., Menge von Grundfakten
+\item Wir betrachten hier Datenbanken (Interpretationen) als logische Theorie, d.h. Menge von Grundfakten
 \item Die gegebenen Fakten kann man sich als Teil eines Datalog-Programms vorstellen
 \end{itemize}\medskip\pause
 
@@ -379,11 +379,11 @@ Diese sind eng mit denen aus Datalog verwandt, weil man kontextfreie Grammatiken
 \item Für jedes Nichtterminal $\Snterm{A}\in V$, sei $A$ ein zweistelliges Prädikat
 \item Für jedes Terminal $\Sterm{b}\in \Sigma$, sei $b$ ein zweistelliges Prädikat
 \item Für jede Produktionsregel $\Snterm{A}\to v$ mit $v=v_1\ldots v_n\in(\Sigma\cup V)^*$ sei $A(x_0,x_n)\leftarrow v_1(x_0,x_1)\wedge\ldots\wedge v_n(x_{n-1},x_n)$ eine Datalogregel
-\item Die Menge aller entsprechenden Regel bezeichnen wir mit $P_G$
+\item Die Menge aller entsprechenden Regeln bezeichnen wir mit $P_G$
 \end{itemize}
 Wir betrachten Datenbanken, die nur Prädikate aus $\Sigma$ enthalten\bigskip\pause
 
-Dann gilt: $P_G\models S(a,b)$ genau dann wenn es zwischen $a$ und $b$ einen
+Dann gilt: $P_G\models S(a,b)$ genau dann, wenn es zwischen $a$ und $b$ einen
 Pfad $w_1(a,c_1),w_2(c_1,c_2),\ldots,w_\ell(c_{\ell-1},b)$ gibt, wobei $\Sterm{w_1}\cdots \Sterm{w_\ell}\in\Slang{L}(G)$
 
 % briefly discuss use of Datalog derivation trees in pumping-lemma like constructions ...
@@ -396,7 +396,7 @@ Baumartige Darstellungen von logischen Ableitungen sind in verschiedenen Zusamme
 \begin{itemize}
 \item Intuitive Darstellung der Ableitungsschritte
 \item Umformungsoperationen auf Bäumen erlauben die Erzeugung neuer Ableitungen $\leadsto$ hilfreiche Beweistechnik
-\examplebox{\emph{Beispiel:} Wir haben Ableitungsbäume kontextfreier Grammatiken verwendet um das Pumpinglemma für kontextfrei Sprachen zu zeigen. Damit konnte man zeigen, dass manche Sprachen nicht kontextfrei sind.\medskip
+\examplebox{\emph{Beispiel:} Wir haben Ableitungsbäume kontextfreier Grammatiken verwendet, um das Pumpinglemma für kontextfreie Sprachen zu zeigen. Damit konnte man zeigen, dass manche Sprachen nicht kontextfrei sind.\medskip
 
 Analoge Techniken kann man auch für Datalog anwenden, zum Beispiel um zu zeigen, dass kein Datalog-Programm Paare von Elementen finden kann, zwischen denen es einen Pfad aus einem binären Prädikat $p$ gibt, dessen Länge eine Primzahl ist.}
 \item Zur Analyse von Datalogprogrammen werden oft (allgemeinere) endliche Automaten verwendet, welche auf Ableitungsbäumen arbeiten (Verallgemeinerung regulärer Sprachen von Wörtern zu Bäumen).
@@ -411,7 +411,7 @@ Mithilfe von $T_P$ kann man logische Konsequenzen berechnen\\
 
 \emph{Worst Case?}
 \begin{itemize}
-\item Sei $p$ die Anzahl der Prädikatensmbole, $a$ deren maximale Arität, $x$ die maximale Zahl an Variablen pro Regel und $n$ die Zahl der Konstanten
+\item Sei $p$ die Anzahl der Prädikatensymbole, $a$ deren maximale Arität, $x$ die maximale Zahl an Variablen pro Regel und $n$ die Zahl der Konstanten
 \item Dann gibt es insgesamt $\leq p\cdot n^a$ variablenfreie Fakten, die abgeleitet werden könnten
 \item Für eine Regel gibt es maximal $n^x$ Substitutionen, die bei der Ableitung eine Rolle spielen könnten
 \end{itemize}\pause
@@ -575,7 +575,7 @@ kann als Formel der Logik zweiter Stufe wie folgt dargestellt werden:
 \Big)
 \end{align*}
 Die Formel hat eine freie Variable $v$ und stellt $\text{Erreichbar}$ als Prädikaten-Variable dar.
-Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
+Ein Fakt $\text{Erreichbar}(a)$ folgt aus dem ursprünglichen Programm über einer Datenbank $\Inter$ genau dann, wenn $\Inter$ die Formel mit Variablenbelegung $v\mapsto a$ erfüllt.
 }
 
 \end{frame}
@@ -588,14 +588,14 @@ Das vorige Beispiel zeigt:\medskip
 \bigskip
 
 Diese Sicht wird gegenüber der Betrachtung als Logik erster Stufe bevorzugt, weil dadurch
-abgeleitete Prädikate zu lokalen Variablen des Programms werden, anstatt globaler Teil von Interpretationen (Datenbanken) zu sein
+abgeleitete Prädikate zu lokalen Variablen des Programms werden, anstatt globaler Teil von Interpretationen (Datenbanken) zu sein.
 
 \end{frame}
 
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Datalog erlaubt die Darstellung rekursiver Anfragen in Logik\bigskip
+Datalog erlaubt die Darstellung rekursiver Anfragen in Logik.\bigskip
 
 Anfragebeantwortung in Datalog\\
 = logisches Schließen in Prädikatenlogik\

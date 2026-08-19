@@ -12,7 +12,7 @@
 \begin{frame}\frametitle{\Scomplclass{NP}-vollständige Probleme}
 
 \Scomplclass{NP}-vollständige Probleme = Probleme, die mindestens so schwer
-sind, wie alle anderen Probleme in \Scomplclass{NP}\bigskip
+sind wie alle anderen Probleme in \Scomplclass{NP}\bigskip
 
 
 Bisher haben wir gezeigt:\bigskip
@@ -159,7 +159,7 @@ $\leq_p$\\
        n\} \cup \{ m_{i,j} \mid 1\leq i\leq k,~~ 1\leq j \leq |C_i|-1\}
   \]
 
-  \pause\emph{Gesuchte Zahl: } Wir bestimmten die gesuchte Zahl $z$ wie folgt:\\
+  \pause\emph{Gesuchte Zahl: } Wir bestimmen die gesuchte Zahl $z$ wie folgt:\\
   \[
      \text{$z := a_1 \cdots a_n c_1 \cdots c_k$ wobei $a_i := 1$ und $c_i := |C_i|$ }
   \]
@@ -204,7 +204,7 @@ Damit folgt: $\sum_{s\in T} \val{s} = z$
 
   \anybox{lightblue}{
     \emph{Behauptung:}\\ Gibt es $T\subseteq S$ mit $\sum_{a_i\in T}
-    \val{a_i} = z$ dann ist $F$ erfüllbar.}\bigskip\pause
+    \val{a_i} = z$, dann ist $F$ erfüllbar.}\bigskip\pause
 
   Sei $T \subseteq S$ die gesuchte Menge mit $\sum_{s\in T} \val{s} = z$\pause\\[10pt]
 %
@@ -230,7 +230,7 @@ Damit folgt: $\sum_{s\in T} \val{s} = z$
 
 \defbox{\Slang{Rucksack} (Knapsack)\\[1ex]
 \emph{Gegeben:} Eine Menge von Gegenständen $G=\{a_1,\ldots,a_n\}$, wobei jedem Gegenstand $a_i$ ein Wert $\val{a_i}$ und ein Gewicht $\weight{a_i}$ zugeordnet ist; ein Mindestwert $w$ und ein Gewichtslimit $\ell$\\[1ex]
-\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, so dass
+\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, sodass
 \begin{itemize}
 \item $\sum_{a\in T} \weight{a} \leq \ell$ und
 \item $\sum_{a\in T} \val{a} \geq w$~?
@@ -300,7 +300,7 @@ durch Reduktion $\Slang{Teilmengen-Summe}\leq_p\Slang{Rucksack}$
     $M(g, i)$ = Größter Gesamtwert unter den ersten $i$ Gegenständen\\
     \mbox{}\phantom{$M(g, i)$ =} bei Einhaltung des Gewichtslimits $g$\\[5pt]
 %
-	\emph{Akzeptanz: } Akzeptiere falls $M$ einen Eintrag $\geq w$ hat.
+	\emph{Akzeptanz: } Akzeptiere, falls $M$ einen Eintrag $\geq w$ hat.
 
 \end{frame}
 
@@ -355,7 +355,7 @@ Zusammenfassung:
 
 \defbox{\Slang{Rucksack} (Knapsack)\\[1ex]
 \emph{Gegeben:} Eine Menge von Gegenständen $G=\{a_1,\ldots,a_n\}$, wobei jedem Gegenstand $a_i$ ein Wert $\val{a_i}$ und ein Gewicht $\weight{a_i}$ zugeordnet ist; ein Mindestwert $w$ und ein Gewichtslimit $\ell$\\[1ex]
-\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, so dass
+\emph{Frage:} Gibt es eine Teilmenge $T\subseteq G$, sodass
 \begin{itemize}
 \item $\sum_{a\in T} \weight{a} \leq \ell$ und
 \item $\sum_{a\in T} \val{a} \geq w$~?
@@ -381,7 +381,7 @@ Unser Algorithmus zeigt nicht $\Slang{Rucksack}\in\Scomplclass{P}$!
 eine DTM gelöst wird, die polynomiell zeitbeschränkt ist bzgl. der Eingabelänge
 \alert{und} des Betrages aller Zahlen in der Eingabe.}
 
-\emph{Äquivalent:} ein Problem ist pseudopolynomiell, wenn es in $\Scomplclass{PTime}$
+\emph{Äquivalent:} Ein Problem ist pseudopolynomiell, wenn es in $\Scomplclass{PTime}$
 liegt, wenn man alle Zahlen \alert{unär} kodiert.\medskip\pause
 
 \examplebox{\emph{Beispiel:} \Slang{Rucksack} ist pseudopolynomiell: beschränkt man das Problem auf Instanzen mit $\ell\leq p(n)$ für ein Polynom $p$, so erhält man ein Problem in \Scomplclass{P} (wobei $n$ die Zahl der Gegenstände ist).
@@ -442,7 +442,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
 
 \anybox{strongyellow}{Wächst der neuartige Computer mit dem Problem?\\ Ist dieses Wachstum exponentiell?}\bigskip
 
-\examplebox{\emph{Beispiel:} DNS-Rechner lösen Optimierunsaufgaben, aber müssen alle (exponentiell viele) mögliche Lösungen als DNS-Sequenz kodieren.}
+\examplebox{\emph{Beispiel:} DNS-Rechner lösen Optimierungsaufgaben, aber müssen alle (exponentiell viele) möglichen Lösungen als DNS-Sequenz kodieren.}
 
 \end{frame}
 
@@ -473,7 +473,7 @@ $\leadsto$ Meist kann man leicht sehen, wo der Fehler liegt\bigskip
   \item Übertrieben: "`Can creativity be automated?"' (Wigderson, \ghost{2006)}
   \item Seit über 40 Jahren ungelöst
   \item Eines der größten offenen Probleme der Informatik und Mathematik unserer Zeit
-  \item 1.000.000 USD Preisgeld für die Lösung\\("`Millenium Problem"')
+  \item 1.000.000 USD Preisgeld für die Lösung\\("`Millennium-Problem"')
   \end{itemize}
 
 \end{frame}
@@ -556,17 +556,17 @@ Diese Probleme heißen \redalert{\Scomplclass{NP}-intermediate} \pause{} -- wenn
 $\Slang{SAT}\leq_p\Slang{Teilmengen-Summe}\leq_p \Slang{Rucksack}$
 \bigskip
 
-Pseudopolynomielle Probleme werden einfacher, wenn man den Betrag der Zahlen in der Eingabe polynomiell beschränkt\bigskip
+Pseudopolynomielle Probleme werden einfacher, wenn man den Betrag der Zahlen in der Eingabe polynomiell beschränkt.\bigskip
 
 Offene Fragen (geordnet von "`leicht"' nach schwer):
 "`$\Scomplclass{L}\neq\Scomplclass{NP}$?"',
 "`$\Scomplclass{P}\neq\Scomplclass{PSpace}$?"',
 "`$\Scomplclass{P}\neq\Scomplclass{NP}$?"',
-"`$\Scomplclass{NP}\neq\Scomplclass{coNP}$?"'
+"`$\Scomplclass{NP}\neq\Scomplclass{coNP}$?"',
 "`$\Scomplclass{P}\neq \Scomplclass{NP}\cap\Scomplclass{coNP}$?"'
 \bigskip
 
-Es sollte eigentlich eine Menge Probleme geben, die weder in \Scomplclass{P} liegen, noch \Scomplclass{NP}-vollständig sind\bigskip
+Es sollte eigentlich eine Menge Probleme geben, die weder in \Scomplclass{P} liegen, noch \Scomplclass{NP}-vollständig sind.\bigskip
 
 \anybox{yellow}{
 Was erwartet uns als nächstes?

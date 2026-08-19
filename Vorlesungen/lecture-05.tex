@@ -67,7 +67,7 @@ $\leadsto$ Alle schlimmstenfalls exponentiell und oft zu ineffizient
 \emph{Idee:} Implementiere den Erfüllbarkeitstest als \redalert{Suche nach einem Modell}
 \begin{itemize}
 \item \alert{Teste systematisch Belegungen} für Atome
-\item \alert{Bilde Ableitungen} um die Konsequenzen einer Belegung zu ermitteln
+\item \alert{Bilde Ableitungen}, um die Konsequenzen einer Belegung zu ermitteln
 \item Erkenne Widersprüche und verwende \alert{Backtracking} um andere Belegungen zu \ghost{testen}
 \end{itemize}
 \medskip
@@ -133,7 +133,7 @@ oder keine Vorkommen von $\top$ oder $\bot$ enthält.
 \emph{Idee:} Weise einem Atom $p$ einen Wert zu und ermittle (rekursiv) ob die Formel damit erfüllbar ist
 \bigskip\pause
 
-Daraus ergibt sich auch schon für beliebigen Formeln ein möglicher Algorithmus:
+Daraus ergibt sich auch schon für beliebige Formeln ein möglicher Algorithmus:
 \codebox{\emph{SplitSat}\\
 Eingabe: Formel $F$ (in beliebiger Form)\\
 Ausgabe: "`erfüllbar"' oder "`unerfüllbar"'\\[1ex]
@@ -247,7 +247,7 @@ Solange es eine Klausel $\{L\}\in\mathcal{F}$ gibt:
 
 \begin{frame}\frametitle{Pure Literal Elimination}
 
-\emph{Idee:} Atome, die entweder nur nicht-negiert oder nur negiert vorkommen ("`Pure Literals"') sind ohne Probleme erfüllbar
+\emph{Idee:} Atome, die entweder nur nicht-negiert oder nur negiert vorkommen ("`Pure Literals"'), sind ohne Probleme erfüllbar
 \begin{itemize}
 \item Wir können den Wert dieser Atome immer sofort festlegen
 \item Alle anderen Klauseln können entsprechend vereinfacht werden ($\leadsto$ Resolution)
@@ -289,7 +289,7 @@ Ausgabe: "`erfüllbar"' oder "`unerfüllbar"'\\[1ex]
 \end{enumerate}
 }
 
-\emph{Anmerkung:} bei Ausgabe "`erfüllbar"' ergeben die Werte der nacheinander in Unit Propagation und Pure Literal Elimination eliminierten Atome ein Modell
+\emph{Anmerkung:} Bei Ausgabe "`erfüllbar"' ergeben die Werte der nacheinander in Unit Propagation und Pure Literal Elimination eliminierten Atome ein Modell
 
 \end{frame}
 
@@ -360,7 +360,7 @@ Die Vereinfachungen produzieren äquivalente Formeln (unter den gewählten Beleg
 Sonderformen der bereits bekannten Äquivalenzumformungen sind.
 \medskip\pause
 
-Korrektheit folgt durch Induktion über Zahl $k$ der Atome in $\mathcal{F}$ den Vereinfachungen\pause:
+Korrektheit folgt durch Induktion über Zahl $k$ der Atome in $\mathcal{F}$ und den Vereinfachungen\pause:
 \begin{itemize}
 	\item Für $k=0$ Atome ist die Klauselform $\{\}$ oder $\{\{\}\}$. In beiden Fällen ist das Ergebnis korrekt.\pause
 	\item Bei $k>0$ Atomen führt Splitting zu rekursiven Aufrufen für $\mathcal{F}\cup\{p\}$ und $\mathcal{F}\cup\{\neg p\}$.\pause
@@ -387,7 +387,7 @@ Korrektheit folgt durch Induktion über Zahl $k$ der Atome in $\mathcal{F}$ den 
 \begin{itemize}
 \item heuristische \alert{Strategien zur Wahl der Atome} für das Splitting
 \item \alert{Backjumping:} Rückgängigmachung vieler Wertzuweisungen in einem Schritt, überspringt "`irrelevante"' Entscheidungen im Backtracking
-\item \alert{Conflict-driven clause learning (CDCL):} Erkenntnisse aus Fehlschlägen in der Suche werden in zusätzlichen Klauseln "`abgespeichert"' um die weitere Suche abzukürzen
+\item \alert{Conflict-driven clause learning (CDCL):} Erkenntnisse aus Fehlschlägen in der Suche werden in zusätzlichen Klauseln "`abgespeichert"', um die weitere Suche abzukürzen
 \end{itemize}
 
 \end{frame}
@@ -399,14 +399,14 @@ Korrektheit folgt durch Induktion über Zahl $k$ der Atome in $\mathcal{F}$ den 
 \emph{Aussagenlogisches Problem:}
 \begin{center}
 % Ist $(\neg p\vee q)\wedge  $
-Gibt es Werte für $p,q,r,s,t$ aus der Menge \{\mytrue,\myfalse\}, so dass gilt\\
+Gibt es Werte für $p,q,r,s,t$ aus der Menge \{\mytrue,\myfalse\}, sodass gilt\\
 $(p \vee r)\wedge (q \vee s)\wedge (p\vee q)\wedge \neg t$?
 \end{center}\pause
 
 \emph{Mathematisches Problem mit aussagenlogischen Operatoren:}
 \begin{center}
 % Ist $(x\leq y) \wedge (y\leq z) \wedge ((x<y) \vee (y<z)) \wedge \neg (x<z)$
-Gibt es Werte für $x,y,z$ aus der Menge der natürlichen Zahlen, so dass gilt\\
+Gibt es Werte für $x,y,z$ aus der Menge der natürlichen Zahlen, sodass gilt\\
 $(x<y \vee x=y)\wedge (y<z \vee y=z)\wedge (x<y\vee y<z)\wedge \neg(x<z)$?
 \end{center}
 \pause
@@ -415,7 +415,7 @@ $(x<y \vee x=y)\wedge (y<z \vee y=z)\wedge (x<y\vee y<z)\wedge \neg(x<z)$?
 \begin{itemize}
 \item Verallgemeinerung von Aussagenlogik mit Atomen, die sich auf andere (nicht-boolesche) Domänen beziehen
 \item typische Datentypen: ganze Zahlen, reelle Zahlen, Listen, Strings, Enums usw.
-\item Operationen je nach Typ: Arithmetik, Stringoperationen, Gleicheiten und Ungleichheiten usw.
+\item Operationen je nach Typ: Arithmetik, Stringoperationen, Gleichheiten und Ungleichheiten usw.
 \end{itemize}
 \emph{Ziel:} Ermittle Erfüllbarkeit und finde gegebenenfalls ein Modell
 
@@ -472,7 +472,7 @@ $\leadsto$ benötigt spezifische Verfahren\\
 \emph{Beispiele:}
 \begin{itemize}
 \item Reelle Zahlen mit $*$, $+$, $-$, $/$
-\item Ganze Zahlen mit lineraren Gleichungssystemen
+\item Ganze Zahlen mit linearen Gleichungssystemen
 \item Strings mit Verkettungsoperationen und lexikographischer Ordnung
 \item IEEE Gleitkommazahlen mit Gleitkomma-Arithmetik
 \item \ldots
@@ -523,7 +523,7 @@ Wir wissen bereits, dass Schließen ein Entscheidungsproblem ist,\ghost{ z.B.:}
 \defbox{\redalert{Erfüllbarkeit}:
 \begin{itemize}
 \item \emph{Eingabe:} Formel $F$
-\item \emph{Ausgabe:} "`ja"' wenn $F$ erfüllbar ist; sonst "`nein."'
+\item \emph{Ausgabe:} "`ja"', wenn $F$ erfüllbar ist; sonst "`nein."'
 \end{itemize}
 }
 
@@ -598,9 +598,9 @@ $}
 (machbar, wir verzichten auf die Details)
 % \item Dabei ordnen wir jeder Teilformel eine eindeutige Position zu: bei Atomen ist dies das
 % erste Zeichen der Kodierung des Atoms, bei zusammengesetzten Formeln das erste Zeichen der Kodierung des Junktors
-% \item Der aktuelle Wahrheitswert der Teilformel wir in Spur~2 an ihrer Position gespeichert.
+% \item Der aktuelle Wahrheitswert der Teilformel wird in Spur~2 an ihrer Position gespeichert.
 % \item Die aktuelle Wertzuweisung ergibt sich aus den Wahrheitswerten der Atome
-% \item Wenn man das erste Vorkommen jedes Atoms in der Formel markiert, dann ist es nicht schwer, die jeweils nöchste Wertzuweisung zu berechnen (durch binäre Addition von $1$).
+% \item Wenn man das erste Vorkommen jedes Atoms in der Formel markiert, dann ist es nicht schwer, die jeweils nächste Wertzuweisung zu berechnen (durch binäre Addition von $1$).
 \end{itemize}\vspace{-3.5ex}~}
 
 \end{frame}

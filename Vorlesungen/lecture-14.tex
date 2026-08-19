@@ -40,7 +40,7 @@ Wir betrachten unendliche, disjunkte Mengen von Variablen $\Slang{V}$, Konstante
 \defbox{Ein prädikatenlogisches \redalert{Atom} ist ein Ausdruck $p(t_1,\ldots,t_n)$
 für ein $n$-stelliges Prädikatensymbol $p\in\Slang{P}$ und Terme $t_1,\ldots,t_n\in\Slang{V}\cup\Slang{C}$.
 
-Die Menge der \redalert{prädikatenlogische Formeln} ist induktiv definiert:
+Die Menge der \redalert{prädikatenlogischen Formeln} ist induktiv definiert:
 \begin{itemize}
 \item Jedes Atom $p(t_1,\ldots,t_n)$ ist eine prädikatenlogische Formel
 \item Wenn $x\in\Slang{V}$ eine Variable und $F$ und $G$ prädikatenlogische Formeln sind, dann sind auch die folgenden prädikatenlogische Formeln:
@@ -66,7 +66,7 @@ Die Wertzuweisung der Aussagenlogik wird also durch \alert{Interpretationen}
 und \alert{Zuweisungen} für Variablen ersetzt.
 \smallskip
 
-\defbox{Eine \redalert{Interpretation} $\Inter$ ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elemente $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
+\defbox{Eine \redalert{Interpretation} $\Inter$ ist ein Paar $\tuple{\Delta^\Inter,\cdot^\Inter}$ bestehend aus einer nichtleeren Grundmenge von Elementen $\Delta^\Inter$ (der \redalert{Domäne}) und einer \redalert{Interpretationsfunktion} $\cdot^\Inter$, welche:
 \begin{itemize}
 \item jede Konstante $a\in\Slang{C}$ auf ein Element $a^\Inter\in\Delta^\Inter$ und
 \item jedes $n$-stellige Prädikatensymbol $p\in\Slang{P}$ auf eine Relation $p^\Inter\subseteq(\Delta^\Inter)^n$
@@ -139,8 +139,8 @@ Zuweisung:
 \end{itemize}
 Für ein Atom $p(t_1,\ldots,t_n)$ setzen wir sodann:
 \begin{itemize}
-\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\mytrue$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\in p^\Inter$ und
-\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\myfalse$ wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\notin p^\Inter$.
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\mytrue$, wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\in p^\Inter$ und
+\item $p(t_1,\ldots,t_n)^{\Inter,\Zuweisung}=\myfalse$, wenn $\tuple{t_1^{\Inter,\Zuweisung},\ldots,t_n^{\Inter,\Zuweisung}}\notin p^\Inter$.
 \end{itemize}
 }\bigskip\pause
 
@@ -162,7 +162,7 @@ eine der folgenden rekursiven Bedingungen gilt:%\smallskip
 
 \narrowcentering{\footnotesize\begin{tabular}{rll}
 \rowcolor{darkred!70!gray}
-\textcolor{white}{Formel $F$} & \textcolor{white}{$\Inter,\Zuweisung\models F$ wenn:} & \textcolor{white}{$\Inter,\Zuweisung\not\models F$ wenn:}\\
+\textcolor{white}{Formel $F$} & \textcolor{white}{$\Inter,\Zuweisung\models F$, wenn:} & \textcolor{white}{$\Inter,\Zuweisung\not\models F$, wenn:}\\
 $F$ Atom & $F^{\Inter,\Zuweisung}=\mytrue$ & $F^{\Inter,\Zuweisung}=\myfalse$\\
 \rowcolor{lightred!20}
 $\neg G$ & $\Inter,\Zuweisung\not\models G$ & $\Inter,\Zuweisung\models G$\\
@@ -537,7 +537,7 @@ Die aus der Aussagenlogik bekannten Eigenschaften von $\equiv$ gelten auch allge
 
 \theobox{\emph{Satz:} Semantische Äquivalenz entspricht wechselseitiger logischer Konsequenz:\\[1ex]
 % 
-\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann wenn\hspace{5mm} $F\models G$ und $G\models F$}
+\narrowcentering{ $F\equiv G$ \hspace{5mm}genau dann, wenn\hspace{5mm} $F\models G$ und $G\models F$}
 }
 
 Die Behauptungen folgen jeweils direkt aus den Definitionen.
@@ -717,7 +717,7 @@ $\leadsto$ alle aussagenlogischen Gesetze gelten analog
 \bigskip\pause
 
 \examplebox{\emph{Beispiel:} Die De Morganschen Regeln gelten auch in der Prädikatenlogik, z.B.
-$\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann wenn
+$\Inter,\Zuweisung\models \neg(F\wedge G)$ genau dann, wenn
 $\Inter,\Zuweisung\models (\neg F\vee \neg G)$, das heißt
 $\neg(F\wedge G)\equiv (\neg F\vee \neg G)$.
 }
@@ -731,13 +731,13 @@ Allgemein gelten alle bekannten aussagenlogischen Äquivalenzen
 Auch die folgenden Sätze gelten analog zur Aussagenlogik\\ (siehe Vorlesung 2):\bigskip
 
 \theobox{\emph{Satz (Deduktionstheorem):} Für jede Formelmenge $\mathcal{F}$ und Formeln $G$ und $H$ gilt\\
-$\mathcal{F}\models G\to H$ genau dann wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
+$\mathcal{F}\models G\to H$ genau dann, wenn $\mathcal{F}\cup\{G\}\models H$.}\bigskip
 
 \theobox{\emph{Korollar:} $F\wedge G\models H$ genau dann wenn $F\models G\to H$.}\bigskip
 
-\theobox{\emph{Korollar:} $F\equiv G$ genau dann wenn $\models F\leftrightarrow G$.}\bigskip
+\theobox{\emph{Korollar:} $F\equiv G$ genau dann, wenn $\models F\leftrightarrow G$.}\bigskip
 
-\redalert{Dennoch sind $\models$ und $\equiv$ nicht das selbe wie $\to$ und $\leftrightarrow$:}
+\redalert{Dennoch sind $\models$ und $\equiv$ nicht dasselbe wie $\to$ und $\leftrightarrow$:}
 \begin{itemize}
 \item $\models$ und $\equiv$ können sich auch auf (möglicherweise unendliche) Mengen von Formeln beziehen
 \item $\to$ und $\leftrightarrow$ sind syntaktische Operatoren und können (eventuell geschachtelt) in Formeln auftreten
@@ -791,7 +791,7 @@ F\vee F & \equiv F
 F\wedge (F\vee G) & \equiv F\\
 F\vee (F\wedge G) & \equiv F
 \end{split}
-		& \text{\textcolor{devilscss}{Absorbtion}}
+		& \text{\textcolor{devilscss}{Absorption}}
 \end{align*}
 
 \end{frame}
@@ -834,7 +834,7 @@ Dabei stellen wir wie zuvor $\top$ durch eine beliebige Tautologie (z.B. $p\vee\
 
 \begin{frame}\frametitle{Aussagenlogik in Prädikatenlogik darstellen}
 
-Aussagenlogische Atome $p$ kann man durch prädikatenlogische Atome $p()$
+Aussagenlogische Atome $p$ kann man als prädikatenlogische Atome $p()$
 auffassen, wobei $p$ ein nullstelliges Prädikatensymbol ist.%
 \bigskip
 
@@ -851,7 +851,7 @@ $\leadsto$ es gibt aber nur ein einziges nullstelliges Tupel $\tuple{}$\pause
 	\end{itemize}
 \end{itemize}
 
-Deshalb kann man nullstellige Prädikate wie aussagenlogsiche Atome verwenden
+Deshalb kann man nullstellige Prädikate wie aussagenlogische Atome verwenden
 \bigskip
 
 In diesem Sinne ist die Aussagenlogik ein Teil der Prädikatenlogik
@@ -883,15 +883,15 @@ Smullyan\footnote{R. Smullyan: A Beginner's Guide to Mathematical Logic, Dover 2
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Modelltheorie definiert logische Semantik aus der Beziehung von Formeln (Behauptungen) und Modellen (möglichen Welten)
+Modelltheorie definiert logische Semantik aus der Beziehung von Formeln (Behauptungen) und Modellen (möglichen Welten).
 \bigskip
 
 % Die Modelltheorie der Prädikatenlogik basiert auf Interpretationen und Zuweisungen, aber bei Sätzen reichen Interpretationen
 % \bigskip
 
-Logisches Schließen ist die Berechnung (Überprüfung) einzelner Beziehungen der Form $\Inter\models F$ (Model checking) bzw. $F\models G$ (Schlussfolgerung)\bigskip
+Logisches Schließen ist die Berechnung (Überprüfung) einzelner Beziehungen der Form $\Inter\models F$ (Model checking) bzw. $F\models G$ (Schlussfolgerung).\bigskip
 
-Prädikatenlogik verallgemeinert Aussagenlogik und viele der dort gültigen Gesetze
+Prädikatenlogik verallgemeinert Aussagenlogik und viele der dort gültigen Gesetze.
 \bigskip
 
 \anybox{yellow}{

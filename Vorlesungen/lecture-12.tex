@@ -30,7 +30,7 @@
 \begin{frame}\frametitle{\PSpace}
 
 \PSpace-vollständige Probleme\\ = Probleme, die mindestens so schwer
-sind, wie alle anderen Probleme in \PSpace\\
+sind wie alle anderen Probleme in \PSpace\\
 = die schwersten Probleme in \PSpace.
 \bigskip
 
@@ -70,7 +70,7 @@ ist echt schwerer als NP und \Scomplclass{coNP}
 
 \begin{itemize}
 \item Evaluation in Zeile \texttt{03} möglich in \PSpace
-\item Rekursion in Zeilen \texttt{05} und \texttt{07} können der Reihe nach abgearbeitet werden, wobei Speicher wiederverwendet wird
+\item Rekursionen in Zeilen \texttt{05} und \texttt{07} können der Reihe nach abgearbeitet werden, wobei Speicher wiederverwendet wird
 \item Jeder Rekursionsschritt benötigt polynomiellen Speicher
 \item Maximale Rekursionstiefe = Zahl der Atome (linear)\qed
 \end{itemize}
@@ -81,8 +81,8 @@ ist echt schwerer als NP und \Scomplclass{coNP}
 
 \begin{frame}\frametitle{\PSpace-Schwere}
 
-\defbox{Ein Problem \Slang{Q} ist \redalert{\PSpace-schwer} wenn
-für jedes Problem \Slang{P} in \PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{\PSpace-vollständig} wenn es \PSpace-schwer ist und in \PSpace liegt.}\bigskip\pause
+\defbox{Ein Problem \Slang{Q} ist \redalert{\PSpace-schwer}, wenn
+für jedes Problem \Slang{P} in \PSpace eine polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{\PSpace-vollständig}, wenn es \PSpace-schwer ist und in \PSpace liegt.}\bigskip\pause
 
 \theobox{\emph{Satz:} \Slang{TrueQBF} ist \PSpace-schwer.}\pause
 
@@ -91,7 +91,7 @@ für jedes Problem \Slang{P} in \PSpace ein polynomielle Reduktion $\Slang{P}\le
 \item Wie beim Satz von Cook/Levin stellen wir den Lauf einer Turingmaschine
 mit aussagenlogischen Atomen dar
 \item Speicher ist wie bei NP polynomiell (einfach kodierbar)
-\item Zeit ist problematisch: in \PSpace kann ein TM exponentiell lang laufen
+\item Zeit ist problematisch: in \PSpace kann eine TM exponentiell lang laufen
 $\leadsto$ wir können nicht einfach für jeden Zeitschritt eine neue Version
 der Konfigurationsvariablen anlegen und jeden Übergang mit Formeln axiomatisieren
 \end{itemize}
@@ -127,8 +127,8 @@ der Konfigurationsvariablen anlegen und jeden Übergang mit Formeln axiomatisier
 \item Um zu prüfen, ob man von $s$ nach $t$ gelangen kann
 \item Prüfe zunächst, ob $s=t$ oder $s$ direkter Vorgänger von $t$
 \item Rate einen Punkt $m$ in der "`Mitte"' eines Pfades von $s$ nach $t$
-\item Prüfe (rekursiv) ob man von $s$ nach $m$ gelangen kann
-\item Prüfe (rekursiv) ob man von $m$ nach $t$ gelangen kann
+\item Prüfe (rekursiv), ob man von $s$ nach $m$ gelangen kann
+\item Prüfe (rekursiv), ob man von $m$ nach $t$ gelangen kann
 \end{itemize}\pause
 $\leadsto$ Anzahl der zu ratenden Mittelpunkte ist logarithmisch in Länge des Pfades\\
 $\leadsto$ Speicher kann in jedem Schritt wiederverwendet werden
@@ -490,7 +490,7 @@ Für $k$-$\complclass{Exp}$-Klassen lassen sich künstliche Probleme leicht find
 Jenseits von \ExpSpace gibt es nur wenige relevante Probleme.\medskip
 
 \examplebox{\emph{Beispiel:} Der W3C-Standard \alert{Web Ontology Language} (OWL, Version 2)
-definiert die logische Beschreibungsspache OWL~2~DL. Logisches Schließen in dieser Sprache ist \NTwoExpTime-vollständig.
+definiert die logische Beschreibungssprache OWL~2~DL. Logisches Schließen in dieser Sprache ist \NTwoExpTime-vollständig.
 }\pause
 
 Es gibt aber auch entscheidbare Probleme, die durch keine vielfach exponentiell 
@@ -515,7 +515,7 @@ Hier gibt es bereits \emph{technische Probleme:}
 \begin{itemize}
 \item TMs mit logarithmischem Speicher benötigen getrennte Ein- und Ausgabebänder
 \item Logarithmen sind nicht abgeschlossen unter polynomiellen Operationen;
-z.B. sagt uns Savitch \alert{nicht} ob $\LogSpace \stackrel{?}{=} \NLogSpace$
+z.B. sagt uns Savitch \alert{nicht}, ob $\LogSpace \stackrel{?}{=} \NLogSpace$
 \end{itemize}\pause\smallskip
 
 Will man \emph{noch kleinere Komplexitätsklassen} betrachten, dann muss man zu anderen
@@ -538,7 +538,7 @@ aus der Definition.
 
 Es gibt eine Reihe \alert{interessanter, praktisch relevanter \LogSpace-Probleme}, z.B.
 \begin{itemize}
-\item Erreichbarkeit in ungerichteten Graphen (Omar Reingold, 2005)
+\item Erreichbarkeit in ungerichteten Graphen (Omer Reingold, 2005)
 \item Zwei-Färbbarkeit von Graphen
 \end{itemize}
 \bigskip\pause
@@ -597,13 +597,13 @@ $\leadsto$ siehe Vorlesung "`Complexity Theory"' (Wintersemester)
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-\Slang{TrueQBF} und \Slang{Geography} sind \PSpace-vollständig
+\Slang{TrueQBF} und \Slang{Geography} sind \PSpace-vollständig.
 \bigskip
 
-Wir kennen die praktisch wichtigsten Komplexitätsklassen und jeweils typische Probleme
+Wir kennen die praktisch wichtigsten Komplexitätsklassen und jeweils typische Probleme.
 \bigskip
 
-Spiele liefern interessante Beispiele komplexer Probleme
+Spiele liefern interessante Beispiele komplexer Probleme.
 \bigskip
 
 \anybox{yellow}{

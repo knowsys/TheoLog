@@ -100,10 +100,10 @@ Zertifikate werden auch \alert{Nachweis}, \alert{Beweis} oder \alert{Zeuge} gena
 
 \begin{frame}\frametitle{Nachweis-polynomielle Sprachen}
 
-\defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell} wenn es für sie einen polynomiellen
+\defbox{Eine Sprache $\Slang{L}$ ist \redalert{nachweis-polynomiell}, wenn es für sie einen polynomiellen
 Verifikator gibt.}\medskip\pause
 
-\examplebox{\emph{Beispiel:} \Slang{SAT} ist nachweis-polynomiell. Ein möglicher polynomiellen Verifikator für
+\examplebox{\emph{Beispiel:} \Slang{SAT} ist nachweis-polynomiell. Ein möglicher polynomieller Verifikator für
 \Slang{SAT} akzeptiert Wörter $F\#w$, wobei $F$ die Kodierung einer erfüllbaren Formel ist und $w$ eine Kodierung einer
 Wertzuweisung, die $F$ erfüllt.}\medskip\pause
 
@@ -148,7 +148,7 @@ Folgende Sprache ist nachweis-polynomiell:\\[1ex]
 (Zertifikat: Kodierung von $f_1$ und $f_2$)
 \bigskip\pause
 
-Überraschender Weise ist auch folgende Sprache nachweis-polynomiell:\\[1ex]
+Überraschenderweise ist auch folgende Sprache nachweis-polynomiell:\\[1ex]
 \narrowcentering{$\Slang{PRIMES}=\{\textsf{bin}(n)\mid \text{es gibt \redalert{keine} }f_1,f_2>1 \text{ mit }n=f_1\cdot f_2\}$}\\[1ex]
 (Zertifikat: "`\href{https://en.wikipedia.org/wiki/Primality_certificate}{Primality certificate}"', bekannt seit 1975)
 \bigskip\pause
@@ -160,21 +160,21 @@ Folgende Sprache ist nachweis-polynomiell:\\[1ex]
 
 \begin{frame}[t]\frametitle{NP steht für "`nachweis-polynomiell"' (1)}
 
-\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip\pause
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell, wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip\pause
 
 \emph{Beweis:}
 $(\Rightarrow)$ Sei $\Slang{L}$ nachweis-polynomiell mit Verifikator \Smach{V}. Wir erhalten eine polynomiell-zeitbeschränkte NTM \Smach{M} für $\Slang{L}$ wie folgt:\pause
 \begin{itemize}
 \item für eine Eingabe $w$ rät \Smach{M} nichtdeterministisch ein polynomielles Zertifikat $z$\\
 (dabei muss \Smach{M} die Länge von $z$ selbst beschränken)
-\item anschließend führt \Smach{M} die Berechnungen wie \Smach{V} aus um das geratene Zertifikat in polynomieller Zeit zu prüfen
+\item anschließend führt \Smach{M} die Berechnungen wie \Smach{V} aus, um das geratene Zertifikat in polynomieller Zeit zu prüfen
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}[t]\frametitle{NP steht für "`nachweis-polynomiell"' (2)}
 
-\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip
+\theobox{\emph{Satz:} Eine Sprache $\Slang{L}$ ist genau dann nachweis-polynomiell, wenn $\Slang{L}\,{\in}\,\Scomplclass{NP}$.}\medskip
 
 \emph{Beweis:}
 $(\Leftarrow)$ Sei \Smach{M} eine polynomiell-zeitbeschränkte NTM für $\Slang{L}$. Wir erhalten einen polynomiellen Verifikator \Smach{V} für $\Slang{L}$ wie folgt.\pause
@@ -232,7 +232,7 @@ ist $\Scomplclass{P}\subseteq\Scomplclass{coNP}\cap\Scomplclass{NP}$.
 
 \defbox{\Slang{Primzahl} (= $\overline{\Slang{Zusammengesetzte Zahl}}$)\\[1ex]
 \emph{Gegeben:} Eine natürliche Zahl $z>1$\\[1ex]
-\emph{Frage:} Gibt es eine keine natürliche Zahlen $p,q>1$ mit $p\cdot q = z$?\\
+\emph{Frage:} Gibt es keine natürlichen Zahlen $p,q>1$ mit $p\cdot q = z$?\\
 }\pause
 
 Seit 1975 ist bekannt: $\Slang{Primzahl}\in\Scomplclass{NP}$, also
@@ -263,7 +263,7 @@ Faktoren mit $p\cdot q=z$ gibt.\bigskip
 \emph{Nein:}
 \begin{itemize}
 \item Es ist \alert{leicht} zu entscheiden, ob eine Zahl echte Faktoren hat
-\item Aber es ist dennoch \alert{schwer} die Faktoren zu bestimmen\\
+\item Aber es ist dennoch \alert{schwer}, die Faktoren zu bestimmen\\
 (glauben wir zumindest \ldots)
 \end{itemize}
 

@@ -12,7 +12,7 @@
 \begin{frame}\frametitle{\Scomplclass{NP}-vollständige Probleme}
 
 \Scomplclass{NP}-vollständige Probleme\\ = Probleme, die mindestens so schwer
-sind, wie alle anderen Probleme in \Scomplclass{NP}\\
+sind wie alle anderen Probleme in \Scomplclass{NP}\\
 = die schwersten Probleme in NP.
 \bigskip
 
@@ -58,7 +58,7 @@ Selbst innerhalb kleiner Speichergrenzen ist sehr viel machbar:\pause
 Wir iterieren durch alle Wahrheitswertbelegungen (jeweils linear groß) und
 testen jeweils, ob die Formel erfüllt ist (logarithmischer Speicher für ein paar Pointer und Zwischenergebnisse)\pause
 \item Linearer Speicher genügt zur Erkennung kontextsensitiver Sprachen (durch linear beschränkte Automaten, LBA)\pause
-\item Jedes NP-vollständige Problem ist in polynomiellen Speicher lösbar:\\
+\item Jedes NP-vollständige Problem ist in polynomiellem Speicher lösbar:\\
 Wir iterieren durch alle polynomiellen Zertifikate und simulieren einen polynomiellen
 Verifikator auf ihnen
 \end{itemize}
@@ -69,7 +69,7 @@ $\leadsto$ sehr kleine Speichergrenzen sind sinnvoll
 
 \begin{frame}\frametitle{Erinnerung: L}
 
-\emph{LogSpace (L):} Sprachen die man mit sehr wenig Arbeitsspeicher erkennen kann
+\emph{LogSpace (L):} Sprachen, die man mit sehr wenig Arbeitsspeicher erkennen kann
 \bigskip
 
 \alert{Wesentliche Datentypen:} 
@@ -129,8 +129,8 @@ lautet wie folgt:\\[1ex]
 \item Initialisiere $*p=s$ und $z=1$
 \item Schleife:
 \begin{itemize}
-\item Falls $*p=t$ dann akzeptiere
-\item Falls $z={}$Anzahl der Knoten in $G$ dann verwerfe
+\item Falls $*p=t$, dann akzeptiere
+\item Falls $z={}$Anzahl der Knoten in $G$, dann verwerfe
 \item Andernfalls: inkrementiere $z$ und setze $p$ auf einen Nachfolger des aktuellen Knotens $*p$ (nichtdet.)\qed
 \end{itemize}
 \end{itemize}
@@ -223,7 +223,7 @@ Matt in 262 Zügen; Weiß ist am Zug
 %
 \begin{itemize}
 \item Aussagenlogische Formeln basieren auf \alert{Atomen} (Propositionen, Variablen)
-\item Atome werden mit \alert{Junktoren} verknüpft: $\neg$, $\wedge$, $\vee$, $\to$\\ (wir setzen immer Klammern zwischen verschiedene binären Junktoren)
+\item Atome werden mit \alert{Junktoren} verknüpft: $\neg$, $\wedge$, $\vee$, $\to$\\ (wir setzen immer Klammern zwischen verschiedenen binären Junktoren)
 \item Wir erlauben außerdem die nullstelligen Operatoren $\top$ (wahr) und $\bot$ (falsch)
 \item \alert{Belegungen} ordnen Atomen \alert{Wahrheitswerte} \mytrue{} oder \myfalse{} zu
 \end{itemize}
@@ -297,7 +297,7 @@ gdw. & $W((\top\to \top)\wedge(\top\to \top))=\mytrue$ oder $W((\top\to \bot)\we
 
 Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht von Belegungen ab.\bigskip
 
-\defbox{Das Problem \Slang{TrueQBF} ist wie folgt\\[1ex]
+\defbox{Das Problem \Slang{TrueQBF} ist wie folgt:\\[1ex]
 \emph{Gegeben:} eine QBF $Q$\\
 \emph{Frage:} Ist $W(Q)=\mytrue$?}\bigskip\pause
 
@@ -327,7 +327,7 @@ Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht
 
 \begin{itemize}
 \item Evaluation in Zeile \texttt{03} möglich in PSpace
-\item Rekursion in Zeilen \texttt{05} und \texttt{07} können der Reihe nach abgearbeitet werden, wobei Speicher wiederverwendet wird
+\item Rekursionen in den Zeilen \texttt{05} und \texttt{07} können der Reihe nach abgearbeitet werden, wobei Speicher wiederverwendet wird
 \item Jeder Rekursionsschritt benötigt polynomiellen Speicher
 \item Maximale Rekursionstiefe = Zahl der Atome (linear)\qed
 \end{itemize}
@@ -338,8 +338,8 @@ Durch die Quantoren steht der Wahrheitswert jeder QBF fest, d.h. er hängt nicht
 
 \begin{frame}\frametitle{PSpace-Schwere}
 
-\defbox{Ein Problem \Slang{Q} ist \redalert{PSpace-schwer} wenn
-für jedes Problem \Slang{P} in PSpace ein polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-schwer ist und in PSpace liegt.}\bigskip\pause
+\defbox{Ein Problem \Slang{Q} ist \redalert{PSpace-schwer}, wenn
+für jedes Problem \Slang{P} in PSpace eine polynomielle Reduktion $\Slang{P}\leq_p \Slang{Q}$ existiert. \Slang{Q} ist \redalert{PSpace-vollständig} wenn es PSpace-schwer ist und in PSpace liegt.}\bigskip\pause
 
 \theobox{\emph{Satz:} \Slang{TrueQBF} ist PSpace-schwer.}\pause
 
@@ -358,7 +358,7 @@ Man kann \Slang{TrueQBF} als Spiel auffassen:
 \item Emilia gewinnt, wenn die Formel nach Entfernen aller Quantoren wahr wird
 \end{itemize}\bigskip\pause
 
-\anybox{strongyellow}{Beobachtung: Emilia hat eine Gewinnstrategie im Formelspiel genau dann wenn die gegebene QBF wahr ist.}
+\anybox{strongyellow}{Beobachtung: Emilia hat eine Gewinnstrategie im Formelspiel genau dann, wenn die gegebene QBF wahr ist.}
 
 \end{frame}
 
@@ -428,14 +428,14 @@ $\leadsto$ Spiel kann mehr als polynomiell viele Züge dauern
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Erreichbarkeit in gerichteten Graphen ist das typische NL-vollständige Problem
+Erreichbarkeit in gerichteten Graphen ist das typische NL-vollständige Problem.
 \bigskip
 
-Es gibt schwere Probleme, die keine leicht zu prüfende Lösung haben\bigskip
+Es gibt schwere Probleme, die keine leicht zu prüfende Lösung haben.\bigskip
 
-Quantifizierte Boolesche Formeln verallgmeinern Aussagenlogik\bigskip
+Quantifizierte Boolesche Formeln verallgemeinern Aussagenlogik.\bigskip
 
-PSpace ist die Klasse der interessanten Zwei-Spieler-Spiele, die nicht zu lange dauern
+PSpace ist die Klasse der interessanten Zwei-Spieler-Spiele, die nicht zu lange dauern.
 \bigskip
 
 \anybox{yellow}{

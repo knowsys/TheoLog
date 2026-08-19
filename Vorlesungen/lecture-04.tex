@@ -104,7 +104,7 @@ Leider ist (Un)Erfüllbarkeit nicht an einzelnen Klauseln erkennbar.
 
 \examplebox{\emph{Beispiel:} Die Logelei aus Vorlesung 1 haben wir mit den Formeln $\mathcal{F}=\{A\leftrightarrow \neg B, B\leftrightarrow \neg C,C\leftrightarrow (\neg A\wedge \neg B)\}$ dargestellt. Wir wollen beweisen, dass
 \Bname{} die Wahrheit sagt, also $\mathcal{F}\models B$. Dazu kann man zeigen, dass $\mathcal{F}\cup\{\neg B\}$ unerfüllbar
-ist. Bei Anwendung des Distributivgesetztes erhalten wir die folgende KNF:
+ist. Bei Anwendung des Distributivgesetzes erhalten wir die folgende KNF:
 \begin{align*}
 (\neg A\vee \neg B)\wedge (A\vee B)&\wedge{}\\
 (\neg B\vee \neg C)\wedge (B\vee C)&\wedge{}\\
@@ -119,7 +119,7 @@ ist. Bei Anwendung des Distributivgesetztes erhalten wir die folgende KNF:
 
 Wenn man grundsätzlich mit KNF arbeitet, dann bieten sich einige syntaktische Vereinfachungen an:
 \begin{itemize}
-\item Eine Klausel $L_1\vee\ldots\vee L_n$ wir dargestellt als Menge $\{L_1,\ldots,L_n\}$
+\item Eine Klausel $L_1\vee\ldots\vee L_n$ wird dargestellt als Menge $\{L_1,\ldots,L_n\}$
 \item Eine Konjunktion von Klauseln $K_1\wedge\ldots\wedge K_\ell$ wird dargestellt als Menge $\{K_1,\ldots,K_\ell\}$
 \end{itemize}
 Eine Menge von Mengen von Literalen unter dieser Interpretation heißt \redalert{Klauselform}.
@@ -145,13 +145,13 @@ kann in Klauselform dargestellt werden als:\vspace{-1ex}
 Beim Resolutionsverfahren leiten wir schrittweise neue Klauseln aus den gegebenen ab.
 \bigskip
 
-Ein einzelner Resolutionschritt funktioniert wie folgt:
+Ein einzelner Resolutionsschritt funktioniert wie folgt:
 
 \defbox{
-Gegeben seien zwei Klauseln $K_1$ und $K_2$ für die es ein Atom $p\in\Slang{P}$ gibt mit $p\in K_1$ und $\neg p\in K_2$.
+Gegeben seien zwei Klauseln $K_1$ und $K_2$, für die es ein Atom $p\in\Slang{P}$ gibt, mit $p\in K_1$ und $\neg p\in K_2$.
 Die \redalert{Resolvente von $K_1$ und $K_2$ bezüglich $p$} ist die Klausel \alert{$(K_1\setminus\{p\})\cup(K_2\setminus\{\neg p\})$}.\medskip
 
-Eine Klausel $R$ ist eine \redalert{Resolvente einer Klauselmenge $\mathcal{K}$} wenn $R$ Resolvente zweier Klauseln  $K_1,K_2\in\mathcal{K}$ ist.
+Eine Klausel $R$ ist eine \redalert{Resolvente einer Klauselmenge $\mathcal{K}$}, wenn $R$ Resolvente zweier Klauseln  $K_1,K_2\in\mathcal{K}$ ist.
 }\pause
 
 \examplebox{\emph{Beispiel:} Resolventen für die Menge $\{\{\neg A, \neg B\},\allowbreak \{A, B\},\allowbreak\{\neg B, \neg C\},\allowbreak\{B, C\},\allowbreak
@@ -287,7 +287,7 @@ Resolution eignet sich tatsächlich zum logischen Schließen:\medskip
 \emph{Beweis:} \alert{Terminierung} ist leicht zu sehen.\pause{}
 Jede neu abgeleitete Klausel enthält nur Literale,
 die auch in der ursprünglichen Klauselmenge vorkamen. Die Zahl dieser Literale ist endlich; wir bezeichnen sie mit
-$\ell$. Es gibt nur $2^\ell$ Klauseln mit diesen Literalen. Man kann also weniger als $2^\ell$ Resolventen hinzufügen bevor das Verfahren terminiert.
+$\ell$. Es gibt nur $2^\ell$ Klauseln mit diesen Literalen. Man kann also weniger als $2^\ell$ Resolventen hinzufügen, bevor das Verfahren terminiert.
 
 \end{frame}
 
@@ -575,7 +575,7 @@ Viele einfache rekursive Algorithmen können in Horn-Aussagenlogik beschrieben w
 \top & \to p_{\Snterm{A}} & \text{für jede Grammatikregel $\Snterm{A}\to\epsilon$}\\
 p_{\Sntermsub{A}{1}}\wedge\ldots\wedge p_{\Sntermsub{A}{n}} & \to p_{\Snterm{B}} & \text{für jede Grammatikregel $\Snterm{B}\to\Sntermsub{A}{1}\cdots\Sntermsub{A}{n}$}
 \end{align*}
-Dann gilt $\mathcal{F}\models p_{\Snterm{A}}$ genau dann wenn $\Snterm{A}\in V_\epsilon$.
+Dann gilt $\mathcal{F}\models p_{\Snterm{A}}$ genau dann, wenn $\Snterm{A}\in V_\epsilon$.
 }
 
 \end{frame}

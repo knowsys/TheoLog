@@ -61,14 +61,14 @@ Ein konkreter Algorithmus zum logischen Schließen:
 \anybox{strongyellow}{
 \redalert{Unifikationsalgorithmus}\\[1ex]
 \emph{Eingabe:} Unifikationsproblem $G$\\
-\emph{Ausgabe:} allgemeinster Unifikator für $G$, oder "`nicht unifizierbar"'\\[1ex]
+\emph{Ausgabe:} allgemeinster Unifikator für $G$ oder "`nicht unifizierbar"'\\[1ex]
 %
 Wende die folgenden Umformungsregeln auf $G$ an, bis keine Regel mehr zu einer Änderung führt:
 \begin{itemize}
 \item \alert{Löschen:} $\{t\unieq t\}\cup G' \leadsto G'$
 \item \alert{Zerlegung:} $\{f(s_1,\ldots,s_n)\unieq f(u_1,\ldots,u_n)\}\cup G' \leadsto \{s_1\unieq u_1,\ldots,s_n\unieq u_n\}\cup G'$
-\item \alert{Orientierung:} $\{t\unieq x\}\cup G' \leadsto \{x\unieq t\}\cup G'$ falls $x\in\Slang{V}$ und $t\notin\Slang{V}$
-\item \alert{Eliminierung:} $\{x\unieq t\}\cup G' \leadsto \{x\unieq t\}\cup G'\{x\mapsto t\}$ falls $x\in\Slang{V}$ nicht in $t$ vorkommt 
+\item \alert{Orientierung:} $\{t\unieq x\}\cup G' \leadsto \{x\unieq t\}\cup G'$, falls $x\in\Slang{V}$ und $t\notin\Slang{V}$
+\item \alert{Eliminierung:} $\{x\unieq t\}\cup G' \leadsto \{x\unieq t\}\cup G'\{x\mapsto t\}$, falls $x\in\Slang{V}$ nicht in $t$ vorkommt 
 \end{itemize}
 Wenn $G$ dann in gelöster Form ist, dann gib $\sigma_G$ aus.\\
 Andernfalls gib aus "`nicht unifizierbar"'.
@@ -84,8 +84,8 @@ Andernfalls gib aus "`nicht unifizierbar"'.
 
 \emph{Beobachtungen:}
 \begin{itemize}
-\item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, so dass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
-\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$ wenn
+\item Eine Menge von Atomen $\mathcal{A}$ ist nur dann unifizierbar, wenn alle Atome das gleiche Prädikat verwenden, d.h. wenn es ein $\ell$-stelliges Prädikatensymbol $p$ gibt, sodass $A_i=p(t_{i,1},\ldots,t_{i,\ell})$ für alle $i\in\{1,\ldots,n\}$.
+\item Dann ist $\sigma$ genau dann ein Unifikator für $\mathcal{A}$, wenn
 $\sigma$ Unifikator für das folgende Unifikationsproblem $G_{\mathcal{A}}$ ist: 
 \[ \{ t_{1,1}\unieq t_{2,1},\ldots,t_{n-1,1}\unieq t_{n,1},\ldots,t_{1,\ell}\unieq t_{2,\ell},\ldots,t_{n-1,\ell}\unieq t_{n,\ell} \} \]
 \item Insbesondere ist der allgemeinste Unifikator für $G_{\mathcal{A}}$ auch der allgemeinste Unifikator für $\mathcal{A}$
@@ -185,7 +185,7 @@ In Klauselform kann man sich also die Allquantoren direkt vor jeder einzelnen Kl
 Daher darf man die Variablen jeder Klausel einheitlich umbenennen, unabhängig von jeder anderen Klausel, z.B.
 \[ \{\neg L(f_7(x_1,x_2,x_3,x_4,a))\} \quad\leadsto\quad \{\neg L(f_7(x'_1,x'_2,x'_3,x'_4,a))\} \]
 Klauseln, die durch eineindeutige Umbenennung von Variablen entstanden sind, nennt man \redalert{Varianten} (einer Klausel)\\[0.5ex]
-\alert{$\leadsto$ Wir bilden bei der Resolution Varianten um Konflikte von Variablen zu vermeiden}
+\alert{$\leadsto$ Wir bilden bei der Resolution Varianten, um Konflikte von Variablen zu vermeiden}
 
 \end{frame}
 
@@ -245,7 +245,7 @@ $\leadsto$ Die geprüfte logische Konsequenz $F\models \forall z.W(z)$ gilt
 % 
 % Da jede Klausel für sich eine allquantifizierte Formel kodiert ($\forall$ distribuiert über $\wedge$) darf man Variablen aber umbenennen. Wir können z.B. die folgende \redalert{Variante} der zweiten Klausel bilden:
 % \[ \{\neg \textsf{Mensch}(y),\textsf{Mensch}(f(y))\} \]
-% $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(y))\}$ hat den einen Unifikator, so dass wir z.B. die folgende Resolvente erhalten:
+% $\{\neg \textsf{Mensch}(x),\textsf{Mensch}(f(y))\}$ hat den einen Unifikator, sodass wir z.B. die folgende Resolvente erhalten:
 % \[\{\neg \textsf{Mensch}(y),\textsf{hatVater}(f(y),f(f(y)))\}\]
 % 
 % \end{frame}
@@ -314,7 +314,7 @@ Sei $\Inter$ eine beliebige Interpretation.
 \item \emph{Fall 2:} $\Inter,\Zuweisung\not\models A_1\sigma$ ($=A_2\sigma=\ldots=A'_m\sigma)$.\\ Dann gilt $\Inter,\Zuweisung\models L_1\sigma\vee\ldots\vee L_k\sigma$, und damit $\Inter,\Zuweisung\models K$\pause
 \item Also gilt $\Inter\models\forall K$.
 \end{itemize}
-Da $\Inter$ beliebig ist gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
+Da $\Inter$ beliebig ist, gilt also $\forall K_1\wedge\forall K_2\models \forall K$.\\
 Das heißt, jede Resolvente ist logische Konsequenz der resolvierten Klauseln.
 
 \end{frame}
@@ -352,7 +352,7 @@ Es handelte sich um M.~Jacques Herbrand, wohnhaft in der Rue Viollet-le-duc 10 i
 M.~Herbrand war am Sonntag mit drei Gefährten -- den Herren Jean Brille, Pierre Delair und Henri Guigner -- aufgebrochen, um Les Bans zu besteigen.
 Beim Abstieg löste sich ein Kletterhaken, an dem das Seil befestigt war, und nahm eine kleine
 Plattform mit sich, auf der sich M. Herbrand befand, welcher in den Abgrund stürzte.
-Ein Bergungstrupp ist aufgebrochen um den Leichnam zu suchen und hofft ihn heute zu erreichen.
+Ein Bergungstrupp ist aufgebrochen, um den Leichnam zu suchen und hofft ihn heute zu erreichen.
 \end{minipage}
 
 % 
@@ -420,12 +420,12 @@ $\Delta_F=\{a,f(a),g(a),f(f(a)),f(g(a)),g(f(a)),g(g(a)),\ldots\}$.
 
 Mit dem Herbrand-Universum als Domäne kann man Interpretationen definieren, die Terme "`durch sich selbst"' interpretieren:\medskip
 
-\defbox{Eine \redalert{Herbrandinterpretation} für eine Formel $F$ ist eine Interpretation $\Inter$ für die gilt:
+\defbox{Eine \redalert{Herbrandinterpretation} für eine Formel $F$ ist eine Interpretation $\Inter$, für die gilt:
 \begin{itemize}
 \item $\Delta^\Inter=\Delta_F$ ist das Herbrand-Universum von $F$
 \item Für jeden Term $t\in\Delta_F$ gilt $t^\Inter=t$
 \end{itemize}
-$\Inter$ ist ein \redalert{Herbrandmodell} für $F$ wenn zudem gilt $\Inter\models F$.}
+$\Inter$ ist ein \redalert{Herbrandmodell} für $F$, wenn zudem gilt $\Inter\models F$.}
 
 \emph{Anmerkung:} Die Definition stellt Bedingungen an Grundbereich und Terminterpretation, aber sie lässt auch viele Freiheiten (z.B. die Interpretation von Prädikatensymbolen)
 
@@ -467,7 +467,7 @@ Herbrandmodell hat.}\pause
 
 \emph{Beweis:} $(\Leftarrow)$ ist klar, da Herbrandmodelle auch Modelle sind.\bigskip\pause
 
-$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$ indem wir festlegen:
+$(\Rightarrow)$ Sei $\Inter\models F$ ein Modell für $F$. Wir definieren eine Herbrandinterpretation $\Jnter$, indem wir festlegen:
 \begin{itemize}
 \item $p^\Jnter=\{\tuple{t_1,\ldots,t_n}\mid\tuple{t_1^\Inter,\ldots,t_n^\Inter}\in p^\Inter\}$\\
 {\footnotesize Anm.: $t_i$ sind variablenfrei, daher ist $t_i^\Inter$ wohldefiniert}
@@ -486,7 +486,7 @@ $F$ hat die Form $\forall x_1,\ldots, x_n.G$, wobei $G$ quantorenfrei ist.\pause
 \item Speziell gilt also für alle $t_1,\ldots,t_n\in\Delta_F$: $\Inter,\{x_1\mapsto t_1^{\Inter},\ldots,x_n\mapsto t_n^{\Inter}\}\models G$\pause
 \item Daraus folgt: $\Inter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$  (analog zu Lemma)\pause
 \item Daraus folgt: $\Jnter\models G\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}$\\
-{\footnotesize(Für Atome $G$ direkt aus Definition; die Aussage kann leicht auf größere Boolsche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
+{\footnotesize(Für Atome $G$ direkt aus Definition; die Aussage kann leicht auf größere Boolesche Verknüpfungen von Atomen verallgemeinert werden -- formal durch strukturelle Induktion)}\pause
 \item Es folgt: $\Jnter,\{x_1\mapsto t_1,\ldots,x_n\mapsto t_n\}\models G$ (Lemma)
 \end{itemize}
 Der Schluss gilt für alle $t_1,\ldots,t_n\in\Delta_F$, d.h. $\Jnter\models F$.\qed
@@ -729,15 +729,15 @@ $\leadsto$ Es gibt ein Herbrand-Modell mit dieser Domäne
 
 \begin{frame}\frametitle{Zusammenfassung und Ausblick}
 
-Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die Unerfüllbarkeit logischer Formeln\bigskip
+Die prädikatenlogische Resolution ist ein Semi-Entscheidungsverfahren für die Unerfüllbarkeit logischer Formeln.\bigskip
 
 Man kann Erfüllbarkeit auf Erfüllbarkeit über "`syntaktisch definierten"' Herbrandmodellen reduzieren
-(Fortsetzung folgt)
+(Fortsetzung folgt).
 % \bigskip
 % 
-% Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat beliebig große unendliche Modelle genau dann wenn sie abzählbare Modelle hat
+% Prädikatenlogik kann verschiedene Unendlichkeiten nicht unterscheiden: Eine Theorie hat beliebig große unendliche Modelle genau dann, wenn sie abzählbare Modelle hat.
 
-% In diesem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien
+% In diesem Sinne ist Prädikatenlogik eine Kurzschreibweise für möglicherweise unendliche aussagenlogische Theorien.
 \bigskip
 
 \anybox{yellow}{

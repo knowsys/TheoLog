@@ -92,7 +92,7 @@ $w(F)$ & $w(G)$ & $w(F\wedge G)$ & $w(F\vee G)$ & $w(F\to G)$ & $w(F\leftrightar
 
 \begin{frame}\frametitle{Logische Konsequenzen}
 
-\defbox{Eine Wertzuweisung $w$ ist \redalert{Modell einer Formel $F$} wenn $w\models F$ (also wenn $w(F)=\mytrue$).
+\defbox{Eine Wertzuweisung $w$ ist \redalert{Modell einer Formel $F$}, wenn $w\models F$ (also wenn $w(F)=\mytrue$).
 % Wir erweitern diese Notation auf (möglicherweise unendliche) Formelmengen: $w$ ist ein \redalert{Modell der Menge $\mathcal{F}$}
 %  wenn $w\models F$ für alle $F\in\mathcal{F}$ gilt. In diesem Fall schreiben wir \redalert{$w\models\mathcal{F}$}.
 % 
@@ -103,14 +103,14 @@ Ist $\mathcal{F}$ eine (möglicherweise unendliche) Menge von Formeln, dann ist 
 Die logischen Schlussfolgerungen aus einer Formel(menge) ergeben sich aus ihren Modellen:
 
 \defbox{Sei $\mathcal{F}$ eine Menge von Formeln.
-Eine Formel $G$ ist eine \redalert{logische Konsequenz} aus $\mathcal{F}$ wenn jedes Modell
+Eine Formel $G$ ist eine \redalert{logische Konsequenz} aus $\mathcal{F}$, wenn jedes Modell
 von $\mathcal{F}$ auch ein Modell von $G$ ist.\\ In diesem Fall schreiben wir $\mathcal{F}\models G$.
 }
 
 \begin{enumerate}[$\leadsto$]
 \item Die Formeln in $\mathcal{F}$ schränken die möglichen Interpretationen \ghost{ein:}\\
 Je mehr Formeln wahr sein sollen,\\ desto weniger Freiheiten gibt es bei der Wahl der Modelle
-\item $G$ ist eine logische Konsequenz wenn gilt:\\ Falls $\mathcal{F}$ wahr ist, dann ist auch $G$ garantiert wahr
+\item $G$ ist eine logische Konsequenz, wenn gilt:\\ Falls $\mathcal{F}$ wahr ist, dann ist auch $G$ garantiert wahr
 % 
 % Eine logische Konsequenz $G$ von $\mathcal{F}$ ist in jedem Fall (jedem Modell wahr in dem $\mathcal{F}$ wahr ist
 \end{enumerate}
@@ -282,7 +282,7 @@ Sudoku ist ein bekanntes Zahlenpuzzle.
 
 Aufgabe: 
 \begin{itemize}
-\item Fülle jedes Feld mit einer Ziffer von $1$ bis $9$, so dass
+\item Fülle jedes Feld mit einer Ziffer von $1$ bis $9$, sodass
 \item Spalten, Zeilen und die fetten Teilquadrate jede Ziffer nur einmal enthalten
 \end{itemize}
 
@@ -324,15 +324,15 @@ gut in Aussagenlogik ausgedrückt werden kann.
 
 \anybox{strongyellow}{\emph{Allgemeines Vorgehen:}
 \begin{enumerate}
-\item \alert{Vokabular festlegen:} Welche Atome sollen verwendet werden, um eine Instanz der Frage und seiner Lösung darzustellen?
+\item \alert{Vokabular festlegen:} Welche Atome sollen verwendet werden, um eine Instanz der Frage und ihrer Lösung darzustellen?
 \item \alert{Bedingungen festlegen:} Welche aussagenlogischen Formeln müssen gelten, damit die Belegung der Atome eine korrekte Lösung des Problems kodiert?
 \end{enumerate}}
 
 \medskip
 \begin{itemize}
-\item Schritt 1 kann zu hunderten oder tausenden Atome führen (die ja jeweils nur ein \ghost{Bit)}\\ $\leadsto$ keine Angst vor großen Vokabularen
+\item Schritt 1 kann zu hunderten oder tausenden Atomen führen (die ja jeweils nur ein \ghost{Bit)}\\ $\leadsto$ keine Angst vor großen Vokabularen
 \item Schritt 2 kann je nach gewählter Kodierung direkter oder umständlicher sein\\ $\leadsto$ gegebenenfalls Kodierung aus Schritt 1 überdenken
-\item Oft gut darstellbar: Aufgaben deren Lösung eine fest vorgegebene Größe hat und leicht überprüft werden kann (obwohl sie nicht leicht zu finden ist)\\
+\item Oft gut darstellbar: Aufgaben, deren Lösung eine fest vorgegebene Größe hat und leicht überprüft werden kann (obwohl sie nicht leicht zu finden ist)\\
 (Sudoku: Ja; nächster Zug im Schach: Nein (nicht einfach zu prüfen); Plan zum Lösen eines Sokoban-Puzzles: Nein (unbekannte, möglicherweise große \ghost{Schrittzahl))}
 \end{itemize}
 
@@ -348,7 +348,7 @@ gut in Aussagenlogik ausgedrückt werden kann.
 Formeln sind äquivalent, wenn sie die gleiche Semantik haben:
 
 \defbox{Zwei Formeln $F$ und $G$ sind \redalert{semantisch äquivalent}, in Symbolen \redalert{$F\equiv G$},
-wenn sie genau die selben Modelle haben, d.h. wenn\\[1ex]
+wenn sie genau dieselben Modelle haben, d.h. wenn\\[1ex]
 
 \narrowcentering{für alle Wertzuweisungen $w$ gilt: $w(F)=w(G)$}}\pause
 
@@ -407,8 +407,7 @@ Wenn $G\equiv G'$ und wenn $F'$ aus $F$ gebildet werden kann, indem man ein beli
 \emph{Beweisskizze${}^*$:} Aus $G\equiv G'$ folgt, dass $w\models G$ gdw. $w\models G'$ für beliebige Wertzuweisungen $w$ gilt.
 % Gemäß der rekursiven Definition von $\models$ hängt $w\models H$ nur davon ab, welche der direkten Unterformeln von
 % $H$ durch $w$ erfüllt sind.
-In der rekursiven Definition von $\models$ erfüllt daher die Teilformel $G$ genau die selben Bedingungen wie $G'$, so
-dass sich auch für $F$ und $F'$ der selbe Wert ergibt.\qed
+In der rekursiven Definition von $\models$ erfüllt daher die Teilformel $G$ genau dieselben Bedingungen wie $G'$, sodass sich auch für $F$ und $F'$ derselbe Wert ergibt.\qed
 \bigskip
 
 Dieser Satz ist ein Sonderfall der allgemeingültigen und intuitiven Tatsache, dass der Wert von rekursiv definierten Funktionen gleich bleibt, wenn man die syntaktische Definition einer Teilberechnung durch eine andere ersetzt, die stets den gleichen Wert liefert.
@@ -578,7 +577,7 @@ Wir schreiben $\models F$ statt $\emptyset\models F$ um auszudrücken, dass $F$ 
 
 \begin{frame}\frametitle{Curry}
 
-Mit Deduktionstheorem und dem Bezug von Formelmengen und Konjunktionen erhält man ein weiteres interessantes
+Mit dem Deduktionstheorem und dem Bezug von Formelmengen und Konjunktionen erhält man ein weiteres interessantes
 Ergebnis:\medskip
 
 \narrowcentering{%
@@ -604,7 +603,7 @@ $\leadsto$ vgl. \redalert{funktionale Programmierung}
 Programme zum aussagenlogischen Schließen heißen \alert{SAT Solver}.
 \begin{itemize}
 \item Hochoptimierte Systeme treten auf der jährlichen SAT-Competition gegeneinander an (\url{https://satcompetition.github.io/})
-\item Praxissysteme sind teils weniger extrem optimiert aber anwendungsfreundlicher oder vielseitiger
+\item Praxissysteme sind teils weniger extrem optimiert, aber anwendungsfreundlicher oder vielseitiger
 \item Alle relevanten Programmiersprachen sollten geeignete Bibliotheken anbieten, zumeist frei und open source
 \item Oft mit weiteren Features (nicht-boolesche Datentypen, weiche Optimierungskriterien, bestimmte prädikatenlogische Features, usw.)
 \end{itemize}
@@ -666,7 +665,7 @@ print(s.model())
 Die Modelle einer Formel(menge) definieren ihre \redalert{logischen Konsequenzen}
 (="`alles, was in diesen Fällen noch gilt"')\bigskip
 
-In der Aussagenlogik gelten viele \redalert{nützliche Äquivalenzen} die man für Umformungen ausnutzen kann
+In der Aussagenlogik gelten viele \redalert{nützliche Äquivalenzen}, die man für Umformungen ausnutzen kann
 \bigskip
 
 Es gibt viele freie Softwarepakete zum aussagenlogischen Schließen, zum Beispiel \redalert{Z3}
